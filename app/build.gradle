@@ -37,7 +37,6 @@ dependencies {
     compile rootProject.ext.dependencies.design
     compile rootProject.ext.dependencies.supertoasts
     compile rootProject.ext.dependencies.butterknife
-    apt 'com.jakewharton:butterknife-compiler:8.0.1'
-    compile project(':domain')
+    apt rootProject.ext.apt.butterknife
     compile project(':data')
 }

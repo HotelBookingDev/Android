@@ -1,4 +1,4 @@
-package sf.hotel.com.data;
+package sf.hotel.com.data.eneity;
 
 import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.field.DatabaseField;
@@ -13,7 +13,6 @@ public class UserEntity {
     @SerializedName("userId")
     @DatabaseField(generatedId = true)
     private long userId;
-
     @DatabaseField(columnName = "name")
     @SerializedName("fullname")
     private String fullname;

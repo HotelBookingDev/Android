@@ -5,14 +5,22 @@ import android.content.Context;
 import java.sql.SQLException;
 import java.util.List;
 
-import sf.hotel.com.data.UserEntity;
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+import sf.hotel.com.data.eneity.UserEntity;
 
 /**
  * Created by FMT on 2016/6/3:16:46
  * EMAILE 1105896230@qq.com.
  */
+@Singleton
 public class UserDao {
-    public static void add(UserEntity user, Context context) {
+    @Inject
+    public UserDao() {
+    }
+
+    public void add(UserEntity user, Context context) {
         try {
             DatabaseHelper.getHelper(context).getUserDao().createIfNotExists(user);
         } catch (SQLException e) {
@@ -20,7 +28,7 @@ public class UserDao {
         }
     }
 
-    public static void update(UserEntity user, Context context) {
+    public void update(UserEntity user, Context context) {
         try {
             DatabaseHelper.getHelper(context).getUserDao().createOrUpdate(user);
         } catch (SQLException e) {
@@ -28,7 +36,7 @@ public class UserDao {
         }
     }
 
-    public static boolean isCache(long id, Context context) {
+    public boolean isCache(long id, Context context) {
         boolean isCache = false;
         UserEntity userEneity = getUserEneity(id, context);
         if (userEneity != null) {
@@ -37,7 +45,7 @@ public class UserDao {
         return isCache;
     }
 
-    public static UserEntity getUserEneity(long id, Context context) {
+    public UserEntity getUserEneity(long id, Context context) {
         UserEntity mUserEntity = null;
         try {
             List<UserEntity> mUserEntitys = DatabaseHelper.getHelper(context)

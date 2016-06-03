@@ -4,6 +4,7 @@ def rxJavaVersion = "1.0.9"
 def rxAndroidVersion = "0.24.0"
 def gsonVersion = '2.3'
 def ormliteVersion = '4.48'
+def daggerVersion = '2.0.2'
 ext {
 
     android = [
@@ -19,12 +20,15 @@ ext {
     ]
 
     dependencies = [
-            appcompatV7    : "com.android.support:appcompat-v7:${supportVersion}",
-            design         : "com.android.support:design:${supportVersion}",
+            appcompatV7: "com.android.support:appcompat-v7:${supportVersion}",
+            design     : "com.android.support:design:${supportVersion}",
             //Toast的依赖库
-            supertoasts    : 'com.github.johnpersano:supertoasts:1.3.4@aar',
+            supertoasts: 'com.github.johnpersano:supertoasts:1.3.4@aar',
             //butterknife的依赖库
-            butterknife    : "com.jakewharton:butterknife:${butterknifeVersion}",
+            butterknife: "com.jakewharton:butterknife:${butterknifeVersion}",
+    ]
+
+    dependenciesdata = [
             //rxJava
             rxJava         : "io.reactivex:rxjava:${rxJavaVersion}",
             //rxAndroid
@@ -33,6 +37,11 @@ ext {
             gson           : "com.google.code.gson:gson:${gsonVersion}",
             // sqlite ORM
             ormlite_core   : "com.j256.ormlite:ormlite-core:${ormliteVersion}",
-            ormlite_android: "com.j256.ormlite:ormlite-android:${ormliteVersion}"
+            ormlite_android: "com.j256.ormlite:ormlite-android:${ormliteVersion}",
+            // dagger2
+            dagger2        : "com.google.dagger:dagger:${daggerVersion}"
+    ]
+    apt = [
+            butterknife: "com.jakewharton:butterknife-compiler:${butterknifeVersion}"
     ]
 }

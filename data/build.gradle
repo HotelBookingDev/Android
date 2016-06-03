@@ -25,9 +25,10 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile rootProject.ext.dependencies.appcompatV7
-    compile rootProject.ext.dependencies.gson
-    compile rootProject.ext.dependencies.rxJava
-    compile rootProject.ext.dependencies.ormlite_core
-    compile rootProject.ext.dependencies.ormlite_android
+    compile rootProject.ext.dependenciesdata.gson
+    compile rootProject.ext.dependenciesdata.rxJava
+    compile rootProject.ext.dependenciesdata.ormlite_core
+    compile rootProject.ext.dependenciesdata.ormlite_android
+    compile rootProject.ext.dependenciesdata.dagger2
+//    apt 'com.google.dagger:dagger-compiler:2.0.2'
 }

@@ -10,7 +10,7 @@ import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
 
-import sf.hotel.com.data.UserEntity;
+import sf.hotel.com.data.eneity.UserEntity;
 
 /**
  * Created by FMT on 2016/6/3:16:39

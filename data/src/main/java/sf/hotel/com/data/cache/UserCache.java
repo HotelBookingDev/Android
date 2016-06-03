@@ -3,7 +3,7 @@ package sf.hotel.com.data.cache;
 import android.content.Context;
 
 import rx.Observable;
-import sf.hotel.com.data.UserEntity;
+import sf.hotel.com.data.eneity.UserEntity;
 
 /**
  * Created by FMT on 2016/6/3:16:26
