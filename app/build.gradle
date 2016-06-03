@@ -12,10 +12,9 @@ android {
         versionName "1.0"
         //配置服务器是否是正式服还是测试服
         buildConfigField 'String', 'API_SERVER_URL', '"API"'
-    }
-    compileOptions {
-        sourceCompatibility 1.8
-        sourceCompatibility 1.8
+        jackOptions {
+            enabled true
+        }
     }
     buildTypes {
         release {
@@ -25,6 +24,10 @@ android {
             //混淆的文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
