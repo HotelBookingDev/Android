@@ -1,11 +1,11 @@
-package sf.hotel.com.hotel_client;
+package sf.hotel.com.hotel_client.view.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+import sf.hotel.com.hotel_client.R;
 
-    @Override
+public class MainActivity extends BaseActivity {
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
