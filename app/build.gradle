@@ -1,20 +1,21 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'me.tatarka.retrolambda'
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
-        applicationId "sf.hotel.com.hotel_client"
+        applicationId rootProject.ext.android.applicationId
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
         //配置服务器是否是正式服还是测试服
         buildConfigField 'String', 'API_SERVER_URL', '"API"'
-        jackOptions {
-            enabled true
-        }
+    }
+    compileOptions {
+        sourceCompatibility rootProject.ext.android.javaVersion
+        targetCompatibility rootProject.ext.android.javaVersion
     }
     buildTypes {
         release {
@@ -25,10 +26,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+
 }
 
 dependencies {
@@ -37,5 +35,4 @@ dependencies {
     compile rootProject.ext.dependencies.appcompatV7
     compile rootProject.ext.dependencies.design
     compile rootProject.ext.dependencies.supertoasts
-
 }
