@@ -39,4 +39,5 @@ dependencies {
     compile rootProject.ext.dependencies.butterknife
     apt rootProject.ext.apt.butterknife
     compile project(':data')
+
 }

@@ -4,8 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 
-import butterknife.ButterKnife;
-import sf.hotel.com.hotel_client.Utils.TToast;
+import sf.hotel.com.hotel_client.utils.TToast;
 
 /**
  * Created by FMT on 2016/6/3:15:51
@@ -14,12 +13,11 @@ import sf.hotel.com.hotel_client.Utils.TToast;
 public class BaseActivity extends Activity {
 
     protected void showToast(String msg) {
-        TToast.showToast(msg,this);
+        TToast.showToast(msg);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-
     }
 }

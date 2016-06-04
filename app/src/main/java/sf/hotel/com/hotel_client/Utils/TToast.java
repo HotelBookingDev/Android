@@ -1,6 +1,4 @@
-package sf.hotel.com.hotel_client.Utils;
-
-import android.content.Context;
+package sf.hotel.com.hotel_client.utils;
 
 import com.github.johnpersano.supertoasts.SuperToast;
 
@@ -26,7 +24,7 @@ public final class TToast {
         superToast.setIcon(SuperToast.Icon.Dark.INFO, SuperToast.IconPosition.LEFT);
     }
 
-    public static void showToast(String message, Context context) {
+    public static void showToast(String message) {
         superToast.setText(message);
         superToast.show();
     }

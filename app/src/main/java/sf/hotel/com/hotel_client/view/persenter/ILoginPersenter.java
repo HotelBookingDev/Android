@@ -1,16 +1,16 @@
 package sf.hotel.com.hotel_client.view.persenter;
 
+import sf.hotel.com.data.eneity.LoginEntity;
+import sf.hotel.com.data.eneity.StateEntity;
 import sf.hotel.com.data.interfaceeneity.ILoginEntity;
 import sf.hotel.com.data.interfaceeneity.LoginEntityImp;
-import sf.hotel.com.data.interfaceeneity.onLoginLinstener;
-import sf.hotel.com.hotel_client.Utils.CheckUtils;
 import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;
 
 /**
  * Created by FMT on 2016/6/3:18:54
  * EMAILE 1105896230@qq.com.
  */
-public class ILoginPersenter implements Persenter, onLoginLinstener {
+public class ILoginPersenter implements Persenter {
     private ILoginView mILoginView;
     private ILoginEntity mILoginEntity;
 
@@ -31,29 +31,17 @@ public class ILoginPersenter implements Persenter, onLoginLinstener {
     public void destroy() {
     }
 
-    public void getUserInfo() {
+    public void login() {
         mILoginView.showLoading();
-        rx.Observable.just(mILoginView).filter(iLoginView -> {
-            boolean isPhont = CheckUtils.checkPhoneTextView(mILoginView.getEditName());
-            if (!isPhont) {
-                mILoginView.showFailedError();
-            }
-            return isPhont;
-        }).subscribe(iLoginView -> {
-            mILoginEntity.login(mILoginView.getUserName(), mILoginView.getPassword(),
-                    ILoginPersenter.this);
-        });
+        mILoginEntity.login(mILoginView.getUserName(), mILoginView.getPassword())
+                .subscribe(this::check);
     }
 
-    @Override
-    public void success() {
-        mILoginView.success();
-        mILoginView.hideLoading();
-    }
-
-    @Override
-    public void error() {
-        mILoginView.error();
-        mILoginView.hideLoading();
+    private void check(StateEntity<LoginEntity> userEntityStateEntity) {
+        if (userEntityStateEntity.getCode() == 200) {
+            mILoginView.success();
+        } else if (userEntityStateEntity.getCode() == -1) {
+            mILoginView.error();
+        }
     }
 }

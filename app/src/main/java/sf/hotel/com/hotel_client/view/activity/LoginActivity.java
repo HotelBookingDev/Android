@@ -53,7 +53,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 
     @Override
     public void hideLoading() {
-        
+
     }
 
     @Override
@@ -64,7 +64,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     @Override
     @OnClick(R.id.loginbtn)
     public void login() {
-        mILoginPersenter.getUserInfo();
+        mILoginPersenter.login();
     }
 
     @Override
