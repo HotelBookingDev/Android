@@ -5,6 +5,8 @@ def rxAndroidVersion = "0.24.0"
 def gsonVersion = '2.3'
 def ormliteVersion = '4.48'
 def daggerVersion = '2.0.2'
+def retrofit2Version = '2.0.0-beta4'
+
 ext {
 
     android = [
@@ -39,7 +41,11 @@ ext {
             ormlite_core   : "com.j256.ormlite:ormlite-core:${ormliteVersion}",
             ormlite_android: "com.j256.ormlite:ormlite-android:${ormliteVersion}",
             // dagger2
-            dagger2        : "com.google.dagger:dagger:${daggerVersion}"
+            dagger2        : "com.google.dagger:dagger:${daggerVersion}",
+
+            retrofit       : "com.squareup.retrofit2:retrofit:${retrofit2Version}",
+            convertergson  : "com.squareup.retrofit2:converter-gson:${retrofit2Version}",
+            adapterrxjava  : "com.squareup.retrofit2:adapter-rxjava:${retrofit2Version}"
     ]
     apt = [
             butterknife: "com.jakewharton:butterknife-compiler:${butterknifeVersion}"

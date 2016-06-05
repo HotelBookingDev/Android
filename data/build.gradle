@@ -27,8 +27,12 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile rootProject.ext.dependenciesdata.gson
     compile rootProject.ext.dependenciesdata.rxJava
+    compile rootProject.ext.dependenciesdata.rxAndroid
     compile rootProject.ext.dependenciesdata.ormlite_core
     compile rootProject.ext.dependenciesdata.ormlite_android
     compile rootProject.ext.dependenciesdata.dagger2
-//    apt 'com.google.dagger:dagger-compiler:2.0.2'
+    compile rootProject.ext.dependenciesdata.retrofit
+    compile rootProject.ext.dependenciesdata.convertergson
+    compile rootProject.ext.dependenciesdata.adapterrxjava
+
 }

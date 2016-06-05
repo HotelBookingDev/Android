@@ -24,6 +24,11 @@ public class StateEntity<T> {
         throw new RuntimeException("can not set");
     }
 
+    public StateEntity(int code, T data) {
+        this.code = code;
+        this.data = data;
+    }
+
     public StateEntity(T data) {
         this.data = data;
     }

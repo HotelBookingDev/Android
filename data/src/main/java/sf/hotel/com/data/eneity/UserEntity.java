@@ -1,6 +1,5 @@
 package sf.hotel.com.data.eneity;
 
-import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -10,17 +9,13 @@ import com.j256.ormlite.table.DatabaseTable;
  */
 @DatabaseTable(tableName = "tb_user")
 public class UserEntity {
-    @SerializedName("userId")
     @DatabaseField(generatedId = true)
     private long userId;
     @DatabaseField(columnName = "name")
-    @SerializedName("fullname")
     private String fullname;
     @DatabaseField(columnName = "phone")
-    @SerializedName("phone")
     private long phone;
     @DatabaseField(columnName = "sex")
-    @SerializedName("sex")
     private int sex;
 
     public long getUserId() {

@@ -2,6 +2,8 @@ package sf.hotel.com.data.cache;
 
 import android.content.Context;
 
+import javax.inject.Inject;
+
 import rx.Observable;
 import sf.hotel.com.data.eneity.UserEntity;
 

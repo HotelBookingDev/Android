@@ -5,7 +5,6 @@ import android.content.Context;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import sf.hotel.com.data.eneity.UserEntity;
@@ -16,9 +15,6 @@ import sf.hotel.com.data.eneity.UserEntity;
  */
 @Singleton
 public class UserDao {
-    @Inject
-    public UserDao() {
-    }
 
     public void add(UserEntity user, Context context) {
         try {

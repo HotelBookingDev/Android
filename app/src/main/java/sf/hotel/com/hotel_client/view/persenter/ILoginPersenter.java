@@ -1,7 +1,7 @@
 package sf.hotel.com.hotel_client.view.persenter;
 
-import sf.hotel.com.data.eneity.LoginEntity;
 import sf.hotel.com.data.eneity.StateEntity;
+import sf.hotel.com.data.eneity.UserEntity;
 import sf.hotel.com.data.interfaceeneity.ILoginEntity;
 import sf.hotel.com.data.interfaceeneity.LoginEntityImp;
 import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;
@@ -37,8 +37,9 @@ public class ILoginPersenter implements Persenter {
                 .subscribe(this::check);
     }
 
-    private void check(StateEntity<LoginEntity> userEntityStateEntity) {
+    private void check(StateEntity<UserEntity> userEntityStateEntity) {
         if (userEntityStateEntity.getCode() == 200) {
+            mILoginEntity.update(userEntityStateEntity, mILoginView.getContext());
             mILoginView.success();
         } else if (userEntityStateEntity.getCode() == -1) {
             mILoginView.error();

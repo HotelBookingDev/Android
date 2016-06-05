@@ -20,4 +20,9 @@ public class BaseActivity extends Activity {
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }
