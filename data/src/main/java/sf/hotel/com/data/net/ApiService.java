@@ -1,9 +1,7 @@
 package sf.hotel.com.data.net;
 
-import java.util.Map;
-
-import retrofit2.http.FieldMap;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import rx.Observable;
 import sf.hotel.com.data.eneity.HttpResult;
 import sf.hotel.com.data.eneity.UserEntity;
@@ -14,5 +12,9 @@ import sf.hotel.com.data.eneity.UserEntity;
  */
 public interface ApiService {
     @POST(AppUrl.USER_URL)
-    Observable<HttpResult<UserEntity>> getUserInfo(@FieldMap Map<String, String> map);
+    Observable<HttpResult<UserEntity>> getUserInfo(@Query("name") String name,
+            @Query("password") String password);
+
+    @POST(AppUrl.SEND_CODE)
+    void sendCode(@Query("phone") String phone);
 }

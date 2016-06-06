@@ -9,4 +9,6 @@ public class AppUrl {
     public static final String SERVER_URL = "";
 
     public static final String USER_URL = "";
+
+    public static final String SEND_CODE = "";
 }
