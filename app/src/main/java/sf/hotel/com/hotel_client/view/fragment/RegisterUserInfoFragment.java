@@ -16,7 +16,7 @@ public class RegisterUserInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         View view = inflater.from(getActivity())
-                .inflate(R.layout.fragment_registeruserinfo, container);
+                .inflate(R.layout.fragment_register_userinfo, container);
         return view;
     }
 }
