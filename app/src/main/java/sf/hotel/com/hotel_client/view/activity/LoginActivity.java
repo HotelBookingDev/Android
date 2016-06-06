@@ -48,17 +48,17 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 
     @Override
     public void showLoading() {
-
+        showLog("showloadd");
     }
 
     @Override
     public void hideLoading() {
-
+        showLog("hideLoading");
     }
 
     @Override
     public void showFailedError() {
-
+        showLog("showFailedError");
     }
 
     @Override
@@ -74,12 +74,12 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 
     @Override
     public void success() {
-
+        showLog("success");
     }
 
     @Override
     public void error() {
-
+        showLog("error");
     }
 
     @Override
