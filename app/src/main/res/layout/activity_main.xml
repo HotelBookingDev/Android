@@ -6,23 +6,8 @@
     android:padding="@dimen/activity_login_padding"
     tools:context=".view.activity.LoginActivity">
 
-    <EditText
-        android:id="@+id/edit_name"
+    <FrameLayout
+        android:id="@+id/login_fragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <EditText
-        android:id="@+id/edit_pw"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/edit_name" />
-
-    <Button
-        android:id="@+id/loginbtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/edit_pw"
-        android:background="@drawable/shape_loginbtn"
-        android:text="@string/btn_login"
-        android:textColor="@color/colorBlack" />
+        android:layout_height="match_parent" />
 </RelativeLayout>

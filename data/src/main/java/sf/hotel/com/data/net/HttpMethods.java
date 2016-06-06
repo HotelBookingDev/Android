@@ -1,7 +1,6 @@
 package sf.hotel.com.data.net;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
@@ -51,8 +50,8 @@ public class HttpMethods {
         return mInstance;
     }
 
-    public rx.Observable<HttpResult<UserEntity>> getUserInfo(HashMap<String, String> map) {
-        return mApiService.getUserInfo(map)
+    public rx.Observable<HttpResult<UserEntity>> getUserInfo(String name, String pw) {
+        return mApiService.getUserInfo(name, pw)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());

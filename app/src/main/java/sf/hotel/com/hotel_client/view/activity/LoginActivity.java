@@ -1,107 +1,68 @@
 package sf.hotel.com.hotel_client.view.activity;
 
-import android.content.Context;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.widget.EditText;
+import android.view.KeyEvent;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;
-import sf.hotel.com.hotel_client.view.persenter.ILoginPersenter;
+import sf.hotel.com.hotel_client.view.fragment.IRegisterPwFragment;
+import sf.hotel.com.hotel_client.view.fragment.LoginFragment;
 
-public class LoginActivity extends BaseActivity implements ILoginView {
+public class LoginActivity extends BaseActivity implements LoginFragment.ClickLinstener {
 
-    @BindView(R.id.edit_name)
-    EditText mEditName;
-    @BindView(R.id.edit_pw)
-    EditText mEditPw;
-    ILoginPersenter mILoginPersenter;
+    private final int LOGING = 0x1;
+    private final int REGISTER = 0x2;
+    private LoginFragment mLoginFragment;
+    private IRegisterPwFragment mIRegisterPwFragment;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        mILoginPersenter = new ILoginPersenter(this);
+        init();
+    }
+
+    protected void init() {
+        changeFragment(LOGING);
     }
 
     @Override
-    public String getUserName() {
-        return mEditName.getText().toString();
+    public void regiser() {
+        changeFragment(REGISTER);
+    }
+
+    private void changeFragment(int type) {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.login_fragment, getFragment(type));
+        fragmentTransaction.commit();
+    }
+
+    protected Fragment getFragment(int type) {
+        Fragment fragment = null;
+        if (type == LOGING) {
+            if (mLoginFragment == null) {
+                mLoginFragment = new LoginFragment();
+            }
+            fragment = mLoginFragment;
+            ((LoginFragment) fragment).setmClickLinstener(this);
+        } else if (type == REGISTER) {
+            if (mIRegisterPwFragment == null) {
+                mIRegisterPwFragment = new IRegisterPwFragment();
+            }
+            fragment = mIRegisterPwFragment;
+        }
+        return fragment;
     }
 
     @Override
-    public String getPassword() {
-        return mEditPw.getText().toString();
-    }
-
-    @Override
-    public void clearUserName() {
-        mEditName.setText("");
-    }
-
-    @Override
-    public void clearPassword() {
-        mEditPw.setText("");
-    }
-
-    @Override
-    public void showLoading() {
-        showLog("showloadd");
-    }
-
-    @Override
-    public void hideLoading() {
-        showLog("hideLoading");
-    }
-
-    @Override
-    public void showFailedError() {
-        showLog("showFailedError");
-    }
-
-    @Override
-    @OnClick(R.id.loginbtn)
-    public void login() {
-        mILoginPersenter.login();
-    }
-
-    @Override
-    public EditText getEditName() {
-        return mEditName;
-    }
-
-    @Override
-    public void success() {
-        showLog("success");
-    }
-
-    @Override
-    public void error() {
-        showLog("error");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mILoginPersenter.destroy();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mILoginPersenter.pause();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mILoginPersenter.resume();
-    }
-
-    @Override
-    public Context getContext() {
-        return this;
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        boolean isReturn = true;
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+        } else {
+            return isReturn = super.onKeyDown(keyCode, event);
+        }
+        return isReturn;
     }
 }
