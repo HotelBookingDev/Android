@@ -6,6 +6,7 @@ def gsonVersion = '2.3'
 def ormliteVersion = '4.48'
 def daggerVersion = '2.0.2'
 def retrofit2Version = '2.0.0-beta4'
+def flaviofariaVersion = '1.0.7'
 
 ext {
 
@@ -28,6 +29,8 @@ ext {
             supertoasts: 'com.github.johnpersano:supertoasts:1.3.4@aar',
             //butterknife的依赖库
             butterknife: "com.jakewharton:butterknife:${butterknifeVersion}",
+
+            flaviofaria: "com.flaviofaria:kenburnsview:${flaviofariaVersion}"
     ]
 
     dependenciesdata = [

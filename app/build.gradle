@@ -37,6 +37,7 @@ dependencies {
     compile rootProject.ext.dependencies.design
     compile rootProject.ext.dependencies.supertoasts
     compile rootProject.ext.dependencies.butterknife
+    compile rootProject.ext.dependencies.flaviofaria
     apt rootProject.ext.apt.butterknife
     compile project(':data')
 

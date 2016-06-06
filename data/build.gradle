@@ -23,7 +23,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile rootProject.ext.dependenciesdata.gson
     compile rootProject.ext.dependenciesdata.rxJava
@@ -34,5 +34,4 @@ dependencies {
     compile rootProject.ext.dependenciesdata.retrofit
     compile rootProject.ext.dependenciesdata.convertergson
     compile rootProject.ext.dependenciesdata.adapterrxjava
-
 }

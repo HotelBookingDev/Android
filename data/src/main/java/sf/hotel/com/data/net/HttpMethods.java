@@ -1,9 +1,13 @@
 package sf.hotel.com.data.net;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import rx.android.schedulers.AndroidSchedulers;
@@ -52,5 +56,18 @@ public class HttpMethods {
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public class CommonHeaderInterceptor implements Interceptor {
+
+        private StringBuilder token_str = new StringBuilder();
+
+        @Override
+        public Response intercept(Chain chain) throws IOException {
+
+            Request request = chain.request();
+            request = request.newBuilder().build();
+            return chain.proceed(request);
+        }
     }
 }

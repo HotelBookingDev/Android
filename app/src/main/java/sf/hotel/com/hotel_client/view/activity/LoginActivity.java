@@ -2,7 +2,6 @@ package sf.hotel.com.hotel_client.view.activity;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.EditText;
 
 import butterknife.BindView;
@@ -49,7 +48,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 
     @Override
     public void showLoading() {
-        Log.e("tte", "showLoading");
+
     }
 
     @Override
