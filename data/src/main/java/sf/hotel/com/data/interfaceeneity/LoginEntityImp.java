@@ -17,8 +17,8 @@ public class LoginEntityImp implements ILoginEntity {
     @Override
     public Observable<StateEntity<UserEntity>> login(String username, String password) {
         return Observable.just(init(username, password)).flatMap(loginEntityStateEntity -> {
-            if (CheckUtils.checkPhoneNumber(loginEntityStateEntity.getData().getUsername()) &&
-                    !CheckUtils.isTextViewEmpty(loginEntityStateEntity.getData().getPassword())) {
+            if (!(CheckUtils.checkPhoneNumber(loginEntityStateEntity.getData().getUsername()) &&
+                    !CheckUtils.isTextViewEmpty(loginEntityStateEntity.getData().getPassword()))) {
                 return Observable.just(new StateEntity<>(-1, new UserEntity()));
             } else {
                 //网络请求的东西

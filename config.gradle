@@ -8,6 +8,7 @@ def daggerVersion = '2.0.2'
 def retrofit2Version = '2.0.0-beta4'
 def buglySDKVersion = 'latest.release'
 def buglyNDKVersion = 'latest.release'
+def flaviofariaVersion = '1.0.7'
 
 ext {
 
@@ -32,7 +33,8 @@ ext {
             butterknife: "com.jakewharton:butterknife:${butterknifeVersion}",
             //bugly的依赖库
             buglySDK   : "com.tencent.bugly:crashreport:${buglySDKVersion}",
-            buglyNDK   : "com.tencent.bugly:nativecrashreport:${buglyNDKVersion}"
+            buglyNDK   : "com.tencent.bugly:nativecrashreport:${buglyNDKVersion}",
+            flaviofaria: "com.flaviofaria:kenburnsview:${flaviofariaVersion}"
     ]
 
     dependenciesdata = [

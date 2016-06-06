@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 
+import sf.hotel.com.data.utils.LLog;
 import sf.hotel.com.hotel_client.utils.TToast;
 
 
@@ -12,6 +13,7 @@ import sf.hotel.com.hotel_client.utils.TToast;
  * EMAILE 1105896230@qq.com.
  */
 public class BaseActivity extends Activity {
+    protected String TAG = this.getClass().getSimpleName();
 
     protected void showToast(String msg) {
         TToast.showToast(msg);
@@ -25,5 +27,9 @@ public class BaseActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    protected void showLog(String msg) {
+        LLog.e(TAG, msg);
     }
 }

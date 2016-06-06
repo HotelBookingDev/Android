@@ -43,6 +43,7 @@ dependencies {
     compile rootProject.ext.dependencies.butterknife
     compile rootProject.ext.dependencies.buglySDK
     compile rootProject.ext.dependencies.buglyNDK
+    compile rootProject.ext.dependencies.flaviofaria
     apt rootProject.ext.apt.butterknife
     compile project(':data')
 
