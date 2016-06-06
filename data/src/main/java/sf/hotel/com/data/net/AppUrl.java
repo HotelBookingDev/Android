@@ -11,4 +11,5 @@ public class AppUrl {
     public static final String USER_URL = "";
 
     public static final String SEND_CODE = "";
+    public static final String LOGIN_URL = "";
 }

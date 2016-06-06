@@ -4,9 +4,9 @@ import android.content.Context;
 
 import rx.Observable;
 import sf.hotel.com.data.cache.UserCacheImpl;
-import sf.hotel.com.data.eneity.LoginEntity;
-import sf.hotel.com.data.eneity.StateEntity;
-import sf.hotel.com.data.eneity.UserEntity;
+import sf.hotel.com.data.entity.LoginEntity;
+import sf.hotel.com.data.entity.StateEntity;
+import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.utils.CheckUtils;
 
 /**

@@ -11,8 +11,8 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-import sf.hotel.com.data.eneity.HttpResult;
-import sf.hotel.com.data.eneity.UserEntity;
+import sf.hotel.com.data.entity.HttpResult;
+import sf.hotel.com.data.entity.UserEntity;
 
 /**
  * Created by FMT on 2016/6/5:14:06

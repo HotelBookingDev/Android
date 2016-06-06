@@ -1,9 +1,7 @@
 package sf.hotel.com.hotel_client.view.persenter;
 
-import android.content.Context;
-
-import sf.hotel.com.data.eneity.StateEntity;
-import sf.hotel.com.data.eneity.UserEntity;
+import sf.hotel.com.data.entity.StateEntity;
+import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.interfaceeneity.ILoginEntity;
 import sf.hotel.com.data.interfaceeneity.LoginEntityImp;
 import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;

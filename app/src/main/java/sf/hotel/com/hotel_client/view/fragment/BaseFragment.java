@@ -2,7 +2,7 @@ package sf.hotel.com.hotel_client.view.fragment;
 
 import android.app.Fragment;
 
-import sf.hotel.com.data.utils.LLog;
+import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.utils.TToast;
 
 /**
@@ -17,6 +17,6 @@ public class BaseFragment extends Fragment {
     }
 
     protected void showLog(String msg) {
-        LLog.e(TAG, msg);
+        LogUtils.e(TAG, msg);
     }
 }

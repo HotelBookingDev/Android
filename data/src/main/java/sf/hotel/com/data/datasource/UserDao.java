@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.inject.Singleton;
 
-import sf.hotel.com.data.eneity.UserEntity;
+import sf.hotel.com.data.entity.UserEntity;
 
 /**
  * Created by FMT on 2016/6/3:16:46

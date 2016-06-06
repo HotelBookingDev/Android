@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 
-import sf.hotel.com.data.utils.LLog;
+import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.utils.TToast;
 
 
@@ -30,6 +30,6 @@ public class BaseActivity extends Activity {
     }
 
     protected void showLog(String msg) {
-        LLog.e(TAG, msg);
+        LogUtils.e(TAG, msg);
     }
 }

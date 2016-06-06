@@ -1,4 +1,4 @@
-package sf.hotel.com.data.eneity;
+package sf.hotel.com.data.entity;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;

@@ -1,4 +1,4 @@
-package sf.hotel.com.data.eneity;
+package sf.hotel.com.data.entity;
 
 /**
  * Created by FMT on 2016/6/5:14:04
@@ -7,6 +7,16 @@ package sf.hotel.com.data.eneity;
 public class HttpResult<T> {
     private int resultCode;
     private String resultMessage;
+
+
+    public boolean isSuccess(){
+        if (resultCode == 0){
+            return true;
+        }
+        return false;
+    }
+
+
 
     public int getResultCode() {
         return resultCode;

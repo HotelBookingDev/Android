@@ -43,9 +43,10 @@ dependencies {
     compile rootProject.ext.dependencies.buglySDK
     compile rootProject.ext.dependencies.buglyNDK
     compile rootProject.ext.dependencies.flaviofaria
+    compile rootProject.ext.dependencies.supportV4
     apt rootProject.ext.apt.butterknife
     compile project(':data')
 
     compile 'junit:junit:4.12'
-    compile 'com.android.support:support-v4:23.3.0'
+
 }

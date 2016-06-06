@@ -3,8 +3,8 @@ package sf.hotel.com.data.interfaceeneity;
 import android.content.Context;
 
 import rx.Observable;
-import sf.hotel.com.data.eneity.StateEntity;
-import sf.hotel.com.data.eneity.UserEntity;
+import sf.hotel.com.data.entity.StateEntity;
+import sf.hotel.com.data.entity.UserEntity;
 
 /**
  * Created by FMT on 2016/6/3:19:29

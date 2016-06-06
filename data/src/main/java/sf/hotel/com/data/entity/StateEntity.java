@@ -1,4 +1,4 @@
-package sf.hotel.com.data.eneity;
+package sf.hotel.com.data.entity;
 
 /**
  * Created by FMT on 2016/6/4:16:43

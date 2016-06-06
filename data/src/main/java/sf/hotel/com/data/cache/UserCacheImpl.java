@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import rx.Observable;
 import sf.hotel.com.data.datasource.UserDao;
-import sf.hotel.com.data.eneity.UserEntity;
+import sf.hotel.com.data.entity.UserEntity;
 
 /**
  * Created by FMT on 2016/6/3:16:29
