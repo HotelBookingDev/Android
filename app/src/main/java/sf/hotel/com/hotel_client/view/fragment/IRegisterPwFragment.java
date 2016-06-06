@@ -32,7 +32,7 @@ public class IRegisterPwFragment extends BaseFragment implements IRegiserPwView 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_registepwr, container, false);
+        View view = inflater.inflate(R.layout.fragment_registe_pwr, container, false);
         ButterKnife.bind(this, view);
         mIRegisterPwPersenter = new IRegisterPwPersenter(this);
         return view;
