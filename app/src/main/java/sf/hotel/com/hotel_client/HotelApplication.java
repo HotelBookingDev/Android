@@ -12,7 +12,6 @@ import com.tencent.bugly.crashreport.CrashReport;
 public class HotelApplication extends Application {
     public static Context context;
 
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -22,8 +21,7 @@ public class HotelApplication extends Application {
         initBuglyStatus();
     }
 
-
-    public void initBuglyStatus(){
+    public void initBuglyStatus() {
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(context);
         strategy.setAppVersion("1.0.1");
         CrashReport.initCrashReport(context, "900033362", true, strategy);

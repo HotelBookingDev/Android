@@ -12,5 +12,4 @@ public interface Persenter {
     void pause();
 
     void destroy();
-
 }

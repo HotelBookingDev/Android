@@ -1,7 +1,5 @@
 package sf.hotel.com.hotel_client.view.persenter;
 
-import android.content.Context;
-
 import sf.hotel.com.data.eneity.StateEntity;
 import sf.hotel.com.data.eneity.UserEntity;
 import sf.hotel.com.data.interfaceeneity.ILoginEntity;
@@ -32,7 +30,6 @@ public class ILoginPersenter implements Persenter {
     @Override
     public void destroy() {
     }
-
 
     public void login() {
         mILoginView.showLoading();

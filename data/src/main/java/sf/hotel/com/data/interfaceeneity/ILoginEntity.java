@@ -13,5 +13,6 @@ import sf.hotel.com.data.eneity.UserEntity;
 public interface ILoginEntity {
     Observable<StateEntity<UserEntity>> login(String username, String password);
 
-    Observable<StateEntity<UserEntity>> update(StateEntity<UserEntity> mStateEntity,Context context);
+    Observable<StateEntity<UserEntity>> update(StateEntity<UserEntity> mStateEntity,
+            Context context);
 }
