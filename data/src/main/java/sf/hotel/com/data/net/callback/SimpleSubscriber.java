@@ -25,7 +25,7 @@ public class SimpleSubscriber<T> extends Subscriber<T> {
         this.context = context;
         this.action = action;
     }
-    
+
     @Override public void onStart(){
         LoadingDialogUtils.showProgress(context, "正在努力加载中...");
     }

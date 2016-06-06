@@ -1,7 +1,12 @@
 package sf.hotel.com.hotel_client.view.persenter;
 
+<<<<<<< HEAD
 import sf.hotel.com.data.entity.StateEntity;
 import sf.hotel.com.data.entity.UserEntity;
+=======
+import sf.hotel.com.data.eneity.StateEntity;
+import sf.hotel.com.data.eneity.UserEntity;
+>>>>>>> 568b3372f909ee90651ccdf40fa8b4d18d37aee2
 import sf.hotel.com.data.interfaceeneity.ILoginEntity;
 import sf.hotel.com.data.interfaceeneity.LoginEntityImp;
 import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;
@@ -30,7 +35,6 @@ public class ILoginPersenter implements Persenter {
     @Override
     public void destroy() {
     }
-
 
     public void login() {
         mILoginView.showLoading();

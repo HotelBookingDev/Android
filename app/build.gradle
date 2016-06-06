@@ -14,7 +14,7 @@ android {
         //配置服务器是否是正式服还是测试服
         buildConfigField 'String', 'API_SERVER_URL', '"API"'
 
-        ndk{
+        ndk {
             abiFilters 'armeabi'
         }
     }

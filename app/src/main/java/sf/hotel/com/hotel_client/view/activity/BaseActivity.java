@@ -7,7 +7,6 @@ import android.os.PersistableBundle;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.utils.TToast;
 
-
 /**
  * Created by FMT on 2016/6/3:15:51
  * EMAILE 1105896230@qq.com.
