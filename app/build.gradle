@@ -13,6 +13,10 @@ android {
         versionName rootProject.ext.android.versionName
         //配置服务器是否是正式服还是测试服
         buildConfigField 'String', 'API_SERVER_URL', '"API"'
+
+        ndk{
+            abiFilters 'armeabi'
+        }
     }
     compileOptions {
         sourceCompatibility rootProject.ext.android.javaVersion
@@ -37,6 +41,8 @@ dependencies {
     compile rootProject.ext.dependencies.design
     compile rootProject.ext.dependencies.supertoasts
     compile rootProject.ext.dependencies.butterknife
+    compile rootProject.ext.dependencies.buglySDK
+    compile rootProject.ext.dependencies.buglyNDK
     apt rootProject.ext.apt.butterknife
     compile project(':data')
 
