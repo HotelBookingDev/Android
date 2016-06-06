@@ -60,8 +60,7 @@ public class LoginActivity extends BaseActivity implements LoginFragment.ClickLi
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         boolean isReturn = true;
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-        } else {
-            return isReturn = super.onKeyDown(keyCode, event);
+            isReturn = super.onKeyDown(keyCode, event);
         }
         return isReturn;
     }

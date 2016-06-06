@@ -1,7 +1,5 @@
 package sf.hotel.com.hotel_client.view.persenter;
 
-import android.os.Handler;
-
 import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
@@ -51,13 +49,11 @@ public class IRegisterPwPersenter implements Persenter {
     }
 
     private void chagemIRegisterPwView(long aLong) {
-        new Handler(mIRegisterPwView.getContext().getMainLooper()).post(() -> {
-            if (aLong == 1) {
-                isFilter = false;
-                mIRegisterPwView.reset();
-            } else {
-                mIRegisterPwView.setInvitationCodeNum(aLong + "");
-            }
-        });
+        if (aLong == 1) {
+            isFilter = false;
+            mIRegisterPwView.reset();
+        } else {
+            mIRegisterPwView.setInvitationCodeNum(aLong + "");
+        }
     }
 }
