@@ -1,4 +1,4 @@
-package sf.hotel.com.hotel_client.view.persenter;
+package sf.hotel.com.hotel_client.view.presenter;
 
 import java.util.concurrent.TimeUnit;
 
@@ -9,7 +9,7 @@ import sf.hotel.com.hotel_client.view.interfaceview.IRegiserPwView;
  * Created by FMT on 2016/6/6:10:44
  * EMAILE 1105896230@qq.com.
  */
-public class IRegisterPwPersenter implements Persenter {
+public class IRegisterPwPresenter implements Presenter {
 
     private IRegiserPwView mIRegisterPwView;
     private final int TIME = 60;
@@ -21,7 +21,7 @@ public class IRegisterPwPersenter implements Persenter {
 
     }
 
-    public IRegisterPwPersenter(IRegiserPwView mIRegisterPwView) {
+    public IRegisterPwPresenter(IRegiserPwView mIRegisterPwView) {
         this.mIRegisterPwView = mIRegisterPwView;
     }
 
@@ -44,11 +44,11 @@ public class IRegisterPwPersenter implements Persenter {
                 .limit(TIME)
                 .map(aLong -> TIME - aLong)
                 .subscribe(aLong -> {
-                    chagemIRegisterPwView(aLong);
+                    changeIRegisterPwView(aLong);
                 });
     }
 
-    private void chagemIRegisterPwView(long aLong) {
+    private void changeIRegisterPwView(long aLong) {
         if (aLong == 1) {
             isFilter = false;
             mIRegisterPwView.reset();

@@ -13,7 +13,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;
-import sf.hotel.com.hotel_client.view.persenter.ILoginPersenter;
+import sf.hotel.com.hotel_client.view.presenter.ILoginPresenter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,9 +25,9 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     @BindView(R.id.edit_pw)
     EditText mEditPw;
 
-    ILoginPersenter mILoginPersenter;
+    ILoginPresenter mILoginPresenter;
 
-    ClickLinstener mClickLinstener;
+    ClickListener mClickListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,7 +35,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this, view);
-        mILoginPersenter = new ILoginPersenter(this);
+        mILoginPresenter = new ILoginPresenter(this);
         return view;
     }
 
@@ -77,7 +77,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     @Override
     @OnClick(R.id.login_btn)
     public void login() {
-        mILoginPersenter.login();
+        mILoginPresenter.login();
     }
 
     @Override
@@ -101,15 +101,15 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     }
 
     @OnClick(R.id.register_btn)
-    public void regiser() {
-        mClickLinstener.regiser();
+    public void register() {
+        mClickListener.register();
     }
 
-    public void setmClickLinstener(ClickLinstener mClickLinstener) {
-        this.mClickLinstener = mClickLinstener;
+    public void setClickListener(ClickListener mClickListener) {
+        this.mClickListener = mClickListener;
     }
 
-    public interface ClickLinstener {
-        void regiser();
+    public interface ClickListener{
+        void register();
     }
 }

@@ -14,7 +14,7 @@ public class APIException extends Exception{
     private static Map<Integer, String> CODE_MAP = new HashMap<>();
 
     private static final int E_FAIL = -1;
-    private static final int S_OK = 0;
+    private static final int S_OK = 1;
 
     static {
         CODE_MAP.put(E_FAIL, "请求失败");

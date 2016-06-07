@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.interfaceview.IRegiserPwView;
-import sf.hotel.com.hotel_client.view.persenter.IRegisterPwPersenter;
+import sf.hotel.com.hotel_client.view.presenter.IRegisterPwPresenter;
 
 /**
  * Created by FMT on 2016/6/6:10:15
@@ -24,7 +24,7 @@ import sf.hotel.com.hotel_client.view.persenter.IRegisterPwPersenter;
  */
 public class IRegisterPwFragment extends BaseFragment implements IRegiserPwView {
 
-    IRegisterPwPersenter mIRegisterPwPersenter;
+    IRegisterPwPresenter mIRegisterPwPersenter;
     @BindView(R.id.register_phone)
     EditText mEdPhone;
     @BindView(R.id.register_send)
@@ -53,7 +53,7 @@ public class IRegisterPwFragment extends BaseFragment implements IRegiserPwView 
             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_registe_pwr, container, false);
         ButterKnife.bind(this, view);
-        mIRegisterPwPersenter = new IRegisterPwPersenter(this);
+        mIRegisterPwPersenter = new IRegisterPwPresenter(this);
         return view;
     }
 

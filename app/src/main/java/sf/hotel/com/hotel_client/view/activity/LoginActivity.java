@@ -4,18 +4,20 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.util.LruCache;
 import android.view.KeyEvent;
 
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.fragment.IRegisterPwFragment;
 import sf.hotel.com.hotel_client.view.fragment.LoginFragment;
+import sf.hotel.com.hotel_client.view.fragment.RegisterFragment;
 
-public class LoginActivity extends BaseActivity implements LoginFragment.ClickLinstener {
+public class LoginActivity extends BaseActivity implements LoginFragment.ClickListener {
 
-    private final int LOGING = 0x1;
+    private final int LOGIN = 0x1;
     private final int REGISTER = 0x2;
-    private LoginFragment mLoginFragment;
-    private IRegisterPwFragment mIRegisterPwFragment;
+
+    private LruCache<Integer, Fragment> mFragmentList = new LruCache<>(3);
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,34 +26,53 @@ public class LoginActivity extends BaseActivity implements LoginFragment.ClickLi
     }
 
     protected void init() {
-        changeFragment(LOGING);
+        showFragment(LOGIN);
     }
+
 
     @Override
-    public void regiser() {
-        changeFragment(REGISTER);
+    public void register() {
+        showFragment(LOGIN, REGISTER);
     }
 
-    private void changeFragment(int type) {
+//    private void changeFragment(int type) {
+//        FragmentManager fragmentManager = getFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        fragmentTransaction.replace(R.id.login_fragment, getFragment(type));
+//        fragmentTransaction.commit();
+//    }
+
+
+    private void showFragment(int from){
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.login_fragment, getFragment(type));
+        fragmentTransaction.replace(R.id.login_fragment, getFragment(from));
+        fragmentTransaction.commit();
+    }
+
+    private void showFragment(int from, int to){
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.login_fragment, getFragment(to));
+        //动画效果 。。。
+        fragmentTransaction.hide(getFragment(from));
         fragmentTransaction.commit();
     }
 
     protected Fragment getFragment(int type) {
-        Fragment fragment = null;
-        if (type == LOGING) {
-            if (mLoginFragment == null) {
-                mLoginFragment = new LoginFragment();
+        Fragment fragment = mFragmentList.get(type);
+        if (fragment == null){
+            switch (type){
+                case LOGIN:
+                    fragment = new LoginFragment();
+                    LoginFragment loginFragment = (sf.hotel.com.hotel_client.view.fragment.LoginFragment) fragment;
+                    loginFragment.setClickListener(this);
+                    break;
+                case REGISTER:
+                    fragment = new RegisterFragment();
+                    break;
             }
-            fragment = mLoginFragment;
-            ((LoginFragment) fragment).setmClickLinstener(this);
-        } else if (type == REGISTER) {
-            if (mIRegisterPwFragment == null) {
-                mIRegisterPwFragment = new IRegisterPwFragment();
-            }
-            fragment = mIRegisterPwFragment;
+            mFragmentList.put(type, fragment);
         }
         return fragment;
     }
@@ -64,4 +85,5 @@ public class LoginActivity extends BaseActivity implements LoginFragment.ClickLi
         }
         return isReturn;
     }
+
 }

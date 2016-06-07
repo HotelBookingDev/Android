@@ -1,10 +1,8 @@
-package sf.hotel.com.hotel_client.view.persenter;
+package sf.hotel.com.hotel_client.view.presenter;
 
 
 import android.widget.Toast;
 
-import rx.functions.Action1;
-import sf.hotel.com.data.entity.LoginEntity;
 import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.data.entity.StateEntity;
 import sf.hotel.com.data.entity.UserEntity;
@@ -13,19 +11,17 @@ import sf.hotel.com.data.interfaceeneity.ILoginEntity;
 import sf.hotel.com.data.interfaceeneity.LoginEntityImp;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.data.net.login.LoginHelper;
-import sf.hotel.com.data.utils.LogUtils;
-import sf.hotel.com.hotel_client.utils.TToast;
 import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;
 
 /**
  * Created by FMT on 2016/6/3:18:54
  * EMAILE 1105896230@qq.com.
  */
-public class ILoginPersenter implements Persenter {
+public class ILoginPresenter implements Presenter {
     private ILoginView mILoginView;
     private ILoginEntity mILoginEntity;
 
-    public ILoginPersenter(ILoginView mILoginView) {
+    public ILoginPresenter(ILoginView mILoginView) {
         this.mILoginView = mILoginView;
         mILoginEntity = new LoginEntityImp();
     }
