@@ -24,6 +24,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     EditText mEditName;
     @BindView(R.id.edit_pw)
     EditText mEditPw;
+
     ILoginPersenter mILoginPersenter;
 
     ClickLinstener mClickLinstener;

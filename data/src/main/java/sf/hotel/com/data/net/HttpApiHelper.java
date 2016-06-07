@@ -28,7 +28,7 @@ public abstract class HttpApiHelper {
     public OkHttpClient mOkhttpClient;
 
 
-    public void init(String APIHOST){
+    public void init(String APIHOST) {
         //初始化
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
@@ -41,8 +41,7 @@ public abstract class HttpApiHelper {
                 .client(mOkhttpClient)
                 .baseUrl(APIHOST)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                ;
+                .addConverterFactory(GsonConverterFactory.create());
 
         mRetrofit = mRetrofitBuilde.build();
     }
@@ -64,8 +63,8 @@ public abstract class HttpApiHelper {
                     }
                 } else {
                     if (!subscriber.isUnsubscribed()) {
-                        subscriber.onError(new APIException(httpResult.getResultCode()
-                                , httpResult.getResultMessage()));
+                        subscriber.onError(new APIException(httpResult.getCode()
+                                , httpResult.getMessage()));
                     }
                     return;
                 }
@@ -91,18 +90,18 @@ public abstract class HttpApiHelper {
                     .flatMap(new Func1() {
                         @Override
                         public Object call(Object httpResult) {
-                            return flatResponse((HttpResult<Object>)httpResult);
+                            return flatResponse((HttpResult<Object>) httpResult);
                         }
                     })
                     ;
         }
     };
 
-    public Map<String , String> defaultQueryMap(){
+    public Map<String, String> defaultQueryMap() {
         Map<String, String> queryMap = new HashMap<>();
 
-        queryMap.put("app_ver","1.0.1");
-        queryMap.put("sdk_ver", "6.0.1");
+        //queryMap.put("app_ver", "1.0.1");
+       // queryMap.put("sdk_ver", "6.0.1");
 
         return queryMap;
     }

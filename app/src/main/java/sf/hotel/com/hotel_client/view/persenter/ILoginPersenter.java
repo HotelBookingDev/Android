@@ -1,14 +1,20 @@
 package sf.hotel.com.hotel_client.view.persenter;
 
-<<<<<<< HEAD
+
+import android.widget.Toast;
+
+import rx.functions.Action1;
+import sf.hotel.com.data.entity.LoginEntity;
+import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.data.entity.StateEntity;
 import sf.hotel.com.data.entity.UserEntity;
-=======
-import sf.hotel.com.data.eneity.StateEntity;
-import sf.hotel.com.data.eneity.UserEntity;
->>>>>>> 568b3372f909ee90651ccdf40fa8b4d18d37aee2
+
 import sf.hotel.com.data.interfaceeneity.ILoginEntity;
 import sf.hotel.com.data.interfaceeneity.LoginEntityImp;
+import sf.hotel.com.data.net.callback.SimpleSubscriber;
+import sf.hotel.com.data.net.login.LoginHelper;
+import sf.hotel.com.data.utils.LogUtils;
+import sf.hotel.com.hotel_client.utils.TToast;
 import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;
 
 /**
@@ -37,9 +43,17 @@ public class ILoginPersenter implements Persenter {
     }
 
     public void login() {
-        mILoginView.showLoading();
-        mILoginEntity.login(mILoginView.getUserName(), mILoginView.getPassword())
-                .subscribe(this::check);
+//        mILoginView.showLoading();
+//        mILoginEntity.login(mILoginView.getUserName(), mILoginView.getPassword())
+//                .subscribe(this::check);
+
+        LoginHelper.getInstance()
+                .doLogin(mILoginView.getUserName(), mILoginView.getPassword())
+                .subscribe(new SimpleSubscriber<LoginResult>(mILoginView.getContext(),
+                        loginEntity -> {
+                    //save...
+                    Toast.makeText(mILoginView.getContext(), "loginSuccess", Toast.LENGTH_LONG).show();
+                }));
     }
 
     private void check(StateEntity<UserEntity> userEntityStateEntity) {
