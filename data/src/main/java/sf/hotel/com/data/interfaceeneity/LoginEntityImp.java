@@ -20,6 +20,7 @@ public class LoginEntityImp implements ILoginEntity {
             if (!(CheckUtils.checkPhoneNumber(loginEntityStateEntity.getData().getUsername()) &&
                     !CheckUtils.isTextViewEmpty(loginEntityStateEntity.getData().getPassword()))) {
                 return Observable.just(new StateEntity<>(-1, new UserEntity()));
+
             } else {
                 //网络请求的东西
                 return Observable.just(new StateEntity<>(200, new UserEntity()));
