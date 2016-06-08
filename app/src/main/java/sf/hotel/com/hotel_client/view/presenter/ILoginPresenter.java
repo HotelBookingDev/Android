@@ -43,6 +43,7 @@ public class ILoginPresenter implements Presenter {
 //        mILoginEntity.login(mILoginView.getUserName(), mILoginView.getPassword())
 //                .subscribe(this::check);
 
+
         ApiWrapper.getInstance()
                 .doLogin(mILoginView.getUserName(), mILoginView.getPassword())
                 .subscribe(new SimpleSubscriber<LoginResult>(mILoginView.getBottomContext(),

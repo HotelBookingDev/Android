@@ -42,7 +42,6 @@ public class ApiWrapper extends RetrofitHelper {
                if (!(CheckUtils.checkPhoneNumber(username) &&
                        !CheckUtils.isTextViewEmpty(pwd))){
                    subscriber.onError(new APIException("用户名密码格式不正确"));
-
                } else {
                    //网络请求的东西
                    mService.callLogin(username, pwd)

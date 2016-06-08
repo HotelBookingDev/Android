@@ -3,6 +3,7 @@ package sf.hotel.com.data.interfaceeneity;
 import android.content.Context;
 
 import rx.Observable;
+import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.data.entity.StateEntity;
 import sf.hotel.com.data.entity.UserEntity;
 
@@ -15,4 +16,5 @@ public interface ILoginEntity {
 
     Observable<StateEntity<UserEntity>> update(StateEntity<UserEntity> mStateEntity,
             Context context);
+
 }

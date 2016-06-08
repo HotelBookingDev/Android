@@ -71,10 +71,21 @@ public abstract class RetrofitHelper {
     }
 
     protected <T> Observable.Transformer<HttpResult<T>, T> applySchedulers() {
-        return (Observable.Transformer<HttpResult<T>, T>) transformer;
+        return new Observable.Transformer<HttpResult<T>, T>() {
+            @Override
+            public Observable<T> call(Observable<HttpResult<T>> responseObservable) {
+                return responseObservable.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .flatMap(new Func1<HttpResult<T>, Observable<T>>() {
+                            @Override
+                            public Observable<T> call(HttpResult<T> tResponse) {
+                                return flatResponse(tResponse);
+                            }
+                        })
+                        ;
+            }
+        };
     }
 
-    final Observable.Transformer transformer = observable -> observable.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .flatMap((Func1) httpResult -> flatResponse((HttpResult<Object>) httpResult));
+
 }
