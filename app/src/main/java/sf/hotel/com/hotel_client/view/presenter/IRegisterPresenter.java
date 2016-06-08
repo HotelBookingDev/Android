@@ -1,5 +1,6 @@
 package sf.hotel.com.hotel_client.view.presenter;
 
+import rx.Subscriber;
 import sf.hotel.com.data.entity.NormalResult;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.data.net.ApiWrapper;
@@ -21,9 +22,18 @@ public class IRegisterPresenter implements Presenter {
     public void register(){
         ApiWrapper.getInstance()
                 .doRegister(mIRegisterView.getUName(), mIRegisterView.getPwd())
-                .subscribe(new SimpleSubscriber<NormalResult>(mIRegisterView.getBottomContext(),
-                        normalResult -> TToast.showToast("register success")))
-                ;
+                .subscribe(new SimpleSubscriber<NormalResult>(mIRegisterView.getBottomContext()){
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+
+                    }
+
+                    @Override
+                    public void onNext(NormalResult normalResult) {
+                        super.onNext(normalResult);
+                    }
+                });
     }
 
     public void callPhoneCaptcha(){

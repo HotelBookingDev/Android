@@ -3,6 +3,7 @@ package sf.hotel.com.hotel_client.view.presenter;
 
 import android.widget.Toast;
 
+import rx.functions.Action1;
 import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.data.entity.StateEntity;
 import sf.hotel.com.data.entity.UserEntity;
@@ -39,18 +40,21 @@ public class ILoginPresenter implements Presenter {
     }
 
     public void login() {
-//        mILoginView.showLoading();
-//        mILoginEntity.login(mILoginView.getUserName(), mILoginView.getPassword())
-//                .subscribe(this::check);
+        mILoginEntity
+                .login(mILoginView.getUserName(), mILoginView.getPassword())
+                .subscribe(new SimpleSubscriber<LoginResult>(mILoginView.getBottomContext()) {
+                    @Override
+                    public void onNext(LoginResult loginResult) {
+                        super.onNext(loginResult);
+                        mILoginView.success();
+                    }
 
-
-        ApiWrapper.getInstance()
-                .doLogin(mILoginView.getUserName(), mILoginView.getPassword())
-                .subscribe(new SimpleSubscriber<LoginResult>(mILoginView.getBottomContext(),
-                        loginEntity -> {
-                    //save...
-                    Toast.makeText(mILoginView.getBottomContext(), "loginSuccess", Toast.LENGTH_LONG).show();
-                }));
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        mILoginView.error();
+                    }
+                });
     }
 
     private void check(StateEntity<UserEntity> userEntityStateEntity) {

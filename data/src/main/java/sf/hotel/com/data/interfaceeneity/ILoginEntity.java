@@ -12,7 +12,7 @@ import sf.hotel.com.data.entity.UserEntity;
  * EMAILE 1105896230@qq.com.
  */
 public interface ILoginEntity {
-    Observable<StateEntity<UserEntity>> login(String username, String password);
+    Observable<LoginResult>login(String username, String password);
 
     Observable<StateEntity<UserEntity>> update(StateEntity<UserEntity> mStateEntity,
             Context context);
