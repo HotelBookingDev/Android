@@ -1,6 +1,6 @@
 package sf.hotel.com.data.utils;
 
-import android.util.Log;
+import com.orhanobut.logger.Logger;
 
 /**
  * @author MZ
@@ -17,7 +17,7 @@ public final class LogUtils {
 
     public static void v(String tag, String log) {
         if (DEBUG) {
-            Log.v(tag, log);
+            Logger.v(tag, log);
         }
     }
 
@@ -27,7 +27,7 @@ public final class LogUtils {
 
     public static void d(String tag, String log) {
         if (DEBUG) {
-            Log.d(tag, log);
+            Logger.d(tag, log);
         }
     }
 
@@ -37,7 +37,7 @@ public final class LogUtils {
 
     public static void w(String tag, String log) {
         if (DEBUG) {
-            Log.w(tag, log);
+            Logger.w(tag, log);
         }
     }
 
@@ -47,7 +47,7 @@ public final class LogUtils {
 
     public static void i(String tag, String log) {
         if (DEBUG) {
-            Log.i(tag, log);
+            Logger.i(tag, log);
         }
     }
 
@@ -57,13 +57,17 @@ public final class LogUtils {
 
     public static void e(String tag, String log) {
         if (DEBUG) {
-            Log.e(tag, log);
+            Logger.e(tag, log);
         }
     }
 
     public static void printExceptionStackTrace(Exception e) {
-        if (e != null && DEBUG){
+        if (e != null && DEBUG) {
             e.printStackTrace();
         }
+    }
+
+    public static void json(String json) {
+        Logger.json(json);
     }
 }
