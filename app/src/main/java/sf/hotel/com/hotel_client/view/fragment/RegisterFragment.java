@@ -81,4 +81,15 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
     public Context getBottomContext() {
         return getActivity();
     }
+
+    @Override
+    public void success(int type) {
+
+    }
+
+    @Override
+    public void failed(int type) {
+
+    }
+
 }

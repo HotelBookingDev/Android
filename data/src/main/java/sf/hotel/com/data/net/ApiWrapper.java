@@ -27,7 +27,12 @@ public class ApiWrapper extends RetrofitHelper {
         return mInstance;
     }
 
-    //登入
+    /**
+     * 登入
+     * @param username
+     * @param pwd
+     * @return
+     */
     public Observable<LoginResult> doLogin(String username, String pwd) {
         return mService.callLogin(username, pwd)
                 .compose(ApiWrapper.this.<LoginResult>applySchedulers())
@@ -35,10 +40,26 @@ public class ApiWrapper extends RetrofitHelper {
 
     }
 
+    /**
+     * 注册
+     * @param phone
+     * @param smsCode
+     * @param pwd
+     * @return
+     */
+    public Observable<NormalResult> doRegister(String phone, String smsCode, String pwd) {
+        return mService.callRegister(phone, smsCode, pwd)
+                .compose(this.<NormalResult>applySchedulers())
+                ;
+    }
 
-    //注册
-    public Observable<NormalResult> doRegister(String phone, String pwd) {
-        return mService.callRegister(phone, pwd)
+    /**
+     * 短信验证码
+     * @param phone
+     * @return
+     */
+    public Observable<NormalResult> doGetSmsCode(String phone){
+        return mService.callSmsCode(phone)
                 .compose(this.<NormalResult>applySchedulers())
                 ;
     }

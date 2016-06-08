@@ -13,4 +13,5 @@ public class AppUrl {
     public static final String API_HOST = "http://123.206.14.69:80/";
     public static final String LOGIN_URL = "/login/";
     public static final String REGISTER_URL = "/register/";
+    public static final String SMS_URL = "/ems/member/regist/";
 }

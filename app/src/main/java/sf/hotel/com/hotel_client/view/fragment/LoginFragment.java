@@ -86,13 +86,13 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     }
 
     @Override
-    public void success() {
+    public void success(int type) {
         showLog("success");
     }
 
     @Override
-    public void error() {
-        showLog("error");
+    public void failed(int type) {
+
     }
 
     @Override

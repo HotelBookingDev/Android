@@ -5,5 +5,9 @@ package sf.hotel.com.data.net;
  * EMAILE 1105896230@qq.com.
  */
 public class HttpParam {
-    public static final String CLIENT_VERSION = "clientversion";
+    public static final String CLIENT_VERSION =  "clientversion";
+
+    public static final String PHONE_NUMBER   =  "phoneNumber";
+    public static final String PASSWORD       =  "password";
+    public static final String SMS_CODE       =  "smsCode";
 }

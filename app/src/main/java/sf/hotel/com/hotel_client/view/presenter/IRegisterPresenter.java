@@ -2,6 +2,7 @@ package sf.hotel.com.hotel_client.view.presenter;
 
 import rx.Subscriber;
 import sf.hotel.com.data.entity.NormalResult;
+import sf.hotel.com.data.interfaceeneity.IRegisterEntity;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.data.net.ApiWrapper;
 import sf.hotel.com.hotel_client.utils.TToast;
@@ -15,29 +16,47 @@ import sf.hotel.com.hotel_client.view.interfaceview.IRegisterView;
 public class IRegisterPresenter implements Presenter {
     IRegisterView mIRegisterView;
 
+    IRegisterEntity mIRegisterEntity;
+
     public IRegisterPresenter(IRegisterView mIRegisterView) {
         this.mIRegisterView = mIRegisterView;
     }
 
     public void register(){
-        ApiWrapper.getInstance()
-                .doRegister(mIRegisterView.getUName(), mIRegisterView.getPwd())
+        mIRegisterEntity.register(mIRegisterView.getUName(),
+                mIRegisterView.getCaptcha(),
+                mIRegisterView.getPwd())
                 .subscribe(new SimpleSubscriber<NormalResult>(mIRegisterView.getBottomContext()){
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
-
+                        mIRegisterView.failed(2);
                     }
 
                     @Override
                     public void onNext(NormalResult normalResult) {
                         super.onNext(normalResult);
+                        mIRegisterView.success(2);
                     }
                 });
     }
 
     public void callPhoneCaptcha(){
+        mIRegisterEntity.getSmsCode(mIRegisterView.getUName())
+                .subscribe(new SimpleSubscriber<NormalResult>(mIRegisterView.getBottomContext()) {
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        mIRegisterView.failed(3);
+                    }
 
+                    @Override
+                    public void onNext(NormalResult normalResult) {
+                        super.onNext(normalResult);
+                        mIRegisterView.success(3);
+
+                    }
+                });
     }
 
     @Override

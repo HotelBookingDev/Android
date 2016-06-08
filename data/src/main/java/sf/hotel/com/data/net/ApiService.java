@@ -1,18 +1,13 @@
 package sf.hotel.com.data.net;
 
-import java.util.Map;
-
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
-import retrofit2.http.QueryMap;
 import rx.Observable;
 import sf.hotel.com.data.entity.HttpResult;
 import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.data.entity.NormalResult;
-import sf.hotel.com.data.net.AppUrl;
+import static sf.hotel.com.data.net.HttpParam.*;
 
 /**
  * @author MZ
@@ -23,11 +18,15 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(AppUrl.LOGIN_URL)
-    Observable<HttpResult<LoginResult>> callLogin(@Field("phoneNumber") String phone,
-                                                  @Field("password") String pwd);
+    Observable<HttpResult<LoginResult>> callLogin(@Field(PHONE_NUMBER) String phone,
+                                                  @Field(PASSWORD) String pwd);
 
     @FormUrlEncoded
     @POST(AppUrl.REGISTER_URL)
-    Observable<HttpResult<NormalResult>> callRegister(@Field("phoneNumber") String phone,
-                                                      @Field("password") String pwd);
+    Observable<HttpResult<NormalResult>> callRegister(@Field(PHONE_NUMBER) String phone,
+                                                      @Field(SMS_CODE) String smsCode,
+                                                      @Field(PASSWORD) String pwd);
+    @FormUrlEncoded
+    @POST(AppUrl.SMS_URL)
+    Observable<HttpResult<NormalResult>> callSmsCode(@Field(PHONE_NUMBER) String phone);
 }

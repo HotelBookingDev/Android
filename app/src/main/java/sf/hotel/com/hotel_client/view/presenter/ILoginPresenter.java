@@ -37,13 +37,13 @@ public class ILoginPresenter implements Presenter {
                     @Override
                     public void onNext(LoginResult loginResult) {
                         super.onNext(loginResult);
-                        mILoginView.success();
+                        mILoginView.success(1);
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
-                        mILoginView.error();
+                        mILoginView.failed(1);
                     }
                 });
     }
