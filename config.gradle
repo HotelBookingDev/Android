@@ -11,7 +11,7 @@ def buglyNDKVersion = 'latest.release'
 def flaviofariaVersion = '1.0.7'
 def yokeyword_fragmentationVersion = '0.7.1'
 def yokeyword_fragmentation_swipebackVersion = '0.3.0'
-def loggerVersion = "1.3"
+
 ext {
 
     android = [
@@ -38,7 +38,6 @@ ext {
             buglySDK                         : "com.tencent.bugly:crashreport:${buglySDKVersion}",
             buglyNDK                         : "com.tencent.bugly:nativecrashreport:${buglyNDKVersion}",
             flaviofaria                      : "com.flaviofaria:kenburnsview:${flaviofariaVersion}",
-            //fragment 的框架
             yokeyword_fragmentation          : "me.yokeyword:fragmentation:${yokeyword_fragmentationVersion}",
             yokeyword_fragmentation_swipeback: "me.yokeyword:fragmentation-swipeback:${yokeyword_fragmentation_swipebackVersion}"
     ]
@@ -58,10 +57,7 @@ ext {
 
             retrofit       : "com.squareup.retrofit2:retrofit:${retrofit2Version}",
             convertergson  : "com.squareup.retrofit2:converter-gson:${retrofit2Version}",
-            adapterrxjava  : "com.squareup.retrofit2:adapter-rxjava:${retrofit2Version}",
-            //logger 的框架
-            logger         : "com.orhanobut:logger:${loggerVersion}"
-
+            adapterrxjava  : "com.squareup.retrofit2:adapter-rxjava:${retrofit2Version}"
     ]
     apt = [
             butterknife: "com.jakewharton:butterknife-compiler:${butterknifeVersion}"
