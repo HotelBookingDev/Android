@@ -34,4 +34,5 @@ dependencies {
     compile rootProject.ext.dependenciesdata.retrofit
     compile rootProject.ext.dependenciesdata.convertergson
     compile rootProject.ext.dependenciesdata.adapterrxjava
+    compile rootProject.ext.dependenciesdata.logger
 }
