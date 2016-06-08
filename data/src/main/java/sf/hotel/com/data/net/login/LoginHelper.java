@@ -39,13 +39,18 @@ public class LoginHelper extends HttpApiHelper {
         queryMap.put("phoneNumber", username);
         queryMap.put("password", pwd);
 
-        return mService.callLogin(queryMap)
+        return mService.callLogin(username, pwd)
                 .compose(this.<LoginResult>applySchedulers())
                 ;
     }
 
     public Observable<NormalResult> doRegister(String phone, String pwd) {
-        return mService.callRegister(phone, pwd)
+        Map<String, String> queryMap = defaultQueryMap();
+
+        queryMap.put("phoneNumber", phone);
+        queryMap.put("password", pwd);
+
+        return mService.callRegister(queryMap)
                 .compose(this.<NormalResult>applySchedulers())
                 ;
     }
