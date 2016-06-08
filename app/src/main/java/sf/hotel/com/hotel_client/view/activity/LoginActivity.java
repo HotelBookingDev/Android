@@ -8,7 +8,6 @@ import android.util.LruCache;
 import android.view.KeyEvent;
 
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.view.fragment.IRegisterPwFragment;
 import sf.hotel.com.hotel_client.view.fragment.LoginFragment;
 import sf.hotel.com.hotel_client.view.fragment.RegisterFragment;
 
@@ -29,7 +28,6 @@ public class LoginActivity extends BaseActivity implements LoginFragment.ClickLi
         showFragment(LOGIN);
     }
 
-
     @Override
     public void register() {
         showFragment(LOGIN, REGISTER);
@@ -42,15 +40,14 @@ public class LoginActivity extends BaseActivity implements LoginFragment.ClickLi
 //        fragmentTransaction.commit();
 //    }
 
-
-    private void showFragment(int from){
+    private void showFragment(int from) {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.login_fragment, getFragment(from));
         fragmentTransaction.commit();
     }
 
-    private void showFragment(int from, int to){
+    private void showFragment(int from, int to) {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.login_fragment, getFragment(to));
@@ -61,8 +58,8 @@ public class LoginActivity extends BaseActivity implements LoginFragment.ClickLi
 
     protected Fragment getFragment(int type) {
         Fragment fragment = mFragmentList.get(type);
-        if (fragment == null){
-            switch (type){
+        if (fragment == null) {
+            switch (type) {
                 case LOGIN:
                     fragment = new LoginFragment();
                     LoginFragment loginFragment = (sf.hotel.com.hotel_client.view.fragment.LoginFragment) fragment;
@@ -85,5 +82,4 @@ public class LoginActivity extends BaseActivity implements LoginFragment.ClickLi
         }
         return isReturn;
     }
-
 }
