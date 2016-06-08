@@ -5,18 +5,15 @@ package sf.hotel.com.hotel_client.view.interfaceview;
  * @email sanfenruxi1@163.com
  * @date 16/6/7.
  */
-public interface IRegisterView extends BaseView{
+public interface IRegisterView extends BaseView {
 
+    void register();
 
-    public void register();
+    void callPhoneCaptcha();
 
-    public void callPhoneCaptcha();
+    String getUName();
 
-    public String getUName();
+    String getPwd();
 
-    public String getPwd();
-
-    public String getCaptcha();
-
-
+    String getCaptcha();
 }

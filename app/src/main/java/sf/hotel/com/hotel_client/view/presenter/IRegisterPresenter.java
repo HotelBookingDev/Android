@@ -18,7 +18,6 @@ public class IRegisterPresenter implements Presenter {
         this.mIRegisterView = mIRegisterView;
     }
 
-
     public void register(){
         LoginHelper.getInstance()
                 .doRegister(mIRegisterView.getUName(), mIRegisterView.getPwd())
