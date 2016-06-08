@@ -33,13 +33,6 @@ public class LoginActivity extends BaseActivity implements LoginFragment.ClickLi
         showFragment(LOGIN, REGISTER);
     }
 
-//    private void changeFragment(int type) {
-//        FragmentManager fragmentManager = getFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        fragmentTransaction.replace(R.id.login_fragment, getFragment(type));
-//        fragmentTransaction.commit();
-//    }
-
     private void showFragment(int from) {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

@@ -18,11 +18,11 @@ import sf.hotel.com.data.utils.CheckUtils;
 public class LoginEntityImp implements ILoginEntity {
     @Override
     public Observable<LoginResult> login(String username, String password) {
-        return Observable.create(new Observable.OnSubscribe<LoginResult>(){
+        return Observable.create(new Observable.OnSubscribe<LoginResult>() {
             @Override
             public void call(Subscriber<? super LoginResult> subscriber) {
                 if (!(CheckUtils.checkPhoneNumber(username) &&
-                        !CheckUtils.isTextViewEmpty(password))){
+                        !CheckUtils.isTextViewEmpty(password))) {
                     subscriber.onError(new APIException("用户名密码格式不正确"));
                 } else {
                     //网络请求的东西
@@ -33,10 +33,10 @@ public class LoginEntityImp implements ILoginEntity {
     }
 
     @Override
-    public Observable<StateEntity<UserEntity>> update(StateEntity<UserEntity> mStateEntity, Context context) {
+    public Observable<StateEntity<UserEntity>> update(StateEntity<UserEntity> mStateEntity,
+            Context context) {
         return null;
     }
-
 
 //    @Override
 //    public Observable<StateEntity<UserEntity>> login(String username, String password) {
