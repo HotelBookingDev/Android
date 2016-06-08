@@ -78,6 +78,11 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
     }
 
     @Override
+    public void startTimer() {
+        btnRegCaptcha.startTimer();
+    }
+
+    @Override
     public Context getBottomContext() {
         return getActivity();
     }

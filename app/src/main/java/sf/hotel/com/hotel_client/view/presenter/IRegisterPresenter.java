@@ -39,6 +39,7 @@ public class IRegisterPresenter implements Presenter {
                     public void onNext(NormalResult normalResult) {
                         super.onNext(normalResult);
                         mIRegisterView.success(2);
+                        mIRegisterView.startTimer();
                     }
                 });
         mCompositeSubscription.add(subscribe);

@@ -16,4 +16,6 @@ public interface IRegisterView extends BaseView {
     String getPwd();
 
     String getCaptcha();
+
+    void startTimer();
 }
