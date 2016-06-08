@@ -1,10 +1,7 @@
 package sf.hotel.com.data.net;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -28,18 +25,14 @@ public abstract class RetrofitHelper {
     public Retrofit mRetrofit;
     public OkHttpClient mOkhttpClient;
 
-
     public void init(String APIHOST) {
         //初始化
-        OkHttpClient.Builder builder = new OkHttpClient.Builder()
-                .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
-                .addInterceptor(new LoggingInterceptor())  // 日志拦截器
+        OkHttpClient.Builder builder = new OkHttpClient.Builder().connectTimeout(DEFAULT_TIMEOUT,
+                TimeUnit.SECONDS).addInterceptor(new LoggingInterceptor())  // 日志拦截器
                 ;
         mOkhttpClient = builder.build();
 
-
-        Retrofit.Builder mRetrofitBuilde = new Retrofit.Builder()
-                .client(mOkhttpClient)
+        Retrofit.Builder mRetrofitBuilde = new Retrofit.Builder().client(mOkhttpClient)
                 .baseUrl(APIHOST)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create());
@@ -64,8 +57,8 @@ public abstract class RetrofitHelper {
                     }
                 } else {
                     if (!subscriber.isUnsubscribed()) {
-                        subscriber.onError(new APIException(httpResult.getCode()
-                                , httpResult.getMessage()));
+                        subscriber.onError(
+                                new APIException(httpResult.getCode(), httpResult.getMessage()));
                     }
                     return;
                 }
@@ -73,7 +66,6 @@ public abstract class RetrofitHelper {
                 if (!subscriber.isUnsubscribed()) {
                     subscriber.onCompleted();
                 }
-
             }
         });
     }
@@ -82,19 +74,7 @@ public abstract class RetrofitHelper {
         return (Observable.Transformer<HttpResult<T>, T>) transformer;
     }
 
-    final Observable.Transformer transformer = new Observable.Transformer() {
-        @Override
-        public Object call(Object observable) {
-            return ((Observable) observable)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .flatMap(new Func1() {
-                        @Override
-                        public Object call(Object httpResult) {
-                            return flatResponse((HttpResult<Object>) httpResult);
-                        }
-                    })
-                    ;
-        }
-    };
+    final Observable.Transformer transformer = observable -> observable.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .flatMap((Func1) httpResult -> flatResponse((HttpResult<Object>) httpResult));
 }
