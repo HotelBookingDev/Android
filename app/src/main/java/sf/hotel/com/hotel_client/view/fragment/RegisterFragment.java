@@ -22,7 +22,7 @@ import sf.hotel.com.hotel_client.view.presenter.IRegisterPresenter;
  * @email sanfenruxi1@163.com
  * @date 16/6/7.
  */
-public class RegisterFragment extends BaseFragment implements IRegisterView{
+public class RegisterFragment extends BaseFragment implements IRegisterView {
 
     @BindView(R.id.edit_reg_uname)
     EditText editRegUname;
@@ -38,12 +38,12 @@ public class RegisterFragment extends BaseFragment implements IRegisterView{
     @BindView(R.id.btn_reg_submit)
     Button btnRegSubmit;
 
-
     IRegisterPresenter mIRegisterPresenter;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_register, container, false);
         ButterKnife.bind(this, view);
         mIRegisterPresenter = new IRegisterPresenter(this);
@@ -61,7 +61,6 @@ public class RegisterFragment extends BaseFragment implements IRegisterView{
     public void callPhoneCaptcha() {
         mIRegisterPresenter.callPhoneCaptcha();
     }
-
 
     @Override
     public String getUName() {
