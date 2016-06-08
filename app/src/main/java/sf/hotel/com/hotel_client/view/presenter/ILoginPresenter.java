@@ -1,5 +1,7 @@
 package sf.hotel.com.hotel_client.view.presenter;
 
+import rx.Subscription;
+import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.data.interfaceeneity.ILoginEntity;
 import sf.hotel.com.data.interfaceeneity.LoginEntityImp;
@@ -14,9 +16,12 @@ public class ILoginPresenter implements Presenter {
     private ILoginView mILoginView;
     private ILoginEntity mILoginEntity;
 
+    private CompositeSubscription mCompositeSubscription;
+
     public ILoginPresenter(ILoginView mILoginView) {
         this.mILoginView = mILoginView;
         mILoginEntity = new LoginEntityImp();
+        mCompositeSubscription = new CompositeSubscription();
     }
 
     @Override
@@ -29,10 +34,13 @@ public class ILoginPresenter implements Presenter {
 
     @Override
     public void destroy() {
+        mCompositeSubscription.unsubscribe();
     }
 
     public void login() {
-        mILoginEntity.login(mILoginView.getUserName(), mILoginView.getPassword())
+
+        Subscription subscribe = mILoginEntity.login(mILoginView.getUserName(),
+                mILoginView.getPassword())
                 .subscribe(new SimpleSubscriber<LoginResult>(mILoginView.getBottomContext()) {
                     @Override
                     public void onNext(LoginResult loginResult) {
@@ -46,5 +54,6 @@ public class ILoginPresenter implements Presenter {
                         mILoginView.failed(1);
                     }
                 });
+        mCompositeSubscription.add(subscribe);
     }
 }

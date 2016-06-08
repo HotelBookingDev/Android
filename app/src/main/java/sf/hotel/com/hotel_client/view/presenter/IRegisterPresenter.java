@@ -1,5 +1,7 @@
 package sf.hotel.com.hotel_client.view.presenter;
 
+import rx.Subscription;
+import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.entity.NormalResult;
 import sf.hotel.com.data.interfaceeneity.IRegisterEntity;
 import sf.hotel.com.data.interfaceeneity.RegisterEntityImp;
@@ -15,15 +17,17 @@ public class IRegisterPresenter implements Presenter {
     IRegisterView mIRegisterView;
 
     IRegisterEntity mIRegisterEntity;
+    CompositeSubscription mCompositeSubscription;
 
     public IRegisterPresenter(IRegisterView mIRegisterView) {
         this.mIRegisterView = mIRegisterView;
         mIRegisterEntity = new RegisterEntityImp();
+        mCompositeSubscription = new CompositeSubscription();
     }
 
     public void register() {
-        mIRegisterEntity.register(mIRegisterView.getUName(), mIRegisterView.getCaptcha(),
-                mIRegisterView.getPwd())
+        Subscription subscribe = mIRegisterEntity.register(mIRegisterView.getUName(),
+                mIRegisterView.getCaptcha(), mIRegisterView.getPwd())
                 .subscribe(new SimpleSubscriber<NormalResult>(mIRegisterView.getBottomContext()) {
                     @Override
                     public void onError(Throwable e) {
@@ -37,10 +41,11 @@ public class IRegisterPresenter implements Presenter {
                         mIRegisterView.success(2);
                     }
                 });
+        mCompositeSubscription.add(subscribe);
     }
 
     public void callPhoneCaptcha() {
-        mIRegisterEntity.getSmsCode(mIRegisterView.getUName())
+        Subscription subscribe = mIRegisterEntity.getSmsCode(mIRegisterView.getUName())
                 .subscribe(new SimpleSubscriber<NormalResult>(mIRegisterView.getBottomContext()) {
                     @Override
                     public void onError(Throwable e) {
@@ -68,6 +73,6 @@ public class IRegisterPresenter implements Presenter {
 
     @Override
     public void destroy() {
-
+        mCompositeSubscription.unsubscribe();
     }
 }

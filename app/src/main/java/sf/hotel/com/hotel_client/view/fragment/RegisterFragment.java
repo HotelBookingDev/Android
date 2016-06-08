@@ -92,4 +92,9 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
 
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mIRegisterPresenter.destroy();
+    }
 }

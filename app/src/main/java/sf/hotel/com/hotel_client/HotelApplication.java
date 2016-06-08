@@ -22,8 +22,8 @@ public class HotelApplication extends Application {
     }
 
     public void initBuglyStatus() {
-        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(context);
-        strategy.setAppVersion("1.0.1");
-        CrashReport.initCrashReport(context, "900033362", true, strategy);
+//        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(context);
+//        strategy.setAppVersion("1.0.1");
+//        CrashReport.initCrashReport(context, "900033362", true, strategy);
     }
 }

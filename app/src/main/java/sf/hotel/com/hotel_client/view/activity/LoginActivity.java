@@ -1,6 +1,7 @@
 package sf.hotel.com.hotel_client.view.activity;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 
 import me.yokeyword.fragmentation.SupportActivity;
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
@@ -40,5 +41,10 @@ public class LoginActivity extends SupportActivity implements LoginFragment.Clic
     @Override
     protected FragmentAnimator onCreateFragmentAnimator() {
         return new DefaultHorizontalAnimator();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        return super.onKeyDown(keyCode, event);
     }
 }

@@ -114,7 +114,13 @@ public class LoginFragment extends BaseFragment implements ILoginView {
         return getActivity();
     }
 
-    public interface ClickListener{
+    public interface ClickListener {
         void register();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mILoginPresenter.destroy();
     }
 }

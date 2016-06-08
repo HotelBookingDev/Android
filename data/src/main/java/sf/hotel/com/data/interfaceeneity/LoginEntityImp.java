@@ -22,7 +22,7 @@ public class LoginEntityImp implements ILoginEntity {
                     subscriber.onError(new APIException("用户名密码格式不正确"));
                 } else {
                     //网络请求的东西
-                    ApiWrapper.getInstance().doLogin(username, password);
+                    ApiWrapper.getInstance().doLogin(username, password).subscribe(subscriber);
                 }
             }
         });

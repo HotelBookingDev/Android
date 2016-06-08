@@ -20,12 +20,12 @@ public class RegisterEntityImp implements IRegisterEntity {
             @Override
             public void call(Subscriber<? super NormalResult> subscriber) {
                 if (!(CheckUtils.checkPhoneNumber(phone) &&
-                    !CheckUtils.isTextViewEmpty(smsCode) &&
-                    !CheckUtils.isTextViewEmpty(pwd))) {
+                        !CheckUtils.isTextViewEmpty(smsCode) &&
+                        !CheckUtils.isTextViewEmpty(pwd))) {
                     subscriber.onError(new APIException("用户名密码格式不正确"));
                 } else {
                     //网络请求的东西
-                    ApiWrapper.getInstance().doRegister(phone, smsCode, pwd);
+                    ApiWrapper.getInstance().doRegister(phone, smsCode, pwd).subscribe(subscriber);
                 }
             }
         });
@@ -40,7 +40,7 @@ public class RegisterEntityImp implements IRegisterEntity {
                     subscriber.onError(new APIException("用户名密码格式不正确"));
                 } else {
                     //网络请求的东西
-                    ApiWrapper.getInstance().doGetSmsCode(phone);
+                    ApiWrapper.getInstance().doGetSmsCode(phone).subscribe(subscriber);
                 }
             }
         });

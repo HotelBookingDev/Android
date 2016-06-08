@@ -19,11 +19,12 @@ public abstract class SimpleSubscriber<T> extends Subscriber<T> {
 
     Context context;
 
-    public SimpleSubscriber(Context context){
+    public SimpleSubscriber(Context context) {
         this.context = context;
     }
 
-    @Override public void onStart(){
+    @Override
+    public void onStart() {
         LoadingDialogUtils.showProgress(context, "正在努力加载中...");
     }
 
@@ -34,7 +35,6 @@ public abstract class SimpleSubscriber<T> extends Subscriber<T> {
 
     @Override
     public void onError(Throwable e) {
-
         if (e instanceof APIException) {
             APIException exception = (APIException) e;
             LogUtils.e(exception.getErrorMessage(exception));
@@ -52,5 +52,4 @@ public abstract class SimpleSubscriber<T> extends Subscriber<T> {
     public void onNext(T t) {
         LoadingDialogUtils.dismissDialog();
     }
-
 }
