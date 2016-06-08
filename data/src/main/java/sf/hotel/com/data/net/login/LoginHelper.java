@@ -50,7 +50,7 @@ public class LoginHelper extends HttpApiHelper {
         queryMap.put("phoneNumber", phone);
         queryMap.put("password", pwd);
 
-        return mService.callRegister(queryMap)
+        return mService.callRegister(phone , pwd)
                 .compose(this.<NormalResult>applySchedulers())
                 ;
     }
