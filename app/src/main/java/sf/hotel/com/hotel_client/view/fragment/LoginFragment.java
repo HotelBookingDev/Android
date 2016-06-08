@@ -109,6 +109,11 @@ public class LoginFragment extends BaseFragment implements ILoginView {
         this.mClickListener = mClickListener;
     }
 
+    @Override
+    public Context getBottomContext() {
+        return getActivity();
+    }
+
     public interface ClickListener{
         void register();
     }

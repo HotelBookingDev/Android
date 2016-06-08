@@ -7,5 +7,5 @@ import android.content.Context;
  * EMAILE 1105896230@qq.com.
  */
 public interface BaseView {
-    Context getContext();
+    Context getBottomContext();
 }

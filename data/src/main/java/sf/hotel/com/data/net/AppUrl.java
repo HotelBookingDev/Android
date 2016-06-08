@@ -10,7 +10,7 @@ public class AppUrl {
     public static final String USER_URL = "";
     public static final String SEND_CODE = "";
 
-    public static final String LOGIN_HOST = "http://123.206.14.69:80/";
+    public static final String API_HOST = "http://123.206.14.69:80/";
     public static final String LOGIN_URL = "/login/";
     public static final String REGISTER_URL = "/register/";
 }

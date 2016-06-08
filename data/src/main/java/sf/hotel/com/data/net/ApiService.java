@@ -2,26 +2,32 @@ package sf.hotel.com.data.net;
 
 import java.util.Map;
 
+import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import rx.Observable;
 import sf.hotel.com.data.entity.HttpResult;
-import sf.hotel.com.data.entity.LoginEntity;
-import sf.hotel.com.data.entity.UserEntity;
+import sf.hotel.com.data.entity.LoginResult;
+import sf.hotel.com.data.entity.NormalResult;
+import sf.hotel.com.data.net.AppUrl;
 
 /**
- * Created by FMT on 2016/6/5:14:14
- * EMAILE 1105896230@qq.com.
+ * @author MZ
+ * @email sanfenruxi1@163.com
+ * @date 16/6/6.
  */
 public interface ApiService {
 
+    @FormUrlEncoded
+    @POST(AppUrl.LOGIN_URL)
+    Observable<HttpResult<LoginResult>> callLogin(@Field("phoneNumber") String phone,
+                                                  @Field("password") String pwd);
 
-    @POST(AppUrl.USER_URL)
-    Observable<HttpResult<UserEntity>> getUserInfo(@Query("name") String name,
-            @Query("password") String password);
-
-    @POST(AppUrl.SEND_CODE)
-    void sendCode(@Query("phone") String phone);
-
+    @FormUrlEncoded
+    @POST(AppUrl.REGISTER_URL)
+    Observable<HttpResult<NormalResult>> callRegister(@Field("phoneNumber") String phone,
+                                                      @Field("password") String pwd);
 }

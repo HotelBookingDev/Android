@@ -10,7 +10,7 @@ import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.interfaceeneity.ILoginEntity;
 import sf.hotel.com.data.interfaceeneity.LoginEntityImp;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
-import sf.hotel.com.data.net.login.LoginHelper;
+import sf.hotel.com.data.net.ApiWrapper;
 import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;
 
 /**
@@ -43,18 +43,18 @@ public class ILoginPresenter implements Presenter {
 //        mILoginEntity.login(mILoginView.getUserName(), mILoginView.getPassword())
 //                .subscribe(this::check);
 
-        LoginHelper.getInstance()
+        ApiWrapper.getInstance()
                 .doLogin(mILoginView.getUserName(), mILoginView.getPassword())
-                .subscribe(new SimpleSubscriber<LoginResult>(mILoginView.getContext(),
+                .subscribe(new SimpleSubscriber<LoginResult>(mILoginView.getBottomContext(),
                         loginEntity -> {
                     //save...
-                    Toast.makeText(mILoginView.getContext(), "loginSuccess", Toast.LENGTH_LONG).show();
+                    Toast.makeText(mILoginView.getBottomContext(), "loginSuccess", Toast.LENGTH_LONG).show();
                 }));
     }
 
     private void check(StateEntity<UserEntity> userEntityStateEntity) {
         if (userEntityStateEntity.getCode() == 200) {
-            mILoginEntity.update(userEntityStateEntity, mILoginView.getContext());
+            mILoginEntity.update(userEntityStateEntity, mILoginView.getBottomContext());
             mILoginView.success();
         } else if (userEntityStateEntity.getCode() == -1) {
             mILoginView.error();

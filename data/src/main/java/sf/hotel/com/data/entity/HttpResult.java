@@ -9,12 +9,22 @@ public class HttpResult<T> {
     private String message;
     private long timestamp;
 
+    private int status;
+
     private T data;
 
     public boolean isSuccess(){
-        if (code == 1)
+        if (status == 1)
             return true;
         return false;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public int getCode() {

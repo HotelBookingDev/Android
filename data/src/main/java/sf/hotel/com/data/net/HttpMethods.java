@@ -50,12 +50,12 @@ public class HttpMethods {
         return mInstance;
     }
 
-    public rx.Observable<HttpResult<UserEntity>> getUserInfo(String name, String pw) {
-        return mApiService.getUserInfo(name, pw)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
-    }
+//    public rx.Observable<HttpResult<UserEntity>> getUserInfo(String name, String pw) {
+//        return mApiService.getUserInfo(name, pw)
+//                .subscribeOn(Schedulers.io())
+//                .unsubscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread());
+//    }
 
     public class CommonHeaderInterceptor implements Interceptor {
 

@@ -1,5 +1,6 @@
 package sf.hotel.com.hotel_client.view.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -75,5 +76,10 @@ public class RegisterFragment extends BaseFragment implements IRegisterView{
     @Override
     public String getCaptcha() {
         return editRegCaptcha.getText().toString();
+    }
+
+    @Override
+    public Context getBottomContext() {
+        return getActivity();
     }
 }

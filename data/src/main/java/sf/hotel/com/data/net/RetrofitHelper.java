@@ -21,7 +21,7 @@ import sf.hotel.com.data.net.Interceptor.LoggingInterceptor;
 /**
  * Created by sanfen on 16/6/6.
  */
-public abstract class HttpApiHelper {
+public abstract class RetrofitHelper {
 
     private static final int DEFAULT_TIMEOUT = 5;
 
@@ -97,14 +97,4 @@ public abstract class HttpApiHelper {
                     ;
         }
     };
-
-    public Map<String, String> defaultQueryMap() {
-        Map<String, String> queryMap = new HashMap<>();
-
-        //queryMap.put("app_ver", "1.0.1");
-       // queryMap.put("sdk_ver", "6.0.1");
-
-        return queryMap;
-    }
-
 }

@@ -91,4 +91,9 @@ public class IRegisterPwFragment extends BaseFragment implements IRegiserPwView 
     public Context getContext() {
         return getActivity();
     }
+
+    @Override
+    public Context getBottomContext() {
+        return getActivity();
+    }
 }
