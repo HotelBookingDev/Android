@@ -9,6 +9,8 @@ def retrofit2Version = '2.0.0-beta4'
 def buglySDKVersion = 'latest.release'
 def buglyNDKVersion = 'latest.release'
 def flaviofariaVersion = '1.0.7'
+def yokeyword_fragmentationVersion = '0.7.1'
+def yokeyword_fragmentation_swipebackVersion = '0.3.0'
 
 ext {
 
@@ -25,17 +27,19 @@ ext {
     ]
 
     dependencies = [
-            appcompatV7: "com.android.support:appcompat-v7:${supportVersion}",
-            supportV4 : "com.android.support:support-v4:${supportVersion}",
-            design     : "com.android.support:design:${supportVersion}",
+            appcompatV7                      : "com.android.support:appcompat-v7:${supportVersion}",
+            supportV4                        : "com.android.support:support-v4:${supportVersion}",
+            design                           : "com.android.support:design:${supportVersion}",
             //Toast的依赖库
-            supertoasts: 'com.github.johnpersano:supertoasts:1.3.4@aar',
+            supertoasts                      : 'com.github.johnpersano:supertoasts:1.3.4@aar',
             //butterknife的依赖库
-            butterknife: "com.jakewharton:butterknife:${butterknifeVersion}",
+            butterknife                      : "com.jakewharton:butterknife:${butterknifeVersion}",
             //bugly的依赖库
-            buglySDK   : "com.tencent.bugly:crashreport:${buglySDKVersion}",
-            buglyNDK   : "com.tencent.bugly:nativecrashreport:${buglyNDKVersion}",
-            flaviofaria: "com.flaviofaria:kenburnsview:${flaviofariaVersion}"
+            buglySDK                         : "com.tencent.bugly:crashreport:${buglySDKVersion}",
+            buglyNDK                         : "com.tencent.bugly:nativecrashreport:${buglyNDKVersion}",
+            flaviofaria                      : "com.flaviofaria:kenburnsview:${flaviofariaVersion}",
+            yokeyword_fragmentation          : "me.yokeyword:fragmentation:${yokeyword_fragmentationVersion}",
+            yokeyword_fragmentation_swipeback: "me.yokeyword:fragmentation-swipeback:${yokeyword_fragmentation_swipebackVersion}"
     ]
 
     dependenciesdata = [

@@ -43,6 +43,9 @@ dependencies {
     compile rootProject.ext.dependencies.buglySDK
     compile rootProject.ext.dependencies.buglyNDK
     compile rootProject.ext.dependencies.flaviofaria
+    compile rootProject.ext.dependencies.yokeyword_fragmentation
+    compile rootProject.ext.dependencies.yokeyword_fragmentation_swipeback
+
     apt rootProject.ext.apt.butterknife
     compile project(':data')
 
