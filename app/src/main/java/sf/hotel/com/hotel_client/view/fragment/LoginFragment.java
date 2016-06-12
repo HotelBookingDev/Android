@@ -107,7 +107,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
         if (e instanceof APIException){
             APIException exception = (APIException) e;
 
-            int code = exception.getmCode();
+            int code = exception.getCode();
             if (code == Code.LOGIN_FORMAT_ERROR) {
                 clearUserName();
                 clearPassword();

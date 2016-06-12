@@ -117,8 +117,7 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
             APIException exception = (APIException) e;
             switch (type){
                 case ICallBack.REGISTER:
-                    showViewToast(((APIException) e).getErrorMessage(getBottomContext()));
-                    showLogin();
+                    showViewToast(exception.getErrorMessage(getBottomContext()));
                     break;
                 case ICallBack.SMS_CODE:
                     showViewToast(exception.getErrorMessage(getBottomContext()));

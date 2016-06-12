@@ -13,7 +13,7 @@ public class HttpResult<T> {
     private T res;
 
     public boolean isSuccess() {
-        if (status == 1) return true;
+        if (status == 100) return true;
         return false;
     }
 

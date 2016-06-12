@@ -9,7 +9,6 @@ import me.yokeyword.fragmentation.SupportActivity;
 import me.yokeyword.fragmentation.SupportFragment;
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
-import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.fragment.ClickListener;
 import sf.hotel.com.hotel_client.view.fragment.LoginFragment;
@@ -23,7 +22,6 @@ public class LoginActivity extends SupportActivity implements ClickListener {
     LruCache<Integer, Fragment> mFragmentList = new LruCache<>(3);
     public final static int LOGIN = 1;
     public final static int REGISTER = 2;
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

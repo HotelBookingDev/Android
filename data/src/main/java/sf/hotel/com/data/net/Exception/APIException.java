@@ -10,23 +10,21 @@ import sf.hotel.com.data.R;
  * @date 16/6/6.
  */
 public class APIException extends Exception {
+    private int mCode;
+    private String mMessage;
+    private int mMessageId;
+
+    public APIException(int code, String message) {
+        super(message);
+        mCode = code;
+        mMessage = message;
+    }
+
 
     public APIException(CodeException mCodeException) {
         this.mCode = mCodeException.getCode();
         this.mMessageId = mCodeException.getMessageId();
     }
-
-    public int getmCode() {
-        return mCode;
-    }
-
-    private int mCode;
-
-    public int getMessageId() {
-        return mMessageId;
-    }
-
-    private int mMessageId;
 
     public APIException(String message) {
         super(message);
@@ -41,10 +39,14 @@ public class APIException extends Exception {
         super(cause);
     }
 
-    public APIException(int code, String message) {
-        super(message);
-        mCode = code;
+    public int getCode() {
+        return mCode;
     }
+
+    public int getMessageId() {
+        return mMessageId;
+    }
+
 
     public String getErrorMessage(Context context) {
         String error = context.getResources().getString(R.string.error);

@@ -43,7 +43,7 @@ public class ILoginPresenter extends SuperPresenter {
     @Override
     public void handlingException(Throwable e) {
         if (e instanceof APIException) {
-            int i = ((APIException) e).getmCode();
+            int i = ((APIException) e).getCode();
             int msgid = ((APIException) e).getMessageId();
             if (i == Code.LOGIN_FORMAT_ERROR) {
                 mILoginView.clearUserName();
