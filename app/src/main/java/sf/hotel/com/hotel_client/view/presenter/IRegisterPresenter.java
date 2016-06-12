@@ -60,6 +60,7 @@ public class IRegisterPresenter extends SuperPresenter {
                         mIRegisterView.success(3);
                     }
                 });
+        mCompositeSubscription.add(subscribe);
     }
 
     @Override

@@ -45,8 +45,10 @@ public class ILoginPresenter extends SuperPresenter {
             int i = ((APIException) e).getmCode();
             int msgid = ((APIException) e).getMessageId();
             if (i == Code.LOGINNAMEERROR) {
-                mILoginView.showViewToast(getErrorString(msgid, mILoginView.getBottomContext()));
+                mILoginView.clearUserName();
+                mILoginView.clearPassword();
             } else if (i == Code.LOGIGPWNULL) {
+
             } else if (i == Code.LOGINNAMENULl) {
 
             }
