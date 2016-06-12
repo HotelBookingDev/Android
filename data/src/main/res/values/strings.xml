@@ -4,4 +4,5 @@
     <string name="login_pw_null">密码不能为空</string>
     <string name="error">错误</string>
     <string name="login_name_null">用户名不能为空</string>
+    <string name="has_been_register">手机号已注册</string>
 </resources>

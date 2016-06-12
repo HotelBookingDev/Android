@@ -5,6 +5,7 @@ import rx.Subscriber;
 import sf.hotel.com.data.entity.NormalResult;
 import sf.hotel.com.data.net.ApiWrapper;
 import sf.hotel.com.data.net.Exception.APIException;
+import sf.hotel.com.data.net.Exception.CodeException;
 import sf.hotel.com.data.utils.CheckUtils;
 
 /**
@@ -22,7 +23,7 @@ public class RegisterEntityImp implements IRegisterEntity {
                 if (!(CheckUtils.checkPhoneNumber(phone) &&
                         !CheckUtils.isTextViewEmpty(smsCode) &&
                         !CheckUtils.isTextViewEmpty(pwd))) {
-                    subscriber.onError(new APIException("用户名密码格式不正确"));
+                    subscriber.onError(new APIException(CodeException.LOGIN_FORMAT_ERROR));
                 } else {
                     //网络请求的东西
                     ApiWrapper.getInstance().doRegister(phone, smsCode, pwd).subscribe(subscriber);
@@ -37,7 +38,7 @@ public class RegisterEntityImp implements IRegisterEntity {
             @Override
             public void call(Subscriber<? super NormalResult> subscriber) {
                 if (!(CheckUtils.checkPhoneNumber(phone))) {
-                    subscriber.onError(new APIException("用户名密码格式不正确"));
+                    subscriber.onError(new APIException(CodeException.LOGIN_FORMAT_ERROR));
                 } else {
                     //网络请求的东西
                     ApiWrapper.getInstance().doGetSmsCode(phone).subscribe(subscriber);

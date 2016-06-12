@@ -21,9 +21,9 @@ public class LoginEntityImp implements ILoginEntity {
                 if (CheckUtils.isTextViewEmpty(username)) {
                     subscriber.onError(new APIException(CodeException.LOGIN_NAME_NULL));
                 } else if (!(CheckUtils.checkPhoneNumber(username))) {
-                    subscriber.onError(new APIException(CodeException.LOGIN_NAME_ERROR));
+                    subscriber.onError(new APIException(CodeException.LOGIN_FORMAT_ERROR));
                 } else if (CheckUtils.isTextViewEmpty(password)) {
-                    subscriber.onError(new APIException(CodeException.LOGIN_PW_NULL));
+                    subscriber.onError(new APIException(CodeException.LOGIN_PWD_NULL));
                 } else {
                     //网络请求的东西
                     ApiWrapper.getInstance().doLogin(username, password).subscribe(subscriber);

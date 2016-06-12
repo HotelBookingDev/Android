@@ -10,5 +10,5 @@ public interface ICallBack  {
     int REGISTER = 2;
     int SMS_CODE = 3;
     void success(int type);
-    void failed(int type, int code);
+    void failed(int type, Throwable e);
 }

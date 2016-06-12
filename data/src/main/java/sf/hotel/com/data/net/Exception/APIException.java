@@ -46,7 +46,7 @@ public class APIException extends Exception {
         mCode = code;
     }
 
-    private String getErrorMessage(Context context) {
+    public String getErrorMessage(Context context) {
         String error = context.getResources().getString(R.string.error);
         for (CodeException exception : CodeException.values()) {
             if (exception.getCode() == mCode) {

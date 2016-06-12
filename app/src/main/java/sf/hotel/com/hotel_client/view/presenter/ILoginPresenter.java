@@ -8,6 +8,7 @@ import sf.hotel.com.data.interfaceeneity.LoginEntityImp;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.Exception.Code;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
+import sf.hotel.com.hotel_client.view.interfaceview.ICallBack;
 import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;
 
 /**
@@ -52,7 +53,7 @@ public class ILoginPresenter extends SuperPresenter {
             } else if (i == Code.LOGIN_PWD_NULL) {
 
             }
-            mILoginView.showViewToast(getErrorString(msgid, mILoginView.getBottomContext()));
+            //mILoginView.showViewToast(getErrorString(msgid, mILoginView.getBottomContext()));
         }
     }
 
@@ -64,14 +65,14 @@ public class ILoginPresenter extends SuperPresenter {
                     @Override
                     public void onNext(LoginResult loginResult) {
                         super.onNext(loginResult);
-                        mILoginView.success(1);
+                        mILoginView.success(ICallBack.LOGIN);
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
-                        mILoginView.failed(1, 1);
-                        handlingException(e);
+                        mILoginView.failed(ICallBack.LOGIN, e);
+                       // handlingException(e);
                     }
                 });
         mCompositeSubscription.add(subscribe);

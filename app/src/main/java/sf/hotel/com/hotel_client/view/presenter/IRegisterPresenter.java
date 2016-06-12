@@ -5,6 +5,7 @@ import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.entity.NormalResult;
 import sf.hotel.com.data.interfaceeneity.IRegisterEntity;
 import sf.hotel.com.data.interfaceeneity.RegisterEntityImp;
+import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.hotel_client.view.interfaceview.ICallBack;
 import sf.hotel.com.hotel_client.view.interfaceview.IRegisterView;
@@ -33,7 +34,7 @@ public class IRegisterPresenter extends SuperPresenter {
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
-                        mIRegisterView.failed(ICallBack.REGISTER, 1);
+                        mIRegisterView.failed(ICallBack.REGISTER, e);
                     }
 
                     @Override
@@ -52,7 +53,7 @@ public class IRegisterPresenter extends SuperPresenter {
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
-                        mIRegisterView.failed(ICallBack.SMS_CODE, 1);
+                        mIRegisterView.failed(ICallBack.SMS_CODE, e);
                     }
 
                     @Override

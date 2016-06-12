@@ -12,6 +12,7 @@ import android.widget.EditText;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.LoginActivity;
 import sf.hotel.com.hotel_client.view.custom.CaptchaButton;
@@ -101,16 +102,31 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
     public void success(int type) {
         switch (type){
             case ICallBack.REGISTER:
+                showViewToast("注册成功");
                 showLogin();
                 break;
             case ICallBack.SMS_CODE:
+                showViewToast("获取验证码成功");
                 break;
         }
     }
 
     @Override
-    public void failed(int type, int code) {
-        showViewToast("failed");
+    public void failed(int type, Throwable e) {
+        if (e instanceof APIException){
+            APIException exception = (APIException) e;
+            switch (type){
+                case ICallBack.REGISTER:
+                    showViewToast(((APIException) e).getErrorMessage(getBottomContext()));
+                    showLogin();
+                    break;
+                case ICallBack.SMS_CODE:
+                    showViewToast(exception.getErrorMessage(getBottomContext()));
+                    break;
+            }
+        }else {
+            showViewToast(e.getMessage());
+        }
     }
 
     public void showLogin(){
