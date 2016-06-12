@@ -10,4 +10,7 @@ public interface Presenter {
     void pause();
 
     void destroy();
+
+    void handlingException(Throwable e);
+
 }

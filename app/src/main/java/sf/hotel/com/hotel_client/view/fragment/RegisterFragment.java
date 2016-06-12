@@ -103,4 +103,9 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
         super.onDestroy();
         mIRegisterPresenter.destroy();
     }
+
+    @Override
+    public void showViewToast(String msg) {
+        showToast(msg);
+    }
 }

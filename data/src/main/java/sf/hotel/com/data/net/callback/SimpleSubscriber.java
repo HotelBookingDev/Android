@@ -2,13 +2,8 @@ package sf.hotel.com.data.net.callback;
 
 import android.content.Context;
 
-import java.net.ConnectException;
-import java.net.SocketTimeoutException;
-
 import rx.Subscriber;
-import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.utils.LoadingDialogUtils;
-import sf.hotel.com.data.utils.LogUtils;
 
 /**
  * @author MZ
@@ -37,16 +32,16 @@ public abstract class SimpleSubscriber<T> extends Subscriber<T> {
 
     @Override
     public void onError(Throwable e) {
-        if (e instanceof APIException) {
-            APIException exception = (APIException) e;
-            LogUtils.e(exception.getErrorMessage(exception));
-        } else if (e instanceof SocketTimeoutException) {
-            LogUtils.e(String.valueOf(e.getMessage()));
-        } else if (e instanceof ConnectException) {
-            LogUtils.e(String.valueOf(e.getMessage()));
-        } else {
-            LogUtils.e(String.valueOf(e.getMessage()));
-        }
+//        if (e instanceof APIException) {
+//            APIException exception = (APIException) e;
+//            LogUtils.e(exception.getErrorMessage(exception));
+//        } else if (e instanceof SocketTimeoutException) {
+//            LogUtils.e(String.valueOf(e.getMessage()));
+//        } else if (e instanceof ConnectException) {
+//            LogUtils.e(String.valueOf(e.getMessage()));
+//        } else {
+//            LogUtils.e(String.valueOf(e.getMessage()));
+//        }
         LoadingDialogUtils.dismissDialog();
         context = null;
     }

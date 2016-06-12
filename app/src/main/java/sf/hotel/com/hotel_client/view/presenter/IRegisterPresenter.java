@@ -13,7 +13,7 @@ import sf.hotel.com.hotel_client.view.interfaceview.IRegisterView;
  * @email sanfenruxi1@163.com
  * @date 16/6/7.
  */
-public class IRegisterPresenter implements Presenter {
+public class IRegisterPresenter extends SuperPresenter {
     IRegisterView mIRegisterView;
 
     IRegisterEntity mIRegisterEntity;
@@ -75,5 +75,10 @@ public class IRegisterPresenter implements Presenter {
     @Override
     public void destroy() {
         mCompositeSubscription.unsubscribe();
+    }
+
+    @Override
+    public void handlingException(Throwable e) {
+
     }
 }

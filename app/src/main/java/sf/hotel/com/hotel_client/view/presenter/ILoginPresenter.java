@@ -5,6 +5,8 @@ import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.data.interfaceeneity.ILoginEntity;
 import sf.hotel.com.data.interfaceeneity.LoginEntityImp;
+import sf.hotel.com.data.net.Exception.APIException;
+import sf.hotel.com.data.net.Exception.Code;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;
 
@@ -12,7 +14,7 @@ import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;
  * Created by FMT on 2016/6/3:18:54
  * EMAILE 1105896230@qq.com.
  */
-public class ILoginPresenter implements Presenter {
+public class ILoginPresenter extends SuperPresenter {
     private ILoginView mILoginView;
     private ILoginEntity mILoginEntity;
 
@@ -37,6 +39,21 @@ public class ILoginPresenter implements Presenter {
         mCompositeSubscription.unsubscribe();
     }
 
+    @Override
+    public void handlingException(Throwable e) {
+        if (e instanceof APIException) {
+            int i = ((APIException) e).getmCode();
+            int msgid = ((APIException) e).getMessageId();
+            if (i == Code.LOGINNAMEERROR) {
+                mILoginView.showViewToast(getErrorString(msgid, mILoginView.getBottomContext()));
+            } else if (i == Code.LOGIGPWNULL) {
+            } else if (i == Code.LOGINNAMENULl) {
+
+            }
+            mILoginView.showViewToast(getErrorString(msgid, mILoginView.getBottomContext()));
+        }
+    }
+
     public void login() {
 
         Subscription subscribe = mILoginEntity.login(mILoginView.getUserName(),
@@ -52,6 +69,7 @@ public class ILoginPresenter implements Presenter {
                     public void onError(Throwable e) {
                         super.onError(e);
                         mILoginView.failed(1);
+                        handlingException(e);
                     }
                 });
         mCompositeSubscription.add(subscribe);

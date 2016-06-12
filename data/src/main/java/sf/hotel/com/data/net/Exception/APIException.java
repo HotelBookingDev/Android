@@ -1,48 +1,32 @@
 package sf.hotel.com.data.net.Exception;
 
-import java.util.HashMap;
-import java.util.Map;
+import android.content.Context;
+
+import sf.hotel.com.data.R;
 
 /**
  * @author MZ
  * @email sanfenruxi1@163.com
  * @date 16/6/6.
  */
-public class APIException extends Exception{
-    public int mCode;
+public class APIException extends Exception {
 
-    private static Map<Integer, String> CODE_MAP = new HashMap<>();
-
-    private static final int E_FAIL = -1;
-    private static final int S_OK = 1;
-
-    static {
-        CODE_MAP.put(E_FAIL, "请求失败");
+    public APIException(CodeException mCodeException) {
+        this.mCode = mCodeException.getCode();
+        this.mMessageId = mCodeException.getMessageId();
     }
 
-    public APIException(){
-
+    public int getmCode() {
+        return mCode;
     }
 
-    public static String getErrorMessage(APIException e) {
-        if (e == null) {
-            return "空异常";
-        }
+    private int mCode;
 
-        if (CODE_MAP.containsKey(e.mCode)) {
-            return CODE_MAP.get(e.mCode);
-        } else {
-            return "错误" + e.mCode + e.getMessage();
-        }
+    public int getMessageId() {
+        return mMessageId;
     }
 
-    public static String getErrorMessage(int code) {
-        if (CODE_MAP.containsKey(code)) {
-            return CODE_MAP.get(code);
-        } else {
-            return "未知错误" + code;
-        }
-    }
+    private int mMessageId;
 
     public APIException(String message) {
         super(message);
@@ -50,7 +34,6 @@ public class APIException extends Exception{
 
     public APIException(int code) {
         super();
-
         mCode = code;
     }
 
@@ -63,4 +46,13 @@ public class APIException extends Exception{
         mCode = code;
     }
 
+    private String getErrorMessage(Context context) {
+        String error = context.getResources().getString(R.string.error);
+        for (CodeException exception : CodeException.values()) {
+            if (exception.getCode() == mCode) {
+                error = context.getResources().getString(exception.getMessageId());
+            }
+        }
+        return error;
+    }
 }

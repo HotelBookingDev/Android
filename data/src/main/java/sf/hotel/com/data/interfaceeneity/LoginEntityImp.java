@@ -5,6 +5,7 @@ import rx.Subscriber;
 import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.data.net.ApiWrapper;
 import sf.hotel.com.data.net.Exception.APIException;
+import sf.hotel.com.data.net.Exception.CodeException;
 import sf.hotel.com.data.utils.CheckUtils;
 
 /**
@@ -17,9 +18,12 @@ public class LoginEntityImp implements ILoginEntity {
         return Observable.create(new Observable.OnSubscribe<LoginResult>() {
             @Override
             public void call(Subscriber<? super LoginResult> subscriber) {
-                if (!(CheckUtils.checkPhoneNumber(username) &&
-                        !CheckUtils.isTextViewEmpty(password))) {
-                    subscriber.onError(new APIException("用户名密码格式不正确"));
+                if (CheckUtils.isTextViewEmpty(username)) {
+                    subscriber.onError(new APIException(CodeException.LOGIN_NAME_NULL));
+                } else if (!(CheckUtils.checkPhoneNumber(username))) {
+                    subscriber.onError(new APIException(CodeException.LOGIN_NAME_ERROR));
+                } else if (CheckUtils.isTextViewEmpty(password)) {
+                    subscriber.onError(new APIException(CodeException.LOGIN_PW_NULL));
                 } else {
                     //网络请求的东西
                     ApiWrapper.getInstance().doLogin(username, password).subscribe(subscriber);
