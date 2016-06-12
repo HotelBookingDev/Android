@@ -60,7 +60,6 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
     @OnClick(R.id.btn_reg_captcha)
     public void callPhoneCaptcha() {
         mIRegisterPresenter.callPhoneCaptcha();
-        startTimer();
     }
 
     @Override
