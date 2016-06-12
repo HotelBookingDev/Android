@@ -32,10 +32,4 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(AppUrl.SMS_URL)
     Observable<HttpResult<NormalResult>> callSmsCode(@Field(PHONE_NUMBER) String phone);
-
-    //发送learncloud的设备号的id
-    //TODO 接口需要更改
-    @FormUrlEncoded
-    @POST(AppUrl.SMS_URL)
-    Observable<HttpResult<NormalResult>> sendInstallationId(@Field(PHONE_NUMBER) String phone);
 }

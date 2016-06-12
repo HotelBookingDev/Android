@@ -9,8 +9,6 @@ import com.avos.avoscloud.AVOSCloud;
 import com.avos.avoscloud.SaveCallback;
 import com.tencent.bugly.crashreport.CrashReport;
 
-import sf.hotel.com.data.net.ApiWrapper;
-
 /**
  * Created by FMT on 2016/6/3:19:04
  * EMAILE 1105896230@qq.com.
@@ -36,15 +34,8 @@ public class HotelApplication extends Application {
             @Override
             public void done(AVException e) {
                 AVInstallation.getCurrentInstallation().saveInBackground();
-                //发送到服务器
-                sendInstallatrionId(AVInstallation.getCurrentInstallation().getInstallationId());
             }
         });
-    }
-
-    private void sendInstallatrionId(String InstallationId) {
-        //无法和p层进行交互 直接在这里进行数据层的网络请求
-        ApiWrapper.getInstance().sendInstallationId(InstallationId);
     }
 
     public void initBuglyStatus() {

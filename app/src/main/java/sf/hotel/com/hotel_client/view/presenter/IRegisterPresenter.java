@@ -41,7 +41,6 @@ public class IRegisterPresenter extends SuperPresenter {
                     public void onNext(NormalResult normalResult) {
                         super.onNext(normalResult);
                         mIRegisterView.success(ICallBack.REGISTER);
-
                     }
                 });
         mCompositeSubscription.add(subscribe);
@@ -61,7 +60,6 @@ public class IRegisterPresenter extends SuperPresenter {
                         super.onNext(normalResult);
                         mIRegisterView.startTimer();
                         mIRegisterView.success(ICallBack.SMS_CODE);
-
                     }
                 });
         mCompositeSubscription.add(subscribe);

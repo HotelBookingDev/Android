@@ -1,9 +1,6 @@
 package sf.hotel.com.data.net;
 
-import android.text.TextUtils;
-
 import rx.Observable;
-import sf.hotel.com.data.entity.HttpResult;
 import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.data.entity.NormalResult;
 
@@ -63,10 +60,5 @@ public class ApiWrapper extends RetrofitHelper {
      */
     public Observable<NormalResult> doGetSmsCode(String phone) {
         return mService.callSmsCode(phone).compose(this.<NormalResult>applySchedulers());
-    }
-
-    public Observable<HttpResult<NormalResult>> sendInstallationId(String id) {
-        if (TextUtils.isEmpty(id)) return null;
-        return mService.sendInstallationId(id);
     }
 }
