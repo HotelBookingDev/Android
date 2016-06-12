@@ -2,6 +2,7 @@ package sf.hotel.com.data.interfaceeneity;
 
 import rx.Observable;
 import rx.Subscriber;
+import sf.hotel.com.data.entity.NormalResult;
 import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.net.ApiWrapper;
 import sf.hotel.com.data.net.Exception.APIException;
@@ -30,5 +31,11 @@ public class LoginEntityImp implements ILoginEntity {
                 }
             }
         });
+    }
+
+    @Override
+    public Observable<NormalResult> postInllation(String deviceType, String phoneNum,
+            String invatllationId) {
+        return ApiWrapper.getInstance().postIntalltion(deviceType, phoneNum, invatllationId);
     }
 }

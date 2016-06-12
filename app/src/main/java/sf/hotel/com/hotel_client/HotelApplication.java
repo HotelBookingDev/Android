@@ -33,7 +33,7 @@ public class HotelApplication extends Application {
         AVInstallation.getCurrentInstallation().saveInBackground(new SaveCallback() {
             @Override
             public void done(AVException e) {
-                AVInstallation.getCurrentInstallation().saveInBackground();
+
             }
         });
     }

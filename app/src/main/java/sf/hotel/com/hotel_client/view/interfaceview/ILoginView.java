@@ -24,4 +24,8 @@ public interface ILoginView extends BaseView {
     void login();
 
     EditText getEditName();
+
+    String getIntallationId();
+
+    void startMainActivity();
 }

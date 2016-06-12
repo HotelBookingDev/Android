@@ -2,14 +2,13 @@ package sf.hotel.com.hotel_client.view.presenter;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
+import sf.hotel.com.data.entity.NormalResult;
 import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.interfaceeneity.ILoginEntity;
 import sf.hotel.com.data.interfaceeneity.LoginEntityImp;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.Exception.Code;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
-import sf.hotel.com.data.utils.LogUtils;
-import sf.hotel.com.hotel_client.view.interfaceview.ICallBack;
 import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;
 
 /**
@@ -59,19 +58,38 @@ public class ILoginPresenter extends SuperPresenter {
                     mILoginView.showViewToast(e.getMessage());
                 }
             }
+        } else {
+            mILoginView.showViewToast(e.getMessage());
         }
     }
 
     public void login() {
-
         Subscription subscribe = mILoginEntity.login(mILoginView.getUserName(),
                 mILoginView.getPassword())
                 .subscribe(new SimpleSubscriber<UserEntity>(mILoginView.getBottomContext()) {
                     @Override
                     public void onNext(UserEntity loginResult) {
                         super.onNext(loginResult);
-                        mILoginView.success(ICallBack.LOGIN);
-                        LogUtils.e("test", loginResult.toString());
+                        postIntallationId();
+//                        mILoginView.startMainActivity();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        handlingException(e);
+                    }
+                });
+        mCompositeSubscription.add(subscribe);
+    }
+
+    private void postIntallationId() {
+        Subscription subscribe = mILoginEntity.postInllation("android", mILoginView.getPassword(),
+                mILoginView.getIntallationId())
+                .subscribe(new SimpleSubscriber<NormalResult>(mILoginView.getBottomContext()) {
+                    @Override
+                    public void onNext(NormalResult loginResult) {
+                        super.onNext(loginResult);
                     }
 
                     @Override

@@ -8,6 +8,8 @@ import sf.hotel.com.data.entity.HttpResult;
 import sf.hotel.com.data.entity.NormalResult;
 import sf.hotel.com.data.entity.UserEntity;
 
+import static sf.hotel.com.data.net.HttpParam.DEVICE_TYPE;
+import static sf.hotel.com.data.net.HttpParam.INSTALLATION_CODE;
 import static sf.hotel.com.data.net.HttpParam.PASSWORD;
 import static sf.hotel.com.data.net.HttpParam.PHONE_NUMBER;
 import static sf.hotel.com.data.net.HttpParam.SMS_CODE;
@@ -32,4 +34,10 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(AppUrl.SMS_URL)
     Observable<HttpResult<NormalResult>> callSmsCode(@Field(PHONE_NUMBER) String phone);
+
+    @FormUrlEncoded
+    @POST(AppUrl.INSTALLTION_BIND_URL)
+    Observable<HttpResult<NormalResult>> postInstallation(@Field(DEVICE_TYPE) String type,
+            @Field(PHONE_NUMBER) String phoneNumm,
+            @Field(INSTALLATION_CODE) String installation_code);
 }

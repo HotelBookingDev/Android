@@ -1,12 +1,15 @@
 package sf.hotel.com.hotel_client.view.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+
+import com.avos.avoscloud.AVInstallation;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -15,6 +18,7 @@ import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.Exception.Code;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.LoginActivity;
+import sf.hotel.com.hotel_client.view.activity.MainActivity;
 import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;
 import sf.hotel.com.hotel_client.view.presenter.ILoginPresenter;
 
@@ -89,13 +93,25 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     }
 
     @Override
+    public String getIntallationId() {
+        return AVInstallation.getCurrentInstallation().getInstallationId();
+    }
+
+    @Override
+    public void startMainActivity() {
+        Intent mIntent = new Intent(getActivity(), MainActivity.class);
+        startActivity(mIntent);
+        getActivity().finish();
+    }
+
+    @Override
     public void success(int type) {
         showViewToast(getContext().getResources().getString(R.string.login_success));
     }
 
     @Override
     public void failed(int type, Throwable e) {
-        if (e instanceof APIException){
+        if (e instanceof APIException) {
             APIException exception = (APIException) e;
 
             int code = exception.getCode();
@@ -108,11 +124,9 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
             }
             showViewToast(exception.getErrorMessage(getBottomContext()));
-
         } else {
             showViewToast(e.getMessage());
         }
-
     }
 
     @Override

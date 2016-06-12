@@ -1,6 +1,7 @@
 package sf.hotel.com.data.net;
 
 import rx.Observable;
+import sf.hotel.com.data.entity.HttpResult;
 import sf.hotel.com.data.entity.NormalResult;
 import sf.hotel.com.data.entity.UserEntity;
 
@@ -37,6 +38,12 @@ public class ApiWrapper extends RetrofitHelper {
     public Observable<UserEntity> doLogin(String username, String pwd) {
         return mService.callLogin(username, pwd)
                 .compose(ApiWrapper.this.<UserEntity>applySchedulers());
+    }
+
+    public Observable<NormalResult> postIntalltion(String deviceType, String phoneNum,
+            String installlationId) {
+        return mService.postInstallation(deviceType, phoneNum, installlationId)
+                .compose(this.<NormalResult>applySchedulers());
     }
 
     /**

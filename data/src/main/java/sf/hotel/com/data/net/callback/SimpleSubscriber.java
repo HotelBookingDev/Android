@@ -18,6 +18,8 @@ public abstract class SimpleSubscriber<T> extends Subscriber<T> {
         this.context = context;
     }
 
+
+
     @Override
     public void onStart() {
         LoadingDialogUtils.showProgress(context, "正在努力加载中...");
