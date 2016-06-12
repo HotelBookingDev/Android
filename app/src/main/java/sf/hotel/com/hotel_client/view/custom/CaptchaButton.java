@@ -38,9 +38,11 @@ public class CaptchaButton extends RelativeLayout {
 
     public void startTimer() {
         if (mButtonCount == null) {
-            mButtonCount = new ButtonCount(60 * 1000, 1000);
+            mButtonCount = new ButtonCount(10 * 1000, 1000);
         }
+        setClickable(false);
         mButtonCount.start();
+
     }
 
     /*定义一个倒计时的内部类*/
@@ -52,7 +54,7 @@ public class CaptchaButton extends RelativeLayout {
         @Override
         public void onFinish() {
             mButton.setText("获取");
-            mButton.setClickable(true);
+            setClickable(true);
         }
 
         @Override
