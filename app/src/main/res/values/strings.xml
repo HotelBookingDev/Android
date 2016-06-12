@@ -4,7 +4,6 @@
 
     <string name="get_code">获取邀请码</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="btn_register">注册</string>
     <string name="btn_phone_captcha">获取</string>

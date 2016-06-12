@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     tools:context="sf.hotel.com.hotel_client.view.fragment.RegisterUserInfoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
