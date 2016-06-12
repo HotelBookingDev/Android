@@ -2,7 +2,7 @@ package sf.hotel.com.data.interfaceeneity;
 
 import rx.Observable;
 import rx.Subscriber;
-import sf.hotel.com.data.entity.LoginResult;
+import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.net.ApiWrapper;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.Exception.CodeException;
@@ -14,10 +14,10 @@ import sf.hotel.com.data.utils.CheckUtils;
  */
 public class LoginEntityImp implements ILoginEntity {
     @Override
-    public Observable<LoginResult> login(String username, String password) {
-        return Observable.create(new Observable.OnSubscribe<LoginResult>() {
+    public Observable<UserEntity> login(String username, String password) {
+        return Observable.create(new Observable.OnSubscribe<UserEntity>() {
             @Override
-            public void call(Subscriber<? super LoginResult> subscriber) {
+            public void call(Subscriber<? super UserEntity> subscriber) {
                 if (CheckUtils.isTextViewEmpty(username)) {
                     subscriber.onError(new APIException(CodeException.LOGIN_NAME_NULL));
                 } else if (!(CheckUtils.checkPhoneNumber(username))) {

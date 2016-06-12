@@ -1,6 +1,7 @@
 package sf.hotel.com.data.net.Interceptor;
 
 import java.io.IOException;
+
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -16,6 +17,9 @@ public class LoggingInterceptor implements Interceptor {
         LogUtils.d(request.url().toString());
 
         Response response = chain.proceed(request);
-        return response;
+        okhttp3.MediaType mediaType = response.body().contentType();
+        String content = response.body().string();
+        LogUtils.d("content", content);
+        return response.newBuilder().body(okhttp3.ResponseBody.create(mediaType, content)).build();
     }
 }

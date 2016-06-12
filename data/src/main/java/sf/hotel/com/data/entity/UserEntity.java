@@ -13,8 +13,8 @@ public class UserEntity {
     private long userId;
     @DatabaseField(columnName = "name")
     private String fullname;
-    @DatabaseField(columnName = "phone")
-    private long phone;
+    @DatabaseField(columnName = "phoneNumber")
+    private long phoneNumber;
     @DatabaseField(columnName = "sex")
     private int sex;
 
@@ -27,7 +27,7 @@ public class UserEntity {
     }
 
     public long getPhone() {
-        return phone;
+        return phoneNumber;
     }
 
     public int getSex() {
@@ -43,7 +43,7 @@ public class UserEntity {
     }
 
     public void setPhone(long phone) {
-        this.phone = phone;
+        this.phoneNumber = phone;
     }
 
     public void setSex(int sex) {

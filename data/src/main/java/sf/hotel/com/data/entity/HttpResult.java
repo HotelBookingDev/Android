@@ -10,7 +10,17 @@ public class HttpResult<T> {
 
     private int status;
 
-    private T res;
+//    public Res<T> getRes() {
+//        return res;
+//    }
+//
+//    public void setRes(Res<T> res) {
+//        this.res = res;
+//    }
+//
+//    private Res<T> res;
+
+    private T data;
 
     public boolean isSuccess() {
         if (status == 100) return true;
@@ -42,10 +52,10 @@ public class HttpResult<T> {
     }
 
     public T getData() {
-        return res;
+        return data;
     }
 
     public void setData(T data) {
-        this.res = data;
+        this.data = data;
     }
 }

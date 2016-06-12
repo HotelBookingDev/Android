@@ -1,8 +1,8 @@
 package sf.hotel.com.data.net;
 
 import rx.Observable;
-import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.data.entity.NormalResult;
+import sf.hotel.com.data.entity.UserEntity;
 
 /**
  * @author MZ
@@ -34,9 +34,9 @@ public class ApiWrapper extends RetrofitHelper {
      * @param pwd
      * @return
      */
-    public Observable<LoginResult> doLogin(String username, String pwd) {
+    public Observable<UserEntity> doLogin(String username, String pwd) {
         return mService.callLogin(username, pwd)
-                .compose(ApiWrapper.this.<LoginResult>applySchedulers());
+                .compose(ApiWrapper.this.<UserEntity>applySchedulers());
     }
 
     /**

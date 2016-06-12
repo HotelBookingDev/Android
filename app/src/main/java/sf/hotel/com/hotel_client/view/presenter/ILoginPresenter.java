@@ -2,12 +2,13 @@ package sf.hotel.com.hotel_client.view.presenter;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
-import sf.hotel.com.data.entity.LoginResult;
+import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.interfaceeneity.ILoginEntity;
 import sf.hotel.com.data.interfaceeneity.LoginEntityImp;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.Exception.Code;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
+import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.view.interfaceview.ICallBack;
 import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;
 
@@ -55,8 +56,7 @@ public class ILoginPresenter extends SuperPresenter {
                 mILoginView.showViewToast(getErrorString(msgid, mILoginView.getBottomContext()));
             } else if (i == Code.LOGIN_PWD_ERROR) {
                 if (msgid == 0) {
-                    mILoginView.showViewToast(
-                            ((APIException) e).getMessage());
+                    mILoginView.showViewToast(e.getMessage());
                 }
             }
         }
@@ -66,11 +66,12 @@ public class ILoginPresenter extends SuperPresenter {
 
         Subscription subscribe = mILoginEntity.login(mILoginView.getUserName(),
                 mILoginView.getPassword())
-                .subscribe(new SimpleSubscriber<LoginResult>(mILoginView.getBottomContext()) {
+                .subscribe(new SimpleSubscriber<UserEntity>(mILoginView.getBottomContext()) {
                     @Override
-                    public void onNext(LoginResult loginResult) {
+                    public void onNext(UserEntity loginResult) {
                         super.onNext(loginResult);
                         mILoginView.success(ICallBack.LOGIN);
+                        LogUtils.e("test", loginResult.toString());
                     }
 
                     @Override
