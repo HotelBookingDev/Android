@@ -3,7 +3,13 @@ package sf.hotel.com.hotel_client;
 import android.app.Application;
 import android.content.Context;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVInstallation;
+import com.avos.avoscloud.AVOSCloud;
+import com.avos.avoscloud.SaveCallback;
 import com.tencent.bugly.crashreport.CrashReport;
+
+import sf.hotel.com.data.net.ApiWrapper;
 
 /**
  * Created by FMT on 2016/6/3:19:04
@@ -16,14 +22,34 @@ public class HotelApplication extends Application {
     public void onCreate() {
         super.onCreate();
         context = this.getApplicationContext();
-
+        initCloud();
         //初始化bugly
         initBuglyStatus();
     }
 
+    private void initCloud() {
+        //初始化
+        AVOSCloud.initialize(this, "P0fN7ArvLMtcgsACRwhOupHj-gzGzoHsz", "cWK8NHllNg7N6huHiKA1HeRG");
+
+        //获取设备号
+        AVInstallation.getCurrentInstallation().saveInBackground(new SaveCallback() {
+            @Override
+            public void done(AVException e) {
+                AVInstallation.getCurrentInstallation().saveInBackground();
+                //发送到服务器
+                sendInstallatrionId(AVInstallation.getCurrentInstallation().getInstallationId());
+            }
+        });
+    }
+
+    private void sendInstallatrionId(String InstallationId) {
+        //无法和p层进行交互 直接在这里进行数据层的网络请求
+        ApiWrapper.getInstance().sendInstallationId(InstallationId);
+    }
+
     public void initBuglyStatus() {
-//        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(context);
-//        strategy.setAppVersion("1.0.1");
-//        CrashReport.initCrashReport(context, "900033362", true, strategy);
+        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(context);
+        strategy.setAppVersion("1.0.1");
+        CrashReport.initCrashReport(context, "900033362", true, strategy);
     }
 }

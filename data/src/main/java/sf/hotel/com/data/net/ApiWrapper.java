@@ -1,6 +1,9 @@
 package sf.hotel.com.data.net;
 
+import android.text.TextUtils;
+
 import rx.Observable;
+import sf.hotel.com.data.entity.HttpResult;
 import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.data.entity.NormalResult;
 
@@ -29,19 +32,19 @@ public class ApiWrapper extends RetrofitHelper {
 
     /**
      * 登入
+     *
      * @param username
      * @param pwd
      * @return
      */
     public Observable<LoginResult> doLogin(String username, String pwd) {
         return mService.callLogin(username, pwd)
-                .compose(ApiWrapper.this.<LoginResult>applySchedulers())
-                ;
-
+                .compose(ApiWrapper.this.<LoginResult>applySchedulers());
     }
 
     /**
      * 注册
+     *
      * @param phone
      * @param smsCode
      * @param pwd
@@ -49,18 +52,21 @@ public class ApiWrapper extends RetrofitHelper {
      */
     public Observable<NormalResult> doRegister(String phone, String smsCode, String pwd) {
         return mService.callRegister(phone, smsCode, pwd)
-                .compose(this.<NormalResult>applySchedulers())
-                ;
+                .compose(this.<NormalResult>applySchedulers());
     }
 
     /**
      * 短信验证码
+     *
      * @param phone
      * @return
      */
-    public Observable<NormalResult> doGetSmsCode(String phone){
-        return mService.callSmsCode(phone)
-                .compose(this.<NormalResult>applySchedulers())
-                ;
+    public Observable<NormalResult> doGetSmsCode(String phone) {
+        return mService.callSmsCode(phone).compose(this.<NormalResult>applySchedulers());
+    }
+
+    public Observable<HttpResult<NormalResult>> sendInstallationId(String id) {
+        if (TextUtils.isEmpty(id)) return null;
+        return mService.sendInstallationId(id);
     }
 }

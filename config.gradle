@@ -11,6 +11,9 @@ def buglyNDKVersion = 'latest.release'
 def flaviofariaVersion = '1.0.7'
 def yokeyword_fragmentationVersion = '0.7.1'
 def yokeyword_fragmentation_swipebackVersion = '0.3.0'
+def avosclou_Version = 'v3.7.1'
+def avosclou_PushVersion = 'v3.7.1@aar'
+def javaSocketVersion = '1.2.0-leancloud'
 
 ext {
 
@@ -39,7 +42,11 @@ ext {
             buglyNDK                         : "com.tencent.bugly:nativecrashreport:${buglyNDKVersion}",
             flaviofaria                      : "com.flaviofaria:kenburnsview:${flaviofariaVersion}",
             yokeyword_fragmentation          : "me.yokeyword:fragmentation:${yokeyword_fragmentationVersion}",
-            yokeyword_fragmentation_swipeback: "me.yokeyword:fragmentation-swipeback:${yokeyword_fragmentation_swipebackVersion}"
+            yokeyword_fragmentation_swipeback: "me.yokeyword:fragmentation-swipeback:${yokeyword_fragmentation_swipebackVersion}",
+            avoscloud_sdk                    : "cn.leancloud.android:avoscloud-sdk:${avosclou_Version}",
+            avoscloud_push                   : "cn.leancloud.android:avoscloud-push:${avosclou_PushVersion}",
+            Java_WebSocke                    : "cn.leancloud.android:Java-WebSocket:${javaSocketVersion}",
+            avoscloud_statistics             : "cn.leancloud.android:avoscloud-statistics:${avosclou_PushVersion}"
     ]
 
     dependenciesdata = [

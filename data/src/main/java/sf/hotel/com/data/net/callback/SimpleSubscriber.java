@@ -26,11 +26,13 @@ public abstract class SimpleSubscriber<T> extends Subscriber<T> {
     @Override
     public void onStart() {
         LoadingDialogUtils.showProgress(context, "正在努力加载中...");
+        context = null;
     }
 
     @Override
     public void onCompleted() {
         LoadingDialogUtils.dismissDialog();
+        context = null;
     }
 
     @Override
@@ -46,10 +48,12 @@ public abstract class SimpleSubscriber<T> extends Subscriber<T> {
             LogUtils.e(String.valueOf(e.getMessage()));
         }
         LoadingDialogUtils.dismissDialog();
+        context = null;
     }
 
     @Override
     public void onNext(T t) {
         LoadingDialogUtils.dismissDialog();
+        context = null;
     }
 }
