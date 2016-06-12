@@ -109,7 +109,7 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
     }
 
     @Override
-    public void failed(int type) {
+    public void failed(int type, int code) {
         showViewToast("failed");
     }
 

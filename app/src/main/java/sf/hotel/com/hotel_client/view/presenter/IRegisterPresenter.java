@@ -33,7 +33,7 @@ public class IRegisterPresenter extends SuperPresenter {
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
-                        mIRegisterView.failed(ICallBack.REGISTER);
+                        mIRegisterView.failed(ICallBack.REGISTER, 1);
                     }
 
                     @Override
@@ -52,7 +52,7 @@ public class IRegisterPresenter extends SuperPresenter {
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
-                        mIRegisterView.failed(ICallBack.SMS_CODE);
+                        mIRegisterView.failed(ICallBack.SMS_CODE, 1);
                     }
 
                     @Override

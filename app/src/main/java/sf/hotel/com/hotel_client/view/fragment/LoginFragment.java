@@ -92,7 +92,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     }
 
     @Override
-    public void failed(int type) {
+    public void failed(int type, int code) {
 
     }
 

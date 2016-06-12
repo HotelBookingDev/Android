@@ -44,12 +44,12 @@ public class ILoginPresenter extends SuperPresenter {
         if (e instanceof APIException) {
             int i = ((APIException) e).getmCode();
             int msgid = ((APIException) e).getMessageId();
-            if (i == Code.LOGINNAMEERROR) {
+            if (i == Code.LOGIN_FORMAT_ERROR) {
                 mILoginView.clearUserName();
                 mILoginView.clearPassword();
-            } else if (i == Code.LOGIGPWNULL) {
+            } else if (i == Code.LOGIN_NAME_NULL) {
 
-            } else if (i == Code.LOGINNAMENULl) {
+            } else if (i == Code.LOGIN_PWD_NULL) {
 
             }
             mILoginView.showViewToast(getErrorString(msgid, mILoginView.getBottomContext()));
@@ -70,7 +70,7 @@ public class ILoginPresenter extends SuperPresenter {
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
-                        mILoginView.failed(1);
+                        mILoginView.failed(1, 1);
                         handlingException(e);
                     }
                 });
