@@ -1,18 +1,29 @@
 package sf.hotel.com.hotel_client.view.activity;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.util.LruCache;
 import android.view.KeyEvent;
 
 import me.yokeyword.fragmentation.SupportActivity;
+import me.yokeyword.fragmentation.SupportFragment;
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
+import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.fragment.ClickListener;
 import sf.hotel.com.hotel_client.view.fragment.LoginFragment;
 import sf.hotel.com.hotel_client.view.fragment.RegisterFragment;
 
-public class LoginActivity extends SupportActivity implements LoginFragment.ClickListener {
-    private LoginFragment loginFragment;
-    private RegisterFragment registerFragment;
+public class LoginActivity extends SupportActivity implements ClickListener {
+
+
+
+
+    LruCache<Integer, Fragment> mFragmentList = new LruCache<>(3);
+    public final static int LOGIN = 1;
+    public final static int REGISTER = 2;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,20 +33,37 @@ public class LoginActivity extends SupportActivity implements LoginFragment.Clic
 
     protected void init(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
-            if (loginFragment == null) {
-                loginFragment = new LoginFragment();
-                loginFragment.setClickListener(this);
-            }
-            loadRootFragment(R.id.login_fragment, loginFragment);
+            loadRootFragment(R.id.login_fragment, (SupportFragment) getFragmentByKey(LOGIN));
         }
     }
 
     @Override
-    public void register() {
-        if (registerFragment == null) {
-            registerFragment = new RegisterFragment();
+    public void showFragment(int fragment){
+        start((SupportFragment) getFragmentByKey(fragment));
+    }
+
+    public Fragment getFragmentByKey(int fragment){
+        Fragment mFragment = mFragmentList.get(fragment);
+
+        if (mFragment == null){
+            switch (fragment){
+
+                case LOGIN:
+                    LoginFragment loginFragment = new LoginFragment();
+                    loginFragment.setClickListener(this);
+                    mFragment = loginFragment;
+                    break;
+
+                case REGISTER:
+
+                    RegisterFragment registerFragment = new RegisterFragment();
+                    registerFragment.setClickListener(this);
+                    mFragment = registerFragment;
+                    break;
+            }
+
         }
-        start(registerFragment);
+        return mFragment;
     }
 
     @Override

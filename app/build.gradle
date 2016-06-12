@@ -59,6 +59,4 @@ dependencies {
     compile rootProject.ext.dependencies.Java_WebSocke
 
     compile rootProject.ext.dependencies.avoscloud_statistics
-    compile 'junit:junit:4.12'
-    compile 'com.android.support:support-v4:23.4.0'
 }

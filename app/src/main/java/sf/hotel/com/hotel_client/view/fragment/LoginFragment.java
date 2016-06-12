@@ -12,6 +12,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.activity.LoginActivity;
 import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;
 import sf.hotel.com.hotel_client.view.presenter.ILoginPresenter;
 
@@ -102,7 +103,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @OnClick(R.id.register_btn)
     public void register() {
-        mClickListener.register();
+        mClickListener.showFragment(LoginActivity.REGISTER);
     }
 
     public void setClickListener(ClickListener mClickListener) {
@@ -117,10 +118,6 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     @Override
     public void showViewToast(String msg) {
         showToast(msg);
-    }
-
-    public interface ClickListener {
-        void register();
     }
 
     @Override

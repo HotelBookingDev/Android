@@ -13,7 +13,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.activity.LoginActivity;
 import sf.hotel.com.hotel_client.view.custom.CaptchaButton;
+import sf.hotel.com.hotel_client.view.interfaceview.ICallBack;
 import sf.hotel.com.hotel_client.view.interfaceview.IRegisterView;
 import sf.hotel.com.hotel_client.view.presenter.IRegisterPresenter;
 
@@ -40,6 +42,14 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
 
     IRegisterPresenter mIRegisterPresenter;
 
+
+
+    ClickListener mClickListener;
+
+
+    public void setClickListener(ClickListener mClickListener) {
+        this.mClickListener = mClickListener;
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,12 +99,22 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
 
     @Override
     public void success(int type) {
-
+        switch (type){
+            case ICallBack.REGISTER:
+                showLogin();
+                break;
+            case ICallBack.SMS_CODE:
+                break;
+        }
     }
 
     @Override
     public void failed(int type) {
+        showViewToast("failed");
+    }
 
+    public void showLogin(){
+        mClickListener.showFragment(LoginActivity.LOGIN);
     }
 
     @Override
