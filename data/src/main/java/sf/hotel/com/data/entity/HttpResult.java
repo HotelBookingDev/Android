@@ -5,17 +5,15 @@ package sf.hotel.com.data.entity;
  * EMAILE 1105896230@qq.com.
  */
 public class HttpResult<T> {
-    private int code;
     private String message;
     private long timestamp;
 
     private int status;
 
-    private T data;
+    private T res;
 
-    public boolean isSuccess(){
-        if (status == 1)
-            return true;
+    public boolean isSuccess() {
+        if (status == 1) return true;
         return false;
     }
 
@@ -25,14 +23,6 @@ public class HttpResult<T> {
 
     public void setStatus(int status) {
         this.status = status;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
     }
 
     public String getMessage() {
@@ -52,10 +42,10 @@ public class HttpResult<T> {
     }
 
     public T getData() {
-        return data;
+        return res;
     }
 
     public void setData(T data) {
-        this.data = data;
+        this.res = data;
     }
 }

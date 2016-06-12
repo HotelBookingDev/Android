@@ -52,8 +52,6 @@ dependencies {
     apt rootProject.ext.apt.butterknife
     compile project(':data')
 
-    compile 'junit:junit:4.12'
-
     //learnCloud
     compile rootProject.ext.dependencies.avoscloud_sdk
     compile rootProject.ext.dependencies.avoscloud_push
@@ -61,4 +59,6 @@ dependencies {
     compile rootProject.ext.dependencies.Java_WebSocke
 
     compile rootProject.ext.dependencies.avoscloud_statistics
+    compile 'junit:junit:4.12'
+    compile 'com.android.support:support-v4:23.4.0'
 }
