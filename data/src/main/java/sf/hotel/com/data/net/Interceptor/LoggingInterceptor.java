@@ -16,7 +16,6 @@ public class LoggingInterceptor implements Interceptor {
         LogUtils.d(request.url().toString());
 
         Response response = chain.proceed(request);
-        LogUtils.d(response.body().toString());
         return response;
     }
 }
