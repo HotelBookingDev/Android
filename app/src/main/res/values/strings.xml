@@ -8,4 +8,6 @@
     <string name="btn_register">注册</string>
     <string name="btn_phone_captcha">获取</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="tv_name">姓名</string>
+    <string name="tv_age">年龄</string>
 </resources>

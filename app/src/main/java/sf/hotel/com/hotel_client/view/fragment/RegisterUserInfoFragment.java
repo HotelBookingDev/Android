@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import sf.hotel.com.hotel_client.R;
 
+//可能不需要这个界面，放着不做处理.
 public class RegisterUserInfoFragment extends Fragment {
 
     @Nullable
