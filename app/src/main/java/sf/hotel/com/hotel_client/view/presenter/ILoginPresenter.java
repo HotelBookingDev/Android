@@ -48,12 +48,17 @@ public class ILoginPresenter extends SuperPresenter {
             if (i == Code.LOGIN_FORMAT_ERROR) {
                 mILoginView.clearUserName();
                 mILoginView.clearPassword();
+                mILoginView.showViewToast(getErrorString(msgid, mILoginView.getBottomContext()));
             } else if (i == Code.LOGIN_NAME_NULL) {
-
+                mILoginView.showViewToast(getErrorString(msgid, mILoginView.getBottomContext()));
             } else if (i == Code.LOGIN_PWD_NULL) {
-
+                mILoginView.showViewToast(getErrorString(msgid, mILoginView.getBottomContext()));
+            } else if (i == Code.LOGIN_PWD_ERROR) {
+                if (msgid == 0) {
+                    mILoginView.showViewToast(
+                            ((APIException) e).getMessage());
+                }
             }
-            //mILoginView.showViewToast(getErrorString(msgid, mILoginView.getBottomContext()));
         }
     }
 
@@ -71,8 +76,7 @@ public class ILoginPresenter extends SuperPresenter {
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
-                        mILoginView.failed(ICallBack.LOGIN, e);
-                       // handlingException(e);
+                        handlingException(e);
                     }
                 });
         mCompositeSubscription.add(subscribe);

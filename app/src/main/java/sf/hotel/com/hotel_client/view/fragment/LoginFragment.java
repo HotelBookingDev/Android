@@ -7,18 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import sf.hotel.com.data.net.ApiService;
-import sf.hotel.com.data.net.Exception.APIException;
-import sf.hotel.com.data.net.Exception.Code;
-import sf.hotel.com.data.net.Exception.CodeException;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.LoginActivity;
-import sf.hotel.com.hotel_client.view.interfaceview.ICallBack;
 import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;
 import sf.hotel.com.hotel_client.view.presenter.ILoginPresenter;
 
@@ -94,33 +88,11 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @Override
     public void success(int type) {
-        switch (type){
-            case ICallBack.LOGIN:
-                showViewToast("登入成功");
-                break;
-        }
+        showViewToast(getContext().getResources().getString(R.string.login_success));
     }
 
     @Override
     public void failed(int type, Throwable e) {
-
-        if (e instanceof APIException){
-            APIException exception = (APIException) e;
-
-            int code = exception.getmCode();
-            if (code == Code.LOGIN_FORMAT_ERROR) {
-                clearUserName();
-                clearPassword();
-            } else if (code == Code.LOGIN_NAME_NULL) {
-
-            } else if (code == Code.LOGIN_PWD_NULL) {
-
-            }
-            showViewToast(exception.getErrorMessage(getBottomContext()));
-
-        } else {
-            showViewToast(e.getMessage());
-        }
 
     }
 
