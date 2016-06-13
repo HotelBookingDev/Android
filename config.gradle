@@ -14,6 +14,7 @@ def yokeyword_fragmentation_swipebackVersion = '0.3.0'
 def avosclou_Version = 'v3.7.1'
 def avosclou_PushVersion = 'v3.7.1@aar'
 def javaSocketVersion = '1.2.0-leancloud'
+def fancybuttonsVersion = '1.8.1'
 
 ext {
 
@@ -46,7 +47,10 @@ ext {
             avoscloud_sdk                    : "cn.leancloud.android:avoscloud-sdk:${avosclou_Version}",
             avoscloud_push                   : "cn.leancloud.android:avoscloud-push:${avosclou_PushVersion}",
             Java_WebSocke                    : "cn.leancloud.android:Java-WebSocket:${javaSocketVersion}",
-            avoscloud_statistics             : "cn.leancloud.android:avoscloud-statistics:${avosclou_PushVersion}"
+            avoscloud_statistics             : "cn.leancloud.android:avoscloud-statistics:${avosclou_PushVersion}",
+
+            //button的定制
+            fancybuttons                     : "com.github.medyo:fancybuttons:${fancybuttonsVersion}"
     ]
 
     dependenciesdata = [

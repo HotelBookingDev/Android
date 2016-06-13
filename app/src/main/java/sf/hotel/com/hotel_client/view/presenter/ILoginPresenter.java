@@ -70,7 +70,7 @@ public class ILoginPresenter extends SuperPresenter {
                     @Override
                     public void onNext(UserEntity loginResult) {
                         super.onNext(loginResult);
-//                        postIntallationId();
+                        postIntallationId();
 //                        mILoginView.startMainActivity();
                     }
 
