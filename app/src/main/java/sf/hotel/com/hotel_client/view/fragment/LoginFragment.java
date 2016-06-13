@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.avos.avoscloud.AVInstallation;
 
@@ -17,6 +18,7 @@ import butterknife.OnClick;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.Exception.Code;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 import sf.hotel.com.hotel_client.view.activity.LoginActivity;
 import sf.hotel.com.hotel_client.view.activity.MainActivity;
 import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;
@@ -32,6 +34,8 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     @BindView(R.id.edit_pw)
     EditText mEditPw;
 
+    @BindView(R.id.iv_head)
+    ImageView mIvHead;
     ILoginPresenter mILoginPresenter;
 
     ClickListener mClickListener;
@@ -43,7 +47,12 @@ public class LoginFragment extends BaseFragment implements ILoginView {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this, view);
         mILoginPresenter = new ILoginPresenter(this);
+        init();
         return view;
+    }
+
+    private void init() {
+        HotelImageLoad.loadImageCircle(getContext(), mIvHead, R.mipmap.head_loading_bj);
     }
 
     @Override

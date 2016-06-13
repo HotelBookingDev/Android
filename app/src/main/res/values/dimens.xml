@@ -4,4 +4,10 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="activity_login_padding">10dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="btn_margin">30dp</dimen>
+    <dimen name="btn_height">48dp</dimen>
+
+    <dimen name="login_head">100dp</dimen>
+
+    <dimen name="rl_bottom">100dp</dimen>
 </resources>
