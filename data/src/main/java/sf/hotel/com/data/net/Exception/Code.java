@@ -13,5 +13,7 @@ public final class Code {
     public static final int LOGIN_PWD_ERROR = 102;
     public static final int HAS_BEEN_REGISTER = 103;
     public static final int INTALLATIONIDISEXIT = -100;
+
+
 }
 

@@ -1,5 +1,7 @@
 package sf.hotel.com.data.interfaceeneity;
 
+import android.content.Context;
+
 import rx.Observable;
 import sf.hotel.com.data.entity.NormalResult;
 
@@ -10,5 +12,10 @@ import sf.hotel.com.data.entity.NormalResult;
  */
 public interface IRegisterEntity {
     Observable<NormalResult> register(String phone, String smsCode, String pwd);
+
     Observable<NormalResult> getSmsCode(String phone);
+
+    void savePhone(Context context, String phone);
+
+    void savePwd(Context context, String pwd);
 }

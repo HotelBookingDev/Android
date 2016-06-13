@@ -22,9 +22,7 @@ import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.data.utils.LogUtils;
-
 
 /**
  * @author MZ
@@ -51,10 +49,8 @@ public class SplashActivity extends Activity {
         ImageView image = new ImageView(this);
 
         image.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        frame.addView(image,
-                new FrameLayout.LayoutParams(
-                        FrameLayout.LayoutParams.MATCH_PARENT,
-                        FrameLayout.LayoutParams.MATCH_PARENT));
+        frame.addView(image, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT));
 
         frame.setBackgroundColor(getBackgroundColor());
         String[] paths = null;
@@ -82,8 +78,7 @@ public class SplashActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (!isFinishing())
-            playSplash();
+        if (!isFinishing()) playSplash();
     }
 
     private void playSplash() {
@@ -100,7 +95,6 @@ public class SplashActivity extends Activity {
         };
         splash.play(this, listener);
     }
-
 
     private static class AssetSplash {
         String path;

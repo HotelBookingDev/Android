@@ -1,5 +1,7 @@
 package sf.hotel.com.data.interfaceeneity;
 
+import android.content.Context;
+
 import rx.Observable;
 import sf.hotel.com.data.entity.NormalResult;
 import sf.hotel.com.data.entity.UserEntity;
@@ -13,4 +15,12 @@ public interface ILoginEntity {
 
     Observable<NormalResult> postInllation(String deviceType, String phoneNum,
             String invatllationId);
+
+    void savePhone(Context context, String phone);
+
+    void savePwd(Context context, String pwd);
+
+    String getPhone(Context context);
+
+    String getPwd(Context context);
 }

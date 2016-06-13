@@ -5,8 +5,8 @@ import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.entity.NormalResult;
 import sf.hotel.com.data.interfaceeneity.IRegisterEntity;
 import sf.hotel.com.data.interfaceeneity.RegisterEntityImp;
-import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
+import sf.hotel.com.data.utils.StringUtils;
 import sf.hotel.com.hotel_client.view.interfaceview.ICallBack;
 import sf.hotel.com.hotel_client.view.interfaceview.IRegisterView;
 
@@ -28,8 +28,10 @@ public class IRegisterPresenter extends SuperPresenter {
     }
 
     public void register() {
+        //注册使用md5
+        String pwd = StringUtils.md5(mIRegisterView.getPwd());
         Subscription subscribe = mIRegisterEntity.register(mIRegisterView.getUName(),
-                mIRegisterView.getCaptcha(), mIRegisterView.getPwd())
+                mIRegisterView.getCaptcha(), pwd)
                 .subscribe(new SimpleSubscriber<NormalResult>(mIRegisterView.getBottomContext()) {
                     @Override
                     public void onError(Throwable e) {
@@ -41,6 +43,8 @@ public class IRegisterPresenter extends SuperPresenter {
                     public void onNext(NormalResult normalResult) {
                         super.onNext(normalResult);
                         mIRegisterView.success(ICallBack.REGISTER);
+                        //传递md5的数值
+                        saveUserInfo(mIRegisterView.getUName(), pwd);
                     }
                 });
         mCompositeSubscription.add(subscribe);
@@ -83,5 +87,10 @@ public class IRegisterPresenter extends SuperPresenter {
     @Override
     public void handlingException(Throwable e) {
 
+    }
+
+    private void saveUserInfo(String phone, String pwd) {
+        mIRegisterEntity.savePhone(mIRegisterView.getBottomContext(), phone);
+        mIRegisterEntity.savePwd(mIRegisterView.getBottomContext(), pwd);
     }
 }

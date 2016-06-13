@@ -58,14 +58,17 @@ public class HotelApplication extends Application {
                     .subscribe(new Subscriber<NormalResult>() {
                         @Override
                         public void onCompleted() {
-                            PreferencesUtils.saveInstallationId(context, installationId);
+                            PreferencesUtils.saveInstallationId(context,
+                                    AVInstallation.getCurrentInstallation().getInstallationId());
                         }
 
                         @Override
                         public void onError(Throwable e) {
                             if (e instanceof APIException) {
                                 if (((APIException) e).getCode() == Code.INTALLATIONIDISEXIT) {
-                                    PreferencesUtils.saveInstallationId(context, installationId);
+                                    PreferencesUtils.saveInstallationId(context,
+                                            AVInstallation.getCurrentInstallation()
+                                                    .getInstallationId());
                                 }
                             }
                         }
