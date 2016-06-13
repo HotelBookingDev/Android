@@ -26,7 +26,7 @@ public abstract class BaseActivity extends SupportActivity {
 
     protected String TAG = this.getClass().getSimpleName();
 
-    protected LruCache<Integer, Fragment> mFragmentList = new LruCache<>(3);
+    protected LruCache<Integer, SupportFragment> mFragmentList = new LruCache<>(3);
 
     protected void showToast(String msg) {
         TToast.showToast(msg);
@@ -47,12 +47,28 @@ public abstract class BaseActivity extends SupportActivity {
     }
 
 
+    public void showFragment(Class fragment) {
 
-    public void showFragment(int fragment){
-        start((SupportFragment) getFragmentByKey(fragment));
+        SupportFragment mFragment = findFragment(fragment);
+        if (mFragment == null) {
+            mFragment = getFragmentByKey(fragment);
+            start(mFragment);
+        } else {
+            start(mFragment);
+        }
+
     }
 
-    protected abstract Fragment getFragmentByKey(int fragment);
+    protected SupportFragment getFragmentByKey(Class fragment){
+        try {
+            return (SupportFragment) fragment.newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     @Override
     protected FragmentAnimator onCreateFragmentAnimator() {
@@ -64,7 +80,7 @@ public abstract class BaseActivity extends SupportActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    public void startActivity(Class clazz){
+    public void startActivity(Class clazz) {
         Intent intent = new Intent(this, clazz);
         startActivity(intent);
         finish();

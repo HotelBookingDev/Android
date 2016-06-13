@@ -129,7 +129,7 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
     }
 
     public void showLogin(){
-        mClickListener.showFragment(LoginActivity.LOGIN);
+        mClickListener.onFragmentBackPressed();
     }
 
     @Override

@@ -19,12 +19,30 @@
             />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:id="@+id/custom_title_content"
             android:text=""
             android:textColor="@color/text_color"
             />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:src="@mipmap/ic_search_white_36dp"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:src="@mipmap/ic_map_white_36dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:src="@mipmap/ic_more_vert_white_36dp"/>
+
     </LinearLayout>
 
 

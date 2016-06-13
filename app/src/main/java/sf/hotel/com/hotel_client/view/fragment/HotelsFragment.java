@@ -1,15 +1,14 @@
 package sf.hotel.com.hotel_client.view.fragment;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.lhh.ptrrv.library.PullToRefreshRecyclerView;
 import com.lhh.ptrrv.library.footer.loadmore.BaseLoadMoreView;
@@ -21,7 +20,6 @@ import sf.hotel.com.hotel_client.view.adapter.PullToRefreshViewAdapter;
 import sf.hotel.com.hotel_client.view.custom.DividerItemDecoration;
 import sf.hotel.com.hotel_client.view.interfaceview.IHotelsView;
 import sf.hotel.com.hotel_client.view.presenter.IHotelPresenter;
-import sf.hotel.com.hotel_client.view.presenter.IRegisterPresenter;
 
 
 /**
@@ -31,13 +29,15 @@ import sf.hotel.com.hotel_client.view.presenter.IRegisterPresenter;
  */
 public class HotelsFragment extends BaseFragment implements IHotelsView{
 
-    //@BindView(R.id.fragment_hotels_list)
+    @BindView(R.id.fragment_hotels_list)
     PullToRefreshRecyclerView mPullView;
 
 
     PullToRefreshViewAdapter mPullAdapter;
 
     private IHotelPresenter mIHotelPersentes;
+
+    Handler handler = new Handler();
 
     @Nullable
     @Override
@@ -48,7 +48,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
 
         mIHotelPersentes = new IHotelPresenter(this);
 
-        //initPullView();
+        initPullView();
         return view;
     }
 
@@ -56,10 +56,8 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
         mPullView.setSwipeEnable(true);
 
 
-//        View header = LayoutInflater.from(getBottomContext()).inflate(R.layout.custom_title, null);
-//        mPullView.addHeaderView(header);
-
-
+        View header = LayoutInflater.from(getBottomContext()).inflate(R.layout.custom_title, null);
+        mPullView.addHeaderView(header);
 
         //加载更多
         mPullView.setLayoutManager(new LinearLayoutManager(getBottomContext()));
@@ -67,8 +65,17 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
             @Override
             public void onLoadMoreItems() {
                 mIHotelPersentes.loadMoreHotel();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        mPullAdapter.setCount(mPullAdapter.getItemCount() + 20);
+                        mPullAdapter.notifyDataSetChanged();
+                        mPullView.onFinishLoading(true, false);
+                    }
+                });
             }
         });
+
 
         //设置间隔线
         mPullView.getRecyclerView().addItemDecoration(new DividerItemDecoration(getBottomContext(),
@@ -84,14 +91,28 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
         mPullView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
 
+                        mPullAdapter.setCount(20);
+                        mPullAdapter.notifyDataSetChanged();
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        mPullView.setOnRefreshComplete();
+                        mPullView.onFinishLoading(true, false);
+                    }
+                });
             }
         });
 
 
         //设置适配器
         mPullAdapter = new PullToRefreshViewAdapter(getBottomContext());
-        mPullAdapter.setCount(10);
+        mPullAdapter.setCount(20);
 
         mPullView.setAdapter(mPullAdapter);
         mPullView.onFinishLoading(true, false);

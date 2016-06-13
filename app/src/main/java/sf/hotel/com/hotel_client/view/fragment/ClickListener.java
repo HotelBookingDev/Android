@@ -6,6 +6,7 @@ package sf.hotel.com.hotel_client.view.fragment;
  * @date 16/6/12.
  */
 public interface ClickListener  {
-   void  showFragment(int fragment);
+   void showFragmentByClass(Class fragment);
    void startActivityByClass(Class clazz);
+   void onFragmentBackPressed();
 }

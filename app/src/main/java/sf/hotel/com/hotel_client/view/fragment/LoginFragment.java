@@ -1,7 +1,6 @@
 package sf.hotel.com.hotel_client.view.fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -23,7 +22,6 @@ import sf.hotel.com.hotel_client.view.activity.HomeActivity;
 
 import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 import sf.hotel.com.hotel_client.view.activity.LoginActivity;
-import sf.hotel.com.hotel_client.view.activity.MainActivity;
 import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;
 import sf.hotel.com.hotel_client.view.presenter.ILoginPresenter;
 
@@ -147,7 +145,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @OnClick(R.id.register_btn)
     public void register() {
-        mClickListener.showFragment(LoginActivity.REGISTER);
+        mClickListener.showFragmentByClass(LoginActivity.REGISTER);
     }
 
     public void setClickListener(ClickListener mClickListener) {

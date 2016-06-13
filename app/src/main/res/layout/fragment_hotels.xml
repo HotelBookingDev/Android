@@ -3,13 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorLoginBtn">
+    android:layout_height="match_parent">
 
-    <!--<com.lhh.ptrrv.library.PullToRefreshRecyclerView-->
-        <!--android:id="@+id/fragment_hotels_list"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:background="@color/colorPrimary"-->
-        <!--/>-->
+    <com.lhh.ptrrv.library.PullToRefreshRecyclerView
+        android:id="@+id/fragment_hotels_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 </FrameLayout>

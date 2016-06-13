@@ -12,8 +12,8 @@ import sf.hotel.com.hotel_client.view.fragment.RegisterFragment;
 
 public class LoginActivity extends BaseActivity implements ClickListener {
 
-    public final static int LOGIN = 1;
-    public final static int REGISTER = 2;
+    public static Class LOGIN = LoginFragment.class;
+    public static Class REGISTER = RegisterFragment.class;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,38 +23,39 @@ public class LoginActivity extends BaseActivity implements ClickListener {
 
     protected void init(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
-            loadRootFragment(R.id.login_fragment, (SupportFragment) getFragmentByKey(LOGIN));
+            loadRootFragment(R.id.login_fragment, getFragmentByKey(LoginActivity.LOGIN));
         }
     }
 
     @Override
-    protected Fragment getFragmentByKey(int fragment){
-        Fragment mFragment = mFragmentList.get(fragment);
+    protected SupportFragment getFragmentByKey(Class fragment) {
+        SupportFragment mFragment;
 
-        if (mFragment == null){
-            switch (fragment){
-
-                case LOGIN:
-                    LoginFragment loginFragment = new LoginFragment();
-                    loginFragment.setClickListener(this);
-                    mFragment = loginFragment;
-                    break;
-
-                case REGISTER:
-
-                    RegisterFragment registerFragment = new RegisterFragment();
-                    registerFragment.setClickListener(this);
-                    mFragment = registerFragment;
-                    break;
-            }
-
-            mFragmentList.put(fragment, mFragment);
+        if (fragment == LOGIN) {
+            LoginFragment loginFragment = new LoginFragment();
+            loginFragment.setClickListener(this);
+            mFragment = loginFragment;
+        } else {
+            RegisterFragment registerFragment = new RegisterFragment();
+            registerFragment.setClickListener(this);
+            mFragment = registerFragment;
         }
         return mFragment;
+    }
+
+
+    @Override
+    public void showFragmentByClass(Class fragment) {
+        super.showFragment(fragment);
     }
 
     @Override
     public void startActivityByClass(Class clazz) {
         super.startActivity(clazz);
+    }
+
+    @Override
+    public void onFragmentBackPressed() {
+        super.onBackPressed();
     }
 }
