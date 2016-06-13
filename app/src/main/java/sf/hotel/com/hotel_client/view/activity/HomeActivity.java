@@ -18,14 +18,14 @@ import sf.hotel.com.hotel_client.view.fragment.HotelsFragment;
 public class HomeActivity extends BaseActivity{
     public final static Class HOTELS = HotelsFragment.class;
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         init(savedInstanceState);
     }
 
     protected void init(Bundle savedInstanceState) {
-        loadRootFragment(R.id.home_fragment, (SupportFragment) getFragmentByKey(HOTELS));
+        loadRootFragment(R.id.home_fragment, getFragmentByKey(HOTELS));
     }
 
     @Override
