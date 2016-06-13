@@ -63,4 +63,10 @@ dependencies {
     //下拉刷新
     compile rootProject.ext.dependencies.pullToRefreshRecyclerView;
     compile rootProject.ext.dependencies.homhomlin_lib;
+
+    //button的定制
+    compile rootProject.ext.dependencies.fancybuttons
+    //glide图片加载框架
+    compile rootProject.ext.dependencies.glide
+    testCompile 'junit:junit:4.12'
 }

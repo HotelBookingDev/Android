@@ -1,5 +1,6 @@
 package sf.hotel.com.data.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,13 +9,13 @@ import java.util.List;
  */
 public class Intallation {
     private String deviceType;
-    private String intallationId;
+    private String installationId;
 
     public Intallation(String deviceType, String intallationId) {
         this.deviceType = deviceType;
-        this.intallationId = intallationId;
+        this.installationId = intallationId;
     }
 
-    private List<String> chanels;
+    private List<String> chanels = new ArrayList<>();
     private String deviceToken;
 }

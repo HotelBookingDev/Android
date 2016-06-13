@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">Hotel-Client</string>
-    <string name="btn_login">登陆</string>
-    <string name="tv_forgot_pw">忘记密码</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="tv_forgot_pw">Forgot PassWord?</string>
     <string name="get_code">获取邀请码</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="btn_register">注册</string>
+    <string name="btn_register">Do not hava an account? Sign Up</string>
     <string name="btn_phone_captcha">获取</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="tv_name">姓名</string>
     <string name="tv_age">年龄</string>
     <string name="login_success">登陆成功</string>
-
 </resources>

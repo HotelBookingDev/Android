@@ -1,4 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,33 +9,81 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/edit_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <EditText
-            android:id="@+id/edit_pw"
-            android:layout_width="match_parent"
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/edit_name" />
+            android:layout_marginBottom="@dimen/rl_bottom"
+            android:layout_centerInParent="true">
 
-        <Button
-            android:id="@+id/login_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/edit_pw"
-            android:background="@drawable/shape_loginbtn"
-            android:text="@string/btn_login"
-            android:textColor="@color/colorBlack" />
+            <ImageView
+                android:id="@+id/iv_head"
+                android:layout_width="@dimen/login_head"
+                android:layout_height="@dimen/login_head"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/btn_margin" />
 
-        <Button
+            <RelativeLayout
+                android:id="@+id/rl_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_head">
+
+                <ImageView
+                    android:id="@+id/iv_call"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@android:drawable/ic_menu_call" />
+
+                <EditText
+                    android:id="@+id/edit_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/iv_call" />
+
+                <ImageView
+                    android:id="@+id/iv_pw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_call"
+                    android:layout_marginTop="@dimen/activity_login_padding"
+                    android:src="@mipmap/ic_pw" />
+
+                <EditText
+                    android:id="@+id/edit_pw"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/edit_name"
+                    android:layout_toRightOf="@+id/iv_pw" />
+            </RelativeLayout>
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/login_btn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btn_height"
+                android:layout_below="@id/rl_group"
+                android:layout_margin="@dimen/btn_margin"
+                android:textColor="@color/colorBlack"
+                fancy:fb_defaultColor="#7ab800"
+                fancy:fb_text="@string/btn_login" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/login_btn"
+                android:layout_centerHorizontal="true"
+                android:text="@string/tv_forgot_pw" />
+        </RelativeLayout>
+
+        <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/register_btn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/login_btn"
-            android:background="@drawable/shape_loginbtn"
-            android:text="@string/btn_register"
-            android:textColor="@color/colorBlack" />
+            android:layout_height="@dimen/btn_height"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/colorBlack"
+            fancy:fb_borderColor="#FFFFFF"
+            fancy:fb_borderWidth="1dp"
+            fancy:fb_defaultColor="#7ab800"
+            fancy:fb_text="@string/btn_register" />
+
     </RelativeLayout>
 </FrameLayout>

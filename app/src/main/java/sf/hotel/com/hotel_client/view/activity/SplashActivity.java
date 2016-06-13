@@ -22,6 +22,7 @@ import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.data.utils.LogUtils;
 
 
@@ -178,7 +179,7 @@ public class SplashActivity extends Activity {
     }
 
     protected void onSplashStop() {
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         this.finish();
     }
