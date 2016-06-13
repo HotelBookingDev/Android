@@ -10,7 +10,6 @@ import sf.hotel.com.hotel_client.view.interfaceview.IHotelsView;
  */
 public class IHotelPresenter extends SuperPresenter {
 
-
     IHotelsView mIHotelsView;
 
     HotelsEntityImp mHotelsEntity;
@@ -18,11 +17,9 @@ public class IHotelPresenter extends SuperPresenter {
     public IHotelPresenter(IHotelsView mIHotelsView) {
         this.mIHotelsView = mIHotelsView;
         mHotelsEntity = new HotelsEntityImp();
-
-
     }
 
-    public void loadMoreHotel(){
+    public void loadMoreHotel() {
 
     }
 }

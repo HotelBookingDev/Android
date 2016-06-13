@@ -1,5 +1,7 @@
 package sf.hotel.com.data.interfaceeneity;
 
+import android.content.Context;
+
 import rx.Observable;
 import rx.Subscriber;
 import sf.hotel.com.data.entity.NormalResult;
@@ -7,6 +9,7 @@ import sf.hotel.com.data.net.ApiWrapper;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.Exception.CodeException;
 import sf.hotel.com.data.utils.CheckUtils;
+import sf.hotel.com.data.utils.PreferencesUtils;
 
 /**
  * @author MZ
@@ -45,5 +48,15 @@ public class RegisterEntityImp implements IRegisterEntity {
                 }
             }
         });
+    }
+
+    @Override
+    public void savePhone(Context context, String phone) {
+        PreferencesUtils.savePhone(context, phone);
+    }
+
+    @Override
+    public void savePwd(Context context, String pwd) {
+        PreferencesUtils.savePhone(context, pwd);
     }
 }

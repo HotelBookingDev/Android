@@ -12,13 +12,36 @@ public class PreferencesUtils {
 
     public static final String INSTALLATIONID = "installationid";
 
-    public static void saveInstallationId(Context context, String session) {
+    public static final String PHONE = "phone";
+    public static final String PASSWORD = "password";
+
+    public static void saveInstallationId(Context context, String installationId) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
-        preferences.edit().putString(INSTALLATIONID, session).apply();
+        preferences.edit().putString(INSTALLATIONID, installationId).apply();
     }
 
     public static String getInstallationId(Context context) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
         return preferences.getString(INSTALLATIONID, null);
+    }
+
+    public static void savePhone(Context context, String phone) {
+        SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
+        preferences.edit().putString(PHONE, phone).apply();
+    }
+
+    public static String getPhone(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
+        return preferences.getString(PHONE, null);
+    }
+
+    public static void savePassWord(Context context, String pwd) {
+        SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
+        preferences.edit().putString(PASSWORD, pwd).apply();
+    }
+
+    public static String getPassWord(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
+        return preferences.getString(PASSWORD, null);
     }
 }

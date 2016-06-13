@@ -1,5 +1,7 @@
 package sf.hotel.com.hotel_client.view.presenter;
 
+import android.text.TextUtils;
+
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.entity.NormalResult;
@@ -9,6 +11,7 @@ import sf.hotel.com.data.interfaceeneity.LoginEntityImp;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.Exception.Code;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
+import sf.hotel.com.data.utils.StringUtils;
 import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;
 
 /**
@@ -25,7 +28,18 @@ public class ILoginPresenter extends SuperPresenter {
         this.mILoginView = mILoginView;
         mILoginEntity = new LoginEntityImp();
         mCompositeSubscription = new CompositeSubscription();
+        initView();
     }
+
+    private void initView() {
+        if (mILoginEntity.getPhone(mILoginView.getBottomContext()) != null &&
+                mILoginEntity.getPwd(mILoginView.getBottomContext()) != null) {
+            mILoginView.setEditPhone(mILoginEntity.getPhone(mILoginView.getBottomContext()));
+            mILoginView.setEditPwd(mILoginEntity.getPwd(mILoginView.getBottomContext()));
+        }
+    }
+
+    ;
 
     @Override
     public void resume() {
@@ -54,6 +68,8 @@ public class ILoginPresenter extends SuperPresenter {
             } else if (i == Code.LOGIN_PWD_NULL) {
                 mILoginView.showViewToast(getErrorString(msgid, mILoginView.getBottomContext()));
             } else if (i == Code.LOGIN_PWD_ERROR) {
+                mILoginView.clearPassword();
+                mILoginEntity.savePwd(mILoginView.getBottomContext(), null);
                 if (msgid == 0) {
                     mILoginView.showViewToast(e.getMessage());
                 }
@@ -68,13 +84,15 @@ public class ILoginPresenter extends SuperPresenter {
     }
 
     public void login() {
-        Subscription subscribe = mILoginEntity.login(mILoginView.getUserName(),
-                mILoginView.getPassword())
+        String pwd = getPostPwd(mILoginView.getPassword());
+        Subscription subscribe = mILoginEntity.login(mILoginView.getUserName(), pwd)
                 .subscribe(new SimpleSubscriber<UserEntity>(mILoginView.getBottomContext()) {
                     @Override
                     public void onNext(UserEntity loginResult) {
                         super.onNext(loginResult);
                         postIntallationId();
+                        //保存用户信息
+                        saveUserInfo(mILoginView.getUserName(), pwd);
                         mILoginView.startHomeActivity();
                     }
 
@@ -85,6 +103,17 @@ public class ILoginPresenter extends SuperPresenter {
                     }
                 });
         mCompositeSubscription.add(subscribe);
+    }
+
+    private String getPostPwd(String pwd) {
+        pwd = StringUtils.md5(pwd);
+        if (!TextUtils.isEmpty(mILoginEntity.getPwd(mILoginView.getBottomContext()))) {
+            if (mILoginEntity.getPwd(mILoginView.getBottomContext())
+                    .equals(mILoginView.getPassword())) {
+                pwd = mILoginView.getPassword();
+            }
+        }
+        return pwd;
     }
 
     private void postIntallationId() {
@@ -102,5 +131,10 @@ public class ILoginPresenter extends SuperPresenter {
                     }
                 });
         mCompositeSubscription.add(subscribe);
+    }
+
+    private void saveUserInfo(String phone, String pwd) {
+        mILoginEntity.savePhone(mILoginView.getBottomContext(), phone);
+        mILoginEntity.savePwd(mILoginView.getBottomContext(), pwd);
     }
 }

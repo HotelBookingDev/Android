@@ -28,4 +28,8 @@ public interface ILoginView extends BaseView {
     String getIntallationId();
 
     void startHomeActivity();
+
+    void setEditPhone(String phone);
+
+    void setEditPwd(String pwd);
 }

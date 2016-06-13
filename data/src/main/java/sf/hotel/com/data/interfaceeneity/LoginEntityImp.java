@@ -1,5 +1,7 @@
 package sf.hotel.com.data.interfaceeneity;
 
+import android.content.Context;
+
 import rx.Observable;
 import rx.Subscriber;
 import sf.hotel.com.data.entity.NormalResult;
@@ -9,12 +11,14 @@ import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.Exception.CodeException;
 import sf.hotel.com.data.utils.CheckUtils;
 import sf.hotel.com.data.utils.LogUtils;
+import sf.hotel.com.data.utils.PreferencesUtils;
 
 /**
  * Created by FMT on 2016/6/3:19:44
  * EMAILE 1105896230@qq.com.
  */
 public class LoginEntityImp implements ILoginEntity {
+
     @Override
     public Observable<UserEntity> login(String username, String password) {
         return Observable.create(new Observable.OnSubscribe<UserEntity>() {
@@ -39,5 +43,25 @@ public class LoginEntityImp implements ILoginEntity {
             String invatllationId) {
         LogUtils.d(invatllationId);
         return ApiWrapper.getInstance().postIntalltion(deviceType, phoneNum, invatllationId);
+    }
+
+    @Override
+    public void savePhone(Context context, String phone) {
+        PreferencesUtils.savePhone(context, phone);
+    }
+
+    @Override
+    public void savePwd(Context context, String pwd) {
+        PreferencesUtils.savePassWord(context, pwd);
+    }
+
+    @Override
+    public String getPhone(Context context) {
+        return PreferencesUtils.getPhone(context);
+    }
+
+    @Override
+    public String getPwd(Context context) {
+        return PreferencesUtils.getPassWord(context);
     }
 }
