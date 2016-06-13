@@ -9,6 +9,10 @@ import com.avos.avoscloud.AVOSCloud;
 import com.avos.avoscloud.SaveCallback;
 import com.tencent.bugly.crashreport.CrashReport;
 
+import sf.hotel.com.data.entity.Intallation;
+import sf.hotel.com.data.net.ApiWrapper;
+import sf.hotel.com.data.net.callback.CommSubscriber;
+
 /**
  * Created by FMT on 2016/6/3:19:04
  * EMAILE 1105896230@qq.com.
@@ -22,7 +26,7 @@ public class HotelApplication extends Application {
         context = this.getApplicationContext();
         initCloud();
         //初始化bugly
-        initBuglyStatus();
+//        initBuglyStatus();
     }
 
     private void initCloud() {
@@ -33,7 +37,10 @@ public class HotelApplication extends Application {
         AVInstallation.getCurrentInstallation().saveInBackground(new SaveCallback() {
             @Override
             public void done(AVException e) {
-
+                ApiWrapper.getInstance()
+                        .postIntallation(new Intallation("android",
+                                AVInstallation.getCurrentInstallation().getInstallationId()))
+                        .subscribe(new CommSubscriber());
             }
         });
     }

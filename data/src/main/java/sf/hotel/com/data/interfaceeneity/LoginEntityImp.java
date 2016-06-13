@@ -8,6 +8,7 @@ import sf.hotel.com.data.net.ApiWrapper;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.Exception.CodeException;
 import sf.hotel.com.data.utils.CheckUtils;
+import sf.hotel.com.data.utils.LogUtils;
 
 /**
  * Created by FMT on 2016/6/3:19:44
@@ -36,6 +37,7 @@ public class LoginEntityImp implements ILoginEntity {
     @Override
     public Observable<NormalResult> postInllation(String deviceType, String phoneNum,
             String invatllationId) {
+        LogUtils.d(invatllationId);
         return ApiWrapper.getInstance().postIntalltion(deviceType, phoneNum, invatllationId);
     }
 }

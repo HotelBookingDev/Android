@@ -70,7 +70,7 @@ public class ILoginPresenter extends SuperPresenter {
                     @Override
                     public void onNext(UserEntity loginResult) {
                         super.onNext(loginResult);
-                        postIntallationId();
+//                        postIntallationId();
 //                        mILoginView.startMainActivity();
                     }
 
@@ -84,7 +84,7 @@ public class ILoginPresenter extends SuperPresenter {
     }
 
     private void postIntallationId() {
-        Subscription subscribe = mILoginEntity.postInllation("android", mILoginView.getPassword(),
+        Subscription subscribe = mILoginEntity.postInllation("android", mILoginView.getUserName(),
                 mILoginView.getIntallationId())
                 .subscribe(new SimpleSubscriber<NormalResult>(mILoginView.getBottomContext()) {
                     @Override
@@ -95,7 +95,6 @@ public class ILoginPresenter extends SuperPresenter {
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
-                        handlingException(e);
                     }
                 });
         mCompositeSubscription.add(subscribe);

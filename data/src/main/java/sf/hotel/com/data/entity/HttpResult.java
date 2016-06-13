@@ -1,5 +1,7 @@
 package sf.hotel.com.data.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by FMT on 2016/6/5:14:04
  * EMAILE 1105896230@qq.com.
@@ -10,17 +12,16 @@ public class HttpResult<T> {
 
     private int status;
 
-//    public Res<T> getRes() {
-//        return res;
-//    }
-//
-//    public void setRes(Res<T> res) {
-//        this.res = res;
-//    }
-//
-//    private Res<T> res;
+    public Resoult<T> getResoult() {
+        return res;
+    }
 
-    private T data;
+    public void setRes(Resoult<T> res) {
+        this.res = res;
+    }
+
+    @SerializedName("Res")
+    private Resoult<T> res;
 
     public boolean isSuccess() {
         if (status == 100) return true;
@@ -52,10 +53,10 @@ public class HttpResult<T> {
     }
 
     public T getData() {
-        return data;
+        return res.getData();
     }
 
     public void setData(T data) {
-        this.data = data;
+        this.res.setData(data);
     }
 }

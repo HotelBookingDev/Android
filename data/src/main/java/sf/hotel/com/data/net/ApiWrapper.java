@@ -1,7 +1,7 @@
 package sf.hotel.com.data.net;
 
 import rx.Observable;
-import sf.hotel.com.data.entity.HttpResult;
+import sf.hotel.com.data.entity.Intallation;
 import sf.hotel.com.data.entity.NormalResult;
 import sf.hotel.com.data.entity.UserEntity;
 
@@ -67,5 +67,9 @@ public class ApiWrapper extends RetrofitHelper {
      */
     public Observable<NormalResult> doGetSmsCode(String phone) {
         return mService.callSmsCode(phone).compose(this.<NormalResult>applySchedulers());
+    }
+
+    public Observable<NormalResult> postIntallation(Intallation mIntallation) {
+        return mService.postIntallation(mIntallation).compose(this.<NormalResult>applySchedulers());
     }
 }

@@ -1,10 +1,13 @@
 package sf.hotel.com.data.net;
 
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import rx.Observable;
 import sf.hotel.com.data.entity.HttpResult;
+import sf.hotel.com.data.entity.Intallation;
 import sf.hotel.com.data.entity.NormalResult;
 import sf.hotel.com.data.entity.UserEntity;
 
@@ -35,9 +38,15 @@ public interface ApiService {
     @POST(AppUrl.SMS_URL)
     Observable<HttpResult<NormalResult>> callSmsCode(@Field(PHONE_NUMBER) String phone);
 
+    //绑定
     @FormUrlEncoded
     @POST(AppUrl.INSTALLTION_BIND_URL)
     Observable<HttpResult<NormalResult>> postInstallation(@Field(DEVICE_TYPE) String type,
             @Field(PHONE_NUMBER) String phoneNumm,
             @Field(INSTALLATION_CODE) String installation_code);
+
+    //上传设备号
+    @POST(AppUrl.INSTALLTION_URL)
+    @Headers({"Content-Type: application/json;charset=UTF-8"})
+    Observable<HttpResult<NormalResult>> postIntallation(@Body Intallation mIntallation);
 }

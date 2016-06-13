@@ -4,7 +4,7 @@ package sf.hotel.com.data.entity;
  * Created by FMT on 2016/6/12:17:14
  * EMAILE 1105896230@qq.com.
  */
-public class Res<T> {
+public class Resoult<T> {
     T data;
 
     public void setData(T data) {
