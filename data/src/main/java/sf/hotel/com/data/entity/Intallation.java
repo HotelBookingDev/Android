@@ -16,6 +16,5 @@ public class Intallation {
         this.installationId = intallationId;
     }
 
-    private List<String> chanels = new ArrayList<>();
-    private String deviceToken;
+    private List<String> channels = new ArrayList<>();
 }

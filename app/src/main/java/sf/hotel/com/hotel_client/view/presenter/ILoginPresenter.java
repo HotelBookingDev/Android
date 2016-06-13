@@ -57,6 +57,10 @@ public class ILoginPresenter extends SuperPresenter {
                 if (msgid == 0) {
                     mILoginView.showViewToast(e.getMessage());
                 }
+            } else {
+                if (msgid == 0) {
+                    mILoginView.showViewToast(e.getMessage());
+                }
             }
         } else {
             mILoginView.showViewToast(e.getMessage());
@@ -71,7 +75,7 @@ public class ILoginPresenter extends SuperPresenter {
                     public void onNext(UserEntity loginResult) {
                         super.onNext(loginResult);
                         postIntallationId();
-//                        mILoginView.startMainActivity();
+                        mILoginView.startHomeActivity();
                     }
 
                     @Override
