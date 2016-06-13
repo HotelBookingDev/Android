@@ -7,4 +7,5 @@ package sf.hotel.com.hotel_client.view.fragment;
  */
 public interface ClickListener  {
    void  showFragment(int fragment);
+   void startActivityByClass(Class clazz);
 }

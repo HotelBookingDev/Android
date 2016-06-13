@@ -17,6 +17,7 @@ import butterknife.OnClick;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.Exception.Code;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.activity.HomeActivity;
 import sf.hotel.com.hotel_client.view.activity.LoginActivity;
 import sf.hotel.com.hotel_client.view.activity.MainActivity;
 import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;
@@ -84,7 +85,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     @Override
     @OnClick(R.id.login_btn)
     public void login() {
-        mILoginPresenter.login();
+       mILoginPresenter.login();
     }
 
     @Override
@@ -98,10 +99,8 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     }
 
     @Override
-    public void startMainActivity() {
-        Intent mIntent = new Intent(getActivity(), MainActivity.class);
-        startActivity(mIntent);
-        getActivity().finish();
+    public void startHomeActivity() {
+        mClickListener.startActivityByClass(HomeActivity.class);
     }
 
     @Override
@@ -127,6 +126,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
         } else {
             showViewToast(e.getMessage());
         }
+
     }
 
     @Override

@@ -3,12 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
     android:padding="@dimen/activity_login_padding"
-    tools:context=".view.activity.LoginActivity">
+    tools:context=".view.activity.HomeActivity">
 
     <FrameLayout
-        android:id="@+id/login_fragment"
+        android:id="@+id/home_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:background="@color/colorLoginBtn"/>
+
 </RelativeLayout>

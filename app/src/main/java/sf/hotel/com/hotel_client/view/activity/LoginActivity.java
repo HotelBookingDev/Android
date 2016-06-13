@@ -3,23 +3,15 @@ package sf.hotel.com.hotel_client.view.activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.LruCache;
-import android.view.KeyEvent;
 
-import me.yokeyword.fragmentation.SupportActivity;
 import me.yokeyword.fragmentation.SupportFragment;
-import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
-import me.yokeyword.fragmentation.anim.FragmentAnimator;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.fragment.ClickListener;
 import sf.hotel.com.hotel_client.view.fragment.LoginFragment;
 import sf.hotel.com.hotel_client.view.fragment.RegisterFragment;
 
-public class LoginActivity extends SupportActivity implements ClickListener {
+public class LoginActivity extends BaseActivity implements ClickListener {
 
-
-
-
-    LruCache<Integer, Fragment> mFragmentList = new LruCache<>(3);
     public final static int LOGIN = 1;
     public final static int REGISTER = 2;
 
@@ -36,11 +28,7 @@ public class LoginActivity extends SupportActivity implements ClickListener {
     }
 
     @Override
-    public void showFragment(int fragment){
-        start((SupportFragment) getFragmentByKey(fragment));
-    }
-
-    public Fragment getFragmentByKey(int fragment){
+    protected Fragment getFragmentByKey(int fragment){
         Fragment mFragment = mFragmentList.get(fragment);
 
         if (mFragment == null){
@@ -60,17 +48,13 @@ public class LoginActivity extends SupportActivity implements ClickListener {
                     break;
             }
 
+            mFragmentList.put(fragment, mFragment);
         }
         return mFragment;
     }
 
     @Override
-    protected FragmentAnimator onCreateFragmentAnimator() {
-        return new DefaultHorizontalAnimator();
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        return super.onKeyDown(keyCode, event);
+    public void startActivityByClass(Class clazz) {
+        super.startActivity(clazz);
     }
 }

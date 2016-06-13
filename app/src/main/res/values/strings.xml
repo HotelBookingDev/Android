@@ -11,4 +11,5 @@
     <string name="tv_name">姓名</string>
     <string name="tv_age">年龄</string>
     <string name="login_success">登陆成功</string>
+
 </resources>

@@ -27,5 +27,5 @@ public interface ILoginView extends BaseView {
 
     String getIntallationId();
 
-    void startMainActivity();
+    void startHomeActivity();
 }
