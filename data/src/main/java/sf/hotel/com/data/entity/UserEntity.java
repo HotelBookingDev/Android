@@ -1,5 +1,6 @@
 package sf.hotel.com.data.entity;
 
+import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -9,56 +10,74 @@ import com.j256.ormlite.table.DatabaseTable;
  */
 @DatabaseTable(tableName = "tb_user")
 public class UserEntity {
+
     @DatabaseField(generatedId = true)
     private long userId;
+
     @DatabaseField(columnName = "name")
+    @SerializedName("name")
     private String fullname;
+
+    @SerializedName("phone_number")
     @DatabaseField(columnName = "phoneNumber")
     private long phoneNumber;
+
+
     @DatabaseField(columnName = "sex")
     private int sex;
 
+    @SerializedName("create_at")
+    private String createTime;
+
+
     public long getUserId() {
         return userId;
-    }
-
-    public String getFullname() {
-        return fullname;
-    }
-
-    public long getPhone() {
-        return phoneNumber;
-    }
-
-    public int getSex() {
-        return sex;
     }
 
     public void setUserId(long userId) {
         this.userId = userId;
     }
 
+    public String getFullname() {
+        return fullname;
+    }
+
     public void setFullname(String fullname) {
         this.fullname = fullname;
     }
 
-    public void setPhone(long phone) {
-        this.phoneNumber = phone;
+    public long getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(long phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public int getSex() {
+        return sex;
     }
 
     public void setSex(int sex) {
         this.sex = sex;
     }
 
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("***** User Entity Details *****\n");
-        stringBuilder.append("id=" + this.getUserId() + "\n");
-        stringBuilder.append("fullname=" + this.getFullname() + "\n");
-        stringBuilder.append("sex=" + this.getSex() + "\n");
-        stringBuilder.append("phone=" + this.getPhone() + "\n");
-        stringBuilder.append("*******************************");
-        return stringBuilder.toString();
+        return "UserEntity{" +
+                "userId=" + userId +
+                ", fullname='" + fullname + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", sex=" + sex +
+                ", createTime='" + createTime + '\'' +
+                '}';
     }
 }

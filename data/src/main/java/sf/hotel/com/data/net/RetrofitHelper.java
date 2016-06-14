@@ -53,7 +53,7 @@ public abstract class RetrofitHelper {
             public void call(Subscriber<? super T> subscriber) {
                 if (httpResult.isSuccess()) {
                     if (!subscriber.isUnsubscribed()) {
-                        subscriber.onNext(httpResult.getData());
+                        subscriber.onNext(httpResult.getRes());
                     }
                 } else {
                     if (!subscriber.isUnsubscribed()) {

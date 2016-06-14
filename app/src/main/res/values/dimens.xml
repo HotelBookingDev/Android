@@ -16,4 +16,6 @@
 
     <dimen name="rl_bottom">100dp</dimen>
 
+    <dimen name="title_text_size">30px</dimen>
+
 </resources>

@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
+import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.data.entity.NormalResult;
 import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.interfaceeneity.ILoginEntity;
@@ -86,14 +87,15 @@ public class ILoginPresenter extends SuperPresenter {
     public void login() {
         String pwd = getPostPwd(mILoginView.getPassword());
         Subscription subscribe = mILoginEntity.login(mILoginView.getUserName(), pwd)
-                .subscribe(new SimpleSubscriber<UserEntity>(mILoginView.getBottomContext()) {
+                .subscribe(new SimpleSubscriber<LoginResult>(mILoginView.getBottomContext()) {
                     @Override
-                    public void onNext(UserEntity loginResult) {
+                    public void onNext(LoginResult loginResult) {
                         super.onNext(loginResult);
                         postIntallationId();
                         //保存用户信息
                         saveUserInfo(mILoginView.getUserName(), pwd);
                         mILoginView.startHomeActivity();
+                        mILoginView.showViewToast(loginResult.toString());
                     }
 
                     @Override

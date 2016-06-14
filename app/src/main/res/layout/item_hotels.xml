@@ -1,13 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="50dp">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:id="@+id/item_hotel_name"
-        android:text="11111"
+    android:layout_height="80dp"
+    android:gravity="center_vertical">
+
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@mipmap/ic_launcher"
+
+        android:id="@+id/item_hotels_img"
         />
-</LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/item_hotels_name"
+        android:textColor="@color/title_text_color"
+        android:layout_toRightOf="@id/item_hotels_img"
+        android:layout_toEndOf="@id/item_hotels_img"
+        android:layout_alignTop="@id/item_hotels_img"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:textSize="@dimen/title_text_size"
+        android:text="title"
+
+        />
+
+    <RatingBar
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:id="@+id/item_hotels_ratingBar"
+        android:isIndicator="true"
+        android:numStars="4"
+        android:layout_alignBottom="@id/item_hotels_img"
+        android:layout_toRightOf="@id/item_hotels_img"
+        android:layout_toEndOf="@id/item_hotels_img"
+
+        />
+
+</RelativeLayout>

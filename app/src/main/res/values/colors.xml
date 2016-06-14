@@ -6,5 +6,9 @@
     <color name="colorBlack">#ffffff</color>
     <color name="colorLoginBtn">#3399ff</color>
 
+    <color name="title_near_color">#FF4D00</color>
     <color name="text_color">#ffffff</color>
+
+    <color name="title_text_color">#000000</color>
+    <color name="detail_text_color">#BDBDBD</color>
 </resources>

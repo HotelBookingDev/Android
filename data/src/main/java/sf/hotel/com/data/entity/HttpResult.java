@@ -2,39 +2,31 @@ package sf.hotel.com.data.entity;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by FMT on 2016/6/5:14:04
  * EMAILE 1105896230@qq.com.
  */
 public class HttpResult<T> {
+
+    @SerializedName("message")
     private String message;
+
+    @SerializedName("timeStamp")
     private long timestamp;
 
+    @SerializedName("status")
     private int status;
 
-    public Resoult<T> getResoult() {
-        return res;
-    }
-
-    public void setRes(Resoult<T> res) {
-        this.res = res;
-    }
-
     @SerializedName("Res")
-    private Resoult<T> res;
+    private T res;
 
     public boolean isSuccess() {
         if (status == 100) return true;
         return false;
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
 
     public String getMessage() {
         return message;
@@ -52,11 +44,19 @@ public class HttpResult<T> {
         this.timestamp = timestamp;
     }
 
-    public T getData() {
-        return res.getData();
+    public int getStatus() {
+        return status;
     }
 
-    public void setData(T data) {
-        this.res.setData(data);
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public T getRes() {
+        return res;
+    }
+
+    public void setRes(T res) {
+        this.res = res;
     }
 }

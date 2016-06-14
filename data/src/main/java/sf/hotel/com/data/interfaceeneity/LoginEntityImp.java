@@ -4,6 +4,7 @@ import android.content.Context;
 
 import rx.Observable;
 import rx.Subscriber;
+import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.data.entity.NormalResult;
 import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.net.ApiWrapper;
@@ -20,10 +21,10 @@ import sf.hotel.com.data.utils.PreferencesUtils;
 public class LoginEntityImp implements ILoginEntity {
 
     @Override
-    public Observable<UserEntity> login(String username, String password) {
-        return Observable.create(new Observable.OnSubscribe<UserEntity>() {
+    public Observable<LoginResult> login(String username, String password) {
+        return Observable.create(new Observable.OnSubscribe<LoginResult>() {
             @Override
-            public void call(Subscriber<? super UserEntity> subscriber) {
+            public void call(Subscriber<? super LoginResult> subscriber) {
                 if (CheckUtils.isTextViewEmpty(username)) {
                     subscriber.onError(new APIException(CodeException.LOGIN_NAME_NULL));
                 } else if (!(CheckUtils.checkPhoneNumber(username))) {
