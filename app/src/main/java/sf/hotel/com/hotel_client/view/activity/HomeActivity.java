@@ -1,14 +1,8 @@
 package sf.hotel.com.hotel_client.view.activity;
 
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.os.PersistableBundle;
-import android.support.v4.app.Fragment;
-import android.util.LruCache;
 
-import me.yokeyword.fragmentation.SupportFragment;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.view.fragment.HotelsFragment;
 
 /**
  * @author MZ
@@ -16,7 +10,7 @@ import sf.hotel.com.hotel_client.view.fragment.HotelsFragment;
  * @date 16/6/13.
  */
 public class HomeActivity extends BaseActivity{
-    public final static Class HOTELS = HotelsFragment.class;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,19 +19,25 @@ public class HomeActivity extends BaseActivity{
     }
 
     protected void init(Bundle savedInstanceState) {
-        loadRootFragment(R.id.home_fragment, getFragmentByKey(HOTELS));
+        loadRootFragment(R.id.home_fragment, getFragmentByKey(FragConstant.HOTELS));
     }
 
+//    @Override
+//    protected SupportFragment getFragmentByKey(Class fragment) {
+////        SupportFragment mFragment = null;
+////        if (fragment == HomeActivity.HOTELS){
+////
+////            HotelsFragment hotelsFragment = new HotelsFragment();
+////            mFragment = hotelsFragment;
+////
+////            }
+////        return mFragment;
+//        return super.getFragmentByKey(fragment);
+//    }
+
+
     @Override
-    protected SupportFragment getFragmentByKey(Class fragment) {
-//        SupportFragment mFragment = null;
-//        if (fragment == HomeActivity.HOTELS){
-//
-//            HotelsFragment hotelsFragment = new HotelsFragment();
-//            mFragment = hotelsFragment;
-//
-//            }
-//        return mFragment;
-        return super.getFragmentByKey(fragment);
+    public void onFragmentBackPressed() {
+        super.onBackPressed();
     }
 }

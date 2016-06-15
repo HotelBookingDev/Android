@@ -17,4 +17,20 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="titleTextStyle" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">@dimen/title_text_size</item>
+        <item name="android:textColor">@color/title_text_color</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:text">@string/title</item>
+    </style>
+
+    <style name="hotelRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@mipmap/ic_star_border_black_36dp</item>
+        <item name="android:minHeight">8dp</item>
+        <item name="android:maxHeight">8dp</item>
+        <item name="android:numStars">4</item>
+        <item name="android:isIndicator">true</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
 </resources>

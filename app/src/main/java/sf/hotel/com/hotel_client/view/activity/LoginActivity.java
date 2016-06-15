@@ -1,19 +1,13 @@
 package sf.hotel.com.hotel_client.view.activity;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.util.LruCache;
 
 import me.yokeyword.fragmentation.SupportFragment;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.view.fragment.ClickListener;
 import sf.hotel.com.hotel_client.view.fragment.LoginFragment;
 import sf.hotel.com.hotel_client.view.fragment.RegisterFragment;
 
-public class LoginActivity extends BaseActivity implements ClickListener {
-
-    public static Class LOGIN = LoginFragment.class;
-    public static Class REGISTER = RegisterFragment.class;
+public class LoginActivity extends BaseActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,36 +17,27 @@ public class LoginActivity extends BaseActivity implements ClickListener {
 
     protected void init(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
-            loadRootFragment(R.id.login_fragment, getFragmentByKey(LoginActivity.LOGIN));
+            loadRootFragment(R.id.login_fragment, getFragmentByKey(FragConstant.LOGIN));
         }
     }
 
-    @Override
-    protected SupportFragment getFragmentByKey(Class fragment) {
-        SupportFragment mFragment;
+//    @Override
+//    protected SupportFragment getFragmentByKey(Class fragment) {
+////        SupportFragment mFragment;
+////
+////        if (fragment == FragConstant.LOGIN) {
+////            LoginFragment loginFragment = new LoginFragment();
+////            loginFragment.setStackClickListener(this);
+////            mFragment = loginFragment;
+////        } else {
+////            RegisterFragment registerFragment = new RegisterFragment();
+////            registerFragment.setStackClickListener(this);
+////            mFragment = registerFragment;
+////        }
+////        return mFragment;
+//        return super.getFragmentByKey(fragment);
+//    }
 
-        if (fragment == LOGIN) {
-            LoginFragment loginFragment = new LoginFragment();
-            loginFragment.setClickListener(this);
-            mFragment = loginFragment;
-        } else {
-            RegisterFragment registerFragment = new RegisterFragment();
-            registerFragment.setClickListener(this);
-            mFragment = registerFragment;
-        }
-        return mFragment;
-    }
-
-
-    @Override
-    public void showFragmentByClass(Class fragment) {
-        super.showFragment(fragment);
-    }
-
-    @Override
-    public void startActivityByClass(Class clazz) {
-        super.startActivity(clazz);
-    }
 
     @Override
     public void onFragmentBackPressed() {

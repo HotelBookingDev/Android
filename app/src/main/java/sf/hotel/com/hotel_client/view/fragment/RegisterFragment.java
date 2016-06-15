@@ -14,7 +14,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.view.activity.LoginActivity;
 import sf.hotel.com.hotel_client.view.custom.CaptchaButton;
 import sf.hotel.com.hotel_client.view.interfaceview.ICallBack;
 import sf.hotel.com.hotel_client.view.interfaceview.IRegisterView;
@@ -45,11 +44,11 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
 
 
 
-    ClickListener mClickListener;
+    StackClickListener mStackClickListener;
 
 
-    public void setClickListener(ClickListener mClickListener) {
-        this.mClickListener = mClickListener;
+    public void setClickListener(StackClickListener mStackClickListener) {
+        this.mStackClickListener = mStackClickListener;
     }
     @Nullable
     @Override
@@ -129,7 +128,7 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
     }
 
     public void showLogin(){
-        mClickListener.onFragmentBackPressed();
+        mStackClickListener.onFragmentBackPressed();
     }
 
     @Override

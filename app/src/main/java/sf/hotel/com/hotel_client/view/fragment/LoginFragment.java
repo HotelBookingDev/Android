@@ -18,8 +18,8 @@ import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.Exception.Code;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.HotelImageLoad;
+import sf.hotel.com.hotel_client.view.activity.FragConstant;
 import sf.hotel.com.hotel_client.view.activity.HomeActivity;
-import sf.hotel.com.hotel_client.view.activity.LoginActivity;
 import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;
 import sf.hotel.com.hotel_client.view.presenter.ILoginPresenter;
 
@@ -36,8 +36,6 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     @BindView(R.id.iv_head)
     ImageView mIvHead;
     ILoginPresenter mILoginPresenter;
-
-    ClickListener mClickListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -107,7 +105,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @Override
     public void startHomeActivity() {
-        mClickListener.startActivityByClass(HomeActivity.class);
+        mStackClickListener.startActivityByClass(HomeActivity.class);
     }
 
     @Override
@@ -153,11 +151,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @OnClick(R.id.register_btn)
     public void register() {
-        mClickListener.showFragmentByClass(LoginActivity.REGISTER);
-    }
-
-    public void setClickListener(ClickListener mClickListener) {
-        this.mClickListener = mClickListener;
+        mStackClickListener.showFragmentByClass(FragConstant.REGISTER);
     }
 
     @Override

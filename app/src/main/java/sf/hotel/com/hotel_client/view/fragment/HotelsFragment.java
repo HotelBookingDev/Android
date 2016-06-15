@@ -16,6 +16,7 @@ import com.lhh.ptrrv.library.footer.loadmore.BaseLoadMoreView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.activity.FragConstant;
 import sf.hotel.com.hotel_client.view.adapter.PullToRefreshViewAdapter;
 import sf.hotel.com.hotel_client.view.custom.DividerItemDecoration;
 import sf.hotel.com.hotel_client.view.interfaceview.IHotelsView;
@@ -35,7 +36,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
 
     PullToRefreshViewAdapter mPullAdapter;
 
-    private IHotelPresenter mIHotelPersentes;
+    private IHotelPresenter mIHotelPresenter;
 
     Handler handler = new Handler();
 
@@ -46,7 +47,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
         View view = inflater.inflate(R.layout.fragment_hotels, container, false);
         ButterKnife.bind(this,view);
 
-        mIHotelPersentes = new IHotelPresenter(this);
+        mIHotelPresenter = new IHotelPresenter(this);
 
         initPullView();
         return view;
@@ -64,7 +65,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
         mPullView.setPagingableListener(new PullToRefreshRecyclerView.PagingableListener(){
             @Override
             public void onLoadMoreItems() {
-                mIHotelPersentes.loadMoreHotel();
+                mIHotelPresenter.loadMoreHotel();
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -85,7 +86,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
         //设置上拉加载
         BaseLoadMoreView loadMoreView = new BaseLoadMoreView(getBottomContext(), mPullView.getRecyclerView());
         mPullView.setLoadMoreFooter(loadMoreView);
-        mPullView.setLoadMoreCount(10);
+        mPullView.setLoadMoreCount(20);
 
         //刷新
         mPullView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -97,11 +98,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
 
                         mPullAdapter.setCount(20);
                         mPullAdapter.notifyDataSetChanged();
-                        try {
-                            Thread.sleep(2000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+
                         mPullView.setOnRefreshComplete();
                         mPullView.onFinishLoading(true, false);
                     }
@@ -112,13 +109,31 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
 
         //设置适配器
         mPullAdapter = new PullToRefreshViewAdapter(getBottomContext());
+        mPullAdapter.setOnItemClickLitener(new PullToRefreshViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                showDetail();
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+
+            }
+        });
+
+
         mPullAdapter.setCount(20);
 
         mPullView.setAdapter(mPullAdapter);
         mPullView.onFinishLoading(true, false);
 
+
     }
 
+
+    public void showDetail(){
+        mStackClickListener.showFragmentByClass(FragConstant.DETAIL);
+    }
 
     @Override
     public Context getBottomContext() {
