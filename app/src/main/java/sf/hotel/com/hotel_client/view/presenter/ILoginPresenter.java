@@ -6,7 +6,6 @@ import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.data.entity.NormalResult;
-import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.interfaceeneity.ILoginEntity;
 import sf.hotel.com.data.interfaceeneity.LoginEntityImp;
 import sf.hotel.com.data.net.Exception.APIException;
@@ -94,8 +93,9 @@ public class ILoginPresenter extends SuperPresenter {
                         postIntallationId();
                         //保存用户信息
                         saveUserInfo(mILoginView.getUserName(), pwd);
+                        mILoginEntity.upDateUserInfo(mILoginView.getBottomContext(),
+                                loginResult.getUserEntity());
                         mILoginView.startHomeActivity();
-                        mILoginView.showViewToast(loginResult.toString());
                     }
 
                     @Override

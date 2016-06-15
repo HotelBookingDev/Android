@@ -11,7 +11,12 @@ public class LoginResult {
     @SerializedName("UserEntity")
     public UserEntity userEntity;
 
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
     @Override
+
     public String toString() {
         return "LoginResult{" +
                 "userEntity=" + userEntity +
