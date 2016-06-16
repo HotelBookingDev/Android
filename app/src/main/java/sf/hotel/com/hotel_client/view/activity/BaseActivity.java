@@ -45,7 +45,7 @@ public abstract class BaseActivity extends SupportActivity implements StackClick
     }
 
 
-    protected SupportFragment getFragmentByKey(Class fragment){
+    protected SupportFragment getFragmentByKey(Class fragment) {
 
         BaseFragment baseFragment = null;
         try {

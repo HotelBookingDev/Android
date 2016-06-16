@@ -3,8 +3,11 @@ package sf.hotel.com.hotel_client.view.presenter.login;
 import android.content.Context;
 import android.text.TextUtils;
 
+import rx.Observable;
 import rx.Subscription;
+import rx.functions.Action1;
 import rx.subscriptions.CompositeSubscription;
+import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.data.entity.NormalResult;
 import sf.hotel.com.data.interfaceeneity.ILoginEntity;
@@ -95,10 +98,17 @@ public class ILoginPresenter extends SuperPresenter {
                         super.onNext(loginResult);
                         postIntallationId();
                         //保存用户信息
-                        saveUserInfo(mILoginView.getUserName(), pwd);
-                        mILoginEntity.upDateUserInfo(mILoginView.getBottomContext(),
-                                loginResult.getUserEntity());
-                        mILoginView.startHomeActivity();
+                        Observable.just(loginResult).doOnNext(loginResult1 -> saveUserInfo
+                                (mILoginView.getUserName(),
+                                        pwd)).doOnNext(loginResult1 -> mILoginEntity.upDateUserInfo
+                                (mILoginView
+                                                .getBottomContext(),
+                                        loginResult1.getUserEntity())).doOnNext(loginResult1 ->
+                                EntityContext.getInstance()
+                                        .setmCurrentUser(loginResult1.getUserEntity())).subscribe
+                                (loginResult1 -> {
+                                    mILoginView.startHomeActivity();
+                                });
                     }
 
                     @Override
@@ -142,6 +152,7 @@ public class ILoginPresenter extends SuperPresenter {
         mILoginEntity.savePhone(mILoginView.getBottomContext(), phone);
         mILoginEntity.savePwd(mILoginView.getBottomContext(), pwd);
     }
+
     String getErrorString(int id, Context context) {
         try {
             return context.getString(id);

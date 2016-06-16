@@ -9,7 +9,7 @@ import sf.hotel.com.hotel_client.R;
  * @email sanfenruxi1@163.com
  * @date 16/6/13.
  */
-public class HomeActivity extends BaseActivity{
+public class HomeActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,19 +21,6 @@ public class HomeActivity extends BaseActivity{
     protected void init(Bundle savedInstanceState) {
         loadRootFragment(R.id.home_fragment, getFragmentByKey(FragConstant.HOTELS));
     }
-
-//    @Override
-//    protected SupportFragment getFragmentByKey(Class fragment) {
-////        SupportFragment mFragment = null;
-////        if (fragment == HomeActivity.HOTELS){
-////
-////            HotelsFragment hotelsFragment = new HotelsFragment();
-////            mFragment = hotelsFragment;
-////
-////            }
-////        return mFragment;
-//        return super.getFragmentByKey(fragment);
-//    }
 
 
     @Override

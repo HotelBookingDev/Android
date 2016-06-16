@@ -121,8 +121,6 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @Override
     public void success(int type) {
-        showViewToast(getContext().getResources().getString(R.string.login_success));
-        startHomeActivity();
     }
 
     @OnClick(R.id.tv_just_look)
