@@ -1,4 +1,4 @@
-package sf.hotel.com.hotel_client.utils;
+package sf.hotel.com.hotel_client.view.custom;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 
 /**
  * Created by 林其望 on 2016/6/16.
