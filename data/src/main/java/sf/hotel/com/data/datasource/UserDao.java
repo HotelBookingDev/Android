@@ -13,10 +13,9 @@ import sf.hotel.com.data.entity.UserEntity;
  * Created by FMT on 2016/6/3:16:46
  * EMAILE 1105896230@qq.com.
  */
-@Singleton
 public class UserDao {
 
-    public void add(UserEntity user, Context context) {
+    public static void add(UserEntity user, Context context) {
         try {
             DatabaseHelper.getHelper(context).getUserDao().createIfNotExists(user);
         } catch (SQLException e) {
@@ -24,7 +23,7 @@ public class UserDao {
         }
     }
 
-    public void update(UserEntity user, Context context) {
+    public static void update(UserEntity user, Context context) {
         try {
             DatabaseHelper.getHelper(context).getUserDao().createOrUpdate(user);
         } catch (SQLException e) {
@@ -32,7 +31,7 @@ public class UserDao {
         }
     }
 
-    public boolean isCache(long id, Context context) {
+    public static boolean isCache(long id, Context context) {
         boolean isCache = false;
         UserEntity userEneity = getUserEneity(id, context);
         if (userEneity != null) {
@@ -41,7 +40,7 @@ public class UserDao {
         return isCache;
     }
 
-    public UserEntity getUserEneity(long id, Context context) {
+    public static UserEntity getUserEneity(long id, Context context) {
         UserEntity mUserEntity = null;
         try {
             List<UserEntity> mUserEntitys = DatabaseHelper.getHelper(context)

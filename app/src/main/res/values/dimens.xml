@@ -23,4 +23,7 @@
     <dimen name="item_text_content_size">20px</dimen>
     <dimen name="item_text_price">50px</dimen>
 
+    <!--persion_item左侧icon的宽高-->
+    <dimen name="iv_item_persion">50dp</dimen>
+    <dimen name="iv_item_persion_padding">10dp</dimen>
 </resources>

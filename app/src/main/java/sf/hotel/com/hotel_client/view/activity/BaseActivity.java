@@ -14,7 +14,6 @@ import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.utils.TToast;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.fragment.StackClickListener;
-import sf.hotel.com.hotel_client.view.fragment.DetailFragment;
 
 /**
  * Created by FMT on 2016/6/3:15:51
@@ -46,7 +45,7 @@ public abstract class BaseActivity extends SupportActivity implements StackClick
     }
 
 
-    protected SupportFragment getFragmentByKey(Class fragment){
+    protected SupportFragment getFragmentByKey(Class fragment) {
 
         BaseFragment baseFragment = null;
         try {

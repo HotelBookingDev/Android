@@ -1,6 +1,8 @@
-package sf.hotel.com.hotel_client.view.interfaceview;
+package sf.hotel.com.hotel_client.view.interfaceview.login;
 
 import android.widget.EditText;
+
+import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
 
 /**
  * Created by FMT on 2016/6/3:18:47

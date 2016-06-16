@@ -1,4 +1,4 @@
-package sf.hotel.com.hotel_client.view.fragment;
+package sf.hotel.com.hotel_client.view.fragment.login;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -20,8 +20,9 @@ import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 import sf.hotel.com.hotel_client.view.activity.FragConstant;
 import sf.hotel.com.hotel_client.view.activity.HomeActivity;
-import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;
-import sf.hotel.com.hotel_client.view.presenter.ILoginPresenter;
+import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
+import sf.hotel.com.hotel_client.view.interfaceview.login.ILoginView;
+import sf.hotel.com.hotel_client.view.presenter.login.ILoginPresenter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -120,10 +121,12 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @Override
     public void success(int type) {
-        showViewToast(getContext().getResources().getString(R.string.login_success));
-        startHomeActivity();
     }
 
+    @OnClick(R.id.tv_just_look)
+    public void justLook(){
+        startHomeActivity();
+    }
     @Override
     public void failed(int type, Throwable e) {
         if (e instanceof APIException) {

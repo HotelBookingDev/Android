@@ -4,6 +4,7 @@ import android.content.Context;
 
 import rx.Observable;
 import rx.Subscriber;
+import sf.hotel.com.data.cache.UserCacheImpl;
 import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.data.entity.NormalResult;
 import sf.hotel.com.data.entity.UserEntity;
@@ -64,5 +65,10 @@ public class LoginEntityImp implements ILoginEntity {
     @Override
     public String getPwd(Context context) {
         return PreferencesUtils.getPassWord(context);
+    }
+
+    @Override
+    public void upDateUserInfo(Context context, UserEntity entity) {
+        new UserCacheImpl().update(entity, context);
     }
 }

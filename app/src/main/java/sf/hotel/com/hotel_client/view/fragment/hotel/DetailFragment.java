@@ -1,4 +1,4 @@
-package sf.hotel.com.hotel_client.view.fragment;
+package sf.hotel.com.hotel_client.view.fragment.hotel;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.HttpAuthHandler;
 
 import com.lhh.ptrrv.library.PullToRefreshRecyclerView;
 import com.lhh.ptrrv.library.footer.loadmore.BaseLoadMoreView;
@@ -17,12 +16,15 @@ import com.lhh.ptrrv.library.footer.loadmore.BaseLoadMoreView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import sf.hotel.com.hotel_client.R;
+
 import sf.hotel.com.hotel_client.view.activity.FragConstant;
 import sf.hotel.com.hotel_client.view.adapter.DetailPullViewAdapter;
-import sf.hotel.com.hotel_client.view.adapter.HomePullViewAdapter;
 import sf.hotel.com.hotel_client.view.custom.DividerItemDecoration;
-import sf.hotel.com.hotel_client.view.interfaceview.IDetailView;
-import sf.hotel.com.hotel_client.view.presenter.IDetailPresenter;
+
+import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
+import sf.hotel.com.hotel_client.view.interfaceview.hotel.IDetailView;
+import sf.hotel.com.hotel_client.view.presenter.hotel.IDetailPresenter;
+
 
 /**
  * @author MZ

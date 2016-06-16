@@ -10,7 +10,13 @@
     <string name="tv_name">姓名</string>
     <string name="tv_age">年龄</string>
     <string name="login_success">登陆成功</string>
+    <string name="cache">清除缓存</string>
+    <string name="login_out">退出</string>
     <string name="title">hotel name</string>
+    <string name="just_look">随便看看</string>
+    <string name="my_money">我的钱包</string>
+    <string name="my_order">我的订单</string>
+    <string name="my_evaluate">我的评价</string>
 
 
     <string name="header_map">地图 ></string>

@@ -1,19 +1,23 @@
-package sf.hotel.com.hotel_client.view.presenter;
+package sf.hotel.com.hotel_client.view.presenter.login;
 
+import android.content.Context;
 import android.text.TextUtils;
 
+import rx.Observable;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
+import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.data.entity.NormalResult;
-import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.interfaceeneity.ILoginEntity;
 import sf.hotel.com.data.interfaceeneity.LoginEntityImp;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.Exception.Code;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.data.utils.StringUtils;
-import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;
+import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.interfaceview.login.ILoginView;
+import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 
 /**
  * Created by FMT on 2016/6/3:18:54
@@ -93,9 +97,17 @@ public class ILoginPresenter extends SuperPresenter {
                         super.onNext(loginResult);
                         postIntallationId();
                         //保存用户信息
-                        saveUserInfo(mILoginView.getUserName(), pwd);
-                        mILoginView.startHomeActivity();
-                        mILoginView.showViewToast(loginResult.toString());
+                        Observable.just(loginResult).doOnNext(loginResult1 -> saveUserInfo
+                                (mILoginView.getUserName(),
+                                        pwd)).doOnNext(loginResult1 -> mILoginEntity.upDateUserInfo
+                                (mILoginView
+                                                .getBottomContext(),
+                                        loginResult1.getUserEntity())).doOnNext(loginResult1 ->
+                                EntityContext.getInstance()
+                                        .setmCurrentUser(loginResult1.getUserEntity())).subscribe
+                                (loginResult1 -> {
+                                    mILoginView.startHomeActivity();
+                                });
                     }
 
                     @Override
@@ -138,5 +150,13 @@ public class ILoginPresenter extends SuperPresenter {
     private void saveUserInfo(String phone, String pwd) {
         mILoginEntity.savePhone(mILoginView.getBottomContext(), phone);
         mILoginEntity.savePwd(mILoginView.getBottomContext(), pwd);
+    }
+
+    String getErrorString(int id, Context context) {
+        try {
+            return context.getString(id);
+        } catch (Exception e) {
+            return context.getString(R.string.error);
+        }
     }
 }

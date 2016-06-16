@@ -1,12 +1,34 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@color/white"
+             tools:context=".view.fragment.person.PersonFragment">
+<RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="sf.hotel.com.hotel_client.view.fragment.PersonFragment">
-
-    <TextView
+    android:layout_height="match_parent">
+    <sf.hotel.com.hotel_client.view.custom.PersionItemView
+        android:id="@+id/piv_money"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        app:contextText="@string/my_money">
+    </sf.hotel.com.hotel_client.view.custom.PersionItemView>
 
+    <sf.hotel.com.hotel_client.view.custom.PersionItemView
+        android:layout_below="@+id/piv_money"
+        android:id="@+id/piv_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contextText="@string/my_order">
+    </sf.hotel.com.hotel_client.view.custom.PersionItemView>
+
+    <sf.hotel.com.hotel_client.view.custom.PersionItemView
+        android:layout_below="@+id/piv_order"
+        android:id="@+id/piv_evaluate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contextText="@string/my_evaluate">
+    </sf.hotel.com.hotel_client.view.custom.PersionItemView>
+</RelativeLayout>
 </FrameLayout>

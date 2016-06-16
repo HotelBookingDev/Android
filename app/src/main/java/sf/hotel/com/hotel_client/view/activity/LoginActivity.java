@@ -2,10 +2,7 @@ package sf.hotel.com.hotel_client.view.activity;
 
 import android.os.Bundle;
 
-import me.yokeyword.fragmentation.SupportFragment;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.view.fragment.LoginFragment;
-import sf.hotel.com.hotel_client.view.fragment.RegisterFragment;
 
 public class LoginActivity extends BaseActivity {
 

@@ -1,4 +1,4 @@
-package sf.hotel.com.hotel_client.view.fragment;
+package sf.hotel.com.hotel_client.view.fragment.login;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -15,9 +15,11 @@ import butterknife.OnClick;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.custom.CaptchaButton;
+import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
+import sf.hotel.com.hotel_client.view.fragment.StackClickListener;
 import sf.hotel.com.hotel_client.view.interfaceview.ICallBack;
-import sf.hotel.com.hotel_client.view.interfaceview.IRegisterView;
-import sf.hotel.com.hotel_client.view.presenter.IRegisterPresenter;
+import sf.hotel.com.hotel_client.view.interfaceview.login.IRegisterView;
+import sf.hotel.com.hotel_client.view.presenter.login.IRegisterPresenter;
 
 /**
  * @author MZ

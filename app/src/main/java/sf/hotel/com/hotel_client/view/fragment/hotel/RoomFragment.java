@@ -1,4 +1,4 @@
-package sf.hotel.com.hotel_client.view.fragment;
+package sf.hotel.com.hotel_client.view.fragment.hotel;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,8 +12,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.view.interfaceview.IRoomView;
-import sf.hotel.com.hotel_client.view.presenter.IRoomPresenter;
+import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
+import sf.hotel.com.hotel_client.view.interfaceview.hotel.IRoomView;
+import sf.hotel.com.hotel_client.view.presenter.hotel.IRoomPresenter;
 
 /**
  * @author MZ

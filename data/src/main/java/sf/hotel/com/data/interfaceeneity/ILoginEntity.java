@@ -24,4 +24,6 @@ public interface ILoginEntity {
     String getPhone(Context context);
 
     String getPwd(Context context);
+
+    void upDateUserInfo(Context context, UserEntity entity);
 }

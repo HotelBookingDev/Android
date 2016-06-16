@@ -69,4 +69,7 @@ dependencies {
     //glide图片加载框架
     compile rootProject.ext.dependencies.glide
     testCompile 'junit:junit:4.12'
+
+    //底部栏的控件
+    compile rootProject.ext.dependencies.majiajie
 }

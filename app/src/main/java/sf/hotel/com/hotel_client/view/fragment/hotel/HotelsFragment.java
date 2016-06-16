@@ -1,4 +1,4 @@
-package sf.hotel.com.hotel_client.view.fragment;
+package sf.hotel.com.hotel_client.view.fragment.hotel;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -19,8 +19,9 @@ import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.FragConstant;
 import sf.hotel.com.hotel_client.view.adapter.HomePullViewAdapter;
 import sf.hotel.com.hotel_client.view.custom.DividerItemDecoration;
-import sf.hotel.com.hotel_client.view.interfaceview.IHotelsView;
-import sf.hotel.com.hotel_client.view.presenter.IHotelPresenter;
+import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
+import sf.hotel.com.hotel_client.view.interfaceview.hotel.IHotelsView;
+import sf.hotel.com.hotel_client.view.presenter.hotel.IHotelPresenter;
 
 
 /**

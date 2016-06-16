@@ -1,4 +1,6 @@
-package sf.hotel.com.hotel_client.view.interfaceview;
+package sf.hotel.com.hotel_client.view.interfaceview.login;
+
+import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
 
 /**
  * @author MZ
