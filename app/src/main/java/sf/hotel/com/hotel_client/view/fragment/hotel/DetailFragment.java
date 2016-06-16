@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
-import sf.hotel.com.hotel_client.view.interfaceview.IDetailView;
+import sf.hotel.com.hotel_client.view.interfaceview.hotel.IDetailView;
 import sf.hotel.com.hotel_client.view.presenter.hotel.IDetailPresenter;
 
 /**

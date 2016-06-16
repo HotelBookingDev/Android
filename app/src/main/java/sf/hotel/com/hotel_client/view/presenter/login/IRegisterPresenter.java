@@ -8,7 +8,7 @@ import sf.hotel.com.data.interfaceeneity.RegisterEntityImp;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.data.utils.StringUtils;
 import sf.hotel.com.hotel_client.view.interfaceview.ICallBack;
-import sf.hotel.com.hotel_client.view.interfaceview.IRegisterView;
+import sf.hotel.com.hotel_client.view.interfaceview.login.IRegisterView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 
 /**

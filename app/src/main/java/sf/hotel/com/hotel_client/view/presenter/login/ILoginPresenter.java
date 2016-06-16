@@ -5,7 +5,6 @@ import android.text.TextUtils;
 
 import rx.Observable;
 import rx.Subscription;
-import rx.functions.Action1;
 import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.entity.LoginResult;
@@ -17,7 +16,7 @@ import sf.hotel.com.data.net.Exception.Code;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.data.utils.StringUtils;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.view.interfaceview.ILoginView;
+import sf.hotel.com.hotel_client.view.interfaceview.login.ILoginView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 
 /**

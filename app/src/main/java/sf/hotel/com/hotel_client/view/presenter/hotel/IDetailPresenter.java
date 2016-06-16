@@ -1,7 +1,7 @@
 package sf.hotel.com.hotel_client.view.presenter.hotel;
 
 import sf.hotel.com.data.interfaceeneity.IDetailEntityImp;
-import sf.hotel.com.hotel_client.view.interfaceview.IDetailView;
+import sf.hotel.com.hotel_client.view.interfaceview.hotel.IDetailView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 
 /**

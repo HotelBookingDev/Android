@@ -2,6 +2,6 @@
 <resources>
     <declare-styleable name="PersionItemView">
         <attr name="leftIcon" format="reference" />
-        <attr name="context" format="string" />
+        <attr name="contextText" format="string" />
     </declare-styleable>
 </resources>

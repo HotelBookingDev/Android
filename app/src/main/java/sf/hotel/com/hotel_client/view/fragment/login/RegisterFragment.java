@@ -18,7 +18,7 @@ import sf.hotel.com.hotel_client.view.custom.CaptchaButton;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.fragment.StackClickListener;
 import sf.hotel.com.hotel_client.view.interfaceview.ICallBack;
-import sf.hotel.com.hotel_client.view.interfaceview.IRegisterView;
+import sf.hotel.com.hotel_client.view.interfaceview.login.IRegisterView;
 import sf.hotel.com.hotel_client.view.presenter.login.IRegisterPresenter;
 
 /**
