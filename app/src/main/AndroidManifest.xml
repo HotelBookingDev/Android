@@ -16,7 +16,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar">
         <meta-data
             android:name="sf.hotel.com.hotel_client.utils.imageconfig.HotelGlideModule"
             android:value="HotelGlideModule" />
@@ -28,18 +28,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".view.activity.HomeActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".view.activity.LoginActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".view.activity.MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".view.activity.HomeActivity" />
+        <activity android:name=".view.activity.LoginActivity" />
+        <activity android:name=".view.activity.MainActivity"></activity>
     </application>
 
 </manifest>
