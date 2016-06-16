@@ -29,11 +29,5 @@ public class SuperPresenter implements Presenter {
 
     }
 
-    String getErrorString(int id, Context context) {
-        try {
-            return context.getString(id);
-        } catch (Exception e) {
-            return context.getString(R.string.error);
-        }
-    }
+
 }

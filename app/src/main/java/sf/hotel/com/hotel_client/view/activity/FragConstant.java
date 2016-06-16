@@ -1,9 +1,9 @@
 package sf.hotel.com.hotel_client.view.activity;
 
-import sf.hotel.com.hotel_client.view.fragment.DetailFragment;
-import sf.hotel.com.hotel_client.view.fragment.HotelsFragment;
-import sf.hotel.com.hotel_client.view.fragment.LoginFragment;
-import sf.hotel.com.hotel_client.view.fragment.RegisterFragment;
+import sf.hotel.com.hotel_client.view.fragment.hotel.DetailFragment;
+import sf.hotel.com.hotel_client.view.fragment.hotel.HotelsFragment;
+import sf.hotel.com.hotel_client.view.fragment.login.LoginFragment;
+import sf.hotel.com.hotel_client.view.fragment.login.RegisterFragment;
 
 /**
  * @author MZ

@@ -1,4 +1,4 @@
-package sf.hotel.com.hotel_client.view.fragment;
+package sf.hotel.com.hotel_client.view.fragment.hotel;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,8 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.IDetailView;
-import sf.hotel.com.hotel_client.view.presenter.IDetailPresenter;
+import sf.hotel.com.hotel_client.view.presenter.hotel.IDetailPresenter;
 
 /**
  * @author MZ

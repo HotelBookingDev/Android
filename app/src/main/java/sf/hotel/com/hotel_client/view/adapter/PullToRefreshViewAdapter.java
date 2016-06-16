@@ -9,7 +9,6 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.view.fragment.HotelsFragment;
 
 /**
  * @author MZ

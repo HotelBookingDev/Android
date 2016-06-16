@@ -1,4 +1,4 @@
-package sf.hotel.com.hotel_client.view.fragment;
+package sf.hotel.com.hotel_client.view.fragment.login;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
