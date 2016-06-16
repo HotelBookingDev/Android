@@ -68,11 +68,21 @@
                 fancy:fb_text="@string/btn_login" />
 
             <TextView
+                android:id="@+id/tv_forgot_pw"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/login_btn"
                 android:layout_centerHorizontal="true"
                 android:text="@string/tv_forgot_pw" />
+
+            <TextView
+                android:id="@+id/tv_just_look"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fab_margin"
+                android:layout_below="@+id/tv_forgot_pw"
+                android:layout_centerHorizontal="true"
+                android:text="@string/just_look" />
         </RelativeLayout>
 
         <mehdi.sakout.fancybuttons.FancyButton

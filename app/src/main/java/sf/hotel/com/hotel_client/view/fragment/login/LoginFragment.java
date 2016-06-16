@@ -125,6 +125,10 @@ public class LoginFragment extends BaseFragment implements ILoginView {
         startHomeActivity();
     }
 
+    @OnClick(R.id.tv_just_look)
+    public void justLook(){
+        startHomeActivity();
+    }
     @Override
     public void failed(int type, Throwable e) {
         if (e instanceof APIException) {
