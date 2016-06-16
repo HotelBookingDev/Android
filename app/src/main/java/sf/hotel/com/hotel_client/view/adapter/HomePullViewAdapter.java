@@ -9,14 +9,13 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.view.fragment.HotelsFragment;
 
 /**
  * @author MZ
  * @email sanfenruxi1@163.com
  * @date 16/6/13.
  */
-public class PullToRefreshViewAdapter extends RecyclerViewBaseAdapter<PullToRefreshViewAdapter.ViewHolder> {
+public class HomePullViewAdapter extends RecyclerViewBaseAdapter<HomePullViewAdapter.ViewHolder> {
 
 
     public interface OnItemClickListener{
@@ -31,7 +30,7 @@ public class PullToRefreshViewAdapter extends RecyclerViewBaseAdapter<PullToRefr
     }
 
 
-    public PullToRefreshViewAdapter(Context context) {
+    public HomePullViewAdapter(Context context) {
         super(context);
     }
 

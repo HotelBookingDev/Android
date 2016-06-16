@@ -17,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.FragConstant;
-import sf.hotel.com.hotel_client.view.adapter.PullToRefreshViewAdapter;
+import sf.hotel.com.hotel_client.view.adapter.HomePullViewAdapter;
 import sf.hotel.com.hotel_client.view.custom.DividerItemDecoration;
 import sf.hotel.com.hotel_client.view.interfaceview.IHotelsView;
 import sf.hotel.com.hotel_client.view.presenter.IHotelPresenter;
@@ -34,7 +34,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
     PullToRefreshRecyclerView mPullView;
 
 
-    PullToRefreshViewAdapter mPullAdapter;
+    HomePullViewAdapter mPullAdapter;
 
     private IHotelPresenter mIHotelPresenter;
 
@@ -56,9 +56,6 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
     private void initPullView() {
         mPullView.setSwipeEnable(true);
 
-
-        View header = LayoutInflater.from(getBottomContext()).inflate(R.layout.custom_title, null);
-        mPullView.addHeaderView(header);
 
         //加载更多
         mPullView.setLayoutManager(new LinearLayoutManager(getBottomContext()));
@@ -108,8 +105,8 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
 
 
         //设置适配器
-        mPullAdapter = new PullToRefreshViewAdapter(getBottomContext());
-        mPullAdapter.setOnItemClickLitener(new PullToRefreshViewAdapter.OnItemClickListener() {
+        mPullAdapter = new HomePullViewAdapter(getBottomContext());
+        mPullAdapter.setOnItemClickLitener(new HomePullViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 showDetail();

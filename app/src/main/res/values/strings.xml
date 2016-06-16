@@ -12,4 +12,20 @@
     <string name="login_success">登陆成功</string>
     <string name="title">hotel name</string>
 
+
+    <string name="header_map">地图 ></string>
+    <string name="header_periphery">周边:</string>
+    <string name="header_traffic">交通</string>
+    <string name="header_restaurant">餐饮</string>
+    <string name="header_entertainment">娱乐</string>
+    <string name="header_selling">详情/卖点</string>
+
+    <string name="header_screen">筛选</string>
+
+
+    <string name="title_collection">收藏</string>
+    <string name="title_share">分享</string>
+
+    <string name="item_reserve">预定</string>
+
 </resources>

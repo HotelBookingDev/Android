@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/layoutStyle"
+        >
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:src="@mipmap/ic_launcher"
+            android:id="@+id/header_detail_img"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/header_detail_score"
+            style="@style/headerDetailTextTitleStyle"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="3.9分"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/headerDetailTextStyle"
+            android:layout_toLeftOf="@id/header_detail_img"
+            android:layout_toStartOf="@id/header_detail_img"
+            android:text="91条点评"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            style="@style/splitLineStyle"
+            android:id="@+id/header_detail_score_split"
+            android:layout_toLeftOf="@id/header_detail_img"
+            android:layout_toStartOf="@id/header_detail_img"
+            android:layout_below="@id/header_detail_score"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/header_detail_time"
+            style="@style/headerDetailTextTitleStyle"
+            android:layout_below="@id/header_detail_score_split"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:text="2015年开业"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/headerDetailTextStyle"
+            android:layout_below="@id/header_detail_score_split"
+            android:layout_toLeftOf="@id/header_detail_img"
+            android:layout_toStartOf="@id/header_detail_img"
+            android:text="@string/header_selling"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            style="@style/splitLineStyle"
+            android:id="@+id/header_detail_time_spilt"
+            android:layout_below="@id/header_detail_time"
+            android:layout_toLeftOf="@id/header_detail_img"
+            android:layout_toStartOf="@id/header_detail_img"
+            />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        style="@style/splitLineStyle"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/layoutStyle"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/header_detail_address"
+            style="@style/headerDetailTextTitleStyle"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="xxx路"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/header_detail_specific_address"
+            style="@style/headerDetailTextStyle"
+            android:layout_below="@id/header_detail_address"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="xxx号"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/header_detail_map"
+            style="@style/headerDetailTextTitleStyle"
+            android:text="@string/header_map"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        style="@style/splitLineStyle"
+        />
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:gravity="center_vertical"
+       style="@style/layoutStyle"
+       >
+       <TextView
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           style="@style/headerDetailTextTitleStyle"
+           android:text="@string/header_periphery"
+            android:gravity="center"
+           />
+
+
+       <TextView
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           style="@style/headerDetailTextStyle"
+           android:text="@string/header_traffic"
+           android:gravity="center"
+           />
+
+
+       <View
+           android:layout_width="1dp"
+           android:layout_height="15dp"
+           style="@style/splitLineStyle"
+           android:layout_gravity="center_vertical"
+           />
+
+       <TextView
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           style="@style/headerDetailTextStyle"
+           android:text="@string/header_traffic"
+           android:gravity="center"
+           />
+
+       <View
+           android:layout_width="1dp"
+           android:layout_height="15dp"
+           style="@style/splitLineStyle"
+           android:layout_gravity="center_vertical"
+           />
+
+       <TextView
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           style="@style/headerDetailTextStyle"
+           android:text="@string/header_traffic"
+           android:gravity="center"
+           />
+
+   </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        style="@style/splitLineStyle"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/layoutStyle"
+        >
+        <View
+            android:layout_width="1dp"
+            android:layout_height="15dp"
+            style="@style/splitLineStyle"
+            android:layout_centerInParent="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/headerDetailTextTitleStyle"
+            android:text="6月16日"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/headerDetailTextTitleStyle"
+            android:text="6月18日"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/layoutStyle"
+        >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/header_screen"
+            android:layout_centerVertical="true"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,6 +1,7 @@
 package sf.hotel.com.hotel_client.view.activity;
 
 import android.os.Bundle;
+import android.view.Window;
 
 import sf.hotel.com.hotel_client.R;
 
@@ -13,6 +14,7 @@ public class HomeActivity extends BaseActivity{
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         init(savedInstanceState);

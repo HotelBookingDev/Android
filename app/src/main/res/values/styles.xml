@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -24,6 +24,13 @@
         <item name="android:text">@string/title</item>
     </style>
 
+    <style name="titleTextStyleWhite" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">@dimen/title_text_size</item>
+        <item name="android:textColor">@color/title_text_color_while</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:text">@string/title</item>
+    </style>
+
     <style name="hotelRatingBar" parent="@android:style/Widget.RatingBar">
         <item name="android:progressDrawable">@mipmap/ic_star_border_black_36dp</item>
         <item name="android:minHeight">8dp</item>
@@ -33,4 +40,49 @@
         <item name="android:gravity">center_vertical</item>
     </style>
 
+
+    <style name="titleTextContentStyle" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">@dimen/title_text_content_size</item>
+        <item name="android:textColor">@color/title_text_color_while</item>
+        <item name="android:text">titleTextContentStyle</item>
+    </style>
+
+    <style name="headerDetailTextTitleStyle" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/detail_text_color_blue</item>
+        <item name="android:textSize">@dimen/title_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:text">headerDetailTextTitleStyle</item>
+
+    </style>
+
+    <style name="headerDetailTextStyle" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/detail_text_color_blue</item>
+        <item name="android:textSize">@dimen/title_text_content_size</item>
+        <item name="android:text">headerDetailTextStyle</item>
+
+    </style>
+    
+    <style name="splitLineStyle">
+        <item name="android:background">@color/splitLineColor</item>
+    </style>
+
+    <style name="layoutStyle">
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:padding">5dp</item>
+    </style>
+
+    <style name="itemTextStyle" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">@dimen/item_text_title_size</item>
+        <item name="android:textColor">@color/item_title_color</item>
+    </style>
+    
+    <style name="itemTextContentStyle" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">@dimen/item_text_content_size</item>
+        <item name="android:textColor">@color/item_content_color</item>
+    </style>
+    
+    <style name="itemTextPriceStyle" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">@dimen/item_text_price</item>
+        <item name="android:textColor">@color/item_price_color</item>
+    </style>
 </resources>

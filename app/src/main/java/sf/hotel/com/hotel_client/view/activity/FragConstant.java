@@ -4,6 +4,7 @@ import sf.hotel.com.hotel_client.view.fragment.DetailFragment;
 import sf.hotel.com.hotel_client.view.fragment.HotelsFragment;
 import sf.hotel.com.hotel_client.view.fragment.LoginFragment;
 import sf.hotel.com.hotel_client.view.fragment.RegisterFragment;
+import sf.hotel.com.hotel_client.view.fragment.RoomFragment;
 
 /**
  * @author MZ
@@ -16,5 +17,6 @@ public final class FragConstant {
 
     public final static Class HOTELS = HotelsFragment.class;
     public final static Class DETAIL = DetailFragment.class;
+    public final static Class ROOM = RoomFragment.class;
 
 }
