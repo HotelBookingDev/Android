@@ -1,5 +1,7 @@
 package sf.hotel.com.data.net;
 
+import java.net.HttpURLConnection;
+
 import rx.Observable;
 import sf.hotel.com.data.entity.Intallation;
 import sf.hotel.com.data.entity.LoginResult;
