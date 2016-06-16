@@ -19,4 +19,9 @@ public class IDetailPresenter extends SuperPresenter {
         this.mIDetailView = mIDetailView;
         mIDetailEntityImp = new IDetailEntityImp();
     }
+
+    @Override
+    public void destroy() {
+
+    }
 }

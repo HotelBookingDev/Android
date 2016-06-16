@@ -14,4 +14,9 @@ public class IRoomPresenter extends SuperPresenter {
     public IRoomPresenter(IRoomView mIRoomView) {
         this.mIRoomView = mIRoomView;
     }
+
+    @Override
+    public void destroy() {
+
+    }
 }

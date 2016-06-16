@@ -23,4 +23,9 @@ public class IHotelPresenter extends SuperPresenter {
     public void loadMoreHotel() {
 
     }
+
+    @Override
+    public void destroy() {
+
+    }
 }

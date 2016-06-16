@@ -18,24 +18,6 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
-//    @Override
-//    protected SupportFragment getFragmentByKey(Class fragment) {
-////        SupportFragment mFragment;
-////
-////        if (fragment == FragConstant.LOGIN) {
-////            LoginFragment loginFragment = new LoginFragment();
-////            loginFragment.setStackClickListener(this);
-////            mFragment = loginFragment;
-////        } else {
-////            RegisterFragment registerFragment = new RegisterFragment();
-////            registerFragment.setStackClickListener(this);
-////            mFragment = registerFragment;
-////        }
-////        return mFragment;
-//        return super.getFragmentByKey(fragment);
-//    }
-
-
     @Override
     public void onFragmentBackPressed() {
         super.onBackPressed();

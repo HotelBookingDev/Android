@@ -40,7 +40,6 @@
         <item name="android:gravity">center_vertical</item>
     </style>
 
-
     <style name="titleTextContentStyle" parent="@android:style/Widget.TextView">
         <item name="android:textSize">@dimen/title_text_content_size</item>
         <item name="android:textColor">@color/title_text_color_while</item>
@@ -61,7 +60,7 @@
         <item name="android:text">headerDetailTextStyle</item>
 
     </style>
-    
+
     <style name="splitLineStyle">
         <item name="android:background">@color/splitLineColor</item>
     </style>
@@ -75,15 +74,17 @@
         <item name="android:textSize">@dimen/item_text_title_size</item>
         <item name="android:textColor">@color/item_title_color</item>
     </style>
-    
+
     <style name="itemTextContentStyle" parent="@android:style/Widget.TextView">
         <item name="android:textSize">@dimen/item_text_content_size</item>
         <item name="android:textColor">@color/item_content_color</item>
     </style>
-    
+
     <style name="itemTextPriceStyle" parent="@android:style/Widget.TextView">
         <item name="android:textSize">@dimen/item_text_price</item>
         <item name="android:textColor">@color/item_price_color</item>
     </style>
 
+    =======
+    >>>>>>> Stashed changes
 </resources>

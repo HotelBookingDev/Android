@@ -16,30 +16,36 @@ public class PersonPersenter extends SuperPresenter {
     }
 
     public void myMoney() {
-        if (checkIsLogin()){
+        if (checkIsLogin()) {
 
-        }else {
+        } else {
             mIPersonView.showFragmentByClass(FragConstant.LOGIN);
         }
     }
 
     public void myOrder() {
-        if (checkIsLogin()){
+        if (checkIsLogin()) {
 
-        }else {
+        } else {
             mIPersonView.showFragmentByClass(FragConstant.LOGIN);
         }
     }
 
     public void myEvaluate() {
-        if (checkIsLogin()){
+        if (checkIsLogin()) {
 
-        }else {
+        } else {
             mIPersonView.showFragmentByClass(FragConstant.LOGIN);
         }
     }
 
     private boolean checkIsLogin() {
         return EntityContext.getInstance().getmCurrentUser() != null ? Boolean.TRUE : Boolean.FALSE;
+    }
+
+    //TODO 这个界面会进行网络请求在界面销毁记得要把网络cancle了
+    @Override
+    public void destroy() {
+
     }
 }

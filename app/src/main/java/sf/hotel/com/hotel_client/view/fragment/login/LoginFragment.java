@@ -19,7 +19,7 @@ import sf.hotel.com.data.net.Exception.Code;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 import sf.hotel.com.hotel_client.view.activity.FragConstant;
-import sf.hotel.com.hotel_client.view.activity.HomeActivity;
+import sf.hotel.com.hotel_client.view.activity.MainActivity;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.login.ILoginView;
 import sf.hotel.com.hotel_client.view.presenter.login.ILoginPresenter;
@@ -106,7 +106,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @Override
     public void startHomeActivity() {
-        mStackClickListener.startActivityByClass(HomeActivity.class);
+        mStackClickListener.startActivityByClass(MainActivity.class);
     }
 
     @Override
@@ -124,9 +124,10 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     }
 
     @OnClick(R.id.tv_just_look)
-    public void justLook(){
+    public void justLook() {
         startHomeActivity();
     }
+
     @Override
     public void failed(int type, Throwable e) {
         if (e instanceof APIException) {

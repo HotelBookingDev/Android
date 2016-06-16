@@ -48,4 +48,9 @@ public class PersonFragment extends BaseFragment implements IPersonView {
         mStackClickListener.showFragmentByClass(c);
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPersonPersenter.destroy();
+    }
 }
