@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Message;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.AccelerateInterpolator;
@@ -174,7 +175,7 @@ public class SplashActivity extends Activity {
     }
 
     protected void onSplashStop() {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
         this.finish();
     }

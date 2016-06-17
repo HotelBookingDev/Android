@@ -3,11 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.activity.HomeActivity">
 
     <FrameLayout
         android:id="@+id/home_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <me.majiajie.pagerbottomtabstrip.PagerBottomTabLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/activity_home_tab"
+        app:elevation= "8dp"
+        android:layout_alignParentBottom="true"
+        />
 
 </RelativeLayout>

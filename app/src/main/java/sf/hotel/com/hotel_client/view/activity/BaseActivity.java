@@ -10,6 +10,7 @@ import me.yokeyword.fragmentation.SupportActivity;
 import me.yokeyword.fragmentation.SupportFragment;
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
+import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.utils.TToast;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
@@ -20,7 +21,7 @@ import sf.hotel.com.hotel_client.view.fragment.StackClickListener;
  * EMAILE 1105896230@qq.com.
  */
 public abstract class BaseActivity extends SupportActivity implements StackClickListener {
-
+    CompositeSubscription mCompositeSubscription;
 
     protected String TAG = this.getClass().getSimpleName();
 
@@ -32,12 +33,15 @@ public abstract class BaseActivity extends SupportActivity implements StackClick
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+        mCompositeSubscription = new CompositeSubscription();
         super.onCreate(savedInstanceState, persistentState);
+
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mCompositeSubscription.unsubscribe();
     }
 
     protected void showLog(String msg) {
@@ -96,5 +100,7 @@ public abstract class BaseActivity extends SupportActivity implements StackClick
     public void startActivityByClass(Class clazz) {
         startActivity(clazz);
     }
+
+
 
 }

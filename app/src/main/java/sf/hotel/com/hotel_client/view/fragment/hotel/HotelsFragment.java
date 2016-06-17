@@ -16,9 +16,10 @@ import com.lhh.ptrrv.library.footer.loadmore.BaseLoadMoreView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.view.activity.FragConstant;
 import sf.hotel.com.hotel_client.view.adapter.HomePullViewAdapter;
 import sf.hotel.com.hotel_client.view.custom.DividerItemDecoration;
+import sf.hotel.com.hotel_client.view.event.RxBus;
+import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IHotelsView;
 import sf.hotel.com.hotel_client.view.presenter.hotel.IHotelPresenter;
@@ -130,7 +131,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
 
 
     public void showDetail(){
-        mStackClickListener.showFragmentByClass(FragConstant.DETAIL);
+        RxBus.getDefault().post(new HotelMessage(HotelMessage.SHOW_DETAIL_FRAGMENT));
     }
 
     @Override

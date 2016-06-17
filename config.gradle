@@ -19,6 +19,7 @@ def homhomlin_lib_Version = '1.3.1'
 def fancybuttonsVersion = '1.8.1'
 def glideVersion = '3.6.1'
 def majiajiaVersion = '1.0.0'
+def eventbusVersion = '3.0.0'
 
 ext {
 
@@ -60,7 +61,8 @@ ext {
 
             glide                            : "com.github.bumptech.glide:glide:${glideVersion}",
 
-            majiajie                         : "me.majiajie:pager-bottom-tab-strip:${majiajiaVersion}"
+            majiajie                         : "me.majiajie:pager-bottom-tab-strip:${majiajiaVersion}",
+            eventbus                         : "org.greenrobot:eventbus:${eventbusVersion}"
     ]
 
     dependenciesdata = [
