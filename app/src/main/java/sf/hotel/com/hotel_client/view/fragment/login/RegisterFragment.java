@@ -12,6 +12,7 @@ import android.widget.EditText;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import mehdi.sakout.fancybuttons.FancyButton;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.custom.CaptchaButton;
@@ -30,9 +31,9 @@ import sf.hotel.com.hotel_client.view.presenter.login.IRegisterPresenter;
  */
 public class RegisterFragment extends BaseFragment implements IRegisterView {
 
-    @BindView(R.id.edit_reg_uname)
+    @BindView(R.id.et_phone)
     EditText editRegUname;
-    @BindView(R.id.edit_reg_pwd)
+    @BindView(R.id.et_password)
     EditText editRegPwd;
 
     @BindView(R.id.edit_reg_captcha)
@@ -42,10 +43,9 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
     CaptchaButton btnRegCaptcha;
 
     @BindView(R.id.btn_reg_submit)
-    Button btnRegSubmit;
+    FancyButton btnRegSubmit;
 
     IRegisterPresenter mIRegisterPresenter;
-
 
     @Nullable
     @Override
@@ -96,7 +96,7 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
 
     @Override
     public void success(int type) {
-        switch (type){
+        switch (type) {
             case ICallBack.REGISTER:
                 showViewToast("注册成功");
                 showLogin();
@@ -109,9 +109,9 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
 
     @Override
     public void failed(int type, Throwable e) {
-        if (e instanceof APIException){
+        if (e instanceof APIException) {
             APIException exception = (APIException) e;
-            switch (type){
+            switch (type) {
                 case ICallBack.REGISTER:
                     showViewToast(exception.getErrorMessage(getBottomContext()));
                     break;
@@ -119,12 +119,12 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
                     showViewToast(exception.getErrorMessage(getBottomContext()));
                     break;
             }
-        }else {
+        } else {
             showViewToast(e.getMessage());
         }
     }
 
-    public void showLogin(){
+    public void showLogin() {
         RxBus.getDefault().post(MessageFactory.createLoginMessage(LoginMessage.FRAGMENT_BACK));
     }
 

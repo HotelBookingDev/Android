@@ -1,49 +1,227 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@mipmap/bg_get_start">
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/edit_reg_uname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/edit_reg_captcha"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_marginLeft="30.0dip"
+                android:layout_marginRight="30.0dip"
+                android:layout_marginTop="240.0dip"
+                android:orientation="vertical">
 
-            <sf.hotel.com.hotel_client.view.custom.CaptchaButton
-                android:id="@+id/btn_reg_captcha"
-                android:layout_width="100dp"
-                android:layout_height="50dp" />
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="50.0dip"
+                    android:background="@drawable/bg_edittext_login"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/edit_reg_pwd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                    <LinearLayout
+                        android:id="@id/ll_country_phone_code"
+                        android:layout_width="70.0dip"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_reg_submit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorBlack"
-            android:background="@drawable/shape_loginbtn"
-            android:text="@string/btn_register"/>
+                        <TextView
+                            android:id="@id/tv_country_phone_code"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5.0dip"
+                            android:text="+86"
+                            android:textColor="@android:color/white"
+                            android:textSize="12.0dip" />
 
-    </LinearLayout>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/ic_search_drop_down_arrow" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0.5dip"
+                        android:layout_height="fill_parent"
+                        android:layout_marginBottom="15.0dip"
+                        android:layout_marginTop="15.0dip"
+                        android:alpha="0.5"
+                        android:background="@android:color/white" />
+
+                    <EditText
+                        android:id="@id/et_phone"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="10.0dip"
+                        android:layout_marginRight="10.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@null"
+                        android:hint="手机号"
+                        android:imeOptions="actionNext"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:singleLine="true"
+                        android:textColor="@android:color/white"
+                        android:textColorHint="#80ffffff"
+                        android:textSize="14.0dip" />
+
+                    <ImageView
+                        android:id="@id/iv_clear"
+                        android:layout_width="20.0dip"
+                        android:layout_height="20.0dip"
+                        android:layout_marginLeft="10.0dip"
+                        android:layout_marginRight="15.0dip"
+                        android:src="@mipmap/ic_clear_text"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="50.0dip"
+                    android:layout_marginTop="25.0dip"
+                    android:background="@drawable/bg_edittext_login"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="70.0dip"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/ic_password_white" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0.5dip"
+                        android:layout_height="fill_parent"
+                        android:layout_marginBottom="15.0dip"
+                        android:layout_marginTop="15.0dip"
+                        android:alpha="0.5"
+                        android:background="@android:color/white" />
+
+                    <EditText
+                        android:id="@+id/et_password"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="10.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@null"
+                        android:digits="@string/edittext_password"
+                        android:hint="新密码"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPassword"
+                        android:maxLength="25"
+                        android:singleLine="true"
+                        android:textColor="@android:color/white"
+                        android:textColorHint="#80ffffff"
+                        android:textSize="14.0dip" />
+
+                    <ImageView
+                        android:id="@+id/iv_password_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10.0dip"
+                        android:layout_marginRight="15.0dip" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="50.0dip"
+                    android:layout_marginTop="25.0dip"
+                    android:background="@drawable/bg_edittext_login"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="70.0dip"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/ic_confirmation_code_white" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0.5dip"
+                        android:layout_height="fill_parent"
+                        android:layout_marginBottom="15.0dip"
+                        android:layout_marginTop="15.0dip"
+                        android:alpha="0.5"
+                        android:background="@android:color/white" />
+
+                    <EditText
+                        android:id="@+id/edit_reg_captcha"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="10.0dip"
+                        android:layout_marginRight="5.0dip"
+                        android:layout_weight="1.0"
+                        android:background="@null"
+                        android:digits="@string/edittext_digits"
+                        android:hint="验证码"
+                        android:imeOptions="actionDone"
+                        android:inputType="numberDecimal"
+                        android:maxLength="4"
+                        android:singleLine="true"
+                        android:textColor="@android:color/white"
+                        android:textColorHint="#80ffffff"
+                        android:textSize="14.0dip" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_send_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingLeft="7.0dip"
+                        android:paddingRight="10.0dip">
+
+                        <sf.hotel.com.hotel_client.view.custom.CaptchaButton
+                            android:id="@+id/btn_reg_captcha"
+                            android:layout_width="75.0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="3.0dip"
+                            android:gravity="center"
+                            android:paddingBottom="3.0dip"
+                            android:paddingLeft="5.0dip"
+                            android:paddingRight="5.0dip"
+                            android:paddingTop="3.0dip"
+                            android:singleLine="true"
+                            android:text="获取验证码"
+                            android:textColor="@android:color/white"
+                            android:textSize="11.0dip" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <mehdi.sakout.fancybuttons.FancyButton
+                    android:id="@+id/btn_reg_submit"
+                    style="@style/button_green"
+                    android:layout_below="@+id/login_btn"
+                    android:layout_marginTop="40.0dip"
+                    fancy:fb_borderColor="#FFFFFF"
+                    fancy:fb_borderWidth="1dp"
+                    fancy:fb_defaultColor="@color/forgot_color"
+                    fancy:fb_radius="100dp"
+                    fancy:fb_text="@string/btn_register" />
+            </LinearLayout>
+        </FrameLayout>
+    </ScrollView>
 
 </FrameLayout>

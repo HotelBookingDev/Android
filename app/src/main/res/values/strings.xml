@@ -34,5 +34,6 @@
 
     <string name="item_reserve">预定</string>
     <string name="edittext_password">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_</string>
+    <string name="edittext_digits">1234567890</string>
 
 </resources>
