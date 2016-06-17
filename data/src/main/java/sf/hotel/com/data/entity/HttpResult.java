@@ -2,8 +2,6 @@ package sf.hotel.com.data.entity;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
-
 /**
  * Created by FMT on 2016/6/5:14:04
  * EMAILE 1105896230@qq.com.
@@ -14,7 +12,7 @@ public class HttpResult<T> {
     private String message;
 
     @SerializedName("timeStamp")
-    private long timestamp;
+    private float timestamp;
 
     @SerializedName("status")
     private int status;
@@ -36,7 +34,7 @@ public class HttpResult<T> {
         this.message = message;
     }
 
-    public long getTimestamp() {
+    public float getTimestamp() {
         return timestamp;
     }
 

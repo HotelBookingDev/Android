@@ -1,5 +1,6 @@
 package sf.hotel.com.hotel_client.view.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -9,7 +10,12 @@ import me.majiajie.pagerbottomtabstrip.Controller;
 import me.majiajie.pagerbottomtabstrip.PagerBottomTabLayout;
 import me.majiajie.pagerbottomtabstrip.TabLayoutMode;
 import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectListener;
+import rx.Subscription;
+import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.event.RxBus;
+import sf.hotel.com.hotel_client.view.event.hotel.LoginMessage;
+import sf.hotel.com.hotel_client.view.event.hotel.Message;
 
 public class MainActivity extends BaseActivity {
     @BindView(R.id.home_tab)
@@ -22,6 +28,25 @@ public class MainActivity extends BaseActivity {
         ButterKnife.bind(this);
         initBottom();
         initView();
+        RxEvent();
+    }
+
+    private void RxEvent() {
+        Subscription subscribe = RxBus.getDefault()
+                .toObservable(Message.class)
+                .subscribe(mMessage -> {
+                    LogUtils.d(TAG, "RxEvent");
+                    if (mMessage instanceof LoginMessage) {
+                        switch (mMessage.what) {
+                            case LoginMessage.SHOW_LOGIN:
+                                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                                intent.putExtra("isFinish", true);
+                                startActivity(intent);
+                                break;
+                        }
+                    }
+                });
+        mCompositeSubscription.add(subscribe);
     }
 
     private void initView() {

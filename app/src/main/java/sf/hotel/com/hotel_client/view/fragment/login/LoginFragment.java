@@ -14,12 +14,11 @@ import com.avos.avoscloud.AVInstallation;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import sf.hotel.com.data.net.Exception.APIException;
-import sf.hotel.com.data.net.Exception.Code;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.HotelImageLoad;
-import sf.hotel.com.hotel_client.view.activity.FragConstant;
-import sf.hotel.com.hotel_client.view.activity.MainActivity;
+import sf.hotel.com.hotel_client.view.event.RxBus;
+import sf.hotel.com.hotel_client.view.event.hotel.LoginMessage;
+import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.login.ILoginView;
 import sf.hotel.com.hotel_client.view.presenter.login.ILoginPresenter;
@@ -106,7 +105,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @Override
     public void startHomeActivity() {
-        mStackClickListener.startActivityByClass(MainActivity.class);
+        RxBus.getDefault().post(MessageFactory.getLoginMessage(LoginMessage.SHOW_MAIN));
     }
 
     @Override
@@ -130,22 +129,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @Override
     public void failed(int type, Throwable e) {
-        if (e instanceof APIException) {
-            APIException exception = (APIException) e;
 
-            int code = exception.getCode();
-            if (code == Code.LOGIN_FORMAT_ERROR) {
-                clearUserName();
-                clearPassword();
-            } else if (code == Code.LOGIN_NAME_NULL) {
-
-            } else if (code == Code.LOGIN_PWD_NULL) {
-
-            }
-            showViewToast(exception.getErrorMessage(getBottomContext()));
-        } else {
-            showViewToast(e.getMessage());
-        }
     }
 
     @Override
@@ -155,7 +139,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @OnClick(R.id.register_btn)
     public void register() {
-        mStackClickListener.showFragmentByClass(FragConstant.REGISTER);
+        RxBus.getDefault().post(MessageFactory.getLoginMessage(LoginMessage.SHOW_REGIST));
     }
 
     @Override
