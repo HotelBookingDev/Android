@@ -35,7 +35,6 @@ public class MainActivity extends BaseActivity {
                 .addTabItem(android.R.drawable.ic_menu_compass, "位置", Color.BLUE)
                 .addTabItem(android.R.drawable.ic_menu_search, "搜索", Color.BLUE)
                 .addTabItem(android.R.drawable.ic_menu_help, "个人", Color.BLUE)
-
                 .setMode(TabLayoutMode.HIDE_TEXT)
                 .build();
         build.addTabItemClickListener(new TabItemListene());

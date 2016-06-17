@@ -21,4 +21,6 @@
     <color name="item_title_color">#000000</color>
     <color name="item_content_color">#888888</color>
     <color name="item_price_color">#FF8C00</color>
+
+    <color name="forgot_color">#ff53cac3</color>
 </resources>

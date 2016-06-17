@@ -29,13 +29,13 @@ import sf.hotel.com.hotel_client.view.presenter.login.ILoginPresenter;
  */
 public class LoginFragment extends BaseFragment implements ILoginView {
 
-    @BindView(R.id.edit_name)
-    EditText mEditName;
+    @BindView(R.id.et_phone)
+    EditText mEditPhone;
     @BindView(R.id.edit_pw)
     EditText mEditPw;
 
-    @BindView(R.id.iv_head)
-    ImageView mIvHead;
+    @BindView(R.id.iv_avatar)
+    ImageView mIvAvatar;
     ILoginPresenter mILoginPresenter;
 
     @Override
@@ -50,12 +50,12 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     }
 
     private void init() {
-        HotelImageLoad.loadImageCircle(getContext(), mIvHead, R.mipmap.head_loading_bj);
+        HotelImageLoad.loadImageCircle(getContext(), mIvAvatar, R.mipmap.head_loading_bj);
     }
 
     @Override
     public String getUserName() {
-        return mEditName.getText().toString();
+        return mEditPhone.getText().toString();
     }
 
     @Override
@@ -65,7 +65,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @Override
     public void clearUserName() {
-        mEditName.setText("");
+        mEditPhone.setText("");
     }
 
     @Override
@@ -96,7 +96,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @Override
     public EditText getEditName() {
-        return mEditName;
+        return mEditPhone;
     }
 
     @Override
@@ -111,7 +111,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @Override
     public void setEditPhone(String phone) {
-        mEditName.setText(phone);
+        mEditPhone.setText(phone);
     }
 
     @Override
