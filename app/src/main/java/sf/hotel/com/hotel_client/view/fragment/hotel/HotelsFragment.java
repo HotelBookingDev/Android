@@ -71,6 +71,8 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
                         mPullAdapter.setCount(mPullAdapter.getItemCount() + 20);
                         mPullAdapter.notifyDataSetChanged();
                         mPullView.onFinishLoading(true, false);
+                        RxBus.getDefault().post(new HotelMessage(HotelMessage.SHOW_BOTTOM_VIEW));
+                        showLog("show");
                     }
                 });
             }
@@ -100,6 +102,8 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
 
                         mPullView.setOnRefreshComplete();
                         mPullView.onFinishLoading(true, false);
+                        RxBus.getDefault().post(new HotelMessage(HotelMessage.HIDE_BOTTOM_VIEW));
+                        showLog("hide");
                     }
                 });
             }
@@ -108,6 +112,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
 
         //设置适配器
         mPullAdapter = new HomePullViewAdapter(getBottomContext());
+
         mPullAdapter.setOnItemClickLitener(new HomePullViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -120,10 +125,11 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
             }
         });
 
-
         mPullAdapter.setCount(20);
 
         mPullView.setAdapter(mPullAdapter);
+        
+
         mPullView.onFinishLoading(true, false);
 
 

@@ -72,5 +72,4 @@ dependencies {
 
     //底部栏的控件
     compile rootProject.ext.dependencies.majiajie
-    compile rootProject.ext.dependencies.eventbus
 }
