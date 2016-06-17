@@ -34,7 +34,14 @@ android {
     lintOptions {
         abortOnError false
     }
+
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+
 }
+
+
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -63,6 +70,8 @@ dependencies {
     //下拉刷新
     compile rootProject.ext.dependencies.pullToRefreshRecyclerView;
     compile rootProject.ext.dependencies.homhomlin_lib;
+    compile 'com.github.lsjwzh.RecyclerViewPager:lib:v1.1.0'
+
 
     //button的定制
     compile rootProject.ext.dependencies.fancybuttons

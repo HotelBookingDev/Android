@@ -16,8 +16,8 @@
 
     <dimen name="rl_bottom">100dp</dimen>
 
-    <dimen name="title_text_size">35px</dimen>
-    <dimen name="title_text_content_size">25px</dimen>
+    <dimen name="title_text_size">40px</dimen>
+    <dimen name="title_text_content_size">30px</dimen>
 
     <dimen name="item_text_title_size">40px</dimen>
     <dimen name="item_text_content_size">20px</dimen>

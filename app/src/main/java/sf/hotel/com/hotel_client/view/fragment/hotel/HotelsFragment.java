@@ -1,11 +1,13 @@
 package sf.hotel.com.hotel_client.view.fragment.hotel;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,7 +73,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
                         mPullAdapter.setCount(mPullAdapter.getItemCount() + 20);
                         mPullAdapter.notifyDataSetChanged();
                         mPullView.onFinishLoading(true, false);
-                        RxBus.getDefault().post(new HotelMessage(HotelMessage.SHOW_BOTTOM_VIEW));
+
                         showLog("show");
                     }
                 });
@@ -102,10 +104,32 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
 
                         mPullView.setOnRefreshComplete();
                         mPullView.onFinishLoading(true, false);
-                        RxBus.getDefault().post(new HotelMessage(HotelMessage.HIDE_BOTTOM_VIEW));
+
                         showLog("hide");
                     }
                 });
+            }
+        });
+
+        mPullView.addOnScrollListener(new PullToRefreshRecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 10) {
+                    RxBus.getDefault().post(new HotelMessage(HotelMessage.HIDE_BOTTOM_VIEW));
+                }
+                if (dy < -10){
+                    RxBus.getDefault().post(new HotelMessage(HotelMessage.SHOW_BOTTOM_VIEW));
+                }
+            }
+
+            @Override
+            public void onScroll(RecyclerView recyclerView, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
             }
         });
 
@@ -125,18 +149,24 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
             }
         });
 
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mPullView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+                @Override
+                public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+
+                }
+            });
+        }
         mPullAdapter.setCount(20);
 
         mPullView.setAdapter(mPullAdapter);
-        
-
         mPullView.onFinishLoading(true, false);
-
-
     }
 
 
     public void showDetail(){
+        RxBus.getDefault().post(new HotelMessage(HotelMessage.HIDE_BOTTOM_VIEW));
         RxBus.getDefault().post(new HotelMessage(HotelMessage.SHOW_DETAIL_FRAGMENT));
     }
 

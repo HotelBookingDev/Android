@@ -63,14 +63,12 @@ public class HomePullViewAdapter extends RecyclerViewBaseAdapter<HomePullViewAda
 
         TextView mTitle;
         TextView mPrice;
-        RatingBar mRatingBar;
 
         public ViewHolder(View itemView) {
             super(itemView);
             mImage = (ImageView) itemView.findViewById(R.id.item_hotels_img);
             mTitle = (TextView) itemView.findViewById(R.id.item_hotels_name);
             mPrice = (TextView) itemView.findViewById(R.id.item_hotels_price);
-            mRatingBar = (RatingBar) itemView.findViewById(R.id.item_hotels_ratingBar);
         }
     }
 }

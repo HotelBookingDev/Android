@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="80dp"
     android:gravity="center_vertical">
-
-
-
 
     <ImageView
         android:layout_width="60dp"
@@ -16,40 +13,52 @@
         android:id="@+id/item_hotels_img"
         />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/item_hotels_name"
-        android:layout_toRightOf="@id/item_hotels_img"
-        android:layout_toEndOf="@id/item_hotels_img"
-        android:layout_alignTop="@id/item_hotels_img"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="106dp"
+        android:orientation="vertical"
+        style="@style/layoutStyle"
+        >
 
-        style="@style/titleTextStyle"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            style="@style/layoutStyle"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/item_hotels_name"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                style="@style/titleTextStyle"
+                />
 
-        />
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/ic_launcher"
+                />
+        </LinearLayout>
 
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:id="@+id/item_hotels_ratingBar"
-        android:layout_below="@id/item_hotels_name"
-        android:layout_toRightOf="@id/item_hotels_img"
-        android:layout_toEndOf="@id/item_hotels_img"
-        style="@style/hotelRatingBar"
-        />
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            style="@style/itemTextContentStyleBlue"
+            android:text="4.4分"
+            />
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/item_hotels_price"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/item_hotels_price"
+            style="@style/itemTextPriceStyle"
+            android:text="$ 388起"
+            android:layout_gravity="right" />
+    </LinearLayout>
 
-        style="@style/titleTextStyle"
-        />
-</RelativeLayout>
+</LinearLayout>

@@ -63,6 +63,7 @@
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:src="@mipmap/reserve"
+            android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/item_room_price"
             />
     </RelativeLayout>

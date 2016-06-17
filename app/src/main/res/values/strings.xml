@@ -31,6 +31,7 @@
 
     <string name="title_collection">收藏</string>
     <string name="title_share">分享</string>
+    <string name="title_map">地图</string>
 
     <string name="item_reserve">预定</string>
     <string name="edittext_password">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_</string>

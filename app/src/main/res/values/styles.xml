@@ -10,7 +10,9 @@
 
     <style name="AppTheme.NoActionBar" parent="AppTheme">
         <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <item name="windowNoTitle">true</item>
     </style>
 
@@ -46,6 +48,8 @@
         <item name="android:textColor">@color/title_text_color_while</item>
         <item name="android:text">titleTextContentStyle</item>
     </style>
+
+
 
     <style name="headerDetailTextTitleStyle" parent="@android:style/Widget.TextView">
         <item name="android:textColor">@color/detail_text_color_blue</item>
@@ -84,6 +88,12 @@
     <style name="itemTextPriceStyle" parent="@android:style/Widget.TextView">
         <item name="android:textSize">@dimen/item_text_price</item>
         <item name="android:textColor">@color/item_price_color</item>
+    </style>
+
+    <style name="itemTextContentStyleBlue" parent="@android:style/Widget.TextView">
+
+        <item name="android:textSize">@dimen/item_text_content_size</item>
+        <item name="android:textColor">@color/detail_text_color_blue</item>
     </style>
 
     <style name="button_green">

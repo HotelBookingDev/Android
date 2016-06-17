@@ -49,7 +49,9 @@ public class HomeActivity extends BaseActivity {
                 .addTabItem(android.R.drawable.ic_menu_search, "搜索", Color.BLUE)
                 .addTabItem(android.R.drawable.ic_menu_help, "个人", Color.BLUE)
                 .setMode(TabLayoutMode.HIDE_TEXT)
+                .setMessageBackgroundColor(0x33aaaaaa)
                 .build();
+
         build.addTabItemClickListener(new OnTabItemSelectListener() {
             @Override
             public void onSelected(int index, Object tag) {
@@ -70,17 +72,21 @@ public class HomeActivity extends BaseActivity {
 
 
     public void showBottomTab() {
-        mPagerBottomTabLayout.setVisibility(View.VISIBLE);
-        Animation toTop = AnimationUtils.loadAnimation(this, R.anim.to_top);
-        mPagerBottomTabLayout.setAnimation(toTop);
-        toTop.start();
+        if (mPagerBottomTabLayout.getVisibility() == View.GONE){
+            mPagerBottomTabLayout.setVisibility(View.VISIBLE);
+            Animation toTop = AnimationUtils.loadAnimation(this, R.anim.to_top);
+            mPagerBottomTabLayout.setAnimation(toTop);
+            toTop.start();
+        }
     }
 
     public void hideBottomTab() {
-        Animation fromTop = AnimationUtils.loadAnimation(this, R.anim.from_top);
-        mPagerBottomTabLayout.setAnimation(fromTop);
-        fromTop.start();
-        mPagerBottomTabLayout.setVisibility(View.INVISIBLE);
+        if (mPagerBottomTabLayout.getVisibility() == View.VISIBLE){
+            Animation fromTop = AnimationUtils.loadAnimation(this, R.anim.from_top);
+            mPagerBottomTabLayout.setAnimation(fromTop);
+            fromTop.start();
+            mPagerBottomTabLayout.setVisibility(View.GONE);
+        }
     }
 
 

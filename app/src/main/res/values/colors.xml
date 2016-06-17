@@ -23,4 +23,8 @@
     <color name="item_price_color">#FF8C00</color>
 
     <color name="forgot_color">#ff53cac3</color>
+    
+    
+    <color name="title_black">#000000</color>
+    <color name="title_gray">#888888</color>
 </resources>

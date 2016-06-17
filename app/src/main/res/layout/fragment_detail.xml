@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     >
 
-    <include layout="@layout/custom_detail_title"
-        android:id="@+id/custom_detail_title"
+    <include layout="@layout/title_detail"
+        android:id="@+id/fragment_detail_title"
         />
 
     <com.lhh.ptrrv.library.PullToRefreshRecyclerView

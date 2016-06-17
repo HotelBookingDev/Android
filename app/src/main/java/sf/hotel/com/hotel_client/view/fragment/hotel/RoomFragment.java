@@ -3,15 +3,19 @@ package sf.hotel.com.hotel_client.view.fragment.hotel;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.adapter.RoomRecyclerPagerAdapter;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
@@ -31,7 +35,10 @@ public class RoomFragment extends BaseFragment implements IRoomView{
     @BindView(R.id.fragment_room_close)
     ImageView imgClose;
 
+    @BindView(R.id.fragment_room_viewPager)
+    RecyclerViewPager mRecyclerViewPager;
 
+    RoomRecyclerPagerAdapter mRoomRecyclerPagerAdapter;
 
     @Nullable
     @Override
@@ -40,7 +47,18 @@ public class RoomFragment extends BaseFragment implements IRoomView{
 
         mIRoomPresenter = new IRoomPresenter(this);
         ButterKnife.bind(this, view);
+        initViewPager();
         return view;
+    }
+
+    private void initViewPager() {
+
+        LinearLayoutManager layout = new LinearLayoutManager(getBottomContext(), LinearLayoutManager.HORIZONTAL,false);
+        mRecyclerViewPager.setLayoutManager(layout);
+
+        mRoomRecyclerPagerAdapter = new RoomRecyclerPagerAdapter(getBottomContext());
+        mRecyclerViewPager.setAdapter(mRoomRecyclerPagerAdapter);
+
     }
 
     @Override

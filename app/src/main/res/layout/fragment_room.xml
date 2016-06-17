@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -10,13 +11,15 @@
         android:orientation="horizontal"
         style="@style/layoutStyle"
         android:gravity="center_vertical"
+        android:background="@color/colorPrimary"
         >
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            style="@style/titleTextStyle"
+            style="@style/titleTextStyleWhite"
+            android:text="XXX大床房(8:00-18:00)"
             />
 
         <ImageView
@@ -37,10 +40,16 @@
             android:orientation="vertical"
             style="@style/layoutStyle"
             >
-            <ImageView
+
+            <com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager
+                android:id="@+id/fragment_room_viewPager"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:src="@mipmap/ic_launcher"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                app:rvp_triggerOffset="0.1"
+                app:rvp_singlePageFling="true"
+                android:clipToPadding="false"
                 />
 
             <View

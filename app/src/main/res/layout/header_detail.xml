@@ -4,81 +4,77 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/layoutStyle"
+        android:gravity="center_vertical"
         >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            style="@style/layoutStyle"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/header_detail_score"
+                style="@style/headerDetailTextTitleStyle"
+                android:text="3.9分"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/headerDetailTextStyle"
+
+                android:text="91条点评"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/splitLineStyle"
+                android:id="@+id/header_detail_score_split"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/header_detail_time"
+                style="@style/headerDetailTextTitleStyle"
+
+                android:text="2015年开业"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/headerDetailTextStyle"
+
+                android:text="@string/header_selling"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/splitLineStyle"
+                android:id="@+id/header_detail_time_spilt"
+
+                />
+        </LinearLayout>
 
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
             android:src="@mipmap/ic_launcher"
             android:id="@+id/header_detail_img"
             />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/header_detail_score"
-            style="@style/headerDetailTextTitleStyle"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:text="3.9分"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/headerDetailTextStyle"
-            android:layout_toLeftOf="@id/header_detail_img"
-            android:layout_toStartOf="@id/header_detail_img"
-            android:text="91条点评"
-            />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            style="@style/splitLineStyle"
-            android:id="@+id/header_detail_score_split"
-            android:layout_toLeftOf="@id/header_detail_img"
-            android:layout_toStartOf="@id/header_detail_img"
-            android:layout_below="@id/header_detail_score"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/header_detail_time"
-            style="@style/headerDetailTextTitleStyle"
-            android:layout_below="@id/header_detail_score_split"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:text="2015年开业"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/headerDetailTextStyle"
-            android:layout_below="@id/header_detail_score_split"
-            android:layout_toLeftOf="@id/header_detail_img"
-            android:layout_toStartOf="@id/header_detail_img"
-            android:text="@string/header_selling"
-            />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            style="@style/splitLineStyle"
-            android:id="@+id/header_detail_time_spilt"
-            android:layout_below="@id/header_detail_time"
-            android:layout_toLeftOf="@id/header_detail_img"
-            android:layout_toStartOf="@id/header_detail_img"
-            />
-    </RelativeLayout>
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
@@ -232,9 +228,10 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         style="@style/layoutStyle"
         >
 
@@ -242,9 +239,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/header_screen"
-            android:layout_centerVertical="true"
             />
-
-    </RelativeLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/header_screen"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/header_screen"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/header_screen"
+            />
+    </LinearLayout>
 
 </LinearLayout>
