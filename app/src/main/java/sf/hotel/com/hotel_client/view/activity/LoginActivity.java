@@ -3,6 +3,7 @@ package sf.hotel.com.hotel_client.view.activity;
 import android.os.Bundle;
 
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.utils.StatusBarUtil;
 
 public class LoginActivity extends BaseActivity {
 

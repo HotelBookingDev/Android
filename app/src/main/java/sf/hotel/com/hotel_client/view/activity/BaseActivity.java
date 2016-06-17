@@ -12,6 +12,7 @@ import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.utils.LogUtils;
+import sf.hotel.com.hotel_client.utils.StatusBarUtil;
 import sf.hotel.com.hotel_client.utils.TToast;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.fragment.StackClickListener;
@@ -21,6 +22,7 @@ import sf.hotel.com.hotel_client.view.fragment.StackClickListener;
  * EMAILE 1105896230@qq.com.
  */
 public abstract class BaseActivity extends SupportActivity implements StackClickListener {
+
     CompositeSubscription mCompositeSubscription;
 
     protected String TAG = this.getClass().getSimpleName();
@@ -39,6 +41,12 @@ public abstract class BaseActivity extends SupportActivity implements StackClick
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        StatusBarUtil.setTransparent(this);
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         mCompositeSubscription.unsubscribe();
@@ -47,7 +55,6 @@ public abstract class BaseActivity extends SupportActivity implements StackClick
     protected void showLog(String msg) {
         LogUtils.e(TAG, msg);
     }
-
 
     protected SupportFragment getFragmentByKey(Class fragment) {
 
@@ -88,7 +95,6 @@ public abstract class BaseActivity extends SupportActivity implements StackClick
         } else {
             start(mFragment);
         }
-
     }
 
     @Override
@@ -100,7 +106,5 @@ public abstract class BaseActivity extends SupportActivity implements StackClick
     public void startActivityByClass(Class clazz) {
         startActivity(clazz);
     }
-
-
 
 }
