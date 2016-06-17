@@ -14,12 +14,11 @@ import com.avos.avoscloud.AVInstallation;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import sf.hotel.com.data.net.Exception.APIException;
-import sf.hotel.com.data.net.Exception.Code;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.HotelImageLoad;
-import sf.hotel.com.hotel_client.view.activity.FragConstant;
-import sf.hotel.com.hotel_client.view.activity.MainActivity;
+import sf.hotel.com.hotel_client.view.event.RxBus;
+import sf.hotel.com.hotel_client.view.event.hotel.LoginMessage;
+import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.login.ILoginView;
 import sf.hotel.com.hotel_client.view.presenter.login.ILoginPresenter;
@@ -29,13 +28,13 @@ import sf.hotel.com.hotel_client.view.presenter.login.ILoginPresenter;
  */
 public class LoginFragment extends BaseFragment implements ILoginView {
 
-    @BindView(R.id.edit_name)
-    EditText mEditName;
+    @BindView(R.id.et_phone)
+    EditText mEditPhone;
     @BindView(R.id.edit_pw)
     EditText mEditPw;
 
-    @BindView(R.id.iv_head)
-    ImageView mIvHead;
+    @BindView(R.id.iv_avatar)
+    ImageView mIvAvatar;
     ILoginPresenter mILoginPresenter;
 
     @Override
@@ -50,12 +49,12 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     }
 
     private void init() {
-        HotelImageLoad.loadImageCircle(getContext(), mIvHead, R.mipmap.head_loading_bj);
+        HotelImageLoad.loadImageCircle(getContext(), mIvAvatar, R.mipmap.head_loading_bj);
     }
 
     @Override
     public String getUserName() {
-        return mEditName.getText().toString();
+        return mEditPhone.getText().toString();
     }
 
     @Override
@@ -65,7 +64,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @Override
     public void clearUserName() {
-        mEditName.setText("");
+        mEditPhone.setText("");
     }
 
     @Override
@@ -96,7 +95,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @Override
     public EditText getEditName() {
-        return mEditName;
+        return mEditPhone;
     }
 
     @Override
@@ -106,12 +105,12 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @Override
     public void startHomeActivity() {
-        mStackClickListener.startActivityByClass(MainActivity.class);
+        RxBus.getDefault().post(MessageFactory.getLoginMessage(LoginMessage.SHOW_MAIN));
     }
 
     @Override
     public void setEditPhone(String phone) {
-        mEditName.setText(phone);
+        mEditPhone.setText(phone);
     }
 
     @Override
@@ -130,22 +129,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @Override
     public void failed(int type, Throwable e) {
-        if (e instanceof APIException) {
-            APIException exception = (APIException) e;
 
-            int code = exception.getCode();
-            if (code == Code.LOGIN_FORMAT_ERROR) {
-                clearUserName();
-                clearPassword();
-            } else if (code == Code.LOGIN_NAME_NULL) {
-
-            } else if (code == Code.LOGIN_PWD_NULL) {
-
-            }
-            showViewToast(exception.getErrorMessage(getBottomContext()));
-        } else {
-            showViewToast(e.getMessage());
-        }
     }
 
     @Override
@@ -155,7 +139,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @OnClick(R.id.register_btn)
     public void register() {
-        mStackClickListener.showFragmentByClass(FragConstant.REGISTER);
+        RxBus.getDefault().post(MessageFactory.getLoginMessage(LoginMessage.SHOW_REGIST));
     }
 
     @Override

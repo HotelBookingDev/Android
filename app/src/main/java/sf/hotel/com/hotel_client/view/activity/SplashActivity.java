@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Message;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.AccelerateInterpolator;
@@ -23,7 +22,6 @@ import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.data.utils.LogUtils;
 
 /**
@@ -175,7 +173,7 @@ public class SplashActivity extends Activity {
     }
 
     protected void onSplashStop() {
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         this.finish();
     }

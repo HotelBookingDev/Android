@@ -2,7 +2,7 @@ package sf.hotel.com.hotel_client.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.util.LruCache;
 import android.view.KeyEvent;
 
@@ -34,10 +34,9 @@ public abstract class BaseActivity extends SupportActivity implements StackClick
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         mCompositeSubscription = new CompositeSubscription();
-        super.onCreate(savedInstanceState, persistentState);
-
+        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -106,5 +105,4 @@ public abstract class BaseActivity extends SupportActivity implements StackClick
     public void startActivityByClass(Class clazz) {
         startActivity(clazz);
     }
-
 }

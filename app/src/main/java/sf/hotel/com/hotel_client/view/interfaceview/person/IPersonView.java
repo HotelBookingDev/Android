@@ -5,7 +5,10 @@ package sf.hotel.com.hotel_client.view.interfaceview.person;
  */
 public interface IPersonView {
     void myMoney();
+
     void myOrder();
+
     void myEvaluate();
-    void showFragmentByClass(Class c);
+
+    void showLoginFragment();
 }

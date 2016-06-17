@@ -8,10 +8,7 @@ import java.util.Objects;
  * @date 16/6/16.
  */
 
-public class HotelMessage {
-
-
-
+public class HotelMessage extends Message {
 
     public final static int SHOW_DETAIL_FRAGMENT = 2;
     public final static int SHOW_ROOM_FRAGMENT = 3;
@@ -21,24 +18,15 @@ public class HotelMessage {
     public final static int SHOW_BOTTOM_VIEW = 100;
     public final static int HIDE_BOTTOM_VIEW = 101;
 
-    public int what;
-    public String message;
-    public Objects obj;
-
     public HotelMessage(int what) {
-        this.what = what;
+        super(what);
     }
 
     public HotelMessage(String message, int what) {
-        this.message = message;
-        this.what = what;
+        super(message, what);
     }
 
     public HotelMessage(int what, String message, Objects obj) {
-        this.what = what;
-        this.message = message;
-        this.obj = obj;
+        super(what, message, obj);
     }
-
-
 }

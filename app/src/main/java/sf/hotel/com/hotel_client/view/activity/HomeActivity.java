@@ -15,7 +15,6 @@ import me.majiajie.pagerbottomtabstrip.TabLayoutMode;
 import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectListener;
 import rx.Subscription;
 import rx.functions.Action1;
-import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
@@ -27,21 +26,19 @@ import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
  */
 public class HomeActivity extends BaseActivity {
 
+
     @BindView(R.id.activity_home_tab)
     PagerBottomTabLayout mPagerBottomTabLayout;
-
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
-
-        onRxEvent();
         init();
         initBottom();
+        onRxEvent();
+
     }
 
     //可能这会是主界面
@@ -51,7 +48,6 @@ public class HomeActivity extends BaseActivity {
                 .addTabItem(android.R.drawable.ic_menu_compass, "位置", Color.BLUE)
                 .addTabItem(android.R.drawable.ic_menu_search, "搜索", Color.BLUE)
                 .addTabItem(android.R.drawable.ic_menu_help, "个人", Color.BLUE)
-
                 .setMode(TabLayoutMode.HIDE_TEXT)
                 .build();
         build.addTabItemClickListener(new OnTabItemSelectListener() {
@@ -68,18 +64,14 @@ public class HomeActivity extends BaseActivity {
 
     }
 
-
-
     protected void init() {
         loadRootFragment(R.id.home_fragment, getFragmentByKey(FragConstant.HOTELS));
     }
-
 
     @Override
     public void onFragmentBackPressed() {
         super.onBackPressed();
     }
-
 
     public void showBottomTab() {
         mPagerBottomTabLayout.setVisibility(View.VISIBLE);
@@ -93,18 +85,17 @@ public class HomeActivity extends BaseActivity {
         mPagerBottomTabLayout.setAnimation(fromTop);
         fromTop.start();
         mPagerBottomTabLayout.setVisibility(View.INVISIBLE);
-
     }
 
-    //订阅事件
-    public void onRxEvent(){
-        mCompositeSubscription = new CompositeSubscription();
-        Subscription subscribe = RxBus.getDefault().toObservable(HotelMessage.class)
+
+    public void onRxEvent() {
+        Subscription subscribe = RxBus.getDefault()
+                .toObservable(HotelMessage.class)
                 .subscribe(new Action1<HotelMessage>() {
                     @Override
                     public void call(HotelMessage hotelMessage) {
                         //处理类型
-                        switch (hotelMessage.what){
+                        switch (hotelMessage.what) {
                             case HotelMessage.SHOW_DETAIL_FRAGMENT:
                                 showFragment(FragConstant.DETAIL);
                                 break;
@@ -124,5 +115,4 @@ public class HomeActivity extends BaseActivity {
                 });
         mCompositeSubscription.add(subscribe);
     }
-
 }
