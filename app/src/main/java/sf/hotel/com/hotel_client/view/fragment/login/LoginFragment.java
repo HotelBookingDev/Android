@@ -105,7 +105,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @Override
     public void startHomeActivity() {
-        RxBus.getDefault().post(MessageFactory.getLoginMessage(LoginMessage.SHOW_MAIN));
+        RxBus.getDefault().post(MessageFactory.createLoginMessage(LoginMessage.SHOW_MAIN));
     }
 
     @Override
@@ -139,7 +139,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @OnClick(R.id.register_btn)
     public void register() {
-        RxBus.getDefault().post(MessageFactory.getLoginMessage(LoginMessage.SHOW_REGIST));
+        RxBus.getDefault().post(MessageFactory.createLoginMessage(LoginMessage.SHOW_REGIST));
     }
 
     @Override

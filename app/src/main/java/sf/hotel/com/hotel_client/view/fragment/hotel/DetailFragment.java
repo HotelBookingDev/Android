@@ -21,6 +21,9 @@ import sf.hotel.com.hotel_client.view.activity.FragConstant;
 import sf.hotel.com.hotel_client.view.adapter.DetailPullViewAdapter;
 import sf.hotel.com.hotel_client.view.custom.DividerItemDecoration;
 
+import sf.hotel.com.hotel_client.view.event.RxBus;
+import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
+import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IDetailView;
 import sf.hotel.com.hotel_client.view.presenter.hotel.IDetailPresenter;
@@ -132,7 +135,7 @@ public class DetailFragment extends BaseFragment implements IDetailView{
     }
 
     private void showRoomFragment() {
-        mStackClickListener.showFragmentByClass(FragConstant.ROOM);
+        RxBus.getDefault().post(MessageFactory.createHotelMessage(HotelMessage.SHOW_ROOM_FRAGMENT));
     }
 
     @Override

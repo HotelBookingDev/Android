@@ -65,10 +65,6 @@ public class MainActivity extends BaseActivity {
         build.addTabItemClickListener(new TabItemListene());
     }
 
-    @Override
-    public void onFragmentBackPressed() {
-        super.onBackPressed();
-    }
 
     class TabItemListene implements OnTabItemSelectListener {
 

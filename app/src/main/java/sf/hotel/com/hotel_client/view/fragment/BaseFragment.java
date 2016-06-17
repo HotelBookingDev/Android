@@ -10,11 +10,6 @@ import sf.hotel.com.hotel_client.utils.TToast;
  */
 public class BaseFragment extends SupportFragment {
     protected String TAG = this.getClass().getSimpleName();
-    protected StackClickListener mStackClickListener;
-
-    public void setStackClickListener(StackClickListener mStackClickListener) {
-        this.mStackClickListener = mStackClickListener;
-    }
 
     protected void showToast(String msg) {
         TToast.showToast(msg);

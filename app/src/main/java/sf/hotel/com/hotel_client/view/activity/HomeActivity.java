@@ -68,10 +68,6 @@ public class HomeActivity extends BaseActivity {
         loadRootFragment(R.id.home_fragment, getFragmentByKey(FragConstant.HOTELS));
     }
 
-    @Override
-    public void onFragmentBackPressed() {
-        super.onBackPressed();
-    }
 
     public void showBottomTab() {
         mPagerBottomTabLayout.setVisibility(View.VISIBLE);
@@ -99,12 +95,17 @@ public class HomeActivity extends BaseActivity {
                             case HotelMessage.SHOW_DETAIL_FRAGMENT:
                                 showFragment(FragConstant.DETAIL);
                                 break;
+                            case HotelMessage.SHOW_ROOM_FRAGMENT:
+                                showFragment(FragConstant.ROOM);
+                                break;
                             case HotelMessage.SHOW_BOTTOM_VIEW:
                                 showBottomTab();
                                 break;
                             case HotelMessage.HIDE_BOTTOM_VIEW:
                                 hideBottomTab();
                                 break;
+                            case HotelMessage.FRAGMENT_BACK:
+                                onBackPressed();
                         }
                     }
                 }, new Action1<Throwable>() {

@@ -32,6 +32,8 @@ public class LoginActivity extends BaseActivity {
                         case LoginMessage.SHOW_REGIST:
                             showFragment(FragConstant.REGISTER);
                             break;
+                        case LoginMessage.FRAGMENT_BACK:
+                            onBackPressed();
                     }
                 });
         mCompositeSubscription.add(subscribe);
@@ -43,8 +45,4 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
-    @Override
-    public void onFragmentBackPressed() {
-        super.onBackPressed();
-    }
 }

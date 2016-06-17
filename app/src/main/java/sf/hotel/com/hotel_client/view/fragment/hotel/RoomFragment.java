@@ -12,6 +12,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.event.RxBus;
+import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
+import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IRoomView;
 import sf.hotel.com.hotel_client.view.presenter.hotel.IRoomPresenter;
@@ -52,7 +55,7 @@ public class RoomFragment extends BaseFragment implements IRoomView{
 
     @OnClick(R.id.fragment_room_close)
     public void close(){
-        mStackClickListener.onFragmentBackPressed();
+        RxBus.getDefault().post(MessageFactory.createHotelMessage(HotelMessage.FRAGMENT_BACK));
     }
 
     @Override

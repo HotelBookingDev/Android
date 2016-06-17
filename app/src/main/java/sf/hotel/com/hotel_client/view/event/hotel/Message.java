@@ -6,9 +6,11 @@ import java.util.Objects;
  * Created by 林其望 on 2016/6/17.
  */
 public class Message {
+
     public int what;
     public String message;
     public Objects obj;
+
 
     public Message(int what) {
         this.what = what;

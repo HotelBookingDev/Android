@@ -15,13 +15,12 @@ import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.utils.StatusBarUtil;
 import sf.hotel.com.hotel_client.utils.TToast;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
-import sf.hotel.com.hotel_client.view.fragment.StackClickListener;
 
 /**
  * Created by FMT on 2016/6/3:15:51
  * EMAILE 1105896230@qq.com.
  */
-public abstract class BaseActivity extends SupportActivity implements StackClickListener {
+public abstract class BaseActivity extends SupportActivity {
 
     CompositeSubscription mCompositeSubscription;
 
@@ -60,7 +59,6 @@ public abstract class BaseActivity extends SupportActivity implements StackClick
         BaseFragment baseFragment = null;
         try {
             baseFragment = (BaseFragment) fragment.newInstance();
-            baseFragment.setStackClickListener(this);
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -96,13 +94,4 @@ public abstract class BaseActivity extends SupportActivity implements StackClick
         }
     }
 
-    @Override
-    public void showFragmentByClass(Class fragment) {
-        showFragment(fragment);
-    }
-
-    @Override
-    public void startActivityByClass(Class clazz) {
-        startActivity(clazz);
-    }
 }

@@ -15,8 +15,10 @@ import butterknife.OnClick;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.custom.CaptchaButton;
+import sf.hotel.com.hotel_client.view.event.RxBus;
+import sf.hotel.com.hotel_client.view.event.hotel.LoginMessage;
+import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
-import sf.hotel.com.hotel_client.view.fragment.StackClickListener;
 import sf.hotel.com.hotel_client.view.interfaceview.ICallBack;
 import sf.hotel.com.hotel_client.view.interfaceview.login.IRegisterView;
 import sf.hotel.com.hotel_client.view.presenter.login.IRegisterPresenter;
@@ -45,13 +47,6 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
     IRegisterPresenter mIRegisterPresenter;
 
 
-
-    StackClickListener mStackClickListener;
-
-
-    public void setClickListener(StackClickListener mStackClickListener) {
-        this.mStackClickListener = mStackClickListener;
-    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -130,7 +125,7 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
     }
 
     public void showLogin(){
-        mStackClickListener.onFragmentBackPressed();
+        RxBus.getDefault().post(MessageFactory.createLoginMessage(LoginMessage.FRAGMENT_BACK));
     }
 
     @Override
