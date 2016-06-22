@@ -11,4 +11,5 @@ public class AppUrl {
     public static final String SMS_URL = "/ems/member/regist/";
     public static final String INSTALLTION_BIND_URL = "installation/bind/";
     public static final String INSTALLTION_URL = "installation/";
+    public static final String HOTELS_URL = "/hotels";
 }

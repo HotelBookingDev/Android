@@ -1,67 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:background="@color/colorAccent">
+    android:background="@color/colorBlack"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+
+    >
+
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/custom_title_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp"
-        android:id="@+id/custom_title_toolbar"
-        >
+        android:gravity="center_vertical"
+        android:clickable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/titleTextStyleWhite"
+            android:clickable="false"
+            android:text="北京"
+            />
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@mipmap/ic_arrow_back_white_36pt"
-            android:id="@+id/custom_title_back"
+            android:clickable="false"
+            android:src="@mipmap/ic_expand_more_white_36dp"
             />
+    </LinearLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/titleTextStyleWhite"
+        />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:id="@+id/custom_title_search"
+        android:clickable="true"
+        >
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/custom_title_content"
-            android:text=""
-            android:textColor="@color/text_color"
+            style="@style/titleTextStyleWhite"
+            android:text="分类"
+            android:clickable="false"
             />
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@mipmap/ic_search_white_36dp"
-            />
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@mipmap/ic_map_white_36dp"/>
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@mipmap/ic_more_vert_white_36dp"/>
-
-    </LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@id/custom_title_toolbar"
-        android:padding="10dp"
-        android:background="@color/title_near_color"
-        >
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/custom_title_near"
-            style="@style/titleTextContentStyle"
+            android:clickable="false"
             />
     </LinearLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

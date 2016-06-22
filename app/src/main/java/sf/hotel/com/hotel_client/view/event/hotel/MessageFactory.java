@@ -1,5 +1,7 @@
 package sf.hotel.com.hotel_client.view.event.hotel;
 
+import java.util.Objects;
+
 /**
  * Created by 林其望 on 2016/6/17.
  */
@@ -11,5 +13,9 @@ public class MessageFactory {
 
     public static HotelMessage createHotelMessage(int what){
         return new HotelMessage(what);
+    }
+
+    public static HotelListMsg createHotelListMsg(int what, Object obj){
+        return new HotelListMsg(what, "", obj);
     }
 }

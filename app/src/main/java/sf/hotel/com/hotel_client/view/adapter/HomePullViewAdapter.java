@@ -5,10 +5,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
+import sf.hotel.com.data.entity.HotelBean;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 
 /**
  * @author MZ
@@ -16,6 +21,15 @@ import sf.hotel.com.hotel_client.R;
  * @date 16/6/13.
  */
 public class HomePullViewAdapter extends RecyclerViewBaseAdapter<HomePullViewAdapter.ViewHolder> {
+
+
+    List<HotelBean> mList = new ArrayList<>();
+
+    public void setList(List<HotelBean> hotelList){
+        mList = hotelList;
+        setCount(mList.size());
+        this.notifyDataSetChanged();
+    }
 
 
     public interface OnItemClickListener{
@@ -32,6 +46,7 @@ public class HomePullViewAdapter extends RecyclerViewBaseAdapter<HomePullViewAda
 
     public HomePullViewAdapter(Context context) {
         super(context);
+        setCount(mList.size());
     }
 
     @Override
@@ -43,8 +58,12 @@ public class HomePullViewAdapter extends RecyclerViewBaseAdapter<HomePullViewAda
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTitle.setText("hahha");
+        holder.mTitle.setText(mList.get(position).getName());
         holder.mPrice.setText("$ 1111");
+
+        holder.mTextContent.setText("12123123");
+
+        HotelImageLoad.loadImage(mContext, holder.mImage, mList.get(position).getHotelLogoImgs().get(0).getImg_url());
 
         if (mOnItemClickListener != null){
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -60,8 +79,7 @@ public class HomePullViewAdapter extends RecyclerViewBaseAdapter<HomePullViewAda
 
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView mImage;
-
-        TextView mTitle;
+        TextView mTitle, mTextContent;
         TextView mPrice;
 
         public ViewHolder(View itemView) {
@@ -69,6 +87,7 @@ public class HomePullViewAdapter extends RecyclerViewBaseAdapter<HomePullViewAda
             mImage = (ImageView) itemView.findViewById(R.id.item_hotels_img);
             mTitle = (TextView) itemView.findViewById(R.id.item_hotels_name);
             mPrice = (TextView) itemView.findViewById(R.id.item_hotels_price);
+            mTextContent = (TextView) itemView.findViewById(R.id.item_hotels_content);
         }
     }
 }

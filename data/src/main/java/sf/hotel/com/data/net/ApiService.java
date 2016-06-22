@@ -3,15 +3,19 @@ package sf.hotel.com.data.net;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import rx.Observable;
+import sf.hotel.com.data.entity.HotelResult;
 import sf.hotel.com.data.entity.HttpResult;
 import sf.hotel.com.data.entity.Intallation;
 import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.data.entity.NormalResult;
 import sf.hotel.com.data.entity.UserEntity;
 
+import static sf.hotel.com.data.net.HttpParam.CITY_ID;
 import static sf.hotel.com.data.net.HttpParam.DEVICE_TYPE;
 import static sf.hotel.com.data.net.HttpParam.INSTALLATION_CODE;
 import static sf.hotel.com.data.net.HttpParam.PASSWORD;
@@ -50,4 +54,8 @@ public interface ApiService {
     @POST(AppUrl.INSTALLTION_URL)
     @Headers({"Content-Type: application/json;charset=UTF-8"})
     Observable<HttpResult<NormalResult>> postIntallation(@Body Intallation mIntallation);
+
+
+    @GET(AppUrl.HOTELS_URL)
+    Observable<HttpResult<HotelResult>> callHotelsByCityId(@Query(CITY_ID) String cityId);
 }

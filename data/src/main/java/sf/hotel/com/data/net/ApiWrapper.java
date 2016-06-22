@@ -1,13 +1,11 @@
 package sf.hotel.com.data.net;
 
-import java.net.HttpURLConnection;
 
 import rx.Observable;
+import sf.hotel.com.data.entity.HotelResult;
 import sf.hotel.com.data.entity.Intallation;
 import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.data.entity.NormalResult;
-import sf.hotel.com.data.entity.UserEntity;
-
 /**
  * @author MZ
  * @email sanfenruxi1@163.com
@@ -75,4 +73,10 @@ public class ApiWrapper extends RetrofitHelper {
     public Observable<NormalResult> postIntallation(Intallation mIntallation) {
         return mService.postIntallation(mIntallation).compose(this.<NormalResult>applySchedulers());
     }
+
+
+    public Observable<HotelResult> callHotelsByCityId(String cityId) {
+        return mService.callHotelsByCityId(cityId).compose(this.<HotelResult>applySchedulers());
+    }
+
 }

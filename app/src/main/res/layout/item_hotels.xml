@@ -1,64 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:gravity="center_vertical">
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@mipmap/ic_launcher"
-
-        android:id="@+id/item_hotels_img"
-        />
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="106dp"
-        android:orientation="vertical"
-        style="@style/layoutStyle"
+        android:layout_height="200dp">
+
+        <ImageView
+            android:id="@+id/item_hotels_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/item_hotels_original_price"
+            style="@style/itemTextContentStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="10dp"
+            android:padding="5dp"
+            android:text="原价8888" />
+
+        <TextView
+            android:id="@+id/item_hotels_price"
+            style="@style/itemTextPriceStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_toLeftOf="@id/item_hotels_original_price"
+            android:padding="5dp"
+            android:text="$ 3888 " />
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/titleTextStyle"
+            android:text="hahahahahhahahhasdnais\ndfabsdcasdcnasndcibaisudbc"
+            android:id="@+id/item_hotels_content"
+            />
 
         <LinearLayout
+            style="@style/layoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center_vertical"
-            style="@style/layoutStyle"
+            android:orientation="horizontal"
+            android:layout_below="@id/item_hotels_content"
             >
+
             <TextView
+                android:id="@+id/item_hotels_name"
+                style="@style/titleTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/item_hotels_name"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                style="@style/titleTextStyle"
-                />
+                android:text="三亚 | 国际连锁"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
 
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@mipmap/ic_launcher" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/itemTextContentStyle"
+                android:text="积分1000"
                 />
         </LinearLayout>
 
-        <TextView
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            style="@style/itemTextContentStyleBlue"
-            android:text="4.4分"
-            />
+
+    </RelativeLayout>
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:id="@+id/item_hotels_price"
-            style="@style/itemTextPriceStyle"
-            android:text="$ 388起"
-            android:layout_gravity="right" />
-    </LinearLayout>
 
 </LinearLayout>

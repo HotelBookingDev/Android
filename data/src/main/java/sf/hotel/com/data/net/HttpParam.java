@@ -10,4 +10,5 @@ public class HttpParam {
     public static final String SMS_CODE = "smsCode";
     public static final String INSTALLATION_CODE = "installationId";
     public static final String DEVICE_TYPE = "deviceType";
+    public static final String CITY_ID = "cityId";
 }

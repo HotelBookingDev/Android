@@ -17,10 +17,14 @@ import com.lhh.ptrrv.library.footer.loadmore.BaseLoadMoreView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import rx.Subscription;
+import rx.functions.Action1;
+import sf.hotel.com.data.entity.HotelResult;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.adapter.HomePullViewAdapter;
 import sf.hotel.com.hotel_client.view.custom.DividerItemDecoration;
 import sf.hotel.com.hotel_client.view.event.RxBus;
+import sf.hotel.com.hotel_client.view.event.hotel.HotelListMsg;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IHotelsView;
@@ -54,7 +58,38 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
         mIHotelPresenter = new IHotelPresenter(this);
 
         initPullView();
+
+        onRxEvent();
+
         return view;
+    }
+
+    private void onRxEvent() {
+        Subscription subscribe = RxBus.getDefault()
+                .toObservable(HotelListMsg.class)
+                .subscribe(new Action1<HotelListMsg>() {
+                    @Override
+                    public void call(HotelListMsg hotelListMsg) {
+                        if (hotelListMsg != null){
+                            switch (hotelListMsg.what){
+                                case HotelListMsg.SUCCESS:
+                                    HotelResult hotelResult = (HotelResult) hotelListMsg.obj;
+                                    mPullAdapter.setList(hotelResult.getHotel());
+                                    break;
+                            }
+                        }
+
+
+
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                    }
+                });
+
+        mCompositeSubscription.add(subscribe);
+
     }
 
     private void initPullView() {
@@ -73,7 +108,6 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
                         mPullAdapter.setCount(mPullAdapter.getItemCount() + 20);
                         mPullAdapter.notifyDataSetChanged();
                         mPullView.onFinishLoading(true, false);
-
                         showLog("show");
                     }
                 });
@@ -89,7 +123,6 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
         //设置上拉加载
         BaseLoadMoreView loadMoreView = new BaseLoadMoreView(getBottomContext(), mPullView.getRecyclerView());
         mPullView.setLoadMoreFooter(loadMoreView);
-        mPullView.setLoadMoreCount(20);
 
         //刷新
         mPullView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -98,14 +131,9 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-
-                        mPullAdapter.setCount(20);
-                        mPullAdapter.notifyDataSetChanged();
-
+                        mIHotelPresenter.callHotelsByCityId("1");
                         mPullView.setOnRefreshComplete();
                         mPullView.onFinishLoading(true, false);
-
-                        showLog("hide");
                     }
                 });
             }
@@ -139,26 +167,17 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
 
         mPullAdapter.setOnItemClickLitener(new HomePullViewAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
+            public void onItemClick(View view,
+                                    int position) {
                 showDetail();
             }
 
             @Override
-            public void onItemLongClick(View view, int position) {
+            public void onItemLongClick(View view,
+                                        int position) {
 
             }
         });
-
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            mPullView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-                @Override
-                public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-
-                }
-            });
-        }
-        mPullAdapter.setCount(20);
 
         mPullView.setAdapter(mPullAdapter);
         mPullView.onFinishLoading(true, false);
@@ -187,6 +206,16 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
 
     @Override
     public void failed(int type, Throwable e) {
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mIHotelPresenter != null){
+            mIHotelPresenter.destroy();
+            mIHotelPresenter = null;
+        }
 
     }
 }
