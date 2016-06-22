@@ -58,6 +58,16 @@ public class LoginEntityImp implements ILoginEntity {
     }
 
     @Override
+    public String getAvatar(Context context) {
+        return PreferencesUtils.getAvatar(context);
+    }
+
+    @Override
+    public void saveAvatar(Context context, String url) {
+        PreferencesUtils.saveAvatar(context, url);
+    }
+
+    @Override
     public String getPhone(Context context) {
         return PreferencesUtils.getPhone(context);
     }

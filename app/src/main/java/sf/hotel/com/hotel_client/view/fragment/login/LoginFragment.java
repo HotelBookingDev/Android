@@ -15,7 +15,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.LoginMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
@@ -44,12 +43,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this, view);
         mILoginPresenter = new ILoginPresenter(this);
-        init();
         return view;
-    }
-
-    private void init() {
-        HotelImageLoad.loadImageCircle(getContext(), mIvAvatar, R.mipmap.head_loading_bj);
     }
 
     @Override
@@ -116,6 +110,11 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     @Override
     public void setEditPwd(String pwd) {
         mEditPw.setText(pwd);
+    }
+
+    @Override
+    public ImageView getAvatar() {
+        return mIvAvatar;
     }
 
     @Override

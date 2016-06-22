@@ -2,6 +2,7 @@ package sf.hotel.com.data.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 
 /**
  * Created by FMT on 2016/6/13:11:01
@@ -14,6 +15,8 @@ public class PreferencesUtils {
 
     public static final String PHONE = "phone";
     public static final String PASSWORD = "password";
+    //用户头像
+    public static final String AVATAR = "avatar";
 
     public static void saveInstallationId(Context context, String installationId) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
@@ -43,5 +46,17 @@ public class PreferencesUtils {
     public static String getPassWord(Context context) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
         return preferences.getString(PASSWORD, null);
+    }
+
+    public static void saveAvatar(Context context, String url) {
+        if (!TextUtils.isEmpty(url)) {
+            SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
+            preferences.edit().putString(AVATAR, url).apply();
+        }
+    }
+
+    public static String getAvatar(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
+        return preferences.getString(AVATAR, null);
     }
 }
