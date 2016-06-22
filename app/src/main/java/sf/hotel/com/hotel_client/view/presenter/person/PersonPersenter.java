@@ -14,7 +14,7 @@ public class PersonPersenter extends SuperPresenter {
         this.mIPersonView = mIPersonView;
     }
 
-    public void myMoney() {
+    public void clickMoney() {
         if (checkIsLogin()) {
 
         } else {
@@ -22,7 +22,7 @@ public class PersonPersenter extends SuperPresenter {
         }
     }
 
-    public void myOrder() {
+    public void clickOrder() {
         if (checkIsLogin()) {
 
         } else {
@@ -30,7 +30,7 @@ public class PersonPersenter extends SuperPresenter {
         }
     }
 
-    public void myEvaluate() {
+    public void clickEvaluate() {
         if (checkIsLogin()) {
 
         } else {

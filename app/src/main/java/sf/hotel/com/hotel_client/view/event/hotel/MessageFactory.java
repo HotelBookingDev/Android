@@ -9,7 +9,11 @@ public class MessageFactory {
         return new LoginMessage(type);
     }
 
-    public static HotelMessage createHotelMessage(int what){
+    public static PersonMessage createPersonMessage(int type) {
+        return new PersonMessage(type);
+    }
+
+    public static HotelMessage createHotelMessage(int what) {
         return new HotelMessage(what);
     }
 }

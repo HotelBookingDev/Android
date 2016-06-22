@@ -18,7 +18,6 @@
     <string name="my_order">我的订单</string>
     <string name="my_evaluate">我的评价</string>
 
-
     <string name="header_map">地图 ></string>
     <string name="header_periphery">周边:</string>
     <string name="header_traffic">交通</string>
@@ -27,7 +26,6 @@
     <string name="header_selling">详情/卖点</string>
 
     <string name="header_screen">筛选</string>
-
 
     <string name="title_collection">收藏</string>
     <string name="title_share">分享</string>
