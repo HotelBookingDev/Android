@@ -86,7 +86,9 @@ public class PersonFragment extends BaseFragment implements IPersonView {
 
     @Override
     public void showItemFragment(Class c) {
-        start(getFragmentByKey(FragConstant.USERINFO));
+        if (c == FragConstant.USERINFO) {
+            start(getFragmentByKey(FragConstant.USERINFO));
+        } else if (c == FragConstant.ORDER) start(getFragmentByKey(FragConstant.ORDER));
     }
 
     @Override

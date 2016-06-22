@@ -17,6 +17,8 @@ public class PreferencesUtils {
     public static final String PASSWORD = "password";
     //用户头像
     public static final String AVATAR = "avatar";
+    //token
+    public static final String TOKEN = "token";
 
     public static void saveInstallationId(Context context, String installationId) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
@@ -58,5 +60,17 @@ public class PreferencesUtils {
     public static String getAvatar(Context context) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
         return preferences.getString(AVATAR, null);
+    }
+
+    public static void saveToken(Context context, String token) {
+        if (!TextUtils.isEmpty(token)) {
+            SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
+            preferences.edit().putString(TOKEN, token).apply();
+        }
+    }
+
+    public static String getToken(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
+        return preferences.getString(TOKEN, null);
     }
 }

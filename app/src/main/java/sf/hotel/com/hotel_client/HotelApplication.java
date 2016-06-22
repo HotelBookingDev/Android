@@ -10,6 +10,7 @@ import com.avos.avoscloud.SaveCallback;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import rx.Subscriber;
+import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.entity.Intallation;
 import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.net.ApiWrapper;
@@ -28,6 +29,8 @@ public class HotelApplication extends Application {
     public void onCreate() {
         super.onCreate();
         context = this.getApplicationContext();
+        //让data可以获取到context
+        EntityContext.setContext(context);
         initCloud();
         //初始化bugly
         initBuglyStatus();

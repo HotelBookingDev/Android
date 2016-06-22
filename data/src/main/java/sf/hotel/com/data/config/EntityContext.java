@@ -1,5 +1,7 @@
 package sf.hotel.com.data.config;
 
+import android.content.Context;
+
 import sf.hotel.com.data.entity.UserEntity;
 
 /**
@@ -7,6 +9,16 @@ import sf.hotel.com.data.entity.UserEntity;
  */
 public class EntityContext {
     private static EntityContext instance;
+
+    private static Context context;
+
+    public static Context getContext() {
+        return context;
+    }
+
+    public static void setContext(Context context) {
+        EntityContext.context = context;
+    }
 
     private UserEntity mCurrentUser;
 
@@ -24,5 +36,4 @@ public class EntityContext {
         }
         return instance;
     }
-
 }

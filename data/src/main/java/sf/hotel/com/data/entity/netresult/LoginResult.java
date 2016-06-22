@@ -13,6 +13,7 @@ public class LoginResult {
     @SerializedName("UserEntity")
     public UserEntity userEntity;
 
+
     public UserEntity getUserEntity() {
         return userEntity;
     }
