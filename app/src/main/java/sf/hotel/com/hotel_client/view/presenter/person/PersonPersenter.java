@@ -51,7 +51,7 @@ public class PersonPersenter extends SuperPresenter {
 
     public void clickPerson() {
         if (checkIsLogin()) {
-            mIPersonView.showItemFragment(FragConstant.ORDER);
+            mIPersonView.showItemFragment(FragConstant.USERINFO);
         } else {
             mIPersonView.showLoginFragment();
         }

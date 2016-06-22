@@ -68,7 +68,6 @@ public class UserInfoPersenter extends SuperPresenter {
     }
 
     private void upFile(File file) {
-        LogUtils.d(TAG, file.length() + "");
         Subscription subscribe = mIUserInfoEntity.getToken().subscribe(tokenResult -> {
             QNUpFileUtils.upFileByQN(file, tokenResult);
         });

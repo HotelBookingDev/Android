@@ -10,10 +10,14 @@ public class TokenResult {
         return token;
     }
 
-    public void setToken(String token) {
-        this.token = token;
-    }
-
     @SerializedName("token")
     private String token;
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    @SerializedName("imageUrl")
+
+    private String imageUrl;
 }

@@ -79,7 +79,7 @@ public class ApiWrapper extends RetrofitHelper {
         return mService.callHotelsByCityId(cityId).compose(this.<HotelResult>applySchedulers());
     }
 
-    public Observable<TokenResult> getTokenReuslt() {
-        return mService.getTokenResult().compose(this.<TokenResult>applySchedulers());
+    public Observable<TokenResult> getTokenReuslt(long id) {
+        return mService.getTokenResult(id).compose(this.<TokenResult>applySchedulers());
     }
 }

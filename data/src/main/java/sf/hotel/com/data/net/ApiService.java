@@ -59,6 +59,6 @@ public interface ApiService {
     Observable<HttpResult<HotelResult>> callHotelsByCityId(@Query(CITY_ID) String cityId);
 
     //获取TOKEN
-    @POST(AppUrl.TOKEN_URL)
-    Observable<HttpResult<TokenResult>> getTokenResult();
+    @GET(AppUrl.TOKEN_URL)
+    Observable<HttpResult<TokenResult>> getTokenResult(@Query(HttpParam.USER_ID) long id);
 }

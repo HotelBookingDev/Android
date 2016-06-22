@@ -1,5 +1,7 @@
 package sf.hotel.com.data.interfaceeneity;
 
+import java.io.StringReader;
+
 import rx.Observable;
 import sf.hotel.com.data.entity.netresult.TokenResult;
 
