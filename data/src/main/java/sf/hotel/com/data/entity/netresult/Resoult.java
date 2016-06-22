@@ -1,4 +1,4 @@
-package sf.hotel.com.data.entity;
+package sf.hotel.com.data.entity.netresult;
 
 /**
  * Created by FMT on 2016/6/12:17:14

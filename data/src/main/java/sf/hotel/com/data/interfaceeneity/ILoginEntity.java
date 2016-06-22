@@ -3,8 +3,8 @@ package sf.hotel.com.data.interfaceeneity;
 import android.content.Context;
 
 import rx.Observable;
-import sf.hotel.com.data.entity.LoginResult;
-import sf.hotel.com.data.entity.NormalResult;
+import sf.hotel.com.data.entity.netresult.LoginResult;
+import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.entity.UserEntity;
 
 /**

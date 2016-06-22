@@ -7,17 +7,15 @@ import rx.Observable;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.config.EntityContext;
-import sf.hotel.com.data.entity.LoginResult;
-import sf.hotel.com.data.entity.NormalResult;
+import sf.hotel.com.data.entity.netresult.LoginResult;
+import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.interfaceeneity.ILoginEntity;
 import sf.hotel.com.data.interfaceeneity.LoginEntityImp;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.Exception.Code;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
-import sf.hotel.com.data.utils.PreferencesUtils;
 import sf.hotel.com.data.utils.StringUtils;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 import sf.hotel.com.hotel_client.view.interfaceview.login.ILoginView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 
@@ -44,15 +42,7 @@ public class ILoginPresenter extends SuperPresenter {
             mILoginView.setEditPhone(mILoginEntity.getPhone(mILoginView.getBottomContext()));
             mILoginView.setEditPwd(mILoginEntity.getPwd(mILoginView.getBottomContext()));
         }
-        //加载头像
-        String avatr = PreferencesUtils.getAvatar(mILoginView.getBottomContext());
-        if (TextUtils.isEmpty(avatr)) {
-            HotelImageLoad.loadImageCircle(mILoginView.getBottomContext(), mILoginView.getAvatar(),
-                    R.mipmap.head_loading_bj);
-        } else {
-            HotelImageLoad.loadImageCircle(mILoginView.getBottomContext(), mILoginView.getAvatar(),
-                    avatr);
-        }
+        initAvater(mILoginView.getBottomContext(), mILoginView.getAvatar());
     }
 
     @Override

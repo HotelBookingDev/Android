@@ -1,6 +1,8 @@
-package sf.hotel.com.data.entity;
+package sf.hotel.com.data.entity.netresult;
 
 import com.google.gson.annotations.SerializedName;
+
+import sf.hotel.com.data.entity.UserEntity;
 
 /**
  * @author MZ

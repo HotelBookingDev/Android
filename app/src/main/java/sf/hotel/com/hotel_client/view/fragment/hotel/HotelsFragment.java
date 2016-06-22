@@ -1,7 +1,6 @@
 package sf.hotel.com.hotel_client.view.fragment.hotel;
 
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -19,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Subscription;
 import rx.functions.Action1;
-import sf.hotel.com.data.entity.HotelResult;
+import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.adapter.HomePullViewAdapter;
 import sf.hotel.com.hotel_client.view.custom.DividerItemDecoration;

@@ -1,7 +1,7 @@
 package sf.hotel.com.data.interfaceeneity;
 
 import rx.Observable;
-import sf.hotel.com.data.entity.HotelResult;
+import sf.hotel.com.data.entity.netresult.HotelResult;
 
 /**
  * @author MZ

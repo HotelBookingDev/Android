@@ -2,7 +2,7 @@ package sf.hotel.com.hotel_client.view.presenter.login;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
-import sf.hotel.com.data.entity.NormalResult;
+import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.interfaceeneity.IRegisterEntity;
 import sf.hotel.com.data.interfaceeneity.RegisterEntityImp;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;

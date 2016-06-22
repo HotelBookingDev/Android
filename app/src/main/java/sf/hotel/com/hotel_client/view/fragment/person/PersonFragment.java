@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import me.yokeyword.fragmentation.SupportFragment;
 import rx.Subscription;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.FragConstant;
@@ -70,6 +69,11 @@ public class PersonFragment extends BaseFragment implements IPersonView {
         mPersonPersenter.clickOrder();
     }
 
+    @OnClick(R.id.piv_person)
+    public void clickPerson() {
+        mPersonPersenter.clickPerson();
+    }
+
     @OnClick(R.id.piv_evaluate)
     public void clickEvaluate() {
         mPersonPersenter.clickEvaluate();
@@ -82,10 +86,7 @@ public class PersonFragment extends BaseFragment implements IPersonView {
 
     @Override
     public void showItemFragment(Class c) {
-        if (c == FragConstant.ORDER) {
-            ((SupportFragment) getParentFragment()).start(OrderFragment.newInstance());
-        }
-//            start(OrderFragment.newInstance());
+        start(getFragmentByKey(FragConstant.USERINFO));
     }
 
     @Override

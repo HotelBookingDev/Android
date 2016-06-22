@@ -8,6 +8,7 @@ import sf.hotel.com.hotel_client.view.fragment.login.LoginFragment;
 import sf.hotel.com.hotel_client.view.fragment.login.RegisterFragment;
 import sf.hotel.com.hotel_client.view.fragment.person.OrderFragment;
 import sf.hotel.com.hotel_client.view.fragment.person.PersonFragment;
+import sf.hotel.com.hotel_client.view.fragment.person.UserInfoFragment;
 
 /**
  * @author MZ
@@ -26,4 +27,5 @@ public final class FragConstant {
     public final static Class PERSON = PersonFragment.class;
 
     public final static Class ORDER = OrderFragment.class;
+    public final static Class USERINFO = UserInfoFragment.class;
 }

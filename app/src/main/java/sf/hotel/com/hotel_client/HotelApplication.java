@@ -11,7 +11,7 @@ import com.tencent.bugly.crashreport.CrashReport;
 
 import rx.Subscriber;
 import sf.hotel.com.data.entity.Intallation;
-import sf.hotel.com.data.entity.NormalResult;
+import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.net.ApiWrapper;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.Exception.Code;

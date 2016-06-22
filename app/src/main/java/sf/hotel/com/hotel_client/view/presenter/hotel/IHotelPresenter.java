@@ -1,14 +1,12 @@
 package sf.hotel.com.hotel_client.view.presenter.hotel;
 
-import rx.Observable;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
-import sf.hotel.com.data.entity.HotelResult;
+import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.data.interfaceeneity.HotelsEntityImp;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelListMsg;
-import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IHotelsView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;

@@ -19,7 +19,6 @@ public class LoggingInterceptor implements Interceptor {
         Response response = chain.proceed(request);
         okhttp3.MediaType mediaType = response.body().contentType();
         String content = response.body().string();
-        LogUtils.d("content", content);
         return response.newBuilder().body(okhttp3.ResponseBody.create(mediaType, content)).build();
     }
 }

@@ -10,7 +10,7 @@ import sf.hotel.com.data.utils.LoadingDialogUtils;
  * @email sanfenruxi1@163.com
  * @date 16/6/6.
  */
-public abstract class SimpleSubscriber<T> extends Subscriber<T> {
+public class SimpleSubscriber<T> extends Subscriber<T> {
 
     Context context;
 

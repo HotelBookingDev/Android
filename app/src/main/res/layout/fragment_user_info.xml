@@ -1,0 +1,16 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="80.0dip"
+            android:layout_height="80.0dip"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="90.0dip" />
+    </RelativeLayout>
+</FrameLayout>

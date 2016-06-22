@@ -11,7 +11,7 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
-import sf.hotel.com.data.entity.HttpResult;
+import sf.hotel.com.data.entity.netresult.HttpResult;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.Interceptor.LoggingInterceptor;
 

@@ -8,12 +8,12 @@ import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 import rx.Observable;
-import sf.hotel.com.data.entity.HotelResult;
-import sf.hotel.com.data.entity.HttpResult;
 import sf.hotel.com.data.entity.Intallation;
-import sf.hotel.com.data.entity.LoginResult;
-import sf.hotel.com.data.entity.NormalResult;
-import sf.hotel.com.data.entity.UserEntity;
+import sf.hotel.com.data.entity.netresult.HotelResult;
+import sf.hotel.com.data.entity.netresult.HttpResult;
+import sf.hotel.com.data.entity.netresult.LoginResult;
+import sf.hotel.com.data.entity.netresult.NormalResult;
+import sf.hotel.com.data.entity.netresult.TokenResult;
 
 import static sf.hotel.com.data.net.HttpParam.CITY_ID;
 import static sf.hotel.com.data.net.HttpParam.DEVICE_TYPE;
@@ -32,7 +32,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(AppUrl.LOGIN_URL)
     Observable<HttpResult<LoginResult>> callLogin(@Field(PHONE_NUMBER) String phone,
-                                                  @Field(PASSWORD) String pwd);
+            @Field(PASSWORD) String pwd);
 
     @FormUrlEncoded
     @POST(AppUrl.REGISTER_URL)
@@ -55,7 +55,10 @@ public interface ApiService {
     @Headers({"Content-Type: application/json;charset=UTF-8"})
     Observable<HttpResult<NormalResult>> postIntallation(@Body Intallation mIntallation);
 
-
     @GET(AppUrl.HOTELS_URL)
     Observable<HttpResult<HotelResult>> callHotelsByCityId(@Query(CITY_ID) String cityId);
+
+    //获取TOKEN
+    @POST(AppUrl.TOKEN_URL)
+    Observable<HttpResult<TokenResult>> getTokenResult();
 }

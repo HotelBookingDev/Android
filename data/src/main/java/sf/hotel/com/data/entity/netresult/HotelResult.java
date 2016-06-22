@@ -1,6 +1,8 @@
-package sf.hotel.com.data.entity;
+package sf.hotel.com.data.entity.netresult;
 
 import java.util.List;
+
+import sf.hotel.com.data.entity.HotelBean;
 
 /**
  * @author MZ

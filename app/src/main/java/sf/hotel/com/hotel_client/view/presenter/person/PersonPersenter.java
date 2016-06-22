@@ -48,4 +48,12 @@ public class PersonPersenter extends SuperPresenter {
     public void destroy() {
 
     }
+
+    public void clickPerson() {
+        if (checkIsLogin()) {
+            mIPersonView.showItemFragment(FragConstant.ORDER);
+        } else {
+            mIPersonView.showLoginFragment();
+        }
+    }
 }

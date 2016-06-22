@@ -1,4 +1,4 @@
-package sf.hotel.com.data.entity;
+package sf.hotel.com.data.entity.netresult;
 
 /**
  * @author MZ

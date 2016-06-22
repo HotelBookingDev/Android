@@ -35,5 +35,6 @@
     <string name="edittext_password">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_</string>
     <string name="edittext_digits">1234567890</string>
     <string name="back">返回</string>
+    <string name="my_info">我的资料</string>
 
 </resources>

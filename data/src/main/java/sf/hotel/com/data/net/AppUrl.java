@@ -12,4 +12,6 @@ public class AppUrl {
     public static final String INSTALLTION_BIND_URL = "installation/bind/";
     public static final String INSTALLTION_URL = "installation/";
     public static final String HOTELS_URL = "/hotels";
+
+    public static final String TOKEN_URL = "/avatar/token";
 }
