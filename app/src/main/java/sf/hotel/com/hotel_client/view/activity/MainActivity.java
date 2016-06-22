@@ -17,7 +17,7 @@ import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.LoginMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.Message;
 import sf.hotel.com.hotel_client.view.fragment.hotel.HotelsFragment;
-import sf.hotel.com.hotel_client.view.fragment.person.PersonFragment;
+import sf.hotel.com.hotel_client.view.fragment.person.PersonGroupFragment;
 
 public class MainActivity extends BaseActivity {
     @BindView(R.id.home_tab)
@@ -42,7 +42,7 @@ public class MainActivity extends BaseActivity {
 
     private void initFragmets() {
         mFragments[FIRST] = HotelsFragment.newInstance();
-        mFragments[SECOND] = PersonFragment.newInstance();
+        mFragments[SECOND] = PersonGroupFragment.newInstance();
     }
 
     private void RxEvent() {

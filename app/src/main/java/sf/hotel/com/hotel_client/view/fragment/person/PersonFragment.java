@@ -81,7 +81,7 @@ public class PersonFragment extends BaseFragment implements IPersonView {
 
     @Override
     public void showItemFragment(Class c) {
-
+        if (c == FragConstant.ORDER) start(OrderFragment.newInstance());
     }
 
     @Override

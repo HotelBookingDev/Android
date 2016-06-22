@@ -8,13 +8,13 @@ import android.view.ViewGroup;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 
-public class OrderFragment extends BaseFragment {
+public class PersonGroupFragment extends BaseFragment {
 
-    public static OrderFragment newInstance() {
+    public static PersonGroupFragment newInstance() {
 
         Bundle args = new Bundle();
 
-        OrderFragment fragment = new OrderFragment();
+        PersonGroupFragment fragment = new PersonGroupFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -23,6 +23,14 @@ public class OrderFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_order, container, false);
+        View view = inflater.inflate(R.layout.fragment_person_group, container, false);
+        initView(savedInstanceState);
+        return view;
+    }
+
+    private void initView(Bundle savedInstanceState) {
+        if (savedInstanceState == null) {
+            loadRootFragment(R.id.fl_person_group, PersonFragment.newInstance());
+        }
     }
 }
