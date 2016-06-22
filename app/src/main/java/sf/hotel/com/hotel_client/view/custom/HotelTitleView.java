@@ -62,7 +62,7 @@ public class HotelTitleView extends RelativeLayout {
         if (mLeftBtnIcon != 0) {
             addLeftButton(mLeftBtnIcon);
         } else if (!TextUtils.isEmpty(mLeftBtnText)) {
-            addLeftButton(mLeftBtnText);
+            addLeftView(mLeftBtnText);
         }
 
         if (mRightBtnIcon != 0) {
@@ -77,7 +77,7 @@ public class HotelTitleView extends RelativeLayout {
         if (!isInEditMode()) {
             mTvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX,
                     getResources().getDimension(R.dimen.title_text_size));
-            mTvTitle.setTextColor(getResources().getColor(R.color.white));
+            mTvTitle.setTextColor(getResources().getColor(R.color.black));
         }
         mTvTitle.setLayoutParams(titleParams);
         mTvTitle.setText(mTitle);
@@ -93,15 +93,14 @@ public class HotelTitleView extends RelativeLayout {
         }
     }
 
-    public void addLeftButton(String text) {
+    public void addLeftView(String text) {
         if (mBtnLeft == null) {
-            mBtnLeft = new Button(getContext());
+            mBtnLeft = new TextView(getContext());
             mBtnLeft.setPadding(20, 0, 0, 0);
             mBtnLeft.setLayoutParams(mLeftBtnParams);
-            mBtnLeft.setBackgroundColor(getResources().getColor(R.color.white));
-            ((Button) mBtnLeft).setText(text);
-            ((Button) mBtnLeft).setTextSize(17);
-            ((Button) mBtnLeft).setTextColor(getResources().getColorStateList(R.color.white));
+            ((TextView) mBtnLeft).setText(text);
+            ((TextView) mBtnLeft).setTextSize(17);
+            ((TextView) mBtnLeft).setTextColor(getResources().getColorStateList(R.color.black));
             addView(mBtnLeft);
         } else {
             ((TextView) mBtnLeft).setText(text);
