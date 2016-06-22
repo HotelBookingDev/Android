@@ -1,6 +1,7 @@
 package sf.hotel.com.hotel_client.view.interfaceview.login;
 
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
 
@@ -34,4 +35,6 @@ public interface ILoginView extends BaseView {
     void setEditPhone(String phone);
 
     void setEditPwd(String pwd);
+
+    ImageView getAvatar();
 }

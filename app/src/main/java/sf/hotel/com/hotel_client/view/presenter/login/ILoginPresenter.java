@@ -14,8 +14,10 @@ import sf.hotel.com.data.interfaceeneity.LoginEntityImp;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.Exception.Code;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
+import sf.hotel.com.data.utils.PreferencesUtils;
 import sf.hotel.com.data.utils.StringUtils;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 import sf.hotel.com.hotel_client.view.interfaceview.login.ILoginView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 
@@ -42,9 +44,16 @@ public class ILoginPresenter extends SuperPresenter {
             mILoginView.setEditPhone(mILoginEntity.getPhone(mILoginView.getBottomContext()));
             mILoginView.setEditPwd(mILoginEntity.getPwd(mILoginView.getBottomContext()));
         }
+        //加载头像
+        String avatr = PreferencesUtils.getAvatar(mILoginView.getBottomContext());
+        if (TextUtils.isEmpty(avatr)) {
+            HotelImageLoad.loadImageCircle(mILoginView.getBottomContext(), mILoginView.getAvatar(),
+                    R.mipmap.head_loading_bj);
+        } else {
+            HotelImageLoad.loadImageCircle(mILoginView.getBottomContext(), mILoginView.getAvatar(),
+                    avatr);
+        }
     }
-
-    ;
 
     @Override
     public void resume() {
@@ -97,15 +106,16 @@ public class ILoginPresenter extends SuperPresenter {
                         super.onNext(loginResult);
                         postIntallationId();
                         //保存用户信息
-                        Observable.just(loginResult).doOnNext(loginResult1 -> saveUserInfo
-                                (mILoginView.getUserName(),
-                                        pwd)).doOnNext(loginResult1 -> mILoginEntity.upDateUserInfo
-                                (mILoginView
-                                                .getBottomContext(),
-                                        loginResult1.getUserEntity())).doOnNext(loginResult1 ->
-                                EntityContext.getInstance()
-                                        .setmCurrentUser(loginResult1.getUserEntity())).subscribe
-                                (loginResult1 -> {
+                        Observable.just(loginResult)
+                                .doOnNext(
+                                        loginResult1 -> saveUserInfo(mILoginView.getUserName(), pwd,
+                                                loginResult.getUserEntity().getAvatar()))
+                                .doOnNext(loginResult1 -> mILoginEntity.upDateUserInfo(
+                                        mILoginView.getBottomContext(),
+                                        loginResult1.getUserEntity()))
+                                .doOnNext(loginResult1 -> EntityContext.getInstance()
+                                        .setmCurrentUser(loginResult1.getUserEntity()))
+                                .subscribe(loginResult1 -> {
                                     mILoginView.startHomeActivity();
                                 });
                     }
@@ -147,9 +157,10 @@ public class ILoginPresenter extends SuperPresenter {
         mCompositeSubscription.add(subscribe);
     }
 
-    private void saveUserInfo(String phone, String pwd) {
+    private void saveUserInfo(String phone, String pwd, String avatar) {
         mILoginEntity.savePhone(mILoginView.getBottomContext(), phone);
         mILoginEntity.savePwd(mILoginView.getBottomContext(), pwd);
+        mILoginEntity.saveAvatar(mILoginView.getBottomContext(), avatar);
     }
 
     String getErrorString(int id, Context context) {

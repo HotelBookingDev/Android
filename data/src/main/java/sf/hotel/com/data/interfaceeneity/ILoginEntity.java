@@ -21,6 +21,10 @@ public interface ILoginEntity {
 
     void savePwd(Context context, String pwd);
 
+    String getAvatar(Context context);
+
+    void saveAvatar(Context context, String url);
+
     String getPhone(Context context);
 
     String getPwd(Context context);

@@ -22,13 +22,22 @@ public class UserEntity {
     @DatabaseField(columnName = "phoneNumber")
     private long phoneNumber;
 
-
     @DatabaseField(columnName = "sex")
     private int sex;
 
     @SerializedName("create_at")
     private String createTime;
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    @SerializedName("avatar")
+    private String avatar;
 
     public long getUserId() {
         return userId;
