@@ -1,6 +1,7 @@
 package sf.hotel.com.hotel_client.view.presenter.person;
 
 import sf.hotel.com.data.config.EntityContext;
+import sf.hotel.com.hotel_client.view.activity.FragConstant;
 import sf.hotel.com.hotel_client.view.interfaceview.person.IPersonView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 
@@ -14,7 +15,7 @@ public class PersonPersenter extends SuperPresenter {
         this.mIPersonView = mIPersonView;
     }
 
-    public void myMoney() {
+    public void clickMoney() {
         if (checkIsLogin()) {
 
         } else {
@@ -22,15 +23,15 @@ public class PersonPersenter extends SuperPresenter {
         }
     }
 
-    public void myOrder() {
+    public void clickOrder() {
         if (checkIsLogin()) {
-
+            mIPersonView.showItemFragment(FragConstant.ORDER);
         } else {
             mIPersonView.showLoginFragment();
         }
     }
 
-    public void myEvaluate() {
+    public void clickEvaluate() {
         if (checkIsLogin()) {
 
         } else {

@@ -30,17 +30,24 @@ import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IHotelsView;
 import sf.hotel.com.hotel_client.view.presenter.hotel.IHotelPresenter;
 
-
 /**
  * @author MZ
  * @email sanfenruxi1@163.com
  * @date 16/6/13.
  */
-public class HotelsFragment extends BaseFragment implements IHotelsView{
+public class HotelsFragment extends BaseFragment implements IHotelsView {
 
     @BindView(R.id.fragment_hotels_list)
     PullToRefreshRecyclerView mPullView;
 
+    public static HotelsFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        HotelsFragment fragment = new HotelsFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     HomePullViewAdapter mPullAdapter;
 
@@ -50,10 +57,11 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_hotels, container, false);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
 
         mIHotelPresenter = new IHotelPresenter(this);
 
@@ -95,10 +103,9 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
     private void initPullView() {
         mPullView.setSwipeEnable(true);
 
-
         //加载更多
         mPullView.setLayoutManager(new LinearLayoutManager(getBottomContext()));
-        mPullView.setPagingableListener(new PullToRefreshRecyclerView.PagingableListener(){
+        mPullView.setPagingableListener(new PullToRefreshRecyclerView.PagingableListener() {
             @Override
             public void onLoadMoreItems() {
                 mIHotelPresenter.loadMoreHotel();
@@ -114,14 +121,14 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
             }
         });
 
-
         //设置间隔线
-        mPullView.getRecyclerView().addItemDecoration(new DividerItemDecoration(getBottomContext(),
-                DividerItemDecoration.VERTICAL_LIST));
-
+        mPullView.getRecyclerView()
+                .addItemDecoration(new DividerItemDecoration(getBottomContext(),
+                        DividerItemDecoration.VERTICAL_LIST));
 
         //设置上拉加载
-        BaseLoadMoreView loadMoreView = new BaseLoadMoreView(getBottomContext(), mPullView.getRecyclerView());
+        BaseLoadMoreView loadMoreView = new BaseLoadMoreView(getBottomContext(),
+                mPullView.getRecyclerView());
         mPullView.setLoadMoreFooter(loadMoreView);
 
         //刷新
@@ -150,17 +157,17 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
                 if (dy > 10) {
                     RxBus.getDefault().post(new HotelMessage(HotelMessage.HIDE_BOTTOM_VIEW));
                 }
-                if (dy < -10){
+                if (dy < -10) {
                     RxBus.getDefault().post(new HotelMessage(HotelMessage.SHOW_BOTTOM_VIEW));
                 }
             }
 
             @Override
-            public void onScroll(RecyclerView recyclerView, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            public void onScroll(RecyclerView recyclerView, int firstVisibleItem,
+                    int visibleItemCount, int totalItemCount) {
 
             }
         });
-
 
         //设置适配器
         mPullAdapter = new HomePullViewAdapter(getBottomContext());
@@ -178,13 +185,11 @@ public class HotelsFragment extends BaseFragment implements IHotelsView{
 
             }
         });
-
         mPullView.setAdapter(mPullAdapter);
         mPullView.onFinishLoading(true, false);
     }
 
-
-    public void showDetail(){
+    public void showDetail() {
         RxBus.getDefault().post(new HotelMessage(HotelMessage.HIDE_BOTTOM_VIEW));
         RxBus.getDefault().post(new HotelMessage(HotelMessage.SHOW_DETAIL_FRAGMENT));
     }

@@ -90,8 +90,9 @@ public abstract class BaseActivity extends SupportActivity {
             mFragment = getFragmentByKey(fragment);
             start(mFragment);
         } else {
-            start(mFragment);
+
+            popTo(fragment, true);
+//            start(mFragment);
         }
     }
-
 }

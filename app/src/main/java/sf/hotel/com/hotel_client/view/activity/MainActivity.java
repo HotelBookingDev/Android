@@ -10,32 +10,45 @@ import me.majiajie.pagerbottomtabstrip.Controller;
 import me.majiajie.pagerbottomtabstrip.PagerBottomTabLayout;
 import me.majiajie.pagerbottomtabstrip.TabLayoutMode;
 import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectListener;
+import me.yokeyword.fragmentation.SupportFragment;
 import rx.Subscription;
-import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.LoginMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.Message;
+import sf.hotel.com.hotel_client.view.fragment.hotel.HotelsFragment;
+import sf.hotel.com.hotel_client.view.fragment.person.PersonGroupFragment;
 
 public class MainActivity extends BaseActivity {
     @BindView(R.id.home_tab)
     PagerBottomTabLayout mPagerBottomTabLayout;
+    public static final int FIRST = 0;
+    public static final int SECOND = 1;
+    private SupportFragment[] mFragments = new SupportFragment[4];
+
+    //当前
+    private int currentIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        initFragmets();
         initBottom();
         initView();
         RxEvent();
+    }
+
+    private void initFragmets() {
+        mFragments[FIRST] = HotelsFragment.newInstance();
+        mFragments[SECOND] = PersonGroupFragment.newInstance();
     }
 
     private void RxEvent() {
         Subscription subscribe = RxBus.getDefault()
                 .toObservable(Message.class)
                 .subscribe(mMessage -> {
-                    LogUtils.d(TAG, "RxEvent");
                     if (mMessage instanceof LoginMessage) {
                         switch (mMessage.what) {
                             case LoginMessage.SHOW_LOGIN:
@@ -50,29 +63,26 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initView() {
-        loadRootFragment(R.id.fl_main_content, getFragmentByKey(FragConstant.HOTELS));
+        loadMultipleRootFragment(R.id.fl_main_content, FIRST, mFragments[FIRST],
+                mFragments[SECOND]);
     }
 
     //可能这会是主界面
     private void initBottom() {
         Controller build = mPagerBottomTabLayout.builder()
                 .addTabItem(android.R.drawable.ic_menu_camera, "相机", Color.BLUE)
-                .addTabItem(android.R.drawable.ic_menu_compass, "位置", Color.BLUE)
-                .addTabItem(android.R.drawable.ic_menu_search, "搜索", Color.BLUE)
                 .addTabItem(android.R.drawable.ic_menu_help, "个人", Color.BLUE)
                 .setMode(TabLayoutMode.HIDE_TEXT)
                 .build();
         build.addTabItemClickListener(new TabItemListene());
     }
 
-
     class TabItemListene implements OnTabItemSelectListener {
 
         @Override
         public void onSelected(int index, Object tag) {
-            if (index == 3) {
-                start(getFragmentByKey(FragConstant.PERSON));
-            }
+            showHideFragment(mFragments[index], mFragments[currentIndex]);
+            currentIndex = index;
         }
 
         //列表也可以回到自定页或者刷新数据
@@ -80,5 +90,10 @@ public class MainActivity extends BaseActivity {
         public void onRepeatClick(int index, Object tag) {
 
         }
+    }
+
+    @Override
+    public void onBackPressedSupport() {
+        super.onBackPressedSupport();
     }
 }
