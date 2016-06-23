@@ -17,6 +17,7 @@ import sf.hotel.com.data.net.ApiWrapper;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.Exception.Code;
 import sf.hotel.com.data.utils.PreferencesUtils;
+import sf.hotel.com.hotel_client.utils.locationoptions.LocationService;
 
 /**
  * Created by FMT on 2016/6/3:19:04
@@ -24,6 +25,7 @@ import sf.hotel.com.data.utils.PreferencesUtils;
  */
 public class HotelApplication extends Application {
     public static Context context;
+    public LocationService locationService;
 
     @Override
     public void onCreate() {
@@ -34,6 +36,9 @@ public class HotelApplication extends Application {
         initCloud();
         //初始化bugly
         initBuglyStatus();
+
+        //初始化定位
+        locationService = new LocationService(getApplicationContext());
     }
 
     private void initCloud() {

@@ -1,6 +1,9 @@
 package sf.hotel.com.hotel_client.view.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.LruCache;
@@ -94,5 +97,18 @@ public abstract class BaseActivity extends SupportActivity {
             popTo(fragment, true);
 //            start(mFragment);
         }
+    }
+
+    /**
+     * 检测网络连接
+     */
+    public boolean checkConnection(Context context) {
+        ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(
+                Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        boolean isWifiConn = networkInfo.isConnected();
+        networkInfo = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        boolean isMobileConn = networkInfo.isConnected();
+        return isWifiConn || isMobileConn;
     }
 }

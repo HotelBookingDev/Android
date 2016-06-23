@@ -20,6 +20,9 @@ public class PreferencesUtils {
     //token
     public static final String TOKEN = "token";
 
+    //当前城市和百度地图对于的citycode
+    public static final String CITYCODE = "citycode";
+
     public static void saveInstallationId(Context context, String installationId) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
         preferences.edit().putString(INSTALLATIONID, installationId).apply();
@@ -72,5 +75,15 @@ public class PreferencesUtils {
     public static String getToken(Context context) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
         return preferences.getString(TOKEN, null);
+    }
+
+    public static void saveCityCode(Context context, String code) {
+        SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
+        preferences.edit().putString(CITYCODE, code).apply();
+    }
+
+    public static String getCitycode(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
+        return preferences.getString(CITYCODE,null);
     }
 }
