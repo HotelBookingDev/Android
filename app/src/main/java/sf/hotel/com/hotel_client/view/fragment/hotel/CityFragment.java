@@ -8,9 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import rx.functions.Action1;
 import sf.hotel.com.data.entity.ProcincesResult;
 import sf.hotel.com.hotel_client.R;
@@ -18,6 +20,7 @@ import sf.hotel.com.hotel_client.view.adapter.CityListAdapter;
 import sf.hotel.com.hotel_client.view.adapter.OnItemClickListener;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.CityMessage;
+import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.ICityView;
 import sf.hotel.com.hotel_client.view.presenter.hotel.ICityPresenter;
@@ -37,6 +40,9 @@ public class CityFragment extends BaseFragment implements ICityView{
     ICityPresenter mICityPresenter;
 
 
+    @BindView(R.id.frame_city_back)
+    ImageView imgBack;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,6 +55,11 @@ public class CityFragment extends BaseFragment implements ICityView{
 
         onRxEvent();
         return view;
+    }
+
+    @OnClick(R.id.frame_city_back)
+    public void onCityBackClick(){
+        RxBus.getDefault().post(MessageFactory.createCityMessage(CityMessage.ACTIVITY_FINISH, ""));
     }
 
     private void onRxEvent() {
@@ -87,7 +98,8 @@ public class CityFragment extends BaseFragment implements ICityView{
         mCityListAdapter.setOnItemClickLitener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                pop();
+                RxBus.getDefault().post(MessageFactory.createCityMessage(CityMessage.ACTIVITY_FINISH_AND_RESULT,
+                        mCityListAdapter.getListItem(position)));
             }
 
             @Override
@@ -105,7 +117,7 @@ public class CityFragment extends BaseFragment implements ICityView{
 
     @Override
     public void showViewToast(String msg) {
-
+        showToast(msg);
     }
 
     @Override
@@ -117,4 +129,5 @@ public class CityFragment extends BaseFragment implements ICityView{
     public void failed(int type, Throwable e) {
 
     }
+
 }

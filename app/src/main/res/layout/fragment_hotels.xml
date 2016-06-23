@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <include
-        android:layout_height="100dp"
+        android:layout_height="50dp"
         android:layout_width="match_parent"
         layout="@layout/custom_title"
         android:id="@+id/fragment_detail_title"/>
@@ -15,7 +15,7 @@
         android:id="@+id/fragment_hotels_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-        android:layout_marginTop="100dp"
-        />
+        android:layout_below="@+id/fragment_detail_title"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

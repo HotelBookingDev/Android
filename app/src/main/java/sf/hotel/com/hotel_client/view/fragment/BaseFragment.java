@@ -17,6 +17,9 @@ import sf.hotel.com.hotel_client.utils.TToast;
  * EMAILE 1105896230@qq.com.
  */
 public class BaseFragment extends SupportFragment {
+
+    protected CompositeSubscription mCompositeSubscription;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +27,7 @@ public class BaseFragment extends SupportFragment {
     }
 
     protected String TAG = this.getClass().getSimpleName();
-    protected CompositeSubscription mCompositeSubscription;
+
 
     protected void showToast(String msg) {
         TToast.showToast(msg);

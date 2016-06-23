@@ -55,7 +55,7 @@ public class HomePullViewAdapter extends RecyclerViewBaseAdapter<HomePullViewAda
         holder.mTitle.setText(mList.get(position).getName());
         holder.mPrice.setText("$ 1111");
 
-        holder.mTextContent.setText("12123123");
+        holder.mTextContent.setText(mList.get(position).getAddress());
 
         HotelImageLoad.loadImage(mContext, holder.mImage, mList.get(position).getHotelLogoImgs().get(0).getImg_url());
 

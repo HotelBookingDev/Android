@@ -9,6 +9,10 @@ public class CityMessage extends Message {
     public static final int SUCCESS = 1;
 
     public static final int FAILE = 2;
+
+    public static final int ACTIVITY_FINISH_AND_RESULT = 1001;
+    public static final int ACTIVITY_FINISH = 1002;
+
     public CityMessage(int what) {
         super(what);
     }

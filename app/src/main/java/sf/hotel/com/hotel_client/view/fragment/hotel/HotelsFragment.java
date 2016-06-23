@@ -1,6 +1,7 @@
 package sf.hotel.com.hotel_client.view.fragment.hotel;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.lhh.ptrrv.library.PullToRefreshRecyclerView;
 import com.lhh.ptrrv.library.footer.loadmore.BaseLoadMoreView;
@@ -21,6 +23,8 @@ import rx.Subscription;
 import rx.functions.Action1;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.activity.CityActivity;
+import sf.hotel.com.hotel_client.view.activity.MainActivity;
 import sf.hotel.com.hotel_client.view.adapter.HomePullViewAdapter;
 import sf.hotel.com.hotel_client.view.adapter.OnItemClickListener;
 import sf.hotel.com.hotel_client.view.custom.DividerItemDecoration;
@@ -38,11 +42,16 @@ import sf.hotel.com.hotel_client.view.presenter.hotel.IHotelPresenter;
  */
 public class HotelsFragment extends BaseFragment implements IHotelsView {
 
+    public static final int CITY_REQUEST_CODE = 1001;
+
     @BindView(R.id.fragment_hotels_list)
     PullToRefreshRecyclerView mPullView;
 
     @BindView(R.id.custom_title_city)
     View mCityView;
+
+    @BindView(R.id.custom_title_city_name)
+    TextView mCityName;
 
     public static HotelsFragment newInstance() {
 
@@ -79,9 +88,23 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
 
     @OnClick(R.id.custom_title_city)
     public void onCityViewClick(){
-        starFragment(CityFragment.class);
+        Intent intent = new Intent(getBottomContext(), CityActivity.class);
+        startActivityForResult(intent, CITY_REQUEST_CODE);
     }
 
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == CITY_REQUEST_CODE){
+            Bundle bundle = data.getExtras();
+            String city = bundle.getString("city");
+            int cityId = bundle.getInt("cityId");
+            mCityName.setText(city);
+
+            mIHotelPresenter.callHotelsByCityId(String.valueOf(cityId));
+
+        }
+    }
 
     private void onRxEvent() {
         Subscription subscribe = RxBus.getDefault()
@@ -97,9 +120,6 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                                     break;
                             }
                         }
-
-
-
                     }
                 }, new Action1<Throwable>() {
                     @Override
@@ -109,9 +129,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                         showLog(throwable.getMessage());
                     }
                 });
-
         mCompositeSubscription.add(subscribe);
-
     }
 
     private void initPullView() {
@@ -168,12 +186,12 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                if (dy > 10) {
-                    RxBus.getDefault().post(new HotelMessage(HotelMessage.HIDE_BOTTOM_VIEW));
-                }
-                if (dy < -10) {
-                    RxBus.getDefault().post(new HotelMessage(HotelMessage.SHOW_BOTTOM_VIEW));
-                }
+//                if (dy > 10) {
+//                    RxBus.getDefault().post(new HotelMessage(HotelMessage.HIDE_BOTTOM_VIEW));
+//                }
+//                if (dy < -10) {
+//                    RxBus.getDefault().post(new HotelMessage(HotelMessage.SHOW_BOTTOM_VIEW));
+//                }
             }
 
             @Override
@@ -204,8 +222,9 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
     }
 
     public void showDetail() {
-        RxBus.getDefault().post(new HotelMessage(HotelMessage.HIDE_BOTTOM_VIEW));
-        RxBus.getDefault().post(new HotelMessage(HotelMessage.SHOW_DETAIL_FRAGMENT));
+//        RxBus.getDefault().post(new HotelMessage(HotelMessage.HIDE_BOTTOM_VIEW));
+//        RxBus.getDefault().post(new HotelMessage(HotelMessage.SHOW_DETAIL_FRAGMENT));
+        starFragment(DetailFragment.class);
     }
 
     @Override

@@ -2,6 +2,8 @@ package sf.hotel.com.hotel_client.view.event.hotel;
 
 import android.util.LruCache;
 
+import java.util.Objects;
+
 /**
  * Created by 林其望 on 2016/6/17.
  */
@@ -28,5 +30,8 @@ public class MessageFactory {
 
     public static CityMessage createCityMessage(int what, Object obj){
         return new CityMessage(what, "", obj);
+    }
+    public static HomeMessage createHomeMessage(int what, Object obj){
+        return new HomeMessage(what, "", obj);
     }
 }

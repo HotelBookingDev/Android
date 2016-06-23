@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_vertical"
-    android:orientation="vertical">
+    android:background="#889999"
+    android:orientation="vertical"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -12,8 +13,9 @@
         <ImageView
             android:id="@+id/item_hotels_img"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@mipmap/ic_launcher" />
+            android:layout_height="200dp"
+            android:src="@mipmap/ic_launcher"
+            android:scaleType="fitXY"/>
 
         <TextView
             android:id="@+id/item_hotels_original_price"
@@ -50,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/titleTextStyle"
-            android:text="hahahahahhahahhasdnais\ndfabsdcasdcnasndcibaisudbc"
+            android:text="杭州市余杭区临平迎宾大道535号"
             android:id="@+id/item_hotels_content"
             />
 
@@ -82,8 +84,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/itemTextContentStyle"
-                android:text="积分1000"
+                style="@style/titleTextContentStyle"
+
+                android:textColor="#000000"
+                android:text="0571-88578888"
                 />
         </LinearLayout>
 

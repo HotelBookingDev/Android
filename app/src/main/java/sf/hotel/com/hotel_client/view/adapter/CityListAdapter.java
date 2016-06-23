@@ -35,6 +35,10 @@ public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.Vie
         notifyDataSetChanged();
     }
 
+    public ProcincesResult.ProcincesBean.CitysBean getListItem(int pos){
+        return mList.get(pos);
+    }
+
     public void setList(ProcincesResult procincesResult) {
         mList.clear();
         List<ProcincesResult.ProcincesBean> procinces = procincesResult.getProcinces();

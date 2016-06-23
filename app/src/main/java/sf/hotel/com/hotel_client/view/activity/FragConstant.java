@@ -1,6 +1,7 @@
 package sf.hotel.com.hotel_client.view.activity;
 
 
+import sf.hotel.com.hotel_client.view.fragment.hotel.CityFragment;
 import sf.hotel.com.hotel_client.view.fragment.hotel.DetailFragment;
 import sf.hotel.com.hotel_client.view.fragment.hotel.HotelsFragment;
 import sf.hotel.com.hotel_client.view.fragment.hotel.RoomFragment;
@@ -28,4 +29,6 @@ public final class FragConstant {
 
     public final static Class ORDER = OrderFragment.class;
     public final static Class USERINFO = UserInfoFragment.class;
+
+    public final static Class CITY = CityFragment.class;
 }
