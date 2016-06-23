@@ -48,5 +48,7 @@ public class OrderFragment extends BaseFragment {
         mTabLayout.addTab(mTabLayout.newTab());
         mViewPager.setAdapter(new OrderPagerFragmentAdapter(getChildFragmentManager()));
         mTabLayout.setupWithViewPager(mViewPager);
+
+        mTitle.setOnClickListener(v -> pop());
     }
 }
