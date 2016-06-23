@@ -97,6 +97,10 @@ public class ILoginPresenter extends SuperPresenter {
                         postIntallationId();
                         //保存用户信息
                         Observable.just(loginResult)
+                                .filter(loginResult1 -> loginResult1 ==
+                                        null ? Boolean.FALSE : Boolean.TRUE)
+                                .filter(loginResult1 -> loginResult1.getUserEntity() ==
+                                        null ? Boolean.FALSE : Boolean.TRUE)
                                 .doOnNext(
                                         loginResult1 -> saveUserInfo(mILoginView.getUserName(), pwd,
                                                 loginResult.getUserEntity().getAvatar()))
