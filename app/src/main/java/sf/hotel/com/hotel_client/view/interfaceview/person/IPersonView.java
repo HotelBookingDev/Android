@@ -12,5 +12,5 @@ public interface IPersonView {
 
     void showLoginFragment();
 
-    void showItemFragment(Class c);
+    void showItemActivity(int type);
 }

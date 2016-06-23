@@ -12,6 +12,7 @@ import rx.Subscription;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.FragConstant;
 import sf.hotel.com.hotel_client.view.activity.person.OrderActivity;
+import sf.hotel.com.hotel_client.view.activity.person.SettingActivity;
 import sf.hotel.com.hotel_client.view.activity.person.UserInfoActivity;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.LoginMessage;
@@ -24,6 +25,11 @@ import sf.hotel.com.hotel_client.view.presenter.person.PersonPersenter;
 /**
  */
 public class PersonFragment extends BaseFragment implements IPersonView {
+
+    public static final int USERINFO = 0x1;
+    public static final int SETTING = 0x2;
+    public static final int ORDER = 0x3;
+
     PersonPersenter mPersonPersenter;
 
     public static PersonFragment newInstance() {
@@ -88,14 +94,22 @@ public class PersonFragment extends BaseFragment implements IPersonView {
     }
 
     @Override
-    public void showItemFragment(Class c) {
-        if (c == FragConstant.USERINFO) {
+    public void showItemActivity(int type) {
+        if (type == USERINFO) {
             Intent intent = new Intent(getActivity(), UserInfoActivity.class);
             startActivity(intent);
-        } else if (c == FragConstant.ORDER) {
+        } else if (type == ORDER) {
             Intent intent = new Intent(getActivity(), OrderActivity.class);
             startActivity(intent);
+        } else if (type == SETTING) {
+            Intent intent = new Intent(getActivity(), SettingActivity.class);
+            startActivity(intent);
         }
+    }
+
+    @OnClick(R.id.piv_setting)
+    public void clickSetting() {
+        mPersonPersenter.clickSetting();
     }
 
     @Override
