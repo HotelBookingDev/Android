@@ -13,6 +13,7 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 import sf.hotel.com.data.entity.netresult.HttpResult;
 import sf.hotel.com.data.net.Exception.APIException;
+import sf.hotel.com.data.net.Interceptor.HeadInterceptor;
 import sf.hotel.com.data.net.Interceptor.LoggingInterceptor;
 
 /**
@@ -29,7 +30,7 @@ public abstract class RetrofitHelper {
         //初始化
         OkHttpClient.Builder builder = new OkHttpClient.Builder().connectTimeout(DEFAULT_TIMEOUT,
                 TimeUnit.SECONDS).addInterceptor(new LoggingInterceptor())  // 日志拦截器
-                ;
+                .addInterceptor(new HeadInterceptor());
         mOkhttpClient = builder.build();
 
         Retrofit.Builder mRetrofitBuilde = new Retrofit.Builder().client(mOkhttpClient)
