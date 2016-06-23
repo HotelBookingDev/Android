@@ -9,11 +9,16 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 import rx.Observable;
 import sf.hotel.com.data.entity.Intallation;
+
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.data.entity.netresult.HttpResult;
 import sf.hotel.com.data.entity.netresult.LoginResult;
 import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.entity.netresult.TokenResult;
+
+
+import sf.hotel.com.data.entity.ProcincesResult;
+
 
 import static sf.hotel.com.data.net.HttpParam.CITY_ID;
 import static sf.hotel.com.data.net.HttpParam.DEVICE_TYPE;
@@ -58,7 +63,11 @@ public interface ApiService {
     @GET(AppUrl.HOTELS_URL)
     Observable<HttpResult<HotelResult>> callHotelsByCityId(@Query(CITY_ID) String cityId);
 
+
     //获取TOKEN
     @GET(AppUrl.TOKEN_URL)
     Observable<HttpResult<TokenResult>> getTokenResult(@Query(HttpParam.USER_ID) long id);
+
+    @GET(AppUrl.PROVINCES_URL)
+    Observable<HttpResult<ProcincesResult>> callCityList();
 }

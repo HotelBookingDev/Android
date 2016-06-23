@@ -8,7 +8,7 @@
     <include
         android:layout_height="100dp"
         android:layout_width="match_parent"
-        layout="@layout/title_hotels"
+        layout="@layout/custom_title"
         android:id="@+id/fragment_detail_title"/>
 
     <com.lhh.ptrrv.library.PullToRefreshRecyclerView
