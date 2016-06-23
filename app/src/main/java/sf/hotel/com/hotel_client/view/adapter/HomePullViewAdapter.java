@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import sf.hotel.com.data.entity.HotelBean;
+import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 
@@ -23,18 +23,12 @@ import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 public class HomePullViewAdapter extends RecyclerViewBaseAdapter<HomePullViewAdapter.ViewHolder> {
 
 
-    List<HotelBean> mList = new ArrayList<>();
+    List<HotelResult.HotelsBean> mList = new ArrayList<>();
 
-    public void setList(List<HotelBean> hotelList){
+    public void setList(List<HotelResult.HotelsBean> hotelList){
         mList = hotelList;
         setCount(mList.size());
         this.notifyDataSetChanged();
-    }
-
-
-    public interface OnItemClickListener{
-        void onItemClick(View view, int position);
-        void onItemLongClick(View view, int position);
     }
 
     private OnItemClickListener mOnItemClickListener;

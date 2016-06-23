@@ -17,11 +17,6 @@ import sf.hotel.com.hotel_client.R;
  */
 public class DetailPullViewAdapter extends RecyclerViewBaseAdapter<DetailPullViewAdapter.ViewHolder> {
 
-    public interface OnItemClickListener{
-        void onItemClick(View view, int position);
-        void onItemLongClick(View view, int position);
-    }
-
     private OnItemClickListener mOnItemClickListener;
 
     public void setOnItemClickLitener(OnItemClickListener mOnItemClickListener) {

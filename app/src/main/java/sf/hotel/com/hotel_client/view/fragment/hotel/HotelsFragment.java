@@ -16,11 +16,13 @@ import com.lhh.ptrrv.library.footer.loadmore.BaseLoadMoreView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import rx.Subscription;
 import rx.functions.Action1;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.adapter.HomePullViewAdapter;
+import sf.hotel.com.hotel_client.view.adapter.OnItemClickListener;
 import sf.hotel.com.hotel_client.view.custom.DividerItemDecoration;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelListMsg;
@@ -38,6 +40,9 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
 
     @BindView(R.id.fragment_hotels_list)
     PullToRefreshRecyclerView mPullView;
+
+    @BindView(R.id.custom_title_city)
+    View mCityView;
 
     public static HotelsFragment newInstance() {
 
@@ -71,6 +76,13 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         return view;
     }
 
+
+    @OnClick(R.id.custom_title_city)
+    public void onCityViewClick(){
+        starFragment(CityFragment.class);
+    }
+
+
     private void onRxEvent() {
         Subscription subscribe = RxBus.getDefault()
                 .toObservable(HotelListMsg.class)
@@ -81,7 +93,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                             switch (hotelListMsg.what){
                                 case HotelListMsg.SUCCESS:
                                     HotelResult hotelResult = (HotelResult) hotelListMsg.obj;
-                                    mPullAdapter.setList(hotelResult.getHotel());
+                                    mPullAdapter.setList(hotelResult.getHotels());
                                     break;
                             }
                         }
@@ -92,6 +104,9 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
+
+                        showToast(throwable.getMessage() + "加载失败");
+                        showLog(throwable.getMessage());
                     }
                 });
 
@@ -171,7 +186,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         //设置适配器
         mPullAdapter = new HomePullViewAdapter(getBottomContext());
 
-        mPullAdapter.setOnItemClickLitener(new HomePullViewAdapter.OnItemClickListener() {
+        mPullAdapter.setOnItemClickLitener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view,
                                     int position) {

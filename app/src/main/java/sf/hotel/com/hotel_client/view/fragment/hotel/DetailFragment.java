@@ -16,11 +16,9 @@ import com.lhh.ptrrv.library.footer.loadmore.BaseLoadMoreView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import sf.hotel.com.hotel_client.R;
-
-import sf.hotel.com.hotel_client.view.activity.FragConstant;
 import sf.hotel.com.hotel_client.view.adapter.DetailPullViewAdapter;
+import sf.hotel.com.hotel_client.view.adapter.OnItemClickListener;
 import sf.hotel.com.hotel_client.view.custom.DividerItemDecoration;
-
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
@@ -113,7 +111,7 @@ public class DetailFragment extends BaseFragment implements IDetailView{
 
         //设置适配器
         mPullAdapter = new DetailPullViewAdapter(getBottomContext());
-        mPullAdapter.setOnItemClickLitener(new DetailPullViewAdapter.OnItemClickListener() {
+        mPullAdapter.setOnItemClickLitener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 showRoomFragment();

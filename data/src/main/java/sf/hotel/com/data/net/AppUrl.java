@@ -14,4 +14,6 @@ public class AppUrl {
     public static final String HOTELS_URL = "/hotels";
 
     public static final String TOKEN_URL = "/avatar/token";
+
+    public static final String PROVINCES_URL = "/provinces/";
 }
