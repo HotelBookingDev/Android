@@ -75,5 +75,3 @@ proguard/
 
 # Android Studio Navigation editor temp files
 .navigation/
-libs/
-src/main/res/drawable/

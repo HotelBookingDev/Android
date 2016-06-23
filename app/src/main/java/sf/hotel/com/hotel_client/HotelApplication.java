@@ -45,49 +45,10 @@ public class HotelApplication extends Application {
         //初始化
         AVOSCloud.initialize(this, "P0fN7ArvLMtcgsACRwhOupHj-gzGzoHsz", "cWK8NHllNg7N6huHiKA1HeRG");
 
-        //获取设备号
-        AVInstallation.getCurrentInstallation().saveInBackground(new SaveCallback() {
-            @Override
-            public void done(AVException e) {
-                postIntallationId();
-            }
-        });
+
     }
 
-    private void postIntallationId() {
-        String installationId = PreferencesUtils.getInstallationId(context);
-        //每次登陆判断本地的设备id和初始化的id 是否是同一个不相同就发送一次请求信息
-        if (installationId == null ||
-                !installationId.equals(
-                        AVInstallation.getCurrentInstallation().getInstallationId())) {
-            ApiWrapper.getInstance()
-                    .postIntallation(new Intallation("android",
-                            AVInstallation.getCurrentInstallation().getInstallationId()))
-                    .subscribe(new Subscriber<NormalResult>() {
-                        @Override
-                        public void onCompleted() {
-                            PreferencesUtils.saveInstallationId(context,
-                                    AVInstallation.getCurrentInstallation().getInstallationId());
-                        }
 
-                        @Override
-                        public void onError(Throwable e) {
-                            if (e instanceof APIException) {
-                                if (((APIException) e).getCode() == Code.INTALLATIONIDISEXIT) {
-                                    PreferencesUtils.saveInstallationId(context,
-                                            AVInstallation.getCurrentInstallation()
-                                                    .getInstallationId());
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void onNext(NormalResult normalResult) {
-
-                        }
-                    });
-        }
-    }
 
     public void initBuglyStatus() {
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(context);
