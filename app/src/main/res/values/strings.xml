@@ -36,5 +36,7 @@
     <string name="edittext_digits">1234567890</string>
     <string name="back">返回</string>
     <string name="my_info">我的资料</string>
+    <string name="title_activity_order_fragment">OrderFragment</string>
+    <string name="title_activity_user_info">UserInfoActivity</string>
 
 </resources>

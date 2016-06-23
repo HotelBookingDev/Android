@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import me.yokeyword.fragmentation.SupportFragment;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.person.IUserInfoView;
@@ -75,5 +76,14 @@ public class UserInfoFragment extends BaseFragment implements IUserInfoView {
     public void onDestroy() {
         super.onDestroy();
         mUserInfoPersenter.destroy();
+    }
+
+    public static UserInfoFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        UserInfoFragment fragment = new UserInfoFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 }

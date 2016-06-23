@@ -1,5 +1,6 @@
 package sf.hotel.com.hotel_client.view.fragment.person;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,8 @@ import butterknife.OnClick;
 import rx.Subscription;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.FragConstant;
+import sf.hotel.com.hotel_client.view.activity.person.OrderActivity;
+import sf.hotel.com.hotel_client.view.activity.person.UserInfoActivity;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.LoginMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.Message;
@@ -87,8 +90,12 @@ public class PersonFragment extends BaseFragment implements IPersonView {
     @Override
     public void showItemFragment(Class c) {
         if (c == FragConstant.USERINFO) {
-            start(getFragmentByKey(FragConstant.USERINFO));
-        } else if (c == FragConstant.ORDER) start(getFragmentByKey(FragConstant.ORDER));
+            Intent intent = new Intent(getActivity(), UserInfoActivity.class);
+            startActivity(intent);
+        } else if (c == FragConstant.ORDER) {
+            Intent intent = new Intent(getActivity(), OrderActivity.class);
+            startActivity(intent);
+        }
     }
 
     @Override

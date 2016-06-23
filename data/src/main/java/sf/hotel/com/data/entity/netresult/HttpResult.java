@@ -17,14 +17,13 @@ public class HttpResult<T> {
     @SerializedName("status")
     private int status;
 
-    @SerializedName("res")
+    @SerializedName("Res")
     private T res;
 
     public boolean isSuccess() {
         if (status == 100) return true;
         return false;
     }
-
 
     public String getMessage() {
         return message;
