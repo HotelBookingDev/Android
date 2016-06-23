@@ -49,8 +49,6 @@
         <item name="android:text">titleTextContentStyle</item>
     </style>
 
-
-
     <style name="headerDetailTextTitleStyle" parent="@android:style/Widget.TextView">
         <item name="android:textColor">@color/detail_text_color_blue</item>
         <item name="android:textSize">@dimen/title_text_size</item>
@@ -105,4 +103,8 @@
         <item name="android:layout_marginLeft">10.0dip</item>
         <item name="android:layout_marginRight">10.0dip</item>
     </style>
+
+    <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

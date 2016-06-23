@@ -27,4 +27,6 @@
     
     <color name="title_black">#000000</color>
     <color name="title_gray">#888888</color>
+    <color name="bg_person">#ff797979</color>
+    <color name="main_divide">#ffe2e5e5</color>
 </resources>

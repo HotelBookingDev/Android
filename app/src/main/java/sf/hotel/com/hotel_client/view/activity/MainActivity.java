@@ -17,7 +17,6 @@ import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.LoginMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.Message;
 import sf.hotel.com.hotel_client.view.fragment.HomeContainer;
-import sf.hotel.com.hotel_client.view.fragment.hotel.HotelsFragment;
 import sf.hotel.com.hotel_client.view.fragment.person.PersonGroupFragment;
 
 public class MainActivity extends BaseActivity {
@@ -84,8 +83,6 @@ public class MainActivity extends BaseActivity {
         public void onSelected(int index, Object tag) {
             showHideFragment(mFragments[index], mFragments[currentIndex]);
             currentIndex = index;
-
-
         }
 
         //列表也可以回到自定页或者刷新数据
@@ -94,5 +91,4 @@ public class MainActivity extends BaseActivity {
 
         }
     }
-
 }

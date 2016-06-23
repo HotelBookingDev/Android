@@ -32,6 +32,7 @@ public class OrderFragment extends BaseFragment {
 
     @BindView(R.id.view_title)
     HotelTitleView mTitle;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
@@ -49,6 +50,6 @@ public class OrderFragment extends BaseFragment {
         mViewPager.setAdapter(new OrderPagerFragmentAdapter(getChildFragmentManager()));
         mTabLayout.setupWithViewPager(mViewPager);
 
-        mTitle.setOnClickListener(v -> pop());
+        mTitle.setOnClickListener(v -> getActivity().finish());
     }
 }

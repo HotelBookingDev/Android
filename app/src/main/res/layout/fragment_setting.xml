@@ -1,27 +1,51 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/bg_person">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/setting_edition"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            fancy:fb_defaultColor="@color/white"
+            fancy:fb_text="@string/edition"
+            fancy:fb_textColor="@color/black" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:layout_marginLeft="12.0dip"
+            android:layout_marginRight="12.0dip"
+            android:background="@color/main_divide" />
 
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/setting_clear"
             android:layout_width="match_parent"
             android:layout_height="@dimen/btn_height"
-            fancy:fb_defaultColor="@color/colorBlack"
+            fancy:fb_defaultColor="@color/white"
             fancy:fb_text="@string/cache"
             fancy:fb_textColor="@color/black" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:layout_marginLeft="12.0dip"
+            android:layout_marginRight="12.0dip"
+            android:background="@color/main_divide" />
 
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/setting_out"
             android:layout_width="match_parent"
             android:layout_height="@dimen/btn_height"
-            android:layout_below="@id/setting_clear"
-            fancy:fb_defaultColor="@color/colorBlack"
+            fancy:fb_defaultColor="@color/white"
             fancy:fb_text="@string/login_out"
             fancy:fb_textColor="@color/black" />
-    </RelativeLayout>
+    </LinearLayout>
 </FrameLayout>

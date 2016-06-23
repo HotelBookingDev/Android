@@ -25,7 +25,6 @@ public class HttpResult<T> {
         return false;
     }
 
-
     public String getMessage() {
         return message;
     }
