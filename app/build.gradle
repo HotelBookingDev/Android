@@ -38,7 +38,11 @@ android {
     repositories {
         maven { url "https://jitpack.io" }
     }
-
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 
@@ -55,30 +59,24 @@ dependencies {
     compile rootProject.ext.dependencies.flaviofaria
     compile rootProject.ext.dependencies.yokeyword_fragmentation
     compile rootProject.ext.dependencies.yokeyword_fragmentation_swipeback
-
     apt rootProject.ext.apt.butterknife
     compile project(':data')
-
     //learnCloud
     compile rootProject.ext.dependencies.avoscloud_sdk
     compile rootProject.ext.dependencies.avoscloud_push
-
     compile rootProject.ext.dependencies.Java_WebSocke
-
     compile rootProject.ext.dependencies.avoscloud_statistics
-
     //下拉刷新
-    compile rootProject.ext.dependencies.pullToRefreshRecyclerView;
-    compile rootProject.ext.dependencies.homhomlin_lib;
-
+    compile rootProject.ext.dependencies.pullToRefreshRecyclerView
+    compile rootProject.ext.dependencies.homhomlin_lib
     //button的定制
     compile rootProject.ext.dependencies.fancybuttons
     //glide图片加载框架
     compile rootProject.ext.dependencies.glide
     testCompile 'junit:junit:4.12'
-
     //底部栏的控件
     compile rootProject.ext.dependencies.majiajie
     compile 'com.github.lsjwzh.RecyclerViewPager:lib:v1.1.0'
     compile 'com.android.support:support-v4:23.1.0'
+    compile files('libs/locSDK_6.23.jar')
 }
