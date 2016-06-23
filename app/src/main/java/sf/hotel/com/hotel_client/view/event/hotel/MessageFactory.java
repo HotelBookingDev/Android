@@ -1,11 +1,14 @@
 package sf.hotel.com.hotel_client.view.event.hotel;
 
-import java.util.Objects;
+import android.util.LruCache;
 
 /**
  * Created by 林其望 on 2016/6/17.
  */
 public class MessageFactory {
+
+    LruCache<Integer , Message> msgList;
+
     public static LoginMessage createLoginMessage(int type) {
         //可以做个缓冲池
         return new LoginMessage(type);
@@ -21,5 +24,9 @@ public class MessageFactory {
 
     public static HotelListMsg createHotelListMsg(int what, Object obj){
         return new HotelListMsg(what, "", obj);
+    }
+
+    public static CityMessage createCityMessage(int what, Object obj){
+        return new CityMessage(what, "", obj);
     }
 }

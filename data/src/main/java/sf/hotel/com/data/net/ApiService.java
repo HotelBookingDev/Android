@@ -13,6 +13,7 @@ import sf.hotel.com.data.entity.HttpResult;
 import sf.hotel.com.data.entity.Intallation;
 import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.data.entity.NormalResult;
+import sf.hotel.com.data.entity.ProcincesResult;
 import sf.hotel.com.data.entity.UserEntity;
 
 import static sf.hotel.com.data.net.HttpParam.CITY_ID;
@@ -58,4 +59,7 @@ public interface ApiService {
 
     @GET(AppUrl.HOTELS_URL)
     Observable<HttpResult<HotelResult>> callHotelsByCityId(@Query(CITY_ID) String cityId);
+
+    @GET(AppUrl.PROVINCES_URL)
+    Observable<HttpResult<ProcincesResult>> callCityList();
 }

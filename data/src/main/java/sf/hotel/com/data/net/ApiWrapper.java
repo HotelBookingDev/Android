@@ -6,6 +6,8 @@ import sf.hotel.com.data.entity.HotelResult;
 import sf.hotel.com.data.entity.Intallation;
 import sf.hotel.com.data.entity.LoginResult;
 import sf.hotel.com.data.entity.NormalResult;
+import sf.hotel.com.data.entity.ProcincesResult;
+
 /**
  * @author MZ
  * @email sanfenruxi1@163.com
@@ -75,8 +77,15 @@ public class ApiWrapper extends RetrofitHelper {
     }
 
 
+    /**
+     *  获取酒店信息通过cityId
+     */
     public Observable<HotelResult> callHotelsByCityId(String cityId) {
         return mService.callHotelsByCityId(cityId).compose(this.<HotelResult>applySchedulers());
+    }
+
+    public Observable<ProcincesResult> callCityList(){
+        return mService.callCityList().compose(this.<ProcincesResult>applySchedulers());
     }
 
 }

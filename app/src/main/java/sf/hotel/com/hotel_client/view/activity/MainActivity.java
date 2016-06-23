@@ -16,6 +16,7 @@ import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.LoginMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.Message;
+import sf.hotel.com.hotel_client.view.fragment.HomeContainer;
 import sf.hotel.com.hotel_client.view.fragment.hotel.HotelsFragment;
 import sf.hotel.com.hotel_client.view.fragment.person.PersonGroupFragment;
 
@@ -41,7 +42,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initFragmets() {
-        mFragments[FIRST] = HotelsFragment.newInstance();
+        mFragments[FIRST] = HomeContainer.newInstance();
         mFragments[SECOND] = PersonGroupFragment.newInstance();
     }
 
@@ -92,8 +93,4 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    @Override
-    public void onBackPressedSupport() {
-        super.onBackPressedSupport();
-    }
 }
