@@ -69,6 +69,8 @@
 
         <activity android:name=".view.activity.PayActivity"/>
 
+        <activity android:name=".view.activity.hotel.RoomActivity"/>
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"

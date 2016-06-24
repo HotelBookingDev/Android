@@ -1,5 +1,6 @@
 package sf.hotel.com.data.entity.netresult;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * @email sanfenruxi1@163.com
  * @date 16/6/22.
  */
-public class HotelResult {
+public class HotelResult implements Serializable{
 
     /**
      * id : 1
@@ -29,7 +30,7 @@ public class HotelResult {
         this.hotels = hotels;
     }
 
-    public static class HotelsBean {
+    public static class HotelsBean implements Serializable{
         private int id;
         private String name;
         private String address;
@@ -99,7 +100,7 @@ public class HotelResult {
             this.hotelLogoImgs = hotelLogoImgs;
         }
 
-        public static class HotelLogoImgsBean {
+        public static class HotelLogoImgsBean implements Serializable{
             private String img_url;
             private int hotel;
 

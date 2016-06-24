@@ -31,7 +31,8 @@ public class CityActivity extends BaseActivity {
     }
 
     private void onRxEvent() {
-        Subscription subscribe = RxBus.getDefault().toObservable(CityMessage.class)
+        Subscription subscribe = RxBus.getDefault()
+                .toObservable(CityMessage.class)
                 .subscribe(new Action1<CityMessage>() {
             @Override
             public void call(CityMessage cityMessage) {

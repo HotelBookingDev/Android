@@ -78,7 +78,7 @@ dependencies {
     //底部栏的控件
     compile rootProject.ext.dependencies.majiajie
     compile 'com.github.lsjwzh.RecyclerViewPager:lib:v1.1.0'
-    compile 'com.android.support:support-v4:23.1.0'
+    compile 'com.android.support:support-v4:23.3.0'
     compile files('libs/locSDK_6.23.jar')
     compile files('libs/alipaySdk-20160516.jar')
 }

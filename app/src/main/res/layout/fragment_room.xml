@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        style="@style/layoutStyle"
         android:gravity="center_vertical"
         android:background="@color/colorPrimary"
         >
@@ -41,7 +40,7 @@
             style="@style/layoutStyle"
             >
 
-            <com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager
+            <com.lsjwzh.widget.recyclerviewpager.LoopRecyclerViewPager
                 android:id="@+id/fragment_room_viewPager"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -60,7 +59,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/itemTextContentStyle"
+                style="@style/titleTextStyle"
+                android:id="@+id/fragment_room_content"
                 android:text="早餐 无\n建筑面积 15m2 \n 可主2人 \n 双人床 1.5m \n 宽带wifi"
                 />
             <View

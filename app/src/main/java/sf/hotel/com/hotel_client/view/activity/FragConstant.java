@@ -31,5 +31,4 @@ public final class FragConstant {
 
 
     public final static Class CITY = CityFragment.class;
-
 }

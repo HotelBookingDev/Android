@@ -48,7 +48,7 @@ public class SplashActivity extends Activity {
 
         ImageView image = new ImageView(this);
 
-        image.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        image.setScaleType(ImageView.ScaleType.FIT_XY);
         frame.addView(image, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
                 FrameLayout.LayoutParams.MATCH_PARENT));
 

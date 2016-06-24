@@ -24,13 +24,12 @@ import rx.functions.Action1;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.CityActivity;
-import sf.hotel.com.hotel_client.view.activity.MainActivity;
+import sf.hotel.com.hotel_client.view.activity.hotel.RoomActivity;
 import sf.hotel.com.hotel_client.view.adapter.HomePullViewAdapter;
 import sf.hotel.com.hotel_client.view.adapter.OnItemClickListener;
 import sf.hotel.com.hotel_client.view.custom.DividerItemDecoration;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelListMsg;
-import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IHotelsView;
 import sf.hotel.com.hotel_client.view.presenter.hotel.IHotelPresenter;
@@ -208,7 +207,11 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
             @Override
             public void onItemClick(View view,
                                     int position) {
-                showDetail();
+
+                HotelResult.HotelsBean itemByPos = mPullAdapter.getItemByPos(position);
+
+                showDetail(itemByPos);
+
             }
 
             @Override
@@ -221,10 +224,14 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         mPullView.onFinishLoading(true, false);
     }
 
-    public void showDetail() {
-//        RxBus.getDefault().post(new HotelMessage(HotelMessage.HIDE_BOTTOM_VIEW));
-//        RxBus.getDefault().post(new HotelMessage(HotelMessage.SHOW_DETAIL_FRAGMENT));
-        starFragment(DetailFragment.class);
+    public void showDetail(HotelResult.HotelsBean hotelsBean) {
+        Intent intent = new Intent(getBottomContext(), RoomActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("room", hotelsBean);
+
+        intent.putExtras(bundle);
+
+        startActivity(intent);
     }
 
     @Override

@@ -25,7 +25,7 @@ import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
  */
 public abstract class BaseActivity extends SupportActivity {
 
-    CompositeSubscription mCompositeSubscription;
+    public CompositeSubscription mCompositeSubscription;
 
     protected String TAG = this.getClass().getSimpleName();
 

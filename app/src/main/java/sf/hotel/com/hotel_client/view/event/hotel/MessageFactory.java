@@ -4,6 +4,8 @@ import android.util.LruCache;
 
 import java.util.Objects;
 
+import sf.hotel.com.hotel_client.view.fragment.hotel.RoomFragment;
+
 /**
  * Created by 林其望 on 2016/6/17.
  */
@@ -33,5 +35,9 @@ public class MessageFactory {
     }
     public static HomeMessage createHomeMessage(int what, Object obj){
         return new HomeMessage(what, "", obj);
+    }
+
+    public static RoomMessage createRoomMessage(int what, Object obj){
+        return new RoomMessage(what, "", obj);
     }
 }

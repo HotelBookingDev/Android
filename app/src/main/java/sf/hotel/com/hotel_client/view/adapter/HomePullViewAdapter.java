@@ -31,6 +31,10 @@ public class HomePullViewAdapter extends RecyclerViewBaseAdapter<HomePullViewAda
         this.notifyDataSetChanged();
     }
 
+    public HotelResult.HotelsBean getItemByPos(int pos){
+        return mList.get(pos);
+    }
+
     private OnItemClickListener mOnItemClickListener;
 
     public void setOnItemClickLitener(OnItemClickListener mOnItemClickListener) {
