@@ -17,7 +17,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/view_title"
             android:background="@color/white"
             android:orientation="vertical">
@@ -27,6 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"
                 fancy:fb_defaultColor="@color/white"
+                fancy:fb_focusColor="@color/bg_person"
                 fancy:fb_text="@string/edition"
                 fancy:fb_textColor="@color/black" />
 
@@ -37,18 +38,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"
                 fancy:fb_defaultColor="@color/white"
+                fancy:fb_focusColor="@color/bg_person"
                 fancy:fb_text="@string/cache"
                 fancy:fb_textColor="@color/black" />
 
-            <include layout="@layout/item_line" />
-
-            <mehdi.sakout.fancybuttons.FancyButton
-                android:id="@+id/setting_out"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/btn_height"
-                fancy:fb_defaultColor="@color/white"
-                fancy:fb_text="@string/login_out"
-                fancy:fb_textColor="@color/black" />
         </LinearLayout>
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/setting_out"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/btn_height"
+            fancy:fb_borderColor="@color/black"
+            fancy:fb_borderWidth="1dp"
+            fancy:fb_defaultColor="@color/white"
+            fancy:fb_focusColor="@color/bg_person"
+            fancy:fb_text="@string/login_out"
+            fancy:fb_textColor="@color/black" />
     </RelativeLayout>
 </FrameLayout>

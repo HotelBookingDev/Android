@@ -18,7 +18,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/view_title"
             android:orientation="vertical">
 
@@ -26,6 +26,7 @@
                 android:id="@+id/piv_person"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/item_seletor"
                 app:contextText="@string/my_info" />
 
             <include layout="@layout/item_line" />
@@ -34,6 +35,7 @@
                 android:id="@+id/piv_money"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/item_seletor"
                 app:contextText="@string/my_money" />
 
             <include layout="@layout/item_line" />
@@ -42,6 +44,7 @@
                 android:id="@+id/piv_order"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/item_seletor"
                 app:contextText="@string/my_order" />
 
             <include layout="@layout/item_line" />
@@ -50,6 +53,7 @@
                 android:id="@+id/piv_evaluate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/item_seletor"
                 app:contextText="@string/my_evaluate" />
 
             <include layout="@layout/item_line" />
@@ -58,7 +62,9 @@
                 android:id="@+id/piv_setting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/item_seletor"
                 app:contextText="@string/my_setting" />
+
         </LinearLayout>
     </RelativeLayout>
 </FrameLayout>

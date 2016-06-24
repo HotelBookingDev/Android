@@ -1,33 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/title_height"
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/iv_item_persion"
-        android:padding="@dimen/iv_item_persion_padding"
         android:layout_width="@dimen/iv_item_persion"
         android:layout_height="@dimen/iv_item_persion"
-        android:src="@mipmap/ic_launcher"
-        />
+        android:padding="@dimen/iv_item_persion_padding"
+        android:src="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/tv_item_persion_content"
         android:layout_width="0dp"
-        android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:text="hhhhhh"
         android:layout_gravity="center"
         android:layout_marginLeft="@dimen/fab_margin"
-        />
+        android:layout_weight="1"
+        android:text="hhhhhh" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/arrow_button_right_light"
         android:layout_gravity="center"
         android:layout_marginRight="@dimen/fab_margin"
-        />
+        android:src="@mipmap/arrow_button_right_light" />
 </LinearLayout>
