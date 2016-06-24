@@ -20,6 +20,8 @@ def fancybuttonsVersion = '1.8.1'
 def glideVersion = '3.6.1'
 def majiajiaVersion = '1.0.0'
 def eventbusVersion = '3.0.0'
+def reboundVersion = '0.3.8'
+def commonsioVersion = '2.4'
 
 ext {
 
@@ -63,6 +65,8 @@ ext {
 
             majiajie                         : "me.majiajie:pager-bottom-tab-strip:${majiajiaVersion}",
 
+
+            rebound                          : "com.facebook.rebound:rebound:${reboundVersion}"
     ]
 
     dependenciesdata = [
@@ -80,7 +84,10 @@ ext {
 
             retrofit       : "com.squareup.retrofit2:retrofit:${retrofit2Version}",
             convertergson  : "com.squareup.retrofit2:converter-gson:${retrofit2Version}",
-            adapterrxjava  : "com.squareup.retrofit2:adapter-rxjava:${retrofit2Version}"
+            adapterrxjava  : "com.squareup.retrofit2:adapter-rxjava:${retrofit2Version}",
+            //文件处理
+            commonsio      : "commons-io:commons-io:${commonsioVersion}"
+
     ]
     apt = [
             butterknife: "com.jakewharton:butterknife-compiler:${butterknifeVersion}"

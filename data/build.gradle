@@ -35,5 +35,6 @@ dependencies {
     compile rootProject.ext.dependenciesdata.adapterrxjava
     compile 'com.qiniu:qiniu-android-sdk:7.1.+'
     compile 'com.qiniu:happy-dns:0.2.3.2'
+    compile rootProject.ext.dependenciesdata.commonsio
 
 }

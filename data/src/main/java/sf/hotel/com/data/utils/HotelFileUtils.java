@@ -9,8 +9,10 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.util.Log;
 
 import java.io.File;
+import java.io.IOException;
 
 import sf.hotel.com.data.config.HotelConstant;
 
@@ -19,20 +21,29 @@ import sf.hotel.com.data.config.HotelConstant;
  */
 public class HotelFileUtils {
 
-    public static void clearImageDir() {
-        deleteFileDir(new File(HotelConstant.TEMP_IMG_DIR));
+    /** 创建缓存目录 */
+    public static void createCacheDirs() {
+        createDir(new File(HotelConstant.HOTEL_DIR));
+        createDir(new File(HotelConstant.TEMP_IMG_DIR));
     }
 
-    private static void deleteFileDir(File file) {
-        if (isExit(file)) {
-            file.delete();
+    /** 清理缓存目录 */
+    public static void clearDiskCache() {
+        try {
+            if (new File(HotelConstant.TEMP_IMG_DIR).exists()) {
+                org.apache.commons.io.FileUtils.cleanDirectory(
+                        new File(HotelConstant.TEMP_IMG_DIR));
+            }
+        } catch (IOException e) {
+            Log.e("clearDiskCache", "IOException", e);
         }
     }
 
     public static void createDir(File file) {
-        if (!(isExit(file)&&file.isDirectory())) {
-            if (file != null) {
-                file.mkdir();
+        if (file == null) return;
+        if (!file.exists()) {
+            if (!file.mkdirs()) {
+                Log.e("createCacheDirs", "Directory not created");
             }
         }
     }

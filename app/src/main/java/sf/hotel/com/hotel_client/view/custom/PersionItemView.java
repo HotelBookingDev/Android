@@ -58,5 +58,8 @@ public class PersionItemView extends FrameLayout {
         }
 
         HotelImageLoad.loadImage(context, mIconView, defalutIcon);
+        if (defalutIcon==R.mipmap.ic_launcher){
+            mIconView.setVisibility(GONE);
+        }
     }
 }

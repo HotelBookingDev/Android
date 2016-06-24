@@ -11,7 +11,7 @@
     <string name="tv_age">年龄</string>
     <string name="login_success">登陆成功</string>
     <string name="cache">清除缓存</string>
-    <string name="login_out">退出</string>
+    <string name="login_out">退出登录</string>
     <string name="title">hotel name</string>
     <string name="just_look">随便看看</string>
     <string name="my_money">我的钱包</string>
@@ -41,5 +41,6 @@
     <string name="my_setting">我的设置</string>
     <string name="edition">当前版本</string>
     <string name="my">我的</string>
+    <string name="receive_message">接受消息</string>
 
 </resources>

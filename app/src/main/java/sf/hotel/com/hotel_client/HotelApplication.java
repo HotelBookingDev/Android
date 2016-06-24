@@ -6,10 +6,7 @@ import android.content.Context;
 import com.avos.avoscloud.AVOSCloud;
 import com.tencent.bugly.crashreport.CrashReport;
 
-import java.io.File;
-
 import sf.hotel.com.data.config.EntityContext;
-import sf.hotel.com.data.config.HotelConstant;
 import sf.hotel.com.data.utils.HotelFileUtils;
 import sf.hotel.com.hotel_client.utils.locationoptions.LocationService;
 
@@ -49,8 +46,6 @@ public class HotelApplication extends Application {
 
     //创建文件夹初始化的时候
     public void initDir() {
-        //注意创建的顺序
-        HotelFileUtils.createDir(new File(HotelConstant.HOTEL_DIR));
-        HotelFileUtils.createDir(new File(HotelConstant.TEMP_IMG_DIR));
+        HotelFileUtils.createCacheDirs();
     }
 }

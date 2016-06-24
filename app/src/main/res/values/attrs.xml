@@ -12,4 +12,12 @@
         <attr name="rightBtnIcon" format="reference" />
         <attr name="titleText" format="string" />
     </declare-styleable>
+    <declare-styleable name="ToggleButton">
+        <attr name="tbwidth" format="dimension" />
+        <attr name="offBorderColor" format="reference|color" />
+        <attr name="offColor" format="reference|color" />
+        <attr name="onColor" format="reference|color" />
+        <attr name="spotColor" format="reference|color" />
+        <attr name="animate" format="reference|boolean" />
+    </declare-styleable>
 </resources>

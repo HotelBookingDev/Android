@@ -77,6 +77,9 @@ dependencies {
     testCompile 'junit:junit:4.12'
     //底部栏的控件
     compile rootProject.ext.dependencies.majiajie
+
+    //facebook 动画库
+    compile rootProject.ext.dependencies.rebound
     compile 'com.github.lsjwzh.RecyclerViewPager:lib:v1.1.0'
     compile 'com.android.support:support-v4:23.3.0'
     compile files('libs/locSDK_6.23.jar')
