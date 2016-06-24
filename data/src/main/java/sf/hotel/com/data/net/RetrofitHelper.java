@@ -59,7 +59,7 @@ public abstract class RetrofitHelper {
                 } else {
                     if (!subscriber.isUnsubscribed()) {
                         subscriber.onError(
-                                new APIException(httpResult.getStatus(), httpResult.getMessage()));
+                                new APIException(httpResult.getCode(), httpResult.getMessage()));
                     }
                     return;
                 }

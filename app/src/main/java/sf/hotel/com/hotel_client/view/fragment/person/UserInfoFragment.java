@@ -86,4 +86,14 @@ public class UserInfoFragment extends BaseFragment implements IUserInfoView {
         fragment.setArguments(args);
         return fragment;
     }
+
+    @Override
+    public void success(int type) {
+
+    }
+
+    @Override
+    public void failed(int type, Throwable e) {
+
+    }
 }

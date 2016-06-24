@@ -14,14 +14,14 @@ public class HttpResult<T> {
     @SerializedName("timeStamp")
     private float timestamp;
 
-    @SerializedName("status")
-    private int status;
+    @SerializedName("code")
+    private int code;
 
     @SerializedName("res")
     private T res;
 
     public boolean isSuccess() {
-        if (status == 100) return true;
+        if (code == 200) return true;
         return false;
     }
 
@@ -41,12 +41,12 @@ public class HttpResult<T> {
         this.timestamp = timestamp;
     }
 
-    public int getStatus() {
-        return status;
+    public int getCode() {
+        return code;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setCode(int code) {
+        this.code = code;
     }
 
     public T getRes() {

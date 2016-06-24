@@ -11,9 +11,9 @@ import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.interfaceeneity.IUserInfoEntity;
 import sf.hotel.com.data.interfaceeneity.IUserInfoEntityImp;
+import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.data.utils.HotelFileUtils;
-import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.data.utils.QNUpFileUtils;
 import sf.hotel.com.hotel_client.view.interfaceview.person.IUserInfoView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
@@ -70,6 +70,8 @@ public class UserInfoPersenter extends SuperPresenter {
     private void upFile(File file) {
         Subscription subscribe = mIUserInfoEntity.getToken().subscribe(tokenResult -> {
             QNUpFileUtils.upFileByQN(file, tokenResult);
+        }, throwable -> {
+            handlingException(throwable);
         });
         mCompositeSubscription.add(subscribe);
     }
@@ -81,5 +83,14 @@ public class UserInfoPersenter extends SuperPresenter {
             file = new File(path);
         }
         return file;
+    }
+
+    @Override
+    public void handlingException(Throwable e) {
+        if (e instanceof APIException) {
+
+        } else {
+            mIUserInfoView.showViewToast(e.getMessage());
+        }
     }
 }

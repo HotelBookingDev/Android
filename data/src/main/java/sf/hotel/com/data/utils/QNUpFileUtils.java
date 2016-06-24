@@ -13,6 +13,7 @@ import sf.hotel.com.data.entity.netresult.TokenResult;
  */
 public class QNUpFileUtils {
     public static void upFileByQN(File file, TokenResult mTokenResult) {
+        if (mTokenResult == null) return;
         UploadManager uploadManager = new UploadManager();
         String data = file.getPath();
         String key = mTokenResult.getImageUrl();

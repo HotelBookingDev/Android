@@ -19,7 +19,7 @@ public class HeadInterceptor implements Interceptor {
     @Override
     public okhttp3.Response intercept(okhttp3.Interceptor.Chain chain) throws IOException {
         Request request = chain.request();
-//        addToken(request);
+        addToken(request);
         okhttp3.Response response = chain.proceed(request);
         saveToken(response);
         okhttp3.MediaType mediaType = response.body().contentType();
