@@ -20,6 +20,9 @@ public class PreferencesUtils {
     //token
     public static final String TOKEN = "token";
 
+    //是否接受消息
+    public static final String ACCPETMSG = "accpetmesg";
+
     //当前城市和百度地图对于的citycode
     public static final String CITYCODE = "citycode";
 
@@ -84,6 +87,16 @@ public class PreferencesUtils {
 
     public static String getCitycode(Context context) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
-        return preferences.getString(CITYCODE,null);
+        return preferences.getString(CITYCODE, null);
+    }
+
+    public static void saveAcceptMeg(Context context, boolean isAccept) {
+        SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
+        preferences.edit().putBoolean(ACCPETMSG, isAccept).apply();
+    }
+
+    public static boolean getAcceptMeg(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
+        return preferences.getBoolean(ACCPETMSG, true);
     }
 }

@@ -1,5 +1,6 @@
 package sf.hotel.com.hotel_client.view.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -27,7 +28,6 @@ public class BaseFragment extends SupportFragment {
 
     protected String TAG = this.getClass().getSimpleName();
 
-
     protected void showToast(String msg) {
         TToast.showToast(msg);
     }
@@ -35,7 +35,6 @@ public class BaseFragment extends SupportFragment {
     protected void showLog(String msg) {
         LogUtils.e(TAG, msg);
     }
-
 
     @Nullable
     @Override
@@ -76,6 +75,13 @@ public class BaseFragment extends SupportFragment {
             e.printStackTrace();
         }
         return baseFragment;
+    }
 
+    public Context getBottomContext() {
+        return getActivity();
+    }
+
+    public void showViewToast(String msg) {
+        showToast(msg);
     }
 }

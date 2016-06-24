@@ -16,12 +16,18 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import sf.hotel.com.data.config.HotelConstant;
 import sf.hotel.com.data.utils.HotelFileUtils;
+import sf.hotel.com.data.utils.PreferencesUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.AndroidUtils;
+import sf.hotel.com.hotel_client.utils.ToggleButton;
 import sf.hotel.com.hotel_client.view.activity.LoginActivity;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
+import sf.hotel.com.hotel_client.view.interfaceview.person.ISettingView;
+import sf.hotel.com.hotel_client.view.presenter.person.SettingPresenter;
 
-public class SettingFragment extends BaseFragment {
+public class SettingFragment extends BaseFragment implements ISettingView {
+
+    SettingPresenter mSettingPersnter;
 
     public static SettingFragment newInstance() {
 
@@ -36,6 +42,8 @@ public class SettingFragment extends BaseFragment {
     FancyButton mClearBtn;
     @BindView(R.id.setting_edition)
     FancyButton mEditionBtn;
+    @BindView(R.id.tb_accept_msg)
+    ToggleButton mTbAcceptMsg;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,6 +52,7 @@ public class SettingFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
         ButterKnife.bind(this, view);
         initView();
+        mSettingPersnter=new SettingPresenter(this);
         return view;
     }
 
@@ -51,6 +60,8 @@ public class SettingFragment extends BaseFragment {
         setBtnClearText();
         mEditionBtn.setText(
                 mEditionBtn.getText() + "(" + AndroidUtils.getAppVersionName(getActivity()) + ")");
+
+        setSwitch(PreferencesUtils.getAcceptMeg(getActivity()), mTbAcceptMsg);
     }
 
     @OnClick(R.id.setting_out)
@@ -63,8 +74,22 @@ public class SettingFragment extends BaseFragment {
 
     @OnClick(R.id.setting_clear)
     public void settingclear() {
-        HotelFileUtils.clearImageDir();
+        HotelFileUtils.clearDiskCache();
         setBtnClearText();
+    }
+
+    @Override
+    public void setSwitch(boolean isOpen, ToggleButton viewSwitch) {
+        if (isOpen) {
+            viewSwitch.setToggleOn(true);
+        } else {
+            viewSwitch.setToggleOff(false);
+        }
+    }
+
+    @Override
+    public ToggleButton getAcceptMsg() {
+        return mTbAcceptMsg;
     }
 
     private void setBtnClearText() {
@@ -77,5 +102,21 @@ public class SettingFragment extends BaseFragment {
                 .subscribe(s -> {
                     mClearBtn.setText(mClearBtn.getText() + "(" + s + ")");
                 });
+    }
+
+    @OnClick(R.id.tb_accept_msg)
+    public void sendMsg() {
+        mSettingPersnter.changeAcceptMsg();
+    }
+
+
+    @Override
+    public void success(int type) {
+
+    }
+
+    @Override
+    public void failed(int type, Throwable e) {
+
     }
 }

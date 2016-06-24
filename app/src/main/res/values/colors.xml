@@ -30,4 +30,6 @@
 
     <!--默认使用-->
     <color name="view_title">#ff53cac3</color>
+
+    <color name="green">#00ff00</color>
 </resources>
