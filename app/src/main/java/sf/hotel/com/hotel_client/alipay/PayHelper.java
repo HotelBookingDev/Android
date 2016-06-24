@@ -40,7 +40,7 @@ public class PayHelper {
                 }
 
 
-                
+
                 String payInfo =  orderInfo + "&sign=\"" + sign + "\"&" + getSignType();
                 PayTask alipay = new PayTask(c);
                 return alipay.pay(payInfo , true);

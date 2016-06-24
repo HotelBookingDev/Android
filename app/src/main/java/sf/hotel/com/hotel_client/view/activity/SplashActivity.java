@@ -173,7 +173,7 @@ public class SplashActivity extends Activity {
     }
 
     protected void onSplashStop() {
-        Intent intent = new Intent(this, PayActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         this.finish();
     }
