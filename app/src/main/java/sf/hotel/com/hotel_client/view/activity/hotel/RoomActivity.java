@@ -27,7 +27,6 @@ public class RoomActivity extends BaseActivity {
         setContentView(R.layout.activity_hotel);
 
         init();
-        onRxEvent();
         initIntent();
     }
 
@@ -40,32 +39,6 @@ public class RoomActivity extends BaseActivity {
         }
     }
 
-
-    private void onRxEvent() {
-        Subscription subscribe = RxBus.getDefault()
-                .toObservable(RoomMessage.class)
-                .subscribe(new Action1<RoomMessage>() {
-                    @Override
-                    public void call(RoomMessage roomMessage) {
-                        if (roomMessage != null){
-                            switch (roomMessage.what){
-                                case RoomMessage.INTENT_ROOM:
-                                    HotelResult.HotelsBean hotelsBean = (HotelResult.HotelsBean) roomMessage.obj;
-                                    String introduce = hotelsBean.getIntroduce();
-                                    LogUtils.d("-->111",introduce);
-                                    break;
-                            }
-                        }
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        LogUtils.d("-->111", throwable.getMessage());
-                    }
-                });
-        mCompositeSubscription.add(subscribe);
-
-    }
 
     protected void init() {
         loadRootFragment(R.id.activity_hotel_frame, getFragmentByKey(FragConstant.ROOM));

@@ -41,6 +41,7 @@ public class BaseFragment extends SupportFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
+        mCompositeSubscription = new CompositeSubscription();
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
