@@ -52,7 +52,7 @@ public class SettingFragment extends BaseFragment implements ISettingView {
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
         ButterKnife.bind(this, view);
         initView();
-        mSettingPersnter=new SettingPresenter(this);
+        mSettingPersnter = new SettingPresenter(this);
         return view;
     }
 
@@ -65,10 +65,14 @@ public class SettingFragment extends BaseFragment implements ISettingView {
     }
 
     @OnClick(R.id.setting_out)
-    public void logingOut() {
+    public void loginOut() {
+        //清空本地设置
+        mSettingPersnter.loginOut();
+    }
+
+    public void starLoginActivtiy() {
         Intent intent = new Intent(getActivity(), LoginActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 
@@ -108,7 +112,6 @@ public class SettingFragment extends BaseFragment implements ISettingView {
     public void sendMsg() {
         mSettingPersnter.changeAcceptMsg();
     }
-
 
     @Override
     public void success(int type) {

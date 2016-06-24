@@ -30,7 +30,10 @@ public class HotelFileUtils {
     /** 清理缓存目录 */
     public static void clearDiskCache() {
         try {
-            org.apache.commons.io.FileUtils.cleanDirectory(new File(HotelConstant.TEMP_IMG_DIR));
+            if (new File(HotelConstant.TEMP_IMG_DIR).exists()) {
+                org.apache.commons.io.FileUtils.cleanDirectory(
+                        new File(HotelConstant.TEMP_IMG_DIR));
+            }
         } catch (IOException e) {
             Log.e("clearDiskCache", "IOException", e);
         }

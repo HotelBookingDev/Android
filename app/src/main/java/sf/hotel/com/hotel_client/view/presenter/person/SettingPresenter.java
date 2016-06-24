@@ -33,4 +33,17 @@ public class SettingPresenter extends SuperPresenter {
         mSettingView.setSwitch(PreferencesUtils.getAcceptMeg(mSettingView.getBottomContext()),
                 acceptMsg);
     }
+
+    public void loginOut() {
+        invalidate();
+        mSettingView.starLoginActivtiy();
+    }
+
+    private void invalidate() {
+        PreferencesUtils.saveToken(mSettingView.getBottomContext(), null);
+        PreferencesUtils.saveAvatar(mSettingView.getBottomContext(), null);
+        PreferencesUtils.saveInstallationId(mSettingView.getBottomContext(), null);
+        PreferencesUtils.savePassWord(mSettingView.getBottomContext(), null);
+        PreferencesUtils.savePhone(mSettingView.getBottomContext(), null);
+    }
 }

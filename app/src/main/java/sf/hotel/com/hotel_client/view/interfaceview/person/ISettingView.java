@@ -6,8 +6,11 @@ import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
 /**
  * Created by 林其望 on 2016/6/24.
  */
-public interface ISettingView extends BaseView{
+public interface ISettingView extends BaseView {
     void setSwitch(boolean isOpen, ToggleButton button);
 
     ToggleButton getAcceptMsg();
+
+    void loginOut();
+    void starLoginActivtiy();
 }

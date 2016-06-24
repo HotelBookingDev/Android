@@ -32,7 +32,6 @@
     <!-- SD卡读取权限，用户写入离线定位数据 -->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
 
-
     <!--alipay begin-->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -62,12 +61,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.activity.HomeActivity" />
-        <activity android:name=".view.activity.LoginActivity" />
+        <activity
+            android:name=".view.activity.LoginActivity"
+            android:launchMode="singleTask" />
 
         <activity android:name=".view.activity.MainActivity" />
         <activity android:name=".view.activity.CityActivity" />
 
-        <activity android:name=".view.activity.PayActivity"/>
+        <activity android:name=".view.activity.PayActivity" />
 
         <service
             android:name="com.baidu.location.f"
@@ -82,8 +83,7 @@
             android:name=".view.activity.person.UserInfoActivity"
             android:label="@string/title_activity_user_info"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".view.activity.person.SettingActivity"/>
-
+        <activity android:name=".view.activity.person.SettingActivity" />
 
         <!-- alipay sdk begin -->
         <activity
@@ -91,11 +91,9 @@
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
             android:exported="false"
             android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden" >
-        </activity>
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
 
         <!-- alipay sdk end -->
-
 
     </application>
 
