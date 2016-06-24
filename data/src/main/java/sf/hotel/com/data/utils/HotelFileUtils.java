@@ -29,6 +29,14 @@ public class HotelFileUtils {
         }
     }
 
+    public static void createDir(File file) {
+        if (!(isExit(file)&&file.isDirectory())) {
+            if (file != null) {
+                file.mkdir();
+            }
+        }
+    }
+
     private static boolean isExit(File file) {
         boolean isExit = false;
         if (file != null && file.exists() && file.isFile()) {
@@ -78,8 +86,7 @@ public class HotelFileUtils {
                 if ("primary".equalsIgnoreCase(type)) {
                     return Environment.getExternalStorageDirectory() + "/" + split[1];
                 }
-            }
-            else if (isDownloadsDocument(uri)) {
+            } else if (isDownloadsDocument(uri)) {
 
                 final String id = DocumentsContract.getDocumentId(uri);
                 final Uri contentUri = ContentUris.withAppendedId(

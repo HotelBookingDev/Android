@@ -61,6 +61,7 @@ dependencies {
     compile rootProject.ext.dependencies.yokeyword_fragmentation_swipeback
     apt rootProject.ext.apt.butterknife
     compile project(':data')
+
     //learnCloud
     compile rootProject.ext.dependencies.avoscloud_sdk
     compile rootProject.ext.dependencies.avoscloud_push

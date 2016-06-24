@@ -3,20 +3,14 @@ package sf.hotel.com.hotel_client;
 import android.app.Application;
 import android.content.Context;
 
-import com.avos.avoscloud.AVException;
-import com.avos.avoscloud.AVInstallation;
 import com.avos.avoscloud.AVOSCloud;
-import com.avos.avoscloud.SaveCallback;
 import com.tencent.bugly.crashreport.CrashReport;
 
-import rx.Subscriber;
+import java.io.File;
+
 import sf.hotel.com.data.config.EntityContext;
-import sf.hotel.com.data.entity.Intallation;
-import sf.hotel.com.data.entity.netresult.NormalResult;
-import sf.hotel.com.data.net.ApiWrapper;
-import sf.hotel.com.data.net.Exception.APIException;
-import sf.hotel.com.data.net.Exception.Code;
-import sf.hotel.com.data.utils.PreferencesUtils;
+import sf.hotel.com.data.config.HotelConstant;
+import sf.hotel.com.data.utils.HotelFileUtils;
 import sf.hotel.com.hotel_client.utils.locationoptions.LocationService;
 
 /**
@@ -39,20 +33,24 @@ public class HotelApplication extends Application {
 
         //初始化定位
         locationService = new LocationService(getApplicationContext());
+        initDir();
     }
 
     private void initCloud() {
         //初始化
         AVOSCloud.initialize(this, "P0fN7ArvLMtcgsACRwhOupHj-gzGzoHsz", "cWK8NHllNg7N6huHiKA1HeRG");
-
-
     }
-
-
 
     public void initBuglyStatus() {
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(context);
         strategy.setAppVersion("1.0.1");
         CrashReport.initCrashReport(context, "900033362", true, strategy);
+    }
+
+    //创建文件夹初始化的时候
+    public void initDir() {
+        //注意创建的顺序
+        HotelFileUtils.createDir(new File(HotelConstant.HOTEL_DIR));
+        HotelFileUtils.createDir(new File(HotelConstant.TEMP_IMG_DIR));
     }
 }

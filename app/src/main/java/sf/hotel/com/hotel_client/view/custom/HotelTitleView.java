@@ -50,6 +50,7 @@ public class HotelTitleView extends RelativeLayout {
             a.recycle();
         }
         init();
+        this.setBackgroundColor(R.color.view_title);
     }
 
     private void init() {
@@ -82,15 +83,6 @@ public class HotelTitleView extends RelativeLayout {
         mTvTitle.setLayoutParams(titleParams);
         mTvTitle.setText(mTitle);
         addView(mTvTitle);
-    }
-
-    public void clearRightButton() {
-        if (mBtnRight != null) {
-            removeView(mBtnRight);
-            invalidate();
-            requestLayout();
-            mBtnRight = null;
-        }
     }
 
     public void addLeftView(String text) {

@@ -12,6 +12,7 @@
             android:id="@+id/view_title"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/title_height"
+            app:leftBtnIcon="@mipmap/ic_title_back_arrow"
             app:titleText="@string/my_setting" />
 
         <LinearLayout
@@ -29,12 +30,7 @@
                 fancy:fb_text="@string/edition"
                 fancy:fb_textColor="@color/black" />
 
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="0.5dip"
-                android:layout_marginLeft="12.0dip"
-                android:layout_marginRight="12.0dip"
-                android:background="@color/main_divide" />
+            <include layout="@layout/item_line" />
 
             <mehdi.sakout.fancybuttons.FancyButton
                 android:id="@+id/setting_clear"
@@ -44,12 +40,7 @@
                 fancy:fb_text="@string/cache"
                 fancy:fb_textColor="@color/black" />
 
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="0.5dip"
-                android:layout_marginLeft="12.0dip"
-                android:layout_marginRight="12.0dip"
-                android:background="@color/main_divide" />
+            <include layout="@layout/item_line" />
 
             <mehdi.sakout.fancybuttons.FancyButton
                 android:id="@+id/setting_out"
