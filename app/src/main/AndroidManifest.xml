@@ -49,7 +49,7 @@
         android:theme="@style/AppTheme.NoActionBar">
         <meta-data
             android:name="sf.hotel.com.hotel_client.utils.imageconfig.HotelGlideModule"
-            android:value="HotelGlideModule" />
+            android:value="GlideModule" />
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="7M0TW3Lj5Ma8Ci7Ve5tKALsiiZg2Yogi" />
@@ -64,8 +64,8 @@
         <activity android:name=".view.activity.HomeActivity" />
         <activity android:name=".view.activity.LoginActivity" />
 
-        <activity android:name=".view.activity.MainActivity"/>
-        <activity android:name=".view.activity.CityActivity"/>
+        <activity android:name=".view.activity.MainActivity" />
+        <activity android:name=".view.activity.CityActivity" />
 
         <activity android:name=".view.activity.PayActivity"/>
 

@@ -7,7 +7,6 @@ import java.io.IOException;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import sf.hotel.com.data.config.EntityContext;
-import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.data.utils.PreferencesUtils;
 
 /**
@@ -20,7 +19,7 @@ public class HeadInterceptor implements Interceptor {
     @Override
     public okhttp3.Response intercept(okhttp3.Interceptor.Chain chain) throws IOException {
         Request request = chain.request();
-        addToken(request);
+//        addToken(request);
         okhttp3.Response response = chain.proceed(request);
         saveToken(response);
         okhttp3.MediaType mediaType = response.body().contentType();
@@ -43,7 +42,6 @@ public class HeadInterceptor implements Interceptor {
     private void saveToken(okhttp3.Response response) {
         String token = response.header("token");
         if (!TextUtils.isEmpty(token)) {
-            LogUtils.d("token", token);
             PreferencesUtils.saveToken(EntityContext.getContext(), token);
         }
     }

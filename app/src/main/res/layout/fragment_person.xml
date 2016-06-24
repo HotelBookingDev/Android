@@ -16,39 +16,49 @@
             android:layout_height="@dimen/title_height"
             app:titleText="@string/my" />
 
-        <sf.hotel.com.hotel_client.view.custom.PersionItemView
-            android:id="@+id/piv_person"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_below="@+id/view_title"
-            app:contextText="@string/my_info" />
+            android:orientation="vertical">
 
-        <sf.hotel.com.hotel_client.view.custom.PersionItemView
-            android:id="@+id/piv_money"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/piv_person"
-            app:contextText="@string/my_money" />
+            <sf.hotel.com.hotel_client.view.custom.PersionItemView
+                android:id="@+id/piv_person"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:contextText="@string/my_info" />
 
-        <sf.hotel.com.hotel_client.view.custom.PersionItemView
-            android:id="@+id/piv_order"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/piv_money"
-            app:contextText="@string/my_order" />
+            <include layout="@layout/item_line" />
 
-        <sf.hotel.com.hotel_client.view.custom.PersionItemView
-            android:id="@+id/piv_evaluate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/piv_order"
-            app:contextText="@string/my_evaluate" />
+            <sf.hotel.com.hotel_client.view.custom.PersionItemView
+                android:id="@+id/piv_money"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:contextText="@string/my_money" />
 
-        <sf.hotel.com.hotel_client.view.custom.PersionItemView
-            android:id="@+id/piv_setting"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/piv_evaluate"
-            app:contextText="@string/my_setting" />
+            <include layout="@layout/item_line" />
+
+            <sf.hotel.com.hotel_client.view.custom.PersionItemView
+                android:id="@+id/piv_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:contextText="@string/my_order" />
+
+            <include layout="@layout/item_line" />
+
+            <sf.hotel.com.hotel_client.view.custom.PersionItemView
+                android:id="@+id/piv_evaluate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:contextText="@string/my_evaluate" />
+
+            <include layout="@layout/item_line" />
+
+            <sf.hotel.com.hotel_client.view.custom.PersionItemView
+                android:id="@+id/piv_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:contextText="@string/my_setting" />
+        </LinearLayout>
     </RelativeLayout>
 </FrameLayout>

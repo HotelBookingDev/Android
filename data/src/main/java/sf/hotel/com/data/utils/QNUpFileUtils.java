@@ -17,9 +17,6 @@ public class QNUpFileUtils {
         String data = file.getPath();
         String key = mTokenResult.getImageUrl();
         String token = mTokenResult.getToken();
-        LogUtils.d("data",data);
-        LogUtils.d("key",key);
-        LogUtils.d("token",token);
         uploadManager.put(data, key, token, (key1, info, res) -> {
             //  res 包含hash、key等信息，具体字段取决于上传策略的设置。
             Log.i("qiniu", key1 + ",\r\n " + info + ",\r\n " + res);

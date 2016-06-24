@@ -5,7 +5,7 @@ import android.content.Context;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.load.DecodeFormat;
-import com.bumptech.glide.load.engine.cache.ExternalCacheDiskCacheFactory;
+import com.bumptech.glide.load.engine.cache.DiskLruCacheFactory;
 import com.bumptech.glide.module.GlideModule;
 
 import sf.hotel.com.data.config.HotelConstant;
@@ -19,8 +19,8 @@ public class HotelGlideModule implements GlideModule {
     @Override
     public void applyOptions(Context context, GlideBuilder builder) {
         builder.setDecodeFormat(DecodeFormat.PREFER_RGB_565);
-        builder.setDiskCache(new ExternalCacheDiskCacheFactory(context, HotelConstant.TEMP_IMG_DIR,
-                HotelConstant.TEMP_IMG_SIZE));
+        builder.setDiskCache(
+                new DiskLruCacheFactory(HotelConstant.TEMP_IMG_DIR, HotelConstant.TEMP_IMG_SIZE));
     }
 
     @Override
