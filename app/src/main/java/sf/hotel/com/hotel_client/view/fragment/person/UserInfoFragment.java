@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import me.yokeyword.fragmentation.SupportFragment;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.person.IUserInfoView;
@@ -39,7 +38,6 @@ public class UserInfoFragment extends BaseFragment implements IUserInfoView {
         return view;
     }
 
-    @OnClick(R.id.iv_avatar)
     public void upAvatar() {
         getImageFromAlbum();
     }
@@ -95,5 +93,14 @@ public class UserInfoFragment extends BaseFragment implements IUserInfoView {
     @Override
     public void failed(int type, Throwable e) {
 
+    }
+
+    @OnClick({R.id.iv_avatar})
+    public void onClick(View view) {
+        int id = view.getId();
+        if (id == R.id.iv_avatar) {
+            //上传头像
+            upAvatar();
+        }
     }
 }

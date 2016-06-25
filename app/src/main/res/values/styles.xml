@@ -104,7 +104,11 @@
         <item name="android:layout_marginRight">10.0dip</item>
     </style>
 
-
+    <style name="person_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/item_seletor</item>
+    </style>
 
     <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 

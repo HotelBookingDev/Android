@@ -66,7 +66,7 @@ public interface ApiService {
 
     //获取TOKEN
     @GET(AppUrl.TOKEN_URL)
-    Observable<HttpResult<TokenResult>> getTokenResult(@Query(HttpParam.USER_ID) long id);
+    Observable<HttpResult<TokenResult>> getTokenResult();
 
     @GET(AppUrl.PROVINCES_URL)
     Observable<HttpResult<ProcincesResult>> callCityList();

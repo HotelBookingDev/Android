@@ -64,10 +64,13 @@ public class SettingFragment extends BaseFragment implements ISettingView {
         setSwitch(PreferencesUtils.getAcceptMeg(getActivity()), mTbAcceptMsg);
     }
 
-    @OnClick(R.id.setting_out)
     public void loginOut() {
         //清空本地设置
         mSettingPersnter.loginOut();
+    }
+
+    public void aboutUs() {
+        showToast("aboutUs");
     }
 
     public void starLoginActivtiy() {
@@ -76,7 +79,6 @@ public class SettingFragment extends BaseFragment implements ISettingView {
         startActivity(intent);
     }
 
-    @OnClick(R.id.setting_clear)
     public void settingclear() {
         HotelFileUtils.clearDiskCache();
         setBtnClearText();
@@ -108,7 +110,6 @@ public class SettingFragment extends BaseFragment implements ISettingView {
                 });
     }
 
-    @OnClick(R.id.tb_accept_msg)
     public void sendMsg() {
         mSettingPersnter.changeAcceptMsg();
     }
@@ -121,5 +122,36 @@ public class SettingFragment extends BaseFragment implements ISettingView {
     @Override
     public void failed(int type, Throwable e) {
 
+    }
+
+    @OnClick({
+            R.id.tb_accept_msg,
+            R.id.setting_clear,
+            R.id.piv_about_us,
+            R.id.setting_out,
+            R.id.piv_feed_back
+    })
+    void onClick(View view) {
+        int id = view.getId();
+        //修改是否接受消息
+        if (id == R.id.tb_accept_msg) {
+            sendMsg();
+            //缓存清空
+        } else if (id == R.id.setting_clear) {
+            settingclear();
+            //关于我们
+        } else if (id == R.id.piv_about_us) {
+            aboutUs();
+            //退出
+        } else if (id == R.id.setting_out) {
+            loginOut();
+            //意见反馈
+        } else if (id == R.id.piv_feed_back) {
+            feedBack();
+        }
+    }
+
+    private void feedBack() {
+        showToast("意见反馈");
     }
 }

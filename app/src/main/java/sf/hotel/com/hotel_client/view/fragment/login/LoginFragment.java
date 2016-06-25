@@ -82,12 +82,6 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     }
 
     @Override
-    @OnClick(R.id.login_btn)
-    public void login() {
-        mILoginPresenter.login();
-    }
-
-    @Override
     public EditText getEditName() {
         return mEditPhone;
     }
@@ -121,11 +115,6 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     public void success(int type) {
     }
 
-    @OnClick(R.id.tv_just_look)
-    public void justLook() {
-        startHomeActivity();
-    }
-
     @Override
     public void failed(int type, Throwable e) {
 
@@ -134,11 +123,6 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     @Override
     public Context getContext() {
         return getActivity();
-    }
-
-    @OnClick(R.id.register_btn)
-    public void register() {
-        RxBus.getDefault().post(MessageFactory.createLoginMessage(LoginMessage.SHOW_REGIST));
     }
 
     @Override
@@ -155,5 +139,30 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     public void onDestroy() {
         super.onDestroy();
         mILoginPresenter.destroy();
+    }
+
+    @OnClick({R.id.login_btn, R.id.tv_just_look, R.id.register_btn})
+    public void onClick(View view) {
+        int id = view.getId();
+        if (id == R.id.login_btn) {
+            login();
+        } else if (id == R.id.tv_just_look) {
+            justLook();
+        } else if (id == R.id.register_btn) {
+            register();
+        }
+    }
+
+    @Override
+    public void login() {
+        mILoginPresenter.login();
+    }
+
+    public void justLook() {
+        startHomeActivity();
+    }
+
+    public void register() {
+        RxBus.getDefault().post(MessageFactory.createLoginMessage(LoginMessage.SHOW_REGIST));
     }
 }

@@ -27,4 +27,5 @@
         <attr name="indicator_background" format="color|integer" />
         <attr name="indicator_selected_background" format="color|integer" />
     </declare-styleable>
+
 </resources>

@@ -88,8 +88,8 @@ public class ApiWrapper extends RetrofitHelper {
     }
 
 
-    public Observable<TokenResult> getTokenReuslt(long id) {
-        return mService.getTokenResult(id).compose(this.<TokenResult>applySchedulers());
+    public Observable<TokenResult> getTokenReuslt() {
+        return mService.getTokenResult().compose(this.<TokenResult>applySchedulers());
     }
 
     public Observable<ProcincesResult> callCityList(){

@@ -26,5 +26,6 @@
     <!--persion_item左侧icon的宽高-->
     <dimen name="iv_item_persion">50dp</dimen>
     <dimen name="iv_item_persion_padding">10dp</dimen>
+
     <dimen name="title_height">48dp</dimen>
 </resources>
