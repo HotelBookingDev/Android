@@ -1,7 +1,5 @@
 package sf.hotel.com.hotel_client.view.event.hotel;
 
-import java.util.Objects;
-
 /**
  * @author MZ
  * @email sanfenruxi1@163.com
@@ -18,6 +16,11 @@ public class HotelMessage extends Message {
     public final static int SHOW_BOTTOM_VIEW = 100;
     public final static int HIDE_BOTTOM_VIEW = 101;
 
+    public static final int REFRESH_LIST_VIEW_HOTEL = 100;
+
+    public final static int SUCCESS = 1;
+    public final static int FAILE = 2;
+
     public HotelMessage(int what) {
         super(what);
     }
@@ -26,7 +29,7 @@ public class HotelMessage extends Message {
         super(message, what);
     }
 
-    public HotelMessage(int what, String message, Objects obj) {
+    public HotelMessage(int what, String message, Object obj) {
         super(what, message, obj);
     }
 }

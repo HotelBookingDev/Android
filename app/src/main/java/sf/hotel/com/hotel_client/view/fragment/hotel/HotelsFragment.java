@@ -11,25 +11,22 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.lhh.ptrrv.library.PullToRefreshRecyclerView;
 import com.lhh.ptrrv.library.footer.loadmore.BaseLoadMoreView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import rx.Subscription;
 import rx.functions.Action1;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.view.activity.CityActivity;
 import sf.hotel.com.hotel_client.view.activity.hotel.RoomActivity;
 import sf.hotel.com.hotel_client.view.adapter.HomePullViewAdapter;
 import sf.hotel.com.hotel_client.view.adapter.OnItemClickListener;
 import sf.hotel.com.hotel_client.view.custom.DividerItemDecoration;
 import sf.hotel.com.hotel_client.view.event.RxBus;
-import sf.hotel.com.hotel_client.view.event.hotel.HotelListMsg;
+import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IHotelsView;
 import sf.hotel.com.hotel_client.view.presenter.hotel.IHotelPresenter;
@@ -41,16 +38,9 @@ import sf.hotel.com.hotel_client.view.presenter.hotel.IHotelPresenter;
  */
 public class HotelsFragment extends BaseFragment implements IHotelsView {
 
-    public static final int CITY_REQUEST_CODE = 1001;
-
     @BindView(R.id.fragment_hotels_list)
     PullToRefreshRecyclerView mPullView;
 
-    @BindView(R.id.custom_title_city)
-    View mCityView;
-
-    @BindView(R.id.custom_title_city_name)
-    TextView mCityName;
 
     public static HotelsFragment newInstance() {
 
@@ -84,46 +74,26 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         return view;
     }
 
-
-    @OnClick(R.id.custom_title_city)
-    public void onCityViewClick(){
-        Intent intent = new Intent(getBottomContext(), CityActivity.class);
-        startActivityForResult(intent, CITY_REQUEST_CODE);
-    }
-
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == CITY_REQUEST_CODE){
-            Bundle bundle = data.getExtras();
-            String city = bundle.getString("city");
-            int cityId = bundle.getInt("cityId");
-            mCityName.setText(city);
-
-            mIHotelPresenter.callHotelsByCityId(String.valueOf(cityId));
-
-        }
-    }
-
     private void onRxEvent() {
         Subscription subscribe = RxBus.getDefault()
-                .toObservable(HotelListMsg.class)
-                .subscribe(new Action1<HotelListMsg>() {
+                .toObservable(HotelMessage.class)
+                .subscribe(new Action1<HotelMessage>() {
                     @Override
-                    public void call(HotelListMsg hotelListMsg) {
-                        if (hotelListMsg != null){
-                            switch (hotelListMsg.what){
-                                case HotelListMsg.SUCCESS:
-                                    HotelResult hotelResult = (HotelResult) hotelListMsg.obj;
-                                    mPullAdapter.setList(hotelResult.getHotels());
-                                    break;
-                            }
+                    public void call(HotelMessage hotelMessage) {
+                        switch (hotelMessage.what){
+                            case HotelMessage.SUCCESS:
+                                HotelResult hotelResult = (HotelResult) hotelMessage.obj;
+                                mPullAdapter.setList(hotelResult.getHotels());
+                                break;
+                            case HotelMessage.REFRESH_LIST_VIEW_HOTEL:
+                                Integer cityId = (Integer) hotelMessage.obj;
+                                mIHotelPresenter.callHotelsByCityId(cityId.toString());
+                                break;
                         }
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-
                         showToast(throwable.getMessage() + "加载失败");
                         showLog(throwable.getMessage());
                     }
@@ -132,6 +102,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
     }
 
     private void initPullView() {
+
         mPullView.setSwipeEnable(true);
 
         //加载更多

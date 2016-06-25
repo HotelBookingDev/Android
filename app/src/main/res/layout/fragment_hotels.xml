@@ -5,12 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:layout_height="50dp"
-        android:layout_width="match_parent"
-        layout="@layout/custom_title"
-        android:id="@+id/fragment_detail_title"/>
-
     <com.lhh.ptrrv.library.PullToRefreshRecyclerView
         android:id="@+id/fragment_hotels_list"
         android:layout_width="match_parent"

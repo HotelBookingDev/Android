@@ -11,6 +11,7 @@ import sf.hotel.com.data.entity.ProcincesResult;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.CityMessage;
+import sf.hotel.com.hotel_client.view.fragment.HomeContainer;
 import sf.hotel.com.hotel_client.view.fragment.hotel.HotelsFragment;
 
 /**
@@ -47,7 +48,7 @@ public class CityActivity extends BaseActivity {
                             bundle.putString("city", citysBean.getName());
                             bundle.putInt("cityId", citysBean.getId());
                             intent.putExtras(bundle);
-                            setResult(HotelsFragment.CITY_REQUEST_CODE, intent);
+                            setResult(HomeContainer.CITY_REQUEST_CODE, intent);
                             finish();
                             break;
                         case CityMessage.ACTIVITY_FINISH:

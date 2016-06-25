@@ -6,7 +6,7 @@ import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.data.interfaceeneity.HotelsEntityImp;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.hotel_client.view.event.RxBus;
-import sf.hotel.com.hotel_client.view.event.hotel.HotelListMsg;
+import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IHotelsView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
@@ -41,13 +41,13 @@ public class IHotelPresenter extends SuperPresenter {
             @Override
             public void onNext(HotelResult hotelResult) {
                 super.onNext(hotelResult);
-                RxBus.getDefault().post(MessageFactory.createHotelListMsg(HotelListMsg.SUCCESS, hotelResult));
+                RxBus.getDefault().post(MessageFactory.createHotelMessage(HotelMessage.SUCCESS, hotelResult));
             }
 
             @Override
             public void onError(Throwable e) {
                 super.onError(e);
-                RxBus.getDefault().post(MessageFactory.createHotelListMsg(HotelListMsg.FAILE, e));
+                RxBus.getDefault().post(MessageFactory.createHotelMessage(HotelMessage.FAILE, e));
             }
         });
 

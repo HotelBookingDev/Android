@@ -26,8 +26,8 @@ public class MessageFactory {
         return new HotelMessage(what);
     }
 
-    public static HotelListMsg createHotelListMsg(int what, Object obj){
-        return new HotelListMsg(what, "", obj);
+    public static HotelMessage createHotelMessage(int what, Object obj) {
+        return new HotelMessage(what, "", obj);
     }
 
     public static CityMessage createCityMessage(int what, Object obj){
