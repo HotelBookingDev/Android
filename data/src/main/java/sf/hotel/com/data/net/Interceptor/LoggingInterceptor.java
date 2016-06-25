@@ -8,7 +8,8 @@ import okhttp3.Response;
 import sf.hotel.com.data.utils.LogUtils;
 
 /**
- * Created by sanfen on 16/6/6.
+ * Created by sanfen
+ * data：16/6/6
  */
 public class LoggingInterceptor implements Interceptor {
 

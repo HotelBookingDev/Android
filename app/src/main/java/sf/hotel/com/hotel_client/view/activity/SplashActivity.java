@@ -57,6 +57,7 @@ public class SplashActivity extends Activity {
         try {
             paths = getAssets().list("splash");
         } catch (IOException e) {
+            LogUtils.printExceptionStackTrace(e);
         }
         if (paths == null || paths.length == 0) {
             onSplashStop();

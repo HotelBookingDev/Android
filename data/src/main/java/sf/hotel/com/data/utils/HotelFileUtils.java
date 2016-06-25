@@ -18,7 +18,8 @@ import java.util.Locale;
 import sf.hotel.com.data.config.HotelConstant;
 
 /**
- * Created by 林其望 on 2016/6/16.
+ * Created by 林其望
+ * email: 1105896230@qq.com
  */
 public class HotelFileUtils {
 

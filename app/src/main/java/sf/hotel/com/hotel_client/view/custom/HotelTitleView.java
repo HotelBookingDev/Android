@@ -14,7 +14,9 @@ import android.widget.TextView;
 import sf.hotel.com.hotel_client.R;
 
 /**
- * Created by 林其望 on 2016/6/22.
+ * Created by 林其望
+ * data：2016/6/22
+ * email: 1105896230@qq.com
  */
 public class HotelTitleView extends RelativeLayout {
     private int mLeftBtnIcon;

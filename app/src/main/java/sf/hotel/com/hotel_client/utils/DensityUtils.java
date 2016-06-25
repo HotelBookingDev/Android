@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.TypedValue;
 
 /**
- * Created by 林其望 on 2016/6/23.
+ * Created by 林其望
  */
 public class DensityUtils {
 

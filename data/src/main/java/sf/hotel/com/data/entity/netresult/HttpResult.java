@@ -4,7 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by FMT on 2016/6/5:14:04
- * EMAILE 1105896230@qq.com.
+ * <p>
+ * email 1105896230@qq.com.
  */
 public class HttpResult<T> {
 

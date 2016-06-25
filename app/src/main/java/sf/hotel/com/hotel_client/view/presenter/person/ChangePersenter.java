@@ -6,7 +6,7 @@ import sf.hotel.com.hotel_client.view.interfaceview.person.IChangePwdView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 
 /**
- * Created by 林其望 on 2016/6/25.
+ * Created by 林其望
  */
 public class ChangePersenter extends SuperPresenter {
     IChangePwdView mIChangePwdView;

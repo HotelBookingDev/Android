@@ -19,7 +19,9 @@ import sf.hotel.com.hotel_client.view.interfaceview.person.IUserInfoView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 
 /**
- * Created by 林其望 on 2016/6/22.
+ * Created by 林其望
+ * data：2016/6/22
+ * email: 1105896230@qq.com
  */
 public class UserInfoPersenter extends SuperPresenter {
     private static final java.lang.String TAG = "UserInfoPersenter";
