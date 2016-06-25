@@ -109,7 +109,8 @@
                         android:id="@+id/et_password"
                         style="@style/login_edit"
                         android:hint="@string/new_pwd"
-                        android:imeOptions="actionNext" />
+                        android:imeOptions="actionNext"
+                        android:inputType="textPassword" />
 
                     <ImageView
                         android:id="@+id/iv_password_switch"

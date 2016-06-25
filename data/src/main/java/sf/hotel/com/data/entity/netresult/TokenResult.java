@@ -12,7 +12,7 @@ public class TokenResult {
         return token;
     }
 
-    @SerializedName("token")
+    @SerializedName("upload_token")
     private String token;
 
     public String getImageUrl() {

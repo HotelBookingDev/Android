@@ -9,7 +9,7 @@ public class AppUrl {
     public static final String LOGIN_URL = "/user/login/";
     public static final String REGISTER_URL = "/user/register/";
     public static final String SMS_URL = "/ems/member/regist/";
-    public static final String INSTALLTION_BIND_URL = "/user/installation/bind/";
+    public static final String INSTALLTION_BIND_URL = "/user/installation/bind";
     public static final String INSTALLTION_URL = "installation/";
     public static final String HOTELS_URL = "/hotels";
 
