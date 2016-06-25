@@ -8,10 +8,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="btn_register">注册</string>
     <string name="btn_phone_captcha">获取</string>
-    <string name="title_activity_main">MainActivity</string>
     <string name="tv_name">姓名</string>
     <string name="tv_age">年龄</string>
-    <string name="login_success">登陆成功</string>
     <string name="cache">清除缓存</string>
     <string name="login_out">退出登录</string>
     <string name="title">hotel name</string>
@@ -55,7 +53,6 @@
     <string name="determine_new_pwd">确认新密码</string>
     <string name="input_new_pwd">输入新密码</string>
     <string name="phone">手机号</string>
-    <string name="phone_prefix">+86</string>
     <string name="verificationcode">验证码</string>
     <string name="input_old_pwd">输入旧密码</string>
 </resources>
