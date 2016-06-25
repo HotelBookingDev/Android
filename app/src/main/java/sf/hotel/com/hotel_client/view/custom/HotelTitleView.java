@@ -50,7 +50,7 @@ public class HotelTitleView extends RelativeLayout {
             a.recycle();
         }
         init();
-        this.setBackgroundColor(R.color.view_title);
+        this.setBackgroundResource(R.color.view_title);
     }
 
     private void init() {

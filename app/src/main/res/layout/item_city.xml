@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:text="宁波"
         android:id="@+id/item_city_btn"
-        android:background="@drawable/item_city_btn"
+        android:background="@drawable/item_seletor"
         android:clickable="false"
         />
 </LinearLayout>

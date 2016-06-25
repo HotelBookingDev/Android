@@ -2,8 +2,8 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:background="@color/colorBlack"
+    android:layout_height="@dimen/title_height"
+    android:background="@color/view_title"
     android:orientation="horizontal"
     android:gravity="center_vertical"
 

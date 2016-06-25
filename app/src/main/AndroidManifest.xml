@@ -61,9 +61,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.activity.HomeActivity" />
+
         <activity
             android:name=".view.activity.LoginActivity"
             android:launchMode="singleTask" />
+
 
         <activity android:name=".view.activity.MainActivity" />
         <activity android:name=".view.activity.CityActivity" />
@@ -86,6 +88,8 @@
             android:label="@string/title_activity_user_info"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".view.activity.person.SettingActivity" />
+
+
 
         <!-- alipay sdk begin -->
         <activity
