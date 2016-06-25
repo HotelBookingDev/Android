@@ -3,7 +3,6 @@ package sf.hotel.com.hotel_client.view.activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
@@ -26,7 +25,6 @@ import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
  */
 public class HomeActivity extends BaseActivity {
 
-
     @BindView(R.id.activity_home_tab)
     PagerBottomTabLayout mPagerBottomTabLayout;
 
@@ -38,7 +36,6 @@ public class HomeActivity extends BaseActivity {
         init();
         initBottom();
         onRxEvent();
-
     }
 
     //可能这会是主界面
@@ -63,16 +60,14 @@ public class HomeActivity extends BaseActivity {
 
             }
         });
-
     }
 
     protected void init() {
         loadRootFragment(R.id.home_fragment, getFragmentByKey(FragConstant.HOTELS));
     }
 
-
     public void showBottomTab() {
-        if (mPagerBottomTabLayout.getVisibility() == View.GONE){
+        if (mPagerBottomTabLayout.getVisibility() == View.GONE) {
             mPagerBottomTabLayout.setVisibility(View.VISIBLE);
             Animation toTop = AnimationUtils.loadAnimation(this, R.anim.to_top);
             mPagerBottomTabLayout.setAnimation(toTop);
@@ -81,14 +76,13 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void hideBottomTab() {
-        if (mPagerBottomTabLayout.getVisibility() == View.VISIBLE){
+        if (mPagerBottomTabLayout.getVisibility() == View.VISIBLE) {
             Animation fromTop = AnimationUtils.loadAnimation(this, R.anim.from_top);
             mPagerBottomTabLayout.setAnimation(fromTop);
             fromTop.start();
             mPagerBottomTabLayout.setVisibility(View.GONE);
         }
     }
-
 
     public void onRxEvent() {
         Subscription subscribe = RxBus.getDefault()

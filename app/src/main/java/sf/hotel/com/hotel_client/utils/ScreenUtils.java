@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.WindowManager;
 
 /**
- * Created by 林其望 on 2016/6/23.
+ * Created by 林其望
+ * data：2016/6/23
+ * email: 1105896230@qq.com
  */
 public class ScreenUtils {
     private ScreenUtils() {

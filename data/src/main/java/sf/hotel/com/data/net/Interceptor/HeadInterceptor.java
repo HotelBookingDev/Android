@@ -12,7 +12,8 @@ import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.data.utils.PreferencesUtils;
 
 /**
- * Created by 林其望 on 2016/6/23.
+ * Created by 林其望
+ * email: 1105896230@qq.com
  */
 public class HeadInterceptor implements Interceptor {
     private static final String TOEKNKEY = "Authorization";

@@ -42,7 +42,6 @@ public class CaptchaButton extends RelativeLayout {
         }
         setClickable(false);
         mButtonCount.start();
-
     }
 
     /*定义一个倒计时的内部类*/
@@ -59,7 +58,8 @@ public class CaptchaButton extends RelativeLayout {
 
         @Override
         public void onTick(long millisUntilFinished) {
-            mButton.setText(millisUntilFinished / 1000 + "");
+            String str = millisUntilFinished / 1000 + "";
+            mButton.setText(str);
         }
     }
 }

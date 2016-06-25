@@ -5,7 +5,8 @@ import android.content.Context;
 import sf.hotel.com.data.entity.UserEntity;
 
 /**
- * Created by 林其望 on 2016/6/16.
+ * Created by 林其望
+ * email: 1105896230@qq.com
  */
 public class EntityContext {
     private static EntityContext instance;

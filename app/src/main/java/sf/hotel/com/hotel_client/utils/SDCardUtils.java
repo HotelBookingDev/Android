@@ -6,7 +6,9 @@ import android.os.StatFs;
 import java.io.File;
 
 /**
- * Created by 林其望 on 2016/6/23.
+ * Created by 林其望
+ * data：2016/6/23
+ * email: 1105896230@qq.com
  */
 public class SDCardUtils {
 

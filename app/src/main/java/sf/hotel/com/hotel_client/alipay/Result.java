@@ -139,7 +139,7 @@ public class Result  {
             boolean bverify = signature.verify(Base64.decode(sign));
 
         }catch (Exception e){
-
+            LogUtils.printExceptionStackTrace(e);
         }
         return false;
     }

@@ -6,18 +6,16 @@ import android.content.pm.PackageManager;
 import android.util.Log;
 
 /**
- * Created by 林其望 on 2016/6/23.
+ * Created by 林其望
+ * email: 1105896230@qq.com
  */
 public class AndroidUtils {
     public static String getAppVersionName(Context context) {
         String versionName = "";
-        int versioncode = 0;
         try {
-            // ---get the package info---
             PackageManager pm = context.getPackageManager();
             PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
             versionName = pi.versionName;
-            versioncode = pi.versionCode;
             if (versionName == null || versionName.length() <= 0) {
                 return "";
             }

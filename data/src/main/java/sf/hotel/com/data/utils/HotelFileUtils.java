@@ -13,11 +13,13 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Locale;
 
 import sf.hotel.com.data.config.HotelConstant;
 
 /**
- * Created by 林其望 on 2016/6/16.
+ * Created by 林其望
+ * email: 1105896230@qq.com
  */
 public class HotelFileUtils {
 
@@ -70,7 +72,7 @@ public class HotelFileUtils {
         long gb = mb * 1024;
 
         if (size >= gb) {
-            return String.format("%.1f GB", (float) size / gb);
+            return String.format(Locale.getDefault(), "%.1f GB", (float) size / gb);
         } else if (size >= mb) {
             float f = (float) size / mb;
             return String.format(f > 100 ? "%.0f MB" : "%.1f MB", f);

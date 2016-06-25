@@ -26,7 +26,6 @@ import sf.hotel.com.hotel_client.R;
  */
 //内部使用了facebook中的动画库
 public class ToggleButton extends View {
-    private SpringSystem springSystem;
     private Spring spring;
     /** */
     private float radius;
@@ -53,8 +52,7 @@ public class ToggleButton extends View {
     private int borderWidth = 2;
     /** 垂直中心 */
     private float centerY;
-    /** 按钮的开始和结束位置 */
-    private float startX, endX;
+    private float endX;
     /** 手柄X位置的最小和最大值 */
     private float spotMinX, spotMaxX;
     /** 手柄大小 */
@@ -100,7 +98,7 @@ public class ToggleButton extends View {
         paint.setStyle(Style.FILL);
         paint.setStrokeCap(Cap.ROUND);
 
-        springSystem = SpringSystem.create();
+        SpringSystem springSystem = SpringSystem.create();
         spring = springSystem.createSpring();
         spring.setSpringConfig(SpringConfig.fromOrigamiTensionAndFriction(50, 7));
 
@@ -219,7 +217,8 @@ public class ToggleButton extends View {
 
         radius = Math.min(width, height) * 0.5f;
         centerY = radius;
-        startX = radius;
+        /* 按钮的开始和结束位置 */
+        float startX = radius;
         endX = width - radius;
         spotMinX = startX + borderWidth;
         spotMaxX = endX - borderWidth;

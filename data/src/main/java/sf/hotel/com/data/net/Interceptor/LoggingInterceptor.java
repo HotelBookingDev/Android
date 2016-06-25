@@ -1,18 +1,15 @@
 package sf.hotel.com.data.net.Interceptor;
 
-import android.text.TextUtils;
-
 import java.io.IOException;
 
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
-import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.utils.LogUtils;
-import sf.hotel.com.data.utils.PreferencesUtils;
 
 /**
- * Created by sanfen on 16/6/6.
+ * Created by sanfen
+ * data：16/6/6
  */
 public class LoggingInterceptor implements Interceptor {
 
@@ -26,6 +23,4 @@ public class LoggingInterceptor implements Interceptor {
         LogUtils.d("content", content);
         return response.newBuilder().body(okhttp3.ResponseBody.create(mediaType, content)).build();
     }
-
-
 }

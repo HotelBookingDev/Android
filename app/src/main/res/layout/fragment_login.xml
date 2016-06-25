@@ -15,8 +15,7 @@
             android:layout_width="80.0dip"
             android:layout_height="80.0dip"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="90.0dip"
-            />
+            android:layout_marginTop="90.0dip" />
 
         <LinearLayout
             android:id="@+id/lngroup"
@@ -46,7 +45,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5.0dip"
-                        android:text="+86"
+                        android:text="@string/phone_prefix"
                         android:textColor="@android:color/white"
                         android:textSize="12.0dip" />
 
@@ -66,20 +65,12 @@
 
                 <EditText
                     android:id="@+id/et_phone"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="10.0dip"
-                    android:layout_marginRight="10.0dip"
-                    android:layout_weight="1.0"
-                    android:background="@null"
-                    android:hint="手机号"
+                    style="@style/login_edit"
+                    android:digits="@string/edittext_digits"
+                    android:hint="@string/phone"
                     android:imeOptions="actionNext"
                     android:inputType="phone"
-                    android:maxLength="11"
-                    android:singleLine="true"
-                    android:textColor="@android:color/white"
-                    android:textColorHint="#80ffffff"
-                    android:textSize="14.0dip" />
+                    android:maxLength="11" />
 
                 <ImageView
                     android:id="@+id/iv_clear"
@@ -121,19 +112,8 @@
 
                 <EditText
                     android:id="@+id/edit_pw"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="10.0dip"
-                    android:layout_weight="1.0"
-                    android:background="@null"
-                    android:digits="@string/edittext_password"
-                    android:hint="密码"
-                    android:imeOptions="actionDone"
-                    android:inputType="textPassword"
-                    android:singleLine="true"
-                    android:textColor="@android:color/white"
-                    android:textColorHint="#80ffffff"
-                    android:textSize="14.0dip" />
+                    style="@style/login_edit"
+                    android:hint="@string/password" />
 
                 <ImageView
                     android:id="@+id/iv_switch"

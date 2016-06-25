@@ -5,8 +5,6 @@ import android.content.Context;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.inject.Singleton;
-
 import sf.hotel.com.data.entity.UserEntity;
 
 /**

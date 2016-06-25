@@ -23,7 +23,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import sf.hotel.com.data.utils.LogUtils;
-import sf.hotel.com.hotel_client.view.activity.hotel.RoomActivity;
 
 /**
  * @author MZ
@@ -58,6 +57,7 @@ public class SplashActivity extends Activity {
         try {
             paths = getAssets().list("splash");
         } catch (IOException e) {
+            LogUtils.printExceptionStackTrace(e);
         }
         if (paths == null || paths.length == 0) {
             onSplashStop();

@@ -2,12 +2,11 @@ package sf.hotel.com.data.net;
 
 import rx.Observable;
 import sf.hotel.com.data.entity.Intallation;
+import sf.hotel.com.data.entity.ProcincesResult;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.data.entity.netresult.LoginResult;
 import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.entity.netresult.TokenResult;
-
-import sf.hotel.com.data.entity.ProcincesResult;
 
 /**
  * @author MZ
@@ -77,23 +76,19 @@ public class ApiWrapper extends RetrofitHelper {
         return mService.postIntallation(mIntallation).compose(this.<NormalResult>applySchedulers());
     }
 
-
-
     /**
-     *  获取酒店信息通过cityId
+     * 获取酒店信息通过cityId
      */
 
     public Observable<HotelResult> callHotelsByCityId(String cityId) {
         return mService.callHotelsByCityId(cityId).compose(this.<HotelResult>applySchedulers());
     }
 
-
-    public Observable<TokenResult> getTokenReuslt() {
+    public Observable<TokenResult> getTokenResult() {
         return mService.getTokenResult().compose(this.<TokenResult>applySchedulers());
     }
 
-    public Observable<ProcincesResult> callCityList(){
+    public Observable<ProcincesResult> callCityList() {
         return mService.callCityList().compose(this.<ProcincesResult>applySchedulers());
     }
-
 }

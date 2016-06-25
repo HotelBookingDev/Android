@@ -7,7 +7,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import sf.hotel.com.hotel_client.view.fragment.person.orders.UserdOrder;
 
 /**
- * Created by YoKeyword on 16/6/5.
+ * Created by YoKeyword
+ * data：16/6/5
  */
 public class OrderPagerFragmentAdapter extends FragmentPagerAdapter {
     private String[] mTab = new String[]{"未消费", "已消费", "已退款", "待付款"};

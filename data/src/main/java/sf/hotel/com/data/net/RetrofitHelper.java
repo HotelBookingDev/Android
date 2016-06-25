@@ -17,7 +17,8 @@ import sf.hotel.com.data.net.Interceptor.HeadInterceptor;
 import sf.hotel.com.data.net.Interceptor.LoggingInterceptor;
 
 /**
- * Created by sanfen on 16/6/6.
+ * Created by sanfen
+ * data：16/6/6
  */
 public abstract class RetrofitHelper {
 

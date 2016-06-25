@@ -46,10 +46,10 @@ public class CircleIndicator extends View {
     private float mCurrentPositionOffset = 0;
 
     //下面是一些自定义属性的默认值
-    private final int DEFAULT_RADIUS = 10;        //默认半径
-    private final int DEFAULT_MARGIN = 50;  //默认间距
-    private final int DEFAULT_BACKGROUND = Color.WHITE;    //默认颜色
-    private final int DEFAULT_SELECTED_BACKGROUND = Color.YELLOW;   //默认选中颜色
+    private final static int DEFAULT_RADIUS = 10;        //默认半径
+    private final static int DEFAULT_MARGIN = 50;  //默认间距
+    private final static int DEFAULT_BACKGROUND = Color.WHITE;    //默认颜色
+    private final static int DEFAULT_SELECTED_BACKGROUND = Color.YELLOW;   //默认选中颜色
 
     public CircleIndicator(Context context) {
         super(context, null);
@@ -76,10 +76,15 @@ public class CircleIndicator extends View {
             return;
         }
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.CircleIndicator);
-        mIndicatorRadius = ta.getDimensionPixelSize(R.styleable.CircleIndicator_indicator_radio, DEFAULT_RADIUS);
-        mIndicatorMargin = ta.getDimensionPixelSize(R.styleable.CircleIndicator_indicator_margin, DEFAULT_MARGIN);
-        mIndicatorBackground = ta.getColor(R.styleable.CircleIndicator_indicator_background, DEFAULT_BACKGROUND);
-        mIndicatorSelectedBackground = ta.getColor(R.styleable.CircleIndicator_indicator_selected_background, DEFAULT_SELECTED_BACKGROUND);
+        mIndicatorRadius = ta.getDimensionPixelSize(R.styleable.CircleIndicator_indicator_radio,
+                DEFAULT_RADIUS);
+        mIndicatorMargin = ta.getDimensionPixelSize(R.styleable.CircleIndicator_indicator_margin,
+                DEFAULT_MARGIN);
+        mIndicatorBackground = ta.getColor(R.styleable.CircleIndicator_indicator_background,
+                DEFAULT_BACKGROUND);
+        mIndicatorSelectedBackground = ta.getColor(
+                R.styleable.CircleIndicator_indicator_selected_background,
+                DEFAULT_SELECTED_BACKGROUND);
         //回收资源
         ta.recycle();
     }
@@ -112,7 +117,6 @@ public class CircleIndicator extends View {
                 invalidate();
             }
         });
-
     }
 
     /**
@@ -146,7 +150,6 @@ public class CircleIndicator extends View {
             mIndicatorLists.add(circleShape);
         }
     }
-
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
@@ -186,13 +189,13 @@ public class CircleIndicator extends View {
      * @return
      */
     private float startDrawPosition(int containerWidth) {
-        float tabItemsLength = mIndicatorLists.size() * (mIndicatorMargin + 2 * mIndicatorRadius) - mIndicatorMargin;
+        float tabItemsLength = mIndicatorLists.size() * (mIndicatorMargin + 2 * mIndicatorRadius) -
+                mIndicatorMargin;
         if (containerWidth < tabItemsLength) {
             return 0;
         }
         //水平居中显示
         return (containerWidth - tabItemsLength) / 2;
-
     }
 
     /**
@@ -222,12 +225,11 @@ public class CircleIndicator extends View {
         if (mIndicatorLists.size() == 0 || mSelectIndicator == null) {
             return;
         }
-        int sc = canvas.saveLayer(0, 0, getWidth(), getHeight(), null,
-                Canvas.MATRIX_SAVE_FLAG |
-                        Canvas.CLIP_SAVE_FLAG |
-                        Canvas.HAS_ALPHA_LAYER_SAVE_FLAG |
-                        Canvas.FULL_COLOR_LAYER_SAVE_FLAG |
-                        Canvas.CLIP_TO_LAYER_SAVE_FLAG);
+        int sc = canvas.saveLayer(0, 0, getWidth(), getHeight(), null, Canvas.MATRIX_SAVE_FLAG |
+                Canvas.CLIP_SAVE_FLAG |
+                Canvas.HAS_ALPHA_LAYER_SAVE_FLAG |
+                Canvas.FULL_COLOR_LAYER_SAVE_FLAG |
+                Canvas.CLIP_TO_LAYER_SAVE_FLAG);
         for (CircleShape item : mIndicatorLists) {
             drawItem(canvas, item);
         }
@@ -247,5 +249,4 @@ public class CircleIndicator extends View {
         indicator.getShape().draw(canvas);
         canvas.restore();
     }
-
 }
