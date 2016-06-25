@@ -31,8 +31,9 @@
             <EditText
                 android:id="@+id/et_old"
                 style="@style/edit_pwd"
-                android:hint="@string/input_old_pwd"
+                android:layout_toEndOf="@+id/tv_left"
                 android:layout_toRightOf="@+id/tv_left"
+                android:hint="@string/input_old_pwd"
                 android:imeOptions="actionNext" />
         </RelativeLayout>
 
