@@ -24,45 +24,35 @@
 
             <sf.hotel.com.hotel_client.view.custom.PersionItemView
                 android:id="@+id/piv_person"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/item_seletor"
+                style="@style/person_item"
                 app:contextText="@string/my_info" />
 
             <include layout="@layout/item_line" />
 
             <sf.hotel.com.hotel_client.view.custom.PersionItemView
                 android:id="@+id/piv_money"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/item_seletor"
+                style="@style/person_item"
                 app:contextText="@string/my_money" />
 
             <include layout="@layout/item_line" />
 
             <sf.hotel.com.hotel_client.view.custom.PersionItemView
                 android:id="@+id/piv_order"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/item_seletor"
+                style="@style/person_item"
                 app:contextText="@string/my_order" />
 
             <include layout="@layout/item_line" />
 
             <sf.hotel.com.hotel_client.view.custom.PersionItemView
                 android:id="@+id/piv_evaluate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/item_seletor"
+                style="@style/person_item"
                 app:contextText="@string/my_evaluate" />
 
             <include layout="@layout/item_line" />
 
             <sf.hotel.com.hotel_client.view.custom.PersionItemView
                 android:id="@+id/piv_setting"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/item_seletor"
+                style="@style/person_item"
                 app:contextText="@string/my_setting" />
 
         </LinearLayout>

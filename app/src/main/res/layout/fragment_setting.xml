@@ -44,9 +44,30 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ln_about_us"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ln_accept_message"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:orientation="vertical">
+
+            <sf.hotel.com.hotel_client.view.custom.PersionItemView
+                android:id="@+id/piv_about_us"
+                style="@style/person_item"
+                app:contextText="@string/about_us" />
+
+            <include layout="@layout/item_line" />
+
+            <sf.hotel.com.hotel_client.view.custom.PersionItemView
+                android:id="@+id/piv_feed_back"
+                style="@style/person_item"
+                app:contextText="@string/feedback" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ln_about_us"
             android:layout_marginTop="@dimen/fab_margin"
             android:background="@color/white"
             android:orientation="vertical">

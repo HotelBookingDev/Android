@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 
 import butterknife.BindView;
@@ -58,13 +57,11 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
     }
 
     @Override
-    @OnClick(R.id.btn_reg_submit)
     public void register() {
         mIRegisterPresenter.register();
     }
 
     @Override
-    @OnClick(R.id.btn_reg_captcha)
     public void callPhoneCaptcha() {
         mIRegisterPresenter.callPhoneCaptcha();
     }
@@ -137,5 +134,20 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
     @Override
     public void showViewToast(String msg) {
         showToast(msg);
+    }
+
+    @OnClick({
+            R.id.btn_reg_submit, R.id.btn_reg_captcha
+    })
+    void onClick(View view) {
+        int id = view.getId();
+        //修改是否接受消息
+        if (id == R.id.btn_reg_submit) {
+            //提交注册信息
+            register();
+        } else if (id == R.id.btn_reg_captcha) {
+            //发送验证码
+            callPhoneCaptcha();
+        }
     }
 }

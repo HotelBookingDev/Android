@@ -20,4 +20,5 @@
         <attr name="spotColor" format="reference|color" />
         <attr name="animate" format="reference|boolean" />
     </declare-styleable>
+
 </resources>

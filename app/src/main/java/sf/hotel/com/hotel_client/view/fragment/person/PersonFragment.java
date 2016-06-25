@@ -68,26 +68,6 @@ public class PersonFragment extends BaseFragment implements IPersonView {
         mCompositeSubscription.add(subscribe);
     }
 
-    @OnClick(R.id.piv_money)
-    public void clickMoney() {
-        mPersonPersenter.clickMoney();
-    }
-
-    @OnClick(R.id.piv_order)
-    public void clickOrder() {
-        mPersonPersenter.clickOrder();
-    }
-
-    @OnClick(R.id.piv_person)
-    public void clickPerson() {
-        mPersonPersenter.clickPerson();
-    }
-
-    @OnClick(R.id.piv_evaluate)
-    public void clickEvaluate() {
-        mPersonPersenter.clickEvaluate();
-    }
-
     @Override
     public void showLoginFragment() {
         RxBus.getDefault().post(new LoginMessage(LoginMessage.SHOW_LOGIN));
@@ -107,14 +87,45 @@ public class PersonFragment extends BaseFragment implements IPersonView {
         }
     }
 
-    @OnClick(R.id.piv_setting)
-    public void clickSetting() {
-        mPersonPersenter.clickSetting();
-    }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
         mPersonPersenter.destroy();
+    }
+
+    @OnClick({R.id.piv_money, R.id.piv_order, R.id.piv_person, R.id.piv_evaluate})
+    public void onClick(View view) {
+        int id = view.getId();
+        if (id == R.id.piv_money) {
+            clickMoney();
+        } else if (id == R.id.piv_order) {
+            clickOrder();
+        } else if (id == R.id.piv_person) {
+            clickPerson();
+        } else if (id == R.id.piv_evaluate) {
+            clickEvaluate();
+        } else if (id == R.id.piv_setting) {
+            clickSetting();
+        }
+    }
+
+    public void clickMoney() {
+        mPersonPersenter.clickMoney();
+    }
+
+    public void clickOrder() {
+        mPersonPersenter.clickOrder();
+    }
+
+    public void clickPerson() {
+        mPersonPersenter.clickPerson();
+    }
+
+    public void clickEvaluate() {
+        mPersonPersenter.clickEvaluate();
+    }
+
+    public void clickSetting() {
+        mPersonPersenter.clickSetting();
     }
 }
