@@ -44,5 +44,7 @@
     <string name="receive_message">接受消息</string>
     <string name="about_us">关于我们</string>
     <string name="feedback">意见反馈</string>
-
+    <string name="safe">账户与安全</string>
+    <string name="change_pwd">修改密码</string>
+    <string name="determine">确定</string>
 </resources>

@@ -104,10 +104,37 @@
         <item name="android:layout_marginRight">10.0dip</item>
     </style>
 
+    <!--个人界面每一个item的样式-->
     <style name="person_item">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/item_seletor</item>
+    </style>
+    <!--view_title的样式-->
+    <style name="view_title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/title_height</item>
+    </style>
+
+    <!--修改密码每个item的样式-->
+    <style name="relative_layout_setting">
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:background">@drawable/bg_selector_relativelayout_item</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">45.0dip</item>
+    </style>
+
+    <style name="text_left">
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">10.0dip</item>
+        <item name="android:paddingRight">10.0dip</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">45.0dip</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_centerVertical">true</item>
     </style>
 
     <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

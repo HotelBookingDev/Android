@@ -10,8 +10,7 @@
 
         <sf.hotel.com.hotel_client.view.custom.HotelTitleView
             android:id="@+id/view_title"
-            android:layout_width="fill_parent"
-            android:layout_height="@dimen/title_height"
+            style="@style/view_title"
             app:leftBtnIcon="@mipmap/ic_title_back_arrow"
             app:titleText="@string/my_setting" />
 
@@ -33,7 +32,7 @@
                 android:layout_weight="1"
                 android:text="@string/receive_message" />
 
-            <sf.hotel.com.hotel_client.utils.ToggleButton
+            <sf.hotel.com.hotel_client.view.custom.ToggleButton
                 android:id="@+id/tb_accept_msg"
                 android:layout_width="40dp"
                 android:layout_height="25dp"
@@ -64,10 +63,17 @@
                 app:contextText="@string/feedback" />
         </LinearLayout>
 
+        <sf.hotel.com.hotel_client.view.custom.PersionItemView
+            android:id="@+id/piv_safe"
+            style="@style/person_item"
+            android:layout_below="@+id/ln_about_us"
+            android:layout_marginTop="@dimen/fab_margin"
+            app:contextText="@string/safe" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ln_about_us"
+            android:layout_below="@+id/piv_safe"
             android:layout_marginTop="@dimen/fab_margin"
             android:background="@color/white"
             android:orientation="vertical">

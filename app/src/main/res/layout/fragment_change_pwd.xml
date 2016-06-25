@@ -1,0 +1,114 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="sf.hotel.com.hotel_client.view.fragment.person.ChangePwdFragment">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/bg_common"
+        android:orientation="vertical">
+
+        <sf.hotel.com.hotel_client.view.custom.HotelTitleView
+            android:id="@+id/view_title"
+            style="@style/view_title"
+            app:leftBtnIcon="@mipmap/ic_title_back_arrow"
+            app:titleText="@string/change_pwd" />
+
+        <RelativeLayout
+            style="@style/relative_layout_setting"
+            android:layout_marginTop="@dimen/common_margin">
+
+            <TextView
+                android:id="@+id/tv_left"
+                style="@style/text_left"
+                android:layout_width="100.0dip"
+                android:text="旧密码" />
+
+            <EditText
+                android:id="@+id/et_old"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="10.0dip"
+                android:layout_marginRight="15.0dip"
+                android:layout_toRightOf="@id/tv_left"
+                android:background="@null"
+                android:digits="@string/edittext_password"
+                android:hint="设置旧密码"
+                android:imeOptions="actionNext"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textColorHint="@color/hint_gray"
+                android:textSize="@dimen/text_small" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/relative_layout_setting"
+            android:layout_marginTop="@dimen/common_margin">
+
+            <TextView
+                android:id="@+id/tv_new_left"
+                style="@style/text_left"
+                android:layout_width="100.0dip"
+                android:text="新密码" />
+
+            <EditText
+                android:id="@+id/et_new"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="10.0dip"
+                android:layout_marginRight="15.0dip"
+                android:layout_toRightOf="@id/tv_new_left"
+                android:background="@null"
+                android:digits="@string/edittext_password"
+                android:hint="设置新密码"
+                android:imeOptions="actionNext"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textColorHint="@color/hint_gray"
+                android:textSize="@dimen/text_small" />
+
+            <include layout="@layout/item_line" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/relative_layout_setting"
+            android:layout_marginBottom="@dimen/common_margin">
+
+            <TextView
+                android:id="@+id/tv_determine_left"
+                style="@style/text_left"
+                android:layout_width="100.0dip"
+                android:text="确认新密码" />
+
+            <EditText
+                android:id="@+id/et_determine_confirm"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="10.0dip"
+                android:layout_marginRight="15.0dip"
+                android:layout_toRightOf="@id/tv_determine_left"
+                android:background="@null"
+                android:digits="@string/edittext_password"
+                android:hint="输入新密码"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:maxLength="25"
+                android:singleLine="true"
+                android:textColorHint="@color/hint_gray"
+                android:textSize="@dimen/text_small" />
+        </RelativeLayout>
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/register_btn"
+            style="@style/button_green"
+            fancy:fb_borderColor="#FFFFFF"
+            fancy:fb_borderWidth="1dp"
+            fancy:fb_defaultColor="@color/forgot_color"
+            fancy:fb_radius="100dp"
+            fancy:fb_text="@string/determine" />
+    </LinearLayout>
+</FrameLayout>

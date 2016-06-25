@@ -11,12 +11,9 @@
 
         <sf.hotel.com.hotel_client.view.custom.HotelTitleView
             android:id="@+id/view_title"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/title_height"
+            style="@style/view_title"
             app:leftBtnText="@string/back"
-            app:titleText="@string/my_order">
-
-        </sf.hotel.com.hotel_client.view.custom.HotelTitleView>
+            app:titleText="@string/my_order" />
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tl_order"
@@ -28,6 +25,6 @@
             android:id="@+id/vp_order"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/tl_order"></android.support.v4.view.ViewPager>
+            android:layout_below="@+id/tl_order" />
     </RelativeLayout>
 </FrameLayout>

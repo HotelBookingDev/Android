@@ -25,6 +25,7 @@ public final class TToast {
     }
 
     public static void showToast(String message) {
+        if (superToast.isShowing()) return;
         superToast.setText(message);
         superToast.show();
     }

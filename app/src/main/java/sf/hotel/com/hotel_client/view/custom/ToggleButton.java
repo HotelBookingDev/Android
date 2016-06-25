@@ -1,4 +1,4 @@
-package sf.hotel.com.hotel_client.utils;
+package sf.hotel.com.hotel_client.view.custom;
 
 import android.content.Context;
 import android.content.res.Resources;

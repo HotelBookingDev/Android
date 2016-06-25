@@ -93,7 +93,7 @@ public class PersonFragment extends BaseFragment implements IPersonView {
         mPersonPersenter.destroy();
     }
 
-    @OnClick({R.id.piv_money, R.id.piv_order, R.id.piv_person, R.id.piv_evaluate})
+    @OnClick({R.id.piv_money, R.id.piv_order, R.id.piv_person, R.id.piv_evaluate, R.id.piv_setting})
     public void onClick(View view) {
         int id = view.getId();
         if (id == R.id.piv_money) {
