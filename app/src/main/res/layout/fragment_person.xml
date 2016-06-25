@@ -23,35 +23,35 @@
 
             <sf.hotel.com.hotel_client.view.custom.PersionItemView
                 android:id="@+id/piv_person"
-                style="@style/person_item"
+                style="@style/group_item"
                 app:contextText="@string/my_info" />
 
             <include layout="@layout/item_line" />
 
             <sf.hotel.com.hotel_client.view.custom.PersionItemView
                 android:id="@+id/piv_money"
-                style="@style/person_item"
+                style="@style/group_item"
                 app:contextText="@string/my_money" />
 
             <include layout="@layout/item_line" />
 
             <sf.hotel.com.hotel_client.view.custom.PersionItemView
                 android:id="@+id/piv_order"
-                style="@style/person_item"
+                style="@style/group_item"
                 app:contextText="@string/my_order" />
 
             <include layout="@layout/item_line" />
 
             <sf.hotel.com.hotel_client.view.custom.PersionItemView
                 android:id="@+id/piv_evaluate"
-                style="@style/person_item"
+                style="@style/group_item"
                 app:contextText="@string/my_evaluate" />
 
             <include layout="@layout/item_line" />
 
             <sf.hotel.com.hotel_client.view.custom.PersionItemView
                 android:id="@+id/piv_setting"
-                style="@style/person_item"
+                style="@style/group_item"
                 app:contextText="@string/my_setting" />
 
         </LinearLayout>

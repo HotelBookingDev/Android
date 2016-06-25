@@ -19,87 +19,57 @@
             app:titleText="@string/change_pwd" />
 
         <RelativeLayout
-            style="@style/relative_layout_setting"
+            style="@style/group_item"
             android:layout_marginTop="@dimen/common_margin">
 
             <TextView
                 android:id="@+id/tv_left"
                 style="@style/text_left"
                 android:layout_width="100.0dip"
-                android:text="旧密码" />
+                android:text="@string/old_pw" />
 
             <EditText
                 android:id="@+id/et_old"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="10.0dip"
-                android:layout_marginRight="15.0dip"
+                style="@style/edit_pwd"
                 android:layout_toRightOf="@id/tv_left"
-                android:background="@null"
-                android:digits="@string/edittext_password"
-                android:hint="设置旧密码"
-                android:imeOptions="actionNext"
-                android:inputType="textPassword"
-                android:singleLine="true"
-                android:textColorHint="@color/hint_gray"
-                android:textSize="@dimen/text_small" />
+                android:imeOptions="actionNext" />
         </RelativeLayout>
 
         <RelativeLayout
-            style="@style/relative_layout_setting"
+            style="@style/group_item"
             android:layout_marginTop="@dimen/common_margin">
 
             <TextView
                 android:id="@+id/tv_new_left"
                 style="@style/text_left"
                 android:layout_width="100.0dip"
-                android:text="新密码" />
+                android:text="@string/new_pwd" />
 
             <EditText
                 android:id="@+id/et_new"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="10.0dip"
-                android:layout_marginRight="15.0dip"
+                style="@style/edit_pwd"
                 android:layout_toRightOf="@id/tv_new_left"
-                android:background="@null"
-                android:digits="@string/edittext_password"
-                android:hint="设置新密码"
-                android:imeOptions="actionNext"
-                android:inputType="textPassword"
-                android:singleLine="true"
-                android:textColorHint="@color/hint_gray"
-                android:textSize="@dimen/text_small" />
+                android:hint="@string/setting_new_pwd"
+                android:imeOptions="actionNext" />
 
             <include layout="@layout/item_line" />
         </RelativeLayout>
 
         <RelativeLayout
-            style="@style/relative_layout_setting"
+            style="@style/group_item"
             android:layout_marginBottom="@dimen/common_margin">
 
             <TextView
                 android:id="@+id/tv_determine_left"
                 style="@style/text_left"
                 android:layout_width="100.0dip"
-                android:text="确认新密码" />
+                android:text="@string/determine_new_pwd" />
 
             <EditText
                 android:id="@+id/et_determine_confirm"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="10.0dip"
-                android:layout_marginRight="15.0dip"
+                style="@style/edit_pwd"
                 android:layout_toRightOf="@id/tv_determine_left"
-                android:background="@null"
-                android:digits="@string/edittext_password"
-                android:hint="输入新密码"
-                android:imeOptions="actionDone"
-                android:inputType="textPassword"
-                android:maxLength="25"
-                android:singleLine="true"
-                android:textColorHint="@color/hint_gray"
-                android:textSize="@dimen/text_small" />
+                android:hint="@string/input_new_pwd" />
         </RelativeLayout>
 
         <mehdi.sakout.fancybuttons.FancyButton

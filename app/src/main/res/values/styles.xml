@@ -105,10 +105,11 @@
     </style>
 
     <!--个人界面每一个item的样式-->
-    <style name="person_item">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/item_seletor</item>
+    <style name="group_item">
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:background">@drawable/bg_selector_relativelayout_item</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/item_height</item>
     </style>
     <!--view_title的样式-->
     <style name="view_title">
@@ -116,12 +117,28 @@
         <item name="android:layout_height">@dimen/title_height</item>
     </style>
 
-    <!--修改密码每个item的样式-->
-    <style name="relative_layout_setting">
-        <item name="android:layout_gravity">center_vertical</item>
-        <item name="android:background">@drawable/bg_selector_relativelayout_item</item>
+    <!--编辑密码框的统一样式-->
+    <style name="edit_pwd">
         <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">45.0dip</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_marginLeft">10.0dip</item>
+        <item name="android:layout_marginRight">15.0dip</item>
+        <item name="android:background">@null</item>
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:inputType">textPassword</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColorHint">@color/hint_gray</item>
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:digits">@string/edittext_password</item>
+    </style>
+
+    <!--登录界面的编辑框-->
+    <style name="login_edit" parent="edit_pwd">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginRight">10.0dip</item>
+        <item name="android:textColorHint">#80ffffff</item>
+        <item name="android:textColor">@color/white</item>
+
     </style>
 
     <style name="text_left">
@@ -140,4 +157,5 @@
     <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

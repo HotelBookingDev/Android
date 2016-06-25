@@ -60,20 +60,12 @@
 
                     <EditText
                         android:id="@id/et_phone"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:layout_marginLeft="10.0dip"
-                        android:layout_marginRight="10.0dip"
-                        android:layout_weight="1.0"
-                        android:background="@null"
-                        android:hint="手机号"
+                        style="@style/login_edit"
+                        android:digits="@string/edittext_digits"
+                        android:hint="@string/phone"
                         android:imeOptions="actionNext"
                         android:inputType="phone"
-                        android:maxLength="11"
-                        android:singleLine="true"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="#80ffffff"
-                        android:textSize="14.0dip" />
+                        android:maxLength="11" />
 
                     <ImageView
                         android:id="@id/iv_clear"
@@ -115,20 +107,9 @@
 
                     <EditText
                         android:id="@+id/et_password"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:layout_marginLeft="10.0dip"
-                        android:layout_weight="1.0"
-                        android:background="@null"
-                        android:digits="@string/edittext_password"
-                        android:hint="新密码"
-                        android:imeOptions="actionNext"
-                        android:inputType="textPassword"
-                        android:maxLength="25"
-                        android:singleLine="true"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="#80ffffff"
-                        android:textSize="14.0dip" />
+                        style="@style/login_edit"
+                        android:hint="@string/new_pwd"
+                        android:imeOptions="actionNext" />
 
                     <ImageView
                         android:id="@+id/iv_password_switch"
@@ -168,21 +149,13 @@
 
                     <EditText
                         android:id="@+id/edit_reg_captcha"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
+                        style="@style/login_edit"
                         android:layout_marginLeft="10.0dip"
                         android:layout_marginRight="5.0dip"
-                        android:layout_weight="1.0"
-                        android:background="@null"
                         android:digits="@string/edittext_digits"
-                        android:hint="验证码"
+                        android:hint="@string/verificationcode"
                         android:imeOptions="actionDone"
-                        android:inputType="numberDecimal"
-                        android:maxLength="4"
-                        android:singleLine="true"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="#80ffffff"
-                        android:textSize="14.0dip" />
+                        android:inputType="numberDecimal" />
 
                     <LinearLayout
                         android:id="@+id/ll_send_code"
