@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.lsjwzh.widget.recyclerviewpager.LoopRecyclerViewPager;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -22,11 +24,13 @@ import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.adapter.RoomRecyclerPagerAdapter;
+import sf.hotel.com.hotel_client.view.custom.CircleIndicator;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
 import sf.hotel.com.hotel_client.view.event.hotel.RoomMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
+import sf.hotel.com.hotel_client.view.fragment.person.PersonFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IRoomView;
 import sf.hotel.com.hotel_client.view.presenter.hotel.IRoomPresenter;
 
@@ -51,6 +55,22 @@ public class RoomFragment extends BaseFragment implements IRoomView{
     @BindView(R.id.fragment_room_content)
     TextView mRoomContent;
 
+
+    @BindView(R.id.fragment_room_pager_indicator)
+    CircleIndicator circleIndicator;
+
+    public static RoomFragment newInstance(Bundle bundle){
+        Bundle args;
+        if (bundle !=null){
+            args = bundle;
+        }else {
+            args = new Bundle();
+        }
+        RoomFragment fragment = new RoomFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -59,38 +79,15 @@ public class RoomFragment extends BaseFragment implements IRoomView{
 
         mIRoomPresenter = new IRoomPresenter(this);
         ButterKnife.bind(this, view);
-        initViewPager();
-        onRxEvent();
+
+
+        if (savedInstanceState != null){
+            initViewPager(savedInstanceState);
+        }
         return view;
     }
 
-    private void onRxEvent() {
-        Subscription subscribe = RxBus.getDefault()
-                .toObservable(RoomMessage.class)
-                .subscribe(new Action1<RoomMessage>() {
-            @Override
-            public void call(RoomMessage roomMessage) {
-                if (roomMessage != null){
-                    switch (roomMessage.what){
-                        case RoomMessage.INTENT_ROOM:
-                            HotelResult.HotelsBean hotelsBean = (HotelResult.HotelsBean) roomMessage.obj;
-                            String introduce = hotelsBean.getIntroduce();
-                            mRoomContent.setText(introduce);
-                            break;
-                    }
-                }
-            }
-        }, new Action1<Throwable>() {
-            @Override
-            public void call(Throwable throwable) {
-                LogUtils.d("-->111", throwable.getMessage());
-            }
-        });
-        mCompositeSubscription.add(subscribe);
-
-    }
-
-    private void initViewPager() {
+    private void initViewPager(Bundle bundle) {
 
         LinearLayoutManager layout = new LinearLayoutManager(getBottomContext(), LinearLayoutManager.HORIZONTAL,false);
         mRecyclerViewPager.setLayoutManager(layout);
@@ -157,7 +154,14 @@ public class RoomFragment extends BaseFragment implements IRoomView{
 
             }
         });
+        HotelResult.HotelsBean hotelsBean = (HotelResult.HotelsBean) bundle.getSerializable("room");
 
+        if (hotelsBean!=null){
+            List<HotelResult.HotelsBean.HotelLogoImgsBean> hotelLogoImgs = hotelsBean.getHotelLogoImgs();
+            mRoomContent.setText(hotelsBean.getIntroduce());
+        }
+
+        circleIndicator.setViewPager(mRecyclerViewPager);
     }
 
     @Override

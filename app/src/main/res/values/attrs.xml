@@ -20,4 +20,11 @@
         <attr name="spotColor" format="reference|color" />
         <attr name="animate" format="reference|boolean" />
     </declare-styleable>
+
+    <declare-styleable name="CircleIndicator">
+        <attr name="indicator_radio" format="dimension" />
+        <attr name="indicator_margin" format="dimension" />
+        <attr name="indicator_background" format="color|integer" />
+        <attr name="indicator_selected_background" format="color|integer" />
+    </declare-styleable>
 </resources>

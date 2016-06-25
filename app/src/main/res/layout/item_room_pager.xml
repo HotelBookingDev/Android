@@ -7,6 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:src="@mipmap/ic_launcher"
+        android:id="@+id/item_room_pager_img"
         />
     <TextView
         android:layout_width="wrap_content"

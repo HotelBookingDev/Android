@@ -4,16 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import rx.Subscription;
-import rx.functions.Action1;
-import sf.hotel.com.data.entity.netresult.HotelResult;
-import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.BaseActivity;
-import sf.hotel.com.hotel_client.view.activity.FragConstant;
-import sf.hotel.com.hotel_client.view.event.RxBus;
-import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
-import sf.hotel.com.hotel_client.view.event.hotel.RoomMessage;
+import sf.hotel.com.hotel_client.view.fragment.hotel.RoomFragment;
 
 /**
  * @author MZ
@@ -21,12 +14,11 @@ import sf.hotel.com.hotel_client.view.event.hotel.RoomMessage;
  * @date 16/6/24.
  */
 public class RoomActivity extends BaseActivity {
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hotel);
-
-        init();
         initIntent();
     }
 
@@ -34,14 +26,15 @@ public class RoomActivity extends BaseActivity {
         Intent intent = getIntent();
         if (intent != null){
             Bundle bundle = intent.getExtras();
-            HotelResult.HotelsBean hotelsBean = (HotelResult.HotelsBean) bundle.getSerializable("room");
-            RxBus.getDefault().post(MessageFactory.createRoomMessage(RoomMessage.INTENT_ROOM, hotelsBean));
+            if (bundle != null){
+                init(bundle);
+            }
         }
     }
 
 
-    protected void init() {
-        loadRootFragment(R.id.activity_hotel_frame, getFragmentByKey(FragConstant.ROOM));
+    protected void init(Bundle bundle) {
+        loadRootFragment(R.id.activity_hotel_frame, RoomFragment.newInstance(bundle));
     }
 
 }

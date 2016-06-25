@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:indicator="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -49,7 +50,20 @@
                 app:rvp_triggerOffset="0.1"
                 app:rvp_singlePageFling="true"
                 android:clipToPadding="false"
-                />
+                >
+                <sf.hotel.com.hotel_client.view.custom.CircleIndicator
+                    android:id="@+id/fragment_room_pager_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="40dp"
+                    indicator:indicator_background="@android:color/white"
+                    indicator:indicator_margin="20dp"
+                    indicator:indicator_radio="10dp"
+                    indicator:indicator_selected_background="@android:color/holo_red_light"
+                    />
+
+            </com.lsjwzh.widget.recyclerviewpager.LoopRecyclerViewPager>
 
             <View
                 android:layout_width="match_parent"

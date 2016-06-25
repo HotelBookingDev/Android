@@ -21,7 +21,7 @@ public class HttpResult<T> {
     private T res;
 
     public boolean isSuccess() {
-        if (code == 200) return true;
+        if (code == 100) return true;
         return false;
     }
 
