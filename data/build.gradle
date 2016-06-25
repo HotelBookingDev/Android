@@ -37,4 +37,5 @@ dependencies {
     compile 'com.qiniu:happy-dns:0.2.3.2'
     compile rootProject.ext.dependenciesdata.commonsio
 
+    testCompile 'junit:junit:4.12'
 }

@@ -19,12 +19,9 @@ import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 //用于用户Fragment下的item
 public class PersionItemView extends FrameLayout {
 
-    private ImageView mIconView;
-    private TextView textView;
     private ImageView mIconRightView;
 
     private int defalutIcon = R.mipmap.ic_launcher;
-    private String defalutString = "PersionItemView";
     private String showString;
 
     public PersionItemView(Context context) {
@@ -50,15 +47,16 @@ public class PersionItemView extends FrameLayout {
 
     private void initViews(Context context) {
         View inflate = LayoutInflater.from(context).inflate(R.layout.item_person, this);
-        mIconView = (ImageView) inflate.findViewById(R.id.iv_item_persion);
-        textView = (TextView) inflate.findViewById(R.id.tv_item_persion_content);
+        ImageView mIconView = (ImageView) inflate.findViewById(R.id.iv_item_persion);
+        TextView textView = (TextView) inflate.findViewById(R.id.tv_item_persion_content);
+        String defalutString = "PersionItemView";
         textView.setText(defalutString);
         if (!TextUtils.isEmpty(showString)) {
             textView.setText(showString);
         }
 
         HotelImageLoad.loadImage(context, mIconView, defalutIcon);
-        if (defalutIcon==R.mipmap.ic_launcher){
+        if (defalutIcon == R.mipmap.ic_launcher) {
             mIconView.setVisibility(GONE);
         }
     }

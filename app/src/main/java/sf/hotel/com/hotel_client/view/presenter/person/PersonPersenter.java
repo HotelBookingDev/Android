@@ -1,6 +1,5 @@
 package sf.hotel.com.hotel_client.view.presenter.person;
 
-import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.hotel_client.view.fragment.person.PersonFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.person.IPersonView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
@@ -38,8 +37,6 @@ public class PersonPersenter extends SuperPresenter {
             mIPersonView.showLoginFragment();
         }
     }
-
-
 
     //TODO 这个界面会进行网络请求在界面销毁记得要把网络cancle了
     @Override

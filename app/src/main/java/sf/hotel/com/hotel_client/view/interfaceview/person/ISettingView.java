@@ -1,8 +1,6 @@
 package sf.hotel.com.hotel_client.view.interfaceview.person;
 
 import sf.hotel.com.hotel_client.view.custom.ToggleButton;
-import sf.hotel.com.hotel_client.view.event.RxBus;
-import sf.hotel.com.hotel_client.view.event.hotel.LoginMessage;
 import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
 
 /**

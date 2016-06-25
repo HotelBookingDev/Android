@@ -11,13 +11,10 @@ import android.util.Log;
 public class AndroidUtils {
     public static String getAppVersionName(Context context) {
         String versionName = "";
-        int versioncode = 0;
         try {
-            // ---get the package info---
             PackageManager pm = context.getPackageManager();
             PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
             versionName = pi.versionName;
-            versioncode = pi.versionCode;
             if (versionName == null || versionName.length() <= 0) {
                 return "";
             }

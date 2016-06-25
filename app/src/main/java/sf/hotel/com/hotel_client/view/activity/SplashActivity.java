@@ -23,7 +23,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import sf.hotel.com.data.utils.LogUtils;
-import sf.hotel.com.hotel_client.view.activity.hotel.RoomActivity;
 
 /**
  * @author MZ

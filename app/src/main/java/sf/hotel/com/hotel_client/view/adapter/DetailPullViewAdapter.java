@@ -4,8 +4,6 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import sf.hotel.com.hotel_client.R;
@@ -15,14 +13,14 @@ import sf.hotel.com.hotel_client.R;
  * @email sanfenruxi1@163.com
  * @date 16/6/16.
  */
-public class DetailPullViewAdapter extends RecyclerViewBaseAdapter<DetailPullViewAdapter.ViewHolder> {
+public class DetailPullViewAdapter
+        extends RecyclerViewBaseAdapter<DetailPullViewAdapter.ViewHolder> {
 
     private OnItemClickListener mOnItemClickListener;
 
     public void setOnItemClickLitener(OnItemClickListener mOnItemClickListener) {
         this.mOnItemClickListener = mOnItemClickListener;
     }
-
 
     public DetailPullViewAdapter(Context context) {
         super(context);
@@ -40,7 +38,7 @@ public class DetailPullViewAdapter extends RecyclerViewBaseAdapter<DetailPullVie
 //        holder.mTitle.setText("hahha");
 //        holder.mPrice.setText("$ 1111");
 //
-        if (mOnItemClickListener != null){
+        if (mOnItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -60,7 +58,7 @@ public class DetailPullViewAdapter extends RecyclerViewBaseAdapter<DetailPullVie
 
         public ViewHolder(View itemView) {
             super(itemView);
-           // mImage = (ImageView) itemView.findViewById(R.id.ite);
+            // mImage = (ImageView) itemView.findViewById(R.id.ite);
             mTitle = (TextView) itemView.findViewById(R.id.item_room_title);
             mPrice = (TextView) itemView.findViewById(R.id.item_room_price);
             mContext = (TextView) itemView.findViewById(R.id.item_room_content);

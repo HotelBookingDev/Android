@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +18,8 @@ import sf.hotel.com.hotel_client.utils.HotelImageLoad;
  * @email sanfenruxi1@163.com
  * @date 16/6/17.
  */
-public class RoomRecyclerPagerAdapter extends RecyclerViewBaseAdapter<RoomRecyclerPagerAdapter.ViewHolder> {
-
+public class RoomRecyclerPagerAdapter
+        extends RecyclerViewBaseAdapter<RoomRecyclerPagerAdapter.ViewHolder> {
 
     List<HotelResult.HotelsBean.HotelLogoImgsBean> mList = new ArrayList<>();
 
@@ -29,9 +28,8 @@ public class RoomRecyclerPagerAdapter extends RecyclerViewBaseAdapter<RoomRecycl
         setCount(mList.size());
     }
 
-
-    public void setList(List<HotelResult.HotelsBean.HotelLogoImgsBean> list){
-        if (list != null && list.size() > 0){
+    public void setList(List<HotelResult.HotelsBean.HotelLogoImgsBean> list) {
+        if (list != null && list.size() > 0) {
             mList.clear();
             mList.addAll(list);
             setCount(mList.size());
@@ -52,10 +50,10 @@ public class RoomRecyclerPagerAdapter extends RecyclerViewBaseAdapter<RoomRecycl
 
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView mImage;
+
         public ViewHolder(View itemView) {
             super(itemView);
             mImage = (ImageView) itemView.findViewById(R.id.item_room_pager_img);
-
         }
     }
 }

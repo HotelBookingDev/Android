@@ -148,4 +148,10 @@ public class HotelTitleView extends RelativeLayout {
             mBtnLeft.setOnClickListener(mOnClickListener);
         }
     }
+
+    public void setTitle(String title) {
+        if (!TextUtils.isEmpty(title)) {
+            mTvTitle.setText(title);
+        }
+    }
 }

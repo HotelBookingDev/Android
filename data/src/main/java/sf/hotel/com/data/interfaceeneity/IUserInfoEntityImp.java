@@ -14,7 +14,7 @@ public class IUserInfoEntityImp implements IUserInfoEntity {
         return Observable.create(new Observable.OnSubscribe<TokenResult>() {
             @Override
             public void call(Subscriber<? super TokenResult> subscriber) {
-                ApiWrapper.getInstance().getTokenReuslt().subscribe(subscriber);
+                ApiWrapper.getInstance().getTokenResult().subscribe(subscriber);
             }
         });
     }

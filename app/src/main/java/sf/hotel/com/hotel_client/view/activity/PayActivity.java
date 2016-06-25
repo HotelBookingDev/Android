@@ -5,8 +5,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
-import java.util.LinkedList;
-
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.alipay.PayCallBack;
 import sf.hotel.com.hotel_client.alipay.PayHelper;
@@ -24,12 +22,10 @@ public class PayActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         FrameLayout frame = new FrameLayout(this);
         Button button = new Button(this);
-        frame.addView(button,
-                FrameLayout.LayoutParams.MATCH_PARENT,
+        frame.addView(button, FrameLayout.LayoutParams.MATCH_PARENT,
                 FrameLayout.LayoutParams.MATCH_PARENT);
 
         setContentView(frame);
-
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

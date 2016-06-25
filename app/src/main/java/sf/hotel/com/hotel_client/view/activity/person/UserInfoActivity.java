@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.BaseActivity;
-import sf.hotel.com.hotel_client.view.fragment.person.OrderFragment;
 import sf.hotel.com.hotel_client.view.fragment.person.UserInfoFragment;
 
 public class UserInfoActivity extends BaseActivity {
