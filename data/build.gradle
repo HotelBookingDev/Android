@@ -33,7 +33,7 @@ dependencies {
     compile rootProject.ext.dependenciesdata.retrofit
     compile rootProject.ext.dependenciesdata.convertergson
     compile rootProject.ext.dependenciesdata.adapterrxjava
-    compile 'com.qiniu:qiniu-android-sdk:7.1.+'
+    compile 'com.qiniu:qiniu-android-sdk:7.1.3'
     compile 'com.qiniu:happy-dns:0.2.3.2'
     compile rootProject.ext.dependenciesdata.commonsio
 

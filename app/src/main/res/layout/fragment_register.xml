@@ -40,7 +40,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="5.0dip"
-                            android:text="+86"
+                            android:text="@string/phone_prefix"
                             android:textColor="@android:color/white"
                             android:textSize="12.0dip" />
 
@@ -177,7 +177,7 @@
                             android:paddingRight="5.0dip"
                             android:paddingTop="3.0dip"
                             android:singleLine="true"
-                            android:text="获取验证码"
+                            android:text="@string/get_code"
                             android:textColor="@android:color/white"
                             android:textSize="11.0dip" />
                     </LinearLayout>

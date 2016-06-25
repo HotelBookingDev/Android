@@ -55,6 +55,7 @@
     <string name="determine_new_pwd">确认新密码</string>
     <string name="input_new_pwd">输入新密码</string>
     <string name="phone">手机号</string>
+    <string name="phone_prefix">+86</string>
     <string name="verificationcode">验证码</string>
     <string name="input_old_pwd">输入旧密码</string>
 </resources>
