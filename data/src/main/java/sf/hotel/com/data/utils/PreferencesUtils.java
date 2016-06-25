@@ -24,7 +24,7 @@ public class PreferencesUtils {
     public static final String ACCPETMSG = "accpetmesg";
 
     //当前城市和百度地图对于的citycode
-    public static final String CITYCODE = "citycode";
+    public static final String CITYCODE = "city_code";
 
     public static void saveInstallationId(Context context, String installationId) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
@@ -85,7 +85,7 @@ public class PreferencesUtils {
         preferences.edit().putString(CITYCODE, code).apply();
     }
 
-    public static String getCitycode(Context context) {
+    public static String getCityCode(Context context) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
         return preferences.getString(CITYCODE, null);
     }

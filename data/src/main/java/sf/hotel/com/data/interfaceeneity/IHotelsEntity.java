@@ -8,7 +8,7 @@ import sf.hotel.com.data.entity.netresult.HotelResult;
  * @email sanfenruxi1@163.com
  * @date 16/6/13.
  */
-public interface IHotelsEntity {
+interface IHotelsEntity {
 
     Observable<HotelResult> callHotelsByCityId(String cityId);
 }

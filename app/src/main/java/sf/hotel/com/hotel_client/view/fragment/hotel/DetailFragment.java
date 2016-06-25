@@ -26,28 +26,28 @@ import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IDetailView;
 import sf.hotel.com.hotel_client.view.presenter.hotel.IDetailPresenter;
 
-
 /**
  * @author MZ
  * @email sanfenruxi1@163.com
  * @date 16/6/14.
  */
-public class DetailFragment extends BaseFragment implements IDetailView{
+public class DetailFragment extends BaseFragment implements IDetailView {
 
-    IDetailPresenter mIDetailPresenter;
+    private IDetailPresenter mIDetailPresenter;
 
     @BindView(R.id.fragment_detail_list)
     PullToRefreshRecyclerView mDetailPullView;
 
-    DetailPullViewAdapter mPullAdapter;
+    private DetailPullViewAdapter mPullAdapter;
 
-    Handler handler = new Handler();
+    private Handler handler = new Handler();
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_detail, container, false);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
         mIDetailPresenter = new IDetailPresenter(this);
 
         initDetailPullView();
@@ -58,14 +58,14 @@ public class DetailFragment extends BaseFragment implements IDetailView{
     private void initDetailPullView() {
         mDetailPullView.setSwipeEnable(true);
 
-
-        View mDetailHeader = LayoutInflater.from(getBottomContext()).inflate(R.layout.header_detail, null);
+        View mDetailHeader = LayoutInflater.from(getBottomContext())
+                .inflate(R.layout.header_detail, null);
 
         mDetailPullView.addHeaderView(mDetailHeader);
 
         //加载更多
         mDetailPullView.setLayoutManager(new LinearLayoutManager(getBottomContext()));
-        mDetailPullView.setPagingableListener(new PullToRefreshRecyclerView.PagingableListener(){
+        mDetailPullView.setPagingableListener(new PullToRefreshRecyclerView.PagingableListener() {
             @Override
             public void onLoadMoreItems() {
                 handler.post(new Runnable() {
@@ -79,14 +79,14 @@ public class DetailFragment extends BaseFragment implements IDetailView{
             }
         });
 
-
         //设置间隔线
-        mDetailPullView.getRecyclerView().addItemDecoration(new DividerItemDecoration(getBottomContext(),
-                DividerItemDecoration.VERTICAL_LIST));
-
+        mDetailPullView.getRecyclerView()
+                .addItemDecoration(new DividerItemDecoration(getBottomContext(),
+                        DividerItemDecoration.VERTICAL_LIST));
 
         //设置上拉加载
-        BaseLoadMoreView loadMoreView = new BaseLoadMoreView(getBottomContext(), mDetailPullView.getRecyclerView());
+        BaseLoadMoreView loadMoreView = new BaseLoadMoreView(getBottomContext(),
+                mDetailPullView.getRecyclerView());
         mDetailPullView.setLoadMoreFooter(loadMoreView);
         mDetailPullView.setLoadMoreCount(20);
 
@@ -108,7 +108,6 @@ public class DetailFragment extends BaseFragment implements IDetailView{
             }
         });
 
-
         //设置适配器
         mPullAdapter = new DetailPullViewAdapter(getBottomContext());
         mPullAdapter.setOnItemClickLitener(new OnItemClickListener() {
@@ -123,13 +122,10 @@ public class DetailFragment extends BaseFragment implements IDetailView{
             }
         });
 
-
         mPullAdapter.setCount(20);
 
         mDetailPullView.setAdapter(mPullAdapter);
         mDetailPullView.onFinishLoading(true, false);
-
-
     }
 
     private void showRoomFragment() {

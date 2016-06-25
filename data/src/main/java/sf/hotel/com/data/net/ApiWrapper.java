@@ -72,6 +72,7 @@ public class ApiWrapper extends RetrofitHelper {
         return mService.callSmsCode(phone).compose(this.<NormalResult>applySchedulers());
     }
 
+    //TODO 留着和服务器协商
     public Observable<NormalResult> postIntallation(Intallation mIntallation) {
         return mService.postIntallation(mIntallation).compose(this.<NormalResult>applySchedulers());
     }

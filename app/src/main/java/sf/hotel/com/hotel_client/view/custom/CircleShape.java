@@ -9,7 +9,7 @@ import android.graphics.drawable.shapes.Shape;
  * @email sanfenruxi1@163.com
  * @date 16/6/25.
  */
-public class CircleShape {
+class CircleShape {
     //设置默认值
     private float x = 0;
     private float y = 0;
@@ -73,5 +73,4 @@ public class CircleShape {
     public void resizeShape(final float width, final float height) {
         shape.getShape().resize(width, height);
     }
-
 }

@@ -38,14 +38,14 @@ public class HotelApplication extends Application {
         AVOSCloud.initialize(this, "P0fN7ArvLMtcgsACRwhOupHj-gzGzoHsz", "cWK8NHllNg7N6huHiKA1HeRG");
     }
 
-    public void initBuglyStatus() {
+    private void initBuglyStatus() {
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(context);
         strategy.setAppVersion("1.0.1");
         CrashReport.initCrashReport(context, "900033362", true, strategy);
     }
 
     //创建文件夹初始化的时候
-    public void initDir() {
+    private void initDir() {
         HotelFileUtils.createCacheDirs();
     }
 }

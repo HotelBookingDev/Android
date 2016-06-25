@@ -21,7 +21,7 @@ import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 
 /**
  * Created by FMT on 2016/6/3:15:51
- * EMAILE 1105896230@qq.com.
+ * email 1105896230@qq.com.
  */
 public abstract class BaseActivity extends SupportActivity {
 

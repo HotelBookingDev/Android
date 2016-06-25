@@ -17,10 +17,10 @@ import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
  * @date 16/6/7.
  */
 public class IRegisterPresenter extends SuperPresenter {
-    IRegisterView mIRegisterView;
+    private IRegisterView mIRegisterView;
 
-    IRegisterEntity mIRegisterEntity;
-    CompositeSubscription mCompositeSubscription;
+    private IRegisterEntity mIRegisterEntity;
+    private CompositeSubscription mCompositeSubscription;
 
     public IRegisterPresenter(IRegisterView mIRegisterView) {
         this.mIRegisterView = mIRegisterView;

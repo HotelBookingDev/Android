@@ -50,13 +50,13 @@ public interface ApiService {
 
     //绑定
     @FormUrlEncoded
-    @POST(AppUrl.INSTALLTION_BIND_URL)
+    @POST(AppUrl.INSTALLATIONS_BIND_URL)
     Observable<HttpResult<NormalResult>> postInstallation(@Field(DEVICE_TYPE) String type,
             @Field(PHONE_NUMBER) String phoneNum,
             @Field(INSTALLATION_CODE) String installation_code);
 
     //上传设备号
-    @POST(AppUrl.INSTALLTION_URL)
+    @POST(AppUrl.INSTALLATION_URL)
     @Headers({"Content-Type: application/json;charset=UTF-8"})
     Observable<HttpResult<NormalResult>> postIntallation(@Body Intallation mIntallation);
 

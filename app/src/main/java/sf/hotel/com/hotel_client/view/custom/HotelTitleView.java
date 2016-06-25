@@ -87,7 +87,7 @@ public class HotelTitleView extends RelativeLayout {
         addView(mTvTitle);
     }
 
-    public void addLeftView(String text) {
+    private void addLeftView(String text) {
         if (mBtnLeft == null) {
             mBtnLeft = new TextView(getContext());
             mBtnLeft.setPadding(20, 0, 0, 0);
@@ -103,7 +103,7 @@ public class HotelTitleView extends RelativeLayout {
         requestLayout();
     }
 
-    public void addLeftButton(int iconId) {
+    private void addLeftButton(int iconId) {
         if (mBtnLeft == null) {
             mBtnLeft = new ImageView(getContext());
             mBtnLeft.setPadding(20, 0, 50, 0);
@@ -116,7 +116,7 @@ public class HotelTitleView extends RelativeLayout {
         requestLayout();
     }
 
-    public void addRightButton(CharSequence text) {
+    private void addRightButton(CharSequence text) {
         if (mBtnRight == null) {
             mBtnRight = new Button(getContext());
             mBtnRight.setPadding(0, 0, 20, 0);
@@ -132,7 +132,7 @@ public class HotelTitleView extends RelativeLayout {
         requestLayout();
     }
 
-    public void addRightButton(int iconId) {
+    private void addRightButton(int iconId) {
         if (mBtnRight == null) {
             mBtnRight = new ImageView(getContext());
             mBtnRight.setPadding(50, 0, 20, 0);
@@ -145,7 +145,7 @@ public class HotelTitleView extends RelativeLayout {
         requestLayout();
     }
 
-    public void addLeftonClick(OnClickListener mOnClickListener) {
+    public void addLeftClick(OnClickListener mOnClickListener) {
         if (mOnClickListener != null && mBtnLeft != null) {
             mBtnLeft.setOnClickListener(mOnClickListener);
         }

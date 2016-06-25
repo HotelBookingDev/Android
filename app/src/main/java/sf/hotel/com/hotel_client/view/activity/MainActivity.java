@@ -22,8 +22,8 @@ import sf.hotel.com.hotel_client.view.fragment.person.PersonGroupFragment;
 public class MainActivity extends BaseActivity {
     @BindView(R.id.home_tab)
     PagerBottomTabLayout mPagerBottomTabLayout;
-    public static final int FIRST = 0;
-    public static final int SECOND = 1;
+    private static final int FIRST = 0;
+    private static final int SECOND = 1;
     private SupportFragment[] mFragments = new SupportFragment[4];
 
     //当前
@@ -77,7 +77,7 @@ public class MainActivity extends BaseActivity {
         build.addTabItemClickListener(new TabItemListene());
     }
 
-    class TabItemListene implements OnTabItemSelectListener {
+    private class TabItemListene implements OnTabItemSelectListener {
 
         @Override
         public void onSelected(int index, Object tag) {

@@ -22,7 +22,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private Dao<UserEntity, Integer> userDao;
     private static DatabaseHelper instance;
 
-    public DatabaseHelper(Context context) {
+    private DatabaseHelper(Context context) {
         super(context, TABLE_NAME, null, databaseVersion);
     }
 

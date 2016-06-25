@@ -11,9 +11,9 @@ import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
  */
 public class IDetailPresenter extends SuperPresenter {
 
-    IDetailView mIDetailView;
+    private IDetailView mIDetailView;
 
-    IDetailEntityImp mIDetailEntityImp;
+    private  IDetailEntityImp mIDetailEntityImp;
 
     public IDetailPresenter(IDetailView mIDetailView) {
         this.mIDetailView = mIDetailView;

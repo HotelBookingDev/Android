@@ -11,7 +11,7 @@ import sf.hotel.com.data.entity.UserEntity;
  */
 public class LoginResult {
     @SerializedName("user")
-    public UserEntity userEntity;
+    private UserEntity userEntity;
 
     public UserEntity getUserEntity() {
         return userEntity;

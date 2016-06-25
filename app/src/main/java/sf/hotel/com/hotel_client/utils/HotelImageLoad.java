@@ -70,7 +70,7 @@ public class HotelImageLoad {
                 GlideBuildFactory.INSTACNE.getBuild(GlideBuildFactory.SIMPLEBUILD, context));
     }
 
-    public static void loadImage(Context context, ImageView imageView, Object object,
+    private static void loadImage(Context context, ImageView imageView, Object object,
             GlideBuild build) {
         if (object instanceof String) {
             loadImageByPath(context, imageView, (String) object, build);

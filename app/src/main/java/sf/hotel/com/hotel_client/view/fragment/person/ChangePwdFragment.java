@@ -15,7 +15,7 @@ import sf.hotel.com.hotel_client.view.interfaceview.person.IChangePwdView;
 import sf.hotel.com.hotel_client.view.presenter.person.ChangePersenter;
 
 public class ChangePwdFragment extends BaseFragment implements IChangePwdView {
-    ChangePersenter mChangePersenter;
+    private ChangePersenter mChangePersenter;
 
     public static ChangePwdFragment newInstance() {
 

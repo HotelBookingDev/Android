@@ -4,11 +4,11 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 
 /**
  * Created by FMT on 2016/6/13:14:16
- * EMAILE 1105896230@qq.com.
+ * email 1105896230@qq.com.
  */
 public class GlideBuild {
-    private static final int WITHE = 480;
-    private static final int HEIGHT = 800;
+    protected static final int WITHE = 480;
+    protected static final int HEIGHT = 800;
 
     public BitmapTransformation getmBitmapTransformation() {
         return mBitmapTransformation;

@@ -6,7 +6,7 @@ import rx.Subscriber;
  * Created by FMT on 2016/6/13:09:59
  * EMAILE 1105896230@qq.com.
  */
-public class CommSubscriber<T> extends Subscriber<T> {
+class CommSubscriber<T> extends Subscriber<T> {
     @Override
     public void onCompleted() {
 

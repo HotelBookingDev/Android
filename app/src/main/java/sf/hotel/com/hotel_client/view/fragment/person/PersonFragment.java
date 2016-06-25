@@ -20,7 +20,7 @@ import sf.hotel.com.hotel_client.view.event.hotel.Message;
 import sf.hotel.com.hotel_client.view.event.hotel.PersonMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.person.IPersonView;
-import sf.hotel.com.hotel_client.view.presenter.person.PersonPersenter;
+import sf.hotel.com.hotel_client.view.presenter.person.PersonPresenter;
 
 /**
  */
@@ -30,7 +30,7 @@ public class PersonFragment extends BaseFragment implements IPersonView {
     public static final int SETTING = 0x2;
     public static final int ORDER = 0x3;
 
-    PersonPersenter mPersonPersenter;
+    PersonPresenter mPersonPresenter;
 
     public static PersonFragment newInstance() {
 
@@ -47,7 +47,7 @@ public class PersonFragment extends BaseFragment implements IPersonView {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_person, container, false);
         ButterKnife.bind(this, view);
-        mPersonPersenter = new PersonPersenter(this);
+        mPersonPresenter = new PersonPresenter(this);
         onRxEvent();
         return view;
     }
@@ -90,7 +90,7 @@ public class PersonFragment extends BaseFragment implements IPersonView {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mPersonPersenter.destroy();
+        mPersonPresenter.destroy();
     }
 
     @OnClick({R.id.piv_money, R.id.piv_order, R.id.piv_person, R.id.piv_evaluate, R.id.piv_setting})
@@ -110,22 +110,22 @@ public class PersonFragment extends BaseFragment implements IPersonView {
     }
 
     public void clickMoney() {
-        mPersonPersenter.clickMoney();
+        mPersonPresenter.clickMoney();
     }
 
     public void clickOrder() {
-        mPersonPersenter.clickOrder();
+        mPersonPresenter.clickOrder();
     }
 
     public void clickPerson() {
-        mPersonPersenter.clickPerson();
+        mPersonPresenter.clickPerson();
     }
 
     public void clickEvaluate() {
-        mPersonPersenter.clickEvaluate();
+        mPersonPresenter.clickEvaluate();
     }
 
     public void clickSetting() {
-        mPersonPersenter.clickSetting();
+        mPersonPresenter.clickSetting();
     }
 }

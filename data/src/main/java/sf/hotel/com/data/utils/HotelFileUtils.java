@@ -41,7 +41,7 @@ public class HotelFileUtils {
         }
     }
 
-    public static void createDir(File file) {
+    private static void createDir(File file) {
         if (file == null) return;
         if (!file.exists()) {
             if (!file.mkdirs()) {
@@ -66,7 +66,7 @@ public class HotelFileUtils {
         return size;
     }
 
-    public static String convertFileSize(long size) {
+    private static String convertFileSize(long size) {
         long kb = 1024;
         long mb = kb * 1024;
         long gb = mb * 1024;
@@ -136,7 +136,7 @@ public class HotelFileUtils {
         return null;
     }
 
-    public static String getDataColumn(Context context, Uri uri, String selection,
+    private static String getDataColumn(Context context, Uri uri, String selection,
             String[] selectionArgs) {
 
         Cursor cursor = null;
@@ -156,15 +156,15 @@ public class HotelFileUtils {
         return null;
     }
 
-    public static boolean isExternalStorageDocument(Uri uri) {
+    private static boolean isExternalStorageDocument(Uri uri) {
         return "com.android.externalstorage.documents".equals(uri.getAuthority());
     }
 
-    public static boolean isDownloadsDocument(Uri uri) {
+    private static boolean isDownloadsDocument(Uri uri) {
         return "com.android.providers.downloads.documents".equals(uri.getAuthority());
     }
 
-    public static boolean isMediaDocument(Uri uri) {
+    private static boolean isMediaDocument(Uri uri) {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
     }
 }

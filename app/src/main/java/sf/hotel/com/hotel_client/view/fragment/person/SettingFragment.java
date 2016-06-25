@@ -32,7 +32,7 @@ import sf.hotel.com.hotel_client.view.presenter.person.SettingPresenter;
 
 public class SettingFragment extends BaseFragment implements ISettingView {
 
-    SettingPresenter mSettingPersnter;
+    SettingPresenter settingPresenter;
 
     public static SettingFragment newInstance() {
 
@@ -60,7 +60,7 @@ public class SettingFragment extends BaseFragment implements ISettingView {
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
         ButterKnife.bind(this, view);
         initView();
-        mSettingPersnter = new SettingPresenter(this);
+        settingPresenter = new SettingPresenter(this);
         return view;
     }
 
@@ -71,14 +71,14 @@ public class SettingFragment extends BaseFragment implements ISettingView {
 
         setSwitch(PreferencesUtils.getAcceptMeg(getActivity()), mTbAcceptMsg);
 
-        view_title.addLeftonClick(v -> {
+        view_title.addLeftClick(v -> {
             getActivity().finish();
         });
     }
 
     public void loginOut() {
         //清空本地设置
-        mSettingPersnter.loginOut();
+        settingPresenter.loginOut();
     }
 
     public void aboutUs() {
@@ -91,7 +91,7 @@ public class SettingFragment extends BaseFragment implements ISettingView {
         startActivity(intent);
     }
 
-    public void settingclear() {
+    public void setting_clear() {
         HotelFileUtils.clearDiskCache();
         setBtnClearText();
     }
@@ -123,7 +123,7 @@ public class SettingFragment extends BaseFragment implements ISettingView {
     }
 
     public void sendMsg() {
-        mSettingPersnter.changeAcceptMsg();
+        settingPresenter.changeAcceptMsg();
     }
 
     @Override
@@ -151,7 +151,7 @@ public class SettingFragment extends BaseFragment implements ISettingView {
             sendMsg();
             //缓存清空
         } else if (id == R.id.setting_clear) {
-            settingclear();
+            setting_clear();
             //关于我们
         } else if (id == R.id.piv_about_us) {
             aboutUs();
@@ -162,7 +162,7 @@ public class SettingFragment extends BaseFragment implements ISettingView {
         } else if (id == R.id.piv_feed_back) {
             feedBack();
         } else if (id == R.id.piv_safe) {
-            mSettingPersnter.forgeoPwd();
+            settingPresenter.forgeoPwd();
         }
     }
 

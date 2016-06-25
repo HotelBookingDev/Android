@@ -16,7 +16,7 @@ import butterknife.OnClick;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.person.IUserInfoView;
-import sf.hotel.com.hotel_client.view.presenter.person.UserInfoPersenter;
+import sf.hotel.com.hotel_client.view.presenter.person.UserInfoPresenter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,7 +26,7 @@ public class UserInfoFragment extends BaseFragment implements IUserInfoView {
     private static final int REQUEST_CODE_PICK_IMAGE = 0x1;
     @BindView(R.id.iv_avatar)
     ImageView mAvatar;
-    UserInfoPersenter mUserInfoPersenter;
+    UserInfoPresenter mUserInfoPresenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,7 +34,7 @@ public class UserInfoFragment extends BaseFragment implements IUserInfoView {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_user_info, container, false);
         ButterKnife.bind(this, view);
-        mUserInfoPersenter = new UserInfoPersenter(this);
+        mUserInfoPresenter = new UserInfoPresenter(this);
         return view;
     }
 
@@ -65,7 +65,7 @@ public class UserInfoFragment extends BaseFragment implements IUserInfoView {
         if (requestCode == REQUEST_CODE_PICK_IMAGE) {
             if (data != null && data.getData() != null) {
                 Uri uri = data.getData();
-                mUserInfoPersenter.upFile(uri);
+                mUserInfoPresenter.upFile(uri);
             }
         }
     }
@@ -73,7 +73,7 @@ public class UserInfoFragment extends BaseFragment implements IUserInfoView {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mUserInfoPersenter.destroy();
+        mUserInfoPresenter.destroy();
     }
 
     public static UserInfoFragment newInstance() {

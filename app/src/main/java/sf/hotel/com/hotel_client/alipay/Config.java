@@ -5,7 +5,7 @@ package sf.hotel.com.hotel_client.alipay;
  * @email sanfenruxi1@163.com
  * @date 16/6/24.
  */
-public class Config {
+class Config {
     // 商户PID
     public static final String PARTNER = "123124";
     // 商户收款账号

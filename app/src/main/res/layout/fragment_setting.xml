@@ -52,20 +52,20 @@
             android:layout_marginTop="@dimen/fab_margin"
             android:orientation="vertical">
 
-            <sf.hotel.com.hotel_client.view.custom.PersionItemView
+            <sf.hotel.com.hotel_client.view.custom.PersonalItemView
                 android:id="@+id/piv_about_us"
                 style="@style/group_item"
                 app:contextText="@string/about_us" />
 
             <include layout="@layout/item_line" />
 
-            <sf.hotel.com.hotel_client.view.custom.PersionItemView
+            <sf.hotel.com.hotel_client.view.custom.PersonalItemView
                 android:id="@+id/piv_feed_back"
                 style="@style/group_item"
                 app:contextText="@string/feedback" />
         </LinearLayout>
 
-        <sf.hotel.com.hotel_client.view.custom.PersionItemView
+        <sf.hotel.com.hotel_client.view.custom.PersonalItemView
             android:id="@+id/piv_safe"
             style="@style/group_item"
             android:layout_below="@+id/ln_about_us"

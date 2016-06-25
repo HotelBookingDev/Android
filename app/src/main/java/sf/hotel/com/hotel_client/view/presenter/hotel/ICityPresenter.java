@@ -17,11 +17,11 @@ import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
  * @date 16/6/22.
  */
 public class ICityPresenter extends SuperPresenter {
-    ICityView mICityView;
+    private ICityView mICityView;
 
-    ICityEntityImp mICityEntityImp;
+    private ICityEntityImp mICityEntityImp;
 
-    CompositeSubscription mCompositeSubscription;
+    private CompositeSubscription mCompositeSubscription;
 
     public ICityPresenter(ICityView mICityView) {
         this.mICityView = mICityView;

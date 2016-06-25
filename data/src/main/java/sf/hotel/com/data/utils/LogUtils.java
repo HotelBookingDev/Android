@@ -8,7 +8,7 @@ import android.util.Log;
  * @date 16/6/6.
  */
 public final class LogUtils {
-    public static boolean DEBUG = true;
+    private static boolean DEBUG = true;
     private static final String TAG = "Hotel";
 
     public static void v(String log) {
@@ -62,7 +62,7 @@ public final class LogUtils {
     }
 
     public static void printExceptionStackTrace(Exception e) {
-        if (e != null && DEBUG){
+        if (e != null && DEBUG) {
             e.printStackTrace();
         }
     }

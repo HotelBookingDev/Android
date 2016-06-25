@@ -9,7 +9,7 @@ import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
  * @date 16/6/16.
  */
 public class IRoomPresenter extends SuperPresenter {
-    IRoomView mIRoomView;
+    private IRoomView mIRoomView;
 
     public IRoomPresenter(IRoomView mIRoomView) {
         this.mIRoomView = mIRoomView;

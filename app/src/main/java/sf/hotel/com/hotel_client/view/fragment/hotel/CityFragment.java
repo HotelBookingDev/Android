@@ -30,24 +30,24 @@ import sf.hotel.com.hotel_client.view.presenter.hotel.ICityPresenter;
  * @email sanfenruxi1@163.com
  * @date 16/6/22.
  */
-public class CityFragment extends BaseFragment implements ICityView{
+public class CityFragment extends BaseFragment implements ICityView {
 
     @BindView(R.id.fragment_city_grid)
     RecyclerView mGridRecyclerView;
 
-    CityListAdapter mCityListAdapter;
+    private CityListAdapter mCityListAdapter;
 
-    ICityPresenter mICityPresenter;
-
+    private ICityPresenter mICityPresenter;
 
     @BindView(R.id.frame_city_back)
     ImageView imgBack;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_city,container, false);
-        ButterKnife.bind(this,view);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_city, container, false);
+        ButterKnife.bind(this, view);
         mICityPresenter = new ICityPresenter(this);
         initGrid();
 
@@ -58,32 +58,29 @@ public class CityFragment extends BaseFragment implements ICityView{
     }
 
     @OnClick(R.id.frame_city_back)
-    public void onCityBackClick(){
+    public void onCityBackClick() {
         RxBus.getDefault().post(MessageFactory.createCityMessage(CityMessage.ACTIVITY_FINISH, ""));
     }
 
     private void onRxEvent() {
-        RxBus.getDefault().toObservable(CityMessage.class)
-                .subscribe(new Action1<CityMessage>() {
-                    @Override
-                    public void call(CityMessage cityMessage) {
-                        if (cityMessage != null){
-                            switch (cityMessage.what){
-                                case CityMessage.SUCCESS:
-                                    ProcincesResult procincesResult = (ProcincesResult) cityMessage.obj;
-                                    mCityListAdapter.setList(procincesResult);
-                                    break;
-                            }
-                        }
+        RxBus.getDefault().toObservable(CityMessage.class).subscribe(new Action1<CityMessage>() {
+            @Override
+            public void call(CityMessage cityMessage) {
+                if (cityMessage != null) {
+                    switch (cityMessage.what) {
+                        case CityMessage.SUCCESS:
+                            ProcincesResult procincesResult = (ProcincesResult) cityMessage.obj;
+                            mCityListAdapter.setList(procincesResult);
+                            break;
                     }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
+                }
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
 
-                    }
-                });
-
-
+            }
+        });
     }
 
     private void initCityList() {
@@ -98,8 +95,10 @@ public class CityFragment extends BaseFragment implements ICityView{
         mCityListAdapter.setOnItemClickLitener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                RxBus.getDefault().post(MessageFactory.createCityMessage(CityMessage.ACTIVITY_FINISH_AND_RESULT,
-                        mCityListAdapter.getListItem(position)));
+                RxBus.getDefault()
+                        .post(MessageFactory.createCityMessage(
+                                CityMessage.ACTIVITY_FINISH_AND_RESULT,
+                                mCityListAdapter.getListItem(position)));
             }
 
             @Override
@@ -129,5 +128,4 @@ public class CityFragment extends BaseFragment implements ICityView{
     public void failed(int type, Throwable e) {
 
     }
-
 }

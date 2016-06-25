@@ -17,10 +17,9 @@ import sf.hotel.com.hotel_client.R;
  * @email sanfenruxi1@163.com
  * @date 16/6/22.
  */
-public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.ViewHolder>{
+public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.ViewHolder> {
 
-
-    List<ProcincesResult.ProcincesBean.CitysBean> mList = new ArrayList<>();
+    private List<ProcincesResult.ProcincesBean.CitysBean> mList = new ArrayList<>();
 
     private OnItemClickListener mOnItemClickListener;
 
@@ -28,23 +27,22 @@ public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.Vie
         this.mOnItemClickListener = mOnItemClickListener;
     }
 
-
     public void setList(List<ProcincesResult.ProcincesBean.CitysBean> list) {
         this.mList.clear();
         mList.addAll(list);
         notifyDataSetChanged();
     }
 
-    public ProcincesResult.ProcincesBean.CitysBean getListItem(int pos){
+    public ProcincesResult.ProcincesBean.CitysBean getListItem(int pos) {
         return mList.get(pos);
     }
 
     public void setList(ProcincesResult procincesResult) {
         mList.clear();
         List<ProcincesResult.ProcincesBean> procinces = procincesResult.getProcinces();
-        for (ProcincesResult.ProcincesBean procincesBean : procinces){
+        for (ProcincesResult.ProcincesBean procincesBean : procinces) {
             List<ProcincesResult.ProcincesBean.CitysBean> citys = procincesBean.getCitys();
-            for (ProcincesResult.ProcincesBean.CitysBean citysBean : citys){
+            for (ProcincesResult.ProcincesBean.CitysBean citysBean : citys) {
                 mList.add(citysBean);
             }
         }
@@ -67,7 +65,7 @@ public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.Vie
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.button.setText(mList.get(position).getName());
 
-        if (mOnItemClickListener != null){
+        if (mOnItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -75,14 +73,12 @@ public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.Vie
                     mOnItemClickListener.onItemClick(holder.itemView, pos);
                 }
             });
-
         }
-
-
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
         Button button;
+
         public ViewHolder(View itemView) {
             super(itemView);
             button = (Button) itemView.findViewById(R.id.item_city_btn);

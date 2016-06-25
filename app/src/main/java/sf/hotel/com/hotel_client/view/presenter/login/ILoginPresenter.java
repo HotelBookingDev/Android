@@ -157,7 +157,7 @@ public class ILoginPresenter extends SuperPresenter {
         mILoginEntity.saveAvatar(mILoginView.getBottomContext(), avatar);
     }
 
-    String getErrorString(int id, Context context) {
+    private String getErrorString(int id, Context context) {
         try {
             return context.getString(id);
         } catch (Exception e) {

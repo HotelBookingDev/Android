@@ -111,7 +111,7 @@ public class LoginActivity extends BaseActivity {
         mCompositeSubscription.add(subscribe);
     }
 
-    protected void init(Bundle savedInstanceState) {
+    private void init(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             loadRootFragment(R.id.login_fragment, getFragmentByKey(FragConstant.LOGIN));
         }

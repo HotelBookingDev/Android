@@ -9,10 +9,10 @@ import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
  * data：2016/6/16
  * email: 1105896230@qq.com
  */
-public class PersonPersenter extends SuperPresenter {
+public class PersonPresenter extends SuperPresenter {
     IPersonView mIPersonView;
 
-    public PersonPersenter(IPersonView mIPersonView) {
+    public PersonPresenter(IPersonView mIPersonView) {
         this.mIPersonView = mIPersonView;
     }
 
@@ -40,7 +40,7 @@ public class PersonPersenter extends SuperPresenter {
         }
     }
 
-    //TODO 这个界面会进行网络请求在界面销毁记得要把网络cancle了
+    //TODO 这个界面会进行网络请求在界面销毁记得要把网络cancel了
     @Override
     public void destroy() {
 

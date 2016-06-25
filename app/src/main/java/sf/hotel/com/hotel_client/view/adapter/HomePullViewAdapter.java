@@ -10,7 +10,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.HotelImageLoad;
@@ -22,16 +21,15 @@ import sf.hotel.com.hotel_client.utils.HotelImageLoad;
  */
 public class HomePullViewAdapter extends RecyclerViewBaseAdapter<HomePullViewAdapter.ViewHolder> {
 
+    private List<HotelResult.HotelsBean> mList = new ArrayList<>();
 
-    List<HotelResult.HotelsBean> mList = new ArrayList<>();
-
-    public void setList(List<HotelResult.HotelsBean> hotelList){
+    public void setList(List<HotelResult.HotelsBean> hotelList) {
         mList = hotelList;
         setCount(mList.size());
         this.notifyDataSetChanged();
     }
 
-    public HotelResult.HotelsBean getItemByPos(int pos){
+    public HotelResult.HotelsBean getItemByPos(int pos) {
         return mList.get(pos);
     }
 
@@ -40,7 +38,6 @@ public class HomePullViewAdapter extends RecyclerViewBaseAdapter<HomePullViewAda
     public void setOnItemClickLitener(OnItemClickListener mOnItemClickListener) {
         this.mOnItemClickListener = mOnItemClickListener;
     }
-
 
     public HomePullViewAdapter(Context context) {
         super(context);
@@ -61,9 +58,10 @@ public class HomePullViewAdapter extends RecyclerViewBaseAdapter<HomePullViewAda
 
         holder.mTextContent.setText(mList.get(position).getAddress());
 
-        HotelImageLoad.loadImage(mContext, holder.mImage, mList.get(position).getHotelLogoImgs().get(0).getImg_url());
+        HotelImageLoad.loadImage(mContext, holder.mImage,
+                mList.get(position).getHotelLogoImgs().get(0).getImg_url());
 
-        if (mOnItemClickListener != null){
+        if (mOnItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -73,7 +71,6 @@ public class HomePullViewAdapter extends RecyclerViewBaseAdapter<HomePullViewAda
             });
         }
     }
-
 
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView mImage;

@@ -8,6 +8,6 @@ import sf.hotel.com.data.entity.ProcincesResult;
  * @email sanfenruxi1@163.com
  * @date 16/6/22.
  */
-public interface CityEntity {
+interface CityEntity {
     Observable<ProcincesResult> callCityList();
 }

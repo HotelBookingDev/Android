@@ -46,7 +46,7 @@ public class LoadingDialogUtils {
      *            可撤销
      * @return
      */
-    public static void showProgress(Context context, CharSequence title, CharSequence message,
+    private static void showProgress(Context context, CharSequence title, CharSequence message,
                                     boolean indeterminate, boolean cancelable) {
         if (dialog == null){
             dialog = new ProgressDialog(context);

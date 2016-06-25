@@ -23,13 +23,13 @@ import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
  * data：2016/6/22
  * email: 1105896230@qq.com
  */
-public class UserInfoPersenter extends SuperPresenter {
-    private static final java.lang.String TAG = "UserInfoPersenter";
+public class UserInfoPresenter extends SuperPresenter {
+    private static final java.lang.String TAG = "UserInfoPresenter";
     IUserInfoView mIUserInfoView;
     private IUserInfoEntity mIUserInfoEntity;
     private CompositeSubscription mCompositeSubscription;
 
-    public UserInfoPersenter(IUserInfoView mIUserInfoView) {
+    public UserInfoPresenter(IUserInfoView mIUserInfoView) {
         this.mIUserInfoView = mIUserInfoView;
         mIUserInfoEntity = new IUserInfoEntityImp();
         mCompositeSubscription = new CompositeSubscription();

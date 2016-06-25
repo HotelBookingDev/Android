@@ -50,6 +50,6 @@ public class OrderFragment extends BaseFragment {
         mViewPager.setAdapter(new OrderPagerFragmentAdapter(getChildFragmentManager()));
         mTabLayout.setupWithViewPager(mViewPager);
 
-        mTitle.addLeftonClick(v -> getActivity().finish());
+        mTitle.addLeftClick(v -> getActivity().finish());
     }
 }

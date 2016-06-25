@@ -9,7 +9,7 @@ package sf.hotel.com.hotel_client.view.event.hotel;
 public class Message {
 
     public int what;
-    public String message;
+    private String message;
     public Object obj;
 
 

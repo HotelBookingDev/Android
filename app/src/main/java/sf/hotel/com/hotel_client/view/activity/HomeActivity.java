@@ -13,7 +13,6 @@ import me.majiajie.pagerbottomtabstrip.PagerBottomTabLayout;
 import me.majiajie.pagerbottomtabstrip.TabLayoutMode;
 import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectListener;
 import rx.Subscription;
-import rx.functions.Action1;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
@@ -62,11 +61,11 @@ public class HomeActivity extends BaseActivity {
         });
     }
 
-    protected void init() {
+    private void init() {
         loadRootFragment(R.id.home_fragment, getFragmentByKey(FragConstant.HOTELS));
     }
 
-    public void showBottomTab() {
+    private void showBottomTab() {
         if (mPagerBottomTabLayout.getVisibility() == View.GONE) {
             mPagerBottomTabLayout.setVisibility(View.VISIBLE);
             Animation toTop = AnimationUtils.loadAnimation(this, R.anim.to_top);
@@ -75,7 +74,7 @@ public class HomeActivity extends BaseActivity {
         }
     }
 
-    public void hideBottomTab() {
+    private void hideBottomTab() {
         if (mPagerBottomTabLayout.getVisibility() == View.VISIBLE) {
             Animation fromTop = AnimationUtils.loadAnimation(this, R.anim.from_top);
             mPagerBottomTabLayout.setAnimation(fromTop);
@@ -84,35 +83,29 @@ public class HomeActivity extends BaseActivity {
         }
     }
 
-    public void onRxEvent() {
+    private void onRxEvent() {
         Subscription subscribe = RxBus.getDefault()
                 .toObservable(HotelMessage.class)
-                .subscribe(new Action1<HotelMessage>() {
-                    @Override
-                    public void call(HotelMessage hotelMessage) {
-                        //处理类型
-                        switch (hotelMessage.what) {
-                            case HotelMessage.SHOW_DETAIL_FRAGMENT:
-                                showFragment(FragConstant.DETAIL);
-                                break;
-                            case HotelMessage.SHOW_ROOM_FRAGMENT:
-                                showFragment(FragConstant.ROOM);
-                                break;
-                            case HotelMessage.SHOW_BOTTOM_VIEW:
-                                showBottomTab();
-                                break;
-                            case HotelMessage.HIDE_BOTTOM_VIEW:
-                                hideBottomTab();
-                                break;
-                            case HotelMessage.FRAGMENT_BACK:
-                                onBackPressed();
-                        }
+                .subscribe(hotelMessage -> {
+                    //处理类型
+                    switch (hotelMessage.what) {
+                        case HotelMessage.SHOW_DETAIL_FRAGMENT:
+                            showFragment(FragConstant.DETAIL);
+                            break;
+                        case HotelMessage.SHOW_ROOM_FRAGMENT:
+                            showFragment(FragConstant.ROOM);
+                            break;
+                        case HotelMessage.SHOW_BOTTOM_VIEW:
+                            showBottomTab();
+                            break;
+                        case HotelMessage.HIDE_BOTTOM_VIEW:
+                            hideBottomTab();
+                            break;
+                        case HotelMessage.FRAGMENT_BACK:
+                            onBackPressed();
                     }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        showLog("事件通信异常" + throwable.getMessage());
-                    }
+                }, throwable -> {
+                    showLog("事件通信异常" + throwable.getMessage());
                 });
         mCompositeSubscription.add(subscribe);
     }
