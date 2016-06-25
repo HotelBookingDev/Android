@@ -31,7 +31,8 @@
             <EditText
                 android:id="@+id/et_old"
                 style="@style/edit_pwd"
-                android:layout_toRightOf="@id/tv_left"
+                android:hint="@string/input_old_pwd"
+                android:layout_toRightOf="@+id/tv_left"
                 android:imeOptions="actionNext" />
         </RelativeLayout>
 
@@ -73,7 +74,7 @@
         </RelativeLayout>
 
         <mehdi.sakout.fancybuttons.FancyButton
-            android:id="@+id/register_btn"
+            android:id="@+id/submit_btn"
             style="@style/button_green"
             fancy:fb_borderColor="#FFFFFF"
             fancy:fb_borderWidth="1dp"
