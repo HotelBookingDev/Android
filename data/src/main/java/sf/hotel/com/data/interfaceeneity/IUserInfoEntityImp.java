@@ -2,7 +2,6 @@ package sf.hotel.com.data.interfaceeneity;
 
 import rx.Observable;
 import rx.Subscriber;
-import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.entity.netresult.TokenResult;
 import sf.hotel.com.data.net.ApiWrapper;
 
@@ -15,7 +14,7 @@ public class IUserInfoEntityImp implements IUserInfoEntity {
         return Observable.create(new Observable.OnSubscribe<TokenResult>() {
             @Override
             public void call(Subscriber<? super TokenResult> subscriber) {
-                ApiWrapper.getInstance().getTokenReuslt(EntityContext.getInstance().getmCurrentUser().getPhoneNumber()).subscribe(subscriber);
+                ApiWrapper.getInstance().getTokenReuslt().subscribe(subscriber);
             }
         });
     }

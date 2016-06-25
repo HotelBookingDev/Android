@@ -4,9 +4,11 @@ import android.text.TextUtils;
 
 import java.io.IOException;
 
+import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import sf.hotel.com.data.config.EntityContext;
+import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.data.utils.PreferencesUtils;
 
 /**
@@ -14,12 +16,12 @@ import sf.hotel.com.data.utils.PreferencesUtils;
  */
 public class HeadInterceptor implements Interceptor {
     private static final String TOEKNKEY = "Authorization";
-    private static final String JWT = "JWT";
+    private static final String JWT = "JWT ";
 
     @Override
     public okhttp3.Response intercept(okhttp3.Interceptor.Chain chain) throws IOException {
         Request request = chain.request();
-        addToken(request);
+        request = addToken(request);
         okhttp3.Response response = chain.proceed(request);
         saveToken(response);
         okhttp3.MediaType mediaType = response.body().contentType();
@@ -32,9 +34,13 @@ public class HeadInterceptor implements Interceptor {
         if (!TextUtils.isEmpty(token)) {
             //添加token
             Request.Builder requestBuilder = request.newBuilder()
-                    .addHeader(TOEKNKEY, JWT + " " + token)
+                    .addHeader(TOEKNKEY, JWT + token)
                     .method(request.method(), request.body());
             request = requestBuilder.build();
+        }
+        Headers headers = request.headers();
+        for (int i = 0; i < headers.size(); i++) {
+            LogUtils.e(headers.name(i) + ": " + headers.value(i));
         }
         return request;
     }
@@ -42,6 +48,8 @@ public class HeadInterceptor implements Interceptor {
     private void saveToken(okhttp3.Response response) {
         String token = response.header("token");
         if (!TextUtils.isEmpty(token)) {
+            //去除收尾空格
+            token = token.trim();
             PreferencesUtils.saveToken(EntityContext.getContext(), token);
         }
     }
