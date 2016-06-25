@@ -28,4 +28,9 @@
     <dimen name="iv_item_persion_padding">10dp</dimen>
 
     <dimen name="title_height">48dp</dimen>
+
+    <!--公共item的大小-->
+    <dimen name="common_margin">20.0dip</dimen>
+    <!--item里面文字的大小-->
+    <dimen name="text_small">14.0dip</dimen>
 </resources>

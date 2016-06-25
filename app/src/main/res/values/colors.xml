@@ -32,4 +32,12 @@
     <color name="view_title">#537dca</color>
 
     <color name="green">#00ff00</color>
+
+    <color name="hint_gray">#ffc3c3c3</color>
+
+    <!--每个item的颜色-->
+    <color name="item_pressed_color">#ffe1e3e2</color>
+    <!--默认背景色-->
+    <color name="bg_common">#ffe9efef</color>
+
 </resources>

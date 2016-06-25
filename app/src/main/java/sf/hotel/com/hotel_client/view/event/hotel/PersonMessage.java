@@ -9,6 +9,9 @@ public class PersonMessage extends Message {
 
     public static final int ORDER = 100;
 
+    //进入忘记密码的界面
+    public static final int FORGORPW = 101;
+
     public PersonMessage(int what) {
         super(what);
     }

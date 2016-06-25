@@ -1,7 +1,7 @@
 package sf.hotel.com.hotel_client.view.presenter.person;
 
 import sf.hotel.com.data.utils.PreferencesUtils;
-import sf.hotel.com.hotel_client.utils.ToggleButton;
+import sf.hotel.com.hotel_client.view.custom.ToggleButton;
 import sf.hotel.com.hotel_client.view.interfaceview.person.ISettingView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 
@@ -34,9 +34,17 @@ public class SettingPresenter extends SuperPresenter {
                 acceptMsg);
     }
 
+    public void forgeoPwd() {
+        if (checkIsLogin()){
+            mSettingView.toChangePwFragment();
+        }else {
+            mSettingView.showLoginActivity();
+        }
+    }
+
     public void loginOut() {
         invalidate();
-        mSettingView.starLoginActivtiy();
+        mSettingView.logOutToLoginActivity();
     }
 
     private void invalidate() {

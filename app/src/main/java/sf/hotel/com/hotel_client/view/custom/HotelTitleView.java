@@ -142,4 +142,10 @@ public class HotelTitleView extends RelativeLayout {
         invalidate();
         requestLayout();
     }
+
+    public void addLeftonClick(OnClickListener mOnClickListener) {
+        if (mOnClickListener != null && mBtnLeft != null) {
+            mBtnLeft.setOnClickListener(mOnClickListener);
+        }
+    }
 }

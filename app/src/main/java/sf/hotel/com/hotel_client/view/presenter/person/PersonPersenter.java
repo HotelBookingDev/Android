@@ -39,9 +39,7 @@ public class PersonPersenter extends SuperPresenter {
         }
     }
 
-    private boolean checkIsLogin() {
-        return EntityContext.getInstance().getmCurrentUser() != null ? Boolean.TRUE : Boolean.FALSE;
-    }
+
 
     //TODO 这个界面会进行网络请求在界面销毁记得要把网络cancle了
     @Override

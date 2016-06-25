@@ -19,8 +19,13 @@ import sf.hotel.com.data.utils.HotelFileUtils;
 import sf.hotel.com.data.utils.PreferencesUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.AndroidUtils;
-import sf.hotel.com.hotel_client.utils.ToggleButton;
 import sf.hotel.com.hotel_client.view.activity.LoginActivity;
+import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
+import sf.hotel.com.hotel_client.view.custom.ToggleButton;
+import sf.hotel.com.hotel_client.view.event.RxBus;
+import sf.hotel.com.hotel_client.view.event.hotel.LoginMessage;
+import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
+import sf.hotel.com.hotel_client.view.event.hotel.PersonMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.person.ISettingView;
 import sf.hotel.com.hotel_client.view.presenter.person.SettingPresenter;
@@ -45,6 +50,9 @@ public class SettingFragment extends BaseFragment implements ISettingView {
     @BindView(R.id.tb_accept_msg)
     ToggleButton mTbAcceptMsg;
 
+    @BindView(R.id.view_title)
+    HotelTitleView view_title;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
@@ -62,6 +70,10 @@ public class SettingFragment extends BaseFragment implements ISettingView {
                 mEditionBtn.getText() + "(" + AndroidUtils.getAppVersionName(getActivity()) + ")");
 
         setSwitch(PreferencesUtils.getAcceptMeg(getActivity()), mTbAcceptMsg);
+
+        view_title.addLeftonClick(v -> {
+            getActivity().finish();
+        });
     }
 
     public void loginOut() {
@@ -73,7 +85,7 @@ public class SettingFragment extends BaseFragment implements ISettingView {
         showToast("aboutUs");
     }
 
-    public void starLoginActivtiy() {
+    public void logOutToLoginActivity() {
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
@@ -129,7 +141,8 @@ public class SettingFragment extends BaseFragment implements ISettingView {
             R.id.setting_clear,
             R.id.piv_about_us,
             R.id.setting_out,
-            R.id.piv_feed_back
+            R.id.piv_feed_back,
+            R.id.piv_safe
     })
     void onClick(View view) {
         int id = view.getId();
@@ -148,10 +161,22 @@ public class SettingFragment extends BaseFragment implements ISettingView {
             //意见反馈
         } else if (id == R.id.piv_feed_back) {
             feedBack();
+        } else if (id == R.id.piv_safe) {
+            mSettingPersnter.forgeoPwd();
         }
     }
 
     private void feedBack() {
         showToast("意见反馈");
+    }
+
+    @Override
+    public void toChangePwFragment() {
+        RxBus.getDefault().post(MessageFactory.createPersonMessage(PersonMessage.FORGORPW));
+    }
+
+    @Override
+    public void showLoginActivity() {
+        RxBus.getDefault().post(new LoginMessage(LoginMessage.SHOW_LOGIN));
     }
 }
