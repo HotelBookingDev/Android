@@ -37,10 +37,10 @@ public class PersionItemView extends FrameLayout {
     public PersionItemView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         TypedArray a = context.getTheme()
-                .obtainStyledAttributes(attrs, R.styleable.PersionItemView, 0, 0);
+                .obtainStyledAttributes(attrs, R.styleable.PersonalItemView, 0, 0);
         try {
-            defalutIcon = a.getResourceId(R.styleable.PersionItemView_leftIcon, defalutIcon);
-            showString = a.getString(R.styleable.PersionItemView_contextText);
+            defalutIcon = a.getResourceId(R.styleable.PersonalItemView_leftIcon, defalutIcon);
+            showString = a.getString(R.styleable.PersonalItemView_contextText);
         } finally {
             a.recycle();
         }

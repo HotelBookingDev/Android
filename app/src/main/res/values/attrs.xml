@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="PersionItemView">
+    <declare-styleable name="PersonalItemView">
         <attr name="leftIcon" format="reference" />
         <attr name="contextText" format="string" />
     </declare-styleable>

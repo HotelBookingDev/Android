@@ -52,7 +52,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(AppUrl.INSTALLTION_BIND_URL)
     Observable<HttpResult<NormalResult>> postInstallation(@Field(DEVICE_TYPE) String type,
-            @Field(PHONE_NUMBER) String phoneNumm,
+            @Field(PHONE_NUMBER) String phoneNum,
             @Field(INSTALLATION_CODE) String installation_code);
 
     //上传设备号
