@@ -10,12 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_height"
         app:leftBtnIcon="@mipmap/ic_title_back_arrow"
-        app:titleText="@string/cities"
-        android:id="@+id/activity_city_back"
+        app:titleText="@string/times"
+        android:id="@+id/activity_times_back"
         />
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/activity_city_frame"
+        android:id="@+id/activity_times_frame"
         />
 </LinearLayout>

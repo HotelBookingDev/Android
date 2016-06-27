@@ -1,0 +1,83 @@
+package sf.hotel.com.hotel_client.view.fragment;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.squareup.timessquare.CalendarCellDecorator;
+import com.squareup.timessquare.CalendarPickerView;
+import com.squareup.timessquare.DefaultDayViewAdapter;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import mehdi.sakout.fancybuttons.FancyButton;
+import sf.hotel.com.data.utils.LogUtils;
+import sf.hotel.com.hotel_client.R;
+
+/**
+ * @author MZ
+ * @email sanfenruxi1@163.com
+ * @date 16/6/27.
+ */
+public class TimesFragment extends BaseFragment {
+
+    @BindView(R.id.fragment_times_calendar_view)
+    CalendarPickerView mCalendarView;
+
+    @BindView(R.id.fragment_times_submit)
+    FancyButton mSubmit;
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_times, container, false);
+
+        ButterKnife.bind(this, view);
+
+        initCalendarView();
+
+        return view;
+    }
+
+    @OnClick(R.id.fragment_times_submit)
+    public void onSubmitClick(){
+
+
+        List<Date> selectedDates = mCalendarView.getSelectedDates();
+
+        SimpleDateFormat format = new SimpleDateFormat("yyy-MM-dd");
+        for (Date date : selectedDates){
+            LogUtils.d("---->", format.format(date) + "");
+        }
+    }
+
+    private void initCalendarView() {
+
+
+        final Calendar nextYear = Calendar.getInstance();
+        nextYear.add(Calendar.YEAR, 1);
+
+        final Calendar lastYear = Calendar.getInstance();
+        lastYear.add(Calendar.YEAR, -1);
+
+        mCalendarView.setCustomDayView(new DefaultDayViewAdapter());
+
+        mCalendarView.setDecorators(Collections.<CalendarCellDecorator>emptyList());
+        mCalendarView.init(new Date(), nextYear.getTime()) //
+                .inMode(CalendarPickerView.SelectionMode.RANGE);//
+
+
+    }
+
+}

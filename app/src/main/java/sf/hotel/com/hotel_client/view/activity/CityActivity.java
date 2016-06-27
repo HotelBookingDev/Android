@@ -2,12 +2,17 @@ package sf.hotel.com.hotel_client.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Subscription;
 import rx.functions.Action1;
 import sf.hotel.com.data.entity.ProcincesResult;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.utils.StatusBarUtil;
+import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
+import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.CityMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
@@ -21,15 +26,29 @@ import sf.hotel.com.hotel_client.view.fragment.hotel.HotelsFragment;
  */
 public class CityActivity extends BaseActivity {
 
+    @BindView(R.id.activity_city_back)
+    HotelTitleView mHotelTitleView;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_city);
         ButterKnife.bind(this);
         init();
         onRxEvent();
+
+        mHotelTitleView.addLeftClick(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
+
     }
+
+
 
     private void onRxEvent() {
         Subscription subscribe = RxBus.getDefault()
@@ -49,9 +68,6 @@ public class CityActivity extends BaseActivity {
                                     bundle.putInt("cityId", citysBean.getId());
                                     intent.putExtras(bundle);
                                     setResult(HomeContainer.CITY_REQUEST_CODE, intent);
-                                    finish();
-                                    break;
-                                case CityMessage.ACTIVITY_FINISH:
                                     finish();
                                     break;
                             }

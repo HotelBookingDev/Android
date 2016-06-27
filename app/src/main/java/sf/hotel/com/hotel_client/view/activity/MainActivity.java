@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.majiajie.pagerbottomtabstrip.Controller;
@@ -13,6 +14,7 @@ import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectListener;
 import me.yokeyword.fragmentation.SupportFragment;
 import rx.Subscription;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.LoginMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.Message;
@@ -38,6 +40,10 @@ public class MainActivity extends BaseActivity {
         initBottom();
         initView();
         RxEvent();
+
+
+        TransulcentUtils.setFixWindow(this);
+
     }
 
     private void initFragmets() {

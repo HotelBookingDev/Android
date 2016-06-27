@@ -39,9 +39,6 @@ public class CityFragment extends BaseFragment implements ICityView {
 
     private ICityPresenter mICityPresenter;
 
-    @BindView(R.id.frame_city_back)
-    ImageView imgBack;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -55,11 +52,6 @@ public class CityFragment extends BaseFragment implements ICityView {
 
         onRxEvent();
         return view;
-    }
-
-    @OnClick(R.id.frame_city_back)
-    public void onCityBackClick() {
-        RxBus.getDefault().post(MessageFactory.createCityMessage(CityMessage.ACTIVITY_FINISH, ""));
     }
 
     private void onRxEvent() {

@@ -31,11 +31,15 @@ public class HomeActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         ButterKnife.bind(this);
         init();
         initBottom();
         onRxEvent();
     }
+
+
+
 
     //可能这会是主界面
     private void initBottom() {

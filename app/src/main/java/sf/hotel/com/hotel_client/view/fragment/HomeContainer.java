@@ -3,6 +3,7 @@ package sf.hotel.com.hotel_client.view.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import rx.Subscription;
 import rx.functions.Action1;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.CityActivity;
+import sf.hotel.com.hotel_client.view.activity.TimesActivity;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.HomeMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
@@ -35,6 +37,10 @@ public class HomeContainer extends BaseFragment {
 
     @BindView(R.id.custom_title_city_name)
     TextView mCityName;
+
+    @BindView(R.id.custom_title_search)
+    View mSearchView;
+
 
     Integer cityId = 1;
 
@@ -69,6 +75,11 @@ public class HomeContainer extends BaseFragment {
         startActivityForResult(intent, CITY_REQUEST_CODE);
     }
 
+    @OnClick(R.id.custom_title_search)
+    public void onSearchViewClick(){
+        Intent intent = new Intent(getBottomContext(), TimesActivity.class);
+        startActivity(intent);
+    }
 
 
     @Nullable

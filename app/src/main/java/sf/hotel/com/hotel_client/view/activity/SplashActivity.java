@@ -1,14 +1,17 @@
 package sf.hotel.com.hotel_client.view.activity;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -17,12 +20,14 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.Queue;
 
 import sf.hotel.com.data.utils.LogUtils;
+import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
 
 /**
  * @author MZ
@@ -34,6 +39,7 @@ public class SplashActivity extends Activity {
 
     protected boolean notShowSplash = false;
 
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -67,6 +73,8 @@ public class SplashActivity extends Activity {
             }
             setContentView(frame);
         }
+
+        TransulcentUtils.setFixWindow(this);
     }
 
     /**

@@ -60,7 +60,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activity.HomeActivity" />
+
+        <activity android:name=".view.activity.HomeActivity"
+            />
 
         <activity
             android:name=".view.activity.LoginActivity"
@@ -69,6 +71,8 @@
 
         <activity android:name=".view.activity.MainActivity" />
         <activity android:name=".view.activity.CityActivity" />
+
+        <activity android:name=".view.activity.TimesActivity"/>
 
         <activity android:name=".view.activity.PayActivity" />
 

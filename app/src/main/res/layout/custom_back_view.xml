@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@color/view_title"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/ic_arrow_back_36pt"
+            android:id="@+id/frame_city_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/titleTextStyle"
+            android:layout_alignBaseline="@id/frame_city_back"
+            android:text="城市定位"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/frame_city_title"
+            />
+    </RelativeLayout>
+
+</LinearLayout>
