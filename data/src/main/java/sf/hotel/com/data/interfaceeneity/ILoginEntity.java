@@ -3,9 +3,9 @@ package sf.hotel.com.data.interfaceeneity;
 import android.content.Context;
 
 import rx.Observable;
+import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.entity.netresult.LoginResult;
 import sf.hotel.com.data.entity.netresult.NormalResult;
-import sf.hotel.com.data.entity.UserEntity;
 
 /**
  * Created by FMT on 2016/6/3:19:29
@@ -30,4 +30,8 @@ public interface ILoginEntity {
     String getPwd(Context context);
 
     void upDateUserInfo(Context context, UserEntity entity);
+
+    void saveLogin(Context context, boolean isLogin);
+
+    void saveUserId(Context context, String id);
 }

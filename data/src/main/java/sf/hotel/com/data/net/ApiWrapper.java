@@ -1,5 +1,9 @@
 package sf.hotel.com.data.net;
 
+import android.util.Log;
+
+import com.google.gson.Gson;
+
 import rx.Observable;
 import sf.hotel.com.data.entity.Intallation;
 import sf.hotel.com.data.entity.ProcincesResult;
@@ -7,6 +11,7 @@ import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.data.entity.netresult.LoginResult;
 import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.entity.netresult.TokenResult;
+import sf.hotel.com.data.utils.LogUtils;
 
 /**
  * @author MZ
@@ -72,8 +77,10 @@ public class ApiWrapper extends RetrofitHelper {
         return mService.callSmsCode(phone).compose(this.<NormalResult>applySchedulers());
     }
 
-    //TODO 留着和服务器协商
     public Observable<NormalResult> postIntallation(Intallation mIntallation) {
+        Gson gson = new Gson();
+        String s = gson.toJson(mIntallation);
+        LogUtils.d("s",s);
         return mService.postIntallation(mIntallation).compose(this.<NormalResult>applySchedulers());
     }
 

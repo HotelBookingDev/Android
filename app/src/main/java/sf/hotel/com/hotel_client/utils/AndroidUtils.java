@@ -5,6 +5,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
 
+import java.util.Locale;
+
 /**
  * Created by 林其望
  * email: 1105896230@qq.com
@@ -38,5 +40,12 @@ public class AndroidUtils {
             e.printStackTrace();
         }
         return null;
+    }
+
+    //判断当前语言版本是否是中文
+    public static boolean isZh(Context context) {
+        Locale locale = context.getResources().getConfiguration().locale;
+        String language = locale.getLanguage();
+        if (language.endsWith("zh")) { return true; } else return false;
     }
 }

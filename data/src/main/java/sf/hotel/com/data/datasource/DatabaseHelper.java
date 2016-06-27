@@ -18,7 +18,7 @@ import sf.hotel.com.data.entity.UserEntity;
  */
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String TABLE_NAME = "hotel.db";
-    private static final int databaseVersion = 1;
+    private static final int databaseVersion = 5;
     private Dao<UserEntity, Integer> userDao;
     private static DatabaseHelper instance;
 

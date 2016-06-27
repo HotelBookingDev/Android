@@ -37,9 +37,9 @@ public class SettingPresenter extends SuperPresenter {
     }
 
     public void forgeoPwd() {
-        if (checkIsLogin()){
+        if (checkIsLogin()) {
             mSettingView.toChangePwFragment();
-        }else {
+        } else {
             mSettingView.showLoginActivity();
         }
     }
@@ -55,5 +55,7 @@ public class SettingPresenter extends SuperPresenter {
         PreferencesUtils.saveInstallationId(mSettingView.getBottomContext(), null);
         PreferencesUtils.savePassWord(mSettingView.getBottomContext(), null);
         PreferencesUtils.savePhone(mSettingView.getBottomContext(), null);
+        PreferencesUtils.saveLogin(mSettingView.getBottomContext(), false);
+        PreferencesUtils.saveUserId(mSettingView.getBottomContext(), null);
     }
 }

@@ -1,16 +1,105 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/iv_avatar"
-            android:layout_width="80.0dip"
-            android:layout_height="80.0dip"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="90.0dip" />
-    </RelativeLayout>
+        <sf.hotel.com.hotel_client.view.custom.HotelTitleView
+            android:id="@+id/view_title"
+            style="@style/view_title"
+            app:leftBtnIcon="@mipmap/ic_title_back_arrow"
+            app:titleText="@string/user_info" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/text_left"
+                android:text="@string/avatar" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_avatar"
+                    android:layout_width="60.0dip"
+                    android:layout_height="60.0dip"
+                    android:layout_margin="10dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@mipmap/arrow_button_right_light" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <include layout="@layout/item_line" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/text_left"
+                android:text="@string/name" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_user_name"
+                    style="@style/text_left"
+                    android:text="@string/tv_user_name" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@mipmap/arrow_button_right_light" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <include layout="@layout/item_line" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/text_left"
+                android:text="@string/phone" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_user_phone"
+                    style="@style/text_left" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@mipmap/arrow_button_right_light" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
 </FrameLayout>

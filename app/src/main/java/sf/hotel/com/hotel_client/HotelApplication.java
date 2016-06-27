@@ -8,6 +8,7 @@ import com.tencent.bugly.crashreport.CrashReport;
 
 import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.utils.HotelFileUtils;
+import sf.hotel.com.data.utils.PreferencesUtils;
 import sf.hotel.com.hotel_client.utils.locationoptions.LocationService;
 
 /**
@@ -31,6 +32,13 @@ public class HotelApplication extends Application {
         //初始化定位
         locationService = new LocationService(getApplicationContext());
         initDir();
+
+        initLocalAttribute();
+    }
+
+    //初始化本地数据中的属性
+    private void initLocalAttribute() {
+        PreferencesUtils.saveLogin(context, false);
     }
 
     private void initCloud() {

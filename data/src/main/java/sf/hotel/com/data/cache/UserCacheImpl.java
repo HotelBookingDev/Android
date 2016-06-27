@@ -14,7 +14,7 @@ public class UserCacheImpl implements UserCache {
 
     @Override
     public Observable<UserEntity> get(long userId, Context context) {
-        return Observable.just(UserDao.getUserEneity(userId, context));
+        return Observable.just(UserDao.getUserEntity(userId, context));
     }
 
     @Override

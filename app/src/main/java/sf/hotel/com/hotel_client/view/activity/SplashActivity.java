@@ -11,7 +11,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -20,6 +19,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.avos.avoscloud.PushService;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,6 +44,9 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
+
+//        在这里初始化Activity
+        PushService.setDefaultPushCallback(this, PushActivity.class);
 
         if (notShowSplash) {
             onSplashStop();
