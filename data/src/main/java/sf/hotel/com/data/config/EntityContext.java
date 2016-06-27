@@ -45,7 +45,7 @@ public class EntityContext {
     }
 
     public Observable<UserEntity> getUserByDb() {
-        String userid = PreferencesUtils.getUserid(context);
+        String userid = PreferencesUtils.getUserId(context);
         if (!TextUtils.isEmpty(userid)) {
             Long userId = Long.getLong(userid);
             return new UserCacheImpl().get(userId, context);
