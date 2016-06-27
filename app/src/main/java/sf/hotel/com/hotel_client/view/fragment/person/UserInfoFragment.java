@@ -16,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.person.IUserInfoView;
 import sf.hotel.com.hotel_client.view.presenter.person.UserInfoPresenter;
@@ -33,6 +34,8 @@ public class UserInfoFragment extends BaseFragment implements IUserInfoView {
     TextView mUserPhone;
     @BindView(R.id.tv_user_name)
     TextView mUserName;
+    @BindView(R.id.view_title)
+    HotelTitleView mViewTitle;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,6 +44,7 @@ public class UserInfoFragment extends BaseFragment implements IUserInfoView {
         View view = inflater.inflate(R.layout.fragment_user_info, container, false);
         ButterKnife.bind(this, view);
         mUserInfoPresenter = new UserInfoPresenter(this);
+        mViewTitle.addLeftClick(v -> getActivity().finish());
         return view;
     }
 

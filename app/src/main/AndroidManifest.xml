@@ -32,14 +32,14 @@
     <!-- SD卡读取权限，用户写入离线定位数据 -->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
 
-    <!--alipay begin-->
+    <!-- alipay begin -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!--alipay end-->
 
+    <!-- alipay end -->
     <application
         android:name=".HotelApplication"
         android:allowBackup="true"
@@ -61,18 +61,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.activity.HomeActivity" />
-
         <activity
             android:name=".view.activity.LoginActivity"
             android:launchMode="singleTask" />
-
-
         <activity android:name=".view.activity.MainActivity" />
         <activity android:name=".view.activity.CityActivity" />
-
         <activity android:name=".view.activity.PayActivity" />
-
-        <activity android:name=".view.activity.hotel.RoomActivity"/>
+        <activity android:name=".view.activity.hotel.RoomActivity" />
 
         <service
             android:name="com.baidu.location.f"
@@ -89,18 +84,38 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".view.activity.person.SettingActivity" />
 
-
-
         <!-- alipay sdk begin -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
             android:exported="false"
             android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden"/>
+            android:windowSoftInputMode="adjustResize|stateHidden" />
 
         <!-- alipay sdk end -->
 
+        <activity android:name=".view.activity.PushActivity" />
+
+        <!--leanCloud-->
+        <service
+            android:name="com.avos.avoscloud.PushService"
+            android:exported="true" />
+
+        <receiver android:name="com.avos.avoscloud.AVBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".view.broadcast_receiver.CustomReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="com.avos.UPDATE_STATUS" />
+                <action android:name="com.pushHotel.action" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

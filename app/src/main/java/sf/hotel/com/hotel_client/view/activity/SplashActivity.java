@@ -17,6 +17,8 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.avos.avoscloud.PushService;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
@@ -38,6 +40,9 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
+
+//        在这里初始化Activity
+        PushService.setDefaultPushCallback(this, PushActivity.class);
 
         if (notShowSplash) {
             onSplashStop();
