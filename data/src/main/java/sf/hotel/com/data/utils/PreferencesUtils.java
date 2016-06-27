@@ -19,6 +19,7 @@ public class PreferencesUtils {
     public static final String AVATAR = "avatar";
     //token
     public static final String TOKEN = "token";
+    public static final String USERID = "userId";
 
     //是否接受消息
     public static final String ACCPETMSG = "accpetmesg";
@@ -112,5 +113,15 @@ public class PreferencesUtils {
     public static boolean getLogin(Context context) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
         return preferences.getBoolean(ISLOGIN, false);
+    }
+
+    public static void saveUserId(Context context, String userId) {
+        SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
+        preferences.edit().putString(USERID, userId).apply();
+    }
+
+    public static String getUserid(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
+        return preferences.getString(USERID, "");
     }
 }

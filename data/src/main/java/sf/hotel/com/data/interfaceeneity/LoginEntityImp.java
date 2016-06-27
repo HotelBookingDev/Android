@@ -87,4 +87,9 @@ public class LoginEntityImp implements ILoginEntity {
     public void saveLogin(Context context, boolean isLogin) {
         PreferencesUtils.saveLogin(context, isLogin);
     }
+
+    @Override
+    public void saveUserId(Context context, String id) {
+        PreferencesUtils.saveUserId(context, id);
+    }
 }

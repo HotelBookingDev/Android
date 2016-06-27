@@ -11,8 +11,13 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "tb_user")
 public class UserEntity {
 
-    @DatabaseField(generatedId = true)
+    @DatabaseField(generatedId = true, columnName = "id")
+    @SerializedName("id")
     private long userId;
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
 
     @DatabaseField(columnName = "name")
     @SerializedName("name")

@@ -105,7 +105,9 @@ public class ILoginPresenter extends SuperPresenter {
                                         null ? Boolean.FALSE : Boolean.TRUE)
                                 .doOnNext(
                                         loginResult1 -> saveUserInfo(mILoginView.getUserName(), pwd,
-                                                loginResult.getUserEntity().getAvatar()))
+                                                loginResult.getUserEntity().getAvatar(),
+                                                String.valueOf(
+                                                        loginResult.getUserEntity().getUserId())))
                                 .doOnNext(loginResult1 -> mILoginEntity.upDateUserInfo(
                                         mILoginView.getBottomContext(),
                                         loginResult1.getUserEntity()))
@@ -153,10 +155,11 @@ public class ILoginPresenter extends SuperPresenter {
         mCompositeSubscription.add(subscribe);
     }
 
-    private void saveUserInfo(String phone, String pwd, String avatar) {
+    private void saveUserInfo(String phone, String pwd, String avatar, String id) {
         mILoginEntity.savePhone(mILoginView.getBottomContext(), phone);
         mILoginEntity.savePwd(mILoginView.getBottomContext(), pwd);
         mILoginEntity.saveAvatar(mILoginView.getBottomContext(), avatar);
+        mILoginEntity.saveUserId(mILoginView.getBottomContext(), id);
     }
 
     private String getErrorString(int id, Context context) {

@@ -45,10 +45,10 @@ public class EntityContext {
     }
 
     public Observable<UserEntity> getUserByDb() {
-        String phone = PreferencesUtils.getPhone(context);
-        if (!TextUtils.isEmpty(phone)) {
-            Long phoneLong = Long.getLong(phone);
-            return new UserCacheImpl().get(phoneLong, context);
+        String userid = PreferencesUtils.getUserid(context);
+        if (!TextUtils.isEmpty(userid)) {
+            Long userId = Long.getLong(userid);
+            return new UserCacheImpl().get(userId, context);
         }
         return Observable.just(null);
     }

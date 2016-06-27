@@ -38,12 +38,12 @@ public class UserDao {
         return isCache;
     }
 
-    public static UserEntity getUserEntity(long phoneNum, Context context) {
+    public static UserEntity getUserEntity(long userId, Context context) {
         UserEntity mUserEntity = null;
         try {
             List<UserEntity> mUserEntitys = DatabaseHelper.getHelper(context)
                     .getUserDao()
-                    .queryForEq("phone_number", phoneNum);
+                    .queryForEq("id", userId);
             if (mUserEntitys != null && mUserEntitys.size() == 1) {
                 mUserEntity = mUserEntitys.get(0);
             }
