@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,6 +29,10 @@ public class UserInfoFragment extends BaseFragment implements IUserInfoView {
     @BindView(R.id.iv_avatar)
     ImageView mAvatar;
     UserInfoPresenter mUserInfoPresenter;
+    @BindView(R.id.tv_user_phone)
+    TextView mUserPhone;
+    @BindView(R.id.tv_user_name)
+    TextView mUserName;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,6 +56,20 @@ public class UserInfoFragment extends BaseFragment implements IUserInfoView {
     @Override
     public Context getBottomContext() {
         return getContext();
+    }
+
+    @Override
+    public void setUserName(String name) {
+        if (!TextUtils.isEmpty(name)) {
+            mUserName.setText(name);
+        }
+    }
+
+    @Override
+    public void setUserPwd(String pwd) {
+        if (!TextUtils.isEmpty(pwd)) {
+            mUserPhone.setText(pwd);
+        }
     }
 
     private void getImageFromAlbum() {

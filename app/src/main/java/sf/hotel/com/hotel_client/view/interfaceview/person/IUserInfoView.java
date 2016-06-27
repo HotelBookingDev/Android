@@ -15,4 +15,8 @@ public interface IUserInfoView extends BaseView {
     ImageView getAvatar();
 
     Context getBottomContext();
+
+    void setUserName(String name);
+
+    void setUserPwd(String pwd);
 }

@@ -8,6 +8,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="btn_register">注册</string>
     <string name="btn_phone_captcha">获取</string>
+    <string name="title_activity_order_fragment">OrderFragment</string>
+    <string name="title_activity_user_info">UserInfoActivity</string>
     <string name="tv_name">姓名</string>
     <string name="tv_age">年龄</string>
     <string name="cache">清除缓存</string>
@@ -36,8 +38,6 @@
     <string name="edittext_digits">1234567890</string>
     <string name="back">返回</string>
     <string name="my_info">我的资料</string>
-    <string name="title_activity_order_fragment">OrderFragment</string>
-    <string name="title_activity_user_info">UserInfoActivity</string>
     <string name="my_setting">我的设置</string>
     <string name="edition">当前版本</string>
     <string name="my">我的</string>
@@ -52,9 +52,15 @@
     <string name="setting_new_pwd">设置新密码</string>
     <string name="determine_new_pwd">确认新密码</string>
     <string name="input_new_pwd">输入新密码</string>
-    <string name="phone">手机号</string>
+    <string name="phoneNum">手机号</string>
+    <string name="phone">手机</string>
     <string name="verificationcode">验证码</string>
     <string name="input_old_pwd">输入旧密码</string>
     <string name="phone_prefix">+86</string>
+    <string name="user_info">个人资料</string>
+    <string name="avatar">头像</string>
+    <string name="user_name">昵称</string>
+    <string name="name">昵称</string>
+    <string name="tv_user_name">wlda710</string>
 
 </resources>

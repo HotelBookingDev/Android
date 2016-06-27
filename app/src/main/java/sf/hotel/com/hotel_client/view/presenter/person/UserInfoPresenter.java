@@ -9,6 +9,7 @@ import java.io.File;
 import rx.Observable;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
+import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.interfaceeneity.IUserInfoEntity;
 import sf.hotel.com.data.interfaceeneity.IUserInfoEntityImp;
 import sf.hotel.com.data.net.Exception.APIException;
@@ -24,7 +25,6 @@ import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
  * email: 1105896230@qq.com
  */
 public class UserInfoPresenter extends SuperPresenter {
-    private static final java.lang.String TAG = "UserInfoPresenter";
     IUserInfoView mIUserInfoView;
     private IUserInfoEntity mIUserInfoEntity;
     private CompositeSubscription mCompositeSubscription;
@@ -34,6 +34,41 @@ public class UserInfoPresenter extends SuperPresenter {
         mIUserInfoEntity = new IUserInfoEntityImp();
         mCompositeSubscription = new CompositeSubscription();
         initAvater(mIUserInfoView.getBottomContext(), mIUserInfoView.getAvatar());
+        initAttribute();
+    }
+
+    //初始化界面
+    private void initAttribute() {
+        Subscription subscribe = Observable.just(EntityContext.getInstance().getmCurrentUser())
+                .filter(userEntity -> userEntity == null ? Boolean.FALSE : Boolean.TRUE)
+                .subscribe(userEntity -> {
+                    mIUserInfoView.setUserName(userEntity.getFullname());
+                    mIUserInfoView.setUserPwd(getPhone(userEntity.getPhoneNumber()));
+                });
+        mCompositeSubscription.add(subscribe);
+    }
+
+    private String getPhone(long phone) {
+        final String[] showPhone = {null};
+        Subscription subscribe = Observable.just(phone)
+                .map(aLong -> Long.toString(phone))
+                .filter(s -> s == null ? Boolean.FALSE : Boolean.TRUE)
+                .filter(s -> s.length() == 11 ? Boolean.TRUE : Boolean.FALSE)
+                .map(this::getString)
+                .subscribe(s -> {
+                    showPhone[0] = s;
+                });
+        mCompositeSubscription.add(subscribe);
+        return showPhone[0];
+    }
+
+    //将手机号进行打*处理
+    private String getString(String phone) {
+        //需要判断当前手机语言是否是中文来决定区号
+        return "+86-" +
+                phone.substring(0, 3) +
+                "****" +
+                phone.substring(6, 11);
     }
 
     @Override
@@ -45,10 +80,7 @@ public class UserInfoPresenter extends SuperPresenter {
     public void upFile(Uri uri) {
         Subscription subscribe = Observable.just(uri)
                 .map(uri1 -> getFile(uri1, mIUserInfoView.getBottomContext()))
-                .filter(file -> {
-                    if (file == null || file.length() == 0) return false;
-                    return true;
-                })
+                .filter(file -> !(file == null || file.length() == 0))
                 .subscribe(new SimpleSubscriber<File>(mIUserInfoView.getBottomContext()) {
                     @Override
                     public void onNext(File file) {
@@ -72,9 +104,7 @@ public class UserInfoPresenter extends SuperPresenter {
     private void upFile(File file) {
         Subscription subscribe = mIUserInfoEntity.getToken().subscribe(tokenResult -> {
             QNUpFileUtils.upFileByQN(file, tokenResult);
-        }, throwable -> {
-            handlingException(throwable);
-        });
+        }, this::handlingException);
         mCompositeSubscription.add(subscribe);
     }
 
