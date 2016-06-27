@@ -16,6 +16,7 @@ import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.data.utils.HotelFileUtils;
 import sf.hotel.com.data.utils.QNUpFileUtils;
+import sf.hotel.com.hotel_client.utils.AndroidUtils;
 import sf.hotel.com.hotel_client.view.interfaceview.person.IUserInfoView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 
@@ -65,10 +66,14 @@ public class UserInfoPresenter extends SuperPresenter {
     //将手机号进行打*处理
     private String getString(String phone) {
         //需要判断当前手机语言是否是中文来决定区号
-        return "+86-" +
+        String str = "+86";
+        if (!AndroidUtils.isZh(mIUserInfoView.getBottomContext())) {
+            str = "";
+        }
+        return str +
                 phone.substring(0, 3) +
                 "****" +
-                phone.substring(6, 11);
+                phone.substring(7, 11);
     }
 
     @Override
