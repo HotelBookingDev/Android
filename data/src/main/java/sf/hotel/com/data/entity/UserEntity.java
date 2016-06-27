@@ -19,7 +19,7 @@ public class UserEntity {
     private String fullname;
 
     @SerializedName("phone_number")
-    @DatabaseField(columnName = "phoneNumber")
+    @DatabaseField(columnName = "phone_number")
     private long phoneNumber;
 
     @DatabaseField(columnName = "sex")

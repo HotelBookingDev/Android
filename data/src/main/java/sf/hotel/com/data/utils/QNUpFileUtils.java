@@ -2,7 +2,11 @@ package sf.hotel.com.data.utils;
 
 import android.util.Log;
 
+import com.qiniu.android.http.ResponseInfo;
+import com.qiniu.android.storage.UpCompletionHandler;
 import com.qiniu.android.storage.UploadManager;
+
+import org.json.JSONObject;
 
 import java.io.File;
 

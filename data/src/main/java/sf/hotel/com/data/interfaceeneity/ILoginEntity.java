@@ -30,4 +30,6 @@ public interface ILoginEntity {
     String getPwd(Context context);
 
     void upDateUserInfo(Context context, UserEntity entity);
+
+    void saveLogin(Context context,boolean isLogin);
 }

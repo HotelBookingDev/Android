@@ -5,9 +5,9 @@ import android.content.Context;
 import rx.Observable;
 import rx.Subscriber;
 import sf.hotel.com.data.cache.UserCacheImpl;
+import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.entity.netresult.LoginResult;
 import sf.hotel.com.data.entity.netresult.NormalResult;
-import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.net.ApiWrapper;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.Exception.CodeException;
@@ -80,5 +80,11 @@ public class LoginEntityImp implements ILoginEntity {
     @Override
     public void upDateUserInfo(Context context, UserEntity entity) {
         new UserCacheImpl().update(entity, context);
+        saveLogin(context, true);
+    }
+
+    @Override
+    public void saveLogin(Context context, boolean isLogin) {
+        PreferencesUtils.saveLogin(context, isLogin);
     }
 }

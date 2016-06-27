@@ -26,6 +26,9 @@ public class PreferencesUtils {
     //当前城市和百度地图对于的citycode
     public static final String CITYCODE = "city_code";
 
+    //当前是否是登录状态，在登录界面初始化设置为未登录的状态
+    public static final String ISLOGIN = "is_login";
+
     public static void saveInstallationId(Context context, String installationId) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
         preferences.edit().putString(INSTALLATIONID, installationId).apply();
@@ -98,5 +101,16 @@ public class PreferencesUtils {
     public static boolean getAcceptMeg(Context context) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
         return preferences.getBoolean(ACCPETMSG, true);
+    }
+
+    //在Login和ApplicationonCreate中设置为false，由于项目初期可能开始界面不一样在Application中设置false
+    public static void saveLogin(Context context, boolean isLogin) {
+        SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
+        preferences.edit().putBoolean(ISLOGIN, isLogin).apply();
+    }
+
+    public static boolean getLogin(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
+        return preferences.getBoolean(ISLOGIN, false);
     }
 }

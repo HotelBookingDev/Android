@@ -33,6 +33,8 @@ public class ILoginPresenter extends SuperPresenter {
         this.mILoginView = mILoginView;
         mILoginEntity = new LoginEntityImp();
         mCompositeSubscription = new CompositeSubscription();
+        //初始化讲登录状态设置为false
+        mILoginEntity.saveLogin(mILoginView.getBottomContext(), false);
         initView();
     }
 

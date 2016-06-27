@@ -13,8 +13,8 @@ import sf.hotel.com.data.entity.UserEntity;
 public class UserCacheImpl implements UserCache {
 
     @Override
-    public Observable<UserEntity> get(long userId, Context context) {
-        return Observable.just(UserDao.getUserEneity(userId, context));
+    public Observable<UserEntity> get(long phoneNum, Context context) {
+        return Observable.just(UserDao.getUserEntity(phoneNum, context));
     }
 
     @Override

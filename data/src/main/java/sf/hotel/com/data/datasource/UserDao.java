@@ -31,19 +31,19 @@ public class UserDao {
 
     public static boolean isCache(long id, Context context) {
         boolean isCache = false;
-        UserEntity userEneity = getUserEneity(id, context);
+        UserEntity userEneity = getUserEntity(id, context);
         if (userEneity != null) {
             isCache = true;
         }
         return isCache;
     }
 
-    public static UserEntity getUserEneity(long id, Context context) {
+    public static UserEntity getUserEntity(long phoneNum, Context context) {
         UserEntity mUserEntity = null;
         try {
             List<UserEntity> mUserEntitys = DatabaseHelper.getHelper(context)
                     .getUserDao()
-                    .queryForEq("userId", id);
+                    .queryForEq("phone_number", phoneNum);
             if (mUserEntitys != null && mUserEntitys.size() == 1) {
                 mUserEntity = mUserEntitys.get(0);
             }
