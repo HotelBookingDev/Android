@@ -38,4 +38,5 @@ dependencies {
     compile rootProject.ext.dependenciesdata.commonsio
 
     testCompile 'junit:junit:4.12'
+    compile 'com.github.arimorty:floatingsearchview:2.0.1'
 }

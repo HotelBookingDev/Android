@@ -11,6 +11,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.adapter.OrderPagerFragmentAdapter;
+import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
+import sf.hotel.com.hotel_client.view.event.RxBus;
+import sf.hotel.com.hotel_client.view.event.hotel.Message;
+import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
+import sf.hotel.com.hotel_client.view.event.hotel.person.OrderMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 
 public class OrderFragment extends BaseFragment {
@@ -28,6 +33,8 @@ public class OrderFragment extends BaseFragment {
     TabLayout mTabLayout;
     @BindView(R.id.vp_order)
     ViewPager mViewPager;
+    @BindView(R.id.view_title)
+    HotelTitleView mView_title;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,5 +52,10 @@ public class OrderFragment extends BaseFragment {
         mTabLayout.addTab(mTabLayout.newTab());
         mViewPager.setAdapter(new OrderPagerFragmentAdapter(getChildFragmentManager()));
         mTabLayout.setupWithViewPager(mViewPager);
+        mView_title.addLeftClick(v -> {
+            RxBus.getDefault().post(MessageFactory.createPersonMessage(Message.ISEXIT));
+        });
+        mView_title.addRightClick(v -> RxBus.getDefault()
+                .post(MessageFactory.createOrderMessage(OrderMessage.SEARCHMESSAGE)));
     }
 }

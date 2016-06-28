@@ -21,7 +21,7 @@ import sf.hotel.com.hotel_client.HotelApplication;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.locationoptions.LocationService;
 import sf.hotel.com.hotel_client.view.event.RxBus;
-import sf.hotel.com.hotel_client.view.event.hotel.LoginMessage;
+import sf.hotel.com.hotel_client.view.event.hotel.person.LoginMessage;
 
 public class LoginActivity extends BaseActivity {
     private LocationService locationService;

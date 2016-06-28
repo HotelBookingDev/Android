@@ -40,7 +40,7 @@
     <string name="back">返回</string>
     <string name="my_info">我的资料</string>
     <string name="my_setting">我的设置</string>
-    <string name= "times">选择行程</string>
+    <string name="times">选择行程</string>
     <string name="cities">选择城市</string>
     <string name="edition">当前版本</string>
     <string name="my">我的</string>
@@ -65,5 +65,7 @@
     <string name="user_name">昵称</string>
     <string name="name">昵称</string>
     <string name="tv_user_name">wlda710</string>
+    <string name="search_order">查询订单</string>
+    <string name="enter_order">请输入订单号</string>
 
 </resources>

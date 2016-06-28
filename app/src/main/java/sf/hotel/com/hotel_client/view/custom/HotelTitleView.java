@@ -80,9 +80,9 @@ public class HotelTitleView extends RelativeLayout {
         }
 
         if (mRightBtnIcon != 0) {
-            addRightButton(mRightBtnIcon);
+            addRightView(mRightBtnIcon);
         } else if (!TextUtils.isEmpty(mRightBtnText)) {
-            addRightButton(mRightBtnText);
+            addRightView(mRightBtnText);
         }
         //初始化中间文字的组件
         initLinearlyGroup();
@@ -159,23 +159,22 @@ public class HotelTitleView extends RelativeLayout {
         requestLayout();
     }
 
-    private void addRightButton(CharSequence text) {
+    private void addRightView(CharSequence text) {
         if (mBtnRight == null) {
-            mBtnRight = new Button(getContext());
+            mBtnRight = new TextView(getContext());
             mBtnRight.setPadding(0, 0, 20, 0);
             mBtnRight.setLayoutParams(mRightBtnParams);
-            mBtnRight.setBackgroundColor(getResources().getColor(R.color.white));
-            ((Button) mBtnRight).setTextSize(17);
-            ((Button) mBtnRight).setTextColor(getResources().getColorStateList(R.color.white));
+            ((TextView) mBtnRight).setTextSize(17);
+            ((TextView) mBtnRight).setTextColor(getResources().getColorStateList(R.color.black));
             addView(mBtnRight);
         }
-        ((Button) mBtnRight).setText(text);
+        ((TextView) mBtnRight).setText(text);
 
         invalidate();
         requestLayout();
     }
 
-    private void addRightButton(int iconId) {
+    private void addRightView(int iconId) {
         if (mBtnRight == null) {
             mBtnRight = new ImageView(getContext());
             mBtnRight.setPadding(50, 0, 20, 0);
@@ -193,6 +192,13 @@ public class HotelTitleView extends RelativeLayout {
             mBtnLeft.setOnClickListener(mOnClickListener);
         }
     }
+
+    public void addRightClick(OnClickListener mOnClickListener) {
+        if (mOnClickListener != null && mBtnRight != null) {
+            mBtnRight.setOnClickListener(mOnClickListener);
+        }
+    }
+
 
     public void setTitle(String title) {
         if (!TextUtils.isEmpty(title)) {

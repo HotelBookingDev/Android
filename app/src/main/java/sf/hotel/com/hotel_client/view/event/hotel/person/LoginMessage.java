@@ -1,6 +1,8 @@
-package sf.hotel.com.hotel_client.view.event.hotel;
+package sf.hotel.com.hotel_client.view.event.hotel.person;
 
 import java.util.Objects;
+
+import sf.hotel.com.hotel_client.view.event.hotel.Message;
 
 /**
  * Created by 林其望

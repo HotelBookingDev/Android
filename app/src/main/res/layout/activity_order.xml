@@ -8,12 +8,7 @@
     android:fitsSystemWindows="true"
     tools:context=".view.activity.person.OrderActivity">
 
-    <sf.hotel.com.hotel_client.view.custom.HotelTitleView
-        android:id="@+id/view_title"
-        style="@style/view_title"
-        app:isShowUnderLine="true"
-        app:leftBtnText="@string/back"
-        app:titleText="@string/my_order" />
+
 
     <FrameLayout
         android:id="@+id/order_content"
