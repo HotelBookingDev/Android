@@ -13,5 +13,6 @@ public class ICityEntityImp implements CityEntity {
     @Override
     public Observable<ProcincesResult> callCityList() {
         return ApiWrapper.getInstance().callCityList();
+
     }
 }

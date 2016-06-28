@@ -1,6 +1,7 @@
 package sf.hotel.com.data.datasource;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
@@ -11,6 +12,7 @@ import com.j256.ormlite.table.TableUtils;
 import java.sql.SQLException;
 
 import sf.hotel.com.data.entity.UserEntity;
+import sf.hotel.com.data.entity.netresult.HotelResult;
 
 /**
  * Created by FMT on 2016/6/3:16:39
@@ -20,6 +22,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String TABLE_NAME = "hotel.db";
     private static final int databaseVersion = 5;
     private Dao<UserEntity, Integer> userDao;
+
+    private Dao<HotelResult, Integer> hotelDao;
+
     private static DatabaseHelper instance;
 
     private DatabaseHelper(Context context) {
@@ -40,6 +45,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
         try {
             TableUtils.createTable(connectionSource, UserEntity.class);
+            TableUtils.createTable(connectionSource, HotelResult.class);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -50,6 +56,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             int oldVersion, int newVersion) {
         try {
             TableUtils.dropTable(connectionSource, UserEntity.class, true);
+            TableUtils.dropTable(connectionSource, HotelResult.class, true);
             onCreate(database, connectionSource);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -63,6 +70,14 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return userDao;
     }
 
+
+    public Dao<HotelResult, Integer> getHotelDao() throws SQLException {
+        if (hotelDao == null){
+            hotelDao = getDao(HotelResult.class);
+        }
+        return hotelDao;
+    }
+
     /**
      * 释放资源
      */
@@ -70,5 +85,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void close() {
         super.close();
         userDao = null;
+        hotelDao = null;
     }
 }
