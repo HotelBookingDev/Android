@@ -74,13 +74,16 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         mIHotelPresenter = new IHotelPresenter(this);
         initPullView();
         onRxEvent();
-        //initHotelCache();
+        initHotelCache();
         return view;
     }
 
 
     private void initHotelCache() {
-        mIHotelPresenter.getHotelCache(mCitysBean.getId());
+        HotelResult hotelCache = mIHotelPresenter.getHotelCache();
+        if (hotelCache != null){
+            mPullAdapter.setList(hotelCache.getHotels());
+        }
     }
 
     private void onRxEvent() {
@@ -113,9 +116,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
     }
 
     private void initPullView() {
-
         mPullView.setSwipeEnable(true);
-
         //加载更多
         mPullView.setLayoutManager(new LinearLayoutManager(getBottomContext()));
         mPullView.setPagingableListener(new PullToRefreshRecyclerView.PagingableListener() {
@@ -158,10 +159,8 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                 });
             }
         });
-
         //设置适配器
         mPullAdapter = new HomePullViewAdapter(getBottomContext());
-
         mPullAdapter.setOnItemClickLitener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view,
