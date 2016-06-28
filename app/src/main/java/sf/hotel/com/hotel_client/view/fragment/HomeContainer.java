@@ -14,6 +14,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rx.Subscription;
 import rx.functions.Action1;
+import sf.hotel.com.data.entity.ProcincesResult;
+import sf.hotel.com.data.utils.PreferencesUtils;
+import sf.hotel.com.hotel_client.HotelApplication;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.CityActivity;
 import sf.hotel.com.hotel_client.view.activity.TimesActivity;
@@ -42,7 +45,12 @@ public class HomeContainer extends BaseFragment {
     View mSearchView;
 
 
-    Integer cityId = 1;
+    static ProcincesResult.ProcincesBean.CitysBean citysBean = new ProcincesResult.ProcincesBean.CitysBean();
+
+    static {
+        citysBean.setId(1);
+        citysBean.setName("杭州");
+    }
 
     public static HomeContainer newInstance() {
 
@@ -89,13 +97,27 @@ public class HomeContainer extends BaseFragment {
         ButterKnife.bind(this, view);
         init( savedInstanceState);
         onRxEvent();
+
+        initView();
         return view;
+    }
+
+    private void initView() {
+
+        String cityCode = PreferencesUtils.getCityCode(getBottomContext());
+        String cityName = PreferencesUtils.getCityName(getBottomContext());
+
+        if (cityCode != null && cityName != null){
+            citysBean.setId(Integer.valueOf(cityCode));
+            citysBean.setName(cityName);
+        }
+        mCityName.setText(citysBean.getName());
     }
 
     private void init(@Nullable Bundle savedInstanceState) {
         if (savedInstanceState == null) {
-            loadRootFragment(R.id.fragment_container_hor_home_frame, HotelsRecommendFragment.newInstance());
-            loadRootFragment(R.id.fragment_container_home_frame, HotelsFragment.newInstance());
+           // loadRootFragment(R.id.fragment_container_hor_home_frame, HotelsRecommendFragment.newInstance());
+            loadRootFragment(R.id.fragment_container_home_frame, HotelsFragment.newInstance(citysBean));
         }
     }
 
@@ -113,11 +135,11 @@ public class HomeContainer extends BaseFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == CITY_REQUEST_CODE){
             Bundle bundle = data.getExtras();
-            String city = bundle.getString("city");
-            int cityId = bundle.getInt("cityId");
-            mCityName.setText(city);
+            ProcincesResult.ProcincesBean.CitysBean citysBean = (ProcincesResult.ProcincesBean.CitysBean) bundle.getSerializable("city");
+            assert citysBean != null;
+            mCityName.setText(citysBean.getName());
             RxBus.getDefault().post(MessageFactory
-                    .createHotelMessage(HotelMessage.REFRESH_LIST_VIEW_HOTEL, cityId));
+                    .createHotelMessage(HotelMessage.REFRESH_LIST_VIEW_HOTEL, citysBean));
         }
     }
 

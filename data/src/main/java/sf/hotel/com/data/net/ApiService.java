@@ -23,6 +23,7 @@ import sf.hotel.com.data.entity.ProcincesResult;
 import static sf.hotel.com.data.net.HttpParam.CITY_ID;
 import static sf.hotel.com.data.net.HttpParam.DEVICE_TYPE;
 import static sf.hotel.com.data.net.HttpParam.INSTALLATION_CODE;
+import static sf.hotel.com.data.net.HttpParam.PAGE;
 import static sf.hotel.com.data.net.HttpParam.PASSWORD;
 import static sf.hotel.com.data.net.HttpParam.PHONE_NUMBER;
 import static sf.hotel.com.data.net.HttpParam.SMS_CODE;
@@ -61,7 +62,7 @@ public interface ApiService {
     Observable<HttpResult<NormalResult>> postIntallation(@Body Intallation mIntallation);
 
     @GET(AppUrl.HOTELS_URL)
-    Observable<HttpResult<HotelResult>> callHotelsByCityId(@Query(CITY_ID) String cityId);
+    Observable<HttpResult<HotelResult>> callHotelsByCityId(@Query(CITY_ID) String cityId, @Query(PAGE) String page);
 
 
     //获取TOKEN

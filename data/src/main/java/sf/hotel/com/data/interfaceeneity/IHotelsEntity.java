@@ -10,5 +10,5 @@ import sf.hotel.com.data.entity.netresult.HotelResult;
  */
 interface IHotelsEntity {
 
-    Observable<HotelResult> callHotelsByCityId(String cityId);
+    Observable<HotelResult> callHotelsByCityId(String cityId, String page);
 }

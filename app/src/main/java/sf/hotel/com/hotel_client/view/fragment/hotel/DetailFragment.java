@@ -110,7 +110,7 @@ public class DetailFragment extends BaseFragment implements IDetailView {
 
         //设置适配器
         mPullAdapter = new DetailPullViewAdapter(getBottomContext());
-        mPullAdapter.setOnItemClickLitener(new OnItemClickListener() {
+        mPullAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 showRoomFragment();

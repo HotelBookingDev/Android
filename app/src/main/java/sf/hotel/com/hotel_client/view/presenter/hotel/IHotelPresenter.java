@@ -35,9 +35,13 @@ public class IHotelPresenter extends SuperPresenter {
     }
 
 
+    public HotelResult getHotelCache(int cityId){
+        return mHotelsEntity.getHotelCache(mIHotelsView.getBottomContext(), cityId);
+    }
 
-    public void callHotelsByCityId(String cityId){
-        Subscription subscribe = mHotelsEntity.callHotelsByCityId(cityId).subscribe(new SimpleSubscriber<HotelResult>(mIHotelsView.getBottomContext()) {
+
+    public void callHotelsByCityId(String cityId, String page){
+        Subscription subscribe = mHotelsEntity.callHotelsByCityId(cityId, page).subscribe(new SimpleSubscriber<HotelResult>(mIHotelsView.getBottomContext()) {
             @Override
             public void onNext(HotelResult hotelResult) {
                 super.onNext(hotelResult);

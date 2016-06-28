@@ -88,8 +88,8 @@ public class ApiWrapper extends RetrofitHelper {
      * 获取酒店信息通过cityId
      */
 
-    public Observable<HotelResult> callHotelsByCityId(String cityId) {
-        return mService.callHotelsByCityId(cityId).compose(this.<HotelResult>applySchedulers());
+    public Observable<HotelResult> callHotelsByCityId(String cityId, String page) {
+        return mService.callHotelsByCityId(cityId, page).compose(this.<HotelResult>applySchedulers());
     }
 
     public Observable<TokenResult> getTokenResult() {

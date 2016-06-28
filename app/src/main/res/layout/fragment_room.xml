@@ -30,19 +30,21 @@
             />
     </LinearLayout>
 
-    <ScrollView
+    <sf.hotel.com.hotel_client.view.custom.NoScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            style="@style/layoutStyle"
             >
 
             <com.lsjwzh.widget.recyclerviewpager.LoopRecyclerViewPager
                 android:id="@+id/fragment_room_viewPager"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="15dp"
@@ -51,21 +53,10 @@
                 app:rvp_singlePageFling="true"
                 android:clipToPadding="false"
                 >
-                <sf.hotel.com.hotel_client.view.custom.CircleIndicator
-                    android:id="@+id/fragment_room_pager_indicator"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="40dp"
-                    indicator:indicator_background="@android:color/white"
-                    indicator:indicator_margin="20dp"
-                    indicator:indicator_radio="10dp"
-                    indicator:indicator_selected_background="@android:color/holo_red_light"
-                    />
-
             </com.lsjwzh.widget.recyclerviewpager.LoopRecyclerViewPager>
 
             <View
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 style="@style/splitLineStyle"
@@ -88,9 +79,14 @@
                 style="@style/itemTextContentStyle"
                 android:text="条款\nXXXXXXXXXXXXX\nXXXXXXXXXX\nXXXX\nXXXXXXXXXXXXX"
                 />
-        </LinearLayout>
 
-    </ScrollView>
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/frame_room_bed"
+                />
+        </LinearLayout>
+    </sf.hotel.com.hotel_client.view.custom.NoScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"

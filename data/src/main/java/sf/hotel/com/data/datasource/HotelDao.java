@@ -5,7 +5,6 @@ import android.content.Context;
 import java.sql.SQLException;
 import java.util.List;
 
-import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 
 /**
@@ -13,7 +12,7 @@ import sf.hotel.com.data.entity.netresult.HotelResult;
  * @email sanfenruxi1@163.com
  * @date 16/6/28.
  */
-public class HotelDao {
+public class HotelDao{
 
     public static void add(HotelResult hotel, Context context) {
         try {

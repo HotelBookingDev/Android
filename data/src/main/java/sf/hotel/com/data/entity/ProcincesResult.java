@@ -1,5 +1,6 @@
 package sf.hotel.com.data.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * @email sanfenruxi1@163.com
  * @date 16/6/22.
  */
-public class ProcincesResult  {
+public class ProcincesResult  implements Serializable{
     /**
      * id : 1
      * citys : [{"id":1,"name":"HangZhou","name_py":"杭州","logo":"http://img4.imgtn.bdimg.com/it/u=2524053065,1600155239&fm=21&gp=0.jpg"},{"id":2,"name":"NingBo","name_py":"宁波","logo":"http://img4.imgtn.bdimg.com/it/u=2524053065,1600155239&fm=21&gp=0.jpg"}]
@@ -70,7 +71,7 @@ public class ProcincesResult  {
             this.citys = citys;
         }
 
-        public static class CitysBean {
+        public static class CitysBean implements Serializable{
             private int id;
             private String name;
             private String name_py;

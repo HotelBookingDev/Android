@@ -18,14 +18,12 @@ import sf.hotel.com.hotel_client.utils.HotelImageLoad;
  * @email sanfenruxi1@163.com
  * @date 16/6/17.
  */
-public class RoomRecyclerPagerAdapter
-        extends RecyclerViewBaseAdapter<RoomRecyclerPagerAdapter.ViewHolder> {
+public class RoomRecyclerPagerAdapter extends RecyclerViewBaseAdapter<RoomRecyclerPagerAdapter.ViewHolder> {
 
     List<HotelResult.HotelsBean.HotelLogoImgsBean> mList = new ArrayList<>();
 
     public RoomRecyclerPagerAdapter(Context context) {
         super(context);
-        setCount(mList.size());
     }
 
     public void setList(List<HotelResult.HotelsBean.HotelLogoImgsBean> list) {

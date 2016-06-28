@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import sf.hotel.com.hotel_client.R;
@@ -13,17 +14,17 @@ import sf.hotel.com.hotel_client.R;
  * @email sanfenruxi1@163.com
  * @date 16/6/16.
  */
-public class DetailPullViewAdapter
-        extends RecyclerViewBaseAdapter<DetailPullViewAdapter.ViewHolder> {
+public class DetailPullViewAdapter extends RecyclerViewBaseAdapter<DetailPullViewAdapter.ViewHolder> {
 
     private OnItemClickListener mOnItemClickListener;
 
-    public void setOnItemClickLitener(OnItemClickListener mOnItemClickListener) {
-        this.mOnItemClickListener = mOnItemClickListener;
-    }
-
     public DetailPullViewAdapter(Context context) {
         super(context);
+    }
+
+
+    public void setOnItemClickListener(OnItemClickListener mOnItemClickListener) {
+        this.mOnItemClickListener = mOnItemClickListener;
     }
 
     @Override

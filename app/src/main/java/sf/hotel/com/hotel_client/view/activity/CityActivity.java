@@ -43,9 +43,6 @@ public class CityActivity extends BaseActivity {
                 finish();
             }
         });
-
-
-
     }
 
 
@@ -64,8 +61,7 @@ public class CityActivity extends BaseActivity {
 
                                     Intent intent = new Intent();
                                     Bundle bundle = new Bundle();
-                                    bundle.putString("city", citysBean.getName());
-                                    bundle.putInt("cityId", citysBean.getId());
+                                    bundle.putSerializable("city",citysBean);
                                     intent.putExtras(bundle);
                                     setResult(HomeContainer.CITY_REQUEST_CODE, intent);
                                     finish();

@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.lsjwzh.widget.recyclerviewpager.LoopRecyclerViewPager;
+import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 
 import java.util.List;
 
@@ -20,8 +20,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.adapter.DetailPullViewAdapter;
+import sf.hotel.com.hotel_client.view.adapter.RoomLayoutManager;
 import sf.hotel.com.hotel_client.view.adapter.RoomRecyclerPagerAdapter;
-import sf.hotel.com.hotel_client.view.custom.CircleIndicator;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
@@ -36,24 +37,30 @@ import sf.hotel.com.hotel_client.view.presenter.hotel.IRoomPresenter;
  */
 public class RoomFragment extends BaseFragment implements IRoomView {
 
+    private static Bundle args;
+
     IRoomPresenter mIRoomPresenter;
 
     @BindView(R.id.fragment_room_close)
     ImageView imgClose;
 
     @BindView(R.id.fragment_room_viewPager)
-    LoopRecyclerViewPager mRecyclerViewPager;
+    RecyclerViewPager mRecyclerViewPager;
 
     RoomRecyclerPagerAdapter mRoomRecyclerPagerAdapter;
 
     @BindView(R.id.fragment_room_content)
     TextView mRoomContent;
 
-    @BindView(R.id.fragment_room_pager_indicator)
-    CircleIndicator circleIndicator;
+    @BindView(R.id.frame_room_bed)
+    RecyclerView mRecyclerView;
+
+    private DetailPullViewAdapter mPullAdapter;
+
+
 
     public static RoomFragment newInstance(Bundle bundle) {
-        Bundle args;
+        
         if (bundle != null) {
             args = bundle;
         } else {
@@ -63,40 +70,46 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         fragment.setArguments(args);
         return fragment;
     }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_room, container, false);
-
         mIRoomPresenter = new IRoomPresenter(this);
         ButterKnife.bind(this, view);
+        initViewPager(args);
 
-        if (savedInstanceState != null) {
-            initViewPager(savedInstanceState);
-        }
+        initRecyclerView();
         return view;
     }
 
-    private void initViewPager(Bundle bundle) {
+    private void initRecyclerView() {
+        mPullAdapter = new DetailPullViewAdapter(getBottomContext());
 
+        mPullAdapter.setCount(20);
+
+
+        RoomLayoutManager layout = new RoomLayoutManager(getBottomContext());
+
+        mRecyclerView.setLayoutManager(layout);
+
+
+        mRecyclerView.setAdapter(mPullAdapter);
+    }
+
+    private void initViewPager(Bundle bundle) {
         LinearLayoutManager layout = new LinearLayoutManager(getBottomContext(),
                 LinearLayoutManager.HORIZONTAL, false);
         mRecyclerViewPager.setLayoutManager(layout);
         mRecyclerViewPager.setTriggerOffset(0.15f);
         mRecyclerViewPager.setFlingFactor(0.25f);
-
         mRoomRecyclerPagerAdapter = new RoomRecyclerPagerAdapter(getBottomContext());
         mRecyclerViewPager.setAdapter(mRoomRecyclerPagerAdapter);
-
         mRecyclerViewPager.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int scrollState) {
-
             }
-
             @Override
             public void onScrolled(RecyclerView recyclerView, int i, int i2) {
 //                mPositionText.setText("First: " + mRecyclerViewPager.getFirstVisiblePosition());
@@ -126,7 +139,6 @@ public class RoomFragment extends BaseFragment implements IRoomView {
                 }
             }
         });
-
         mRecyclerViewPager.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
             public void onLayoutChange(View v, int left, int top, int right, int bottom,
@@ -149,13 +161,11 @@ public class RoomFragment extends BaseFragment implements IRoomView {
             }
         });
         HotelResult.HotelsBean hotelsBean = (HotelResult.HotelsBean) bundle.getSerializable("room");
-
         if (hotelsBean != null) {
             List<HotelResult.HotelsBean.HotelLogoImgsBean> hotelLogoImgs = hotelsBean.getHotelLogoImgs();
+            mRoomRecyclerPagerAdapter.setList(hotelLogoImgs);
             mRoomContent.setText(hotelsBean.getIntroduce());
         }
-
-        circleIndicator.setViewPager(mRecyclerViewPager);
     }
 
     @Override

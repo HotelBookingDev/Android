@@ -22,7 +22,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String TABLE_NAME = "hotel.db";
     private static final int databaseVersion = 5;
     private Dao<UserEntity, Integer> userDao;
-
     private Dao<HotelResult, Integer> hotelDao;
 
     private static DatabaseHelper instance;

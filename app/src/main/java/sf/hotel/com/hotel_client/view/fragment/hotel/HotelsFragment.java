@@ -19,6 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Subscription;
 import rx.functions.Action1;
+import sf.hotel.com.data.entity.ProcincesResult;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.hotel.RoomActivity;
@@ -41,8 +42,12 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
     @BindView(R.id.fragment_hotels_list)
     PullToRefreshRecyclerView mPullView;
 
+    static ProcincesResult.ProcincesBean.CitysBean mCitysBean = new ProcincesResult.ProcincesBean.CitysBean();
 
-    public static HotelsFragment newInstance() {
+
+    public static HotelsFragment newInstance(ProcincesResult.ProcincesBean.CitysBean citysBean) {
+
+        mCitysBean = citysBean;
 
         Bundle args = new Bundle();
 
@@ -57,6 +62,8 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
 
     Handler handler = new Handler();
 
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -64,14 +71,16 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
 
         View view = inflater.inflate(R.layout.fragment_hotels, container, false);
         ButterKnife.bind(this, view);
-
         mIHotelPresenter = new IHotelPresenter(this);
-
         initPullView();
-
         onRxEvent();
-
+        //initHotelCache();
         return view;
+    }
+
+
+    private void initHotelCache() {
+        mIHotelPresenter.getHotelCache(mCitysBean.getId());
     }
 
     private void onRxEvent() {
@@ -86,8 +95,10 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                                 mPullAdapter.setList(hotelResult.getHotels());
                                 break;
                             case HotelMessage.REFRESH_LIST_VIEW_HOTEL:
-                                Integer cityId = (Integer) hotelMessage.obj;
-                                mIHotelPresenter.callHotelsByCityId(cityId.toString());
+                                ProcincesResult.ProcincesBean.CitysBean citysBean = (ProcincesResult.ProcincesBean.CitysBean) hotelMessage.obj;
+                                mCitysBean.setId(citysBean.getId());
+                                mCitysBean.setName(citysBean.getName());
+                                mIHotelPresenter.callHotelsByCityId(String.valueOf(mCitysBean.getId()), "1");
                                 break;
                         }
                     }
@@ -140,34 +151,11 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        mIHotelPresenter.callHotelsByCityId("1");
+                        mIHotelPresenter.callHotelsByCityId("1", "1");
                         mPullView.setOnRefreshComplete();
                         mPullView.onFinishLoading(true, false);
                     }
                 });
-            }
-        });
-
-        mPullView.addOnScrollListener(new PullToRefreshRecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-//                if (dy > 10) {
-//                    RxBus.getDefault().post(new HotelMessage(HotelMessage.HIDE_BOTTOM_VIEW));
-//                }
-//                if (dy < -10) {
-//                    RxBus.getDefault().post(new HotelMessage(HotelMessage.SHOW_BOTTOM_VIEW));
-//                }
-            }
-
-            @Override
-            public void onScroll(RecyclerView recyclerView, int firstVisibleItem,
-                    int visibleItemCount, int totalItemCount) {
-
             }
         });
 
@@ -199,9 +187,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         Intent intent = new Intent(getBottomContext(), RoomActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("room", hotelsBean);
-
         intent.putExtras(bundle);
-
         startActivity(intent);
     }
 

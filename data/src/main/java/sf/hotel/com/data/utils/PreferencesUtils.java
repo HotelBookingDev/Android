@@ -29,6 +29,8 @@ public class PreferencesUtils {
     //当前城市和百度地图对于的citycode
     public static final String CITYCODE = "city_code";
 
+    public static final String CITY_NAME = "city_name";
+
     //当前是否是登录状态，在登录界面初始化设置为未登录的状态
     public static final String ISLOGIN = "is_login";
 
@@ -89,6 +91,16 @@ public class PreferencesUtils {
     public static void saveCityCode(Context context, String code) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
         preferences.edit().putString(CITYCODE, code).apply();
+    }
+
+    public static void saveCityName(Context context, String name){
+        SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
+        preferences.edit().putString(CITY_NAME, name).apply();
+    }
+
+    public static String getCityName(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
+        return preferences.getString(CITY_NAME, null);
     }
 
     public static String getCityCode(Context context) {

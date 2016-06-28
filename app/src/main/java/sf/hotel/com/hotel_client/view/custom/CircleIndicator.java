@@ -17,6 +17,7 @@ import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 import java.util.ArrayList;
 import java.util.List;
 
+import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
 
 /**
@@ -109,8 +110,8 @@ public class CircleIndicator extends View {
         mViewPager.addOnPageChangedListener(new RecyclerViewPager.OnPageChangedListener() {
             @Override
             public void OnPageChanged(int i, int i1) {
-                mCurrentPosition = i1;
-                mCurrentPositionOffset = i;
+                mCurrentPosition = i;
+                mCurrentPositionOffset = i1;
                 //强制从新布局
                 requestLayout();
                 //重新绘制
@@ -148,6 +149,7 @@ public class CircleIndicator extends View {
             paint.setAntiAlias(true);
             circleShape.setPaint(paint);
             mIndicatorLists.add(circleShape);
+            LogUtils.d("---->" , mIndicatorLists.size() + "");
         }
     }
 
@@ -211,6 +213,11 @@ public class CircleIndicator extends View {
         if (mIndicatorLists.size() == 0) {
             return;
         }
+
+        if (position >= mIndicatorLists.size()){
+            return;
+        }
+
         CircleShape item = mIndicatorLists.get(position);
         mSelectIndicator.resizeShape(item.getWidth(), item.getHeight());
         //设置滚动的小圆点的X位置偏移量
