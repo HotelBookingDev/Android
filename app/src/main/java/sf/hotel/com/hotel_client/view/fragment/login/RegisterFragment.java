@@ -16,7 +16,7 @@ import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.custom.CaptchaButton;
 import sf.hotel.com.hotel_client.view.event.RxBus;
-import sf.hotel.com.hotel_client.view.event.hotel.LoginMessage;
+import sf.hotel.com.hotel_client.view.event.hotel.person.LoginMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.ICallBack;

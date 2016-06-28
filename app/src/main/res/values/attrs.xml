@@ -11,6 +11,7 @@
         <attr name="leftBtnIcon" format="reference" />
         <attr name="rightBtnIcon" format="reference" />
         <attr name="titleText" format="string" />
+        <attr name="isShowUnderLine" format="boolean" />
     </declare-styleable>
     <declare-styleable name="ToggleButton">
         <attr name="tbwidth" format="dimension" />

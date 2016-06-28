@@ -2,6 +2,10 @@ package sf.hotel.com.hotel_client.view.event.hotel;
 
 import android.util.LruCache;
 
+import sf.hotel.com.hotel_client.view.event.hotel.person.LoginMessage;
+import sf.hotel.com.hotel_client.view.event.hotel.person.OrderMessage;
+import sf.hotel.com.hotel_client.view.event.hotel.person.PersonMessage;
+
 /**
  * Created by 林其望
  * data：2016/6/17
@@ -39,5 +43,9 @@ public class MessageFactory {
 
     public static RoomMessage createRoomMessage(int what, Object obj) {
         return new RoomMessage(what, "", obj);
+    }
+
+    public static OrderMessage createOrderMessage(int what) {
+        return new OrderMessage(what);
     }
 }

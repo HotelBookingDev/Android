@@ -7,7 +7,7 @@ import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.BaseActivity;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.Message;
-import sf.hotel.com.hotel_client.view.event.hotel.PersonMessage;
+import sf.hotel.com.hotel_client.view.event.hotel.person.PersonMessage;
 import sf.hotel.com.hotel_client.view.fragment.person.ChangePwdFragment;
 import sf.hotel.com.hotel_client.view.fragment.person.SettingFragment;
 

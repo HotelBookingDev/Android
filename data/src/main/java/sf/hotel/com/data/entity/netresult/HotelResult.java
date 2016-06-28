@@ -1,5 +1,7 @@
 package sf.hotel.com.data.entity.netresult;
 
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -8,6 +10,7 @@ import java.util.List;
  * @email sanfenruxi1@163.com
  * @date 16/6/22.
  */
+@DatabaseTable(tableName = "tb_hotelresult")
 public class HotelResult implements Serializable{
     /**
      * id : 1

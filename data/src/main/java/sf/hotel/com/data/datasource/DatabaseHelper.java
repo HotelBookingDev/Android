@@ -1,7 +1,6 @@
 package sf.hotel.com.data.datasource;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
@@ -11,6 +10,7 @@ import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
 
+import sf.hotel.com.data.entity.LocalOrder;
 import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 
@@ -20,10 +20,10 @@ import sf.hotel.com.data.entity.netresult.HotelResult;
  */
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String TABLE_NAME = "hotel.db";
-    private static final int databaseVersion = 5;
+    private static final int databaseVersion = 11;
     private Dao<UserEntity, Integer> userDao;
     private Dao<HotelResult, Integer> hotelDao;
-
+    private Dao<LocalOrder, Integer> localOrders;
     private static DatabaseHelper instance;
 
     private DatabaseHelper(Context context) {
@@ -44,7 +44,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
         try {
             TableUtils.createTable(connectionSource, UserEntity.class);
-            TableUtils.createTable(connectionSource, HotelResult.class);
+//            TableUtils.createTable(connectionSource, HotelResult.class);
+            TableUtils.createTable(connectionSource, LocalOrder.class);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -55,7 +56,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             int oldVersion, int newVersion) {
         try {
             TableUtils.dropTable(connectionSource, UserEntity.class, true);
-            TableUtils.dropTable(connectionSource, HotelResult.class, true);
+//            TableUtils.dropTable(connectionSource, HotelResult.class, true);
+            TableUtils.dropTable(connectionSource, LocalOrder.class, true);
             onCreate(database, connectionSource);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -69,12 +71,18 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return userDao;
     }
 
-
     public Dao<HotelResult, Integer> getHotelDao() throws SQLException {
-        if (hotelDao == null){
+        if (hotelDao == null) {
             hotelDao = getDao(HotelResult.class);
         }
         return hotelDao;
+    }
+
+    public Dao<LocalOrder, Integer> getLocalOrders() throws SQLException {
+        if (localOrders == null) {
+            localOrders = getDao(LocalOrder.class);
+        }
+        return localOrders;
     }
 
     /**
@@ -85,5 +93,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         super.close();
         userDao = null;
         hotelDao = null;
+        localOrders = null;
     }
 }
