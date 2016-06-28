@@ -5,9 +5,12 @@ import android.content.res.TypedArray;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -26,8 +29,12 @@ public class HotelTitleView extends RelativeLayout {
     private String mLeftBtnText;
     private String mRightBtnText;
     private View mBtnLeft, mBtnRight;
+    //存放mTvTitle 和mUnderline
+    private LinearLayout mLinearLayout;
     private TextView mTvTitle;
-    private ImageView mIvUnderline;
+    //中心文字旁边的下标
+    private ImageView mUnderline;
+    private boolean isShowUnderLine;
     private String mTitle;
     private LayoutParams mLeftBtnParams;
     private LayoutParams mRightBtnParams;
@@ -51,6 +58,7 @@ public class HotelTitleView extends RelativeLayout {
             mLeftBtnText = a.getString(R.styleable.HotelTitleBar_leftBtnText);
             mRightBtnText = a.getString(R.styleable.HotelTitleBar_rightBtnText);
             mTitle = a.getString(R.styleable.HotelTitleBar_titleText);
+            isShowUnderLine = a.getBoolean(R.styleable.HotelTitleBar_isShowUnderLine, false);
         } finally {
             a.recycle();
         }
@@ -76,6 +84,22 @@ public class HotelTitleView extends RelativeLayout {
         } else if (!TextUtils.isEmpty(mRightBtnText)) {
             addRightButton(mRightBtnText);
         }
+        //初始化中间文字的组件
+        initLinearlyGroup();
+    }
+
+    private void initLinearlyGroup() {
+        mLinearLayout = new LinearLayout(getContext());
+        LayoutParams linearParams = new LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
+        mLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
+        linearParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+        mLinearLayout.setLayoutParams(linearParams);
+        addContentView(mLinearLayout);
+        addView(mLinearLayout);
+    }
+
+    private void addContentView(ViewGroup mViewGroup) {
+        //添加文字
         mTvTitle = new TextView(getContext());
         LayoutParams titleParams = new LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
         titleParams.addRule(RelativeLayout.CENTER_IN_PARENT);
@@ -87,19 +111,23 @@ public class HotelTitleView extends RelativeLayout {
         mTvTitle.setLayoutParams(titleParams);
         mTvTitle.setText(mTitle);
 
-        addTitleUnderline();
-        addView(mTvTitle);
+        mViewGroup.addView(mTvTitle);
+        //添加下标
+        if (isShowUnderLine) {
+            addUnderLine(mViewGroup);
+        }
     }
 
-    private void addTitleUnderline() {
-        if (mIvUnderline == null) {
-            mIvUnderline = new ImageView(getContext());
-            mIvUnderline.setBackgroundResource(R.mipmap.ic_expand_more_white_36dp);
-            LayoutParams titleParams = new LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
-            titleParams.addRule(RelativeLayout.CENTER_VERTICAL);
-            if (mTvTitle != null) {
-            }
+    private void addUnderLine(ViewGroup mViewGroup) {
+        mUnderline = new ImageView(getContext());
+        mUnderline.setBackgroundResource(R.mipmap.ic_search_drop_down_arrow);
+        if (mViewGroup instanceof LinearLayout) {
+            LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(WRAP_CONTENT,
+                    WRAP_CONTENT);
+            titleParams.gravity = Gravity.CENTER;
+            mUnderline.setLayoutParams(titleParams);
         }
+        mViewGroup.addView(mUnderline);
     }
 
     private void addLeftView(String text) {
