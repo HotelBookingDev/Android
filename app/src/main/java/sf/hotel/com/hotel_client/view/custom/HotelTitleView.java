@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import sf.hotel.com.hotel_client.R;
 
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+
 /**
  * Created by 林其望
  * data：2016/6/22
@@ -25,6 +27,7 @@ public class HotelTitleView extends RelativeLayout {
     private String mRightBtnText;
     private View mBtnLeft, mBtnRight;
     private TextView mTvTitle;
+    private ImageView mIvUnderline;
     private String mTitle;
     private LayoutParams mLeftBtnParams;
     private LayoutParams mRightBtnParams;
@@ -56,10 +59,10 @@ public class HotelTitleView extends RelativeLayout {
     }
 
     private void init() {
-        mLeftBtnParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        mLeftBtnParams = new LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
         mLeftBtnParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
         mLeftBtnParams.addRule(RelativeLayout.CENTER_VERTICAL);
-        mRightBtnParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        mRightBtnParams = new LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
         mRightBtnParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
         mRightBtnParams.addRule(RelativeLayout.CENTER_VERTICAL);
         if (mLeftBtnIcon != 0) {
@@ -74,8 +77,7 @@ public class HotelTitleView extends RelativeLayout {
             addRightButton(mRightBtnText);
         }
         mTvTitle = new TextView(getContext());
-        LayoutParams titleParams = new LayoutParams(LayoutParams.WRAP_CONTENT,
-                LayoutParams.WRAP_CONTENT);
+        LayoutParams titleParams = new LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
         titleParams.addRule(RelativeLayout.CENTER_IN_PARENT);
         if (!isInEditMode()) {
             mTvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX,
@@ -84,7 +86,20 @@ public class HotelTitleView extends RelativeLayout {
         }
         mTvTitle.setLayoutParams(titleParams);
         mTvTitle.setText(mTitle);
+
+        addTitleUnderline();
         addView(mTvTitle);
+    }
+
+    private void addTitleUnderline() {
+        if (mIvUnderline == null) {
+            mIvUnderline = new ImageView(getContext());
+            mIvUnderline.setBackgroundResource(R.mipmap.ic_expand_more_white_36dp);
+            LayoutParams titleParams = new LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
+            titleParams.addRule(RelativeLayout.CENTER_VERTICAL);
+            if (mTvTitle != null) {
+            }
+        }
     }
 
     private void addLeftView(String text) {
