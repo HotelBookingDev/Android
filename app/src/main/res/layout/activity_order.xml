@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:id="@+id/fl_order"
+<RelativeLayout android:id="@+id/fl_order"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".view.activity.person.OrderActivity"/>
+    tools:context=".view.activity.person.OrderActivity">
+
+    <sf.hotel.com.hotel_client.view.custom.HotelTitleView
+        android:id="@+id/view_title"
+        style="@style/view_title"
+        app:leftBtnText="@string/back"
+        app:titleText="@string/my_order" />
+
+    <FrameLayout
+        android:id="@+id/order_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/view_title" />
+</RelativeLayout>

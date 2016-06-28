@@ -11,7 +11,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.adapter.OrderPagerFragmentAdapter;
-import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 
 public class OrderFragment extends BaseFragment {
@@ -30,9 +29,6 @@ public class OrderFragment extends BaseFragment {
     @BindView(R.id.vp_order)
     ViewPager mViewPager;
 
-    @BindView(R.id.view_title)
-    HotelTitleView mTitle;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
@@ -49,7 +45,5 @@ public class OrderFragment extends BaseFragment {
         mTabLayout.addTab(mTabLayout.newTab());
         mViewPager.setAdapter(new OrderPagerFragmentAdapter(getChildFragmentManager()));
         mTabLayout.setupWithViewPager(mViewPager);
-
-        mTitle.addLeftClick(v -> getActivity().finish());
     }
 }
