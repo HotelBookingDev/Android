@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".view.activity.LoginActivity">
+    tools:context=".view.activity.register.LoginActivity">
 
     <FrameLayout
         android:id="@+id/login_fragment"

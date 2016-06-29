@@ -1,4 +1,4 @@
-package sf.hotel.com.hotel_client.view.activity;
+package sf.hotel.com.hotel_client.view.activity.hotel;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,6 +14,8 @@ import me.majiajie.pagerbottomtabstrip.TabLayoutMode;
 import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectListener;
 import rx.Subscription;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.activity.BaseActivity;
+import sf.hotel.com.hotel_client.view.activity.FragConstant;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
 

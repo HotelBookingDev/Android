@@ -1,4 +1,4 @@
-package sf.hotel.com.hotel_client.view.activity;
+package sf.hotel.com.hotel_client.view.activity.hotel;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import rx.Subscription;
 import rx.functions.Action1;
 import sf.hotel.com.data.entity.ProcincesResult;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.activity.BaseActivity;
+import sf.hotel.com.hotel_client.view.activity.FragConstant;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.CityMessage;

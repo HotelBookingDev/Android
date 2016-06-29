@@ -19,7 +19,7 @@ import sf.hotel.com.data.utils.HotelFileUtils;
 import sf.hotel.com.data.utils.PreferencesUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.AndroidUtils;
-import sf.hotel.com.hotel_client.view.activity.LoginActivity;
+import sf.hotel.com.hotel_client.view.activity.register.LoginActivity;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.custom.ToggleButton;
 import sf.hotel.com.hotel_client.view.event.RxBus;

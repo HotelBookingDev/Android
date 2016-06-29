@@ -61,18 +61,18 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.activity.HomeActivity"
+        <activity android:name=".view.activity.hotel.HomeActivity"
             />
 
         <activity
-            android:name=".view.activity.LoginActivity"
+            android:name=".view.activity.register.LoginActivity"
             android:launchMode="singleTask" />
         <activity android:name=".view.activity.MainActivity" />
-        <activity android:name=".view.activity.CityActivity" />
+        <activity android:name=".view.activity.hotel.CityActivity" />
 
-        <activity android:name=".view.activity.TimesActivity"/>
+        <activity android:name=".view.activity.hotel.TimesActivity"/>
 
-        <activity android:name=".view.activity.PayActivity" />
+        <activity android:name=".view.activity.pay.PayActivity" />
         <activity android:name=".view.activity.hotel.RoomActivity" />
 
         <service

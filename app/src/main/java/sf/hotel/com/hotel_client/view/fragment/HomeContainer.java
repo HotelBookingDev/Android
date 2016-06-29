@@ -3,7 +3,6 @@ package sf.hotel.com.hotel_client.view.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,16 +15,14 @@ import rx.Subscription;
 import rx.functions.Action1;
 import sf.hotel.com.data.entity.ProcincesResult;
 import sf.hotel.com.data.utils.PreferencesUtils;
-import sf.hotel.com.hotel_client.HotelApplication;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.view.activity.CityActivity;
-import sf.hotel.com.hotel_client.view.activity.TimesActivity;
+import sf.hotel.com.hotel_client.view.activity.hotel.CityActivity;
+import sf.hotel.com.hotel_client.view.activity.hotel.TimesActivity;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.HomeMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
 import sf.hotel.com.hotel_client.view.fragment.hotel.HotelsFragment;
-import sf.hotel.com.hotel_client.view.fragment.hotel.HotelsRecommendFragment;
 
 /**
  * @author MZ

@@ -1,4 +1,4 @@
-package sf.hotel.com.hotel_client.view.activity;
+package sf.hotel.com.hotel_client.view.activity.pay;
 
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +9,7 @@ import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.alipay.PayCallBack;
 import sf.hotel.com.hotel_client.alipay.PayHelper;
 import sf.hotel.com.hotel_client.alipay.PayParam;
+import sf.hotel.com.hotel_client.view.activity.BaseActivity;
 
 /**
  * @author MZ
