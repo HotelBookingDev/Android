@@ -54,11 +54,7 @@ public class CityFragment extends BaseFragment implements ICityView {
         ButterKnife.bind(this, view);
         mICityPresenter = new ICityPresenter(this);
         initGrid();
-
-
-
         onRxEvent();
-
         initCityCache();
         return view;
     }

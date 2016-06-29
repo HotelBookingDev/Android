@@ -79,30 +79,14 @@
                 style="@style/itemTextContentStyle"
                 android:text="条款\nXXXXXXXXXXXXX\nXXXXXXXXXX\nXXXX\nXXXXXXXXXXXXX"
                 />
-
-            <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/frame_room_bed"
-                />
         </LinearLayout>
     </sf.hotel.com.hotel_client.view.custom.NoScrollView>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/frag_room_search"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <mehdi.sakout.fancybuttons.FancyButton
-            android:id="@+id/frag_room_search"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/btn_height"
-            fancy:fb_defaultColor="@color/white"
-            fancy:fb_focusColor="@color/bg_person"
-            fancy:fb_text="@string/search_bed"
-            fancy:fb_textColor="@color/black"
-            />
-
-    </LinearLayout>
+        android:layout_height="@dimen/btn_height"
+        android:text="@string/search_bed"
+     />
 
 </LinearLayout>

@@ -65,10 +65,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
     HomePullViewAdapter mPullAdapter;
 
     private IHotelPresenter mIHotelPresenter;
-
     Handler handler = new Handler();
-
-
 
     @Nullable
     @Override
@@ -90,6 +87,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         if (hotelCache != null){
             mPullAdapter.setList(hotelCache.getHotels());
         }
+        mIHotelPresenter.callHotelsByCityId(String.valueOf(mCitysBean.getId()), "1");
     }
 
     private void onRxEvent() {
@@ -99,10 +97,6 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                     @Override
                     public void call(HotelMessage hotelMessage) {
                         switch (hotelMessage.what){
-                            case HotelMessage.SUCCESS:
-                                HotelResult hotelResult = (HotelResult) hotelMessage.obj;
-                                mPullAdapter.setList(hotelResult.getHotels());
-                                break;
                             case HotelMessage.REFRESH_LIST_VIEW_HOTEL:
                                 ProcincesResult.ProcincesBean.CitysBean citysBean = (ProcincesResult.ProcincesBean.CitysBean) hotelMessage.obj;
                                 mCitysBean.setId(citysBean.getId());
@@ -114,8 +108,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        showViewToast(throwable.getMessage() + "加载失败");
-                        showLog(throwable.getMessage());
+
                     }
                 });
         mCompositeSubscription.add(subscribe);
@@ -210,5 +203,12 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
             mIHotelPresenter = null;
         }
 
+    }
+
+
+
+    @Override
+    public void setHotelAdapterList(HotelResult hotelResult) {
+        mPullAdapter.setList(hotelResult.getHotels());
     }
 }

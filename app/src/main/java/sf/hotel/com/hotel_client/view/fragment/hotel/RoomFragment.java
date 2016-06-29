@@ -5,27 +5,35 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.ListHolder;
+import com.orhanobut.dialogplus.OnCancelListener;
+import com.orhanobut.dialogplus.OnDismissListener;
+import com.orhanobut.dialogplus.OnItemClickListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import mehdi.sakout.fancybuttons.FancyButton;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.view.adapter.DetailPullViewAdapter;
-import sf.hotel.com.hotel_client.view.adapter.RoomLayoutManager;
+import sf.hotel.com.hotel_client.view.adapter.DialogBedAdapter;
 import sf.hotel.com.hotel_client.view.adapter.RoomRecyclerPagerAdapter;
+import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
-import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IRoomView;
 import sf.hotel.com.hotel_client.view.presenter.hotel.IRoomPresenter;
@@ -52,10 +60,11 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     @BindView(R.id.fragment_room_content)
     TextView mRoomContent;
 
-    @BindView(R.id.frame_room_bed)
-    RecyclerView mRecyclerView;
+    @BindView(R.id.frag_room_search)
+    Button mBtnSearch;
 
-    private DetailPullViewAdapter mPullAdapter;
+    DialogPlus dialogPlus;
+
 
     public static RoomFragment newInstance(Bundle bundle) {
 
@@ -87,17 +96,17 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         ButterKnife.bind(this, view);
         initViewPager(args);
 
-        initRecyclerView();
+       // initRecyclerView();
         return view;
     }
 
-    private void initRecyclerView() {
-        mPullAdapter = new DetailPullViewAdapter(getBottomContext());
-        mPullAdapter.setCount(5);
-        RoomLayoutManager layout = new RoomLayoutManager(getBottomContext());
-        mRecyclerView.setLayoutManager(layout);
-        mRecyclerView.setAdapter(mPullAdapter);
-    }
+//    private void initRecyclerView() {
+//        mPullAdapter = new DetailPullViewAdapter(getBottomContext());
+//        mPullAdapter.setCount(5);
+//        RoomLayoutManager layout = new RoomLayoutManager(getBottomContext());
+//        mRecyclerView.setLayoutManager(layout);
+//        mRecyclerView.setAdapter(mPullAdapter);
+//    }
 
     private void initViewPager(Bundle bundle) {
         LinearLayoutManager layout = new LinearLayoutManager(getBottomContext(),
@@ -169,6 +178,47 @@ public class RoomFragment extends BaseFragment implements IRoomView {
             mRoomContent.setText(hotelsBean.getIntroduce());
         }
     }
+
+
+    @OnClick(R.id.frag_room_search)
+    public void onSearchClick(){
+
+        if (dialogPlus == null){
+            dialogPlus = DialogPlus
+                    .newDialog(getBottomContext())
+                    .setContentHolder(new ListHolder())
+                    .setCancelable(true)
+                    .setGravity(Gravity.BOTTOM)
+                    .setFooter(R.layout.footer_bed)
+                    .setHeader(R.layout.header_bed)
+                    .setAdapter(new DialogBedAdapter(new ArrayList<String>(), getBottomContext()))
+                    .setOnItemClickListener(new OnItemClickListener() {
+                        @Override
+                        public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
+
+                        }
+                    })
+                    .setOnDismissListener(new OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogPlus dialog) {
+
+                        }
+                    })
+                    .setOnCancelListener(new OnCancelListener() {
+                        @Override
+                        public void onCancel(DialogPlus dialog) {
+
+                        }
+                    })
+                    .setExpanded(true)
+                    .create()
+                    ;
+        }
+
+        dialogPlus.show();
+
+    }
+
 
     @Override
     public Context getBottomContext() {

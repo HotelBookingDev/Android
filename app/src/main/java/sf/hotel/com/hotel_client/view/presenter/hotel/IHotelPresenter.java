@@ -5,6 +5,7 @@ import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.data.interfaceeneity.HotelsEntityImp;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
+import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
 import sf.hotel.com.hotel_client.view.event.MessageFactory;
@@ -46,13 +47,14 @@ public class IHotelPresenter extends SuperPresenter {
             public void onNext(HotelResult hotelResult) {
                 super.onNext(hotelResult);
                 mHotelsEntity.saveHotelCache(mIHotelsView.getBottomContext(), hotelResult);
-                RxBus.getDefault().post(MessageFactory.createHotelMessage(HotelMessage.SUCCESS, hotelResult));
+                mIHotelsView.setHotelAdapterList(hotelResult);
             }
 
             @Override
             public void onError(Throwable e) {
                 super.onError(e);
-                RxBus.getDefault().post(MessageFactory.createHotelMessage(HotelMessage.FAILE, e));
+                mIHotelsView.showViewToast(e.getMessage() + "加载失败");
+                LogUtils.d(e.getMessage());
             }
         });
 

@@ -1,5 +1,6 @@
 package sf.hotel.com.hotel_client.view.interfaceview.hotel;
 
+import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
 
 /**
@@ -8,6 +9,5 @@ import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
  * @date 16/6/13.
  */
 public interface IHotelsView  extends BaseView {
-
-
+    void setHotelAdapterList(HotelResult hotelResult);
 }
