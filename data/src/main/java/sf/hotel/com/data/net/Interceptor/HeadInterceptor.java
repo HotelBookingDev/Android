@@ -4,11 +4,9 @@ import android.text.TextUtils;
 
 import java.io.IOException;
 
-import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import sf.hotel.com.data.config.EntityContext;
-import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.data.utils.PreferencesUtils;
 
 /**
@@ -38,10 +36,6 @@ public class HeadInterceptor implements Interceptor {
                     .addHeader(TOEKNKEY, JWT + token)
                     .method(request.method(), request.body());
             request = requestBuilder.build();
-        }
-        Headers headers = request.headers();
-        for (int i = 0; i < headers.size(); i++) {
-            LogUtils.e(headers.name(i) + ": " + headers.value(i));
         }
         return request;
     }

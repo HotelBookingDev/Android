@@ -26,12 +26,7 @@ public class TimesActivity extends BaseActivity {
         ButterKnife.bind(this);
         init();
 
-        mHotelTitleView.addLeftClick(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        mHotelTitleView.addLeftClick(v -> finish());
 
         TransulcentUtils.setFixWindow(this);
     }

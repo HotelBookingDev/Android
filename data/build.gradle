@@ -7,7 +7,7 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode  rootProject.ext.android.versionCode
+        versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
     }
     compileOptions {
@@ -47,5 +47,7 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
     //本身data层不该涉及view层 但是view层中的对象需要依赖他自己的对象暂时保留
-    compile rootProject.ext.dependencies.searcheview
+    compile rootProject.ext.dependenciesdata.searcheview
+    //Logger日志框架
+    compile rootProject.ext.dependenciesdata.logger
 }
