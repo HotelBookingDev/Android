@@ -18,7 +18,7 @@ import sf.hotel.com.hotel_client.view.adapter.CityListAdapter;
 import sf.hotel.com.hotel_client.view.adapter.OnItemClickListener;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.CityMessage;
-import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
+import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.ICityView;
 import sf.hotel.com.hotel_client.view.presenter.hotel.ICityPresenter;

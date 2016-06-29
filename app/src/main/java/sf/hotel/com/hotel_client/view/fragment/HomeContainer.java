@@ -21,7 +21,7 @@ import sf.hotel.com.hotel_client.view.activity.hotel.TimesActivity;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.HomeMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
-import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
+import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.fragment.hotel.HotelsFragment;
 
 /**

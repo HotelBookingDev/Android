@@ -6,8 +6,9 @@ import butterknife.ButterKnife;
 import rx.Subscription;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.BaseActivity;
+import sf.hotel.com.hotel_client.view.event.Message;
 import sf.hotel.com.hotel_client.view.event.RxBus;
-import sf.hotel.com.hotel_client.view.event.hotel.person.OrderMessage;
+import sf.hotel.com.hotel_client.view.event.person.OrderMessage;
 import sf.hotel.com.hotel_client.view.fragment.person.OrderFragment;
 
 public class OrderActivity extends BaseActivity {
@@ -27,7 +28,7 @@ public class OrderActivity extends BaseActivity {
                 .toObservable(OrderMessage.class)
                 .subscribe(OrderMessage -> {
                     if (OrderMessage.what ==
-                            sf.hotel.com.hotel_client.view.event.hotel.Message.ISEXIT) {
+                            Message.ISEXIT) {
                         finish();
                     } else if (OrderMessage.what == OrderMessage.SEARCHMESSAGE) {
                         start(SearchFragment.newInstance());

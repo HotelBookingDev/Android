@@ -1,4 +1,4 @@
-package sf.hotel.com.hotel_client.view.event.hotel;
+package sf.hotel.com.hotel_client.view.event;
 
 /**
  * Created by 林其望

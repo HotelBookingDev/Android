@@ -21,7 +21,7 @@ import sf.hotel.com.hotel_client.utils.LocationHelper;
 import sf.hotel.com.hotel_client.view.activity.BaseActivity;
 import sf.hotel.com.hotel_client.view.activity.MainActivity;
 import sf.hotel.com.hotel_client.view.event.RxBus;
-import sf.hotel.com.hotel_client.view.event.hotel.person.LoginMessage;
+import sf.hotel.com.hotel_client.view.event.person.LoginMessage;
 import sf.hotel.com.hotel_client.view.fragment.login.LoginFragment;
 import sf.hotel.com.hotel_client.view.fragment.login.RegisterFragment;
 

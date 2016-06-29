@@ -13,9 +13,9 @@ import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.adapter.OrderPagerFragmentAdapter;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.event.RxBus;
-import sf.hotel.com.hotel_client.view.event.hotel.Message;
-import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
-import sf.hotel.com.hotel_client.view.event.hotel.person.OrderMessage;
+import sf.hotel.com.hotel_client.view.event.Message;
+import sf.hotel.com.hotel_client.view.event.MessageFactory;
+import sf.hotel.com.hotel_client.view.event.person.OrderMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 
 public class OrderFragment extends BaseFragment {

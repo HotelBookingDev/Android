@@ -7,7 +7,7 @@ import sf.hotel.com.data.interfaceeneity.HotelsEntityImp;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
-import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
+import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IHotelsView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 

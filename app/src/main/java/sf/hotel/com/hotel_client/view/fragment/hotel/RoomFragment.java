@@ -25,7 +25,7 @@ import sf.hotel.com.hotel_client.view.adapter.RoomLayoutManager;
 import sf.hotel.com.hotel_client.view.adapter.RoomRecyclerPagerAdapter;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
-import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
+import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IRoomView;
 import sf.hotel.com.hotel_client.view.presenter.hotel.IRoomPresenter;
