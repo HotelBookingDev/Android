@@ -10,6 +10,7 @@ public final class Code {
     public static final int LOGIN_PWD_NULL = 0x2;
     public static final int LOGIN_FORMAT_ERROR = 0x3;
 
+
     public static final int LOGIN_PWD_ERROR = 102;
     public static final int HAS_BEEN_REGISTER = 103;
     public static final int INTALLATIONIDISEXIT = -100;

@@ -12,14 +12,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mehdi.sakout.fancybuttons.FancyButton;
-import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.custom.CaptchaButton;
 import sf.hotel.com.hotel_client.view.event.RxBus;
-import sf.hotel.com.hotel_client.view.event.hotel.person.LoginMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
+import sf.hotel.com.hotel_client.view.event.hotel.person.LoginMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
-import sf.hotel.com.hotel_client.view.interfaceview.ICallBack;
 import sf.hotel.com.hotel_client.view.interfaceview.login.IRegisterView;
 import sf.hotel.com.hotel_client.view.presenter.login.IRegisterPresenter;
 
@@ -91,36 +89,6 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
         return getActivity();
     }
 
-    @Override
-    public void success(int type) {
-        switch (type) {
-            case ICallBack.REGISTER:
-                showViewToast("注册成功");
-                showLogin();
-                break;
-            case ICallBack.SMS_CODE:
-                showViewToast("获取验证码成功");
-                break;
-        }
-    }
-
-    @Override
-    public void failed(int type, Throwable e) {
-        if (e instanceof APIException) {
-            APIException exception = (APIException) e;
-            switch (type) {
-                case ICallBack.REGISTER:
-                    showViewToast(exception.getErrorMessage(getBottomContext()));
-                    break;
-                case ICallBack.SMS_CODE:
-                    showViewToast(exception.getErrorMessage(getBottomContext()));
-                    break;
-            }
-        } else {
-            showViewToast(e.getMessage());
-        }
-    }
-
     public void showLogin() {
         RxBus.getDefault().post(MessageFactory.createLoginMessage(LoginMessage.FRAGMENT_BACK));
     }
@@ -130,7 +98,6 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
         super.onDestroy();
         mIRegisterPresenter.destroy();
     }
-
 
     @OnClick({
             R.id.btn_reg_submit, R.id.btn_reg_captcha

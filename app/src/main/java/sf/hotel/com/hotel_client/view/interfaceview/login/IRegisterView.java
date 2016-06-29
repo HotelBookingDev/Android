@@ -20,4 +20,6 @@ public interface IRegisterView extends BaseView {
     String getCaptcha();
 
     void startTimer();
+
+    void showLogin();
 }
