@@ -23,6 +23,9 @@ def eventbusVersion = '3.0.0'
 def reboundVersion = '0.3.8'
 def commonsioVersion = '2.4'
 def searcheviewVersion = '2.0.1'
+def qiuniuSDKVersion = '7.1.3'
+def qiuniuhappydnsVersion = '0.2.3.2'
+
 ext {
 
     android = [
@@ -49,25 +52,28 @@ ext {
             buglySDK                         : "com.tencent.bugly:crashreport:${buglySDKVersion}",
             buglyNDK                         : "com.tencent.bugly:nativecrashreport:${buglyNDKVersion}",
             flaviofaria                      : "com.flaviofaria:kenburnsview:${flaviofariaVersion}",
+
+            //fragment的框架
             yokeyword_fragmentation          : "me.yokeyword:fragmentation:${yokeyword_fragmentationVersion}",
             yokeyword_fragmentation_swipeback: "me.yokeyword:fragmentation-swipeback:${yokeyword_fragmentation_swipebackVersion}",
+            //leancloud相关文件
             avoscloud_sdk                    : "cn.leancloud.android:avoscloud-sdk:${avosclou_Version}",
             avoscloud_push                   : "cn.leancloud.android:avoscloud-push:${avosclou_PushVersion}",
             Java_WebSocke                    : "cn.leancloud.android:Java-WebSocket:${javaSocketVersion}",
             avoscloud_statistics             : "cn.leancloud.android:avoscloud-statistics:${avosclou_PushVersion}",
+            //下拉刷新控件
             pullToRefreshRecyclerView        : "com.nineoldandroids:library:${pullToRefreshRecyclerViewVersion}",
             homhomlin_lib                    : "homhomlin.lib:ptrrv-library:${homhomlin_lib_Version}",
 
             //button的定制
             fancybuttons                     : "com.github.medyo:fancybuttons:${fancybuttonsVersion}",
-
+            //图片加载框架
             glide                            : "com.github.bumptech.glide:glide:${glideVersion}",
-
+            //底部栏控件
             majiajie                         : "me.majiajie:pager-bottom-tab-strip:${majiajiaVersion}",
-
-
+            //facebook 动画库和底部栏结合
             rebound                          : "com.facebook.rebound:rebound:${reboundVersion}",
-
+            //搜索框
             searcheview                      : "com.github.arimorty:floatingsearchview:${searcheviewVersion}"
     ]
 
@@ -83,12 +89,19 @@ ext {
             ormlite_android: "com.j256.ormlite:ormlite-android:${ormliteVersion}",
             // dagger2
             dagger2        : "com.google.dagger:dagger:${daggerVersion}",
-
+            //网络请求
             retrofit       : "com.squareup.retrofit2:retrofit:${retrofit2Version}",
             convertergson  : "com.squareup.retrofit2:converter-gson:${retrofit2Version}",
             adapterrxjava  : "com.squareup.retrofit2:adapter-rxjava:${retrofit2Version}",
             //文件处理
-            commonsio      : "commons-io:commons-io:${commonsioVersion}"
+            commonsio      : "commons-io:commons-io:${commonsioVersion}",
+
+            //七牛
+            qiuniusdk      : "com.qiniu:qiniu-android-sdk:${qiuniuSDKVersion}",
+            qiuniuhappydns : "com.qiniu:happy-dns:${qiuniuhappydnsVersion}",
+
+            //搜索框    //本身data层不该涉及view层 但是view层中的对象需要依赖他自己的对象暂时保留
+            searcheview    : "com.github.arimorty:floatingsearchview:${searcheviewVersion}"
 
     ]
     apt = [
