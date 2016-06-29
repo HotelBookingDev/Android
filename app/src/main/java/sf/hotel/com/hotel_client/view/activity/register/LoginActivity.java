@@ -130,7 +130,9 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onGetLocation(HashMap map) {
                 String cityCode = (String) map.get(LocationHelper.CITYCODE);
+                String cityCityName = (String) map.get(LocationHelper.CITYNAME);
                 PreferencesUtils.saveCityCode(LoginActivity.this, cityCode);
+                PreferencesUtils.saveCityName(LoginActivity.this, cityCityName);
             }
 
             @Override

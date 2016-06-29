@@ -21,6 +21,7 @@ public class LocationHelper {
     public static final String LOCAIONTYPE = "LocType";
 
     public static final String CITYCODE = "city_code";
+    public static final String CITYNAME = "city_name";
     private BDLocationListener mListener = new BDLocationListener() {
 
         @Override
@@ -63,6 +64,7 @@ public class LocationHelper {
         hashMap.put(BLOCATIONSUCCESS, bLocationSuccess);
         hashMap.put(LOCAIONTYPE, location.getLocType());
         hashMap.put(CITYCODE, location.getCityCode());
+        hashMap.put(CITYNAME, location.getCity());
         return hashMap;
     }
 
