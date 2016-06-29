@@ -9,7 +9,6 @@ import com.tencent.bugly.crashreport.CrashReport;
 import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.utils.HotelFileUtils;
 import sf.hotel.com.data.utils.PreferencesUtils;
-import sf.hotel.com.hotel_client.utils.locationoptions.LocationService;
 
 /**
  * Created by FMT on 2016/6/3:19:04
@@ -17,7 +16,6 @@ import sf.hotel.com.hotel_client.utils.locationoptions.LocationService;
  */
 public class HotelApplication extends Application {
     public static Context context;
-    public LocationService locationService;
 
     @Override
     public void onCreate() {
@@ -30,7 +28,6 @@ public class HotelApplication extends Application {
         initBuglyStatus();
 
         //初始化定位
-        locationService = new LocationService(getApplicationContext());
         initDir();
 
         initLocalAttribute();

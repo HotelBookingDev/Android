@@ -11,7 +11,7 @@ import java.util.List;
  * @date 16/6/22.
  */
 @DatabaseTable(tableName = "tb_hotelresult")
-public class HotelResult implements Serializable{
+public class HotelResult implements Serializable {
     /**
      * id : 1
      * hotelLogoImgs : [{"img_url":"http://www.kaiyuanhotels.com/uploads/GW_HOTEL_PIC_A/1603311658416419.jpg","hotel":1},{"img_url":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCADcAW4DASI","hotel":1},{"img_url":"http://image.baidu.com/search/detail?ct=503316480&z=&tn=baiduimagedetail&ipn=d&word=%E9%85%92%E5%BA%97%E6%88%BF%E9%97%B4%E5%9B%BE%E7%89%87300%2A300&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=-1&cs=2539667609,3228311465&os=3230286096,1343286937&simid=31687","hotel":1},{"img_url":"http://image.baidu.com/search/detail?ct=503316480&z=&tn=baiduimagedetail&ipn=d&word=%E9%85%92%E5%BA%97%E6%88%BF%E9%97%B4%E5%9B%BE%E7%89%87300%2A300&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=-1&cs=1289292725,2049668828&os=2762675889,1093042713&simid=41599","hotel":1},{"img_url":"http://image.baidu.com/search/detail?ct=503316480&z=undefined&tn=baiduimagedetail&ipn=d&word=%E9%85%92%E5%BA%97%E6%88%BF%E9%97%B4%E5%9B%BE%E7%89%87&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=undefined&cs=1598272522,2986981968&os=4025898905,4267432034&simi","hotel":1}]
@@ -32,7 +32,7 @@ public class HotelResult implements Serializable{
         this.hotels = hotels;
     }
 
-    public static class HotelsBean implements Serializable{
+    public static class HotelsBean implements Serializable {
         private int id;
         private String name;
         private String address;
@@ -102,7 +102,7 @@ public class HotelResult implements Serializable{
             this.hotelLogoImgs = hotelLogoImgs;
         }
 
-        public static class HotelLogoImgsBean implements Serializable{
+        public static class HotelLogoImgsBean implements Serializable {
             private String img_url;
             private int hotel;
 

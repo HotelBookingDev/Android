@@ -9,6 +9,8 @@ import android.support.annotation.Nullable;
 import android.util.LruCache;
 import android.view.KeyEvent;
 
+import com.baidu.location.BDLocation;
+
 import me.yokeyword.fragmentation.SupportActivity;
 import me.yokeyword.fragmentation.SupportFragment;
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
@@ -95,7 +97,6 @@ public abstract class BaseActivity extends SupportActivity {
             mFragment = getFragmentByKey(fragment);
             start(mFragment);
         } else {
-
             popTo(fragment, true);
 //            start(mFragment);
         }
@@ -112,5 +113,17 @@ public abstract class BaseActivity extends SupportActivity {
         networkInfo = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         boolean isMobileConn = networkInfo.isConnected();
         return isWifiConn || isMobileConn;
+    }
+
+    public void showPrompt(int type) {
+        if (type == BDLocation.TypeNetWorkException) {
+            showToast("当前网络不稳定");
+        } else if (type == BDLocation.TypeOffLineLocation) {
+            if (!checkConnection(this)) {
+                showToast("当前网络状态无");
+            } else {
+                showToast("定位权限未打开");
+            }
+        }
     }
 }
