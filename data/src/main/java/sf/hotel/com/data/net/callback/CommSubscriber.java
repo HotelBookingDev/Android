@@ -4,7 +4,7 @@ import rx.Subscriber;
 
 /**
  * Created by FMT on 2016/6/13:09:59
- * EMAILE 1105896230@qq.com.
+ * email 1105896230@qq.com.
  */
 class CommSubscriber<T> extends Subscriber<T> {
     @Override

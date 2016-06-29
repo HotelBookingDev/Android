@@ -1,4 +1,4 @@
-package sf.hotel.com.hotel_client.view.activity;
+package sf.hotel.com.hotel_client.view.activity.hotel;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,8 +14,12 @@ import me.majiajie.pagerbottomtabstrip.TabLayoutMode;
 import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectListener;
 import rx.Subscription;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.activity.BaseActivity;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
+import sf.hotel.com.hotel_client.view.fragment.hotel.DetailFragment;
+import sf.hotel.com.hotel_client.view.fragment.hotel.HotelsFragment;
+import sf.hotel.com.hotel_client.view.fragment.hotel.RoomFragment;
 
 /**
  * @author MZ
@@ -37,9 +41,6 @@ public class HomeActivity extends BaseActivity {
         initBottom();
         onRxEvent();
     }
-
-
-
 
     //可能这会是主界面
     private void initBottom() {
@@ -66,7 +67,7 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void init() {
-        loadRootFragment(R.id.home_fragment, getFragmentByKey(FragConstant.HOTELS));
+        loadRootFragment(R.id.home_fragment, HotelsFragment.newInstance());
     }
 
     private void showBottomTab() {
@@ -94,10 +95,10 @@ public class HomeActivity extends BaseActivity {
                     //处理类型
                     switch (hotelMessage.what) {
                         case HotelMessage.SHOW_DETAIL_FRAGMENT:
-                            showFragment(FragConstant.DETAIL);
+                            start(DetailFragment.newInstance());
                             break;
                         case HotelMessage.SHOW_ROOM_FRAGMENT:
-                            showFragment(FragConstant.ROOM);
+                            start(RoomFragment.newInstance());
                             break;
                         case HotelMessage.SHOW_BOTTOM_VIEW:
                             showBottomTab();

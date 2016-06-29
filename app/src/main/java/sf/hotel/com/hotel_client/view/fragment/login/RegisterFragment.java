@@ -12,14 +12,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mehdi.sakout.fancybuttons.FancyButton;
-import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.custom.CaptchaButton;
 import sf.hotel.com.hotel_client.view.event.RxBus;
-import sf.hotel.com.hotel_client.view.event.hotel.person.LoginMessage;
-import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
+import sf.hotel.com.hotel_client.view.event.MessageFactory;
+import sf.hotel.com.hotel_client.view.event.person.LoginMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
-import sf.hotel.com.hotel_client.view.interfaceview.ICallBack;
 import sf.hotel.com.hotel_client.view.interfaceview.login.IRegisterView;
 import sf.hotel.com.hotel_client.view.presenter.login.IRegisterPresenter;
 
@@ -45,6 +43,15 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
     FancyButton btnRegSubmit;
 
     IRegisterPresenter mIRegisterPresenter;
+
+    public static RegisterFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        RegisterFragment fragment = new RegisterFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Nullable
     @Override
@@ -101,11 +108,6 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
     public void onDestroy() {
         super.onDestroy();
         mIRegisterPresenter.destroy();
-    }
-
-    @Override
-    public void showViewToast(String msg) {
-        showToast(msg);
     }
 
     @OnClick({

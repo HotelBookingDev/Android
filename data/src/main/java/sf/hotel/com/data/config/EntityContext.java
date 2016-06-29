@@ -13,7 +13,7 @@ import sf.hotel.com.data.utils.PreferencesUtils;
  * email: 1105896230@qq.com
  */
 public class EntityContext {
-    private static EntityContext instance;
+    private static EntityContext instance = new EntityContext();
 
     private static Context context;
 
@@ -53,10 +53,7 @@ public class EntityContext {
         return Observable.just(null);
     }
 
-    public synchronized static EntityContext getInstance() {
-        if (instance == null) {
-            instance = new EntityContext();
-        }
+    public static EntityContext getInstance() {
         return instance;
     }
 }

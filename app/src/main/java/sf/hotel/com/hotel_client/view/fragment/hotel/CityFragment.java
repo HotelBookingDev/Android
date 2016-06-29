@@ -8,11 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import rx.functions.Action1;
 import sf.hotel.com.data.entity.ProcincesResult;
 import sf.hotel.com.hotel_client.R;
@@ -20,7 +18,7 @@ import sf.hotel.com.hotel_client.view.adapter.CityListAdapter;
 import sf.hotel.com.hotel_client.view.adapter.OnItemClickListener;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.CityMessage;
-import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
+import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.ICityView;
 import sf.hotel.com.hotel_client.view.presenter.hotel.ICityPresenter;
@@ -38,6 +36,15 @@ public class CityFragment extends BaseFragment implements ICityView {
     private CityListAdapter mCityListAdapter;
 
     private ICityPresenter mICityPresenter;
+
+    public static CityFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        CityFragment fragment = new CityFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Nullable
     @Override
@@ -116,9 +123,5 @@ public class CityFragment extends BaseFragment implements ICityView {
         return getActivity();
     }
 
-    @Override
-    public void showViewToast(String msg) {
-        showToast(msg);
-    }
 
 }

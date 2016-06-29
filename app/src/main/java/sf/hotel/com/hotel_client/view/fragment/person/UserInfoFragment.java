@@ -109,7 +109,6 @@ public class UserInfoFragment extends BaseFragment implements IUserInfoView {
         return fragment;
     }
 
-
     @OnClick({R.id.iv_avatar})
     public void onClick(View view) {
         int id = view.getId();

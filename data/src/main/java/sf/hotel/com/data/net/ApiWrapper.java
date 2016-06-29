@@ -1,7 +1,5 @@
 package sf.hotel.com.data.net;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 
 import rx.Observable;
@@ -11,7 +9,6 @@ import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.data.entity.netresult.LoginResult;
 import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.entity.netresult.TokenResult;
-import sf.hotel.com.data.utils.LogUtils;
 
 /**
  * @author MZ
@@ -80,7 +77,6 @@ public class ApiWrapper extends RetrofitHelper {
     public Observable<NormalResult> postIntallation(Intallation mIntallation) {
         Gson gson = new Gson();
         String s = gson.toJson(mIntallation);
-        LogUtils.d("s",s);
         return mService.postIntallation(mIntallation).compose(this.<NormalResult>applySchedulers());
     }
 
@@ -89,7 +85,8 @@ public class ApiWrapper extends RetrofitHelper {
      */
 
     public Observable<HotelResult> callHotelsByCityId(String cityId, String page) {
-        return mService.callHotelsByCityId(cityId, page).compose(this.<HotelResult>applySchedulers());
+        return mService.callHotelsByCityId(cityId, page)
+                .compose(this.<HotelResult>applySchedulers());
     }
 
     public Observable<TokenResult> getTokenResult() {

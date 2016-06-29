@@ -55,7 +55,13 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         fragment.setArguments(args);
         return fragment;
     }
+    public static HotelsFragment newInstance() {
 
+        Bundle args = new Bundle();
+        HotelsFragment fragment = new HotelsFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
     HomePullViewAdapter mPullAdapter;
 
     private IHotelPresenter mIHotelPresenter;
@@ -108,7 +114,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        showToast(throwable.getMessage() + "加载失败");
+                        showViewToast(throwable.getMessage() + "加载失败");
                         showLog(throwable.getMessage());
                     }
                 });
@@ -195,10 +201,6 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         return getActivity();
     }
 
-    @Override
-    public void showViewToast(String msg) {
-        showToast(msg);
-    }
 
     @Override
     public void onDestroy() {

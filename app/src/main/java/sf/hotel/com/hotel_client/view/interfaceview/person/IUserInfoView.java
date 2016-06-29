@@ -1,6 +1,5 @@
 package sf.hotel.com.hotel_client.view.interfaceview.person;
 
-import android.content.Context;
 import android.widget.ImageView;
 
 import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
@@ -13,8 +12,6 @@ import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
 public interface IUserInfoView extends BaseView {
 
     ImageView getAvatar();
-
-    Context getBottomContext();
 
     void setUserName(String name);
 

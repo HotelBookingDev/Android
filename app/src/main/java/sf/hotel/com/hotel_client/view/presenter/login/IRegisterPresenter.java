@@ -8,7 +8,6 @@ import sf.hotel.com.data.interfaceeneity.person.RegisterEntityImp;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.data.utils.StringUtils;
-import sf.hotel.com.hotel_client.view.interfaceview.ICallBack;
 import sf.hotel.com.hotel_client.view.interfaceview.login.IRegisterView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 
@@ -38,13 +37,17 @@ public class IRegisterPresenter extends SuperPresenter {
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
-                        failed(ICallBack.REGISTER, e);
+                        handlingException(e);
+
                     }
 
                     @Override
                     public void onNext(NormalResult normalResult) {
                         super.onNext(normalResult);
-                        success(ICallBack.REGISTER);
+
+                        mIRegisterView.showViewToast("注册成功");
+                        mIRegisterView.showLogin();
+
                         //传递md5的数值
                         saveUserInfo(mIRegisterView.getUName(), pwd);
                     }
@@ -58,45 +61,19 @@ public class IRegisterPresenter extends SuperPresenter {
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
-                        failed(ICallBack.SMS_CODE, e);
+
+                        handlingException(e);
+
                     }
 
                     @Override
                     public void onNext(NormalResult normalResult) {
                         super.onNext(normalResult);
-                        mIRegisterView.startTimer();
-                        success(ICallBack.SMS_CODE);
+
+                        mIRegisterView.showViewToast("获取验证码成功");
                     }
                 });
         mCompositeSubscription.add(subscribe);
-    }
-
-    public void success(int type) {
-        switch (type) {
-            case ICallBack.REGISTER:
-                mIRegisterView.showViewToast("注册成功");
-                mIRegisterView.showLogin();
-                break;
-            case ICallBack.SMS_CODE:
-                mIRegisterView.showViewToast("获取验证码成功");
-                break;
-        }
-    }
-
-    public void failed(int type, Throwable e) {
-        if (e instanceof APIException) {
-            APIException exception = (APIException) e;
-            switch (type) {
-                case ICallBack.REGISTER:
-                    mIRegisterView.showViewToast(exception.getErrorMessage(mIRegisterView.getBottomContext()));
-                    break;
-                case ICallBack.SMS_CODE:
-                    mIRegisterView.showViewToast(exception.getErrorMessage(mIRegisterView.getBottomContext()));
-                    break;
-            }
-        } else {
-            mIRegisterView.showViewToast(e.getMessage());
-        }
     }
 
 
@@ -117,7 +94,11 @@ public class IRegisterPresenter extends SuperPresenter {
 
     @Override
     public void handlingException(Throwable e) {
+        if (e instanceof APIException) {
 
+        } else {
+            mIRegisterView.showViewToast(e.getMessage());
+        }
     }
 
     private void saveUserInfo(String phone, String pwd) {

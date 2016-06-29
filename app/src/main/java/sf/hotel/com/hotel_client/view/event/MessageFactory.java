@@ -1,10 +1,14 @@
-package sf.hotel.com.hotel_client.view.event.hotel;
+package sf.hotel.com.hotel_client.view.event;
 
 import android.util.LruCache;
 
-import sf.hotel.com.hotel_client.view.event.hotel.person.LoginMessage;
-import sf.hotel.com.hotel_client.view.event.hotel.person.OrderMessage;
-import sf.hotel.com.hotel_client.view.event.hotel.person.PersonMessage;
+import sf.hotel.com.hotel_client.view.event.hotel.CityMessage;
+import sf.hotel.com.hotel_client.view.event.hotel.HomeMessage;
+import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
+import sf.hotel.com.hotel_client.view.event.hotel.RoomMessage;
+import sf.hotel.com.hotel_client.view.event.person.LoginMessage;
+import sf.hotel.com.hotel_client.view.event.person.OrderMessage;
+import sf.hotel.com.hotel_client.view.event.person.PersonMessage;
 
 /**
  * Created by 林其望

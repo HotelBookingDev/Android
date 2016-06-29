@@ -12,12 +12,12 @@ import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UserdOrder extends BaseFragment {
-    public static UserdOrder newInstance() {
+public class UsedOrder extends BaseFragment {
+    public static UsedOrder newInstance() {
 
         Bundle args = new Bundle();
 
-        UserdOrder fragment = new UserdOrder();
+        UsedOrder fragment = new UsedOrder();
         fragment.setArguments(args);
         return fragment;
     }

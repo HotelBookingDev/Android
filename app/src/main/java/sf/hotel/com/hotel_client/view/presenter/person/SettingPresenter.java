@@ -57,5 +57,6 @@ public class SettingPresenter extends SuperPresenter {
         PreferencesUtils.savePhone(mSettingView.getBottomContext(), null);
         PreferencesUtils.saveLogin(mSettingView.getBottomContext(), false);
         PreferencesUtils.saveUserId(mSettingView.getBottomContext(), null);
+        PreferencesUtils.saveHotelResult(mSettingView.getBottomContext(), null);
     }
 }

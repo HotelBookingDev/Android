@@ -1,13 +1,14 @@
-package sf.hotel.com.hotel_client.view.activity;
+package sf.hotel.com.hotel_client.view.activity.hotel;
 
 import android.os.Bundle;
-import android.view.View;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
+import sf.hotel.com.hotel_client.view.activity.BaseActivity;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
+import sf.hotel.com.hotel_client.view.fragment.TimesFragment;
 
 /**
  * @author MZ
@@ -26,18 +27,13 @@ public class TimesActivity extends BaseActivity {
         ButterKnife.bind(this);
         init();
 
-        mHotelTitleView.addLeftClick(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        mHotelTitleView.addLeftClick(v -> finish());
 
         TransulcentUtils.setFixWindow(this);
     }
 
     private void init() {
-        loadRootFragment(R.id.activity_times_frame, getFragmentByKey(FragConstant.Times));
+        loadRootFragment(R.id.activity_times_frame, TimesFragment.newInstance());
     }
 
 }

@@ -18,6 +18,7 @@ public class ChangePersenter extends SuperPresenter {
     public void changePwd() {
         EditText confimPwd = mIChangePwdView.getConfimPwd();
         EditText newPwd = mIChangePwdView.getNewPwd();
+        EditText oldPwd = mIChangePwdView.getOldPwd();
         if (!confimPwd.getText().toString().equals(newPwd.getText().toString())) {
             mIChangePwdView.showViewToast("确认密码不相同");
         } else {

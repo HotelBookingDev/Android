@@ -19,13 +19,13 @@ import sf.hotel.com.data.utils.HotelFileUtils;
 import sf.hotel.com.data.utils.PreferencesUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.AndroidUtils;
-import sf.hotel.com.hotel_client.view.activity.LoginActivity;
+import sf.hotel.com.hotel_client.view.activity.register.LoginActivity;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.custom.ToggleButton;
 import sf.hotel.com.hotel_client.view.event.RxBus;
-import sf.hotel.com.hotel_client.view.event.hotel.person.LoginMessage;
-import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
-import sf.hotel.com.hotel_client.view.event.hotel.person.PersonMessage;
+import sf.hotel.com.hotel_client.view.event.MessageFactory;
+import sf.hotel.com.hotel_client.view.event.person.LoginMessage;
+import sf.hotel.com.hotel_client.view.event.person.PersonMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.person.ISettingView;
 import sf.hotel.com.hotel_client.view.presenter.person.SettingPresenter;
@@ -82,7 +82,7 @@ public class SettingFragment extends BaseFragment implements ISettingView {
     }
 
     public void aboutUs() {
-        showToast("aboutUs");
+        showViewToast("aboutUs");
     }
 
     public void logOutToLoginActivity() {
@@ -126,7 +126,6 @@ public class SettingFragment extends BaseFragment implements ISettingView {
         settingPresenter.changeAcceptMsg();
     }
 
-
     @OnClick({
             R.id.tb_accept_msg,
             R.id.setting_clear,
@@ -158,7 +157,7 @@ public class SettingFragment extends BaseFragment implements ISettingView {
     }
 
     private void feedBack() {
-        showToast("意见反馈");
+        showViewToast("意见反馈");
     }
 
     @Override

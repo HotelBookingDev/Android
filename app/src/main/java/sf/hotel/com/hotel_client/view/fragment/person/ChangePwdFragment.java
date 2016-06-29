@@ -65,5 +65,4 @@ public class ChangePwdFragment extends BaseFragment implements IChangePwdView {
     public EditText getConfimPwd() {
         return mConfirmPwdEditTxt;
     }
-
 }

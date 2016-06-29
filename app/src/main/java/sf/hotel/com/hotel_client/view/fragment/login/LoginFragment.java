@@ -16,8 +16,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.event.RxBus;
-import sf.hotel.com.hotel_client.view.event.hotel.person.LoginMessage;
-import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
+import sf.hotel.com.hotel_client.view.event.MessageFactory;
+import sf.hotel.com.hotel_client.view.event.person.LoginMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.login.ILoginView;
 import sf.hotel.com.hotel_client.view.presenter.login.ILoginPresenter;
@@ -35,6 +35,15 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     @BindView(R.id.iv_avatar)
     ImageView mIvAvatar;
     ILoginPresenter mILoginPresenter;
+
+    public static LoginFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        LoginFragment fragment = new LoginFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -119,11 +128,6 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     @Override
     public Context getBottomContext() {
         return getActivity();
-    }
-
-    @Override
-    public void showViewToast(String msg) {
-        showToast(msg);
     }
 
     @Override

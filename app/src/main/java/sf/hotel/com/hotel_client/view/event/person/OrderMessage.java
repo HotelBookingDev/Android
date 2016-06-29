@@ -1,6 +1,6 @@
-package sf.hotel.com.hotel_client.view.event.hotel.person;
+package sf.hotel.com.hotel_client.view.event.person;
 
-import sf.hotel.com.hotel_client.view.event.hotel.Message;
+import sf.hotel.com.hotel_client.view.event.Message;
 
 /**
  * Created by 林其望

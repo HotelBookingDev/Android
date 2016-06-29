@@ -31,8 +31,8 @@ public class UserDao {
 
     public static boolean isCache(long id, Context context) {
         boolean isCache = false;
-        UserEntity userEneity = getUserEntity(id, context);
-        if (userEneity != null) {
+        UserEntity userEntity = getUserEntity(id, context);
+        if (userEntity != null) {
             isCache = true;
         }
         return isCache;

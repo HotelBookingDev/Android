@@ -17,23 +17,13 @@ import sf.hotel.com.hotel_client.utils.TToast;
  * EMAILE 1105896230@qq.com.
  */
 public class BaseFragment extends SupportFragment {
-
+    protected String TAG = this.getClass().getSimpleName();
     protected CompositeSubscription mCompositeSubscription;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCompositeSubscription = new CompositeSubscription();
-    }
-
-    protected String TAG = this.getClass().getSimpleName();
-
-    protected void showToast(String msg) {
-        TToast.showToast(msg);
-    }
-
-    protected void showLog(String msg) {
-        LogUtils.e(TAG, msg);
     }
 
     @Nullable
@@ -60,28 +50,15 @@ public class BaseFragment extends SupportFragment {
         }
     }
 
-    public void starFragment(Class fragment) {
-        start(getFragmentByKey(fragment));
-    }
-
-    protected SupportFragment getFragmentByKey(Class fragment) {
-
-        BaseFragment baseFragment = null;
-        try {
-            baseFragment = (BaseFragment) fragment.newInstance();
-        } catch (java.lang.InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return baseFragment;
-    }
-
     public Context getBottomContext() {
         return getActivity();
     }
 
     public void showViewToast(String msg) {
-        showToast(msg);
+        TToast.showToast(msg);
+    }
+
+    protected void showLog(String msg) {
+        LogUtils.e(TAG, msg);
     }
 }

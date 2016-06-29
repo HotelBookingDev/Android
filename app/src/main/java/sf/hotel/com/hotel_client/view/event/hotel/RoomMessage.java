@@ -1,5 +1,7 @@
 package sf.hotel.com.hotel_client.view.event.hotel;
 
+import sf.hotel.com.hotel_client.view.event.Message;
+
 /**
  * @author MZ
  * @email sanfenruxi1@163.com

@@ -88,7 +88,7 @@ public class SearchFragment extends BaseFragment implements ISearchView {
     }
 
     @Override
-    public void dissProgress() {
+    public void dismissProgress() {
         mSearchView.hideProgress();
     }
 

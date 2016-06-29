@@ -25,7 +25,7 @@ import sf.hotel.com.hotel_client.view.adapter.RoomLayoutManager;
 import sf.hotel.com.hotel_client.view.adapter.RoomRecyclerPagerAdapter;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
-import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
+import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IRoomView;
 import sf.hotel.com.hotel_client.view.presenter.hotel.IRoomPresenter;
@@ -58,7 +58,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     private DetailPullViewAdapter mPullAdapter;
 
     public static RoomFragment newInstance(Bundle bundle) {
-        
+
         if (bundle != null) {
             args = bundle;
         } else {
@@ -68,6 +68,15 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         fragment.setArguments(args);
         return fragment;
     }
+
+    public static RoomFragment newInstance() {
+
+        Bundle args = new Bundle();
+        RoomFragment fragment = new RoomFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -102,6 +111,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int scrollState) {
             }
+
             @Override
             public void onScrolled(RecyclerView recyclerView, int i, int i2) {
 //                mPositionText.setText("First: " + mRecyclerViewPager.getFirstVisiblePosition());
@@ -174,5 +184,4 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     public void close() {
         RxBus.getDefault().post(MessageFactory.createHotelMessage(HotelMessage.FRAGMENT_BACK));
     }
-
 }

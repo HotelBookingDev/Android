@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="sf.hotel.com.hotel_client.view.fragment.person.orders.UserdOrder">
+    tools:context=".view.fragment.person.orders.UsedOrder">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
