@@ -17,7 +17,6 @@ import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.utils.LogUtils;
-import sf.hotel.com.hotel_client.utils.StatusBarUtil;
 import sf.hotel.com.hotel_client.utils.TToast;
 import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
@@ -48,7 +47,6 @@ public abstract class BaseActivity extends SupportActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        StatusBarUtil.setTransparent(this);
     }
 
     @Override

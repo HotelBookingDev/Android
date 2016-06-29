@@ -9,8 +9,8 @@ import sf.hotel.com.data.utils.PreferencesUtils;
 
 /**
  * @author MZ
- * @email sanfenruxi1@163.com
- * @date 16/6/28.
+ * email sanfenruxi1@163.com
+ * data 16/6/28.
  */
 public class HotelDao{
 

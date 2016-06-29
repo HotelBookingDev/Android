@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import sf.hotel.com.data.entity.LocalOrder;
+import sf.hotel.com.data.utils.TimeUtils;
 
 /**
  * Created by 林其望
@@ -18,8 +19,7 @@ public class LocalOrderDao {
 
     public static void add(LocalOrder order, Context context) {
         try {
-            order.setFirstsearch_time(System.currentTimeMillis());
-
+            order.setFirstsearch_time(TimeUtils.getCurrentTimes());
             DatabaseHelper.getHelper(context).getLocalOrders().createIfNotExists(order);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -29,7 +29,7 @@ public class LocalOrderDao {
     public static void update(LocalOrder order, Context context) {
         try {
             LocalOrder localOrder = getLocalOrder(order.getOrderNum(), context);
-            if (localOrder!=null){
+            if (localOrder != null) {
                 order.setFirstsearch_time(localOrder.getFirstsearch_time());
             }
             DatabaseHelper.getHelper(context).getLocalOrders().createOrUpdate(order);

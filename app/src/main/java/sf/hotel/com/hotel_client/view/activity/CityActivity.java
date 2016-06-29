@@ -10,14 +10,10 @@ import rx.Subscription;
 import rx.functions.Action1;
 import sf.hotel.com.data.entity.ProcincesResult;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.utils.StatusBarUtil;
-import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.CityMessage;
-import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
 import sf.hotel.com.hotel_client.view.fragment.HomeContainer;
-import sf.hotel.com.hotel_client.view.fragment.hotel.HotelsFragment;
 
 /**
  * @author MZ
@@ -45,8 +41,6 @@ public class CityActivity extends BaseActivity {
         });
     }
 
-
-
     private void onRxEvent() {
         Subscription subscribe = RxBus.getDefault()
                 .toObservable(CityMessage.class)
@@ -61,7 +55,7 @@ public class CityActivity extends BaseActivity {
 
                                     Intent intent = new Intent();
                                     Bundle bundle = new Bundle();
-                                    bundle.putSerializable("city",citysBean);
+                                    bundle.putSerializable("city", citysBean);
                                     intent.putExtras(bundle);
                                     setResult(HomeContainer.CITY_REQUEST_CODE, intent);
                                     finish();

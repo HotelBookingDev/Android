@@ -8,6 +8,7 @@ import rx.Observable;
 import sf.hotel.com.data.cache.LocalOrderCacheImpl;
 import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.entity.LocalOrder;
+import sf.hotel.com.data.utils.TimeUtils;
 
 /**
  * Created by 林其望
@@ -40,7 +41,7 @@ public class ISearchOrderImp implements ISearchOrder {
     public void update(String query, Context context) {
         LocalOrder localOrder = new LocalOrder();
         localOrder.setOrderNum(query);
-        localOrder.setUpdate_time(System.currentTimeMillis());
+        localOrder.setUpdate_time(TimeUtils.getCurrentTimes());
         localOrder.setUserId(
                 String.valueOf(EntityContext.getInstance().getmCurrentUser().getUserId()));
         new LocalOrderCacheImpl().update(localOrder, context);
