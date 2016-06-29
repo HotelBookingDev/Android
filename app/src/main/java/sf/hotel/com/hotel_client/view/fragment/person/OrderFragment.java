@@ -53,7 +53,7 @@ public class OrderFragment extends BaseFragment {
         mViewPager.setAdapter(new OrderPagerFragmentAdapter(getChildFragmentManager()));
         mTabLayout.setupWithViewPager(mViewPager);
         mView_title.addLeftClick(v -> {
-            RxBus.getDefault().post(MessageFactory.createPersonMessage(Message.ISEXIT));
+            RxBus.getDefault().post(MessageFactory.createOrderMessage(Message.ISEXIT));
         });
         mView_title.addRightClick(v -> RxBus.getDefault()
                 .post(MessageFactory.createOrderMessage(OrderMessage.SEARCHMESSAGE)));
