@@ -10,13 +10,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rx.Subscription;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.view.activity.FragConstant;
 import sf.hotel.com.hotel_client.view.activity.person.OrderActivity;
 import sf.hotel.com.hotel_client.view.activity.person.SettingActivity;
 import sf.hotel.com.hotel_client.view.activity.person.UserInfoActivity;
 import sf.hotel.com.hotel_client.view.event.RxBus;
-import sf.hotel.com.hotel_client.view.event.hotel.person.LoginMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.Message;
+import sf.hotel.com.hotel_client.view.event.hotel.person.LoginMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.person.PersonMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.person.IPersonView;
@@ -59,8 +58,7 @@ public class PersonFragment extends BaseFragment implements IPersonView {
                     if (message instanceof PersonMessage) {
                         switch (message.what) {
                             case PersonMessage.ORDER:
-                                starFragment(FragConstant.ORDER);
-                                getTopFragment();
+                                start(OrderFragment.newInstance());
                                 break;
                         }
                     }

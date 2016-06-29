@@ -130,10 +130,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
         return getActivity();
     }
 
-    @Override
-    public void showViewToast(String msg) {
-        showToast(msg);
-    }
+
 
     @Override
     public void onDestroy() {

@@ -8,11 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import rx.functions.Action1;
 import sf.hotel.com.data.entity.ProcincesResult;
 import sf.hotel.com.hotel_client.R;
@@ -104,11 +102,6 @@ public class CityFragment extends BaseFragment implements ICityView {
     @Override
     public Context getBottomContext() {
         return getActivity();
-    }
-
-    @Override
-    public void showViewToast(String msg) {
-        showToast(msg);
     }
 
     @Override

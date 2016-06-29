@@ -82,7 +82,7 @@ public class SettingFragment extends BaseFragment implements ISettingView {
     }
 
     public void aboutUs() {
-        showToast("aboutUs");
+        showViewToast("aboutUs");
     }
 
     public void logOutToLoginActivity() {
@@ -167,7 +167,7 @@ public class SettingFragment extends BaseFragment implements ISettingView {
     }
 
     private void feedBack() {
-        showToast("意见反馈");
+        showViewToast("意见反馈");
     }
 
     @Override

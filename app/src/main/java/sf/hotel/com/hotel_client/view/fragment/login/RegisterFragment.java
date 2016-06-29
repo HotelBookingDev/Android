@@ -131,10 +131,6 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
         mIRegisterPresenter.destroy();
     }
 
-    @Override
-    public void showViewToast(String msg) {
-        showToast(msg);
-    }
 
     @OnClick({
             R.id.btn_reg_submit, R.id.btn_reg_captcha
