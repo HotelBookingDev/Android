@@ -151,7 +151,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        mIHotelPresenter.callHotelsByCityId("1", "1");
+                        mIHotelPresenter.callHotelsByCityId(String.valueOf(mCitysBean.getId()), "1");
                         mPullView.setOnRefreshComplete();
                         mPullView.onFinishLoading(true, false);
                     }

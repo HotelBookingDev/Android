@@ -29,7 +29,7 @@ public class TimesActivity extends BaseActivity {
 
         mHotelTitleView.addLeftClick(v -> finish());
 
-        TransulcentUtils.setFixWindow(this);
+        TransulcentUtils.setColorWindow(this, R.color.colorPrimary);
     }
 
     private void init() {

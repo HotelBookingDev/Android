@@ -41,7 +41,7 @@ public class MainActivity extends BaseActivity {
         initView();
         RxEvent();
 
-        TransulcentUtils.setFixWindow(this);
+        TransulcentUtils.setColorWindow(this, R.color.colorPrimary);
     }
 
     private void initFragmets() {
