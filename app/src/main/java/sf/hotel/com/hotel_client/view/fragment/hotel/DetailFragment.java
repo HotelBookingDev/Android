@@ -141,14 +141,4 @@ public class DetailFragment extends BaseFragment implements IDetailView {
     public void showViewToast(String msg) {
 
     }
-
-    @Override
-    public void success(int type) {
-
-    }
-
-    @Override
-    public void failed(int type, Throwable e) {
-
-    }
 }

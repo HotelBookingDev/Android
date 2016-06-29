@@ -1,5 +1,7 @@
 package sf.hotel.com.hotel_client.view.presenter.hotel;
 
+import android.content.Context;
+
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.entity.ProcincesResult;
@@ -28,6 +30,15 @@ public class ICityPresenter extends SuperPresenter {
         mCompositeSubscription = new CompositeSubscription();
         mICityEntityImp = new ICityEntityImp();
     }
+
+    public ProcincesResult getProcincesResult(Context context){
+        return mICityEntityImp.getProcincesResult(context);
+    }
+
+    public void saveCitysBean(Context context, ProcincesResult.ProcincesBean.CitysBean citysBean){
+        mICityEntityImp.saveCitysBean(context, citysBean);
+    }
+
 
     public void callCityList() {
         Subscription subscribe = mICityEntityImp.callCityList()

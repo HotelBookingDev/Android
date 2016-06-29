@@ -126,15 +126,6 @@ public class SettingFragment extends BaseFragment implements ISettingView {
         settingPresenter.changeAcceptMsg();
     }
 
-    @Override
-    public void success(int type) {
-
-    }
-
-    @Override
-    public void failed(int type, Throwable e) {
-
-    }
 
     @OnClick({
             R.id.tb_accept_msg,

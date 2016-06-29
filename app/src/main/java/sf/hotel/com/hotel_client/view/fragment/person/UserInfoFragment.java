@@ -109,15 +109,6 @@ public class UserInfoFragment extends BaseFragment implements IUserInfoView {
         return fragment;
     }
 
-    @Override
-    public void success(int type) {
-
-    }
-
-    @Override
-    public void failed(int type, Throwable e) {
-
-    }
 
     @OnClick({R.id.iv_avatar})
     public void onClick(View view) {

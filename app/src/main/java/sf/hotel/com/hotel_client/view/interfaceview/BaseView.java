@@ -6,7 +6,7 @@ import android.content.Context;
  * Created by FMT on 2016/6/3:18:46
  * EMAILE 1105896230@qq.com.
  */
-public interface BaseView extends ICallBack {
+public interface BaseView {
     Context getBottomContext();
 
     void showViewToast(String msg);

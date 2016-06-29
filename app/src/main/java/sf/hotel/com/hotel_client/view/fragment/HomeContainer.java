@@ -14,6 +14,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rx.Subscription;
 import rx.functions.Action1;
+import sf.hotel.com.data.datasource.HotelDao;
+import sf.hotel.com.data.datasource.UserDao;
 import sf.hotel.com.data.entity.ProcincesResult;
 import sf.hotel.com.data.utils.PreferencesUtils;
 import sf.hotel.com.hotel_client.HotelApplication;
@@ -26,6 +28,7 @@ import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
 import sf.hotel.com.hotel_client.view.fragment.hotel.HotelsFragment;
 import sf.hotel.com.hotel_client.view.fragment.hotel.HotelsRecommendFragment;
+import sf.hotel.com.hotel_client.view.presenter.hotel.IHomePresenter;
 
 /**
  * @author MZ
@@ -45,7 +48,9 @@ public class HomeContainer extends BaseFragment {
     View mSearchView;
 
 
-    static ProcincesResult.ProcincesBean.CitysBean citysBean = new ProcincesResult.ProcincesBean.CitysBean();
+    public IHomePresenter mIHomePresenter;
+
+    static volatile ProcincesResult.ProcincesBean.CitysBean citysBean = new ProcincesResult.ProcincesBean.CitysBean();
 
     static {
         citysBean.setId(1);
@@ -95,6 +100,8 @@ public class HomeContainer extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_container_home, container, false);
         ButterKnife.bind(this, view);
+        mIHomePresenter = new IHomePresenter(this);
+
         init( savedInstanceState);
         onRxEvent();
 
@@ -103,15 +110,8 @@ public class HomeContainer extends BaseFragment {
     }
 
     private void initView() {
-
-        String cityCode = PreferencesUtils.getCityCode(getBottomContext());
-        String cityName = PreferencesUtils.getCityName(getBottomContext());
-
-        if (cityCode != null && cityName != null){
-            citysBean.setId(Integer.valueOf(cityCode));
-            citysBean.setName(cityName);
-        }
-        mCityName.setText(citysBean.getName());
+        mIHomePresenter.callCityList();
+        mIHomePresenter.loadCitysBeanCache();
     }
 
     private void init(@Nullable Bundle savedInstanceState) {
@@ -137,10 +137,27 @@ public class HomeContainer extends BaseFragment {
             Bundle bundle = data.getExtras();
             ProcincesResult.ProcincesBean.CitysBean citysBean = (ProcincesResult.ProcincesBean.CitysBean) bundle.getSerializable("city");
             assert citysBean != null;
-            mCityName.setText(citysBean.getName());
+            setTextCityName(citysBean.getName());
+            saveTextCity(citysBean);
             RxBus.getDefault().post(MessageFactory
                     .createHotelMessage(HotelMessage.REFRESH_LIST_VIEW_HOTEL, citysBean));
         }
     }
 
+    public void setTextCityName(String s){
+        mCityName.setText(s);
+    }
+
+    public void saveTextCity(ProcincesResult.ProcincesBean.CitysBean citysBean){
+        mIHomePresenter.saveCitysBean(citysBean);
+    }
+
+
+    public static ProcincesResult.ProcincesBean.CitysBean getCitysBean() {
+        return citysBean;
+    }
+
+    public static void setCitysBean(ProcincesResult.ProcincesBean.CitysBean citysBean) {
+        HomeContainer.citysBean = citysBean;
+    }
 }

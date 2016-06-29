@@ -36,6 +36,20 @@ public class PreferencesUtils {
 
     public static final String HOTEL_RESULT = "hotel_result";
 
+    public static final String HOTEL_CITYS = "hotel_citys";
+
+    public static final String HOTEL_PROC = "hotel_proc";
+
+    private static void put(Context context,String key ,String value){
+        SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
+        preferences.edit().putString(key, value).apply();
+    }
+
+    private static String get(Context context, String key){
+        SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
+        return preferences.getString(key, null);
+    }
+
     public static void saveInstallationId(Context context, String installationId) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
         preferences.edit().putString(INSTALLATIONID, installationId).apply();
@@ -150,5 +164,19 @@ public class PreferencesUtils {
     public static String getHotelResult(Context context){
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
         return preferences.getString(HOTEL_RESULT, "");
+    }
+
+    public static String getCitysBean(Context context){
+        return get(context, HOTEL_CITYS);
+    }
+
+    public static void saveCitysBean(Context context, String citysBean){
+        put(context, HOTEL_CITYS, citysBean);
+    }
+
+    public static String getProcincesResult(Context context){return get(context, HOTEL_PROC);}
+
+    public static void saveProcincesResult(Context context, String procincesResult){
+        put(context,HOTEL_PROC, procincesResult);
     }
 }

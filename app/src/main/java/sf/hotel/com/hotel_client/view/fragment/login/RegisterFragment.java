@@ -91,36 +91,8 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
         return getActivity();
     }
 
-    @Override
-    public void success(int type) {
-        switch (type) {
-            case ICallBack.REGISTER:
-                showViewToast("注册成功");
-                showLogin();
-                break;
-            case ICallBack.SMS_CODE:
-                showViewToast("获取验证码成功");
-                break;
-        }
-    }
 
     @Override
-    public void failed(int type, Throwable e) {
-        if (e instanceof APIException) {
-            APIException exception = (APIException) e;
-            switch (type) {
-                case ICallBack.REGISTER:
-                    showViewToast(exception.getErrorMessage(getBottomContext()));
-                    break;
-                case ICallBack.SMS_CODE:
-                    showViewToast(exception.getErrorMessage(getBottomContext()));
-                    break;
-            }
-        } else {
-            showViewToast(e.getMessage());
-        }
-    }
-
     public void showLogin() {
         RxBus.getDefault().post(MessageFactory.createLoginMessage(LoginMessage.FRAGMENT_BACK));
     }

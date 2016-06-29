@@ -175,13 +175,4 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         RxBus.getDefault().post(MessageFactory.createHotelMessage(HotelMessage.FRAGMENT_BACK));
     }
 
-    @Override
-    public void success(int type) {
-
-    }
-
-    @Override
-    public void failed(int type, Throwable e) {
-
-    }
 }

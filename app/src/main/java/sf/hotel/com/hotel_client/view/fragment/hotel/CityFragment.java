@@ -48,10 +48,20 @@ public class CityFragment extends BaseFragment implements ICityView {
         mICityPresenter = new ICityPresenter(this);
         initGrid();
 
-        initCityList();
+
 
         onRxEvent();
+
+        initCityCache();
         return view;
+    }
+
+    private void initCityCache() {
+        ProcincesResult procincesResult = mICityPresenter.getProcincesResult(getBottomContext());
+        if (procincesResult != null)
+            mCityListAdapter.setList(procincesResult);
+        else
+            initCityList();
     }
 
     private void onRxEvent() {
@@ -111,13 +121,4 @@ public class CityFragment extends BaseFragment implements ICityView {
         showToast(msg);
     }
 
-    @Override
-    public void success(int type) {
-
-    }
-
-    @Override
-    public void failed(int type, Throwable e) {
-
-    }
 }

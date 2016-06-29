@@ -5,6 +5,7 @@ import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.interfaceeneity.person.IRegisterEntity;
 import sf.hotel.com.data.interfaceeneity.person.RegisterEntityImp;
+import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.data.utils.StringUtils;
 import sf.hotel.com.hotel_client.view.interfaceview.ICallBack;
@@ -37,13 +38,13 @@ public class IRegisterPresenter extends SuperPresenter {
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
-                        mIRegisterView.failed(ICallBack.REGISTER, e);
+                        failed(ICallBack.REGISTER, e);
                     }
 
                     @Override
                     public void onNext(NormalResult normalResult) {
                         super.onNext(normalResult);
-                        mIRegisterView.success(ICallBack.REGISTER);
+                        success(ICallBack.REGISTER);
                         //传递md5的数值
                         saveUserInfo(mIRegisterView.getUName(), pwd);
                     }
@@ -57,18 +58,47 @@ public class IRegisterPresenter extends SuperPresenter {
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
-                        mIRegisterView.failed(ICallBack.SMS_CODE, e);
+                        failed(ICallBack.SMS_CODE, e);
                     }
 
                     @Override
                     public void onNext(NormalResult normalResult) {
                         super.onNext(normalResult);
                         mIRegisterView.startTimer();
-                        mIRegisterView.success(ICallBack.SMS_CODE);
+                        success(ICallBack.SMS_CODE);
                     }
                 });
         mCompositeSubscription.add(subscribe);
     }
+
+    public void success(int type) {
+        switch (type) {
+            case ICallBack.REGISTER:
+                mIRegisterView.showViewToast("注册成功");
+                mIRegisterView.showLogin();
+                break;
+            case ICallBack.SMS_CODE:
+                mIRegisterView.showViewToast("获取验证码成功");
+                break;
+        }
+    }
+
+    public void failed(int type, Throwable e) {
+        if (e instanceof APIException) {
+            APIException exception = (APIException) e;
+            switch (type) {
+                case ICallBack.REGISTER:
+                    mIRegisterView.showViewToast(exception.getErrorMessage(mIRegisterView.getBottomContext()));
+                    break;
+                case ICallBack.SMS_CODE:
+                    mIRegisterView.showViewToast(exception.getErrorMessage(mIRegisterView.getBottomContext()));
+                    break;
+            }
+        } else {
+            mIRegisterView.showViewToast(e.getMessage());
+        }
+    }
+
 
     @Override
     public void resume() {

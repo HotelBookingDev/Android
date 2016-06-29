@@ -112,15 +112,6 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     }
 
     @Override
-    public void success(int type) {
-    }
-
-    @Override
-    public void failed(int type, Throwable e) {
-
-    }
-
-    @Override
     public Context getContext() {
         return getActivity();
     }
