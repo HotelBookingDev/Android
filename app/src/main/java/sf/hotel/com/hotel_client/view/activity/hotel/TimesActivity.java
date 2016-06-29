@@ -1,14 +1,12 @@
 package sf.hotel.com.hotel_client.view.activity.hotel;
 
 import android.os.Bundle;
-import android.view.View;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
 import sf.hotel.com.hotel_client.view.activity.BaseActivity;
-import sf.hotel.com.hotel_client.view.activity.FragConstant;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.fragment.TimesFragment;
 
