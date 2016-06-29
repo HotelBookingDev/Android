@@ -57,8 +57,6 @@ public class RoomFragment extends BaseFragment implements IRoomView {
 
     private DetailPullViewAdapter mPullAdapter;
 
-
-
     public static RoomFragment newInstance(Bundle bundle) {
         
         if (bundle != null) {
@@ -86,15 +84,9 @@ public class RoomFragment extends BaseFragment implements IRoomView {
 
     private void initRecyclerView() {
         mPullAdapter = new DetailPullViewAdapter(getBottomContext());
-
-        mPullAdapter.setCount(20);
-
-
+        mPullAdapter.setCount(5);
         RoomLayoutManager layout = new RoomLayoutManager(getBottomContext());
-
         mRecyclerView.setLayoutManager(layout);
-
-
         mRecyclerView.setAdapter(mPullAdapter);
     }
 

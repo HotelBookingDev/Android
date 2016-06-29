@@ -2,10 +2,10 @@ package sf.hotel.com.data.datasource;
 
 import android.content.Context;
 
-import java.sql.SQLException;
-import java.util.List;
+import com.google.gson.Gson;
 
 import sf.hotel.com.data.entity.netresult.HotelResult;
+import sf.hotel.com.data.utils.PreferencesUtils;
 
 /**
  * @author MZ
@@ -14,46 +14,15 @@ import sf.hotel.com.data.entity.netresult.HotelResult;
  */
 public class HotelDao{
 
-    public static void add(HotelResult hotel, Context context) {
-        try {
-            DatabaseHelper.getHelper(context).getHotelDao().createIfNotExists(hotel);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public static void saveHotelResult(Context context, HotelResult hotelResult){
+        Gson gson = new Gson();
+        String hotelJson = gson.toJson(hotelResult);
+        PreferencesUtils.saveHotelResult(context, hotelJson);
     }
 
-    public static void update(HotelResult hotel, Context context) {
-        try {
-            DatabaseHelper.getHelper(context).getHotelDao().createOrUpdate(hotel);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static boolean isCache(long id, Context context) {
-        boolean isCache = false;
-        HotelResult hotelResult = getHotelResult(id, context);
-        if (hotelResult != null) {
-            isCache = true;
-        }
-        return isCache;
-    }
-
-    public static HotelResult getHotelResult(long hotelId, Context context){
-        HotelResult hotelResult = null;
-        try {
-            List<HotelResult> hotelResultList = DatabaseHelper.getHelper(context)
-                    .getHotelDao()
-                    .queryForEq("id", hotelId);
-
-            if (hotelResultList != null && hotelResultList.size() == 1){
-                hotelResult = hotelResultList.get(0);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return hotelResult;
+    public static HotelResult getHotelResult(Context context){
+        Gson gson = new Gson();
+        String hotelJson = PreferencesUtils.getHotelResult(context);
+        return gson.fromJson(hotelJson, HotelResult.class);
     }
 }

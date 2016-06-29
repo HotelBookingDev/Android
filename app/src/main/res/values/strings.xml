@@ -15,6 +15,7 @@
     <string name="cache">清除缓存</string>
     <string name="login_out">退出登录</string>
     <string name="search_times">选择时间</string>
+    <string name="search_bed">选择房型</string>
     <string name="title">hotel name</string>
     <string name="just_look">随便看看</string>
     <string name="my_money">我的钱包</string>

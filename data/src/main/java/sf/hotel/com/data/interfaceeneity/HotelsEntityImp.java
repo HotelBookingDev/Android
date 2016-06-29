@@ -15,13 +15,12 @@ import sf.hotel.com.data.net.ApiWrapper;
 public class HotelsEntityImp implements IHotelsEntity {
 
 
-    public HotelResult getHotelCache(Context context, int cityId){
-        HotelDao.add(new HotelResult(), context);
-        return HotelDao.getHotelResult(cityId, context);
+    public HotelResult getHotelCache(Context context){
+        return HotelDao.getHotelResult(context);
     }
 
-    public void updateHotelCache(Context context, HotelResult hotelResult){
-        HotelDao.update(hotelResult, context);
+    public void saveHotelCache(Context context, HotelResult hotelResult){
+        HotelDao.saveHotelResult(context, hotelResult);
     }
 
     @Override

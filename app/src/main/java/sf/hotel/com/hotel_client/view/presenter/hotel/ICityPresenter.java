@@ -47,7 +47,7 @@ public class ICityPresenter extends SuperPresenter {
                                         procincesResult));
                     }
                 });
-        mCompositeSubscription.add(mCompositeSubscription);
+        mCompositeSubscription.add(subscribe);
     }
 
     @Override

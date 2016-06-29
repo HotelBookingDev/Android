@@ -35,8 +35,8 @@ public class IHotelPresenter extends SuperPresenter {
     }
 
 
-    public HotelResult getHotelCache(int cityId){
-        return mHotelsEntity.getHotelCache(mIHotelsView.getBottomContext(), cityId);
+    public HotelResult getHotelCache(){
+        return mHotelsEntity.getHotelCache(mIHotelsView.getBottomContext());
     }
 
 
@@ -45,6 +45,7 @@ public class IHotelPresenter extends SuperPresenter {
             @Override
             public void onNext(HotelResult hotelResult) {
                 super.onNext(hotelResult);
+                mHotelsEntity.saveHotelCache(mIHotelsView.getBottomContext(), hotelResult);
                 RxBus.getDefault().post(MessageFactory.createHotelMessage(HotelMessage.SUCCESS, hotelResult));
             }
 

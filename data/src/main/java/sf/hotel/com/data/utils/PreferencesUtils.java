@@ -34,6 +34,8 @@ public class PreferencesUtils {
     //当前是否是登录状态，在登录界面初始化设置为未登录的状态
     public static final String ISLOGIN = "is_login";
 
+    public static final String HOTEL_RESULT = "hotel_result";
+
     public static void saveInstallationId(Context context, String installationId) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
         preferences.edit().putString(INSTALLATIONID, installationId).apply();
@@ -137,5 +139,16 @@ public class PreferencesUtils {
     public static String getUserId(Context context) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
         return preferences.getString(USERID, "");
+    }
+
+
+    public static void saveHotelResult(Context context, String hotelJson){
+        SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
+        preferences.edit().putString(HOTEL_RESULT, hotelJson).apply();
+    }
+
+    public static String getHotelResult(Context context){
+        SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
+        return preferences.getString(HOTEL_RESULT, "");
     }
 }
