@@ -1,4 +1,4 @@
-package sf.hotel.com.hotel_client.view.activity.person;
+package sf.hotel.com.hotel_client.view.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,7 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import sf.hotel.com.data.entity.LocalOrder;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
+import sf.hotel.com.hotel_client.view.custom.HotelSearchView;
 import sf.hotel.com.hotel_client.view.interfaceview.person.ISearchView;
 import sf.hotel.com.hotel_client.view.presenter.person.SearchPresenter;
 
@@ -31,7 +31,7 @@ public class SearchFragment extends BaseFragment implements ISearchView {
     }
 
     @BindView(R.id.floating_search_view)
-    FloatingSearchView mSearchView;
+    HotelSearchView mSearchView;
 
     SearchPresenter mSearchPresenter;
 
@@ -94,7 +94,7 @@ public class SearchFragment extends BaseFragment implements ISearchView {
 
     @Override
     public void showSearch(List<LocalOrder> localOrders) {
-        if (localOrders!=null&&localOrders.size()>0){
+        if (localOrders != null && localOrders.size() > 0) {
             mSearchView.swapSuggestions(localOrders);
         }
     }

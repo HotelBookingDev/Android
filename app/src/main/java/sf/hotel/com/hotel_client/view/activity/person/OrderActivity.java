@@ -9,6 +9,7 @@ import sf.hotel.com.hotel_client.view.activity.BaseActivity;
 import sf.hotel.com.hotel_client.view.event.Message;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.person.OrderMessage;
+import sf.hotel.com.hotel_client.view.fragment.SearchFragment;
 import sf.hotel.com.hotel_client.view.fragment.person.OrderFragment;
 
 public class OrderActivity extends BaseActivity {

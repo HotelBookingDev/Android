@@ -1,6 +1,5 @@
 package sf.hotel.com.hotel_client.view.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import sf.hotel.com.hotel_client.R;
