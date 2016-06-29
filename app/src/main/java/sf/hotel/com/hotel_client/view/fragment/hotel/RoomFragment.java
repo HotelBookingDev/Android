@@ -69,6 +69,14 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         return fragment;
     }
 
+    public static RoomFragment newInstance() {
+
+        Bundle args = new Bundle();
+        RoomFragment fragment = new RoomFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,

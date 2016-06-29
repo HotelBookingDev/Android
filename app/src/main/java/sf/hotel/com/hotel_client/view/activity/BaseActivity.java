@@ -11,14 +11,12 @@ import android.view.KeyEvent;
 import com.baidu.location.BDLocation;
 
 import me.yokeyword.fragmentation.SupportActivity;
-import me.yokeyword.fragmentation.SupportFragment;
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.utils.TToast;
 import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
-import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 
 /**
  * Created by FMT on 2016/6/3:15:51
@@ -56,19 +54,6 @@ public abstract class BaseActivity extends SupportActivity {
         LogUtils.e(TAG, msg);
     }
 
-    protected SupportFragment getFragmentByKey(Class fragment) {
-
-        BaseFragment baseFragment = null;
-        try {
-            baseFragment = (BaseFragment) fragment.newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return baseFragment;
-    }
-
     @Override
     protected FragmentAnimator onCreateFragmentAnimator() {
         return new DefaultHorizontalAnimator();
@@ -83,18 +68,6 @@ public abstract class BaseActivity extends SupportActivity {
         Intent intent = new Intent(this, clazz);
         startActivity(intent);
         finish();
-    }
-
-    public void showFragment(Class fragment) {
-
-        SupportFragment mFragment = findFragment(fragment);
-        if (mFragment == null) {
-            mFragment = getFragmentByKey(fragment);
-            start(mFragment);
-        } else {
-            popTo(fragment, true);
-//            start(mFragment);
-        }
     }
 
     /**

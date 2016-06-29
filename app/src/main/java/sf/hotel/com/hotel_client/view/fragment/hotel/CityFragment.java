@@ -37,6 +37,15 @@ public class CityFragment extends BaseFragment implements ICityView {
 
     private ICityPresenter mICityPresenter;
 
+    public static CityFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        CityFragment fragment = new CityFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,

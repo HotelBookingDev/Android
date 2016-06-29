@@ -36,6 +36,15 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     ImageView mIvAvatar;
     ILoginPresenter mILoginPresenter;
 
+    public static LoginFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        LoginFragment fragment = new LoginFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {

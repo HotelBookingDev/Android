@@ -55,7 +55,13 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         fragment.setArguments(args);
         return fragment;
     }
+    public static HotelsFragment newInstance() {
 
+        Bundle args = new Bundle();
+        HotelsFragment fragment = new HotelsFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
     HomePullViewAdapter mPullAdapter;
 
     private IHotelPresenter mIHotelPresenter;

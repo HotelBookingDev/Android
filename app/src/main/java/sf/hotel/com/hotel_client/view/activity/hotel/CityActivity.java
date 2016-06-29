@@ -11,11 +11,11 @@ import rx.functions.Action1;
 import sf.hotel.com.data.entity.ProcincesResult;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.BaseActivity;
-import sf.hotel.com.hotel_client.view.activity.FragConstant;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.CityMessage;
 import sf.hotel.com.hotel_client.view.fragment.HomeContainer;
+import sf.hotel.com.hotel_client.view.fragment.hotel.CityFragment;
 
 /**
  * @author MZ
@@ -75,6 +75,6 @@ public class CityActivity extends BaseActivity {
     }
 
     private void init() {
-        loadRootFragment(R.id.activity_city_frame, getFragmentByKey(FragConstant.CITY));
+        loadRootFragment(R.id.activity_city_frame, CityFragment.newInstance());
     }
 }

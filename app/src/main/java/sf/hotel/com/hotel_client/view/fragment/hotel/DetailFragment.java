@@ -42,6 +42,14 @@ public class DetailFragment extends BaseFragment implements IDetailView {
 
     private Handler handler = new Handler();
 
+    public static DetailFragment newInstance() {
+
+        Bundle args = new Bundle();
+        DetailFragment fragment = new DetailFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -141,6 +149,4 @@ public class DetailFragment extends BaseFragment implements IDetailView {
     public void showViewToast(String msg) {
 
     }
-
-
 }

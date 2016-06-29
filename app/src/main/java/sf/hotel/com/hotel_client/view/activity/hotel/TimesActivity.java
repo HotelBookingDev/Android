@@ -10,6 +10,7 @@ import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
 import sf.hotel.com.hotel_client.view.activity.BaseActivity;
 import sf.hotel.com.hotel_client.view.activity.FragConstant;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
+import sf.hotel.com.hotel_client.view.fragment.TimesFragment;
 
 /**
  * @author MZ
@@ -34,7 +35,7 @@ public class TimesActivity extends BaseActivity {
     }
 
     private void init() {
-        loadRootFragment(R.id.activity_times_frame, getFragmentByKey(FragConstant.Times));
+        loadRootFragment(R.id.activity_times_frame, TimesFragment.newInstance());
     }
 
 }

@@ -44,6 +44,15 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
 
     IRegisterPresenter mIRegisterPresenter;
 
+    public static RegisterFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        RegisterFragment fragment = new RegisterFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
