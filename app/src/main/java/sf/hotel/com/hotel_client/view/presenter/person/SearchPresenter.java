@@ -33,17 +33,17 @@ public class SearchPresenter extends SuperPresenter {
                 .subscribe(new Subscriber<List<LocalOrder>>() {
                     @Override
                     public void onCompleted() {
-                        mISearchView.dissProgress();
+                        mISearchView.dismissProgress();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        mISearchView.dissProgress();
+                        mISearchView.dismissProgress();
                     }
 
                     @Override
                     public void onNext(List<LocalOrder> localOrders) {
-                        mISearchView.dissProgress();
+                        mISearchView.dismissProgress();
                         mISearchView.showSearch(localOrders);
                     }
 

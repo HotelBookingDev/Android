@@ -6,7 +6,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.LruCache;
 import android.view.KeyEvent;
 
 import com.baidu.location.BDLocation;
@@ -30,8 +29,6 @@ public abstract class BaseActivity extends SupportActivity {
     public CompositeSubscription mCompositeSubscription;
 
     protected String TAG = this.getClass().getSimpleName();
-
-    protected LruCache<Integer, SupportFragment> mFragmentList = new LruCache<>(3);
 
     protected void showToast(String msg) {
         TToast.showToast(msg);

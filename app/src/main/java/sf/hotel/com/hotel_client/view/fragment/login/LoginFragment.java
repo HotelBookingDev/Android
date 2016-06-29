@@ -16,8 +16,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.event.RxBus;
-import sf.hotel.com.hotel_client.view.event.hotel.person.LoginMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
+import sf.hotel.com.hotel_client.view.event.hotel.person.LoginMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.login.ILoginView;
 import sf.hotel.com.hotel_client.view.presenter.login.ILoginPresenter;
@@ -112,15 +112,6 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     }
 
     @Override
-    public void success(int type) {
-    }
-
-    @Override
-    public void failed(int type, Throwable e) {
-
-    }
-
-    @Override
     public Context getContext() {
         return getActivity();
     }
@@ -129,8 +120,6 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     public Context getBottomContext() {
         return getActivity();
     }
-
-
 
     @Override
     public void onDestroy() {

@@ -196,15 +196,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
     }
 
 
-    @Override
-    public void success(int type) {
 
-    }
-
-    @Override
-    public void failed(int type, Throwable e) {
-
-    }
 
     @Override
     public void onDestroy() {

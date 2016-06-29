@@ -65,14 +65,4 @@ public class ChangePwdFragment extends BaseFragment implements IChangePwdView {
     public EditText getConfimPwd() {
         return mConfirmPwdEditTxt;
     }
-
-    @Override
-    public void success(int type) {
-
-    }
-
-    @Override
-    public void failed(int type, Throwable e) {
-
-    }
 }

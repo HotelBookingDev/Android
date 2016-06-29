@@ -23,8 +23,8 @@ import sf.hotel.com.hotel_client.view.activity.LoginActivity;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.custom.ToggleButton;
 import sf.hotel.com.hotel_client.view.event.RxBus;
-import sf.hotel.com.hotel_client.view.event.hotel.person.LoginMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.MessageFactory;
+import sf.hotel.com.hotel_client.view.event.hotel.person.LoginMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.person.PersonMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.person.ISettingView;
@@ -124,16 +124,6 @@ public class SettingFragment extends BaseFragment implements ISettingView {
 
     public void sendMsg() {
         settingPresenter.changeAcceptMsg();
-    }
-
-    @Override
-    public void success(int type) {
-
-    }
-
-    @Override
-    public void failed(int type, Throwable e) {
-
     }
 
     @OnClick({

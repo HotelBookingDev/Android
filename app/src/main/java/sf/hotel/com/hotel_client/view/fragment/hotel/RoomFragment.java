@@ -58,7 +58,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     private DetailPullViewAdapter mPullAdapter;
 
     public static RoomFragment newInstance(Bundle bundle) {
-        
+
         if (bundle != null) {
             args = bundle;
         } else {
@@ -68,6 +68,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         fragment.setArguments(args);
         return fragment;
     }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -102,6 +103,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int scrollState) {
             }
+
             @Override
             public void onScrolled(RecyclerView recyclerView, int i, int i2) {
 //                mPositionText.setText("First: " + mRecyclerViewPager.getFirstVisiblePosition());
@@ -173,15 +175,5 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     @OnClick(R.id.fragment_room_close)
     public void close() {
         RxBus.getDefault().post(MessageFactory.createHotelMessage(HotelMessage.FRAGMENT_BACK));
-    }
-
-    @Override
-    public void success(int type) {
-
-    }
-
-    @Override
-    public void failed(int type, Throwable e) {
-
     }
 }

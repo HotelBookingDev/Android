@@ -103,14 +103,4 @@ public class CityFragment extends BaseFragment implements ICityView {
     public Context getBottomContext() {
         return getActivity();
     }
-
-    @Override
-    public void success(int type) {
-
-    }
-
-    @Override
-    public void failed(int type, Throwable e) {
-
-    }
 }

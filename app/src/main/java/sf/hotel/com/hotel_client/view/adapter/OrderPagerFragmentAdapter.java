@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import sf.hotel.com.hotel_client.view.fragment.person.orders.UserdOrder;
+import sf.hotel.com.hotel_client.view.fragment.person.orders.UsedOrder;
 
 /**
  * Created by YoKeyword
@@ -19,7 +19,7 @@ public class OrderPagerFragmentAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return UserdOrder.newInstance();
+        return UsedOrder.newInstance();
     }
 
     @Override
