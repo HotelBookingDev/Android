@@ -35,7 +35,7 @@ public class HotelResult implements Serializable {
         this.hotels = hotels;
     }
 
-    public static class HotelsBean implements Serializable {
+    public static class HotelsBean implements Parcelable {
         private int id;
         private String name;
         private String address;
@@ -48,6 +48,44 @@ public class HotelResult implements Serializable {
          */
 
         private List<HotelLogoImgsBean> hotelLogoImgs;
+
+        protected HotelsBean(Parcel in) {
+            id = in.readInt();
+            name = in.readString();
+            address = in.readString();
+            introduce = in.readString();
+            contact_phone = in.readString();
+            city = in.readInt();
+            hotelLogoImgs = in.createTypedArrayList(HotelLogoImgsBean.CREATOR);
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(id);
+            dest.writeString(name);
+            dest.writeString(address);
+            dest.writeString(introduce);
+            dest.writeString(contact_phone);
+            dest.writeInt(city);
+            dest.writeTypedList(hotelLogoImgs);
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        public static final Creator<HotelsBean> CREATOR = new Creator<HotelsBean>() {
+            @Override
+            public HotelsBean createFromParcel(Parcel in) {
+                return new HotelsBean(in);
+            }
+
+            @Override
+            public HotelsBean[] newArray(int size) {
+                return new HotelsBean[size];
+            }
+        };
 
         public int getId() {
             return id;

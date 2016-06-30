@@ -183,7 +183,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
     public void showDetail(HotelResult.HotelsBean hotelsBean) {
         Intent intent = new Intent(getBottomContext(), RoomActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("room", hotelsBean);
+        bundle.putParcelable("room", hotelsBean);
         intent.putExtras(bundle);
         startActivity(intent);
     }

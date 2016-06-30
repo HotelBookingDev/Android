@@ -163,7 +163,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
                         }
                     }
                 });
-        HotelResult.HotelsBean hotelsBean = (HotelResult.HotelsBean) bundle.getSerializable("room");
+        HotelResult.HotelsBean hotelsBean = bundle.getParcelable("room");
         if (hotelsBean != null) {
             List<HotelResult.HotelsBean.HotelLogoImgsBean> hotelLogoImgs = hotelsBean.getHotelLogoImgs();
             mRoomRecyclerPagerAdapter.setList(hotelLogoImgs);
