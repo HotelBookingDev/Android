@@ -27,7 +27,7 @@ public class EvauleFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_evaule, container, false);
+        View view = inflater.inflate(R.layout.fragment_ evaule, container, false);
         ButterKnife.bind(this, view);
         initViews();
         return view;

@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/bg_setting"
     tools:context="sf.hotel.com.hotel_client.view.fragment.person.EvauleFragment">
 
     <LinearLayout
@@ -31,7 +30,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingTop="10dp"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textColorHint="@color/hint_text"
             android:textSize="16sp" />
 
@@ -44,7 +43,7 @@
             android:background="@drawable/bg_row_border"
             android:gravity="center"
             android:text="@string/submit"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="18sp" />
     </LinearLayout>
 </FrameLayout>
