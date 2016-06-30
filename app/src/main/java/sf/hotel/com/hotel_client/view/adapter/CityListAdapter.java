@@ -5,12 +5,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import sf.hotel.com.data.entity.ProcincesResult;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.custom.CustomRadioButton;
 
 /**
  * @author MZ
@@ -20,6 +24,8 @@ import sf.hotel.com.hotel_client.R;
 public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.ViewHolder> {
 
     private List<ProcincesResult.ProcincesBean.CitysBean> mList = new ArrayList<>();
+
+    private Map<Integer , ProcincesResult.ProcincesBean.CitysBean> mCheckedList= new HashMap<>();
 
     private OnItemClickListener mOnItemClickListener;
 
@@ -66,9 +72,16 @@ public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.Vie
         holder.button.setText(mList.get(position).getName());
 
         if (mOnItemClickListener != null) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
+            holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    if (!holder.button.isChecked()){
+                        mCheckedList.put(position, mList.get(position));
+                    }else {
+                        mCheckedList.remove(position);
+                    }
+
                     int pos = holder.getLayoutPosition();
                     mOnItemClickListener.onItemClick(holder.itemView, pos);
                 }
@@ -77,11 +90,15 @@ public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.Vie
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        Button button;
+        CustomRadioButton button;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            button = (Button) itemView.findViewById(R.id.item_city_btn);
+            button = (CustomRadioButton) itemView.findViewById(R.id.item_city_btn);
         }
+    }
+
+    public Map<Integer, ProcincesResult.ProcincesBean.CitysBean> getmCheckedList() {
+        return mCheckedList;
     }
 }

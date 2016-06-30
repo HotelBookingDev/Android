@@ -29,4 +29,9 @@
         <attr name="indicator_selected_background" format="color|integer" />
     </declare-styleable>
 
+    <declare-styleable name="CustomRadioButton">
+        <attr name="text_color" format="color|integer"/>
+        <attr name="select_text_color" format="color|integer"/>
+    </declare-styleable>
+
 </resources>

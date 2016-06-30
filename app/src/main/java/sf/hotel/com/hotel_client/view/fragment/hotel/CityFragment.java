@@ -9,10 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.functions.Action1;
 import sf.hotel.com.data.entity.ProcincesResult;
+import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.adapter.CityListAdapter;
 import sf.hotel.com.hotel_client.view.adapter.OnItemClickListener;
@@ -100,10 +103,15 @@ public class CityFragment extends BaseFragment implements ICityView {
         mCityListAdapter.setOnItemClickLitener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                RxBus.getDefault()
-                        .post(MessageFactory.createCityMessage(
-                                CityMessage.ACTIVITY_FINISH_AND_RESULT,
-                                mCityListAdapter.getListItem(position)));
+//                RxBus.getDefault()
+//                        .post(MessageFactory.createCityMessage(
+//                                CityMessage.ACTIVITY_FINISH_AND_RESULT,
+//                                mCityListAdapter.getListItem(position)));
+
+                Map<Integer, ProcincesResult.ProcincesBean.CitysBean> integerCitysBeanMap = mCityListAdapter.getmCheckedList();
+                for (Map.Entry<Integer, ProcincesResult.ProcincesBean.CitysBean> entry : integerCitysBeanMap.entrySet()){
+                    LogUtils.d("--->" ,String.valueOf(entry.getKey()) + entry.getValue() + "");
+                }
             }
 
             @Override

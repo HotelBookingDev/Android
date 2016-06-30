@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:clickable="true"
-    >
+    android:layout_height="match_parent">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <sf.hotel.com.hotel_client.view.custom.CustomRadioButton
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:textSize="20sp"
         android:text="宁波"
         android:id="@+id/item_city_btn"
-        android:background="@drawable/item_seletor"
-        android:clickable="false"
+        android:background="@drawable/bg_selector_city"
+        app:text_color="@color/black"
+        app:select_text_color="@color/title_gray"
         />
 </LinearLayout>
