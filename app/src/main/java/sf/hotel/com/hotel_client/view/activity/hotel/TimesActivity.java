@@ -5,7 +5,6 @@ import android.os.Bundle;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
 import sf.hotel.com.hotel_client.view.activity.BaseActivity;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.fragment.TimesFragment;
@@ -28,12 +27,9 @@ public class TimesActivity extends BaseActivity {
         init();
 
         mHotelTitleView.addLeftClick(v -> finish());
-
-        TransulcentUtils.setColorWindow(this, R.color.colorPrimary);
     }
 
     private void init() {
         loadRootFragment(R.id.activity_times_frame, TimesFragment.newInstance());
     }
-
 }

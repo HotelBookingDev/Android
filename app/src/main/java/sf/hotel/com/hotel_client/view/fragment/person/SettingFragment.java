@@ -15,15 +15,18 @@ import mehdi.sakout.fancybuttons.FancyButton;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import sf.hotel.com.data.config.HotelConstant;
+import sf.hotel.com.data.entity.WebViewsModel;
 import sf.hotel.com.data.utils.HotelFileUtils;
 import sf.hotel.com.data.utils.PreferencesUtils;
+import sf.hotel.com.data.utils.WebViewModelFactory;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.AndroidUtils;
+import sf.hotel.com.hotel_client.view.activity.WebViewActivity;
 import sf.hotel.com.hotel_client.view.activity.register.LoginActivity;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.custom.ToggleButton;
-import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.MessageFactory;
+import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.person.LoginMessage;
 import sf.hotel.com.hotel_client.view.event.person.PersonMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
@@ -82,7 +85,8 @@ public class SettingFragment extends BaseFragment implements ISettingView {
     }
 
     public void aboutUs() {
-        showViewToast("aboutUs");
+        toWebView(WebViewModelFactory.getModel(WebViewModelFactory.BAIDU));
+//        showViewToast("aboutUs");
     }
 
     public void logOutToLoginActivity() {
@@ -103,6 +107,12 @@ public class SettingFragment extends BaseFragment implements ISettingView {
         } else {
             viewSwitch.setToggleOff(false);
         }
+    }
+
+    private void toWebView(WebViewsModel model) {
+        Intent intent = new Intent(getActivity(), WebViewActivity.class);
+        intent.putExtra(WebViewActivity.KEY, model);
+        startActivity(intent);
     }
 
     @Override
@@ -157,7 +167,8 @@ public class SettingFragment extends BaseFragment implements ISettingView {
     }
 
     private void feedBack() {
-        showViewToast("意见反馈");
+        toWebView(WebViewModelFactory.getModel(WebViewModelFactory.BAIDU));
+//        showViewToast("意见反馈");
     }
 
     @Override

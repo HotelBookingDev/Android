@@ -27,7 +27,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import sf.hotel.com.data.utils.LogUtils;
-import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
 
 /**
  * @author MZ
@@ -76,8 +75,6 @@ public class SplashActivity extends Activity {
             }
             setContentView(frame);
         }
-
-        TransulcentUtils.setFixWindow(this);
     }
 
     /**

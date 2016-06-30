@@ -21,6 +21,7 @@ import sf.hotel.com.hotel_client.view.fragment.hotel.CityFragment;
  * email sanfenruxi1@163.com
  * date 16/6/23.
  */
+//TODO 只是包了一个CityFragment没有过多的处理
 public class CityActivity extends BaseActivity {
 
     @BindView(R.id.activity_city_back)
@@ -36,11 +37,12 @@ public class CityActivity extends BaseActivity {
         init();
         onRxEvent();
 
+        //TODO 回退的情况是有两种情况一个back件一个是标题回头，他只要管理自己需要退出 city保存已经在内部实现了
         mHotelTitleView.addLeftClick(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (cityBean != null){
+                if (cityBean != null) {
                     Intent intent = new Intent();
                     Bundle bundle = new Bundle();
                     bundle.putParcelable("city", cityBean);

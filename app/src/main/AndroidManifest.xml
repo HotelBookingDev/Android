@@ -118,7 +118,9 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".view.activity.person.MoneyActivity"></activity>
+        <activity android:name=".view.activity.person.MoneyActivity" />
+        <activity android:name=".view.activity.person.EvalueActivity" />
+        <activity android:name=".view.activity.WebViewActivity" />
     </application>
 
 </manifest>

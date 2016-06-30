@@ -4,13 +4,9 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.RadioButton;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.hotel_client.R;
@@ -25,6 +21,8 @@ public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.Vie
 
     private List<ProvincesResult.ProcincesBean.CityBean> mList = new ArrayList<>();
 
+    //内部做的一个当前选中项是那个
+    //TODO 没做每次进来第一次加载
     public int isCheckedPos = -1;
 
     private OnItemClickListener mOnItemClickListener;
@@ -71,15 +69,15 @@ public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.Vie
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.button.setText(mList.get(position).getName());
 
-        if (position != isCheckedPos)
-            holder.button.setChecked(false);
+        if (position != isCheckedPos) holder.button.setChecked(false);
 
         if (mOnItemClickListener != null) {
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    //每次点击都记录当前位置,刷新整个界面
                     int pos = holder.getLayoutPosition();
-                    if (isCheckedPos != pos){
+                    if (isCheckedPos != pos) {
                         isCheckedPos = pos;
                         notifyDataSetChanged();
                     }

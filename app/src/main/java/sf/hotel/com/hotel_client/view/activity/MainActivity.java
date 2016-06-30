@@ -13,10 +13,9 @@ import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectListener;
 import me.yokeyword.fragmentation.SupportFragment;
 import rx.Subscription;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
 import sf.hotel.com.hotel_client.view.activity.register.LoginActivity;
-import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.Message;
+import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.person.LoginMessage;
 import sf.hotel.com.hotel_client.view.fragment.HomeContainer;
 import sf.hotel.com.hotel_client.view.fragment.person.PersonGroupFragment;
@@ -40,8 +39,6 @@ public class MainActivity extends BaseActivity {
         initBottom();
         initView();
         RxEvent();
-
-        TransulcentUtils.setColorWindow(this, R.color.colorPrimary);
     }
 
     private void initFragmets() {

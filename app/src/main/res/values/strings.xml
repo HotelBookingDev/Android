@@ -37,7 +37,7 @@
     <string name="title_map">地图</string>
 
     <string name="item_reserve">预定</string>
-    <string name="edittext_password">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_</string>
+    <string name="edit_text_password">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_</string>
     <string name="edittext_digits">1234567890</string>
     <string name="back">返回</string>
     <string name="my_info">我的资料</string>
@@ -74,5 +74,9 @@
     <string name="account_integral">用户积分</string>
     <string name="zero_money">¥0.00</string>
     <string name="zero_integral">0.0</string>
+    <string name="all_money">总资产(元)</string>
+    <string name="add_money">账户充值</string>
+    <string name="settings_feedback">在此写下您宝贵的意见</string>
+    <string name="submit">提交</string>
 
 </resources>

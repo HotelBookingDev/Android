@@ -8,7 +8,6 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -106,7 +105,7 @@ public class HotelTitleView extends RelativeLayout {
         if (!isInEditMode()) {
             mTvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX,
                     getResources().getDimension(R.dimen.title_text_size));
-            mTvTitle.setTextColor(getResources().getColor(R.color.black));
+            mTvTitle.setTextColor(getResources().getColor(R.color.white));
         }
         mTvTitle.setLayoutParams(titleParams);
         mTvTitle.setText(mTitle);
@@ -137,7 +136,9 @@ public class HotelTitleView extends RelativeLayout {
             mBtnLeft.setLayoutParams(mLeftBtnParams);
             ((TextView) mBtnLeft).setText(text);
             ((TextView) mBtnLeft).setTextSize(17);
-            ((TextView) mBtnLeft).setTextColor(getResources().getColorStateList(R.color.black));
+            ((TextView) mBtnLeft).setTextColor(getResources().getColorStateList(R.color.white));
+            ((TextView) mBtnLeft).setTextSize(TypedValue.COMPLEX_UNIT_PX,
+                    getResources().getDimension(R.dimen.title_text_size));
             addView(mBtnLeft);
         } else {
             ((TextView) mBtnLeft).setText(text);
@@ -165,7 +166,7 @@ public class HotelTitleView extends RelativeLayout {
             mBtnRight.setPadding(0, 0, 20, 0);
             mBtnRight.setLayoutParams(mRightBtnParams);
             ((TextView) mBtnRight).setTextSize(17);
-            ((TextView) mBtnRight).setTextColor(getResources().getColorStateList(R.color.black));
+            ((TextView) mBtnRight).setTextColor(getResources().getColorStateList(R.color.white));
             addView(mBtnRight);
         }
         ((TextView) mBtnRight).setText(text);
@@ -198,7 +199,6 @@ public class HotelTitleView extends RelativeLayout {
             mBtnRight.setOnClickListener(mOnClickListener);
         }
     }
-
 
     public void setTitle(String title) {
         if (!TextUtils.isEmpty(title)) {

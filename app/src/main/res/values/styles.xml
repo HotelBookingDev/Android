@@ -128,7 +128,7 @@
         <item name="android:singleLine">true</item>
         <item name="android:textColorHint">@color/hint_gray</item>
         <item name="android:textSize">@dimen/text_small</item>
-        <item name="android:digits">@string/edittext_password</item>
+        <item name="android:digits">@string/edit_text_password</item>
     </style>
 
     <!--登录界面的编辑框-->
@@ -149,7 +149,6 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">45.0dip</item>
         <item name="android:singleLine">true</item>
-        <item name="android:layout_alignParentLeft">true</item>
         <item name="android:layout_centerVertical">true</item>
     </style>
 

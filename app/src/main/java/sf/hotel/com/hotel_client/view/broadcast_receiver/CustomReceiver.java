@@ -5,7 +5,6 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import com.avos.avoscloud.AVOSCloud;
 import com.avos.avospush.notification.NotificationCompat;
@@ -24,7 +23,7 @@ import sf.hotel.com.hotel_client.view.activity.PushActivity;
 public class CustomReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        LogUtils.d("CustomReceiver","isReceiver");
+        LogUtils.d("CustomReceiver", "isReceiver");
         try {
             if (intent.getAction().equals("com.pushHotel.action")) {
                 JSONObject json = new JSONObject(

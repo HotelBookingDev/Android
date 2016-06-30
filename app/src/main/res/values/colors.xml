@@ -22,7 +22,7 @@
     <color name="main_divide">#ffe2e5e5</color>
 
     <!--默认使用-->
-    <color name="view_title">#537dca</color>
+    <color name="view_title">#1A9AB7</color>
 
     <color name="hint_gray">#ffc3c3c3</color>
 
@@ -33,4 +33,8 @@
 
     <!--默认正常的文字颜色-->
     <color name="normal_color">#ffa4a4a4</color>
+
+    <!--充值的按钮-->
+    <color name="add_money">#F26726</color>
+    <color name="hint_text">#C0FFFFFF</color>
 </resources>
