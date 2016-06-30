@@ -7,9 +7,9 @@ import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.data.interfaceeneity.ICityEntityImp;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
+import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.CityMessage;
-import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.ICityView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 
@@ -31,14 +31,9 @@ public class ICityPresenter extends SuperPresenter {
         mICityEntityImp = new ICityEntityImp();
     }
 
-    public ProvincesResult getProcincesResult(Context context){
+    public ProvincesResult getProcincesResult(Context context) {
         return mICityEntityImp.getProcincesResult(context);
     }
-
-    public void saveCitysBean(Context context, ProvincesResult.ProcincesBean.CityBean cityBean){
-        mICityEntityImp.saveCitysBean(context, cityBean);
-    }
-
 
     public void callCityList() {
         Subscription subscribe = mICityEntityImp.callCityList()

@@ -43,9 +43,9 @@ public class HomeContainer extends BaseFragment implements IHomeContainerView {
     //每个Presenter 都有一个view对于的视图层
     public IHomePresenter mIHomePresenter;
 
-    //默认加载一个地方可能因为id和城市不一致 需要做的是第一次加载的必须是百度给的或是服务器给的
     static volatile ProvincesResult.ProcincesBean.CityBean cityBean = new ProvincesResult.ProcincesBean.CityBean();
 
+    //TODO 提取个方法 如果对象没回收了 加载的时候需要做判断，不让为null
     static {
         cityBean.setId(1);
         cityBean.setName("杭州");
@@ -99,13 +99,14 @@ public class HomeContainer extends BaseFragment implements IHomeContainerView {
     private void initView() {
         //这是加载当前信息
         mIHomePresenter.loadCitysBeanCache();
-        //进行网络请求获取城市列表信息，会有问题 你请求的时候你加载后面城市列表的时候信息不会到达
-        //TODO 需要做处理
+        //进行网络请求获取城市列表信息，会有问题 你请求的时候你加载后面城市列表的时候信息不会到达，容器是不知道要去做加载城市列报需要内部去实现
+        //TODO 需要做处理，
         mIHomePresenter.callCityList();
     }
 
     private void init(@Nullable Bundle savedInstanceState) {
         if (savedInstanceState == null) {
+            //TODO 好像需要做判断
             loadRootFragment(R.id.fragment_container_home_frame,
                     HotelsFragment.newInstance(cityBean));
         }

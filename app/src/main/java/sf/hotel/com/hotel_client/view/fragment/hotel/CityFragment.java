@@ -16,9 +16,9 @@ import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.adapter.CityListAdapter;
 import sf.hotel.com.hotel_client.view.adapter.OnItemClickListener;
+import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.CityMessage;
-import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.ICityView;
 import sf.hotel.com.hotel_client.view.presenter.hotel.ICityPresenter;
@@ -60,31 +60,25 @@ public class CityFragment extends BaseFragment implements ICityView {
     }
 
     private void initCityCache() {
+        //TODO 内部自己去做自己的处理加载网络请求本地逻辑操作 本地没有 的时候没有默认的按钮，当假数据的时候点击效果应该是不做请求的
         ProvincesResult provincesResult = mICityPresenter.getProcincesResult(getBottomContext());
-        if (provincesResult != null)
-            mCityListAdapter.setList(provincesResult);
-        else
+        if (provincesResult != null) { mCityListAdapter.setList(provincesResult); } else {
             initCityList();
+        }
     }
 
     private void onRxEvent() {
-        RxBus.getDefault().toObservable(CityMessage.class).subscribe(new Action1<CityMessage>() {
-            @Override
-            public void call(CityMessage cityMessage) {
-                if (cityMessage != null) {
-                    switch (cityMessage.what) {
-                        case CityMessage.SUCCESS:
-                            ProvincesResult provincesResult = (ProvincesResult) cityMessage.obj;
-                            mCityListAdapter.setList(provincesResult);
-                            break;
-                    }
+        RxBus.getDefault().toObservable(CityMessage.class).subscribe(cityMessage -> {
+            if (cityMessage != null) {
+                switch (cityMessage.what) {
+                    case CityMessage.SUCCESS:
+                        ProvincesResult provincesResult = (ProvincesResult) cityMessage.obj;
+                        mCityListAdapter.setList(provincesResult);
+                        break;
                 }
             }
-        }, new Action1<Throwable>() {
-            @Override
-            public void call(Throwable throwable) {
+        }, throwable -> {
 
-            }
         });
     }
 
@@ -118,6 +112,4 @@ public class CityFragment extends BaseFragment implements ICityView {
     public Context getBottomContext() {
         return getActivity();
     }
-
-
 }
