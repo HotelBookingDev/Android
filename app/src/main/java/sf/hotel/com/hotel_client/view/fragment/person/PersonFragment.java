@@ -10,11 +10,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rx.Subscription;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.activity.person.MoneyActivity;
 import sf.hotel.com.hotel_client.view.activity.person.OrderActivity;
 import sf.hotel.com.hotel_client.view.activity.person.SettingActivity;
 import sf.hotel.com.hotel_client.view.activity.person.UserInfoActivity;
-import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.Message;
+import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.person.LoginMessage;
 import sf.hotel.com.hotel_client.view.event.person.PersonMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
@@ -28,6 +29,7 @@ public class PersonFragment extends BaseFragment implements IPersonView {
     public static final int USERINFO = 0x1;
     public static final int SETTING = 0x2;
     public static final int ORDER = 0x3;
+    public static final int MONEY = 0x4;
 
     PersonPresenter mPersonPresenter;
 
@@ -81,6 +83,9 @@ public class PersonFragment extends BaseFragment implements IPersonView {
             startActivity(intent);
         } else if (type == SETTING) {
             Intent intent = new Intent(getActivity(), SettingActivity.class);
+            startActivity(intent);
+        } else if (type == MONEY) {
+            Intent intent = new Intent(getActivity(), MoneyActivity.class);
             startActivity(intent);
         }
     }

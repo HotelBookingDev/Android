@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import sf.hotel.com.data.entity.ProcincesResult;
+import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.custom.CustomRadioButton;
 
@@ -23,9 +23,9 @@ import sf.hotel.com.hotel_client.view.custom.CustomRadioButton;
  */
 public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.ViewHolder> {
 
-    private List<ProcincesResult.ProcincesBean.CitysBean> mList = new ArrayList<>();
+    private List<ProvincesResult.ProcincesBean.CityBean> mList = new ArrayList<>();
 
-    private Map<Integer , ProcincesResult.ProcincesBean.CitysBean> mCheckedList= new HashMap<>();
+    public int isCheckedPos = -1;
 
     private OnItemClickListener mOnItemClickListener;
 
@@ -33,23 +33,23 @@ public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.Vie
         this.mOnItemClickListener = mOnItemClickListener;
     }
 
-    public void setList(List<ProcincesResult.ProcincesBean.CitysBean> list) {
+    public void setList(List<ProvincesResult.ProcincesBean.CityBean> list) {
         this.mList.clear();
         mList.addAll(list);
         notifyDataSetChanged();
     }
 
-    public ProcincesResult.ProcincesBean.CitysBean getListItem(int pos) {
+    public ProvincesResult.ProcincesBean.CityBean getListItem(int pos) {
         return mList.get(pos);
     }
 
-    public void setList(ProcincesResult procincesResult) {
+    public void setList(ProvincesResult provincesResult) {
         mList.clear();
-        List<ProcincesResult.ProcincesBean> procinces = procincesResult.getProcinces();
-        for (ProcincesResult.ProcincesBean procincesBean : procinces) {
-            List<ProcincesResult.ProcincesBean.CitysBean> citys = procincesBean.getCitys();
-            for (ProcincesResult.ProcincesBean.CitysBean citysBean : citys) {
-                mList.add(citysBean);
+        List<ProvincesResult.ProcincesBean> procinces = provincesResult.getProcinces();
+        for (ProvincesResult.ProcincesBean procincesBean : procinces) {
+            List<ProvincesResult.ProcincesBean.CityBean> citys = procincesBean.getCitys();
+            for (ProvincesResult.ProcincesBean.CityBean cityBean : citys) {
+                mList.add(cityBean);
             }
         }
 
@@ -71,18 +71,18 @@ public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.Vie
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.button.setText(mList.get(position).getName());
 
+        if (position != isCheckedPos)
+            holder.button.setChecked(false);
+
         if (mOnItemClickListener != null) {
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    if (!holder.button.isChecked()){
-                        mCheckedList.put(position, mList.get(position));
-                    }else {
-                        mCheckedList.remove(position);
-                    }
-
                     int pos = holder.getLayoutPosition();
+                    if (isCheckedPos != pos){
+                        isCheckedPos = pos;
+                        notifyDataSetChanged();
+                    }
                     mOnItemClickListener.onItemClick(holder.itemView, pos);
                 }
             });
@@ -98,7 +98,7 @@ public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.Vie
         }
     }
 
-    public Map<Integer, ProcincesResult.ProcincesBean.CitysBean> getmCheckedList() {
-        return mCheckedList;
+    public int getIsCheckedPos() {
+        return isCheckedPos;
     }
 }

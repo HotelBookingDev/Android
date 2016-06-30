@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Subscription;
 import rx.functions.Action1;
-import sf.hotel.com.data.entity.ProcincesResult;
+import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.hotel.RoomActivity;
@@ -42,12 +41,12 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
     @BindView(R.id.fragment_hotels_list)
     PullToRefreshRecyclerView mPullView;
 
-    static ProcincesResult.ProcincesBean.CitysBean mCitysBean = new ProcincesResult.ProcincesBean.CitysBean();
+    static ProvincesResult.ProcincesBean.CityBean mCityBean = new ProvincesResult.ProcincesBean.CityBean();
 
+    //TODO 不要用static 已经有了SharePerenni 的东西内部自己去获取
+    public static HotelsFragment newInstance(ProvincesResult.ProcincesBean.CityBean cityBean) {
 
-    public static HotelsFragment newInstance(ProcincesResult.ProcincesBean.CitysBean citysBean) {
-
-        mCitysBean = citysBean;
+        mCityBean = cityBean;
 
         Bundle args = new Bundle();
 
@@ -55,6 +54,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         fragment.setArguments(args);
         return fragment;
     }
+
     public static HotelsFragment newInstance() {
 
         Bundle args = new Bundle();
@@ -62,6 +62,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         fragment.setArguments(args);
         return fragment;
     }
+
     HomePullViewAdapter mPullAdapter;
 
     private IHotelPresenter mIHotelPresenter;
@@ -81,13 +82,12 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         return view;
     }
 
-
     private void initHotelCache() {
         HotelResult hotelCache = mIHotelPresenter.getHotelCache();
-        if (hotelCache != null){
+        if (hotelCache != null) {
             mPullAdapter.setList(hotelCache.getHotels());
         }
-        mIHotelPresenter.callHotelsByCityId(String.valueOf(mCitysBean.getId()), "1");
+        mIHotelPresenter.callHotelsByCityId(String.valueOf(mCityBean.getId()), "1");
     }
 
     private void onRxEvent() {
@@ -96,12 +96,13 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                 .subscribe(new Action1<HotelMessage>() {
                     @Override
                     public void call(HotelMessage hotelMessage) {
-                        switch (hotelMessage.what){
+                        switch (hotelMessage.what) {
                             case HotelMessage.REFRESH_LIST_VIEW_HOTEL:
-                                ProcincesResult.ProcincesBean.CitysBean citysBean = (ProcincesResult.ProcincesBean.CitysBean) hotelMessage.obj;
-                                mCitysBean.setId(citysBean.getId());
-                                mCitysBean.setName(citysBean.getName());
-                                mIHotelPresenter.callHotelsByCityId(String.valueOf(mCitysBean.getId()), "1");
+                                ProvincesResult.ProcincesBean.CityBean cityBean = (ProvincesResult.ProcincesBean.CityBean) hotelMessage.obj;
+                                mCityBean.setId(cityBean.getId());
+                                mCityBean.setName(cityBean.getName());
+                                mIHotelPresenter.callHotelsByCityId(
+                                        String.valueOf(mCityBean.getId()), "1");
                                 break;
                         }
                     }
@@ -151,7 +152,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        mIHotelPresenter.callHotelsByCityId(String.valueOf(mCitysBean.getId()), "1");
+                        mIHotelPresenter.callHotelsByCityId(String.valueOf(mCityBean.getId()), "1");
                         mPullView.setOnRefreshComplete();
                         mPullView.onFinishLoading(true, false);
                     }
@@ -162,18 +163,15 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         mPullAdapter = new HomePullViewAdapter(getBottomContext());
         mPullAdapter.setOnItemClickLitener(new OnItemClickListener() {
             @Override
-            public void onItemClick(View view,
-                                    int position) {
+            public void onItemClick(View view, int position) {
 
                 HotelResult.HotelsBean itemByPos = mPullAdapter.getItemByPos(position);
 
                 showDetail(itemByPos);
-
             }
 
             @Override
-            public void onItemLongClick(View view,
-                                        int position) {
+            public void onItemLongClick(View view, int position) {
 
             }
         });
@@ -184,7 +182,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
     public void showDetail(HotelResult.HotelsBean hotelsBean) {
         Intent intent = new Intent(getBottomContext(), RoomActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("room", hotelsBean);
+        bundle.putParcelable("room", hotelsBean);
         intent.putExtras(bundle);
         startActivity(intent);
     }
@@ -194,18 +192,14 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         return getActivity();
     }
 
-
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mIHotelPresenter != null){
+        if (mIHotelPresenter != null) {
             mIHotelPresenter.destroy();
             mIHotelPresenter = null;
         }
-
     }
-
-
 
     @Override
     public void setHotelAdapterList(HotelResult hotelResult) {

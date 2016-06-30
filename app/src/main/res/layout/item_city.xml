@@ -13,7 +13,7 @@
         android:text="宁波"
         android:id="@+id/item_city_btn"
         android:background="@drawable/bg_selector_city"
-        app:text_color="@color/black"
-        app:select_text_color="@color/title_gray"
+        app:text_color="@color/dark_gray"
+        app:select_text_color="@color/black"
         />
 </LinearLayout>

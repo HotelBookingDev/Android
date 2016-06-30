@@ -18,7 +18,7 @@ public class PersonPresenter extends SuperPresenter {
 
     public void clickMoney() {
         if (checkIsLogin()) {
-
+            mIPersonView.showItemActivity(PersonFragment.MONEY);
         } else {
             mIPersonView.showLoginFragment();
         }

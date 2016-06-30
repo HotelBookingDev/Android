@@ -48,6 +48,15 @@ public class CustomRadioButton extends CompoundButton {
         }else {
             setTextColor(text_color);
         }
+    }
 
+    @Override
+    public void setChecked(boolean checked) {
+        super.setChecked(checked);
+        if (checked){
+            setTextColor(select_text_color);
+        }else {
+            setTextColor(text_color);
+        }
     }
 }

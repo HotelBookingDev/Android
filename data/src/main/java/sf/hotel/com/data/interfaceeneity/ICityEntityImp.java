@@ -4,7 +4,7 @@ import android.content.Context;
 
 import rx.Observable;
 import sf.hotel.com.data.datasource.HotelDao;
-import sf.hotel.com.data.entity.ProcincesResult;
+import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.data.net.ApiWrapper;
 
 /**
@@ -14,16 +14,16 @@ import sf.hotel.com.data.net.ApiWrapper;
  */
 public class ICityEntityImp implements CityEntity {
 
-    public ProcincesResult getProcincesResult(Context context){
+    public ProvincesResult getProcincesResult(Context context){
         return HotelDao.getProcincesResult(context);
     }
 
-    public void saveCitysBean(Context context, ProcincesResult.ProcincesBean.CitysBean citysBean){
-        HotelDao.saveCitysBean(context, citysBean);
+    public void saveCitysBean(Context context, ProvincesResult.ProcincesBean.CityBean cityBean){
+        HotelDao.saveCitysBean(context, cityBean);
     }
 
     @Override
-    public Observable<ProcincesResult> callCityList() {
+    public Observable<ProvincesResult> callCityList() {
         return ApiWrapper.getInstance().callCityList();
 
     }

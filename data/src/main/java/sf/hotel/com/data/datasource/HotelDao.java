@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 
-import sf.hotel.com.data.entity.ProcincesResult;
+import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.data.utils.PreferencesUtils;
 
@@ -27,28 +27,28 @@ public class HotelDao{
         return gson.fromJson(hotelJson, HotelResult.class);
     }
 
-    public static ProcincesResult.ProcincesBean.CitysBean getCitysBean(Context context){
+    public static ProvincesResult.ProcincesBean.CityBean getCitysBean(Context context){
         Gson gson = new Gson();
         String citysBean = PreferencesUtils.getCitysBean(context);
-        return gson.fromJson(citysBean, ProcincesResult.ProcincesBean.CitysBean.class);
+        return gson.fromJson(citysBean, ProvincesResult.ProcincesBean.CityBean.class);
     }
 
-    public static void saveCitysBean(Context context, ProcincesResult.ProcincesBean.CitysBean citysBean){
+    public static void saveCitysBean(Context context, ProvincesResult.ProcincesBean.CityBean cityBean){
         Gson gson = new Gson();
-        String citysJson = gson.toJson(citysBean);
+        String citysJson = gson.toJson(cityBean);
         PreferencesUtils.saveCitysBean(context, citysJson);
     }
 
 
-    public static void saveProcincesResult(Context context, ProcincesResult procincesResult){
+    public static void saveProcincesResult(Context context, ProvincesResult provincesResult){
         Gson gson = new Gson();
-        String s = gson.toJson(procincesResult);
+        String s = gson.toJson(provincesResult);
         PreferencesUtils.saveProcincesResult(context, s);
     }
 
-    public static ProcincesResult getProcincesResult(Context context){
+    public static ProvincesResult getProcincesResult(Context context){
         Gson gson = new Gson();
         String procincesResult = PreferencesUtils.getProcincesResult(context);
-        return gson.fromJson(procincesResult, ProcincesResult.class);
+        return gson.fromJson(procincesResult, ProvincesResult.class);
     }
 }

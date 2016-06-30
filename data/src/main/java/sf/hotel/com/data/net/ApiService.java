@@ -17,7 +17,7 @@ import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.entity.netresult.TokenResult;
 
 
-import sf.hotel.com.data.entity.ProcincesResult;
+import sf.hotel.com.data.entity.ProvincesResult;
 
 
 import static sf.hotel.com.data.net.HttpParam.CITY_ID;
@@ -70,5 +70,5 @@ public interface ApiService {
     Observable<HttpResult<TokenResult>> getTokenResult();
 
     @GET(AppUrl.PROVINCES_URL)
-    Observable<HttpResult<ProcincesResult>> callCityList();
+    Observable<HttpResult<ProvincesResult>> callCityList();
 }

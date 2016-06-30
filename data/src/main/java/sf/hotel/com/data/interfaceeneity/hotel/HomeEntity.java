@@ -1,7 +1,7 @@
 package sf.hotel.com.data.interfaceeneity.hotel;
 
 import rx.Observable;
-import sf.hotel.com.data.entity.ProcincesResult;
+import sf.hotel.com.data.entity.ProvincesResult;
 
 /**
  * @author MZ
@@ -9,5 +9,5 @@ import sf.hotel.com.data.entity.ProcincesResult;
  * @date 16/6/29.
  */
 public interface HomeEntity {
-    Observable<ProcincesResult> callCityList();
+    Observable<ProvincesResult> callCityList();
 }

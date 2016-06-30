@@ -1,5 +1,8 @@
 package sf.hotel.com.data.entity.netresult;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
@@ -32,7 +35,7 @@ public class HotelResult implements Serializable {
         this.hotels = hotels;
     }
 
-    public static class HotelsBean implements Serializable {
+    public static class HotelsBean implements Parcelable {
         private int id;
         private String name;
         private String address;
@@ -45,6 +48,44 @@ public class HotelResult implements Serializable {
          */
 
         private List<HotelLogoImgsBean> hotelLogoImgs;
+
+        protected HotelsBean(Parcel in) {
+            id = in.readInt();
+            name = in.readString();
+            address = in.readString();
+            introduce = in.readString();
+            contact_phone = in.readString();
+            city = in.readInt();
+            hotelLogoImgs = in.createTypedArrayList(HotelLogoImgsBean.CREATOR);
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(id);
+            dest.writeString(name);
+            dest.writeString(address);
+            dest.writeString(introduce);
+            dest.writeString(contact_phone);
+            dest.writeInt(city);
+            dest.writeTypedList(hotelLogoImgs);
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        public static final Creator<HotelsBean> CREATOR = new Creator<HotelsBean>() {
+            @Override
+            public HotelsBean createFromParcel(Parcel in) {
+                return new HotelsBean(in);
+            }
+
+            @Override
+            public HotelsBean[] newArray(int size) {
+                return new HotelsBean[size];
+            }
+        };
 
         public int getId() {
             return id;
@@ -102,9 +143,29 @@ public class HotelResult implements Serializable {
             this.hotelLogoImgs = hotelLogoImgs;
         }
 
-        public static class HotelLogoImgsBean implements Serializable {
+        public static class HotelLogoImgsBean implements Parcelable {
             private String img_url;
             private int hotel;
+
+            protected HotelLogoImgsBean(Parcel in) {
+                img_url = in.readString();
+                hotel = in.readInt();
+            }
+
+            public HotelLogoImgsBean() {
+            }
+
+            public static final Creator<HotelLogoImgsBean> CREATOR = new Creator<HotelLogoImgsBean>() {
+                @Override
+                public HotelLogoImgsBean createFromParcel(Parcel in) {
+                    return new HotelLogoImgsBean(in);
+                }
+
+                @Override
+                public HotelLogoImgsBean[] newArray(int size) {
+                    return new HotelLogoImgsBean[size];
+                }
+            };
 
             public String getImg_url() {
                 return img_url;
@@ -120,6 +181,17 @@ public class HotelResult implements Serializable {
 
             public void setHotel(int hotel) {
                 this.hotel = hotel;
+            }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(img_url);
+                dest.writeInt(hotel);
             }
         }
     }

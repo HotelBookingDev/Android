@@ -68,5 +68,7 @@
     <string name="tv_user_name">wlda710</string>
     <string name="search_order">查询订单</string>
     <string name="enter_order">请输入订单号</string>
+    <string name="my_bill">账单</string>
+    <string name="account_balance">账户余额</string>
 
 </resources>

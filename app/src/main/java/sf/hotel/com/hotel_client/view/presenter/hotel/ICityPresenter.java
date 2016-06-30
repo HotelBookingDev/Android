@@ -4,12 +4,12 @@ import android.content.Context;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
-import sf.hotel.com.data.entity.ProcincesResult;
+import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.data.interfaceeneity.ICityEntityImp;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
+import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.CityMessage;
-import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.ICityView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 
@@ -31,18 +31,13 @@ public class ICityPresenter extends SuperPresenter {
         mICityEntityImp = new ICityEntityImp();
     }
 
-    public ProcincesResult getProcincesResult(Context context){
+    public ProvincesResult getProcincesResult(Context context) {
         return mICityEntityImp.getProcincesResult(context);
     }
 
-    public void saveCitysBean(Context context, ProcincesResult.ProcincesBean.CitysBean citysBean){
-        mICityEntityImp.saveCitysBean(context, citysBean);
-    }
-
-
     public void callCityList() {
         Subscription subscribe = mICityEntityImp.callCityList()
-                .subscribe(new SimpleSubscriber<ProcincesResult>(mICityView.getBottomContext()) {
+                .subscribe(new SimpleSubscriber<ProvincesResult>(mICityView.getBottomContext()) {
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
@@ -51,7 +46,7 @@ public class ICityPresenter extends SuperPresenter {
                     }
 
                     @Override
-                    public void onNext(ProcincesResult procincesResult) {
+                    public void onNext(ProvincesResult procincesResult) {
                         super.onNext(procincesResult);
                         RxBus.getDefault()
                                 .post(MessageFactory.createCityMessage(CityMessage.SUCCESS,
