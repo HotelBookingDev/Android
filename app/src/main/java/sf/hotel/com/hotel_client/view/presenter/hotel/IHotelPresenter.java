@@ -37,6 +37,7 @@ public class IHotelPresenter extends SuperPresenter {
 
 
     public HotelResult getHotelCache(){
+        //TODO 需要处理如果当城市id和当前酒店列表不一致的情况处理 可能就默认将酒店列表的城市信息显示 将正确的覆盖
         return mHotelsEntity.getHotelCache(mIHotelsView.getBottomContext());
     }
 

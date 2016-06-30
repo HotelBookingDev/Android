@@ -43,7 +43,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
 
     static ProvincesResult.ProcincesBean.CityBean mCityBean = new ProvincesResult.ProcincesBean.CityBean();
 
-
+    //TODO 不要用static 已经有了SharePerenni 的东西内部自己去获取
     public static HotelsFragment newInstance(ProvincesResult.ProcincesBean.CityBean cityBean) {
 
         mCityBean = cityBean;
@@ -54,6 +54,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         fragment.setArguments(args);
         return fragment;
     }
+
     public static HotelsFragment newInstance() {
 
         Bundle args = new Bundle();
@@ -61,6 +62,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         fragment.setArguments(args);
         return fragment;
     }
+
     HomePullViewAdapter mPullAdapter;
 
     private IHotelPresenter mIHotelPresenter;
@@ -80,10 +82,9 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         return view;
     }
 
-
     private void initHotelCache() {
         HotelResult hotelCache = mIHotelPresenter.getHotelCache();
-        if (hotelCache != null){
+        if (hotelCache != null) {
             mPullAdapter.setList(hotelCache.getHotels());
         }
         mIHotelPresenter.callHotelsByCityId(String.valueOf(mCityBean.getId()), "1");
@@ -95,12 +96,13 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                 .subscribe(new Action1<HotelMessage>() {
                     @Override
                     public void call(HotelMessage hotelMessage) {
-                        switch (hotelMessage.what){
+                        switch (hotelMessage.what) {
                             case HotelMessage.REFRESH_LIST_VIEW_HOTEL:
                                 ProvincesResult.ProcincesBean.CityBean cityBean = (ProvincesResult.ProcincesBean.CityBean) hotelMessage.obj;
                                 mCityBean.setId(cityBean.getId());
                                 mCityBean.setName(cityBean.getName());
-                                mIHotelPresenter.callHotelsByCityId(String.valueOf(mCityBean.getId()), "1");
+                                mIHotelPresenter.callHotelsByCityId(
+                                        String.valueOf(mCityBean.getId()), "1");
                                 break;
                         }
                     }
@@ -161,18 +163,15 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         mPullAdapter = new HomePullViewAdapter(getBottomContext());
         mPullAdapter.setOnItemClickLitener(new OnItemClickListener() {
             @Override
-            public void onItemClick(View view,
-                                    int position) {
+            public void onItemClick(View view, int position) {
 
                 HotelResult.HotelsBean itemByPos = mPullAdapter.getItemByPos(position);
 
                 showDetail(itemByPos);
-
             }
 
             @Override
-            public void onItemLongClick(View view,
-                                        int position) {
+            public void onItemLongClick(View view, int position) {
 
             }
         });
@@ -193,18 +192,14 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         return getActivity();
     }
 
-
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mIHotelPresenter != null){
+        if (mIHotelPresenter != null) {
             mIHotelPresenter.destroy();
             mIHotelPresenter = null;
         }
-
     }
-
-
 
     @Override
     public void setHotelAdapterList(HotelResult hotelResult) {
