@@ -60,18 +60,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".view.activity.hotel.HomeActivity"
-            />
-
+        <activity android:name=".view.activity.hotel.HomeActivity" />
         <activity
             android:name=".view.activity.register.LoginActivity"
             android:launchMode="singleTask" />
         <activity android:name=".view.activity.MainActivity" />
         <activity android:name=".view.activity.hotel.CityActivity" />
-
-        <activity android:name=".view.activity.hotel.TimesActivity"/>
-
+        <activity android:name=".view.activity.hotel.TimesActivity" />
         <activity android:name=".view.activity.pay.PayActivity" />
         <activity android:name=".view.activity.hotel.RoomActivity" />
 
@@ -102,7 +97,7 @@
 
         <activity android:name=".view.activity.PushActivity" />
 
-        <!--leanCloud-->
+        <!-- leanCloud -->
         <service
             android:name="com.avos.avoscloud.PushService"
             android:exported="true" />
@@ -122,6 +117,8 @@
                 <action android:name="com.pushHotel.action" />
             </intent-filter>
         </receiver>
+
+        <activity android:name=".view.activity.person.MoneyActivity"></activity>
     </application>
 
 </manifest>

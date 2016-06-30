@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="@color/black"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical">
 
     <sf.hotel.com.hotel_client.view.custom.HotelTitleView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/title_height"
-        app:leftBtnIcon="@mipmap/ic_title_back_arrow"
-        app:titleText="@string/times"
         android:id="@+id/activity_times_back"
-        />
+        style="@style/view_title"
+        app:leftBtnIcon="@mipmap/ic_title_back_arrow"
+        app:titleText="@string/times" />
 
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/activity_times_frame"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>
