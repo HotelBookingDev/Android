@@ -3,11 +3,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/bg_setting"
     tools:context="sf.hotel.com.hotel_client.view.fragment.person.EvauleFragment">
 
-    <sf.hotel.com.hotel_client.view.custom.HotelTitleView
-        android:id="@+id/view_title"
-        style="@style/view_title"
-        app:leftBtnText="@string/back"
-        app:titleText="@string/my_evaluate" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <sf.hotel.com.hotel_client.view.custom.HotelTitleView
+            android:id="@+id/view_title"
+            style="@style/view_title"
+            app:leftBtnText="@string/back"
+            app:titleText="@string/my_evaluate" />
+
+        <EditText
+            android:id="@+id/et_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/activity_feedback_et_height"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/bg_row_border"
+            android:gravity="left"
+            android:hint="@string/settings_feedback"
+            android:inputType="textMultiLine"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/hint_text"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="@dimen/activity_feedback_im_height"
+            android:layout_height="@dimen/activity_feedback_im_widht"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/activity_settings_backnow_top"
+            android:background="@drawable/bg_row_border"
+            android:gravity="center"
+            android:text="@string/submit"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
 </FrameLayout>

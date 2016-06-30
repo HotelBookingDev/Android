@@ -29,4 +29,8 @@
     <!--账户资料里面的head 的高-->
     <dimen name="account_balance_height">200dp</dimen>
     <dimen name="text_big_size">35sp</dimen>
+    <dimen name="activity_feedback_et_height">160dp</dimen>
+    <dimen name="activity_feedback_im_height">100dp</dimen>
+    <dimen name="activity_feedback_im_widht">45dp</dimen>
+    <dimen name="activity_settings_backnow_top">60dp</dimen>
 </resources>

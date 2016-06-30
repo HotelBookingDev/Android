@@ -36,4 +36,5 @@
 
     <!--充值的按钮-->
     <color name="add_money">#F26726</color>
+    <color name="hint_text">#C0FFFFFF</color>
 </resources>

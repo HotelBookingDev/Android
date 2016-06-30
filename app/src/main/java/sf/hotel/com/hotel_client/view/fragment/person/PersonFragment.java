@@ -9,9 +9,8 @@ import android.view.ViewGroup;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rx.Subscription;
-import sf.hotel.com.data.utils.WebViewModelFactory;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.view.activity.WebViewActivity;
+import sf.hotel.com.hotel_client.view.activity.person.EvalueActivity;
 import sf.hotel.com.hotel_client.view.activity.person.MoneyActivity;
 import sf.hotel.com.hotel_client.view.activity.person.OrderActivity;
 import sf.hotel.com.hotel_client.view.activity.person.SettingActivity;
@@ -91,9 +90,7 @@ public class PersonFragment extends BaseFragment implements IPersonView {
             Intent intent = new Intent(getActivity(), MoneyActivity.class);
             startActivity(intent);
         } else if (type == EVALUATE) {
-            Intent intent = new Intent(getActivity(), WebViewActivity.class);
-            intent.putExtra(WebViewActivity.KEY,
-                    (WebViewModelFactory.getModel(WebViewModelFactory.BAIDU)));
+            Intent intent = new Intent(getActivity(), EvalueActivity.class);
             startActivity(intent);
         }
     }
