@@ -3,6 +3,7 @@
     <declare-styleable name="PersonalItemView">
         <attr name="leftIcon" format="reference" />
         <attr name="contextText" format="string" />
+        <attr name="rightText" format="string" />
     </declare-styleable>
 
     <declare-styleable name="HotelTitleBar">

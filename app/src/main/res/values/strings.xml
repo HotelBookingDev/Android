@@ -70,5 +70,8 @@
     <string name="enter_order">请输入订单号</string>
     <string name="my_bill">账单</string>
     <string name="account_balance">账户余额</string>
+    <string name="account_integral">用户积分</string>
+    <string name="zero_money">¥0.00</string>
+    <string name="zero_integral">0.0</string>
 
 </resources>

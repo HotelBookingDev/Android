@@ -140,9 +140,9 @@
 
     </style>
 
-    <style name="text_left">
+    <style name="normal_text">
         <item name="android:textSize">@dimen/text_small</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/normal_color</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingLeft">10.0dip</item>
         <item name="android:paddingRight">10.0dip</item>

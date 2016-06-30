@@ -7,13 +7,14 @@ import android.view.ViewGroup;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 
 public class MoneyFragment extends BaseFragment {
     @BindView(R.id.view_title)
-    HotelTitleView mview_title;
+    HotelTitleView mView_title;
 
     public static MoneyFragment newInstance() {
 
@@ -35,6 +36,16 @@ public class MoneyFragment extends BaseFragment {
     }
 
     private void initView() {
-        mview_title.addLeftClick(v -> getActivity().finish());
+        mView_title.addLeftClick(v -> getActivity().finish());
+    }
+
+    @OnClick({R.id.account_balance, R.id.account_integral})
+    public void onClick(View view) {
+        int id = view.getId();
+        if (id == R.id.account_balance) {
+
+        } else if (id == R.id.account_integral) {
+
+        }
     }
 }
