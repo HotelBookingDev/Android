@@ -6,81 +6,109 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:background="@color/colorPrimary"
-        >
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:background="@color/colorPrimary"-->
+        <!--&gt;-->
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            style="@style/titleTextStyleWhite"
-            android:text="XXX大床房(8:00-18:00)"
-            />
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--style="@style/titleTextStyleWhite"-->
+            <!--android:text="XXX大床房(8:00-18:00)"-->
+            <!--/>-->
 
-        <ImageView
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:src="@mipmap/ic_close_black_36dp"
-            android:id="@+id/fragment_room_close"
-            />
-    </LinearLayout>
+        <!--<ImageView-->
+            <!--android:layout_width="36dp"-->
+            <!--android:layout_height="36dp"-->
+            <!--android:src="@mipmap/ic_close_black_36dp"-->
+            <!--android:id="@+id/fragment_room_close"-->
+            <!--/>-->
+    <!--</LinearLayout>-->
 
-    <sf.hotel.com.hotel_client.view.custom.NoScrollView
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         >
 
-        <LinearLayout
+        <sf.hotel.com.hotel_client.view.custom.NoScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:id="@+id/frag_room_scrollview"
             >
 
-            <com.lsjwzh.widget.recyclerviewpager.LoopRecyclerViewPager
-                android:id="@+id/fragment_room_viewPager"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                app:rvp_triggerOffset="0.1"
-                app:rvp_singlePageFling="true"
-                android:clipToPadding="false"
                 >
-            </com.lsjwzh.widget.recyclerviewpager.LoopRecyclerViewPager>
 
-            <View
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/splitLineStyle"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/titleTextStyle"
-                android:id="@+id/fragment_room_content"
-                android:text="早餐 无\n建筑面积 15m2 \n 可主2人 \n 双人床 1.5m \n 宽带wifi"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                style="@style/splitLineStyle"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/itemTextContentStyle"
-                android:text="条款\nXXXXXXXXXXXXX\nXXXXXXXXXX\nXXXX\nXXXXXXXXXXXXX"
-                />
-        </LinearLayout>
-    </sf.hotel.com.hotel_client.view.custom.NoScrollView>
+                <com.lsjwzh.widget.recyclerviewpager.LoopRecyclerViewPager
+                    android:id="@+id/fragment_room_viewPager"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    app:rvp_triggerOffset="0.1"
+                    app:rvp_singlePageFling="true"
+                    android:clipToPadding="false"
+                    >
+                </com.lsjwzh.widget.recyclerviewpager.LoopRecyclerViewPager>
+
+                <View
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    style="@style/splitLineStyle"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/titleTextStyle"
+                    android:id="@+id/fragment_room_content"
+                    android:text="早餐 无\n建筑面积 15m2 \n 可主2人 \n 双人床 1.5m \n 宽带wifi"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    style="@style/splitLineStyle"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/itemTextContentStyle"
+                    android:text="条款\nXXXXXXXXXXXXX\nXXXXXXXXXX\nXXXX\nXXXXXXXXXXXXX"
+                    />
+                
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:src="@mipmap/ic_launcher"
+                    />
+            </LinearLayout>
+
+
+        </sf.hotel.com.hotel_client.view.custom.NoScrollView>
+
+        <sf.hotel.com.hotel_client.view.custom.HideTitle
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_height"
+            app:mid_text="@string/room"
+            app:left_img="@mipmap/ic_title_back_arrow"
+            app:right_img1="@mipmap/ic_close_black_36dp"
+            app:right_img2="@mipmap/ic_close_black_36dp"
+            android:id="@+id/frag_room_title"
+            />
+
+    </FrameLayout>
+
 
     <Button
         android:id="@+id/frag_room_search"

@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
@@ -27,9 +26,8 @@ import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.adapter.DialogBedAdapter;
 import sf.hotel.com.hotel_client.view.adapter.RoomRecyclerPagerAdapter;
-import sf.hotel.com.hotel_client.view.event.MessageFactory;
-import sf.hotel.com.hotel_client.view.event.RxBus;
-import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
+import sf.hotel.com.hotel_client.view.custom.HideTitle;
+import sf.hotel.com.hotel_client.view.custom.NoScrollView;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IRoomView;
 import sf.hotel.com.hotel_client.view.presenter.hotel.IRoomPresenter;
@@ -45,8 +43,8 @@ public class RoomFragment extends BaseFragment implements IRoomView {
 
     IRoomPresenter mIRoomPresenter;
 
-    @BindView(R.id.fragment_room_close)
-    ImageView imgClose;
+//    @BindView(R.id.fragment_room_close)
+//    ImageView imgClose;
 
     @BindView(R.id.fragment_room_viewPager)
     RecyclerViewPager mRecyclerViewPager;
@@ -60,6 +58,12 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     Button mBtnSearch;
 
     DialogPlus dialogPlus;
+
+    @BindView(R.id.frag_room_title)
+    HideTitle mTitle;
+
+    @BindView(R.id.frag_room_scrollview)
+    NoScrollView mNoScrollView;
 
     public static RoomFragment newInstance(Bundle bundle) {
 
@@ -92,7 +96,22 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         initViewPager(args);
 
         // initRecyclerView();
+
+
+        initTitle();
+
+
         return view;
+    }
+
+    private void initTitle() {
+        mTitle.setScrollView(mNoScrollView);
+        mTitle.addLeftViewOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressedSupport();
+            }
+        });
     }
 
 //    private void initRecyclerView() {
@@ -206,10 +225,5 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     @Override
     public void showViewToast(String msg) {
 
-    }
-
-    @OnClick(R.id.fragment_room_close)
-    public void close() {
-        RxBus.getDefault().post(MessageFactory.createHotelMessage(HotelMessage.FRAGMENT_BACK));
     }
 }

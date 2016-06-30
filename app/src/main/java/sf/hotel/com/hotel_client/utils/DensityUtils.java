@@ -6,7 +6,7 @@ import android.util.TypedValue;
 /**
  * Created by 林其望
  */
-class DensityUtils {
+public class DensityUtils {
 
     private DensityUtils() {
         /* cannot be instantiated */

@@ -35,4 +35,11 @@
         <attr name="select_text_color" format="color|integer"/>
     </declare-styleable>
 
+
+    <declare-styleable name="HideTitle">
+        <attr name="mid_text" format="string"/>
+        <attr name="left_img" format="reference"/>
+        <attr name="right_img1" format="reference"/>
+        <attr name="right_img2" format="reference"/>
+    </declare-styleable>
 </resources>
