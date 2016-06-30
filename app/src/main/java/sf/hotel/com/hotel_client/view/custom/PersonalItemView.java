@@ -25,6 +25,7 @@ public class PersonalItemView extends FrameLayout {
 
     private int defaultIcon = R.mipmap.ic_launcher;
     private String showString;
+    private String rightString;
 
     public PersonalItemView(Context context) {
         this(context, null);
@@ -41,6 +42,7 @@ public class PersonalItemView extends FrameLayout {
         try {
             defaultIcon = a.getResourceId(R.styleable.PersonalItemView_leftIcon, defaultIcon);
             showString = a.getString(R.styleable.PersonalItemView_contextText);
+            rightString = a.getString(R.styleable.PersonalItemView_rightText);
         } finally {
             a.recycle();
         }
@@ -51,7 +53,7 @@ public class PersonalItemView extends FrameLayout {
         View inflate = LayoutInflater.from(context).inflate(R.layout.item_person, this);
         ImageView mIconView = (ImageView) inflate.findViewById(R.id.iv_item_persion);
         TextView textView = (TextView) inflate.findViewById(R.id.tv_item_persion_content);
-        String defaultString = "PersionItemView";
+        String defaultString = "PensionItemView";
         textView.setText(defaultString);
         if (!TextUtils.isEmpty(showString)) {
             textView.setText(showString);
@@ -60,6 +62,14 @@ public class PersonalItemView extends FrameLayout {
         HotelImageLoad.loadImage(context, mIconView, defaultIcon);
         if (defaultIcon == R.mipmap.ic_launcher) {
             mIconView.setVisibility(GONE);
+        }
+//        加载右侧的文字描述
+        if (!TextUtils.isEmpty(rightString)) {
+            TextView tv_right = (TextView) inflate.findViewById(R.id.tv_right);
+            tv_right.setVisibility(VISIBLE);
+            tv_right.setText(rightString);
+        } else {
+            inflate.findViewById(R.id.tv_right).setVisibility(GONE);
         }
     }
 }

@@ -19,7 +19,13 @@
         android:layout_marginLeft="@dimen/fab_margin"
         android:layout_marginStart="@dimen/fab_margin"
         android:layout_weight="1"
-        android:text="hhhhhh" />
+        android:text="@string/my" />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_right"
+        style="@style/normal_text"
+        android:text="@string/my" />
 
     <ImageView
         android:layout_width="wrap_content"
