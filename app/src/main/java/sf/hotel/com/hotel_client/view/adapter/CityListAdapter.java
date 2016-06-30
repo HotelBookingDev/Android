@@ -19,7 +19,7 @@ import sf.hotel.com.hotel_client.R;
  */
 public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.ViewHolder> {
 
-    private List<ProcincesResult.ProcincesBean.CitysBean> mList = new ArrayList<>();
+    private List<ProcincesResult.ProcincesBean.CityBean> mList = new ArrayList<>();
 
     private OnItemClickListener mOnItemClickListener;
 
@@ -27,13 +27,13 @@ public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.Vie
         this.mOnItemClickListener = mOnItemClickListener;
     }
 
-    public void setList(List<ProcincesResult.ProcincesBean.CitysBean> list) {
+    public void setList(List<ProcincesResult.ProcincesBean.CityBean> list) {
         this.mList.clear();
         mList.addAll(list);
         notifyDataSetChanged();
     }
 
-    public ProcincesResult.ProcincesBean.CitysBean getListItem(int pos) {
+    public ProcincesResult.ProcincesBean.CityBean getListItem(int pos) {
         return mList.get(pos);
     }
 
@@ -41,9 +41,9 @@ public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.Vie
         mList.clear();
         List<ProcincesResult.ProcincesBean> procinces = procincesResult.getProcinces();
         for (ProcincesResult.ProcincesBean procincesBean : procinces) {
-            List<ProcincesResult.ProcincesBean.CitysBean> citys = procincesBean.getCitys();
-            for (ProcincesResult.ProcincesBean.CitysBean citysBean : citys) {
-                mList.add(citysBean);
+            List<ProcincesResult.ProcincesBean.CityBean> citys = procincesBean.getCitys();
+            for (ProcincesResult.ProcincesBean.CityBean cityBean : citys) {
+                mList.add(cityBean);
             }
         }
 

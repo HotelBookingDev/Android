@@ -52,26 +52,26 @@ public class IHomePresenter  extends SuperPresenter{
 
 
     public void loadCitysBeanCache(){
-        ProcincesResult.ProcincesBean.CitysBean citysBean = HotelDao.getCitysBean(mHomeContainer.getBottomContext());
-        if (citysBean != null && !citysBean.getName().equals("")){
-            mHomeContainer.setTextCityName(citysBean.getName());
-            HomeContainer.setCitysBean(citysBean);
+        ProcincesResult.ProcincesBean.CityBean cityBean = HotelDao.getCitysBean(mHomeContainer.getBottomContext());
+        if (cityBean != null && !cityBean.getName().equals("")){
+            mHomeContainer.setTextCityName(cityBean.getName());
+            HomeContainer.setCityBean(cityBean);
         } else {
             String cityCode = PreferencesUtils.getCityCode(mHomeContainer.getBottomContext());
             String cityName = PreferencesUtils.getCityName(mHomeContainer.getBottomContext());
             if (cityCode != null && cityName != null){
                 mHomeContainer.setTextCityName(cityName);
-                citysBean = new ProcincesResult.ProcincesBean.CitysBean();
-                citysBean.setName(cityName);
-                citysBean.setId(Integer.valueOf(cityCode));
-                HomeContainer.setCitysBean(new ProcincesResult.ProcincesBean.CitysBean());
+                cityBean = new ProcincesResult.ProcincesBean.CityBean();
+                cityBean.setName(cityName);
+                cityBean.setId(Integer.valueOf(cityCode));
+                HomeContainer.setCityBean(new ProcincesResult.ProcincesBean.CityBean());
             }
         }
 
     }
 
-    public void saveCitysBean(ProcincesResult.ProcincesBean.CitysBean citysBean){
-        HotelDao.saveCitysBean(mHomeContainer.getBottomContext(), citysBean);
+    public void saveCitysBean(ProcincesResult.ProcincesBean.CityBean cityBean){
+        HotelDao.saveCitysBean(mHomeContainer.getBottomContext(), cityBean);
     }
 
     public void handlingException(Throwable e) {

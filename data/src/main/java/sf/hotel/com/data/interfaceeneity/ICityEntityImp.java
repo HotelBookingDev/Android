@@ -18,8 +18,8 @@ public class ICityEntityImp implements CityEntity {
         return HotelDao.getProcincesResult(context);
     }
 
-    public void saveCitysBean(Context context, ProcincesResult.ProcincesBean.CitysBean citysBean){
-        HotelDao.saveCitysBean(context, citysBean);
+    public void saveCitysBean(Context context, ProcincesResult.ProcincesBean.CityBean cityBean){
+        HotelDao.saveCitysBean(context, cityBean);
     }
 
     @Override

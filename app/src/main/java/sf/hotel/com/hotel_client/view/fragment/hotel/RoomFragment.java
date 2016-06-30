@@ -16,9 +16,6 @@ import android.widget.TextView;
 import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ListHolder;
-import com.orhanobut.dialogplus.OnCancelListener;
-import com.orhanobut.dialogplus.OnDismissListener;
-import com.orhanobut.dialogplus.OnItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,9 +35,9 @@ import sf.hotel.com.hotel_client.view.interfaceview.hotel.IRoomView;
 import sf.hotel.com.hotel_client.view.presenter.hotel.IRoomPresenter;
 
 /**
- * @author MZ
- * @email sanfenruxi1@163.com
- * @date 16/6/16.
+ * author MZ
+ * email sanfenruxi1@163.com
+ * date 16/6/16.
  */
 public class RoomFragment extends BaseFragment implements IRoomView {
 
@@ -63,7 +60,6 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     Button mBtnSearch;
 
     DialogPlus dialogPlus;
-
 
     public static RoomFragment newInstance(Bundle bundle) {
 
@@ -95,7 +91,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         ButterKnife.bind(this, view);
         initViewPager(args);
 
-       // initRecyclerView();
+        // initRecyclerView();
         return view;
     }
 
@@ -149,27 +145,24 @@ public class RoomFragment extends BaseFragment implements IRoomView {
                 }
             }
         });
-        mRecyclerViewPager.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-            @Override
-            public void onLayoutChange(View v, int left, int top, int right, int bottom,
-                    int oldLeft, int oldTop, int oldRight, int oldBottom) {
-                if (mRecyclerViewPager.getChildCount() < 3) {
-                    if (mRecyclerViewPager.getChildAt(1) != null) {
-                        View v1 = mRecyclerViewPager.getChildAt(1);
-                        v1.setScaleY(0.9f);
+        mRecyclerViewPager.addOnLayoutChangeListener(
+                (v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+                    if (mRecyclerViewPager.getChildCount() < 3) {
+                        if (mRecyclerViewPager.getChildAt(1) != null) {
+                            View v1 = mRecyclerViewPager.getChildAt(1);
+                            v1.setScaleY(0.9f);
+                        }
+                    } else {
+                        if (mRecyclerViewPager.getChildAt(0) != null) {
+                            View v0 = mRecyclerViewPager.getChildAt(0);
+                            v0.setScaleY(0.9f);
+                        }
+                        if (mRecyclerViewPager.getChildAt(2) != null) {
+                            View v2 = mRecyclerViewPager.getChildAt(2);
+                            v2.setScaleY(0.9f);
+                        }
                     }
-                } else {
-                    if (mRecyclerViewPager.getChildAt(0) != null) {
-                        View v0 = mRecyclerViewPager.getChildAt(0);
-                        v0.setScaleY(0.9f);
-                    }
-                    if (mRecyclerViewPager.getChildAt(2) != null) {
-                        View v2 = mRecyclerViewPager.getChildAt(2);
-                        v2.setScaleY(0.9f);
-                    }
-                }
-            }
-        });
+                });
         HotelResult.HotelsBean hotelsBean = (HotelResult.HotelsBean) bundle.getSerializable("room");
         if (hotelsBean != null) {
             List<HotelResult.HotelsBean.HotelLogoImgsBean> hotelLogoImgs = hotelsBean.getHotelLogoImgs();
@@ -178,46 +171,32 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         }
     }
 
-
     @OnClick(R.id.frag_room_search)
-    public void onSearchClick(){
+    public void onSearchClick() {
 
-        if (dialogPlus == null){
-            dialogPlus = DialogPlus
-                    .newDialog(getBottomContext())
+        if (dialogPlus == null) {
+            dialogPlus = DialogPlus.newDialog(getBottomContext())
                     .setContentHolder(new ListHolder())
                     .setCancelable(true)
                     .setGravity(Gravity.BOTTOM)
                     .setFooter(R.layout.footer_bed)
                     .setHeader(R.layout.header_bed)
-                    .setAdapter(new DialogBedAdapter(new ArrayList<String>(), getBottomContext()))
-                    .setOnItemClickListener(new OnItemClickListener() {
-                        @Override
-                        public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
+                    .setAdapter(new DialogBedAdapter(new ArrayList<>(), getBottomContext()))
+                    .setOnItemClickListener((dialog, item, view, position) -> {
 
-                        }
                     })
-                    .setOnDismissListener(new OnDismissListener() {
-                        @Override
-                        public void onDismiss(DialogPlus dialog) {
+                    .setOnDismissListener(dialog -> {
 
-                        }
                     })
-                    .setOnCancelListener(new OnCancelListener() {
-                        @Override
-                        public void onCancel(DialogPlus dialog) {
+                    .setOnCancelListener(dialog -> {
 
-                        }
                     })
                     .setExpanded(true)
-                    .create()
-                    ;
+                    .create();
         }
 
         dialogPlus.show();
-
     }
-
 
     @Override
     public Context getBottomContext() {

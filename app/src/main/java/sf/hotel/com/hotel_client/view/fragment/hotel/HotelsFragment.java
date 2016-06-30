@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,12 +41,12 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
     @BindView(R.id.fragment_hotels_list)
     PullToRefreshRecyclerView mPullView;
 
-    static ProcincesResult.ProcincesBean.CitysBean mCitysBean = new ProcincesResult.ProcincesBean.CitysBean();
+    static ProcincesResult.ProcincesBean.CityBean mCityBean = new ProcincesResult.ProcincesBean.CityBean();
 
 
-    public static HotelsFragment newInstance(ProcincesResult.ProcincesBean.CitysBean citysBean) {
+    public static HotelsFragment newInstance(ProcincesResult.ProcincesBean.CityBean cityBean) {
 
-        mCitysBean = citysBean;
+        mCityBean = cityBean;
 
         Bundle args = new Bundle();
 
@@ -87,7 +86,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         if (hotelCache != null){
             mPullAdapter.setList(hotelCache.getHotels());
         }
-        mIHotelPresenter.callHotelsByCityId(String.valueOf(mCitysBean.getId()), "1");
+        mIHotelPresenter.callHotelsByCityId(String.valueOf(mCityBean.getId()), "1");
     }
 
     private void onRxEvent() {
@@ -98,10 +97,10 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                     public void call(HotelMessage hotelMessage) {
                         switch (hotelMessage.what){
                             case HotelMessage.REFRESH_LIST_VIEW_HOTEL:
-                                ProcincesResult.ProcincesBean.CitysBean citysBean = (ProcincesResult.ProcincesBean.CitysBean) hotelMessage.obj;
-                                mCitysBean.setId(citysBean.getId());
-                                mCitysBean.setName(citysBean.getName());
-                                mIHotelPresenter.callHotelsByCityId(String.valueOf(mCitysBean.getId()), "1");
+                                ProcincesResult.ProcincesBean.CityBean cityBean = (ProcincesResult.ProcincesBean.CityBean) hotelMessage.obj;
+                                mCityBean.setId(cityBean.getId());
+                                mCityBean.setName(cityBean.getName());
+                                mIHotelPresenter.callHotelsByCityId(String.valueOf(mCityBean.getId()), "1");
                                 break;
                         }
                     }
@@ -151,7 +150,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        mIHotelPresenter.callHotelsByCityId(String.valueOf(mCitysBean.getId()), "1");
+                        mIHotelPresenter.callHotelsByCityId(String.valueOf(mCityBean.getId()), "1");
                         mPullView.setOnRefreshComplete();
                         mPullView.onFinishLoading(true, false);
                     }

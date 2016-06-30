@@ -35,8 +35,8 @@ public class ICityPresenter extends SuperPresenter {
         return mICityEntityImp.getProcincesResult(context);
     }
 
-    public void saveCitysBean(Context context, ProcincesResult.ProcincesBean.CitysBean citysBean){
-        mICityEntityImp.saveCitysBean(context, citysBean);
+    public void saveCitysBean(Context context, ProcincesResult.ProcincesBean.CityBean cityBean){
+        mICityEntityImp.saveCitysBean(context, cityBean);
     }
 
 

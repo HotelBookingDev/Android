@@ -27,15 +27,15 @@ public class HotelDao{
         return gson.fromJson(hotelJson, HotelResult.class);
     }
 
-    public static ProcincesResult.ProcincesBean.CitysBean getCitysBean(Context context){
+    public static ProcincesResult.ProcincesBean.CityBean getCitysBean(Context context){
         Gson gson = new Gson();
         String citysBean = PreferencesUtils.getCitysBean(context);
-        return gson.fromJson(citysBean, ProcincesResult.ProcincesBean.CitysBean.class);
+        return gson.fromJson(citysBean, ProcincesResult.ProcincesBean.CityBean.class);
     }
 
-    public static void saveCitysBean(Context context, ProcincesResult.ProcincesBean.CitysBean citysBean){
+    public static void saveCitysBean(Context context, ProcincesResult.ProcincesBean.CityBean cityBean){
         Gson gson = new Gson();
-        String citysJson = gson.toJson(citysBean);
+        String citysJson = gson.toJson(cityBean);
         PreferencesUtils.saveCitysBean(context, citysJson);
     }
 

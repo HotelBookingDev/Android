@@ -1,5 +1,8 @@
 package sf.hotel.com.data.entity.netresult;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
@@ -102,9 +105,29 @@ public class HotelResult implements Serializable {
             this.hotelLogoImgs = hotelLogoImgs;
         }
 
-        public static class HotelLogoImgsBean implements Serializable {
+        public static class HotelLogoImgsBean implements Parcelable {
             private String img_url;
             private int hotel;
+
+            protected HotelLogoImgsBean(Parcel in) {
+                img_url = in.readString();
+                hotel = in.readInt();
+            }
+
+            public HotelLogoImgsBean() {
+            }
+
+            public static final Creator<HotelLogoImgsBean> CREATOR = new Creator<HotelLogoImgsBean>() {
+                @Override
+                public HotelLogoImgsBean createFromParcel(Parcel in) {
+                    return new HotelLogoImgsBean(in);
+                }
+
+                @Override
+                public HotelLogoImgsBean[] newArray(int size) {
+                    return new HotelLogoImgsBean[size];
+                }
+            };
 
             public String getImg_url() {
                 return img_url;
@@ -120,6 +143,17 @@ public class HotelResult implements Serializable {
 
             public void setHotel(int hotel) {
                 this.hotel = hotel;
+            }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(img_url);
+                dest.writeInt(hotel);
             }
         }
     }
