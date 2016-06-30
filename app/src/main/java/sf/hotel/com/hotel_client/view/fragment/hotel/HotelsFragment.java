@@ -18,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Subscription;
 import rx.functions.Action1;
-import sf.hotel.com.data.entity.ProcincesResult;
+import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.hotel.RoomActivity;
@@ -41,10 +41,10 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
     @BindView(R.id.fragment_hotels_list)
     PullToRefreshRecyclerView mPullView;
 
-    static ProcincesResult.ProcincesBean.CityBean mCityBean = new ProcincesResult.ProcincesBean.CityBean();
+    static ProvincesResult.ProcincesBean.CityBean mCityBean = new ProvincesResult.ProcincesBean.CityBean();
 
 
-    public static HotelsFragment newInstance(ProcincesResult.ProcincesBean.CityBean cityBean) {
+    public static HotelsFragment newInstance(ProvincesResult.ProcincesBean.CityBean cityBean) {
 
         mCityBean = cityBean;
 
@@ -97,7 +97,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                     public void call(HotelMessage hotelMessage) {
                         switch (hotelMessage.what){
                             case HotelMessage.REFRESH_LIST_VIEW_HOTEL:
-                                ProcincesResult.ProcincesBean.CityBean cityBean = (ProcincesResult.ProcincesBean.CityBean) hotelMessage.obj;
+                                ProvincesResult.ProcincesBean.CityBean cityBean = (ProvincesResult.ProcincesBean.CityBean) hotelMessage.obj;
                                 mCityBean.setId(cityBean.getId());
                                 mCityBean.setName(cityBean.getName());
                                 mIHotelPresenter.callHotelsByCityId(String.valueOf(mCityBean.getId()), "1");

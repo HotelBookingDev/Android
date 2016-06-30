@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 
 import rx.Observable;
 import sf.hotel.com.data.entity.Intallation;
-import sf.hotel.com.data.entity.ProcincesResult;
+import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.data.entity.netresult.LoginResult;
 import sf.hotel.com.data.entity.netresult.NormalResult;
@@ -93,7 +93,7 @@ public class ApiWrapper extends RetrofitHelper {
         return mService.getTokenResult().compose(this.<TokenResult>applySchedulers());
     }
 
-    public Observable<ProcincesResult> callCityList() {
-        return mService.callCityList().compose(this.<ProcincesResult>applySchedulers());
+    public Observable<ProvincesResult> callCityList() {
+        return mService.callCityList().compose(this.<ProvincesResult>applySchedulers());
     }
 }

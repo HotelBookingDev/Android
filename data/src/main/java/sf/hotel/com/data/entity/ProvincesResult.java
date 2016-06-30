@@ -11,7 +11,7 @@ import java.util.List;
  * @email sanfenruxi1@163.com
  * @date 16/6/22.
  */
-public class ProcincesResult implements Serializable {
+public class ProvincesResult implements Serializable {
     /**
      * id : 1
      * citys : [{"id":1,"name":"HangZhou","name_py":"杭州","logo":"http://img4.imgtn.bdimg.com/it/u=2524053065,1600155239&fm=21&gp=0.jpg"},{"id":2,"name":"NingBo","name_py":"宁波","logo":"http://img4.imgtn.bdimg.com/it/u=2524053065,1600155239&fm=21&gp=0.jpg"}]
@@ -161,7 +161,7 @@ public class ProcincesResult implements Serializable {
 
     @Override
     public String toString() {
-        return "ProcincesResult{" +
+        return "ProvincesResult{" +
                 "procinces=" + procinces +
                 '}';
     }

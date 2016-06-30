@@ -9,7 +9,7 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
-import sf.hotel.com.data.entity.ProcincesResult;
+import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.hotel_client.R;
 
 /**
@@ -19,7 +19,7 @@ import sf.hotel.com.hotel_client.R;
  */
 public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.ViewHolder> {
 
-    private List<ProcincesResult.ProcincesBean.CityBean> mList = new ArrayList<>();
+    private List<ProvincesResult.ProcincesBean.CityBean> mList = new ArrayList<>();
 
     private OnItemClickListener mOnItemClickListener;
 
@@ -27,22 +27,22 @@ public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.Vie
         this.mOnItemClickListener = mOnItemClickListener;
     }
 
-    public void setList(List<ProcincesResult.ProcincesBean.CityBean> list) {
+    public void setList(List<ProvincesResult.ProcincesBean.CityBean> list) {
         this.mList.clear();
         mList.addAll(list);
         notifyDataSetChanged();
     }
 
-    public ProcincesResult.ProcincesBean.CityBean getListItem(int pos) {
+    public ProvincesResult.ProcincesBean.CityBean getListItem(int pos) {
         return mList.get(pos);
     }
 
-    public void setList(ProcincesResult procincesResult) {
+    public void setList(ProvincesResult provincesResult) {
         mList.clear();
-        List<ProcincesResult.ProcincesBean> procinces = procincesResult.getProcinces();
-        for (ProcincesResult.ProcincesBean procincesBean : procinces) {
-            List<ProcincesResult.ProcincesBean.CityBean> citys = procincesBean.getCitys();
-            for (ProcincesResult.ProcincesBean.CityBean cityBean : citys) {
+        List<ProvincesResult.ProcincesBean> procinces = provincesResult.getProcinces();
+        for (ProvincesResult.ProcincesBean procincesBean : procinces) {
+            List<ProvincesResult.ProcincesBean.CityBean> citys = procincesBean.getCitys();
+            for (ProvincesResult.ProcincesBean.CityBean cityBean : citys) {
                 mList.add(cityBean);
             }
         }

@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.functions.Action1;
-import sf.hotel.com.data.entity.ProcincesResult;
+import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.adapter.CityListAdapter;
 import sf.hotel.com.hotel_client.view.adapter.OnItemClickListener;
@@ -60,9 +60,9 @@ public class CityFragment extends BaseFragment implements ICityView {
     }
 
     private void initCityCache() {
-        ProcincesResult procincesResult = mICityPresenter.getProcincesResult(getBottomContext());
-        if (procincesResult != null)
-            mCityListAdapter.setList(procincesResult);
+        ProvincesResult provincesResult = mICityPresenter.getProcincesResult(getBottomContext());
+        if (provincesResult != null)
+            mCityListAdapter.setList(provincesResult);
         else
             initCityList();
     }
@@ -74,8 +74,8 @@ public class CityFragment extends BaseFragment implements ICityView {
                 if (cityMessage != null) {
                     switch (cityMessage.what) {
                         case CityMessage.SUCCESS:
-                            ProcincesResult procincesResult = (ProcincesResult) cityMessage.obj;
-                            mCityListAdapter.setList(procincesResult);
+                            ProvincesResult provincesResult = (ProvincesResult) cityMessage.obj;
+                            mCityListAdapter.setList(provincesResult);
                             break;
                     }
                 }

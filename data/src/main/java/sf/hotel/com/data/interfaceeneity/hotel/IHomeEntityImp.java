@@ -1,8 +1,7 @@
 package sf.hotel.com.data.interfaceeneity.hotel;
 
 import rx.Observable;
-import sf.hotel.com.data.datasource.HotelDao;
-import sf.hotel.com.data.entity.ProcincesResult;
+import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.data.net.ApiWrapper;
 
 /**
@@ -12,7 +11,7 @@ import sf.hotel.com.data.net.ApiWrapper;
  */
 public class IHomeEntityImp implements HomeEntity {
     @Override
-    public Observable<ProcincesResult> callCityList() {
+    public Observable<ProvincesResult> callCityList() {
         return ApiWrapper.getInstance().callCityList();
     }
 

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Subscription;
-import sf.hotel.com.data.entity.ProcincesResult;
+import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.BaseActivity;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
@@ -44,7 +44,7 @@ public class CityActivity extends BaseActivity {
                         switch (cityMessage.what) {
                             case CityMessage.ACTIVITY_FINISH_AND_RESULT:
 
-                                ProcincesResult.ProcincesBean.CityBean cityBean = (ProcincesResult.ProcincesBean.CityBean) cityMessage.obj;
+                                ProvincesResult.ProcincesBean.CityBean cityBean = (ProvincesResult.ProcincesBean.CityBean) cityMessage.obj;
 
                                 Intent intent = new Intent();
                                 Bundle bundle = new Bundle();
