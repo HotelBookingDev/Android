@@ -9,8 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.Map;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import sf.hotel.com.data.entity.ProvincesResult;
@@ -96,12 +94,14 @@ public class CityFragment extends BaseFragment implements ICityView {
         mCityListAdapter.setOnItemClickLitener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                //每次点击都通知外层将外层的city做设置
+                //TODO CityActivy应该不需要管理内部的细节 应该直接在这里保存
                 RxBus.getDefault()
                         .post(MessageFactory.createCityMessage(
                                 CityMessage.ACTIVITY_FINISH_AND_RESULT,
                                 mCityListAdapter.getListItem(mCityListAdapter.isCheckedPos)));
 
-                LogUtils.d("-->" , mCityListAdapter.isCheckedPos + "");
+                LogUtils.d("-->", mCityListAdapter.isCheckedPos + "");
             }
 
             @Override
