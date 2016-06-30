@@ -43,7 +43,7 @@ public class MoneyFragment extends BaseFragment {
     public void onClick(View view) {
         int id = view.getId();
         if (id == R.id.account_balance) {
-
+            start(AccountBalanceFragmentView.newInstance());
         } else if (id == R.id.account_integral) {
 
         }

@@ -68,8 +68,6 @@ public class PersonalItemView extends FrameLayout {
             TextView tv_right = (TextView) inflate.findViewById(R.id.tv_right);
             tv_right.setVisibility(VISIBLE);
             tv_right.setText(rightString);
-        } else {
-            inflate.findViewById(R.id.tv_right).setVisibility(GONE);
         }
     }
 }
