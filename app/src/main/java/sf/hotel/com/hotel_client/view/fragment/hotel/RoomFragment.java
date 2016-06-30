@@ -24,6 +24,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.utils.DensityUtils;
 import sf.hotel.com.hotel_client.view.adapter.DialogBedAdapter;
 import sf.hotel.com.hotel_client.view.adapter.RoomRecyclerPagerAdapter;
 import sf.hotel.com.hotel_client.view.custom.HideTitle;
@@ -97,7 +98,6 @@ public class RoomFragment extends BaseFragment implements IRoomView {
 
         // initRecyclerView();
 
-
         initTitle();
 
 
@@ -105,7 +105,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     }
 
     private void initTitle() {
-        mTitle.setScrollView(mNoScrollView);
+        mTitle.setScrollView(mNoScrollView, DensityUtils.dp2px(getBottomContext() , 200));
         mTitle.addLeftViewOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

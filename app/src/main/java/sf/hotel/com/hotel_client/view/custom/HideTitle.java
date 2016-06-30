@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.IdRes;
 import android.util.AttributeSet;
+import android.util.LongSparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
 
 /**
@@ -30,20 +32,23 @@ public class HideTitle extends RelativeLayout {
     NoScrollView scrollView;
 
     int leftImgResId;
-
     int rightImgResId1, rightImgResId2;
-
     String midString = "";
 
 
-    public void setScrollView(NoScrollView scrollView) {
+    public void setScrollView(NoScrollView scrollView, int height) {
         this.scrollView = scrollView;
+
         scrollView.setOnScrollListener(new NoScrollView.onScrollListener() {
             @Override
             public void onScroll(View view, int x, int y, int oldX, int oldY) {
-                if(y < getHeight()){
-                    float alpha = ((float) getHeight() - y) / getHeight();
-                    setAlpha(1 - alpha);
+                if(y < height){
+                    float alpha = y / (float)height;
+                    if (alpha < 0)
+                        alpha = 0;
+                    if (alpha > 1)
+                        alpha = 1;
+                    setViewAlpha(alpha);
                 }
             }
         });
@@ -73,13 +78,13 @@ public class HideTitle extends RelativeLayout {
     }
 
     public void setViewAlpha(float alpha){
-        setBackgroundColor(Color.argb((int)alpha, 0x88, 0x88, 0x88));
+        int a = (int) (255 * alpha);
+        setBackgroundColor(Color.argb(a, 0x88, 0x88, 0x88));
     }
 
     private void initView() {
         setClickable(false);
         setViewAlpha(0);
-        setBackgroundColor(Color.argb(0x88, 0x88, 0x88, 0x88));
 
         addLeftView();
         addMidView();
