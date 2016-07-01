@@ -36,13 +36,13 @@ public abstract class BaseActivity extends SupportActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         mCompositeSubscription = new CompositeSubscription();
-        TransulcentUtils.setColorWindow(this, R.color.view_title);
         super.onCreate(savedInstanceState);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        TransulcentUtils.setColorWindow(this, R.color.view_title);
     }
 
     @Override

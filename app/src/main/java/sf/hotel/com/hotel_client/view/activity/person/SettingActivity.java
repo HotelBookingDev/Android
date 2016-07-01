@@ -19,6 +19,7 @@ public class SettingActivity extends BaseActivity {
         setContentView(R.layout.activity_setting);
         loadRootFragment(R.id.fl_setting, SettingFragment.newInstance());
         initRxEvent();
+
     }
 
     private void initRxEvent() {
