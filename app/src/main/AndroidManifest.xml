@@ -60,7 +60,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activity.hotel.HomeActivity" />
         <activity
             android:name=".view.activity.register.LoginActivity"
             android:launchMode="singleTask" />

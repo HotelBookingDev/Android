@@ -17,7 +17,6 @@ import sf.hotel.com.hotel_client.view.fragment.hotel.CityFragment;
  * email sanfenruxi1@163.com
  * date 16/6/23.
  */
-//TODO 只是包了一个CityFragment没有过多的处理
 public class CityActivity extends BaseActivity {
 
     @BindView(R.id.activity_city_back)
