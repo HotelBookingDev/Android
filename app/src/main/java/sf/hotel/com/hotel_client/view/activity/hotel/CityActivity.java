@@ -27,7 +27,6 @@ public class CityActivity extends BaseActivity {
     @BindView(R.id.activity_city_back)
     HotelTitleView mHotelTitleView;
 
-    ProvincesResult.ProcincesBean.CityBean cityBean;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,14 +40,8 @@ public class CityActivity extends BaseActivity {
         mHotelTitleView.addLeftClick(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (cityBean != null) {
-                    Intent intent = new Intent();
-                    Bundle bundle = new Bundle();
-                    bundle.putParcelable("city", cityBean);
-                    intent.putExtras(bundle);
-                    setResult(HomeContainer.CITY_REQUEST_CODE, intent);
-                }
+                Intent intent = new Intent();
+                setResult(HomeContainer.CITY_REQUEST_CODE, intent);
                 finish();
             }
         });
@@ -58,17 +51,7 @@ public class CityActivity extends BaseActivity {
         Subscription subscribe = RxBus.getDefault()
                 .toObservable(CityMessage.class)
                 .subscribe(cityMessage -> {
-                    if (cityMessage != null) {
-                        switch (cityMessage.what) {
-                            case CityMessage.ACTIVITY_FINISH_AND_RESULT:
-
-                                cityBean = (ProvincesResult.ProcincesBean.CityBean) cityMessage.obj;
-
-                                break;
-                        }
-                    }
                 }, throwable -> {
-
                 });
         mCompositeSubscription.add(subscribe);
     }

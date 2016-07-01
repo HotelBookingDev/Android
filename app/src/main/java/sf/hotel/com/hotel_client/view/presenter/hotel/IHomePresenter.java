@@ -2,7 +2,9 @@ package sf.hotel.com.hotel_client.view.presenter.hotel;
 
 import android.text.TextUtils;
 
+import rx.Subscriber;
 import rx.Subscription;
+import rx.functions.Action1;
 import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.datasource.HotelDao;
 import sf.hotel.com.data.entity.ProvincesResult;
@@ -34,18 +36,15 @@ public class IHomePresenter extends SuperPresenter {
 
     public void callCityList() {
         Subscription subscribe = mEntityImp.callCityList()
-                .subscribe(new SimpleSubscriber<ProvincesResult>(
-                        iHomeContainerView.getBottomContext()) {
+                .subscribe(new Action1<ProvincesResult>() {
                     @Override
-                    public void onError(Throwable e) {
-                        super.onError(e);
-                        handlingException(e);
-                    }
-
-                    @Override
-                    public void onNext(ProvincesResult provincesResult) {
-                        super.onNext(provincesResult);
+                    public void call(ProvincesResult provincesResult) {
                         onSuccessNext(provincesResult);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                       //handlingException(throwable);
                     }
                 });
         mCompositeSubscription.add(subscribe);

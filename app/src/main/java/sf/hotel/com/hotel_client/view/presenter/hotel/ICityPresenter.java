@@ -41,19 +41,19 @@ public class ICityPresenter extends SuperPresenter {
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
-                        RxBus.getDefault()
-                                .post(MessageFactory.createCityMessage(CityMessage.FAILE, e));
                     }
 
                     @Override
                     public void onNext(ProvincesResult procincesResult) {
                         super.onNext(procincesResult);
-                        RxBus.getDefault()
-                                .post(MessageFactory.createCityMessage(CityMessage.SUCCESS,
-                                        procincesResult));
+                        mICityView.setCityAdapterList(procincesResult);
                     }
                 });
         mCompositeSubscription.add(subscribe);
+    }
+
+    public void saveSelectCity(ProvincesResult.ProcincesBean.CityBean cityBean){
+        mICityEntityImp.saveCitysBean(mICityView.getBottomContext(), cityBean);
     }
 
     @Override

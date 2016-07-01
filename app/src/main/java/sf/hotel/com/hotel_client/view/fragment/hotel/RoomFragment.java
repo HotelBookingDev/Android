@@ -27,6 +27,7 @@ import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.DensityUtils;
 import sf.hotel.com.hotel_client.view.adapter.DialogBedAdapter;
 import sf.hotel.com.hotel_client.view.adapter.RoomRecyclerPagerAdapter;
+import sf.hotel.com.hotel_client.view.custom.CircleIndicator;
 import sf.hotel.com.hotel_client.view.custom.HideTitle;
 import sf.hotel.com.hotel_client.view.custom.NoScrollView;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
@@ -65,6 +66,9 @@ public class RoomFragment extends BaseFragment implements IRoomView {
 
     @BindView(R.id.frag_room_scrollview)
     NoScrollView mNoScrollView;
+
+    @BindView(R.id.frag_room_circle)
+    CircleIndicator mCircleIndicator;
 
     public static RoomFragment newInstance(Bundle bundle) {
 
@@ -188,6 +192,8 @@ public class RoomFragment extends BaseFragment implements IRoomView {
             mRoomRecyclerPagerAdapter.setList(hotelLogoImgs);
             mRoomContent.setText(hotelsBean.getIntroduce());
         }
+
+        mCircleIndicator.setViewPager(mRecyclerViewPager);
     }
 
     @OnClick(R.id.frag_room_search)

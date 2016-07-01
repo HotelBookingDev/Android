@@ -100,13 +100,11 @@ public class HomeContainer extends BaseFragment implements IHomeContainerView {
         //这是加载当前信息
         mIHomePresenter.loadCitysBeanCache();
         //进行网络请求获取城市列表信息，会有问题 你请求的时候你加载后面城市列表的时候信息不会到达，容器是不知道要去做加载城市列报需要内部去实现
-        //TODO 需要做处理，
         mIHomePresenter.callCityList();
     }
 
     private void init(@Nullable Bundle savedInstanceState) {
         if (savedInstanceState == null) {
-            //TODO 好像需要做判断
             loadRootFragment(R.id.fragment_container_home_frame,
                     HotelsFragment.newInstance(cityBean));
         }
@@ -125,11 +123,6 @@ public class HomeContainer extends BaseFragment implements IHomeContainerView {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == CITY_REQUEST_CODE) {
-            Bundle bundle = data.getExtras();
-            ProvincesResult.ProcincesBean.CityBean cityBean = bundle.getParcelable("city");
-            assert cityBean != null;
-            setTextCityName(cityBean.getName());
-            saveTextCity(cityBean);
             RxBus.getDefault()
                     .post(MessageFactory.createHotelMessage(HotelMessage.REFRESH_LIST_VIEW_HOTEL,
                             cityBean));

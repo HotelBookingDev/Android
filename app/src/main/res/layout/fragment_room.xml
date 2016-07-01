@@ -1,34 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fancy="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:gravity="center_vertical"-->
-        <!--android:background="@color/colorPrimary"-->
-        <!--&gt;-->
-
-        <!--<TextView-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--style="@style/titleTextStyleWhite"-->
-            <!--android:text="XXX大床房(8:00-18:00)"-->
-            <!--/>-->
-
-        <!--<ImageView-->
-            <!--android:layout_width="36dp"-->
-            <!--android:layout_height="36dp"-->
-            <!--android:src="@mipmap/ic_close_black_36dp"-->
-            <!--android:id="@+id/fragment_room_close"-->
-            <!--/>-->
-    <!--</LinearLayout>-->
 
 
     <FrameLayout
@@ -61,6 +36,12 @@
                     android:clipToPadding="false"
                     >
                 </com.lsjwzh.widget.recyclerviewpager.LoopRecyclerViewPager>
+
+                <sf.hotel.com.hotel_client.view.custom.CircleIndicator
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:id="@+id/frag_room_circle"
+                    />
 
                 <View
                     android:layout_marginTop="5dp"

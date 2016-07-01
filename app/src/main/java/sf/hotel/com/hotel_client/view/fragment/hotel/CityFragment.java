@@ -13,6 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.data.utils.LogUtils;
+import sf.hotel.com.data.utils.PreferencesUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.adapter.CityListAdapter;
 import sf.hotel.com.hotel_client.view.adapter.OnItemClickListener;
@@ -60,23 +61,17 @@ public class CityFragment extends BaseFragment implements ICityView {
     }
 
     private void initCityCache() {
-        //TODO 内部自己去做自己的处理加载网络请求本地逻辑操作 本地没有 的时候没有默认的按钮，当假数据的时候点击效果应该是不做请求的
         ProvincesResult provincesResult = mICityPresenter.getProcincesResult(getBottomContext());
-        if (provincesResult != null) { mCityListAdapter.setList(provincesResult); } else {
+        if (provincesResult != null) {
+            mCityListAdapter.setList(provincesResult);
+        } else {
             initCityList();
         }
     }
 
     private void onRxEvent() {
         RxBus.getDefault().toObservable(CityMessage.class).subscribe(cityMessage -> {
-            if (cityMessage != null) {
-                switch (cityMessage.what) {
-                    case CityMessage.SUCCESS:
-                        ProvincesResult provincesResult = (ProvincesResult) cityMessage.obj;
-                        mCityListAdapter.setList(provincesResult);
-                        break;
-                }
-            }
+
         }, throwable -> {
 
         });
@@ -94,14 +89,8 @@ public class CityFragment extends BaseFragment implements ICityView {
         mCityListAdapter.setOnItemClickLitener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                //每次点击都通知外层将外层的city做设置
-                //TODO CityActivy应该不需要管理内部的细节 应该直接在这里保存
-                RxBus.getDefault()
-                        .post(MessageFactory.createCityMessage(
-                                CityMessage.ACTIVITY_FINISH_AND_RESULT,
-                                mCityListAdapter.getListItem(mCityListAdapter.isCheckedPos)));
-
-                LogUtils.d("-->", mCityListAdapter.isCheckedPos + "");
+                mICityPresenter.saveSelectCity(mCityListAdapter
+                        .getListItem(mCityListAdapter.isCheckedPos));
             }
 
             @Override
@@ -115,5 +104,9 @@ public class CityFragment extends BaseFragment implements ICityView {
     @Override
     public Context getBottomContext() {
         return getActivity();
+    }
+
+    public void setCityAdapterList(ProvincesResult provincesResult){
+        mCityListAdapter.setList(provincesResult);
     }
 }

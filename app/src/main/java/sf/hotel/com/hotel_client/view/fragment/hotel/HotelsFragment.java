@@ -45,9 +45,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
 
     //TODO 不要用static 已经有了SharePerenni 的东西内部自己去获取
     public static HotelsFragment newInstance(ProvincesResult.ProcincesBean.CityBean cityBean) {
-
         mCityBean = cityBean;
-
         Bundle args = new Bundle();
 
         HotelsFragment fragment = new HotelsFragment();
