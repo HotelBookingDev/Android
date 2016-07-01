@@ -94,6 +94,7 @@ public class ILoginPresenter extends SuperPresenter {
                     @Override
                     public void onNext(LoginResult loginResult) {
                         super.onNext(loginResult);
+                        //TODO  后台测试
                         postIntallationId();
                         //保存用户信息
                         Observable.just(loginResult)

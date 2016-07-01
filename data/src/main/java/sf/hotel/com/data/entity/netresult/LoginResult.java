@@ -10,7 +10,7 @@ import sf.hotel.com.data.entity.UserEntity;
  * @date 16/6/7.
  */
 public class LoginResult {
-    @SerializedName("user")
+    @SerializedName("member")
     private UserEntity userEntity;
 
     public UserEntity getUserEntity() {
