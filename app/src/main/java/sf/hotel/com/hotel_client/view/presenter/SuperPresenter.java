@@ -44,4 +44,12 @@ public abstract class SuperPresenter implements Presenter {
     public boolean checkIsLogin() {
         return EntityContext.getInstance().getmCurrentUser() != null ? Boolean.TRUE : Boolean.FALSE;
     }
+
+    public String getErrorString(int id, Context context) {
+        try {
+            return context.getString(id);
+        } catch (Exception e) {
+            return context.getString(R.string.error);
+        }
+    }
 }

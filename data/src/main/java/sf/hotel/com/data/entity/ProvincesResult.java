@@ -1,8 +1,5 @@
 package sf.hotel.com.data.entity;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,31 +9,33 @@ import java.util.List;
  * @date 16/6/22.
  */
 public class ProvincesResult implements Serializable {
+
     /**
      * id : 1
-     * citys : [{"id":1,"name":"HangZhou","name_py":"杭州","logo":"http://img4.imgtn.bdimg.com/it/u=2524053065,1600155239&fm=21&gp=0.jpg"},{"id":2,"name":"NingBo","name_py":"宁波","logo":"http://img4.imgtn.bdimg.com/it/u=2524053065,1600155239&fm=21&gp=0.jpg"}]
-     * name : ZheJiang
-     * name_py : 浙江
+     * citys : [{"id":1,"code":1001,"name":"宁波","name_py":"ningbo","logo":"http://img4.imgtn.bdimg.com/it/u=2524053065,1600155239&fm=21&gp=0.jpg"},{"id":2,"code":1002,"name":"杭州","name_py":"hangzhou","logo":"http://img4.imgtn.bdimg.com/it/u=2524053065,1600155239&fm=21&gp=0.jpg"}]
+     * name : 浙江
+     * name_py : ZheJiang
      */
 
-    private List<ProcincesBean> procinces;
+    private List<ProvincesBean> provinces;
 
-    public List<ProcincesBean> getProcinces() {
-        return procinces;
+    public List<ProvincesBean> getProvinces() {
+        return provinces;
     }
 
-    public void setProcinces(List<ProcincesBean> procinces) {
-        this.procinces = procinces;
+    public void setProvinces(List<ProvincesBean> provinces) {
+        this.provinces = provinces;
     }
 
-    public static class ProcincesBean {
+    public static class ProvincesBean implements Serializable {
         private int id;
         private String name;
         private String name_py;
         /**
          * id : 1
-         * name : HangZhou
-         * name_py : 杭州
+         * code : 1001
+         * name : 宁波
+         * name_py : ningbo
          * logo : http://img4.imgtn.bdimg.com/it/u=2524053065,1600155239&fm=21&gp=0.jpg
          */
 
@@ -74,33 +73,12 @@ public class ProvincesResult implements Serializable {
             this.citys = citys;
         }
 
-        public static class CityBean implements Parcelable {
+        public static class CityBean implements Serializable {
             private int id;
+            private int code;
             private String name;
             private String name_py;
             private String logo;
-
-            public CityBean() {
-            }
-
-            protected CityBean(Parcel in) {
-                id = in.readInt();
-                name = in.readString();
-                name_py = in.readString();
-                logo = in.readString();
-            }
-
-            public static final Creator<CityBean> CREATOR = new Creator<CityBean>() {
-                @Override
-                public CityBean createFromParcel(Parcel in) {
-                    return new CityBean(in);
-                }
-
-                @Override
-                public CityBean[] newArray(int size) {
-                    return new CityBean[size];
-                }
-            };
 
             public int getId() {
                 return id;
@@ -108,6 +86,14 @@ public class ProvincesResult implements Serializable {
 
             public void setId(int id) {
                 this.id = id;
+            }
+
+            public int getCode() {
+                return code;
+            }
+
+            public void setCode(int code) {
+                this.code = code;
             }
 
             public String getName() {
@@ -133,36 +119,6 @@ public class ProvincesResult implements Serializable {
             public void setLogo(String logo) {
                 this.logo = logo;
             }
-
-            @Override
-            public int describeContents() {
-                return 0;
-            }
-
-            @Override
-            public void writeToParcel(Parcel dest, int flags) {
-                dest.writeInt(id);
-                dest.writeString(name);
-                dest.writeString(name_py);
-                dest.writeString(logo);
-            }
         }
-
-        @Override
-        public String toString() {
-            return "ProcincesBean{" +
-                    "id=" + id +
-                    ", name='" + name + '\'' +
-                    ", name_py='" + name_py + '\'' +
-                    ", citys=" + citys +
-                    '}';
-        }
-    }
-
-    @Override
-    public String toString() {
-        return "ProvincesResult{" +
-                "procinces=" + procinces +
-                '}';
     }
 }

@@ -2,15 +2,14 @@ package sf.hotel.com.hotel_client.view.presenter.hotel;
 
 import android.text.TextUtils;
 
-import rx.Subscriber;
 import rx.Subscription;
 import rx.functions.Action1;
 import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.datasource.HotelDao;
 import sf.hotel.com.data.entity.ProvincesResult;
+import sf.hotel.com.data.interfaceeneity.hotel.HomeEntity;
 import sf.hotel.com.data.interfaceeneity.hotel.IHomeEntityImp;
 import sf.hotel.com.data.net.Exception.APIException;
-import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.data.utils.PreferencesUtils;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IHomeContainerView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
@@ -24,7 +23,7 @@ public class IHomePresenter extends SuperPresenter {
 
     IHomeContainerView iHomeContainerView;
 
-    IHomeEntityImp mEntityImp;
+    HomeEntity mEntityImp;
 
     CompositeSubscription mCompositeSubscription;
 
@@ -44,14 +43,14 @@ public class IHomePresenter extends SuperPresenter {
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                       //handlingException(throwable);
+                        //handlingException(throwable);
                     }
                 });
         mCompositeSubscription.add(subscribe);
     }
 
     public void loadCitysBeanCache() {
-        ProvincesResult.ProcincesBean.CityBean cityBean = HotelDao.getCitysBean(
+        ProvincesResult.ProvincesBean.CityBean cityBean = HotelDao.getCitysBean(
                 iHomeContainerView.getBottomContext());
         if (cityBean != null && !TextUtils.isEmpty(cityBean.getName())) {
             iHomeContainerView.setTextCityName(cityBean.getName());
@@ -61,7 +60,7 @@ public class IHomePresenter extends SuperPresenter {
             String cityName = PreferencesUtils.getCityName(iHomeContainerView.getBottomContext());
             if (cityCode != null && cityName != null) {
                 iHomeContainerView.setTextCityName(cityName);
-                cityBean = new ProvincesResult.ProcincesBean.CityBean();
+                cityBean = new ProvincesResult.ProvincesBean.CityBean();
                 cityBean.setName(cityName);
                 cityBean.setId(Integer.valueOf(cityCode));
                 iHomeContainerView.setCityBean(cityBean);
@@ -69,11 +68,11 @@ public class IHomePresenter extends SuperPresenter {
         }
     }
 
-    public void saveCityBean(ProvincesResult.ProcincesBean.CityBean cityBean) {
+    public void saveCityBean(ProvincesResult.ProvincesBean.CityBean cityBean) {
         HotelDao.saveCitysBean(iHomeContainerView.getBottomContext(), cityBean);
     }
 
-    public ProvincesResult.ProcincesBean.CityBean getCityBean(){
+    public ProvincesResult.ProvincesBean.CityBean getCityBean(){
         return HotelDao.getCitysBean(iHomeContainerView.getBottomContext());
     }
 

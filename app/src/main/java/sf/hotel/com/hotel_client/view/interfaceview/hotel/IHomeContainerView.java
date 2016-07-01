@@ -11,5 +11,5 @@ import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
 public interface IHomeContainerView extends BaseView {
     void setTextCityName(String cityName);
 
-    void setCityBean(ProvincesResult.ProcincesBean.CityBean mCityBean);
+    void setCityBean(ProvincesResult.ProvincesBean.CityBean mCityBean);
 }

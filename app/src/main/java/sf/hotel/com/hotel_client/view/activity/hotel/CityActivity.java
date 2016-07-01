@@ -7,7 +7,6 @@ import android.view.View;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Subscription;
-import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.BaseActivity;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
@@ -21,12 +20,10 @@ import sf.hotel.com.hotel_client.view.fragment.hotel.CityFragment;
  * email sanfenruxi1@163.com
  * date 16/6/23.
  */
-//TODO 只是包了一个CityFragment没有过多的处理
 public class CityActivity extends BaseActivity {
 
     @BindView(R.id.activity_city_back)
     HotelTitleView mHotelTitleView;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,12 +33,14 @@ public class CityActivity extends BaseActivity {
         init();
         onRxEvent();
 
+
         mHotelTitleView.addLeftClick(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                onBackPressed();
             }
         });
+
     }
 
     private void onRxEvent() {

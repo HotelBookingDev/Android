@@ -12,12 +12,9 @@ import android.view.ViewGroup;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import sf.hotel.com.data.entity.ProvincesResult;
-import sf.hotel.com.data.utils.LogUtils;
-import sf.hotel.com.data.utils.PreferencesUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.adapter.CityListAdapter;
 import sf.hotel.com.hotel_client.view.adapter.OnItemClickListener;
-import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.CityMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
@@ -61,12 +58,13 @@ public class CityFragment extends BaseFragment implements ICityView {
     }
 
     private void initCityCache() {
+// 取消if else 每次都去网络请求
+        //TODO 需要考虑何时该去做更新，可能以后登录服务器会给你已给值在那个值做判断
         ProvincesResult provincesResult = mICityPresenter.getProcincesResult(getBottomContext());
         if (provincesResult != null) {
             mCityListAdapter.setList(provincesResult);
-        } else {
-            initCityList();
         }
+        initCityList();
     }
 
     private void onRxEvent() {
@@ -81,6 +79,7 @@ public class CityFragment extends BaseFragment implements ICityView {
         mICityPresenter.callCityList();
     }
 
+    //    界面排版
     private void initGrid() {
         //设置3列
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getBottomContext(), 3);
@@ -92,6 +91,7 @@ public class CityFragment extends BaseFragment implements ICityView {
 
                 mICityPresenter.saveSelectCity(mCityListAdapter
                         .getListItem(mCityListAdapter.isCheckedPos));
+
             }
 
             @Override
@@ -107,7 +107,7 @@ public class CityFragment extends BaseFragment implements ICityView {
         return getActivity();
     }
 
-    public void setCityAdapterList(ProvincesResult provincesResult){
+    public void setCityAdapterList(ProvincesResult provincesResult) {
         mCityListAdapter.setList(provincesResult);
     }
 }

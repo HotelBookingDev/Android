@@ -18,7 +18,7 @@ public class ICityEntityImp implements CityEntity {
         return HotelDao.getProcincesResult(context);
     }
 
-    public void saveCitysBean(Context context, ProvincesResult.ProcincesBean.CityBean cityBean){
+    public void saveCitysBean(Context context, ProvincesResult.ProvincesBean.CityBean cityBean){
         HotelDao.saveCitysBean(context, cityBean);
     }
 

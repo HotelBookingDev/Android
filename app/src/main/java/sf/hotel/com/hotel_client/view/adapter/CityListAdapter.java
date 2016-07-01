@@ -19,7 +19,7 @@ import sf.hotel.com.hotel_client.view.custom.CustomRadioButton;
  */
 public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.ViewHolder> {
 
-    private List<ProvincesResult.ProcincesBean.CityBean> mList = new ArrayList<>();
+    private List<ProvincesResult.ProvincesBean.CityBean> mList = new ArrayList<>();
 
     //内部做的一个当前选中项是那个
     //TODO 没做每次进来第一次加载
@@ -31,22 +31,22 @@ public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.Vie
         this.mOnItemClickListener = mOnItemClickListener;
     }
 
-    public void setList(List<ProvincesResult.ProcincesBean.CityBean> list) {
+    public void setList(List<ProvincesResult.ProvincesBean.CityBean> list) {
         this.mList.clear();
         mList.addAll(list);
         notifyDataSetChanged();
     }
 
-    public ProvincesResult.ProcincesBean.CityBean getListItem(int pos) {
+    public ProvincesResult.ProvincesBean.CityBean getListItem(int pos) {
         return mList.get(pos);
     }
 
     public void setList(ProvincesResult provincesResult) {
         mList.clear();
-        List<ProvincesResult.ProcincesBean> procinces = provincesResult.getProcinces();
-        for (ProvincesResult.ProcincesBean procincesBean : procinces) {
-            List<ProvincesResult.ProcincesBean.CityBean> citys = procincesBean.getCitys();
-            for (ProvincesResult.ProcincesBean.CityBean cityBean : citys) {
+        List<ProvincesResult.ProvincesBean> procinces = provincesResult.getProvinces();
+        for (ProvincesResult.ProvincesBean procincesBean : procinces) {
+            List<ProvincesResult.ProvincesBean.CityBean> citys = procincesBean.getCitys();
+            for (ProvincesResult.ProvincesBean.CityBean cityBean : citys) {
                 mList.add(cityBean);
             }
         }
@@ -72,17 +72,14 @@ public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.Vie
         if (position != isCheckedPos) holder.button.setChecked(false);
 
         if (mOnItemClickListener != null) {
-            holder.button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //每次点击都记录当前位置,刷新整个界面
-                    int pos = holder.getLayoutPosition();
-                    if (isCheckedPos != pos) {
-                        isCheckedPos = pos;
-                        notifyDataSetChanged();
-                    }
-                    mOnItemClickListener.onItemClick(holder.itemView, pos);
+            holder.button.setOnClickListener(v -> {
+                //每次点击都记录当前位置,刷新整个界面
+                int pos = holder.getLayoutPosition();
+                if (isCheckedPos != pos) {
+                    isCheckedPos = pos;
+                    notifyDataSetChanged();
                 }
+                mOnItemClickListener.onItemClick(holder.itemView, pos);
             });
         }
     }

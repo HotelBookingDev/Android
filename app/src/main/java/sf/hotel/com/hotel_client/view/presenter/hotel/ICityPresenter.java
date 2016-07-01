@@ -5,11 +5,9 @@ import android.content.Context;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.entity.ProvincesResult;
+import sf.hotel.com.data.interfaceeneity.CityEntity;
 import sf.hotel.com.data.interfaceeneity.ICityEntityImp;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
-import sf.hotel.com.hotel_client.view.event.MessageFactory;
-import sf.hotel.com.hotel_client.view.event.RxBus;
-import sf.hotel.com.hotel_client.view.event.hotel.CityMessage;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.ICityView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 
@@ -21,7 +19,7 @@ import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 public class ICityPresenter extends SuperPresenter {
     private ICityView mICityView;
 
-    private ICityEntityImp mICityEntityImp;
+    private CityEntity mICityEntityImp;
 
     private CompositeSubscription mCompositeSubscription;
 
@@ -52,7 +50,7 @@ public class ICityPresenter extends SuperPresenter {
         mCompositeSubscription.add(subscribe);
     }
 
-    public void saveSelectCity(ProvincesResult.ProcincesBean.CityBean cityBean){
+    public void saveSelectCity(ProvincesResult.ProvincesBean.CityBean cityBean) {
         mICityEntityImp.saveCitysBean(mICityView.getBottomContext(), cityBean);
     }
 

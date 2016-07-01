@@ -1,5 +1,7 @@
 package sf.hotel.com.data.interfaceeneity;
 
+import android.content.Context;
+
 import rx.Observable;
 import sf.hotel.com.data.entity.ProvincesResult;
 
@@ -8,6 +10,10 @@ import sf.hotel.com.data.entity.ProvincesResult;
  * @email sanfenruxi1@163.com
  * @date 16/6/22.
  */
-interface CityEntity {
+public interface CityEntity {
     Observable<ProvincesResult> callCityList();
+
+    ProvincesResult getProcincesResult(Context context);
+
+    void saveCitysBean(Context context, ProvincesResult.ProvincesBean.CityBean cityBean);
 }

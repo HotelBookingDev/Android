@@ -41,9 +41,9 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
     @BindView(R.id.fragment_hotels_list)
     PullToRefreshRecyclerView mPullView;
 
-    static volatile ProvincesResult.ProcincesBean.CityBean mCityBean = new ProvincesResult.ProcincesBean.CityBean();
+    static volatile ProvincesResult.ProvincesBean.CityBean mCityBean = new ProvincesResult.ProvincesBean.CityBean();
 
-    public static HotelsFragment newInstance(ProvincesResult.ProcincesBean.CityBean cityBean) {
+    public static HotelsFragment newInstance(ProvincesResult.ProvincesBean.CityBean cityBean) {
         mCityBean = cityBean;
         Bundle args = new Bundle();
 
@@ -87,7 +87,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                     public void call(HotelMessage hotelMessage) {
                         switch (hotelMessage.what) {
                             case HotelMessage.REFRESH_LIST_VIEW_HOTEL:
-                                ProvincesResult.ProcincesBean.CityBean cityBean = (ProvincesResult.ProcincesBean.CityBean) hotelMessage.obj;
+                                ProvincesResult.ProvincesBean.CityBean cityBean = (ProvincesResult.ProvincesBean.CityBean) hotelMessage.obj;
                                 mCityBean.setId(cityBean.getId());
                                 mCityBean.setName(cityBean.getName());
                                 mIHotelPresenter.callHotelsByCityId(

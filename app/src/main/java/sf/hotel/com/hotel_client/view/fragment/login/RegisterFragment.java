@@ -13,9 +13,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mehdi.sakout.fancybuttons.FancyButton;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.view.custom.CaptchaButton;
-import sf.hotel.com.hotel_client.view.event.RxBus;
+import sf.hotel.com.hotel_client.view.custom.CaptchaText;
 import sf.hotel.com.hotel_client.view.event.MessageFactory;
+import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.person.LoginMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.login.IRegisterView;
@@ -29,7 +29,7 @@ import sf.hotel.com.hotel_client.view.presenter.login.IRegisterPresenter;
 public class RegisterFragment extends BaseFragment implements IRegisterView {
 
     @BindView(R.id.et_phone)
-    EditText editRegUname;
+    EditText editRegName;
     @BindView(R.id.et_password)
     EditText editRegPwd;
 
@@ -37,7 +37,7 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
     EditText editRegCaptcha;
 
     @BindView(R.id.btn_reg_captcha)
-    CaptchaButton btnRegCaptcha;
+    CaptchaText btnRegCaptcha;
 
     @BindView(R.id.btn_reg_submit)
     FancyButton btnRegSubmit;
@@ -75,7 +75,7 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
 
     @Override
     public String getUName() {
-        return editRegUname.getText().toString();
+        return editRegName.getText().toString();
     }
 
     @Override
@@ -97,7 +97,6 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
     public Context getBottomContext() {
         return getActivity();
     }
-
 
     @Override
     public void showLogin() {

@@ -18,7 +18,7 @@ public class HttpResult<T> {
     @SerializedName("code")
     private int code;
 
-    @SerializedName("res")
+    @SerializedName("result")
     private T res;
 
     public boolean isSuccess() {
