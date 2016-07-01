@@ -19,6 +19,7 @@
             app:titleText="@string/change_pwd" />
 
         <RelativeLayout
+            android:id="@+id/rl_old_pwd"
             style="@style/group_item"
             android:layout_marginTop="@dimen/common_margin">
 
@@ -38,6 +39,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rl_new_pwd"
             style="@style/group_item"
             android:layout_marginTop="@dimen/common_margin">
 
@@ -58,6 +60,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rl_determine_new_pwd"
             style="@style/group_item"
             android:layout_marginBottom="@dimen/common_margin">
 

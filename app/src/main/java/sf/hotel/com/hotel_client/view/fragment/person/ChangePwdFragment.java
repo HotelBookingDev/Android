@@ -10,6 +10,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.person.IChangePwdView;
 import sf.hotel.com.hotel_client.view.presenter.person.ChangePersenter;
@@ -33,17 +34,20 @@ public class ChangePwdFragment extends BaseFragment implements IChangePwdView {
     @BindView(R.id.et_determine_confirm)
     EditText mConfirmPwdEditTxt;
 
+    @BindView(R.id.view_title)
+    HotelTitleView titleView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_change_pwd, container, false);
         ButterKnife.bind(this, view);
         mChangePersenter = new ChangePersenter(this);
+        titleView.addLeftClick(v -> pop());
         return view;
     }
 
-    @OnClick({R.id.submit_btn})
+    @OnClick({R.id.submit_btn,R.id.rl_old_pwd,R.id.rl_new_pwd,R.id.rl_determine_new_pwd})
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.submit_btn) {
