@@ -1,6 +1,7 @@
 package sf.hotel.com.data.interfaceeneity.person;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -23,10 +24,14 @@ public class RegisterEntityImp implements IRegisterEntity {
         return Observable.create(new Observable.OnSubscribe<NormalResult>() {
             @Override
             public void call(Subscriber<? super NormalResult> subscriber) {
-                if (!(CheckUtils.checkPhoneNumber(phone) &&
-                        !CheckUtils.isTextViewEmpty(smsCode) &&
-                        !CheckUtils.isTextViewEmpty(pwd))) {
-                    subscriber.onError(new APIException(CodeException.LOGIN_FORMAT_ERROR));
+                if (TextUtils.isEmpty(phone)) {
+                    subscriber.onError(new APIException(CodeException.REGIST_PHONE_NULL));
+                } else if (!(CheckUtils.checkPhoneNumber(phone))) {
+                    subscriber.onError(new APIException(CodeException.REGIST_PHONE_ERROR));
+                } else if (TextUtils.isEmpty(smsCode)) {
+                    subscriber.onError(new APIException(CodeException.SMS_CODE_NULL));
+                } else if (CheckUtils.isTextViewEmpty(pwd)) {
+                    subscriber.onError(new APIException(CodeException.PWD_NULL));
                 } else {
                     //网络请求的东西
                     ApiWrapper.getInstance().doRegister(phone, smsCode, pwd).subscribe(subscriber);
@@ -40,8 +45,10 @@ public class RegisterEntityImp implements IRegisterEntity {
         return Observable.create(new Observable.OnSubscribe<NormalResult>() {
             @Override
             public void call(Subscriber<? super NormalResult> subscriber) {
-                if (!(CheckUtils.checkPhoneNumber(phone))) {
-                    subscriber.onError(new APIException(CodeException.LOGIN_FORMAT_ERROR));
+                if (TextUtils.isEmpty(phone)) {
+                    subscriber.onError(new APIException(CodeException.REGIST_PHONE_NULL));
+                } else if (!(CheckUtils.checkPhoneNumber(phone))) {
+                    subscriber.onError(new APIException(CodeException.REGIST_PHONE_ERROR));
                 } else {
                     //网络请求的东西
                     ApiWrapper.getInstance().doGetSmsCode(phone).subscribe(subscriber);

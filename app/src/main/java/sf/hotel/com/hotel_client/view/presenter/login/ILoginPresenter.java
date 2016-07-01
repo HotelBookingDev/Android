@@ -1,6 +1,5 @@
 package sf.hotel.com.hotel_client.view.presenter.login;
 
-import android.content.Context;
 import android.text.TextUtils;
 
 import rx.Observable;
@@ -15,7 +14,6 @@ import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.Exception.Code;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.data.utils.StringUtils;
-import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.interfaceview.login.ILoginView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 
@@ -160,13 +158,5 @@ public class ILoginPresenter extends SuperPresenter {
         mILoginEntity.savePwd(mILoginView.getBottomContext(), pwd);
         mILoginEntity.saveAvatar(mILoginView.getBottomContext(), avatar);
         mILoginEntity.saveUserId(mILoginView.getBottomContext(), id);
-    }
-
-    private String getErrorString(int id, Context context) {
-        try {
-            return context.getString(id);
-        } catch (Exception e) {
-            return context.getString(R.string.error);
-        }
     }
 }

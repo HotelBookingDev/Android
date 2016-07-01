@@ -167,7 +167,7 @@
                         android:paddingLeft="7.0dip"
                         android:paddingRight="10.0dip">
 
-                        <sf.hotel.com.hotel_client.view.custom.CaptchaButton
+                        <sf.hotel.com.hotel_client.view.custom.CaptchaText
                             android:id="@+id/btn_reg_captcha"
                             android:layout_width="75.0dip"
                             android:layout_height="wrap_content"

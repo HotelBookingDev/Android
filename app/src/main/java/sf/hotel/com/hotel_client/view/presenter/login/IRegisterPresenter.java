@@ -38,7 +38,6 @@ public class IRegisterPresenter extends SuperPresenter {
                     public void onError(Throwable e) {
                         super.onError(e);
                         handlingException(e);
-
                     }
 
                     @Override
@@ -61,21 +60,18 @@ public class IRegisterPresenter extends SuperPresenter {
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
-
                         handlingException(e);
-
                     }
 
                     @Override
                     public void onNext(NormalResult normalResult) {
                         super.onNext(normalResult);
-
+                        mIRegisterView.startTimer();
                         mIRegisterView.showViewToast("获取验证码成功");
                     }
                 });
         mCompositeSubscription.add(subscribe);
     }
-
 
     @Override
     public void resume() {
@@ -95,7 +91,13 @@ public class IRegisterPresenter extends SuperPresenter {
     @Override
     public void handlingException(Throwable e) {
         if (e instanceof APIException) {
-
+            int i = ((APIException) e).getCode();
+            int msgid = ((APIException) e).getMessageId();
+            if (msgid == 0) {
+                mIRegisterView.showViewToast(e.getMessage());
+            } else {
+                mIRegisterView.showViewToast(getErrorString(msgid, mIRegisterView.getBottomContext()));
+            }
         } else {
             mIRegisterView.showViewToast(e.getMessage());
         }
