@@ -2,15 +2,14 @@ package sf.hotel.com.hotel_client.view.presenter.hotel;
 
 import android.text.TextUtils;
 
-import rx.Subscriber;
 import rx.Subscription;
 import rx.functions.Action1;
 import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.datasource.HotelDao;
 import sf.hotel.com.data.entity.ProvincesResult;
+import sf.hotel.com.data.interfaceeneity.hotel.HomeEntity;
 import sf.hotel.com.data.interfaceeneity.hotel.IHomeEntityImp;
 import sf.hotel.com.data.net.Exception.APIException;
-import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.data.utils.PreferencesUtils;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IHomeContainerView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
@@ -24,7 +23,7 @@ public class IHomePresenter extends SuperPresenter {
 
     IHomeContainerView iHomeContainerView;
 
-    IHomeEntityImp mEntityImp;
+    HomeEntity mEntityImp;
 
     CompositeSubscription mCompositeSubscription;
 
@@ -44,7 +43,7 @@ public class IHomePresenter extends SuperPresenter {
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                       //handlingException(throwable);
+                        //handlingException(throwable);
                     }
                 });
         mCompositeSubscription.add(subscribe);

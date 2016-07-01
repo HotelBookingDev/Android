@@ -72,17 +72,14 @@ public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.Vie
         if (position != isCheckedPos) holder.button.setChecked(false);
 
         if (mOnItemClickListener != null) {
-            holder.button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //每次点击都记录当前位置,刷新整个界面
-                    int pos = holder.getLayoutPosition();
-                    if (isCheckedPos != pos) {
-                        isCheckedPos = pos;
-                        notifyDataSetChanged();
-                    }
-                    mOnItemClickListener.onItemClick(holder.itemView, pos);
+            holder.button.setOnClickListener(v -> {
+                //每次点击都记录当前位置,刷新整个界面
+                int pos = holder.getLayoutPosition();
+                if (isCheckedPos != pos) {
+                    isCheckedPos = pos;
+                    notifyDataSetChanged();
                 }
+                mOnItemClickListener.onItemClick(holder.itemView, pos);
             });
         }
     }
