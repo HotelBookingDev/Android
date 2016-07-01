@@ -15,6 +15,12 @@ public class StringUtils {
             '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'
     };
 
+    //    以后密码要在这里改
+    public static String changePud(String s) {
+
+        return s;
+    }
+
     public static String md5(String s) {
         if (TextUtils.isEmpty(s)) {
             return "";
@@ -25,7 +31,7 @@ public class StringUtils {
             byte messageDigest[] = digest.digest();
             return toHexString(messageDigest);
         } catch (Exception e) {
-            Log.e("StringUtils", "md5 error", e);
+            Log.e("StringUtils", "changePud error", e);
             return "";
         }
     }

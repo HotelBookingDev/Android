@@ -29,7 +29,7 @@ import sf.hotel.com.hotel_client.view.presenter.login.IRegisterPresenter;
 public class RegisterFragment extends BaseFragment implements IRegisterView {
 
     @BindView(R.id.et_phone)
-    EditText editRegUname;
+    EditText editRegName;
     @BindView(R.id.et_password)
     EditText editRegPwd;
 
@@ -75,7 +75,7 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
 
     @Override
     public String getUName() {
-        return editRegUname.getText().toString();
+        return editRegName.getText().toString();
     }
 
     @Override

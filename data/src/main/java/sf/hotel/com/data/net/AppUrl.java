@@ -5,7 +5,7 @@ package sf.hotel.com.data.net;
  * email 1105896230@qq.com.
  */
 public class AppUrl {
-    public static final String API_HOST = "http://114.55.144.169/";
+    public static final String API_HOST = "http://agesd.com/";
     public static final String LOGIN_URL = "/user/login/";
     public static final String REGISTER_URL = "/user/register/";
     public static final String SMS_URL = "/ems/member/regist/";
@@ -15,5 +15,5 @@ public class AppUrl {
 
     public static final String TOKEN_URL = "/user/avatar/token";
 
-    public static final String PROVINCES_URL = "/provinces/";
+    public static final String PROVINCES_URL = "/province/";
 }

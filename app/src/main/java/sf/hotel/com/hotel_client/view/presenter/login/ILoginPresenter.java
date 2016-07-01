@@ -126,7 +126,7 @@ public class ILoginPresenter extends SuperPresenter {
     }
 
     private String getPostPwd(String pwd) {
-        pwd = StringUtils.md5(pwd);
+        pwd = StringUtils.changePud(pwd);
         if (!TextUtils.isEmpty(mILoginEntity.getPwd(mILoginView.getBottomContext()))) {
             if (mILoginEntity.getPwd(mILoginView.getBottomContext())
                     .equals(mILoginView.getPassword())) {

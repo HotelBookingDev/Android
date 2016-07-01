@@ -30,7 +30,7 @@ public class IRegisterPresenter extends SuperPresenter {
 
     public void register() {
         //注册使用md5
-        String pwd = StringUtils.md5(mIRegisterView.getPwd());
+        String pwd = StringUtils.changePud(mIRegisterView.getPwd());
         Subscription subscribe = mIRegisterEntity.register(mIRegisterView.getUName(),
                 mIRegisterView.getCaptcha(), pwd)
                 .subscribe(new SimpleSubscriber<NormalResult>(mIRegisterView.getBottomContext()) {
