@@ -3,10 +3,9 @@ package sf.hotel.com.hotel_client.view.custom;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.IdRes;
 import android.util.AttributeSet;
-import android.util.LongSparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -14,15 +13,15 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
 
 /**
  * @author MZ
  * @email sanfenruxi1@163.com
  * @date 16/6/30.
  */
-public class HideTitle extends RelativeLayout {
+public class HideTitle extends LinearLayout {
 
     ImageView leftImg;
     TextView midText;
@@ -30,6 +29,22 @@ public class HideTitle extends RelativeLayout {
     ImageView rightImg2;
     LinearLayout rightLinearLayout;
     NoScrollView scrollView;
+    boolean isStatusView;
+
+    View statusView;
+    RelativeLayout belowLayout;
+
+
+    int colorA = 0;
+    int colorR = 0;
+    int colorG = 0;
+    int colorB = 0;
+
+
+    String RGB = "#000000";
+
+    RelativeLayout.LayoutParams leftImgParams, rightParams, midTextParams ;
+    LinearLayout.LayoutParams rightImgParams1, rightImgParams2,statusViewParams, belowLayoutParams;
 
     int leftImgResId;
     int rightImgResId1, rightImgResId2;
@@ -54,8 +69,18 @@ public class HideTitle extends RelativeLayout {
         });
     }
 
-    RelativeLayout.LayoutParams leftImgParams,rightParams, midTextParams;
-    LinearLayout.LayoutParams rightImgParams1, rightImgParams2;
+
+    public void setColorRGB(int A, int R, int G, int B){
+        colorA = A;
+        colorR = R;
+        colorG = G;
+        colorB = B;
+    }
+
+    public void setColorWithHex(String s){
+        int i = Color.parseColor(s);
+    }
+
 
     public HideTitle(Context context) {
         this(context, null);
@@ -71,6 +96,7 @@ public class HideTitle extends RelativeLayout {
         rightImgResId1 = ta.getResourceId(R.styleable.HideTitle_right_img1, 0);
         rightImgResId2 = ta.getResourceId(R.styleable.HideTitle_right_img2, 0);
         midString = ta.getString(R.styleable.HideTitle_mid_text);
+        isStatusView = ta.getBoolean(R.styleable.HideTitle_add_status_view, true);
 
         ta.recycle();
 
@@ -79,23 +105,48 @@ public class HideTitle extends RelativeLayout {
 
     public void setViewAlpha(float alpha){
         int a = (int) (255 * alpha);
-        setBackgroundColor(Color.argb(a, 0x88, 0x88, 0x88));
+        setBackgroundColor(Color.argb(a, colorR, colorB, colorG));
+        //Drawable drawable = Draw
     }
 
     private void initView() {
         setClickable(false);
+        setOrientation(VERTICAL);
         setViewAlpha(0);
 
+        if (isStatusView)
+            addStatusView();
+
+        addBelowView();
         addLeftView();
         addMidView();
         addRightView();
+    }
+
+    private void addStatusView() {
+        if (statusView == null){
+            statusView = new View(getContext());
+            statusViewParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
+                    , TransulcentUtils.getStatusBarHeight(getContext()));
+        }
+        addView(statusView, statusViewParams);
+    }
+
+    private void addBelowView() {
+        if (belowLayout == null){
+            belowLayout = new RelativeLayout(getContext());
+            int titleHeight = getContext().getResources().getDimensionPixelOffset(R.dimen.title_height);
+            belowLayoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
+                    , titleHeight);
+        }
+        addView(belowLayout, belowLayoutParams);
     }
 
     private void addRightView() {
 
         if (rightLinearLayout == null){
             rightLinearLayout = new LinearLayout(getContext());
-            rightParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            rightParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             rightParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
             rightParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -114,7 +165,7 @@ public class HideTitle extends RelativeLayout {
             rightLinearLayout.addView(rightImg2, rightImgParams2);
 
         }
-        addView(rightLinearLayout, rightParams);
+        belowLayout.addView(rightLinearLayout, rightParams);
     }
 
 
@@ -122,17 +173,17 @@ public class HideTitle extends RelativeLayout {
     private void addMidView() {
         if (midText == null){
             midText = new TextView(getContext());
-            midTextParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+            midTextParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
             midTextParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
             midText.setText(midText.getText());
         }
-        addView(midText, midTextParams);
+        belowLayout.addView(midText, midTextParams);
     }
 
     private void addLeftView() {
         if (leftImg == null){
             leftImg = new ImageView(getContext());
-            leftImgParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            leftImgParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             leftImgParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
             leftImgParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -140,7 +191,7 @@ public class HideTitle extends RelativeLayout {
             }
             leftImg.setBackgroundResource(leftImgResId);
         }
-        addView(leftImg, leftImgParams);
+        belowLayout.addView(leftImg, leftImgParams);
     }
 
 

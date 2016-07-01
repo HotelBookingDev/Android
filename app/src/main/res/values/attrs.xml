@@ -41,5 +41,7 @@
         <attr name="left_img" format="reference"/>
         <attr name="right_img1" format="reference"/>
         <attr name="right_img2" format="reference"/>
+        <attr name="add_status_view" format="boolean"/>
+        <attr name="hide_background" format="color"/>
     </declare-styleable>
 </resources>

@@ -15,6 +15,7 @@ import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.utils.LogUtils;
+import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.TToast;
 import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
 
@@ -35,7 +36,7 @@ public abstract class BaseActivity extends SupportActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         mCompositeSubscription = new CompositeSubscription();
-        TransulcentUtils.setFixWindow(this);
+        TransulcentUtils.setColorWindow(this, R.color.view_title);
         super.onCreate(savedInstanceState);
     }
 

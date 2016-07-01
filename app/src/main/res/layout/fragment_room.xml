@@ -99,11 +99,12 @@
 
         <sf.hotel.com.hotel_client.view.custom.HideTitle
             android:layout_width="match_parent"
-            android:layout_height="@dimen/title_height"
+            android:layout_height="wrap_content"
             app:mid_text="@string/room"
             app:left_img="@mipmap/ic_title_back_arrow"
             app:right_img1="@mipmap/ic_close_black_36dp"
             app:right_img2="@mipmap/ic_close_black_36dp"
+            app:add_status_view="true"
             android:id="@+id/frag_room_title"
             />
 

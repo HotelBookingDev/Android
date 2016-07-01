@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
 import sf.hotel.com.hotel_client.view.activity.BaseActivity;
 import sf.hotel.com.hotel_client.view.fragment.hotel.RoomFragment;
 
@@ -20,6 +21,7 @@ public class RoomActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hotel);
         initIntent();
+        TransulcentUtils.setFixWindow(this);
     }
 
     private void initIntent() {
