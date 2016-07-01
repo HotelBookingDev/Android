@@ -66,6 +66,7 @@ public class HotelImageLoad {
 
     //分别进入各自的加载方法中
     public static void loadImage(Context context, ImageView imageView, Object object) {
+        if (object == null) return;
         loadImage(context, imageView, object,
                 GlideBuildFactory.INSTACNE.getBuild(GlideBuildFactory.SIMPLEBUILD, context));
     }
