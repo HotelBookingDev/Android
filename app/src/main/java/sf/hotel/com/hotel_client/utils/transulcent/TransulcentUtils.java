@@ -32,7 +32,6 @@ public class TransulcentUtils {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
-
             //需要设置这个 flag 才能调用 setStatusBarColor 来设置状态栏颜色
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             //设置状态栏颜色
@@ -57,9 +56,9 @@ public class TransulcentUtils {
             //设置这个flag 才能设置状态栏
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
-            if (mChildView != null
-                    && mChildView.getLayoutParams() != null
-                    && mChildView.getLayoutParams().height == statusBarHeight) {
+            if (mChildView != null &&
+                    mChildView.getLayoutParams() != null &&
+                    mChildView.getLayoutParams().height == statusBarHeight) {
                 //移除假的 View
                 mContentView.removeView(mChildView);
                 mChildView = mContentView.getChildAt(0);
@@ -73,11 +72,11 @@ public class TransulcentUtils {
                     lp.topMargin -= statusBarHeight;
                     mChildView.setLayoutParams(lp);
                 }
-
             }
         }
     }
 
+    //在BaseActivity 的onResume 中统一处理(似乎要在setContent之后才能获取到) 颜色 如果单个要改 在每个onResume 的时候修改
     public static void setColorWindow(Activity content, int color) {
         Window window = content.getWindow();
 
@@ -116,26 +115,28 @@ public class TransulcentUtils {
             }
 
             View statusBarView = mContentView.getChildAt(0);
-            if (statusBarView != null && statusBarView.getLayoutParams() != null && statusBarView.getLayoutParams().height == statusBarHeight) {
+            if (statusBarView != null &&
+                    statusBarView.getLayoutParams() != null &&
+                    statusBarView.getLayoutParams().height == statusBarHeight) {
                 //避免重复调用时多次添加 View
                 statusBarView.setBackgroundColor(content.getResources().getColor(color));
                 return;
             }
             statusBarView = new View(content);
-            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, statusBarHeight);
+            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, statusBarHeight);
             statusBarView.setBackgroundColor(content.getResources().getColor(color));
             //向 ContentView 中添加假 View
             mContentView.addView(statusBarView, 0, lp);
-
         }
-
     }
 
     /**
      * 获得状态栏高度
      */
     public static int getStatusBarHeight(Context context) {
-        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        int resourceId = context.getResources()
+                .getIdentifier("status_bar_height", "dimen", "android");
         return context.getResources().getDimensionPixelSize(resourceId);
     }
 }

@@ -18,6 +18,7 @@ import sf.hotel.com.data.net.Exception.Code;
 import sf.hotel.com.data.utils.PreferencesUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.LocationHelper;
+import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
 import sf.hotel.com.hotel_client.view.activity.BaseActivity;
 import sf.hotel.com.hotel_client.view.activity.MainActivity;
 import sf.hotel.com.hotel_client.view.event.RxBus;
@@ -35,6 +36,12 @@ public class LoginActivity extends BaseActivity {
         init(savedInstanceState);
         onRxEvent();
         saveIntallationId();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        TransulcentUtils.setColorWindow(this, R.color.black);
     }
 
     private void saveIntallationId() {
