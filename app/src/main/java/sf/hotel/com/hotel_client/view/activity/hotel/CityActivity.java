@@ -36,13 +36,10 @@ public class CityActivity extends BaseActivity {
         init();
         onRxEvent();
 
-        //TODO 回退的情况是有两种情况一个back件一个是标题回头，他只要管理自己需要退出 city保存已经在内部实现了
         mHotelTitleView.addLeftClick(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                setResult(HomeContainer.CITY_REQUEST_CODE, intent);
-                finish();
+               onBackPressed();
             }
         });
     }
@@ -51,6 +48,7 @@ public class CityActivity extends BaseActivity {
         Subscription subscribe = RxBus.getDefault()
                 .toObservable(CityMessage.class)
                 .subscribe(cityMessage -> {
+
                 }, throwable -> {
                 });
         mCompositeSubscription.add(subscribe);
@@ -58,5 +56,12 @@ public class CityActivity extends BaseActivity {
 
     private void init() {
         loadRootFragment(R.id.activity_city_frame, CityFragment.newInstance());
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        setResult(HomeContainer.CITY_REQUEST_CODE, intent);
+        finish();
     }
 }

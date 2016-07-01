@@ -11,6 +11,8 @@ public class RoomMessage extends Message {
 
     public static final int INTENT_ROOM = 1;
 
+    public static final int ACTIVITY_BACK = 100;
+
     public RoomMessage(int what) {
         super(what);
     }

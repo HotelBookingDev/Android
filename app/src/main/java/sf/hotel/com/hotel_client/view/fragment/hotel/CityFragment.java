@@ -89,6 +89,7 @@ public class CityFragment extends BaseFragment implements ICityView {
         mCityListAdapter.setOnItemClickLitener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+
                 mICityPresenter.saveSelectCity(mCityListAdapter
                         .getListItem(mCityListAdapter.isCheckedPos));
             }

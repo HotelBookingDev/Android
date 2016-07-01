@@ -49,6 +49,10 @@ public class MessageFactory {
         return new RoomMessage(what, "", obj);
     }
 
+    public static RoomMessage createRoomMessage(int what) {
+        return new RoomMessage(what);
+    }
+
     public static OrderMessage createOrderMessage(int what) {
         return new OrderMessage(what);
     }

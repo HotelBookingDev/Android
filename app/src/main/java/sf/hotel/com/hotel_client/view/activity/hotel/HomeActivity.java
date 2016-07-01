@@ -67,7 +67,7 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void init() {
-        loadRootFragment(R.id.home_fragment, HotelsFragment.newInstance());
+       // loadRootFragment(R.id.home_fragment, HotelsFragment.newInstance(city));
     }
 
     private void showBottomTab() {

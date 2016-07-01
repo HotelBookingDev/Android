@@ -29,7 +29,6 @@
     <style name="titleTextStyleWhite" parent="@android:style/Widget.TextView">
         <item name="android:textSize">@dimen/title_text_size</item>
         <item name="android:textColor">@color/title_text_color_while</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:text">@string/title</item>
     </style>
 

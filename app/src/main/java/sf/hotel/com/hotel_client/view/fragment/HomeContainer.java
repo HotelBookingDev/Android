@@ -123,6 +123,10 @@ public class HomeContainer extends BaseFragment implements IHomeContainerView {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == CITY_REQUEST_CODE) {
+            cityBean = mIHomePresenter.getCityBean();
+
+            setTextCityName(cityBean.getName());
+
             RxBus.getDefault()
                     .post(MessageFactory.createHotelMessage(HotelMessage.REFRESH_LIST_VIEW_HOTEL,
                             cityBean));

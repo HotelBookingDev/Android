@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import rx.functions.Action1;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
 import sf.hotel.com.hotel_client.view.activity.BaseActivity;
+import sf.hotel.com.hotel_client.view.event.RxBus;
+import sf.hotel.com.hotel_client.view.event.hotel.RoomMessage;
 import sf.hotel.com.hotel_client.view.fragment.hotel.RoomFragment;
 
 /**
@@ -20,8 +23,29 @@ public class RoomActivity extends BaseActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hotel);
+        onRxEvent();
         initIntent();
-        TransulcentUtils.setFixWindow(this);
+    }
+
+    private void onRxEvent() {
+        RxBus.getDefault().toObservable(RoomMessage.class)
+                .subscribe(new Action1<RoomMessage>() {
+                    @Override
+                    public void call(RoomMessage roomMessage) {
+                        if (roomMessage != null){
+                            switch (roomMessage.what){
+                                case RoomMessage.ACTIVITY_BACK:
+                                    finish();
+                                    break;
+                            }
+                        }
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+
+                    }
+                });
     }
 
     private void initIntent() {
@@ -32,6 +56,12 @@ public class RoomActivity extends BaseActivity {
                 init(bundle);
             }
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        TransulcentUtils.setFixWindow(this);
     }
 
     protected void init(Bundle bundle) {

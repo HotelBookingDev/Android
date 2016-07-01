@@ -73,6 +73,10 @@ public class IHomePresenter extends SuperPresenter {
         HotelDao.saveCitysBean(iHomeContainerView.getBottomContext(), cityBean);
     }
 
+    public ProvincesResult.ProcincesBean.CityBean getCityBean(){
+        return HotelDao.getCitysBean(iHomeContainerView.getBottomContext());
+    }
+
     public void handlingException(Throwable e) {
         if (e instanceof APIException) {
             iHomeContainerView.showViewToast(e.getMessage());

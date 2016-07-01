@@ -41,7 +41,7 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        TransulcentUtils.setColorWindow(this, R.color.black);
+        TransulcentUtils.setFixWindow(this);
     }
 
     private void saveIntallationId() {

@@ -12,6 +12,7 @@ import android.graphics.drawable.shapes.OvalShape;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.lsjwzh.widget.recyclerviewpager.LoopRecyclerViewPager;
 import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class CircleIndicator extends View {
     //下面是一些自定义属性的默认值
     private final static int DEFAULT_RADIUS = 10;        //默认半径
     private final static int DEFAULT_MARGIN = 50;  //默认间距
-    private final static int DEFAULT_BACKGROUND = Color.WHITE;    //默认颜色
+    private final static int DEFAULT_BACKGROUND = Color.BLACK;    //默认颜色
     private final static int DEFAULT_SELECTED_BACKGROUND = Color.YELLOW;   //默认选中颜色
 
     public CircleIndicator(Context context) {
@@ -100,18 +101,26 @@ public class CircleIndicator extends View {
         createIndicators();
         createSelectIndicator();
         setUpdateChangeListener();
+        requestLayout();
+        invalidate();
     }
 
     /**
      * 监听ViewPager的改变，实现小圆点与ViewPager联动
      */
     private void setUpdateChangeListener() {
+        int count = mViewPager.getAdapter().getItemCount();
+        if (count == 0)
+            return;
 
         mViewPager.addOnPageChangedListener(new RecyclerViewPager.OnPageChangedListener() {
             @Override
             public void OnPageChanged(int i, int i1) {
-                mCurrentPosition = i;
-                mCurrentPositionOffset = i1;
+                if (mViewPager.getCurrentPosition() >= 1073741823){
+                    mCurrentPosition = (mViewPager.getCurrentPosition() - 1073741823) % count;
+                }else if (mViewPager.getCurrentPosition() < 1073741823){
+                    mCurrentPosition = count - (1073741823 - (mViewPager.getCurrentPosition() + 1)) % count - 1;
+                }
                 //强制从新布局
                 requestLayout();
                 //重新绘制
@@ -149,7 +158,6 @@ public class CircleIndicator extends View {
             paint.setAntiAlias(true);
             circleShape.setPaint(paint);
             mIndicatorLists.add(circleShape);
-            LogUtils.d("---->" , mIndicatorLists.size() + "");
         }
     }
 

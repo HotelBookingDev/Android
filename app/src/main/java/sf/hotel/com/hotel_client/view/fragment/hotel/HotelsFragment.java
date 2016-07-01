@@ -41,9 +41,8 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
     @BindView(R.id.fragment_hotels_list)
     PullToRefreshRecyclerView mPullView;
 
-    static ProvincesResult.ProcincesBean.CityBean mCityBean = new ProvincesResult.ProcincesBean.CityBean();
+    static volatile ProvincesResult.ProcincesBean.CityBean mCityBean = new ProvincesResult.ProcincesBean.CityBean();
 
-    //TODO 不要用static 已经有了SharePerenni 的东西内部自己去获取
     public static HotelsFragment newInstance(ProvincesResult.ProcincesBean.CityBean cityBean) {
         mCityBean = cityBean;
         Bundle args = new Bundle();
@@ -52,15 +51,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         fragment.setArguments(args);
         return fragment;
     }
-
-    public static HotelsFragment newInstance() {
-
-        Bundle args = new Bundle();
-        HotelsFragment fragment = new HotelsFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    
     HomePullViewAdapter mPullAdapter;
 
     private IHotelPresenter mIHotelPresenter;

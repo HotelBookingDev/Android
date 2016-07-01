@@ -9,11 +9,10 @@
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:gravity="center"
-        android:textSize="20sp"
         android:text="宁波"
         android:id="@+id/item_city_btn"
         android:background="@drawable/bg_selector_city"
-        app:text_color="@color/dark_gray"
+        app:text_color="@color/title_gray"
         app:select_text_color="@color/black"
         />
 </LinearLayout>
