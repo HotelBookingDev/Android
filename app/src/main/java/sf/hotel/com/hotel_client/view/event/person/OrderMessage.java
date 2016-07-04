@@ -9,7 +9,10 @@ import sf.hotel.com.hotel_client.view.event.Message;
  */
 public class OrderMessage extends Message {
 
-    public static final  int SEARCHMESSAGE=2;
+    public static final int SEARCHMESSAGE = 2;
+    public static final int ALREADYCONSUMED = 3;
+    public static final int NOTCONSUMED = 4;
+
     public OrderMessage(int what) {
         super(what);
     }

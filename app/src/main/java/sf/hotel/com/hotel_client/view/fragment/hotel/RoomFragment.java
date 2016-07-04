@@ -96,13 +96,13 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         return fragment;
     }
 
-
-    class ThreadShow implements Runnable{
+    class ThreadShow implements Runnable {
         final long TIME = 3000;
+
         public boolean isLoop = true;
         @Override
         public void run() {
-            while (isLoop){
+            while (isLoop) {
                 try {
                     Thread.sleep(TIME);
                     if (isLoop){
@@ -141,16 +141,16 @@ public class RoomFragment extends BaseFragment implements IRoomView {
 
         initTitle();
 
-
         return view;
     }
 
     private void initTitle() {
-        mTitle.setScrollView(mNoScrollView, DensityUtils.dp2px(getBottomContext() , 200));
+        mTitle.setScrollView(mNoScrollView, DensityUtils.dp2px(getBottomContext(), 200));
         mTitle.addLeftViewOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RxBus.getDefault().post(MessageFactory.createRoomMessage(RoomMessage.ACTIVITY_BACK));
+                RxBus.getDefault()
+                        .post(MessageFactory.createRoomMessage(RoomMessage.ACTIVITY_BACK));
             }
         });
     }
@@ -227,12 +227,11 @@ public class RoomFragment extends BaseFragment implements IRoomView {
 
         if (hotelsBean != null) {
             List<String> hotelLogoImgs = hotelsBean.getHouse_imgs();
-            if(hotelLogoImgs != null && hotelLogoImgs.size() > 0){
+            if (hotelLogoImgs != null && hotelLogoImgs.size() > 0) {
                 mRoomRecyclerPagerAdapter.setList(hotelLogoImgs);
             }
             mRoomContent.setText(hotelsBean.getIntroduce());
         }
-
 
         mCircleIndicator.setViewPager(mRecyclerViewPager);
         new Thread(run).start();
@@ -285,5 +284,6 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     public void onDestroyView() {
         super.onDestroyView();
         run.isLoop = false;
+        run = null;
     }
 }

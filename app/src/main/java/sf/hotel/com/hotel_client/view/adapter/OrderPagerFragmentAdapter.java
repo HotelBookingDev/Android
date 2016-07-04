@@ -4,22 +4,23 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import sf.hotel.com.hotel_client.view.fragment.person.orders.UsedOrder;
+import sf.hotel.com.hotel_client.view.fragment.person.UserOrderFragment;
 
 /**
  * Created by YoKeyword
  * data：16/6/5
  */
 public class OrderPagerFragmentAdapter extends FragmentPagerAdapter {
-    private String[] mTab = new String[]{"未消费", "已消费", "已退款", "待付款"};
+    private String[] mTab =null;
 
-    public OrderPagerFragmentAdapter(FragmentManager fm) {
+    public OrderPagerFragmentAdapter(FragmentManager fm, String[] mTab) {
         super(fm);
+        this.mTab = mTab;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return UsedOrder.newInstance();
+        return UserOrderFragment.newInstance();
     }
 
     @Override

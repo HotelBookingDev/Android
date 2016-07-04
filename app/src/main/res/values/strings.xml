@@ -79,5 +79,9 @@
     <string name="settings_feedback">在此写下您宝贵的意见</string>o
     <string name="submit">提交</string>
     <string name="booking_notice">预定须知</string>
+    <string name="hotel_name">酒店名字</string>
+    <string name="order_time">订单时间</string>
+    <string name="room_name">房间名字</string>
+    <string name="room_money">房间价格</string>
 
 </resources>
