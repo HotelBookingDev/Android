@@ -12,9 +12,9 @@ import butterknife.ButterKnife;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.adapter.OrderPagerFragmentAdapter;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
-import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.Message;
 import sf.hotel.com.hotel_client.view.event.MessageFactory;
+import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.person.OrderMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 
@@ -35,11 +35,11 @@ public class OrderFragment extends BaseFragment {
     ViewPager mViewPager;
     @BindView(R.id.view_title)
     HotelTitleView mView_title;
+    private String[] mTab = new String[]{"已消费", "未消费"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_order, container, false);
         ButterKnife.bind(this, view);
         initView();
@@ -49,12 +49,10 @@ public class OrderFragment extends BaseFragment {
     private void initView() {
         mTabLayout.addTab(mTabLayout.newTab());
         mTabLayout.addTab(mTabLayout.newTab());
-        mTabLayout.addTab(mTabLayout.newTab());
-        mViewPager.setAdapter(new OrderPagerFragmentAdapter(getChildFragmentManager()));
+        mViewPager.setAdapter(new OrderPagerFragmentAdapter(getChildFragmentManager(), mTab));
         mTabLayout.setupWithViewPager(mViewPager);
-        mView_title.addLeftClick(v -> {
-            RxBus.getDefault().post(MessageFactory.createOrderMessage(Message.ISEXIT));
-        });
+        mView_title.addLeftClick(
+                v -> RxBus.getDefault().post(MessageFactory.createOrderMessage(Message.ISEXIT)));
         mView_title.addRightClick(v -> RxBus.getDefault()
                 .post(MessageFactory.createOrderMessage(OrderMessage.SEARCHMESSAGE)));
     }

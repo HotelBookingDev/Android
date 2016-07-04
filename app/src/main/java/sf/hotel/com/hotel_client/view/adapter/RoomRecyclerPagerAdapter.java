@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.List;
 
-import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 
@@ -18,7 +17,8 @@ import sf.hotel.com.hotel_client.utils.HotelImageLoad;
  * @email sanfenruxi1@163.com
  * @date 16/6/17.
  */
-public class RoomRecyclerPagerAdapter extends RecyclerViewBaseAdapter<RoomRecyclerPagerAdapter.ViewHolder> {
+public class RoomRecyclerPagerAdapter
+        extends RecyclerViewBaseAdapter<RoomRecyclerPagerAdapter.ViewHolder> {
 
     List<String> mList = new ArrayList<>();
 

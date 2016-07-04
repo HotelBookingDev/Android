@@ -12,6 +12,7 @@ import com.j256.ormlite.table.DatabaseTable;
  * data：2016/6/28
  * email: 1105896230@qq.com
  */
+//查询订单的的时候记录的对象和实际交易的订单无关
 @DatabaseTable(tableName = "tb_localorder")
 public class LocalOrder implements SearchSuggestion {
     public String getUserId() {

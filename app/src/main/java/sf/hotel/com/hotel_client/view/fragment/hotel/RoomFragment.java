@@ -97,25 +97,24 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         return fragment;
     }
 
-
-    class ThreadShow implements Runnable{
+    class ThreadShow implements Runnable {
         final long TIME = 3000;
         boolean isLoop = true;
+
         @Override
         public void run() {
-            while (isLoop){
+            while (isLoop) {
                 try {
                     Thread.sleep(TIME);
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            int curr  = mRecyclerViewPager.getCurrentPosition() + 1;
+                            int curr = mRecyclerViewPager.getCurrentPosition() + 1;
 
                             mRecyclerViewPager.smoothScrollToPosition(curr);
                             LogUtils.d(curr + "");
                         }
                     });
-
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -137,16 +136,16 @@ public class RoomFragment extends BaseFragment implements IRoomView {
 
         initTitle();
 
-
         return view;
     }
 
     private void initTitle() {
-        mTitle.setScrollView(mNoScrollView, DensityUtils.dp2px(getBottomContext() , 200));
+        mTitle.setScrollView(mNoScrollView, DensityUtils.dp2px(getBottomContext(), 200));
         mTitle.addLeftViewOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RxBus.getDefault().post(MessageFactory.createRoomMessage(RoomMessage.ACTIVITY_BACK));
+                RxBus.getDefault()
+                        .post(MessageFactory.createRoomMessage(RoomMessage.ACTIVITY_BACK));
             }
         });
     }
@@ -224,15 +223,14 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         HotelsBean hotelsBean = bundle.getParcelable("room");
         if (hotelsBean != null) {
             List<String> hotelLogoImgs = hotelsBean.getHouse_imgs();
-            if(hotelLogoImgs != null && hotelLogoImgs.size() > 0){
+            if (hotelLogoImgs != null && hotelLogoImgs.size() > 0) {
                 mRoomRecyclerPagerAdapter.setList(hotelLogoImgs);
             }
             mRoomContent.setText(hotelsBean.getIntroduce());
         }
 
-
         mCircleIndicator.setViewPager(mRecyclerViewPager);
-        new Thread(new ThreadShow()).start();
+//        new Thread(new ThreadShow()).start();
     }
 
     @OnClick(R.id.frag_room_search)
