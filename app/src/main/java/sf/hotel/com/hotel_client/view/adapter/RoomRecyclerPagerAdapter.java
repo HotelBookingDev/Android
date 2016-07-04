@@ -24,6 +24,8 @@ public class RoomRecyclerPagerAdapter extends RecyclerViewBaseAdapter<RoomRecycl
 
     public RoomRecyclerPagerAdapter(Context context) {
         super(context);
+        mList.add(new HotelResult.HotelsBean.HotelLogoImgsBean());
+        setCount(mList.size());
     }
 
     public void setList(List<HotelResult.HotelsBean.HotelLogoImgsBean> list) {

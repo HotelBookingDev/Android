@@ -98,8 +98,6 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     }
 
 
-
-
     class ThreadShow implements Runnable{
         final long TIME = 3000;
         boolean isLoop = true;
@@ -111,8 +109,10 @@ public class RoomFragment extends BaseFragment implements IRoomView {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            mRecyclerViewPager.scrollToPosition(mRecyclerViewPager.getCurrentPosition() + 1);
-                            LogUtils.d(mRecyclerViewPager.getCurrentPosition() + "");
+                            int curr  = mRecyclerViewPager.getCurrentPosition() + 1;
+
+                            mRecyclerViewPager.smoothScrollToPosition(curr);
+                            LogUtils.d(curr + "");
                         }
                     });
 
@@ -168,63 +168,65 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         mRoomRecyclerPagerAdapter = new RoomRecyclerPagerAdapter(getBottomContext());
         mRecyclerViewPager.setAdapter(mRoomRecyclerPagerAdapter);
 
-//        mRecyclerViewPager.setOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrollStateChanged(RecyclerView recyclerView, int scrollState) {
-//            }
-//
-//            @Override
-//            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
-////                mPositionText.setText("First: " + mRecyclerViewPager.getFirstVisiblePosition());
-//                int childCount = mRecyclerViewPager.getChildCount();
-//                int width = mRecyclerViewPager.getChildAt(0).getWidth();
-//                int padding = (mRecyclerViewPager.getWidth() - width) / 2;
-//
-//                for (int j = 0; j < childCount; j++) {
-//                    View v = recyclerView.getChildAt(j);
-//                    //往左 从 padding 到 -(v.getWidth()-padding) 的过程中，由大到小
-//                    float rate = 0;
-//                    if (v.getLeft() <= padding) {
-//                        if (v.getLeft() >= padding - v.getWidth()) {
-//                            rate = (padding - v.getLeft()) * 1f / v.getWidth();
-//                        } else {
-//                            rate = 1;
-//                        }
-//                        v.setScaleY(1 - rate * 0.1f);
-//                    } else {
-//                        //往右 从 padding 到 recyclerView.getWidth()-padding 的过程中，由大到小
-//                        if (v.getLeft() <= recyclerView.getWidth() - padding) {
-//                            rate = (recyclerView.getWidth() - padding - v.getLeft()) * 1f /
-//                                    v.getWidth();
-//                        }
-//                        v.setScaleY(0.9f + rate * 0.1f);
-//                    }
-//                }
-//            }
-//        });
-//        mRecyclerViewPager.addOnLayoutChangeListener(
-//                (v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
-//                    if (mRecyclerViewPager.getChildCount() < 3) {
-//                        if (mRecyclerViewPager.getChildAt(1) != null) {
-//                            View v1 = mRecyclerViewPager.getChildAt(1);
-//                            v1.setScaleY(0.9f);
-//                        }
-//                    } else {
-//                        if (mRecyclerViewPager.getChildAt(0) != null) {
-//                            View v0 = mRecyclerViewPager.getChildAt(0);
-//                            v0.setScaleY(0.9f);
-//                        }
-//                        if (mRecyclerViewPager.getChildAt(2) != null) {
-//                            View v2 = mRecyclerViewPager.getChildAt(2);
-//                            v2.setScaleY(0.9f);
-//                        }
-//                    }
-//                });
+        mRecyclerViewPager.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int scrollState) {
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
+//                mPositionText.setText("First: " + mRecyclerViewPager.getFirstVisiblePosition());
+                int childCount = mRecyclerViewPager.getChildCount();
+                int width = mRecyclerViewPager.getChildAt(0).getWidth();
+                int padding = (mRecyclerViewPager.getWidth() - width) / 2;
+
+                for (int j = 0; j < childCount; j++) {
+                    View v = recyclerView.getChildAt(j);
+                    //往左 从 padding 到 -(v.getWidth()-padding) 的过程中，由大到小
+                    float rate = 0;
+                    if (v.getLeft() <= padding) {
+                        if (v.getLeft() >= padding - v.getWidth()) {
+                            rate = (padding - v.getLeft()) * 1f / v.getWidth();
+                        } else {
+                            rate = 1;
+                        }
+                        v.setScaleY(1 - rate * 0.1f);
+                    } else {
+                        //往右 从 padding 到 recyclerView.getWidth()-padding 的过程中，由大到小
+                        if (v.getLeft() <= recyclerView.getWidth() - padding) {
+                            rate = (recyclerView.getWidth() - padding - v.getLeft()) * 1f /
+                                    v.getWidth();
+                        }
+                        v.setScaleY(0.9f + rate * 0.1f);
+                    }
+                }
+            }
+        });
+        mRecyclerViewPager.addOnLayoutChangeListener(
+                (v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+                    if (mRecyclerViewPager.getChildCount() < 3) {
+                        if (mRecyclerViewPager.getChildAt(1) != null) {
+                            View v1 = mRecyclerViewPager.getChildAt(1);
+                            v1.setScaleY(0.9f);
+                        }
+                    } else {
+                        if (mRecyclerViewPager.getChildAt(0) != null) {
+                            View v0 = mRecyclerViewPager.getChildAt(0);
+                            v0.setScaleY(0.9f);
+                        }
+                        if (mRecyclerViewPager.getChildAt(2) != null) {
+                            View v2 = mRecyclerViewPager.getChildAt(2);
+                            v2.setScaleY(0.9f);
+                        }
+                    }
+                });
 
         HotelResult.HotelsBean hotelsBean = bundle.getParcelable("room");
         if (hotelsBean != null) {
             List<HotelResult.HotelsBean.HotelLogoImgsBean> hotelLogoImgs = hotelsBean.getHotelLogoImgs();
-            mRoomRecyclerPagerAdapter.setList(hotelLogoImgs);
+            if(hotelLogoImgs != null && hotelLogoImgs.size() > 0){
+                mRoomRecyclerPagerAdapter.setList(hotelLogoImgs);
+            }
             mRoomContent.setText(hotelsBean.getIntroduce());
         }
 

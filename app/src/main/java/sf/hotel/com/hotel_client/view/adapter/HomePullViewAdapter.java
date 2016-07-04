@@ -53,13 +53,19 @@ public class HomePullViewAdapter extends RecyclerViewBaseAdapter<HomePullViewAda
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTitle.setText(mList.get(position).getName());
+        HotelResult.HotelsBean hotelsBean = mList.get(position);
+
+        holder.mTitle.setText(hotelsBean.getName());
         holder.mPrice.setText("$ 1111");
 
-        holder.mTextContent.setText(mList.get(position).getAddress());
+        holder.mTextContent.setText(hotelsBean.getAddress());
 
-        HotelImageLoad.loadImage(mContext, holder.mImage,
-                mList.get(position).getHotelLogoImgs().get(0).getImg_url());
+        if (hotelsBean.getHotelLogoImgs() != null && hotelsBean.getHotelLogoImgs().size() > 0){
+            HotelImageLoad.loadImage(mContext, holder.mImage, hotelsBean
+                    .getHotelLogoImgs()
+                    .get(0)
+                    .getImg_url());
+        }
 
         if (mOnItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
