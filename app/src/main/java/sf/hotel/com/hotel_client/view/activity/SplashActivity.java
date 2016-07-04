@@ -28,6 +28,7 @@ import java.util.Queue;
 
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
+import sf.hotel.com.hotel_client.view.activity.register.LoginActivity;
 
 /**
  * @author MZ
@@ -185,7 +186,7 @@ public class SplashActivity extends Activity {
     }
 
     protected void onSplashStop() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         this.finish();
     }
