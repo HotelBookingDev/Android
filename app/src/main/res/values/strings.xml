@@ -83,5 +83,6 @@
     <string name="order_time">订单时间</string>
     <string name="room_name">房间名字</string>
     <string name="room_money">房间价格</string>
+    <string name="package_details">套餐详情</string>
 
 </resources>

@@ -94,4 +94,6 @@ dependencies {
     compile 'com.github.lsjwzh.RecyclerViewPager:lib:v1.1.0'
     compile 'com.squareup:android-times-square:1.6.5@aar'
     compile 'com.orhanobut:dialogplus:1.11@aar'
+
+    compile 'com.bigkoo:convenientbanner:2.0.5'
 }

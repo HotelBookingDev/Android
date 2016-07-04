@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <Button
+
+    <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/footer_bed_btn"
         android:layout_width="match_parent"
         android:layout_height="@dimen/btn_height"
-        android:text="@string/search_bed"
-        />
+        fancy:fb_defaultColor="@color/white"
+        fancy:fb_focusColor="@color/bg_person"
+        fancy:fb_text="@string/search_bed"
+        fancy:fb_textColor="@color/black" />
 </LinearLayout>

@@ -2,21 +2,19 @@ package sf.hotel.com.hotel_client.view.fragment.hotel;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
+import com.bigkoo.convenientbanner.ConvenientBanner;
+import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
+import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ListHolder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -24,12 +22,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mehdi.sakout.fancybuttons.FancyButton;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
-import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.DensityUtils;
 import sf.hotel.com.hotel_client.view.adapter.DialogBedAdapter;
-import sf.hotel.com.hotel_client.view.adapter.RoomRecyclerPagerAdapter;
-import sf.hotel.com.hotel_client.view.custom.CircleIndicator;
+import sf.hotel.com.hotel_client.view.adapter.LocalImageHodlerView;
 import sf.hotel.com.hotel_client.view.custom.HideTitle;
 import sf.hotel.com.hotel_client.view.custom.NoScrollView;
 import sf.hotel.com.hotel_client.view.event.MessageFactory;
@@ -50,12 +46,12 @@ public class RoomFragment extends BaseFragment implements IRoomView {
 
     private HotelsBean hotelsBean;
 
+    private List<String> mImageList;
+
     IRoomPresenter mIRoomPresenter;
 
-    @BindView(R.id.fragment_room_viewPager)
-    RecyclerViewPager mRecyclerViewPager;
-
-    RoomRecyclerPagerAdapter mRoomRecyclerPagerAdapter;
+    @BindView(R.id.frame_room_banner)
+    ConvenientBanner convenientBanner;
 
     @BindView(R.id.fragment_room_content)
     TextView mRoomContent;
@@ -70,11 +66,6 @@ public class RoomFragment extends BaseFragment implements IRoomView {
 
     @BindView(R.id.frag_room_scrollview)
     NoScrollView mNoScrollView;
-
-    @BindView(R.id.frag_room_circle)
-    CircleIndicator mCircleIndicator;
-
-    private Handler handler = new Handler();
 
     public static RoomFragment newInstance(Bundle bundle) {
 
@@ -96,35 +87,6 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         return fragment;
     }
 
-    class ThreadShow implements Runnable {
-        final long TIME = 3000;
-
-        public boolean isLoop = true;
-        @Override
-        public void run() {
-            while (isLoop) {
-                try {
-                    Thread.sleep(TIME);
-                    if (isLoop){
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                int curr  = mRecyclerViewPager.getCurrentPosition() + 1;
-
-                                mRecyclerViewPager.smoothScrollToPosition(curr);
-                                LogUtils.d(curr + "");
-                            }
-                        });
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    ThreadShow run = new ThreadShow();
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -133,15 +95,39 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         View view = inflater.inflate(R.layout.fragment_room, container, false);
         mIRoomPresenter = new IRoomPresenter(this);
         ButterKnife.bind(this, view);
-
         hotelsBean = args.getParcelable("room");
-        initViewPager();
-
-        // initRecyclerView();
-
+        initBanner();
         initTitle();
-
         return view;
+    }
+
+    private void initBanner() {
+        mImageList = hotelsBean.getHouse_imgs();
+        convenientBanner.setPages(new CBViewHolderCreator<LocalImageHodlerView>() {
+            @Override
+            public LocalImageHodlerView createHolder() {
+                return new LocalImageHodlerView();
+            }
+        }, mImageList)
+                .setPageIndicator(new int[]{R.mipmap.ic_page_indicator, R.mipmap.ic_page_indicator_focused})
+                .setOnItemClickListener(new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+
+                    }
+                });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        convenientBanner.startTurning(5000);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        convenientBanner.stopTurning();
     }
 
     private void initTitle() {
@@ -155,98 +141,10 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         });
     }
 
-//    private void initRecyclerView() {
-//        mPullAdapter = new DetailPullViewAdapter(getBottomContext());
-//        mPullAdapter.setCount(5);
-//        RoomLayoutManager layout = new RoomLayoutManager(getBottomContext());
-//        mRecyclerView.setLayoutManager(layout);
-//        mRecyclerView.setAdapter(mPullAdapter);
-//    }
-
-    private void initViewPager() {
-        LinearLayoutManager layout = new LinearLayoutManager(getBottomContext(),
-                LinearLayoutManager.HORIZONTAL, false);
-        mRecyclerViewPager.setLayoutManager(layout);
-        mRecyclerViewPager.setTriggerOffset(0.15f);
-        mRecyclerViewPager.setFlingFactor(0.25f);
-        mRoomRecyclerPagerAdapter = new RoomRecyclerPagerAdapter(getBottomContext());
-        mRecyclerViewPager.setAdapter(mRoomRecyclerPagerAdapter);
-
-        mRecyclerViewPager.setOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int scrollState) {
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
-//                mPositionText.setText("First: " + mRecyclerViewPager.getFirstVisiblePosition());
-                int childCount = mRecyclerViewPager.getChildCount();
-                int width = mRecyclerViewPager.getChildAt(0).getWidth();
-                int padding = (mRecyclerViewPager.getWidth() - width) / 2;
-
-                for (int j = 0; j < childCount; j++) {
-                    View v = recyclerView.getChildAt(j);
-                    //往左 从 padding 到 -(v.getWidth()-padding) 的过程中，由大到小
-                    float rate = 0;
-                    if (v.getLeft() <= padding) {
-                        if (v.getLeft() >= padding - v.getWidth()) {
-                            rate = (padding - v.getLeft()) * 1f / v.getWidth();
-                        } else {
-                            rate = 1;
-                        }
-                        v.setScaleY(1 - rate * 0.1f);
-                    } else {
-                        //往右 从 padding 到 recyclerView.getWidth()-padding 的过程中，由大到小
-                        if (v.getLeft() <= recyclerView.getWidth() - padding) {
-                            rate = (recyclerView.getWidth() - padding - v.getLeft()) * 1f /
-                                    v.getWidth();
-                        }
-                        v.setScaleY(0.9f + rate * 0.1f);
-                    }
-                }
-            }
-        });
-        mRecyclerViewPager.addOnLayoutChangeListener(
-                (v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
-                    if (mRecyclerViewPager.getChildCount() < 3) {
-                        if (mRecyclerViewPager.getChildAt(1) != null) {
-                            View v1 = mRecyclerViewPager.getChildAt(1);
-                            v1.setScaleY(0.9f);
-                        }
-                    } else {
-                        if (mRecyclerViewPager.getChildAt(0) != null) {
-                            View v0 = mRecyclerViewPager.getChildAt(0);
-                            v0.setScaleY(0.9f);
-                        }
-                        if (mRecyclerViewPager.getChildAt(2) != null) {
-                            View v2 = mRecyclerViewPager.getChildAt(2);
-                            v2.setScaleY(0.9f);
-                        }
-                    }
-                });
-
-        if (hotelsBean != null) {
-            List<String> hotelLogoImgs = hotelsBean.getHouse_imgs();
-            if (hotelLogoImgs != null && hotelLogoImgs.size() > 0) {
-                mRoomRecyclerPagerAdapter.setList(hotelLogoImgs);
-            }
-            mRoomContent.setText(hotelsBean.getIntroduce());
-        }
-
-        mCircleIndicator.setViewPager(mRecyclerViewPager);
-        new Thread(run).start();
-    }
-
     @OnClick(R.id.frag_room_search)
     public void onSearchClick() {
 
-
-
         if (dialogPlus == null) {
-
-
-
-
             dialogPlus = DialogPlus.newDialog(getBottomContext())
                     .setContentHolder(new ListHolder())
                     .setCancelable(true)
@@ -283,7 +181,5 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        run.isLoop = false;
-        run = null;
     }
 }

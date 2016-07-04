@@ -2,18 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#889999"
     android:orientation="vertical"
     >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="250dp">
 
         <ImageView
             android:id="@+id/item_hotels_img"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="250dp"
             android:src="@mipmap/ic_launcher"
             android:scaleType="fitXY"/>
 
@@ -77,7 +76,7 @@
                 style="@style/titleTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="三亚 | 国际连锁"/>
+                android:text="香格里拉"/>
 
             <View
                 android:layout_width="0dp"
@@ -92,7 +91,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/titleTextContentStyle"
-
                 android:textColor="#000000"
                 android:text="0571-88578888"
                 />

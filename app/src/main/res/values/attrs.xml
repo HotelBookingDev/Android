@@ -43,6 +43,7 @@
         <attr name="right_img2" format="reference"/>
         <attr name="add_status_view" format="boolean"/>
         <attr name="hide_background" format="color"/>
+        <attr name="title_size" format="dimension"/>
     </declare-styleable>
 
     <declare-styleable name="ListText">

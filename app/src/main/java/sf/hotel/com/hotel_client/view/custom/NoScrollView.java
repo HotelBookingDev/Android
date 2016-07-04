@@ -15,7 +15,7 @@ import sf.hotel.com.data.utils.LogUtils;
  * @email sanfenruxi1@163.com
  * @date 16/6/28.
  */
-public class NoScrollView extends ScrollView {
+public class NoScrollView extends OverScrollView {
 
     private GestureDetector mGestureDetector;
 

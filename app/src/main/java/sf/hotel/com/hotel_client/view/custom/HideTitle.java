@@ -44,6 +44,7 @@ public class HideTitle extends LinearLayout {
     int leftImgResId;
     int rightImgResId1, rightImgResId2;
     String midString = "";
+    float titleSize;
 
 
     public void setScrollView(NoScrollView scrollView, int height) {
@@ -52,8 +53,11 @@ public class HideTitle extends LinearLayout {
         scrollView.setOnScrollListener(new NoScrollView.onScrollListener() {
             @Override
             public void onScroll(View view, int x, int y, int oldX, int oldY) {
-                if(y < height){
-                    float alpha = y / (float)height;
+
+                int curr = y - 1500;
+
+                if(curr < height){
+                    float alpha = curr / (float)height;
                     if (alpha < 0)
                         alpha = 0;
                     if (alpha > 1)
@@ -84,6 +88,7 @@ public class HideTitle extends LinearLayout {
         rightImgResId2 = ta.getResourceId(R.styleable.HideTitle_right_img2, 0);
         midString = ta.getString(R.styleable.HideTitle_mid_text);
         isStatusView = ta.getBoolean(R.styleable.HideTitle_add_status_view, true);
+        titleSize = ta.getDimensionPixelSize(R.styleable.HideTitle_title_size, 18);
 
         ta.recycle();
 
@@ -94,7 +99,8 @@ public class HideTitle extends LinearLayout {
 
     public void setViewAlpha(float alpha){
         int a = (int) (255 * alpha);
-        getBackground().setAlpha(a);
+
+        this.getBackground().mutate().setAlpha(a);
     }
 
     private void initView() {
@@ -164,7 +170,8 @@ public class HideTitle extends LinearLayout {
             midText = new TextView(getContext());
             midTextParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
             midTextParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-            midText.setText(midText.getText());
+            midText.setText(midString);
+           // midText.setTextSize(getContext().getResources().getDimension(R.dimen.title_text_size));
         }
         belowLayout.addView(midText, midTextParams);
     }
