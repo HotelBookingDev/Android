@@ -151,7 +151,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
                     .setGravity(Gravity.BOTTOM)
                     .setFooter(R.layout.footer_bed)
                     .setHeader(R.layout.header_bed)
-                    .setAdapter(new DialogBedAdapter( getBottomContext()))
+                    .setAdapter(new DialogBedAdapter(getBottomContext()))
                     .setOnItemClickListener((dialog, item, view, position) -> {
 
                     })

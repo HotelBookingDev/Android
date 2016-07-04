@@ -11,6 +11,7 @@ import com.j256.ormlite.table.TableUtils;
 import java.sql.SQLException;
 
 import sf.hotel.com.data.entity.LocalOrder;
+import sf.hotel.com.data.entity.Order;
 import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 
@@ -20,10 +21,11 @@ import sf.hotel.com.data.entity.netresult.HotelResult;
  */
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String TABLE_NAME = "hotel.db";
-    private static final int databaseVersion = 11;
+    private static final int databaseVersion = 13;
     private Dao<UserEntity, Integer> userDao;
     private Dao<HotelResult, Integer> hotelDao;
     private Dao<LocalOrder, Integer> localOrders;
+    private Dao<Order, Integer> orders;
     private static DatabaseHelper instance;
 
     private DatabaseHelper(Context context) {
@@ -46,6 +48,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, UserEntity.class);
 //            TableUtils.createTable(connectionSource, HotelResult.class);
             TableUtils.createTable(connectionSource, LocalOrder.class);
+            TableUtils.createTable(connectionSource, Order.class);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -58,6 +61,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.dropTable(connectionSource, UserEntity.class, true);
 //            TableUtils.dropTable(connectionSource, HotelResult.class, true);
             TableUtils.dropTable(connectionSource, LocalOrder.class, true);
+            TableUtils.dropTable(connectionSource, Order.class, true);
             onCreate(database, connectionSource);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -85,6 +89,13 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return localOrders;
     }
 
+    public Dao<Order, Integer> getOrders() throws SQLException {
+        if (orders == null) {
+            orders = getDao(Order.class);
+        }
+        return orders;
+    }
+
     /**
      * 释放资源
      */
@@ -94,5 +105,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         userDao = null;
         hotelDao = null;
         localOrders = null;
+        orders = null;
     }
 }

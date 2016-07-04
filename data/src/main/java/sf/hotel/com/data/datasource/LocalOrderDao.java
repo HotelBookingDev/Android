@@ -15,6 +15,7 @@ import sf.hotel.com.data.utils.TimeUtils;
  * data：2016/6/28
  * email: 1105896230@qq.com
  */
+//查询订单会用到
 public class LocalOrderDao {
 
     public static void add(LocalOrder order, Context context) {

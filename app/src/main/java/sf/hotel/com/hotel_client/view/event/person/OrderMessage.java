@@ -1,5 +1,6 @@
 package sf.hotel.com.hotel_client.view.event.person;
 
+import sf.hotel.com.data.entity.Order;
 import sf.hotel.com.hotel_client.view.event.Message;
 
 /**
@@ -10,8 +11,8 @@ import sf.hotel.com.hotel_client.view.event.Message;
 public class OrderMessage extends Message {
 
     public static final int SEARCHMESSAGE = 2;
-    public static final int ALREADYCONSUMED = 3;
-    public static final int NOTCONSUMED = 4;
+    public static final int ALREADYCONSUMED = Order.ALRADYORDER;
+    public static final int NOTCONSUMED = Order.NOTORDER;
 
     public OrderMessage(int what) {
         super(what);

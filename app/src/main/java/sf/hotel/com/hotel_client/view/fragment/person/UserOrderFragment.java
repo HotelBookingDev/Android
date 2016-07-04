@@ -41,6 +41,9 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
     @BindView(R.id.rv_order)
     RecyclerView mRecyclerview;
 
+    //    判断当前的订单列表该显示那个
+    private int position;
+
     private UserOrderAdapter mAdapter;
 
     @Override
@@ -48,10 +51,12 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_userd_order, container, false);
         ButterKnife.bind(this, view);
+        position = OrderMessage.ALREADYCONSUMED;
         initRxevent();
         initRecycle();
         mUserOrderPresenter = new UserOrderPresenter(this);
-        mUserOrderPresenter.getDatas();
+//        根据你需要的订单来获取
+        mUserOrderPresenter.getDatas(position);
         return view;
     }
 
@@ -66,7 +71,8 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
                 .toObservable(OrderMessage.class)
                 .subscribe(orderMessage -> {
                     if (orderMessage == null) return;
-                    showViewToast(orderMessage.what + "");
+                    position = orderMessage.what;
+                    mUserOrderPresenter.getDatas(position);
                 });
         mCompositeSubscription.add(subscribe);
     }
