@@ -12,13 +12,11 @@ import android.graphics.drawable.shapes.OvalShape;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.lsjwzh.widget.recyclerviewpager.LoopRecyclerViewPager;
 import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
 
 /**
@@ -102,7 +100,7 @@ public class CircleIndicator extends View {
         createSelectIndicator();
         setUpdateChangeListener();
         requestLayout();
-        invalidate();
+        //invalidate();
     }
 
     /**

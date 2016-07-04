@@ -3,6 +3,7 @@ package sf.hotel.com.data.interfaceeneity;
 import android.content.Context;
 
 import rx.Observable;
+import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.ProvincesResult;
 
 /**
@@ -15,5 +16,7 @@ public interface CityEntity {
 
     ProvincesResult getProcincesResult(Context context);
 
-    void saveCitysBean(Context context, ProvincesResult.ProvincesBean.CityBean cityBean);
+    void saveCitysBean(Context context, CityBean cityBean);
+
+    CityBean getCityBean(Context bottomContext);
 }

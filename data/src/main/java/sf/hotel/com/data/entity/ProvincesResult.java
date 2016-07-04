@@ -1,6 +1,8 @@
 package sf.hotel.com.data.entity;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
@@ -8,7 +10,7 @@ import java.util.List;
  * @email sanfenruxi1@163.com
  * @date 16/6/22.
  */
-public class ProvincesResult implements Serializable {
+public class ProvincesResult implements Parcelable {
 
     /**
      * id : 1
@@ -19,6 +21,22 @@ public class ProvincesResult implements Serializable {
 
     private List<ProvincesBean> provinces;
 
+    protected ProvincesResult(Parcel in) {
+        provinces = in.createTypedArrayList(ProvincesBean.CREATOR);
+    }
+
+    public static final Creator<ProvincesResult> CREATOR = new Creator<ProvincesResult>() {
+        @Override
+        public ProvincesResult createFromParcel(Parcel in) {
+            return new ProvincesResult(in);
+        }
+
+        @Override
+        public ProvincesResult[] newArray(int size) {
+            return new ProvincesResult[size];
+        }
+    };
+
     public List<ProvincesBean> getProvinces() {
         return provinces;
     }
@@ -27,98 +45,13 @@ public class ProvincesResult implements Serializable {
         this.provinces = provinces;
     }
 
-    public static class ProvincesBean implements Serializable {
-        private int id;
-        private String name;
-        private String name_py;
-        /**
-         * id : 1
-         * code : 1001
-         * name : 宁波
-         * name_py : ningbo
-         * logo : http://img4.imgtn.bdimg.com/it/u=2524053065,1600155239&fm=21&gp=0.jpg
-         */
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-        private List<CityBean> citys;
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getName_py() {
-            return name_py;
-        }
-
-        public void setName_py(String name_py) {
-            this.name_py = name_py;
-        }
-
-        public List<CityBean> getCitys() {
-            return citys;
-        }
-
-        public void setCitys(List<CityBean> citys) {
-            this.citys = citys;
-        }
-
-        public static class CityBean implements Serializable {
-            private int id;
-            private int code;
-            private String name;
-            private String name_py;
-            private String logo;
-
-            public int getId() {
-                return id;
-            }
-
-            public void setId(int id) {
-                this.id = id;
-            }
-
-            public int getCode() {
-                return code;
-            }
-
-            public void setCode(int code) {
-                this.code = code;
-            }
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public String getName_py() {
-                return name_py;
-            }
-
-            public void setName_py(String name_py) {
-                this.name_py = name_py;
-            }
-
-            public String getLogo() {
-                return logo;
-            }
-
-            public void setLogo(String logo) {
-                this.logo = logo;
-            }
-        }
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeTypedList(provinces);
     }
 }

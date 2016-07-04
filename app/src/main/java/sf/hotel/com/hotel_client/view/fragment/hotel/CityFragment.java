@@ -61,10 +61,12 @@ public class CityFragment extends BaseFragment implements ICityView {
         // 取消if else 每次都去网络请求
         //TODO 需要考虑何时该去做更新，可能以后登录服务器会给你已给值在那个值做判断
         ProvincesResult provincesResult = mICityPresenter.getProcincesResult(getBottomContext());
+
         if (provincesResult != null) {
             mCityListAdapter.setList(provincesResult);
+        }else{
+            initCityList();
         }
-        initCityList();
     }
 
     private void onRxEvent() {

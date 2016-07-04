@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 
+import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.data.utils.PreferencesUtils;
@@ -27,13 +28,13 @@ public class HotelDao{
         return gson.fromJson(hotelJson, HotelResult.class);
     }
 
-    public static ProvincesResult.ProvincesBean.CityBean getCitysBean(Context context){
+    public static CityBean getCitysBean(Context context){
         Gson gson = new Gson();
         String citysBean = PreferencesUtils.getCitysBean(context);
-        return gson.fromJson(citysBean, ProvincesResult.ProvincesBean.CityBean.class);
+        return gson.fromJson(citysBean, CityBean.class);
     }
 
-    public static void saveCitysBean(Context context, ProvincesResult.ProvincesBean.CityBean cityBean){
+    public static void saveCitysBean(Context context, CityBean cityBean){
         Gson gson = new Gson();
         String citysJson = gson.toJson(cityBean);
         PreferencesUtils.saveCitysBean(context, citysJson);

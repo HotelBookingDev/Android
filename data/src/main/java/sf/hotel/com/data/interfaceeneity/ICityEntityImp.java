@@ -4,6 +4,7 @@ import android.content.Context;
 
 import rx.Observable;
 import sf.hotel.com.data.datasource.HotelDao;
+import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.data.net.ApiWrapper;
 
@@ -18,8 +19,13 @@ public class ICityEntityImp implements CityEntity {
         return HotelDao.getProcincesResult(context);
     }
 
-    public void saveCitysBean(Context context, ProvincesResult.ProvincesBean.CityBean cityBean){
+    public void saveCitysBean(Context context, CityBean cityBean){
         HotelDao.saveCitysBean(context, cityBean);
+    }
+
+    @Override
+    public CityBean getCityBean(Context bottomContext) {
+        return HotelDao.getCitysBean(bottomContext);
     }
 
     @Override

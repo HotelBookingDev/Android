@@ -12,6 +12,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rx.Subscription;
+import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.hotel.CityActivity;
@@ -43,7 +44,7 @@ public class HomeContainer extends BaseFragment implements IHomeContainerView {
     //每个Presenter 都有一个view对于的视图层
     public IHomePresenter mIHomePresenter;
 
-    static volatile ProvincesResult.ProvincesBean.CityBean cityBean = new ProvincesResult.ProvincesBean.CityBean();
+    static volatile CityBean cityBean = new CityBean();
 
     //TODO 提取个方法 如果对象没回收了 加载的时候需要做判断，不让为null
     static {
@@ -136,12 +137,12 @@ public class HomeContainer extends BaseFragment implements IHomeContainerView {
         mCityName.setText(s);
     }
 
-    public void saveTextCity(ProvincesResult.ProvincesBean.CityBean cityBean) {
+    public void saveTextCity(CityBean cityBean) {
         mIHomePresenter.saveCityBean(cityBean);
     }
 
     @Override
-    public void setCityBean(ProvincesResult.ProvincesBean.CityBean cityBean) {
+    public void setCityBean(CityBean cityBean) {
         HomeContainer.cityBean = cityBean;
     }
 

@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import sf.hotel.com.data.entity.CityBean;
+import sf.hotel.com.data.entity.ProvincesBean;
 import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.custom.CustomRadioButton;
@@ -19,7 +21,7 @@ import sf.hotel.com.hotel_client.view.custom.CustomRadioButton;
  */
 public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.ViewHolder> {
 
-    private List<ProvincesResult.ProvincesBean.CityBean> mList = new ArrayList<>();
+    private List<CityBean> mList = new ArrayList<>();
 
     //内部做的一个当前选中项是那个
     //TODO 没做每次进来第一次加载
@@ -31,22 +33,22 @@ public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.Vie
         this.mOnItemClickListener = mOnItemClickListener;
     }
 
-    public void setList(List<ProvincesResult.ProvincesBean.CityBean> list) {
+    public void setList(List<CityBean> list) {
         this.mList.clear();
         mList.addAll(list);
         notifyDataSetChanged();
     }
 
-    public ProvincesResult.ProvincesBean.CityBean getListItem(int pos) {
+    public CityBean getListItem(int pos) {
         return mList.get(pos);
     }
 
     public void setList(ProvincesResult provincesResult) {
         mList.clear();
-        List<ProvincesResult.ProvincesBean> procinces = provincesResult.getProvinces();
-        for (ProvincesResult.ProvincesBean procincesBean : procinces) {
-            List<ProvincesResult.ProvincesBean.CityBean> citys = procincesBean.getCitys();
-            for (ProvincesResult.ProvincesBean.CityBean cityBean : citys) {
+        List<ProvincesBean> procinces = provincesResult.getProvinces();
+        for (ProvincesBean procincesBean : procinces) {
+            List<CityBean> citys = procincesBean.getCitys();
+            for (CityBean cityBean : citys) {
                 mList.add(cityBean);
             }
         }

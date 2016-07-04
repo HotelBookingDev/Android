@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import sf.hotel.com.data.entity.netresult.HotelResult;
+import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 
@@ -21,15 +21,15 @@ import sf.hotel.com.hotel_client.utils.HotelImageLoad;
  */
 public class HomePullViewAdapter extends RecyclerViewBaseAdapter<HomePullViewAdapter.ViewHolder> {
 
-    private List<HotelResult.HotelsBean> mList = new ArrayList<>();
+    private List<HotelsBean> mList = new ArrayList<>();
 
-    public void setList(List<HotelResult.HotelsBean> hotelList) {
+    public void setList(List<HotelsBean> hotelList) {
         mList = hotelList;
         setCount(mList.size());
         this.notifyDataSetChanged();
     }
 
-    public HotelResult.HotelsBean getItemByPos(int pos) {
+    public HotelsBean getItemByPos(int pos) {
         return mList.get(pos);
     }
 
@@ -53,18 +53,17 @@ public class HomePullViewAdapter extends RecyclerViewBaseAdapter<HomePullViewAda
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        HotelResult.HotelsBean hotelsBean = mList.get(position);
+        HotelsBean hotelsBean = mList.get(position);
 
         holder.mTitle.setText(hotelsBean.getName());
         holder.mPrice.setText("$ 1111");
 
         holder.mTextContent.setText(hotelsBean.getAddress());
 
-        if (hotelsBean.getHotelLogoImgs() != null && hotelsBean.getHotelLogoImgs().size() > 0){
+        if (hotelsBean.getHouse_imgs() != null && hotelsBean.getHouse_imgs().size() > 0){
             HotelImageLoad.loadImage(mContext, holder.mImage, hotelsBean
-                    .getHotelLogoImgs()
-                    .get(0)
-                    .getImg_url());
+                    .getHouse_imgs()
+                    .get(0));
         }
 
         if (mOnItemClickListener != null) {

@@ -18,8 +18,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Subscription;
 import rx.functions.Action1;
-import sf.hotel.com.data.entity.ProvincesResult;
+import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.netresult.HotelResult;
+import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.hotel.RoomActivity;
 import sf.hotel.com.hotel_client.view.adapter.HomePullViewAdapter;
@@ -41,9 +42,9 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
     @BindView(R.id.fragment_hotels_list)
     PullToRefreshRecyclerView mPullView;
 
-    static volatile ProvincesResult.ProvincesBean.CityBean mCityBean = new ProvincesResult.ProvincesBean.CityBean();
+    static volatile CityBean mCityBean = new CityBean();
 
-    public static HotelsFragment newInstance(ProvincesResult.ProvincesBean.CityBean cityBean) {
+    public static HotelsFragment newInstance(CityBean cityBean) {
         mCityBean = cityBean;
         Bundle args = new Bundle();
 
@@ -87,7 +88,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                     public void call(HotelMessage hotelMessage) {
                         switch (hotelMessage.what) {
                             case HotelMessage.REFRESH_LIST_VIEW_HOTEL:
-                                ProvincesResult.ProvincesBean.CityBean cityBean = (ProvincesResult.ProvincesBean.CityBean) hotelMessage.obj;
+                                CityBean cityBean = (CityBean) hotelMessage.obj;
                                 mCityBean.setId(cityBean.getId());
                                 mCityBean.setName(cityBean.getName());
                                 mIHotelPresenter.callHotelsByCityId(
@@ -154,7 +155,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
             @Override
             public void onItemClick(View view, int position) {
 
-                HotelResult.HotelsBean itemByPos = mPullAdapter.getItemByPos(position);
+                HotelsBean itemByPos = mPullAdapter.getItemByPos(position);
 
                 showDetail(itemByPos);
             }
@@ -168,7 +169,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         mPullView.onFinishLoading(true, false);
     }
 
-    public void showDetail(HotelResult.HotelsBean hotelsBean) {
+    public void showDetail(HotelsBean hotelsBean) {
         Intent intent = new Intent(getBottomContext(), RoomActivity.class);
         Bundle bundle = new Bundle();
         bundle.putParcelable("room", hotelsBean);

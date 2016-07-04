@@ -23,7 +23,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import sf.hotel.com.data.entity.netresult.HotelResult;
+import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.DensityUtils;
@@ -105,7 +105,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         public void run() {
             while (isLoop){
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(TIME);
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
@@ -221,9 +221,9 @@ public class RoomFragment extends BaseFragment implements IRoomView {
                     }
                 });
 
-        HotelResult.HotelsBean hotelsBean = bundle.getParcelable("room");
+        HotelsBean hotelsBean = bundle.getParcelable("room");
         if (hotelsBean != null) {
-            List<HotelResult.HotelsBean.HotelLogoImgsBean> hotelLogoImgs = hotelsBean.getHotelLogoImgs();
+            List<String> hotelLogoImgs = hotelsBean.getHouse_imgs();
             if(hotelLogoImgs != null && hotelLogoImgs.size() > 0){
                 mRoomRecyclerPagerAdapter.setList(hotelLogoImgs);
             }
@@ -231,7 +231,6 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         }
 
 
-        LogUtils.d("--->",mRecyclerViewPager.getAdapter().getItemCount() + "");
         mCircleIndicator.setViewPager(mRecyclerViewPager);
         new Thread(new ThreadShow()).start();
     }

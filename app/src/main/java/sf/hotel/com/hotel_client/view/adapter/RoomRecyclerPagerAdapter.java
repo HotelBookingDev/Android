@@ -20,15 +20,15 @@ import sf.hotel.com.hotel_client.utils.HotelImageLoad;
  */
 public class RoomRecyclerPagerAdapter extends RecyclerViewBaseAdapter<RoomRecyclerPagerAdapter.ViewHolder> {
 
-    List<HotelResult.HotelsBean.HotelLogoImgsBean> mList = new ArrayList<>();
+    List<String> mList = new ArrayList<>();
 
     public RoomRecyclerPagerAdapter(Context context) {
         super(context);
-        mList.add(new HotelResult.HotelsBean.HotelLogoImgsBean());
+        mList.add("");
         setCount(mList.size());
     }
 
-    public void setList(List<HotelResult.HotelsBean.HotelLogoImgsBean> list) {
+    public void setList(List<String> list) {
         if (list != null && list.size() > 0) {
             mList.clear();
             mList.addAll(list);
@@ -45,7 +45,7 @@ public class RoomRecyclerPagerAdapter extends RecyclerViewBaseAdapter<RoomRecycl
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        HotelImageLoad.loadImage(mContext, holder.mImage, mList.get(position).getImg_url());
+        HotelImageLoad.loadImage(mContext, holder.mImage, mList.get(position));
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
