@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.utils.DensityUtils;
 import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
 
 /**
@@ -35,13 +36,7 @@ public class HideTitle extends LinearLayout {
     RelativeLayout belowLayout;
 
 
-    int colorA = 0;
-    int colorR = 0;
-    int colorG = 0;
-    int colorB = 0;
-
-
-    String RGB = "#000000";
+    int imgSize;
 
     RelativeLayout.LayoutParams leftImgParams, rightParams, midTextParams ;
     LinearLayout.LayoutParams rightImgParams1, rightImgParams2,statusViewParams, belowLayoutParams;
@@ -69,14 +64,6 @@ public class HideTitle extends LinearLayout {
         });
     }
 
-
-    public void setColorRGB(int A, int R, int G, int B){
-        colorA = A;
-        colorR = R;
-        colorG = G;
-        colorB = B;
-    }
-
     public void setColorWithHex(String s){
         int i = Color.parseColor(s);
     }
@@ -100,13 +87,14 @@ public class HideTitle extends LinearLayout {
 
         ta.recycle();
 
+        imgSize = DensityUtils.dp2px(getContext(), 36);
+
         initView();
     }
 
     public void setViewAlpha(float alpha){
         int a = (int) (255 * alpha);
-        setBackgroundColor(Color.argb(a, colorR, colorB, colorG));
-        //Drawable drawable = Draw
+        getBackground().setAlpha(a);
     }
 
     private void initView() {
@@ -147,6 +135,7 @@ public class HideTitle extends LinearLayout {
         if (rightLinearLayout == null){
             rightLinearLayout = new LinearLayout(getContext());
             rightParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
             rightParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
             rightParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -155,12 +144,12 @@ public class HideTitle extends LinearLayout {
             rightLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
 
             rightImg1 = new ImageView(getContext());
-            rightImgParams1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            rightImgParams1 = new LinearLayout.LayoutParams(imgSize, imgSize);
             rightImg1.setBackgroundResource(rightImgResId1);
             rightLinearLayout.addView(rightImg1, rightImgParams1);
 
             rightImg2 = new ImageView(getContext());
-            rightImgParams2 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            rightImgParams2 = new LinearLayout.LayoutParams(imgSize, imgSize);
             rightImg2.setBackgroundResource(rightImgResId2);
             rightLinearLayout.addView(rightImg2, rightImgParams2);
 
@@ -183,7 +172,7 @@ public class HideTitle extends LinearLayout {
     private void addLeftView() {
         if (leftImg == null){
             leftImg = new ImageView(getContext());
-            leftImgParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            leftImgParams = new RelativeLayout.LayoutParams(imgSize, imgSize);
             leftImgParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
             leftImgParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {

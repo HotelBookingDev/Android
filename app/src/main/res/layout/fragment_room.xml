@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -23,25 +24,31 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 >
-
-                <com.lsjwzh.widget.recyclerviewpager.LoopRecyclerViewPager
-                    android:id="@+id/fragment_room_viewPager"
-                    android:orientation="vertical"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    app:rvp_triggerOffset="0.1"
-                    app:rvp_singlePageFling="true"
-                    android:clipToPadding="false"
-                    >
-                </com.lsjwzh.widget.recyclerviewpager.LoopRecyclerViewPager>
+                    android:layout_height="wrap_content">
+                    <com.lsjwzh.widget.recyclerviewpager.LoopRecyclerViewPager
+                        android:id="@+id/fragment_room_viewPager"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        app:rvp_triggerOffset="0.1"
+                        app:rvp_singlePageFling="true"
+                        android:clipToPadding="false"
+                        >
+                    </com.lsjwzh.widget.recyclerviewpager.LoopRecyclerViewPager>
 
-                <sf.hotel.com.hotel_client.view.custom.CircleIndicator
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:id="@+id/frag_room_circle"
-                    />
+                    <sf.hotel.com.hotel_client.view.custom.CircleIndicator
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:id="@+id/frag_room_circle"
+                        android:layout_below="@id/fragment_room_viewPager"
+                        />
+
+                </RelativeLayout>
+
 
                 <View
                     android:layout_marginTop="5dp"
@@ -52,6 +59,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     style="@style/titleTextStyle"
                     android:id="@+id/fragment_room_content"
                     android:text="早餐 无\n建筑面积 15m2 \n 可主2人 \n 双人床 1.5m \n 宽带wifi"
@@ -67,13 +75,69 @@
                     style="@style/itemTextContentStyle"
                     android:text="条款\nXXXXXXXXXXXXX\nXXXXXXXXXX\nXXXX\nXXXXXXXXXXXXX"
                     />
-                
-                <ImageView
+
+
+                <include layout="@layout/item_line" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:src="@mipmap/ic_launcher"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    >
+
+                    <ImageButton
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:background="@mipmap/ic_add_location_black_36dp"
+
+                        />
+                    <sf.hotel.com.hotel_client.view.custom.PersonalItemView
+                        android:id="@+id/fragment_room_location"
+                        style="@style/group_item"
+                        app:contextText="香格里拉 松赞林寺旁边" />
+
+                </LinearLayout>
+
+                <include layout="@layout/item_line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    >
+
+                    <ImageButton
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:background="@mipmap/ic_local_phone_black_36dp"
+                        />
+                    <sf.hotel.com.hotel_client.view.custom.PersonalItemView
+                        android:id="@+id/fragment_room_phone"
+                        style="@style/group_item"
+                        app:contextText="0887-8288889" />
+
+                </LinearLayout>
+
+                <include layout="@layout/item_line" />
+
+                <sf.hotel.com.hotel_client.view.custom.ListText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:title_text="@string/booking_notice"
+                    app:content_text="1.出境旅游产品：旅游度假目的地为中国已开放的旅游目的地国家及中国台湾、香港和澳门地区，从出发地到度假目的地往返交通票、目的地酒店住宿、旅行用车及其他可选择附加旅游产品。\n
+2.自助游旅游产品：该类产品包含前往度假目的地的往返机票、火车票、目的地住宿酒店、旅行用车及其它可选配的接送机、门票等项目的部分或全部。\n
+3.半自助游旅游产品：以酒店＋交通＋一半团队游＋一半自由行＋个性化可选服务为核心，既有充足的自由活动时间，又有专业导游带您游览经典景区，且不含任何强制购物和自费项目。\n
+4.团队游旅游产品：以酒店＋交通＋特色餐食＋景点门票＋旅游用车＋全程导游＋签证（海外）为核心，对行程、交通方式、食宿标准、游览项目均有固定安排，且有专职导游和专车带您游览经典景点。该类产品对成团人数有一定的要求。\n
+5.游客：指通过去哪儿网预订旅游产品供应商在去哪儿网上提供的旅游产品的用户，游客在去哪儿网上预订旅游产品成功后，游客和旅游产品供应商之间建立合同关系。\n
+6. 酒店入住登记要求：登记入住酒店的客人中至少要有1人超过18周岁，即未满18周岁的客人必须由18周岁以上的客人帮其办理酒店入住手续。"
                     />
+
+
             </LinearLayout>
+
+
 
 
         </sf.hotel.com.hotel_client.view.custom.NoScrollView>
@@ -81,10 +145,11 @@
         <sf.hotel.com.hotel_client.view.custom.HideTitle
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/view_title"
             app:mid_text="@string/room"
             app:left_img="@mipmap/ic_title_back_arrow"
-            app:right_img1="@mipmap/ic_close_black_36dp"
-            app:right_img2="@mipmap/ic_close_black_36dp"
+            app:right_img1="@mipmap/ic_collections_bookmark_black_36dp"
+            app:right_img2="@mipmap/ic_share_black_36dp"
             app:add_status_view="true"
             android:id="@+id/frag_room_title"
             />
@@ -92,11 +157,14 @@
     </FrameLayout>
 
 
-    <Button
+    <mehdi.sakout.fancybuttons.FancyButton
+        fancy:fb_defaultColor="@color/white"
+        fancy:fb_focusColor="@color/bg_person"
+        fancy:fb_text="@string/search_bed"
+        fancy:fb_textColor="@color/black"
         android:id="@+id/frag_room_search"
         android:layout_width="match_parent"
         android:layout_height="@dimen/btn_height"
-        android:text="@string/search_bed"
      />
 
 </LinearLayout>

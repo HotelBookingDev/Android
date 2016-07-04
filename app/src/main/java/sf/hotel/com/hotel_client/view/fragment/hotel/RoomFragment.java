@@ -10,7 +10,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
@@ -23,6 +22,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import mehdi.sakout.fancybuttons.FancyButton;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
@@ -48,10 +48,9 @@ public class RoomFragment extends BaseFragment implements IRoomView {
 
     private static Bundle args;
 
-    IRoomPresenter mIRoomPresenter;
+    private HotelsBean hotelsBean;
 
-//    @BindView(R.id.fragment_room_close)
-//    ImageView imgClose;
+    IRoomPresenter mIRoomPresenter;
 
     @BindView(R.id.fragment_room_viewPager)
     RecyclerViewPager mRecyclerViewPager;
@@ -62,7 +61,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     TextView mRoomContent;
 
     @BindView(R.id.frag_room_search)
-    Button mBtnSearch;
+    FancyButton mBtnSearch;
 
     DialogPlus dialogPlus;
 
@@ -100,28 +99,31 @@ public class RoomFragment extends BaseFragment implements IRoomView {
 
     class ThreadShow implements Runnable{
         final long TIME = 3000;
-        boolean isLoop = true;
+        public boolean isLoop = true;
         @Override
         public void run() {
             while (isLoop){
                 try {
                     Thread.sleep(TIME);
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            int curr  = mRecyclerViewPager.getCurrentPosition() + 1;
+                    if (isLoop){
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                int curr  = mRecyclerViewPager.getCurrentPosition() + 1;
 
-                            mRecyclerViewPager.smoothScrollToPosition(curr);
-                            LogUtils.d(curr + "");
-                        }
-                    });
-
+                                mRecyclerViewPager.smoothScrollToPosition(curr);
+                                LogUtils.d(curr + "");
+                            }
+                        });
+                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         }
     }
+
+    ThreadShow run = new ThreadShow();
 
     @Nullable
     @Override
@@ -131,7 +133,9 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         View view = inflater.inflate(R.layout.fragment_room, container, false);
         mIRoomPresenter = new IRoomPresenter(this);
         ButterKnife.bind(this, view);
-        initViewPager(args);
+
+        hotelsBean = args.getParcelable("room");
+        initViewPager();
 
         // initRecyclerView();
 
@@ -159,7 +163,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
 //        mRecyclerView.setAdapter(mPullAdapter);
 //    }
 
-    private void initViewPager(Bundle bundle) {
+    private void initViewPager() {
         LinearLayoutManager layout = new LinearLayoutManager(getBottomContext(),
                 LinearLayoutManager.HORIZONTAL, false);
         mRecyclerViewPager.setLayoutManager(layout);
@@ -221,7 +225,6 @@ public class RoomFragment extends BaseFragment implements IRoomView {
                     }
                 });
 
-        HotelsBean hotelsBean = bundle.getParcelable("room");
         if (hotelsBean != null) {
             List<String> hotelLogoImgs = hotelsBean.getHouse_imgs();
             if(hotelLogoImgs != null && hotelLogoImgs.size() > 0){
@@ -232,20 +235,26 @@ public class RoomFragment extends BaseFragment implements IRoomView {
 
 
         mCircleIndicator.setViewPager(mRecyclerViewPager);
-        new Thread(new ThreadShow()).start();
+        new Thread(run).start();
     }
 
     @OnClick(R.id.frag_room_search)
     public void onSearchClick() {
 
+
+
         if (dialogPlus == null) {
+
+
+
+
             dialogPlus = DialogPlus.newDialog(getBottomContext())
                     .setContentHolder(new ListHolder())
                     .setCancelable(true)
                     .setGravity(Gravity.BOTTOM)
                     .setFooter(R.layout.footer_bed)
                     .setHeader(R.layout.header_bed)
-                    .setAdapter(new DialogBedAdapter(new ArrayList<>(), getBottomContext()))
+                    .setAdapter(new DialogBedAdapter( getBottomContext()))
                     .setOnItemClickListener((dialog, item, view, position) -> {
 
                     })
@@ -270,5 +279,11 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     @Override
     public void showViewToast(String msg) {
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        run.isLoop = false;
     }
 }

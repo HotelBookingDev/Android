@@ -76,7 +76,8 @@
     <string name="zero_integral">0.0</string>
     <string name="all_money">总资产(元)</string>
     <string name="add_money">账户充值</string>
-    <string name="settings_feedback">在此写下您宝贵的意见</string>
+    <string name="settings_feedback">在此写下您宝贵的意见</string>o
     <string name="submit">提交</string>
+    <string name="booking_notice">预定须知</string>
 
 </resources>

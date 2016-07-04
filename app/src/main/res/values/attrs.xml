@@ -44,4 +44,11 @@
         <attr name="add_status_view" format="boolean"/>
         <attr name="hide_background" format="color"/>
     </declare-styleable>
+
+    <declare-styleable name="ListText">
+        <attr name="title_text" format="string"/>
+        <attr name="content_text" format="string"/>
+
+    </declare-styleable>
+
 </resources>

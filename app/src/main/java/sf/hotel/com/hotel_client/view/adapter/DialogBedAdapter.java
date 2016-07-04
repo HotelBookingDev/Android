@@ -6,8 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import sf.hotel.com.data.entity.netresult.hotel.HotelHousesBean;
+import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.hotel_client.R;
 
 /**
@@ -17,17 +20,25 @@ import sf.hotel.com.hotel_client.R;
  */
 public class DialogBedAdapter extends BaseAdapter {
 
-    List<String> list;
+    List<String> houseList;
+
+    List<HotelHousesBean> hotelHousesBeanList;
     Context context;
 
-    public DialogBedAdapter(List<String> list, Context context) {
-        this.list = list;
+    public DialogBedAdapter(Context context) {
         this.context = context;
+        houseList = new ArrayList<>();
+        hotelHousesBeanList = new ArrayList<>();
+    }
+
+    public void setList(HotelsBean hotelsBean) {
+        houseList = hotelsBean.getHouse_imgs();
+        hotelHousesBeanList = hotelsBean.getHotel_houses();
     }
 
     @Override
     public int getCount() {
-        return 10;
+        return hotelHousesBeanList == null ? 0 : hotelHousesBeanList.size();
     }
 
     @Override
@@ -42,7 +53,6 @@ public class DialogBedAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         if (convertView == null){
             convertView = LayoutInflater.from(context).inflate(R.layout.item_room, parent, false);
         }
