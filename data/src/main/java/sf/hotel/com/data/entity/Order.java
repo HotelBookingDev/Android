@@ -26,7 +26,7 @@ public class Order {
     private String room_name;
     //    订单号
     @DatabaseField(generatedId = true, columnName = "order_num")
-    private String order_num;
+    private long order_num;
     //    积分
     @DatabaseField(columnName = "point")
     private long point;
@@ -63,7 +63,7 @@ public class Order {
         return room_name;
     }
 
-    public String getOrder_num() {
+    public long getOrder_num() {
         return order_num;
     }
 

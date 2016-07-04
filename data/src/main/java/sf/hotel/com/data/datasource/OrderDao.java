@@ -31,6 +31,13 @@ public class OrderDao {
         }
     }
 
+    public static void update(List<Order> list, Context context) {
+        if (list == null) return;
+        for (Order order : list) {
+            update(order, context);
+        }
+    }
+
     public static List<Order> getOrder(Context context, int position) {
         List<Order> mLists = null;
         if (position == Order.ALRADYORDER || position == Order.NOTORDER) {

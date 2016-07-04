@@ -16,7 +16,6 @@ import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ListHolder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -100,16 +99,17 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         final long TIME = 3000;
 
         public boolean isLoop = true;
+
         @Override
         public void run() {
             while (isLoop) {
                 try {
                     Thread.sleep(TIME);
-                    if (isLoop){
+                    if (isLoop) {
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                int curr  = mRecyclerViewPager.getCurrentPosition() + 1;
+                                int curr = mRecyclerViewPager.getCurrentPosition() + 1;
 
                                 mRecyclerViewPager.smoothScrollToPosition(curr);
                                 LogUtils.d(curr + "");
@@ -240,12 +240,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     @OnClick(R.id.frag_room_search)
     public void onSearchClick() {
 
-
-
         if (dialogPlus == null) {
-
-
-
 
             dialogPlus = DialogPlus.newDialog(getBottomContext())
                     .setContentHolder(new ListHolder())
@@ -253,7 +248,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
                     .setGravity(Gravity.BOTTOM)
                     .setFooter(R.layout.footer_bed)
                     .setHeader(R.layout.header_bed)
-                    .setAdapter(new DialogBedAdapter( getBottomContext()))
+                    .setAdapter(new DialogBedAdapter(getBottomContext()))
                     .setOnItemClickListener((dialog, item, view, position) -> {
 
                     })

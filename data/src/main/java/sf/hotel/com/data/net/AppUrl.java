@@ -18,4 +18,6 @@ public class AppUrl {
     public static final String TOKEN_URL = "/user/avatar/token";
 
     public static final String PROVINCES_URL = "/province/";
+
+    public static final String ORDER_URL = "/order/";
 }

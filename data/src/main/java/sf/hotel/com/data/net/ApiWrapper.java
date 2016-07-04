@@ -9,6 +9,7 @@ import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.data.entity.netresult.LoginResult;
 import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.entity.netresult.TokenResult;
+import sf.hotel.com.data.entity.netresult.person.OrderManagerResult;
 
 /**
  * @author MZ
@@ -95,5 +96,9 @@ public class ApiWrapper extends RetrofitHelper {
 
     public Observable<ProvincesResult> callCityList() {
         return mService.callCityList().compose(this.<ProvincesResult>applySchedulers());
+    }
+
+    public Observable<OrderManagerResult> getOrderManager() {
+        return mService.getOrderManager().compose(this.applySchedulers());
     }
 }
