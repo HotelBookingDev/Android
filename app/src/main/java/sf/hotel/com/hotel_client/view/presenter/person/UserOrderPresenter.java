@@ -1,9 +1,5 @@
 package sf.hotel.com.hotel_client.view.presenter.person;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import sf.hotel.com.data.entity.Order;
 import sf.hotel.com.data.interfaceeneity.person.IOrder;
 import sf.hotel.com.data.interfaceeneity.person.IOrderImp;
 import sf.hotel.com.hotel_client.view.interfaceview.person.IUserOrderView;
@@ -22,15 +18,15 @@ public class UserOrderPresenter {
         mIorder = new IOrderImp();
     }
 
-    public void getDatas() {
-        List<Order> mLists = new ArrayList<>();
-        mLists.add(new Order());
-        mLists.add(new Order());
-        mLists.add(new Order());
-        mLists.add(new Order());
-        mIUserOrderView.showOrder(mLists);
+    public void getDatas(int position) {
+        getDb(position);
     }
 
-    private void getDb() {
+    private void getDb(int position) {
+        mIorder.getOrderByDb(mIUserOrderView.getBottomContext(), position).subscribe(orders -> {
+            if (orders != null) {
+                mIUserOrderView.showOrder(orders);
+            }
+        });
     }
 }

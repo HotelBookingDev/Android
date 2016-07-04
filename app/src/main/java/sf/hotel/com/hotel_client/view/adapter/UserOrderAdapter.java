@@ -49,7 +49,7 @@ public class UserOrderAdapter extends RecyclerViewBaseAdapter {
         if (order == null) return;
         HotelImageLoad.loadImage(mContext, ((ViewHolder) holder).mHotelIcon, order.getHotel_url());
         setText(order.getHotel_name(), viewHolder.mHotelName);
-        setText(order.getTime(), viewHolder.mTime);
+        setText(order.getTime() + "", viewHolder.mTime);
         setText(order.getRoom_name(), viewHolder.mRoomName);
         setText(order.getMoney(), viewHolder.mRoomMoney);
     }

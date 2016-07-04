@@ -73,9 +73,10 @@ public abstract class RetrofitHelper {
     }
 
     protected <T> Observable.Transformer<HttpResult<T>, T> applySchedulers() {
-        return responseObservable -> responseObservable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .flatMap(
-                        (Func1<HttpResult<T>, Observable<T>>) tResponse -> flatResponse(tResponse));
+        return responseObservable -> {
+            return responseObservable.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .flatMap((Func1<HttpResult<T>, Observable<T>>) this::flatResponse);
+        };
     }
 }
