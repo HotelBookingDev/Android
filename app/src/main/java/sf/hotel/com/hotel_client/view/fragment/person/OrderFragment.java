@@ -2,7 +2,6 @@ package sf.hotel.com.hotel_client.view.fragment.person;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.view.adapter.OrderPagerFragmentAdapter;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.event.Message;
 import sf.hotel.com.hotel_client.view.event.MessageFactory;
@@ -31,8 +29,6 @@ public class OrderFragment extends BaseFragment {
 
     @BindView(R.id.tl_order)
     TabLayout mTabLayout;
-    @BindView(R.id.vp_order)
-    ViewPager mViewPager;
     @BindView(R.id.view_title)
     HotelTitleView mView_title;
     private String[] mTab = new String[]{"已消费", "未消费"};
@@ -47,13 +43,42 @@ public class OrderFragment extends BaseFragment {
     }
 
     private void initView() {
-        mTabLayout.addTab(mTabLayout.newTab());
-        mTabLayout.addTab(mTabLayout.newTab());
-        mViewPager.setAdapter(new OrderPagerFragmentAdapter(getChildFragmentManager(), mTab));
-        mTabLayout.setupWithViewPager(mViewPager);
+        mTabLayout.addTab(mTabLayout.newTab().setText(mTab[0]));
+        mTabLayout.addTab(mTabLayout.newTab().setText(mTab[1]));
         mView_title.addLeftClick(
                 v -> RxBus.getDefault().post(MessageFactory.createOrderMessage(Message.ISEXIT)));
         mView_title.addRightClick(v -> RxBus.getDefault()
                 .post(MessageFactory.createOrderMessage(OrderMessage.SEARCHMESSAGE)));
+        mTabLayout.setOnTabSelectedListener(new TabSelectListener());
+        loadRootFragment(R.id.fl_order, UserOrderFragment.newInstance());
+    }
+
+    //用户选择的tab的监听
+    class TabSelectListener implements TabLayout.OnTabSelectedListener {
+
+        @Override
+        public void onTabSelected(TabLayout.Tab tab) {
+            RxBus.getDefault().post(getMessage(tab.getPosition()));
+        }
+
+        @Override
+        public void onTabUnselected(TabLayout.Tab tab) {
+
+        }
+
+        @Override
+        public void onTabReselected(TabLayout.Tab tab) {
+
+        }
+    }
+
+    private OrderMessage getMessage(int type) {
+        OrderMessage message = null;
+        if (type == 0) {
+            message = MessageFactory.createOrderMessage(OrderMessage.ALREADYCONSUMED);
+        } else if (type == 1) {
+            message = MessageFactory.createOrderMessage(OrderMessage.NOTCONSUMED);
+        }
+        return message;
     }
 }
