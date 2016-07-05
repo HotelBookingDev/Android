@@ -45,45 +45,22 @@
 
                 <include layout="@layout/item_line" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
 
-                    <ImageButton
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:background="@mipmap/ic_add_location_black_36dp"
-
-                        />
-
-                    <sf.hotel.com.hotel_client.view.custom.PersonalItemView
+                <sf.hotel.com.hotel_client.view.custom.PersonalItemView
                         android:id="@+id/fragment_room_location"
                         style="@style/group_item"
+                        app:leftIcon="@mipmap/ic_add_location_black_36dp"
                         app:contextText="香格里拉 松赞林寺旁边" />
 
-                </LinearLayout>
 
                 <include layout="@layout/item_line" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
 
-                    <ImageButton
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:background="@mipmap/ic_local_phone_black_36dp" />
-
-                    <sf.hotel.com.hotel_client.view.custom.PersonalItemView
+                <sf.hotel.com.hotel_client.view.custom.PersonalItemView
                         android:id="@+id/fragment_room_phone"
                         style="@style/group_item"
+                        app:leftIcon="@mipmap/ic_local_phone_black_36dp"
                         app:contextText="0887-8288889" />
-
-                </LinearLayout>
 
                 <include layout="@layout/item_line" />
 
@@ -113,24 +90,13 @@
 6. 酒店入住登记要求：登记入住酒店的客人中至少要有1人超过18周岁，即未满18周岁的客人必须由18周岁以上的客人帮其办理酒店入住手续。"
                     app:title_text="@string/booking_notice" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    >
 
-                    <ImageButton
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:background="@mipmap/customer_service_48px"
-                        />
                     <sf.hotel.com.hotel_client.view.custom.PersonalItemView
                         android:id="@+id/fragment_room_customer"
                         style="@style/group_item"
+                        app:leftIcon="@mipmap/customer_service_48px"
                         app:contextText="联系客服" />
 
-                </LinearLayout>
 
             </LinearLayout>
 

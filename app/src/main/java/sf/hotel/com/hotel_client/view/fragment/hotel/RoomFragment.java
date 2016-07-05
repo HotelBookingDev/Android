@@ -15,6 +15,7 @@ import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ListHolder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -80,7 +81,6 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     }
 
     public static RoomFragment newInstance() {
-
         Bundle args = new Bundle();
         RoomFragment fragment = new RoomFragment();
         fragment.setArguments(args);
@@ -102,7 +102,11 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     }
 
     private void initBanner() {
-        mImageList = hotelsBean.getHouse_imgs();
+
+        mImageList = new ArrayList<>();
+
+        mImageList.add("http://f.hiphotos.baidu.com/image/h%3D300/sign=e50211178e18367ab28979dd1e738b68/0b46f21fbe096b63a377826e04338744ebf8aca6.jpg");
+        mImageList.add("http://img0.imgtn.bdimg.com/it/u=2460737275,599413823&fm=23&gp=0.jpg");
         convenientBanner.setPages(new CBViewHolderCreator<LocalImageHodlerView>() {
             @Override
             public LocalImageHodlerView createHolder() {
