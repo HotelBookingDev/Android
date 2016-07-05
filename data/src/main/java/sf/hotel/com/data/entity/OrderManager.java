@@ -16,42 +16,35 @@ import sf.hotel.com.data.datasource.OrderDao;
 //管理订单的各自的结合,不建议用map管理开销大，不容易拓展
 public class OrderManager {
     @SerializedName("mAlreadyOrders")
-    List<Order> mAlreadyOrders;
+    List<OrderAndHotel> mAlreadyOrders;
     @SerializedName("mNotOrders")
-    List<Order> mNotOrders;
+    List<OrderAndHotel> mNotOrders;
 
-    public void setmAlreadyOrders(List<Order> mAlreadyOrders) {
-        this.mAlreadyOrders = mAlreadyOrders;
-    }
-
-    public void setmNotOrders(List<Order> mNotOrders) {
-        this.mNotOrders = mNotOrders;
-    }
-
-    public List<Order> getOrders(Context context, int position) {
-        List<Order> mList = null;
+    public List<OrderAndHotel> getOrders(Context context, int position, long userId) {
+        List<OrderAndHotel> mList = null;
         if (position == Order.ALRADYORDER) {
-            mList = initDatas(context, mAlreadyOrders, position);
+            mList = initDatas(context, mAlreadyOrders, position, userId);
         } else if (position == Order.NOTORDER) {
-            mList = initDatas(context, mNotOrders, position);
+            mList = initDatas(context, mNotOrders, position, userId);
         }
         return mList;
     }
 
-    private List<Order> initDatas(Context context, List<Order> mlists, int position) {
+    private List<OrderAndHotel> initDatas(Context context, List<OrderAndHotel> mlists, int position,
+            long userId) {
         if (mlists == null) {
-            mlists = OrderDao.getOrder(context, position);
+            mlists = OrderDao.getOrder(context, position, userId);
         }
         return mlists;
     }
 
-    public void update(Context context, OrderManager orderManager) {
-        this.mAlreadyOrders = orderManager.getOrders(context, Order.ALRADYORDER);
-        this.mNotOrders = orderManager.getOrders(context, Order.NOTORDER);
+    public void update(Context context, OrderManager orderManager, long userId) {
+        this.mAlreadyOrders = orderManager.getOrders(context, Order.ALRADYORDER, userId);
+        this.mNotOrders = orderManager.getOrders(context, Order.NOTORDER, userId);
     }
 
-    public void saveDb(Context context, OrderManager orderManager) {
-        OrderDao.update(orderManager.getOrders(context, Order.ALRADYORDER), context);
-        OrderDao.update(orderManager.getOrders(context, Order.NOTORDER), context);
+    public void saveDb(Context context, OrderManager orderManager, long userId) {
+        OrderDao.update(orderManager.getOrders(context, Order.ALRADYORDER, userId), context);
+        OrderDao.update(orderManager.getOrders(context, Order.NOTORDER, userId), context);
     }
 }

@@ -109,11 +109,11 @@ public class RoomFragment extends BaseFragment implements IRoomView {
                 return new LocalImageHodlerView();
             }
         }, mImageList)
-                .setPageIndicator(new int[]{R.mipmap.ic_page_indicator, R.mipmap.ic_page_indicator_focused})
+                .setPageIndicator(
+                        new int[]{R.mipmap.ic_page_indicator, R.mipmap.ic_page_indicator_focused})
                 .setOnItemClickListener(new OnItemClickListener() {
                     @Override
                     public void onItemClick(int position) {
-
                     }
                 });
     }

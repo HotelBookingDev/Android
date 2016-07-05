@@ -14,6 +14,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Subscription;
 import sf.hotel.com.data.entity.Order;
+import sf.hotel.com.data.entity.OrderAndHotel;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.adapter.UserOrderAdapter;
 import sf.hotel.com.hotel_client.view.event.RxBus;
@@ -78,7 +79,7 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
     }
 
     @Override
-    public void showOrder(List<Order> mOrders) {
+    public void showOrder(List<OrderAndHotel> mOrders) {
         if (mOrders == null) return;
         if (mAdapter == null) {
             mAdapter = new UserOrderAdapter(getActivity(), mOrders);

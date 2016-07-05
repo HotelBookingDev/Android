@@ -3,6 +3,7 @@ package sf.hotel.com.hotel_client.view.interfaceview.person;
 import java.util.List;
 
 import sf.hotel.com.data.entity.Order;
+import sf.hotel.com.data.entity.OrderAndHotel;
 import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
 
 /**
@@ -11,5 +12,5 @@ import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
  * email: 1105896230@qq.com
  */
 public interface IUserOrderView extends BaseView {
-    void showOrder(List<Order> mOrders);
+    void showOrder(List<OrderAndHotel> mOrders);
 }

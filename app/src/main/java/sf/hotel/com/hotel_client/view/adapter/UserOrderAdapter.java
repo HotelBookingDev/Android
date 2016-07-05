@@ -10,9 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import sf.hotel.com.data.entity.Order;
+import sf.hotel.com.data.entity.OrderAndHotel;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 
 /**
  * Created by 林其望
@@ -20,15 +19,15 @@ import sf.hotel.com.hotel_client.utils.HotelImageLoad;
  * email: 1105896230@qq.com
  */
 public class UserOrderAdapter extends RecyclerViewBaseAdapter {
-    List<Order> mOrders;
+    List<OrderAndHotel> mOrders;
 
-    public UserOrderAdapter(Context context, List<Order> mOrders) {
+    public UserOrderAdapter(Context context, List<OrderAndHotel> mOrders) {
         super(context);
         this.mOrders = mOrders;
         setCount(mOrders.size());
     }
 
-    public void setOrders(List<Order> orders) {
+    public void setOrders(List<OrderAndHotel> orders) {
         if (orders == null) return;
         mOrders.clear();
         mOrders.addAll(orders);
@@ -45,13 +44,12 @@ public class UserOrderAdapter extends RecyclerViewBaseAdapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
         ViewHolder viewHolder = (ViewHolder) holder;
-        Order order = mOrders.get(position);
+        OrderAndHotel order = mOrders.get(position);
         if (order == null) return;
-        HotelImageLoad.loadImage(mContext, ((ViewHolder) holder).mHotelIcon, order.getHotel_url());
-        setText(order.getHotel_name(), viewHolder.mHotelName);
-        setText(order.getTime() + "", viewHolder.mTime);
-        setText(order.getRoom_name(), viewHolder.mRoomName);
-        setText(order.getMoney(), viewHolder.mRoomMoney);
+        setText(order.getmHotelshot().getHotel_name(), viewHolder.mHotelName);
+        setText(order.getmOrder().getTime() + "", viewHolder.mTime);
+        setText(order.getmHotelshot().getHouse_name(), viewHolder.mRoomName);
+        setText(order.getmHotelshot().getFron_price() + "", viewHolder.mRoomMoney);
     }
 
     private void setText(String text, TextView view) {
