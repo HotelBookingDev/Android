@@ -19,5 +19,5 @@ public class AppUrl {
 
     public static final String PROVINCES_URL = "/province/";
 
-    public static final String ORDER_URL = "/order/";
+    public static final String ORDER_URL = "/customer/orders/";
 }

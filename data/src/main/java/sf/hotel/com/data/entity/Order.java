@@ -1,5 +1,6 @@
 package sf.hotel.com.data.entity;
 
+import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -10,80 +11,51 @@ import com.j256.ormlite.table.DatabaseTable;
  */
 @DatabaseTable(tableName = "tb_order")
 public class Order {
-    public static final int ALRADYORDER = 0x5;
-    public static final int NOTORDER = 0x6;
+    public static final int ALRADYORDER = 0x1;
+    public static final int NOTORDER = 0x0;
 
-    //    hotel_icon
-    @DatabaseField(columnName = "hotel_url")
-    private String hotel_url;
-    //    hotel_name
-    @DatabaseField(columnName = "hotel_name")
-    private String hotel_name;
-    //    酒店id
-    @DatabaseField(columnName = "hotel_id")
-    private String hotel_id;
-    @DatabaseField(columnName = "room_name")
-    private String room_name;
     //    订单号
-    @DatabaseField(generatedId = true, columnName = "order_num")
-    private long order_num;
-    //    积分
-    @DatabaseField(columnName = "point")
-    private long point;
-    //门市价
-    @DatabaseField(columnName = "money")
-    private String money;
-    //    订单的状态
-    @DatabaseField(columnName = "state")
-    private int state;
-    //    是否可以评论
-    @DatabaseField(columnName = "isComment")
-    private boolean isComment;
-    //    下单时间
-    @DatabaseField(columnName = "time")
-    private long time;
-
-    public String getHotel_url() {
-        return hotel_url;
-    }
-
-    public String getHotel_name() {
-        return hotel_name;
-    }
-
-    public void setHotel_name(String hotel_name) {
-        this.hotel_name = hotel_name;
-    }
-
-    public String getHotel_id() {
-        return hotel_id;
-    }
-
-    public String getRoom_name() {
-        return room_name;
-    }
 
     public long getOrder_num() {
         return order_num;
     }
 
-    public long getPoint() {
-        return point;
+    public long getId() {
+        return id;
     }
 
-    public String getMoney() {
-        return money;
+    @DatabaseField(generatedId = true, columnName = "order_num")
+    @SerializedName("number")
+    private long order_num;
+    //    订单的状态
+    @DatabaseField(columnName = "state")
+    @SerializedName("payment_status")
+    private int state;
+    //    下单时间
+    @DatabaseField(columnName = "time")
+    @SerializedName("created_on")
+    private String time;
+    @DatabaseField(columnName = "user_id")
+    @SerializedName("id")
+    private long id;
+
+    @SerializedName("snapshot")
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "id")
+    private Hotelshot snapshot;
+
+    public Hotelshot getHotelShot() {
+        return snapshot;
     }
 
     public int getState() {
         return state;
     }
 
-    public boolean isComment() {
-        return isComment;
+    public String getTime() {
+        return time;
     }
 
-    public long getTime() {
-        return time;
+    public void setSnapshot(Hotelshot snapshot) {
+        this.snapshot = snapshot;
     }
 }

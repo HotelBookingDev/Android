@@ -12,7 +12,6 @@ import java.util.List;
 
 import sf.hotel.com.data.entity.Order;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 
 /**
  * Created by 林其望
@@ -46,12 +45,11 @@ public class UserOrderAdapter extends RecyclerViewBaseAdapter {
         super.onBindViewHolder(holder, position);
         ViewHolder viewHolder = (ViewHolder) holder;
         Order order = mOrders.get(position);
-        if (order == null) return;
-        HotelImageLoad.loadImage(mContext, ((ViewHolder) holder).mHotelIcon, order.getHotel_url());
-        setText(order.getHotel_name(), viewHolder.mHotelName);
+        if (order == null || order.getHotelShot() == null) return;
+        setText(order.getHotelShot().getHotel_name(), viewHolder.mHotelName);
         setText(order.getTime() + "", viewHolder.mTime);
-        setText(order.getRoom_name(), viewHolder.mRoomName);
-        setText(order.getMoney(), viewHolder.mRoomMoney);
+        setText(order.getHotelShot().getHouse_name(), viewHolder.mRoomName);
+        setText(order.getHotelShot().getFron_price() + "", viewHolder.mRoomMoney);
     }
 
     private void setText(String text, TextView view) {

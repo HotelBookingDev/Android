@@ -72,7 +72,10 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
                 .subscribe(orderMessage -> {
                     if (orderMessage == null) return;
                     position = orderMessage.what;
-                    mUserOrderPresenter.getDatas(position);
+                    if (orderMessage.what != sf.hotel.com.hotel_client.view.event.Message.ISEXIT &&
+                            orderMessage.what != OrderMessage.SEARCHMESSAGE) {
+                        mUserOrderPresenter.getDatas(position);
+                    }
                 });
         mCompositeSubscription.add(subscribe);
     }

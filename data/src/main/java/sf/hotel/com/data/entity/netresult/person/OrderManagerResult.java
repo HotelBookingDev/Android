@@ -10,7 +10,7 @@ import sf.hotel.com.data.entity.OrderManager;
  * email: 1105896230@qq.com
  */
 public class OrderManagerResult {
-    @SerializedName("orderMangaer")
+    @SerializedName("orders")
     private OrderManager manager;
 
     public OrderManager getManager() {

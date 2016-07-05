@@ -6,9 +6,12 @@ import java.util.List;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
+import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.entity.Order;
 import sf.hotel.com.data.entity.OrderManager;
+import sf.hotel.com.data.entity.netresult.person.OrderManagerResult;
 import sf.hotel.com.data.net.ApiWrapper;
 
 /**
@@ -25,7 +28,8 @@ public class IOrderImp implements IOrder {
 
     @Override
     public Observable<List<Order>> getOrderByDb(Context context, int position) {
-        return Observable.just(mOrderManager.getOrders(context, position));
+        return Observable.just(mOrderManager.getOrders(context, position,
+                EntityContext.getInstance().getmCurrentUser().getUserId()));
     }
 
     public Observable<List<Order>> getOrderByNet(Context context, int position) {
@@ -33,12 +37,15 @@ public class IOrderImp implements IOrder {
                 .getOrderManager()
                 .filter(orderManagerResult -> orderManagerResult ==
                         null ? Boolean.FALSE : Boolean.TRUE)
-                .map(orderManagerResult -> orderManagerResult.getManager())
-                .doOnNext(orderManager -> mOrderManager.saveDb(context, orderManager))
-                .doOnNext(orderManager -> mOrderManager.update(context, orderManager))
+                .map(OrderManagerResult::getManager)
+                .doOnNext(orderManager -> mOrderManager.saveDb(context, orderManager,
+                        EntityContext.getInstance().getmCurrentUser().getUserId()))
+                .doOnNext(orderManager -> mOrderManager.update(context, orderManager,
+                        EntityContext.getInstance().getmCurrentUser().getUserId()))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .map(orderManager -> mOrderManager.getOrders(context, position));
+                .map(orderManager -> mOrderManager.getOrders(context, position,
+                        EntityContext.getInstance().getmCurrentUser().getUserId()));
     }
 }
