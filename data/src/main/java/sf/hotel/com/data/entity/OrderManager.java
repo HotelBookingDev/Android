@@ -15,13 +15,21 @@ import sf.hotel.com.data.datasource.OrderDao;
  */
 //管理订单的各自的结合,不建议用map管理开销大，不容易拓展
 public class OrderManager {
-    @SerializedName("all")
-    List<OrderAndHotel> mAlreadyOrders;
-    @SerializedName("mNotOrders")
-    List<OrderAndHotel> mNotOrders;
+    @SerializedName("finished")
+    private List<Order> mAlreadyOrders;
+    @SerializedName("inprocess")
+    private List<Order> mNotOrders;
 
-    public List<OrderAndHotel> getOrders(Context context, int position, long userId) {
-        List<OrderAndHotel> mList = null;
+    public void setmAlreadyOrders(List<Order> mAlreadyOrders) {
+        this.mAlreadyOrders = mAlreadyOrders;
+    }
+
+    public void setmNotOrders(List<Order> mNotOrders) {
+        this.mNotOrders = mNotOrders;
+    }
+
+    public List<Order> getOrders(Context context, int position, long userId) {
+        List<Order> mList = null;
         if (position == Order.ALRADYORDER) {
             mList = initDatas(context, mAlreadyOrders, position, userId);
         } else if (position == Order.NOTORDER) {
@@ -30,8 +38,7 @@ public class OrderManager {
         return mList;
     }
 
-    private List<OrderAndHotel> initDatas(Context context, List<OrderAndHotel> mlists, int position,
-            long userId) {
+    private List<Order> initDatas(Context context, List<Order> mlists, int position, long userId) {
         if (mlists == null) {
             mlists = OrderDao.getOrder(context, position, userId);
         }

@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import sf.hotel.com.data.entity.OrderAndHotel;
+import sf.hotel.com.data.entity.Order;
 import sf.hotel.com.hotel_client.R;
 
 /**
@@ -19,15 +19,15 @@ import sf.hotel.com.hotel_client.R;
  * email: 1105896230@qq.com
  */
 public class UserOrderAdapter extends RecyclerViewBaseAdapter {
-    List<OrderAndHotel> mOrders;
+    List<Order> mOrders;
 
-    public UserOrderAdapter(Context context, List<OrderAndHotel> mOrders) {
+    public UserOrderAdapter(Context context, List<Order> mOrders) {
         super(context);
         this.mOrders = mOrders;
         setCount(mOrders.size());
     }
 
-    public void setOrders(List<OrderAndHotel> orders) {
+    public void setOrders(List<Order> orders) {
         if (orders == null) return;
         mOrders.clear();
         mOrders.addAll(orders);
@@ -44,12 +44,12 @@ public class UserOrderAdapter extends RecyclerViewBaseAdapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
         ViewHolder viewHolder = (ViewHolder) holder;
-        OrderAndHotel order = mOrders.get(position);
-        if (order == null) return;
-        setText(order.getmHotelshot().getHotel_name(), viewHolder.mHotelName);
-        setText(order.getmOrder().getTime() + "", viewHolder.mTime);
-        setText(order.getmHotelshot().getHouse_name(), viewHolder.mRoomName);
-        setText(order.getmHotelshot().getFron_price() + "", viewHolder.mRoomMoney);
+        Order order = mOrders.get(position);
+        if (order == null || order.getHotelShot() == null) return;
+        setText(order.getHotelShot().getHotel_name(), viewHolder.mHotelName);
+        setText(order.getTime() + "", viewHolder.mTime);
+        setText(order.getHotelShot().getHouse_name(), viewHolder.mRoomName);
+        setText(order.getHotelShot().getFron_price() + "", viewHolder.mRoomMoney);
     }
 
     private void setText(String text, TextView view) {

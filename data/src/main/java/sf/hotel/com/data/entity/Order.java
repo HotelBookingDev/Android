@@ -35,9 +35,17 @@ public class Order {
     @DatabaseField(columnName = "time")
     @SerializedName("created_on")
     private long time;
-    @DatabaseField(columnName = "id")
+    @DatabaseField(columnName = "user_id")
     @SerializedName("id")
     private long id;
+
+    @SerializedName("snapshot")
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "id")
+    private Hotelshot snapshot;
+
+    public Hotelshot getHotelShot() {
+        return snapshot;
+    }
 
     public int getState() {
         return state;
@@ -45,5 +53,9 @@ public class Order {
 
     public long getTime() {
         return time;
+    }
+
+    public void setSnapshot(Hotelshot snapshot) {
+        this.snapshot = snapshot;
     }
 }

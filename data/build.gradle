@@ -38,16 +38,18 @@ dependencies {
     compile rootProject.ext.dependenciesdata.retrofit
     compile rootProject.ext.dependenciesdata.convertergson
     compile rootProject.ext.dependenciesdata.adapterrxjava
-
     //七牛上传sdk
     compile rootProject.ext.dependenciesdata.qiuniusdk
     compile rootProject.ext.dependenciesdata.qiuniuhappydns
     //文件处理
     compile rootProject.ext.dependenciesdata.commonsio
-
     testCompile 'junit:junit:4.12'
     //本身data层不该涉及view层 但是view层中的对象需要依赖他自己的对象暂时保留
     compile rootProject.ext.dependenciesdata.searcheview
     //Logger日志框架
     compile rootProject.ext.dependenciesdata.logger
+    compile files('libs/google-collections-1.0.jar')
+    compile files('libs/sun.misc.BASE64Decoder.jar')
+    compile files('libs/google-common.jar')
+    compile files('libs/com.google.common_1.0.0.201004262004.jar')
 }

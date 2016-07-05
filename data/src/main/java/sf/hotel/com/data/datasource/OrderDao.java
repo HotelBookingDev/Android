@@ -9,7 +9,6 @@ import java.util.List;
 
 import rx.Observable;
 import sf.hotel.com.data.entity.Order;
-import sf.hotel.com.data.entity.OrderAndHotel;
 
 /**
  * Created by 林其望
@@ -17,7 +16,7 @@ import sf.hotel.com.data.entity.OrderAndHotel;
  * email: 1105896230@qq.com
  */
 public class OrderDao {
-    public static void addOrder(OrderAndHotel order, Context context) {
+    public static void addOrder(Order order, Context context) {
         initdata(order);
         try {
             DatabaseHelper.getHelper(context).getOrders().createIfNotExists(order);
@@ -26,7 +25,7 @@ public class OrderDao {
         }
     }
 
-    public static void update(OrderAndHotel order, Context context) {
+    public static void update(Order order, Context context) {
         initdata(order);
         try {
             DatabaseHelper.getHelper(context).getOrders().createOrUpdate(order);
@@ -35,18 +34,18 @@ public class OrderDao {
         }
     }
 
-    public static void update(List<OrderAndHotel> list, Context context) {
+    public static void update(List<Order> list, Context context) {
         if (list == null) return;
-        for (OrderAndHotel order : list) {
+        for (Order order : list) {
             update(order, context);
         }
     }
 
-    public static List<OrderAndHotel> getOrder(Context context, int position, long userId) {
-        List<OrderAndHotel> mLists = null;
+    public static List<Order> getOrder(Context context, int position, long userId) {
+        List<Order> mLists = null;
         if (position == Order.ALRADYORDER || position == Order.NOTORDER) {
             try {
-                QueryBuilder<OrderAndHotel, Integer> orderIntegerQueryBuilder = DatabaseHelper.getHelper(
+                QueryBuilder<Order, Integer> orderIntegerQueryBuilder = DatabaseHelper.getHelper(
                         context).getOrders().queryBuilder();
                 orderIntegerQueryBuilder.where().eq("state", position);
                 orderIntegerQueryBuilder.where().eq("user_id", userId);
@@ -59,19 +58,13 @@ public class OrderDao {
         return mLists;
     }
 
-    private static void initdata(OrderAndHotel mOrderHotel) {
-        Observable.just(mOrderHotel)
-                .filter(orderAndHotel -> mOrderHotel == null ? Boolean.FALSE : Boolean.TRUE)
-                .filter(orderAndHotel -> mOrderHotel.getmHotelshot() ==
-                        null ? Boolean.FALSE : Boolean.TRUE)
-                .filter(orderAndHotel -> mOrderHotel.getmOrder() ==
+    private static void initdata(Order mOrder) {
+        Observable.just(mOrder)
+                .filter(orderAndHotel -> mOrder == null ? Boolean.FALSE : Boolean.TRUE)
+                .filter(orderAndHotel -> mOrder.getHotelShot() ==
                         null ? Boolean.FALSE : Boolean.TRUE)
                 .subscribe(orderAndHotel -> {
-                    mOrderHotel.getmHotelshot().setId(mOrderHotel.getmOrder().getOrder_num());
-                    mOrderHotel.setNum(mOrderHotel.getmOrder().getOrder_num());
-                    mOrderHotel.setState(mOrderHotel.getmOrder().getState());
-                    mOrderHotel.setTime(mOrderHotel.getmOrder().getTime());
-                    mOrderHotel.setUser_id(mOrderHotel.getmOrder().getId());
+                    mOrder.getHotelShot().setId(mOrder.getOrder_num());
                 });
     }
 }

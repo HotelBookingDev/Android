@@ -8,7 +8,7 @@ import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import sf.hotel.com.data.config.EntityContext;
-import sf.hotel.com.data.entity.OrderAndHotel;
+import sf.hotel.com.data.entity.Order;
 import sf.hotel.com.data.entity.OrderManager;
 import sf.hotel.com.data.entity.netresult.person.OrderManagerResult;
 import sf.hotel.com.data.net.ApiWrapper;
@@ -26,12 +26,12 @@ public class IOrderImp implements IOrder {
     }
 
     @Override
-    public Observable<List<OrderAndHotel>> getOrderByDb(Context context, int position) {
+    public Observable<List<Order>> getOrderByDb(Context context, int position) {
         return Observable.just(mOrderManager.getOrders(context, position,
                 EntityContext.getInstance().getmCurrentUser().getUserId()));
     }
 
-    public Observable<List<OrderAndHotel>> getOrderByNet(Context context, int position) {
+    public Observable<List<Order>> getOrderByNet(Context context, int position) {
         return ApiWrapper.getInstance()
                 .getOrderManager()
                 .filter(orderManagerResult -> orderManagerResult ==
@@ -39,7 +39,7 @@ public class IOrderImp implements IOrder {
                 .map(OrderManagerResult::getManager)
                 .doOnNext(orderManager -> mOrderManager.saveDb(context, orderManager,
                         EntityContext.getInstance().getmCurrentUser().getUserId()))
-                .doOnNext(orderManager -> mOrderManager.update(context, orderManager,
+                .doOnNext(orderManager -> mOrderManager.    update(context, orderManager,
                         EntityContext.getInstance().getmCurrentUser().getUserId()))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
