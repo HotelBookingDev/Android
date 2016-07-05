@@ -15,4 +15,5 @@ import sf.hotel.com.data.entity.OrderAndHotel;
  */
 public interface IOrder {
     Observable<List<OrderAndHotel>> getOrderByDb(Context context, int position);
+    Observable<List<OrderAndHotel>> getOrderByNet(Context context, int position);
 }

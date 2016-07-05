@@ -69,6 +69,6 @@ public interface ApiService {
     @GET(AppUrl.PROVINCES_URL)
     Observable<HttpResult<ProvincesResult>> callCityList();
 
-    @POST(AppUrl.ORDER_URL)
+    @GET(AppUrl.ORDER_URL)
     Observable<HttpResult<OrderManagerResult>> getOrderManager();
 }

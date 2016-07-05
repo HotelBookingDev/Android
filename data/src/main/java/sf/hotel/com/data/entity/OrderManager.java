@@ -15,7 +15,7 @@ import sf.hotel.com.data.datasource.OrderDao;
  */
 //管理订单的各自的结合,不建议用map管理开销大，不容易拓展
 public class OrderManager {
-    @SerializedName("mAlreadyOrders")
+    @SerializedName("all")
     List<OrderAndHotel> mAlreadyOrders;
     @SerializedName("mNotOrders")
     List<OrderAndHotel> mNotOrders;

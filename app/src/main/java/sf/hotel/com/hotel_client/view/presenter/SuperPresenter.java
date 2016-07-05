@@ -47,9 +47,9 @@ public abstract class SuperPresenter implements Presenter {
 
     public String getErrorString(int id, Context context) {
         try {
-            return context.getString(id);
+            return context.getResources().getString(id);
         } catch (Exception e) {
-            return context.getString(R.string.error);
+            return context.getResources().getString(R.string.error);
         }
     }
 }
