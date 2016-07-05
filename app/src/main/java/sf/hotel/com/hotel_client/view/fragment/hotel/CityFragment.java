@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.adapter.CityListAdapter;
@@ -65,6 +66,7 @@ public class CityFragment extends BaseFragment implements ICityView {
         }else{
             initCityList();
         }
+
     }
 
     private void onRxEvent() {
@@ -88,10 +90,10 @@ public class CityFragment extends BaseFragment implements ICityView {
         mCityListAdapter.setOnItemClickLitener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
-                mICityPresenter.saveSelectCity(mCityListAdapter
-                        .getListItem(mCityListAdapter.isCheckedPos));
-
+                CityBean selectCityBean = mCityListAdapter.getSelectCityBean();
+                if (selectCityBean != null){
+                    mICityPresenter.saveSelectCity(selectCityBean);
+                }
             }
 
             @Override
@@ -109,5 +111,9 @@ public class CityFragment extends BaseFragment implements ICityView {
 
     public void setCityAdapterList(ProvincesResult provincesResult) {
         mCityListAdapter.setList(provincesResult);
+        CityBean cityBean = mICityPresenter.getCityBean();
+        if (cityBean != null){
+            mCityListAdapter.setSelectCityBean(cityBean);
+        }
     }
 }

@@ -23,9 +23,8 @@ public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.Vie
 
     private List<CityBean> mList = new ArrayList<>();
 
-    //内部做的一个当前选中项是那个
-    //TODO 没做每次进来第一次加载
-    public int isCheckedPos = -1;
+
+    public CityBean selectCityBean;
 
     private OnItemClickListener mOnItemClickListener;
 
@@ -59,6 +58,8 @@ public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.Vie
 
     public CityListAdapter(Context context) {
         super(context);
+        selectCityBean = new CityBean();
+        selectCityBean.setId(-1);
     }
 
     @Override
@@ -71,14 +72,15 @@ public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.Vie
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.button.setText(mList.get(position).getName());
 
-        if (position != isCheckedPos) holder.button.setChecked(false);
+        if (mList.get(position).getId() != selectCityBean.getId())
+            holder.button.setChecked(false);
 
         if (mOnItemClickListener != null) {
             holder.button.setOnClickListener(v -> {
                 //每次点击都记录当前位置,刷新整个界面
                 int pos = holder.getLayoutPosition();
-                if (isCheckedPos != pos) {
-                    isCheckedPos = pos;
+                if (mList.get(position).getId() != selectCityBean.getId()) {
+                    selectCityBean = mList.get(pos);
                     notifyDataSetChanged();
                 }
                 mOnItemClickListener.onItemClick(holder.itemView, pos);
@@ -95,7 +97,12 @@ public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.Vie
         }
     }
 
-    public int getIsCheckedPos() {
-        return isCheckedPos;
+    public CityBean getSelectCityBean(){
+        return selectCityBean;
+    }
+
+    public void setSelectCityBean(CityBean selectCityBean) {
+        this.selectCityBean = selectCityBean;
+        notifyDataSetChanged();
     }
 }
