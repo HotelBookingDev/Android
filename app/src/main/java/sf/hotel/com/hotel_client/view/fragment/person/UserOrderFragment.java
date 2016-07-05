@@ -13,7 +13,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Subscription;
-import sf.hotel.com.data.entity.Order;
 import sf.hotel.com.data.entity.OrderAndHotel;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.adapter.UserOrderAdapter;
@@ -73,7 +72,9 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
                 .subscribe(orderMessage -> {
                     if (orderMessage == null) return;
                     position = orderMessage.what;
-                    mUserOrderPresenter.getDatas(position);
+                    if (orderMessage.what != sf.hotel.com.hotel_client.view.event.Message.ISEXIT&&orderMessage.what!=OrderMessage.SEARCHMESSAGE) {
+                        mUserOrderPresenter.getDatas(position);
+                    }
                 });
         mCompositeSubscription.add(subscribe);
     }

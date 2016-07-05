@@ -1,7 +1,14 @@
 package sf.hotel.com.hotel_client.view.presenter.person;
 
+import android.util.Log;
+
+import java.util.List;
+
+import rx.functions.Action1;
+import sf.hotel.com.data.entity.OrderAndHotel;
 import sf.hotel.com.data.interfaceeneity.person.IOrder;
 import sf.hotel.com.data.interfaceeneity.person.IOrderImp;
+import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.view.interfaceview.person.IUserOrderView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 
@@ -20,9 +27,18 @@ public class UserOrderPresenter extends SuperPresenter{
     }
 
     public void getDatas(int position) {
-        getDb(position);
+//        getDb(position);
+        getNet(position);
     }
 
+    private void getNet(int poistion){
+        mIorder.getOrderByNet(mIUserOrderView.getBottomContext(),poistion).subscribe(
+                orderAndHotels -> {
+                    LogUtils.d("test");
+                }, throwable -> {
+            LogUtils.d("error",throwable.getMessage());
+        });
+    }
     private void getDb(int position) {
         mIorder.getOrderByDb(mIUserOrderView.getBottomContext(), position)
                 .doOnNext(orderAndHotels -> {
