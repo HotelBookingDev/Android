@@ -29,7 +29,6 @@ public class HideTitle extends LinearLayout {
     ImageView rightImg1;
     ImageView rightImg2;
     LinearLayout rightLinearLayout;
-    NoScrollView scrollView;
     boolean isStatusView;
 
     View statusView;
@@ -47,26 +46,6 @@ public class HideTitle extends LinearLayout {
     float titleSize;
 
 
-    public void setScrollView(NoScrollView scrollView, int height) {
-        this.scrollView = scrollView;
-
-        scrollView.setOnScrollListener(new NoScrollView.onScrollListener() {
-            @Override
-            public void onScroll(View view, int x, int y, int oldX, int oldY) {
-
-                int curr = y - 1500;
-
-                if(curr < height){
-                    float alpha = curr / (float)height;
-                    if (alpha < 0)
-                        alpha = 0;
-                    if (alpha > 1)
-                        alpha = 1;
-                    setViewAlpha(alpha);
-                }
-            }
-        });
-    }
 
     public void setColorWithHex(String s){
         int i = Color.parseColor(s);

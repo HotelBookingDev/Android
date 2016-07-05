@@ -16,87 +16,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 >
-                <com.bigkoo.convenientbanner.ConvenientBanner
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    app:canLoop="true"
-                    android:id="@+id/frame_room_banner"
-                    />
+                <include layout="@layout/zoom_room"/>
 
-                <View
-                    style="@style/splitLineStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="5dp" />
-
-                <TextView
-                    android:id="@+id/fragment_room_content"
-                    style="@style/titleTextStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="香格里拉（Shangri-la）藏语意为“心中的日月”，是云南省迪庆藏族自治州下辖市及首府所在地"
-                    />
-
-                <include layout="@layout/item_line" />
-
-
-                <sf.hotel.com.hotel_client.view.custom.PersonalItemView
-                        android:id="@+id/fragment_room_location"
-                        style="@style/group_item"
-                        app:leftIcon="@mipmap/ic_add_location_black_36dp"
-                        app:contextText="香格里拉 松赞林寺旁边" />
-
-
-                <include layout="@layout/item_line" />
-
-
-                <sf.hotel.com.hotel_client.view.custom.PersonalItemView
-                        android:id="@+id/fragment_room_phone"
-                        style="@style/group_item"
-                        app:leftIcon="@mipmap/ic_local_phone_black_36dp"
-                        app:contextText="0887-8288889" />
-
-                <include layout="@layout/item_line" />
-
-
-                <sf.hotel.com.hotel_client.view.custom.ListText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:title_text="@string/package_details"
-                    app:content_text="1.出境旅游产品：旅游度假目的地为中国已开放的旅游目的地国家及中国台湾、香港和澳门地区，从出发地到度假目的地往返交通票、目的地酒店住宿、旅行用车及其他可选择附加旅游产品。\n
-2.自助游旅游产品：该类产品包含前往度假目的地的往返机票、火车票、目的地住宿酒店、旅行用车及其它可选配的接送机、门票等项目的部分或全部。\n
-3.半自助游旅游产品：以酒店＋交通＋一半团队游＋一半自由行＋个性化可选服务为核心，既有充足的自由活动时间，又有专业导游带您游览经典景区，且不含任何强制购物和自费项目。\n
-4.团队游旅游产品：以酒店＋交通＋特色餐食＋景点门票＋旅游用车＋全程导游＋签证（海外）为核心，对行程、交通方式、食宿标准、游览项目均有固定安排，且有专职导游和专车带您游览经典景点。该类产品对成团人数有一定的要求。\n
-5.游客：指通过去哪儿网预订旅游产品供应商在去哪儿网上提供的旅游产品的用户，游客在去哪儿网上预订旅游产品成功后，游客和旅游产品供应商之间建立合同关系。\n
-6. 酒店入住登记要求：登记入住酒店的客人中至少要有1人超过18周岁，即未满18周岁的客人必须由18周岁以上的客人帮其办理酒店入住手续。"
-                    />
-
-
-
-                <sf.hotel.com.hotel_client.view.custom.ListText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:content_text="1.出境旅游产品：旅游度假目的地为中国已开放的旅游目的地国家及中国台湾、香港和澳门地区，从出发地到度假目的地往返交通票、目的地酒店住宿、旅行用车及其他可选择附加旅游产品。\n
-2.自助游旅游产品：该类产品包含前往度假目的地的往返机票、火车票、目的地住宿酒店、旅行用车及其它可选配的接送机、门票等项目的部分或全部。\n
-3.半自助游旅游产品：以酒店＋交通＋一半团队游＋一半自由行＋个性化可选服务为核心，既有充足的自由活动时间，又有专业导游带您游览经典景区，且不含任何强制购物和自费项目。\n
-4.团队游旅游产品：以酒店＋交通＋特色餐食＋景点门票＋旅游用车＋全程导游＋签证（海外）为核心，对行程、交通方式、食宿标准、游览项目均有固定安排，且有专职导游和专车带您游览经典景点。该类产品对成团人数有一定的要求。\n
-5.游客：指通过去哪儿网预订旅游产品供应商在去哪儿网上提供的旅游产品的用户，游客在去哪儿网上预订旅游产品成功后，游客和旅游产品供应商之间建立合同关系。\n
-6. 酒店入住登记要求：登记入住酒店的客人中至少要有1人超过18周岁，即未满18周岁的客人必须由18周岁以上的客人帮其办理酒店入住手续。"
-                    app:title_text="@string/booking_notice" />
-
-
-                    <sf.hotel.com.hotel_client.view.custom.PersonalItemView
-                        android:id="@+id/fragment_room_customer"
-                        style="@style/group_item"
-                        app:leftIcon="@mipmap/customer_service_48px"
-                        app:contextText="联系客服" />
-
+                <include layout="@layout/content_room"/>
 
             </LinearLayout>
 
@@ -114,9 +42,6 @@
             app:right_img2="@mipmap/ic_share_black_36dp"
             app:title_size="@dimen/title_text_size"
             />
-
-
-
 
     </FrameLayout>
 

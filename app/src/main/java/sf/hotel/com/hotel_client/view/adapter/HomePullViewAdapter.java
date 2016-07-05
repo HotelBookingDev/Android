@@ -56,7 +56,6 @@ public class HomePullViewAdapter extends RecyclerViewBaseAdapter<HomePullViewAda
         HotelsBean hotelsBean = mList.get(position);
 
         holder.mTitle.setText(hotelsBean.getName());
-        holder.mPrice.setText("$ 1111");
 
         holder.mTextContent.setText(hotelsBean.getAddress());
 
@@ -80,13 +79,11 @@ public class HomePullViewAdapter extends RecyclerViewBaseAdapter<HomePullViewAda
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView mImage;
         TextView mTitle, mTextContent;
-        TextView mPrice;
 
         public ViewHolder(View itemView) {
             super(itemView);
             mImage = (ImageView) itemView.findViewById(R.id.item_hotels_img);
             mTitle = (TextView) itemView.findViewById(R.id.item_hotels_name);
-            mPrice = (TextView) itemView.findViewById(R.id.item_hotels_price);
             mTextContent = (TextView) itemView.findViewById(R.id.item_hotels_content);
         }
     }

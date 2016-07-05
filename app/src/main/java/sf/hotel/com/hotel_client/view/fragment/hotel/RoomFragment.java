@@ -14,6 +14,7 @@ import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ListHolder;
+import com.orhanobut.dialogplus.ViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +26,12 @@ import mehdi.sakout.fancybuttons.FancyButton;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.DensityUtils;
+import sf.hotel.com.hotel_client.utils.LBSUtils;
 import sf.hotel.com.hotel_client.view.adapter.DialogBedAdapter;
 import sf.hotel.com.hotel_client.view.adapter.LocalImageHodlerView;
 import sf.hotel.com.hotel_client.view.custom.HideTitle;
 import sf.hotel.com.hotel_client.view.custom.NoScrollView;
+import sf.hotel.com.hotel_client.view.custom.PersonalItemView;
 import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.RoomMessage;
@@ -60,13 +63,21 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     @BindView(R.id.frag_room_search)
     FancyButton mBtnSearch;
 
-    DialogPlus dialogPlus;
+    DialogPlus dialogPlus, phoneDialog;
 
     @BindView(R.id.frag_room_title)
     HideTitle mTitle;
 
     @BindView(R.id.frag_room_scrollview)
     NoScrollView mNoScrollView;
+
+
+    @BindView(R.id.fragment_room_phone)
+    PersonalItemView mPhone;
+
+    @BindView(R.id.fragment_room_location)
+    PersonalItemView mLocation;
+
 
     public static RoomFragment newInstance(Bundle bundle) {
 
@@ -97,9 +108,13 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         ButterKnife.bind(this, view);
         hotelsBean = args.getParcelable("room");
         initBanner();
+       // initScrollView();
         initTitle();
+
+
         return view;
     }
+
 
     private void initBanner() {
 
@@ -135,7 +150,24 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     }
 
     private void initTitle() {
-        mTitle.setScrollView(mNoScrollView, DensityUtils.dp2px(getBottomContext(), 200));
+        int hideHeight =  DensityUtils.dp2px(getBottomContext(), 200);
+        mNoScrollView.setOnScrollListener(new NoScrollView.onScrollListener() {
+            @Override
+            public void onScroll(View view, int x, int y, int oldX, int oldY) {
+
+                int curr = y - 1500;
+
+                if(curr < hideHeight){
+                    float alpha = curr / (float)hideHeight;
+                    if (alpha < 0)
+                        alpha = 0;
+                    if (alpha > 1)
+                        alpha = 1;
+                    mTitle.setViewAlpha(alpha);
+                }
+            }
+        });
+
         mTitle.addLeftViewOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,31 +177,59 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         });
     }
 
-    @OnClick(R.id.frag_room_search)
-    public void onSearchClick() {
+    @OnClick({R.id.frag_room_search,
+            R.id.fragment_room_phone,
+            R.id.fragment_room_location})
+    public void onSearchClick(View v) {
 
-        if (dialogPlus == null) {
-            dialogPlus = DialogPlus.newDialog(getBottomContext())
-                    .setContentHolder(new ListHolder())
-                    .setCancelable(true)
-                    .setGravity(Gravity.BOTTOM)
-                    .setFooter(R.layout.footer_bed)
-                    .setHeader(R.layout.header_bed)
-                    .setAdapter(new DialogBedAdapter(getBottomContext()))
-                    .setOnItemClickListener((dialog, item, view, position) -> {
+        switch (v.getId()){
+            case R.id.frag_room_search:
+                if (dialogPlus == null) {
+                    dialogPlus = DialogPlus.newDialog(getBottomContext())
+                            .setContentHolder(new ListHolder())
+                            .setCancelable(true)
+                            .setGravity(Gravity.BOTTOM)
+                            .setFooter(R.layout.footer_bed)
+                            .setHeader(R.layout.header_bed)
+                            .setAdapter(new DialogBedAdapter(getBottomContext()))
+                            .setOnItemClickListener((dialog, item, view, position) -> {
 
-                    })
-                    .setOnDismissListener(dialog -> {
+                            })
+                            .setOnDismissListener(dialog -> {
 
-                    })
-                    .setOnCancelListener(dialog -> {
+                            })
+                            .setOnCancelListener(dialog -> {
 
-                    })
-                    .setExpanded(true)
-                    .create();
+                            })
+                            .setExpanded(true)
+                            .create();
+                }
+                dialogPlus.show();
+                break;
+
+            case R.id.fragment_room_phone:
+
+                if (phoneDialog == null){
+                    View phoneView = LayoutInflater.from(getBottomContext()).inflate(R.layout.dialog_phone, null, false);
+                    ViewHolder holder = new ViewHolder(phoneView);
+                    phoneDialog = DialogPlus.newDialog(getBottomContext())
+                            .setContentHolder(holder)
+                            .setCancelable(true)
+                            .setGravity(Gravity.CENTER)
+                            .create();
+                }
+                phoneDialog.show();
+                break;
+            case R.id.fragment_room_location:
+
+                if (!LBSUtils.startLBS(getActivity(), "", "", "")){
+                    showViewToast("没有安装百度地图");
+                }
+
+                break;
+
         }
 
-        dialogPlus.show();
     }
 
     @Override
@@ -177,10 +237,6 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         return getActivity();
     }
 
-    @Override
-    public void showViewToast(String msg) {
-
-    }
 
     @Override
     public void onDestroyView() {

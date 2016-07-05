@@ -52,4 +52,17 @@
 
     </declare-styleable>
 
+    <declare-styleable name="PullToZoomView">
+        <attr name="headerView" format="reference" />
+        <attr name="contentView" format="reference" />
+        <attr name="zoomView" format="reference" />
+        <attr name="isHeaderParallax" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="PriceLayout">
+        <attr name="now_price" format="string"/>
+        <attr name="old_price" format="string"/>
+        <attr name="left_price_img" format="reference"/>
+    </declare-styleable>
+
 </resources>

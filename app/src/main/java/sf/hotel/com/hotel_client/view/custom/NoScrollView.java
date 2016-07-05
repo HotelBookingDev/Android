@@ -57,6 +57,8 @@ public class NoScrollView extends OverScrollView {
         if (onScrollListener != null) {
             if (Math.abs(y - currentY) > dy){
                 onScrollListener.onScroll(this, x, y, oldx, oldy);
+
+                LogUtils.d("-->", y + "");
                 currentY = y;
             }
         }

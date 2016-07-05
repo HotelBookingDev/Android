@@ -63,7 +63,7 @@
     </style>
 
     <style name="splitLineStyle">
-        <item name="android:background">@color/splitLineColor</item>
+        <item name="android:background">@color/main_divide</item>
     </style>
 
     <style name="layoutStyle">

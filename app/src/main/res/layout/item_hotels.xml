@@ -17,33 +17,17 @@
             android:scaleType="fitXY"/>
 
 
-        <LinearLayout
+        <sf.hotel.com.hotel_client.view.custom.PriceLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="5dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:background="#999999"
-            >
-            <TextView
-            android:id="@+id/item_hotels_price"
-            style="@style/itemTextPriceStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="$ 3888 " />
-            <TextView
-                android:id="@+id/item_hotels_original_price"
-                style="@style/itemTextContentStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="原价8888" />
-
-
-        </LinearLayout>
+            />
 
 
 
@@ -76,7 +60,7 @@
                 style="@style/titleTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="香格里拉"/>
+                android:text="三亚 | 国际连锁"/>
 
             <View
                 android:layout_width="0dp"
