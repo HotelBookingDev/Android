@@ -6,6 +6,7 @@ import java.util.List;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.entity.Order;
@@ -39,7 +40,7 @@ public class IOrderImp implements IOrder {
                 .map(OrderManagerResult::getManager)
                 .doOnNext(orderManager -> mOrderManager.saveDb(context, orderManager,
                         EntityContext.getInstance().getmCurrentUser().getUserId()))
-                .doOnNext(orderManager -> mOrderManager.    update(context, orderManager,
+                .doOnNext(orderManager -> mOrderManager.update(context, orderManager,
                         EntityContext.getInstance().getmCurrentUser().getUserId()))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())

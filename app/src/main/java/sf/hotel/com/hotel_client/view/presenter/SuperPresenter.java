@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.widget.ImageView;
 
 import sf.hotel.com.data.config.EntityContext;
+import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.data.utils.PreferencesUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.HotelImageLoad;
@@ -27,7 +28,9 @@ public abstract class SuperPresenter implements Presenter {
 
     @Override
     public void handlingException(Throwable e) {
-
+        if (e != null && e.getMessage() != null) {
+            LogUtils.d(e.getMessage());
+        }
     }
 
     //加载头像

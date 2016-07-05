@@ -45,11 +45,13 @@ public class OrderManager {
         return mlists;
     }
 
+    //    将网络请求后的集合更新到内存中
     public void update(Context context, OrderManager orderManager, long userId) {
         this.mAlreadyOrders = orderManager.getOrders(context, Order.ALRADYORDER, userId);
         this.mNotOrders = orderManager.getOrders(context, Order.NOTORDER, userId);
     }
 
+    //    这个时候的orderManger是网络请求返回的ordermanage 里面的集合是最新的集合
     public void saveDb(Context context, OrderManager orderManager, long userId) {
         OrderDao.update(orderManager.getOrders(context, Order.ALRADYORDER, userId), context);
         OrderDao.update(orderManager.getOrders(context, Order.NOTORDER, userId), context);

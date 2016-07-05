@@ -34,7 +34,7 @@ public class Order {
     //    下单时间
     @DatabaseField(columnName = "time")
     @SerializedName("created_on")
-    private long time;
+    private String time;
     @DatabaseField(columnName = "user_id")
     @SerializedName("id")
     private long id;
@@ -51,7 +51,7 @@ public class Order {
         return state;
     }
 
-    public long getTime() {
+    public String getTime() {
         return time;
     }
 

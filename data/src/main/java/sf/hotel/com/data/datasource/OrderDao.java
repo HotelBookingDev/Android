@@ -49,7 +49,6 @@ public class OrderDao {
                         context).getOrders().queryBuilder();
                 orderIntegerQueryBuilder.where().eq("state", position);
                 orderIntegerQueryBuilder.where().eq("user_id", userId);
-                orderIntegerQueryBuilder.orderBy("time", false);
                 mLists = orderIntegerQueryBuilder.query();
             } catch (SQLException e) {
                 e.printStackTrace();
