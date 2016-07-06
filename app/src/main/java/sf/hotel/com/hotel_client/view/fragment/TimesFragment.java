@@ -63,7 +63,7 @@ public class TimesFragment extends BaseFragment {
 
         List<Date> selectedDates = mCalendarView.getSelectedDates();
 
-        SimpleDateFormat format = new SimpleDateFormat("yyy-MM-dd");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         for (Date date : selectedDates) {
             LogUtils.d("---->", format.format(date) + "");
         }

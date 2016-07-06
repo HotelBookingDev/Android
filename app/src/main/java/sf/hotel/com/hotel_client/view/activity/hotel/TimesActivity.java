@@ -7,6 +7,7 @@ import butterknife.ButterKnife;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.BaseActivity;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
+import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.fragment.TimesFragment;
 
 /**
@@ -25,11 +26,13 @@ public class TimesActivity extends BaseActivity {
         setContentView(R.layout.activity_times);
         ButterKnife.bind(this);
         init();
-
         mHotelTitleView.addLeftClick(v -> finish());
     }
 
     private void init() {
         loadRootFragment(R.id.activity_times_frame, TimesFragment.newInstance());
     }
+
+
+
 }

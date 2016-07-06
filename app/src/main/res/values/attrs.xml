@@ -65,4 +65,11 @@
         <attr name="left_price_img" format="reference"/>
     </declare-styleable>
 
+
+    <declare-styleable name="HotelSearchItem">
+        <attr name="text" format="string"/>
+        <attr name="hint" format="string"/>
+        <attr name="close_src" format="reference"/>
+
+    </declare-styleable>
 </resources>

@@ -22,6 +22,7 @@ import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.HomeMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
 import sf.hotel.com.hotel_client.view.fragment.hotel.HotelsFragment;
+import sf.hotel.com.hotel_client.view.fragment.hotel.SearchHotelFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IHomeContainerView;
 import sf.hotel.com.hotel_client.view.presenter.hotel.IHomePresenter;
 
@@ -107,7 +108,7 @@ public class HomeContainer extends BaseFragment implements IHomeContainerView {
     private void init(@Nullable Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             loadRootFragment(R.id.fragment_container_home_frame,
-                    HotelsFragment.newInstance(cityBean));
+                    new SearchHotelFragment());
         }
     }
 

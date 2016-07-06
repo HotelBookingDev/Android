@@ -38,7 +38,8 @@ public class DialogBedAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return hotelHousesBeanList == null ? 0 : hotelHousesBeanList.size();
+        //return hotelHousesBeanList == null ? 0 : hotelHousesBeanList.size();
+        return 10;
     }
 
     @Override
@@ -54,7 +55,7 @@ public class DialogBedAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null){
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_room, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_bed, parent, false);
         }
         return convertView;
     }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <sf.hotel.com.hotel_client.view.custom.HotelSearchItem
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_height"
+        app:hint="我的当前位置"
+        />
+
+
+    <sf.hotel.com.hotel_client.view.custom.HotelSearchItem
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_height"
+        app:hint="关键词/位置/品牌/酒店名"
+        />
+
+    <sf.hotel.com.hotel_client.view.custom.HotelSearchItem
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_height"
+        app:hint="价格/星级"
+        />
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/setting_clear"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_height"
+        fancy:fb_defaultColor="@color/white"
+        fancy:fb_focusColor="@color/bg_person"
+        fancy:fb_text="@string/search_hotel"
+        fancy:fb_textColor="@color/black" />
+
+</LinearLayout>
