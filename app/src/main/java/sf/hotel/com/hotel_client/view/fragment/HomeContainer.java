@@ -108,19 +108,12 @@ public class HomeContainer extends BaseFragment implements IHomeContainerView {
     private void init(@Nullable Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             loadRootFragment(R.id.fragment_container_home_frame,
-                    new SearchHotelFragment());
+                    HotelsFragment.newInstance(cityBean));
+
+
         }
     }
 
-    @Override
-    public boolean onBackPressedSupport() {
-        if (getChildFragmentManager().getBackStackEntryCount() > 1) {
-            popChild();
-        } else {
-            super.onBackPressedSupport();
-        }
-        return true;
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

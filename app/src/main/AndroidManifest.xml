@@ -68,7 +68,7 @@
         <activity android:name=".view.activity.hotel.TimesActivity" />
         <activity android:name=".view.activity.pay.PayActivity" />
         <activity android:name=".view.activity.hotel.RoomActivity" />
-
+        <activity android:name=".view.activity.hotel.HotelsActivity"/>
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"

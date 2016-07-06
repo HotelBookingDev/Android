@@ -6,12 +6,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <sf.hotel.com.hotel_client.view.custom.HotelSearchItem
+
+    <sf.hotel.com.hotel_client.view.custom.HotelTitleView
+        android:id="@+id/view_title"
+        style="@style/view_title"
+        app:titleText="@string/search_hotel" />
+
+    <sf.hotel.com.hotel_client.view.custom.HotelSearchTitle
         android:layout_width="match_parent"
         android:layout_height="@dimen/btn_height"
-        app:hint="我的当前位置"
+        app:tag_text="目的地"
+        app:hotel_title_content_text="宁波"
+        app:des_text=""
         />
 
+    <include layout="@layout/item_line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_height"
+        android:orientation="horizontal"
+        >
+
+        <sf.hotel.com.hotel_client.view.custom.HotelSearchTitle
+
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/btn_height"
+            app:tag_text="入住"
+            app:hotel_title_content_text="7月21日"
+            app:des_text="星期四"
+            />
+
+        <sf.hotel.com.hotel_client.view.custom.HotelSearchTitle
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/btn_height"
+            app:tag_text="退房"
+            app:hotel_title_content_text="7月21日"
+            app:des_text="星期四"
+            />
+    </LinearLayout>
+
+
+    <include layout="@layout/item_line"/>
 
     <sf.hotel.com.hotel_client.view.custom.HotelSearchItem
         android:layout_width="match_parent"
@@ -19,14 +57,16 @@
         app:hint="关键词/位置/品牌/酒店名"
         />
 
+    <include layout="@layout/item_line"/>
     <sf.hotel.com.hotel_client.view.custom.HotelSearchItem
         android:layout_width="match_parent"
         android:layout_height="@dimen/btn_height"
         app:hint="价格/星级"
         />
 
+    <include layout="@layout/item_line"/>
     <mehdi.sakout.fancybuttons.FancyButton
-        android:id="@+id/setting_clear"
+        android:id="@+id/search_hotel"
         android:layout_width="match_parent"
         android:layout_height="@dimen/btn_height"
         fancy:fb_defaultColor="@color/white"

@@ -72,4 +72,11 @@
         <attr name="close_src" format="reference"/>
 
     </declare-styleable>
+
+    <declare-styleable name="HotelSearchTitle">
+        <attr name="hotel_title_content_text" format="string"/>
+        <attr name="tag_text" format="string"/>
+        <attr name="des_text" format="string"/>
+
+    </declare-styleable>
 </resources>

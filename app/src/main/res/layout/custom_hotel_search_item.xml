@@ -17,11 +17,14 @@
         android:id="@+id/hotel_search_item_content"
         />
 
+
     <ImageView
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:gravity="center_vertical"
-        android:src="@mipmap/arrow_button_right_light"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:src="@mipmap/arrow_button_right_light" />
 
     <ImageView
         android:layout_width="wrap_content"

@@ -44,6 +44,7 @@ public class HotelSearchItem extends RelativeLayout {
 
         mCloseSrc = ta.getResourceId(R.styleable.HotelSearchItem_close_src, R.mipmap.close_circle_48px);
 
+        ta.recycle();
 
         initView();
     }
@@ -85,6 +86,8 @@ public class HotelSearchItem extends RelativeLayout {
                 mContent.setText("");
             }
         });
+
+        mClose.setVisibility(View.GONE);
     }
 
     public void setTextContent(String text){
