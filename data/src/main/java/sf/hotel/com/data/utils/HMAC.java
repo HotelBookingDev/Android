@@ -78,6 +78,7 @@ public class HMAC {
      */
     public static String init() {
         SecretKey key;
+
         String str = "";
         try {
             KeyGenerator generator = KeyGenerator.getInstance(KEY_MAC);
