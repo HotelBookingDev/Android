@@ -27,7 +27,8 @@ import sf.hotel.com.hotel_client.R;
  * 2014/11/7        ZhuWenWu            1.0                    1.0
  * Why & What is modified:
  */
-public abstract class PullToZoomBase<T extends View> extends LinearLayout implements IPullToZoom<T> {
+public abstract class PullToZoomBase<T extends View> extends LinearLayout
+        implements IPullToZoom<T> {
     private static final float FRICTION = 2.0f;
     protected T mRootView;
     protected View mHeaderView;//头部View
@@ -66,7 +67,9 @@ public abstract class PullToZoomBase<T extends View> extends LinearLayout implem
         mTouchSlop = config.getScaledTouchSlop();
 
         DisplayMetrics localDisplayMetrics = new DisplayMetrics();
-        ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(localDisplayMetrics);
+        ((Activity) getContext()).getWindowManager()
+                .getDefaultDisplay()
+                .getMetrics(localDisplayMetrics);
         mScreenHeight = localDisplayMetrics.heightPixels;
         mScreenWidth = localDisplayMetrics.widthPixels;
 
@@ -96,7 +99,8 @@ public abstract class PullToZoomBase<T extends View> extends LinearLayout implem
             handleStyledAttributes(a);
             a.recycle();
         }
-        addView(mRootView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        addView(mRootView, ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
     }
 
     public void setOnPullZoomListener(OnPullZoomListener onPullZoomListener) {

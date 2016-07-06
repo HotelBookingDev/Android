@@ -33,7 +33,7 @@ public class HMAC {
      * HmacSHA512
      * </pre>
      */
-    private final static String KEY_MAC = "HmacMD5";
+    private final static String KEY_MAC = "HmacSHA1";
 
     /**
      * 全局数组
