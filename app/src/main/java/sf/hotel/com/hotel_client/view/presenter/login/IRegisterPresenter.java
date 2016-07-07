@@ -2,6 +2,7 @@ package sf.hotel.com.hotel_client.view.presenter.login;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
+import sf.hotel.com.data.entity.netresult.LoginResult;
 import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.interfaceeneity.person.IRegisterEntity;
 import sf.hotel.com.data.interfaceeneity.person.RegisterEntityImp;
@@ -33,7 +34,7 @@ public class IRegisterPresenter extends SuperPresenter {
         String pwd = StringUtils.changePud(mIRegisterView.getPwd());
         Subscription subscribe = mIRegisterEntity.register(mIRegisterView.getUName(),
                 mIRegisterView.getCaptcha(), pwd)
-                .subscribe(new SimpleSubscriber<NormalResult>(mIRegisterView.getBottomContext()) {
+                .subscribe(new SimpleSubscriber<LoginResult>(mIRegisterView.getBottomContext()) {
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
@@ -41,7 +42,7 @@ public class IRegisterPresenter extends SuperPresenter {
                     }
 
                     @Override
-                    public void onNext(NormalResult normalResult) {
+                    public void onNext(LoginResult normalResult) {
                         super.onNext(normalResult);
 
                         mIRegisterView.showViewToast("注册成功");
@@ -96,7 +97,8 @@ public class IRegisterPresenter extends SuperPresenter {
             if (msgid == 0) {
                 mIRegisterView.showViewToast(e.getMessage());
             } else {
-                mIRegisterView.showViewToast(getErrorString(msgid, mIRegisterView.getBottomContext()));
+                mIRegisterView.showViewToast(
+                        getErrorString(msgid, mIRegisterView.getBottomContext()));
             }
         } else {
             mIRegisterView.showViewToast(e.getMessage());

@@ -1,8 +1,7 @@
 package sf.hotel.com.data.interfaceeneity.person;
 
-import android.content.Context;
-
 import rx.Observable;
+import sf.hotel.com.data.entity.netresult.LoginResult;
 import sf.hotel.com.data.entity.netresult.NormalResult;
 
 /**
@@ -10,12 +9,8 @@ import sf.hotel.com.data.entity.netresult.NormalResult;
  * @email sanfenruxi1@163.com
  * @date 16/6/8.
  */
-public interface IRegisterEntity {
-    Observable<NormalResult> register(String phone, String smsCode, String pwd);
+public interface IRegisterEntity extends ILRCommend {
+    Observable<LoginResult> register(String phone, String smsCode, String pwd);
 
     Observable<NormalResult> getSmsCode(String phone);
-
-    void savePhone(Context context, String phone);
-
-    void savePwd(Context context, String pwd);
 }

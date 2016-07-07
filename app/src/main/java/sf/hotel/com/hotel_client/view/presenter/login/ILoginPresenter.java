@@ -15,13 +15,12 @@ import sf.hotel.com.data.net.Exception.Code;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.data.utils.StringUtils;
 import sf.hotel.com.hotel_client.view.interfaceview.login.ILoginView;
-import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 
 /**
  * Created by FMT on 2016/6/3:18:54
  * EMAILE 1105896230@qq.com.
  */
-public class ILoginPresenter extends SuperPresenter {
+public class ILoginPresenter extends ILRcomPresenter {
     private ILoginView mILoginView;
     private ILoginEntity mILoginEntity;
 
@@ -102,11 +101,10 @@ public class ILoginPresenter extends SuperPresenter {
                                         null ? Boolean.FALSE : Boolean.TRUE)
                                 .filter(loginResult1 -> loginResult1.getUserEntity() ==
                                         null ? Boolean.FALSE : Boolean.TRUE)
-                                .doOnNext(
-                                        loginResult1 -> saveUserInfo(mILoginView.getUserName(), pwd,
-                                                loginResult.getUserEntity().getAvatar(),
-                                                String.valueOf(
-                                                        loginResult.getUserEntity().getUserId())))
+                                .doOnNext(loginResult1 -> saveUserInfo(mILoginEntity,
+                                        mILoginView.getBottomContext(), mILoginView.getUserName(),
+                                        pwd, loginResult.getUserEntity().getAvatar(),
+                                        String.valueOf(loginResult.getUserEntity().getUserId())))
                                 .doOnNext(loginResult1 -> mILoginEntity.upDateUserInfo(
                                         mILoginView.getBottomContext(),
                                         loginResult1.getUserEntity()))
@@ -152,12 +150,5 @@ public class ILoginPresenter extends SuperPresenter {
                     }
                 });
         mCompositeSubscription.add(subscribe);
-    }
-
-    private void saveUserInfo(String phone, String pwd, String avatar, String id) {
-        mILoginEntity.savePhone(mILoginView.getBottomContext(), phone);
-        mILoginEntity.savePwd(mILoginView.getBottomContext(), pwd);
-        mILoginEntity.saveAvatar(mILoginView.getBottomContext(), avatar);
-        mILoginEntity.saveUserId(mILoginView.getBottomContext(), id);
     }
 }

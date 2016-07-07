@@ -19,7 +19,7 @@ import sf.hotel.com.data.utils.PreferencesUtils;
  * Created by FMT on 2016/6/3:19:44
  * EMAILE 1105896230@qq.com.
  */
-public class LoginEntityImp implements ILoginEntity {
+public class LoginEntityImp extends ILRCommendImp implements ILoginEntity {
 
     @Override
     public Observable<LoginResult> login(String username, String password) {
@@ -48,23 +48,8 @@ public class LoginEntityImp implements ILoginEntity {
     }
 
     @Override
-    public void savePhone(Context context, String phone) {
-        PreferencesUtils.savePhone(context, phone);
-    }
-
-    @Override
-    public void savePwd(Context context, String pwd) {
-        PreferencesUtils.savePassWord(context, pwd);
-    }
-
-    @Override
     public String getAvatar(Context context) {
         return PreferencesUtils.getAvatar(context);
-    }
-
-    @Override
-    public void saveAvatar(Context context, String url) {
-        PreferencesUtils.saveAvatar(context, url);
     }
 
     @Override
@@ -77,19 +62,4 @@ public class LoginEntityImp implements ILoginEntity {
         return PreferencesUtils.getPassWord(context);
     }
 
-    @Override
-    public void upDateUserInfo(Context context, UserEntity entity) {
-        new UserCacheImpl().update(entity, context);
-        saveLogin(context, true);
-    }
-
-    @Override
-    public void saveLogin(Context context, boolean isLogin) {
-        PreferencesUtils.saveLogin(context, isLogin);
-    }
-
-    @Override
-    public void saveUserId(Context context, String id) {
-        PreferencesUtils.saveUserId(context, id);
-    }
 }
