@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import butterknife.BindView;
@@ -108,7 +109,11 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_TIMER){
+            Bundle bundle = data.getExtras();
+            Date[] dates = (Date[]) bundle.getSerializable("dates");
 
+            assert dates != null;
+            mTimerView.setTimer(dates[0], dates[1]);
         }
     }
 

@@ -60,6 +60,7 @@ public class TimesActivity extends BaseActivity {
                         Intent intent = new Intent();
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("dates", dates);
+                        intent.putExtras(bundle);
                         setResult(SearchHotelFragment.REQUEST_TIMER, intent);
                         finish();
                         break;
