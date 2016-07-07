@@ -15,8 +15,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.MessageFactory;
+import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.person.LoginMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.login.ILoginView;
@@ -73,26 +73,6 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     @Override
     public void clearPassword() {
         mEditPw.setText("");
-    }
-
-    @Override
-    public void showLoading() {
-        showLog("showloadd");
-    }
-
-    @Override
-    public void hideLoading() {
-        showLog("hideLoading");
-    }
-
-    @Override
-    public void showFailedError() {
-        showLog("showFailedError");
-    }
-
-    @Override
-    public EditText getEditName() {
-        return mEditPhone;
     }
 
     @Override

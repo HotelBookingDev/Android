@@ -39,7 +39,7 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(AppUrl.REGISTER_URL)
-    Observable<HttpResult<NormalResult>> callRegister(@Field(PHONE_NUMBER) String phone,
+    Observable<HttpResult<LoginResult>> callRegister(@Field(PHONE_NUMBER) String phone,
             @Field(SMS_CODE) String smsCode, @Field(PASSWORD) String pwd);
 
     @FormUrlEncoded

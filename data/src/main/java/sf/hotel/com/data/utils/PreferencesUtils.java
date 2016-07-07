@@ -40,12 +40,12 @@ public class PreferencesUtils {
 
     public static final String HOTEL_PROC = "hotel_proc";
 
-    private static void put(Context context,String key ,String value){
+    private static void put(Context context, String key, String value) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
         preferences.edit().putString(key, value).apply();
     }
 
-    private static String get(Context context, String key){
+    private static String get(Context context, String key) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
         return preferences.getString(key, null);
     }
@@ -109,7 +109,7 @@ public class PreferencesUtils {
         preferences.edit().putString(CITYCODE, code).apply();
     }
 
-    public static void saveCityName(Context context, String name){
+    public static void saveCityName(Context context, String name) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
         preferences.edit().putString(CITY_NAME, name).apply();
     }
@@ -155,28 +155,27 @@ public class PreferencesUtils {
         return preferences.getString(USERID, "");
     }
 
-
-    public static void saveHotelResult(Context context, String hotelJson){
+    public static void saveHotelResult(Context context, String hotelJson) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
         preferences.edit().putString(HOTEL_RESULT, hotelJson).apply();
     }
 
-    public static String getHotelResult(Context context){
+    public static String getHotelResult(Context context) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
         return preferences.getString(HOTEL_RESULT, "");
     }
 
-    public static String getCitysBean(Context context){
+    public static String getCitysBean(Context context) {
         return get(context, HOTEL_CITYS);
     }
 
-    public static void saveCitysBean(Context context, String citysBean){
+    public static void saveCitysBean(Context context, String citysBean) {
         put(context, HOTEL_CITYS, citysBean);
     }
 
-    public static String getProcincesResult(Context context){return get(context, HOTEL_PROC);}
+    public static String getProcincesResult(Context context) {return get(context, HOTEL_PROC);}
 
-    public static void saveProcincesResult(Context context, String procincesResult){
-        put(context,HOTEL_PROC, procincesResult);
+    public static void saveProcincesResult(Context context, String procincesResult) {
+        put(context, HOTEL_PROC, procincesResult);
     }
 }

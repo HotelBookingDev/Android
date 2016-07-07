@@ -74,4 +74,9 @@ public final class LogUtils {
     public static void logJson(String json) {
         Logger.t(TAG).json(json);
     }
+
+    public static void logThrowadle(Throwable throwable) {
+        if (throwable == null) return;
+        Logger.e(throwable, throwable.getMessage());
+    }
 }

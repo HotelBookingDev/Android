@@ -12,7 +12,7 @@ public class AppUrl {
     public static final String REGISTER_URL = "/user/register/";
     public static final String SMS_URL = "/ems/member/regist/";
     public static final String INSTALLATIONS_BIND_URL = "/user/installation/bind/";
-    public static final String INSTALLATION_URL = "installation/";
+    public static final String INSTALLATION_URL = "user/installation/";
     public static final String HOTELS_URL = "/hotel";
 
     public static final String TOKEN_URL = "/user/avatar/token";

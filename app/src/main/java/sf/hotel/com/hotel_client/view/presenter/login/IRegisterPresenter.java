@@ -2,21 +2,21 @@ package sf.hotel.com.hotel_client.view.presenter.login;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
+import sf.hotel.com.data.entity.netresult.LoginResult;
 import sf.hotel.com.data.entity.netresult.NormalResult;
-import sf.hotel.com.data.interfaceeneity.person.IRegisterEntity;
-import sf.hotel.com.data.interfaceeneity.person.RegisterEntityImp;
+import sf.hotel.com.data.interfaceeneity.login.IRegisterEntity;
+import sf.hotel.com.data.interfaceeneity.login.RegisterEntityImp;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.data.utils.StringUtils;
 import sf.hotel.com.hotel_client.view.interfaceview.login.IRegisterView;
-import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 
 /**
  * @author MZ
  * @email sanfenruxi1@163.com
  * @date 16/6/7.
  */
-public class IRegisterPresenter extends SuperPresenter {
+public class IRegisterPresenter extends ILRcomPresenter {
     private IRegisterView mIRegisterView;
 
     private IRegisterEntity mIRegisterEntity;
@@ -30,10 +30,10 @@ public class IRegisterPresenter extends SuperPresenter {
 
     public void register() {
         //注册使用md5
-        String pwd = StringUtils.changePud(mIRegisterView.getPwd());
-        Subscription subscribe = mIRegisterEntity.register(mIRegisterView.getUName(),
+        String pwd = StringUtils.changePud(mIRegisterView.getPassword());
+        Subscription subscribe = mIRegisterEntity.register(mIRegisterView.getUserName(),
                 mIRegisterView.getCaptcha(), pwd)
-                .subscribe(new SimpleSubscriber<NormalResult>(mIRegisterView.getBottomContext()) {
+                .subscribe(new SimpleSubscriber<LoginResult>(mIRegisterView.getBottomContext()) {
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
@@ -41,21 +41,16 @@ public class IRegisterPresenter extends SuperPresenter {
                     }
 
                     @Override
-                    public void onNext(NormalResult normalResult) {
-                        super.onNext(normalResult);
-
-                        mIRegisterView.showViewToast("注册成功");
-                        mIRegisterView.showLogin();
-
-                        //传递md5的数值
-                        saveUserInfo(mIRegisterView.getUName(), pwd);
+                    public void onNext(LoginResult loginResult) {
+                        super.onNext(loginResult);
+                        suceess(loginResult, mIRegisterEntity, mIRegisterView, pwd);
                     }
                 });
         mCompositeSubscription.add(subscribe);
     }
 
     public void callPhoneCaptcha() {
-        Subscription subscribe = mIRegisterEntity.getSmsCode(mIRegisterView.getUName())
+        Subscription subscribe = mIRegisterEntity.getSmsCode(mIRegisterView.getUserName())
                 .subscribe(new SimpleSubscriber<NormalResult>(mIRegisterView.getBottomContext()) {
                     @Override
                     public void onError(Throwable e) {
@@ -96,15 +91,11 @@ public class IRegisterPresenter extends SuperPresenter {
             if (msgid == 0) {
                 mIRegisterView.showViewToast(e.getMessage());
             } else {
-                mIRegisterView.showViewToast(getErrorString(msgid, mIRegisterView.getBottomContext()));
+                mIRegisterView.showViewToast(
+                        getErrorString(msgid, mIRegisterView.getBottomContext()));
             }
         } else {
             mIRegisterView.showViewToast(e.getMessage());
         }
-    }
-
-    private void saveUserInfo(String phone, String pwd) {
-        mIRegisterEntity.savePhone(mIRegisterView.getBottomContext(), phone);
-        mIRegisterEntity.savePwd(mIRegisterView.getBottomContext(), pwd);
     }
 }

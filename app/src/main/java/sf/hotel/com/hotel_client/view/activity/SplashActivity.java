@@ -1,193 +1,99 @@
 package sf.hotel.com.hotel_client.view.activity;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.view.Window;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.FrameLayout;
+import android.os.Handler;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.avos.avoscloud.PushService;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.LinkedList;
-import java.util.Queue;
-
-import sf.hotel.com.data.utils.LogUtils;
-import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
+import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 import sf.hotel.com.hotel_client.view.activity.register.LoginActivity;
+import sf.hotel.com.hotel_client.view.interfaceview.login.ISplashView;
+import sf.hotel.com.hotel_client.view.presenter.login.ISplashPresenter;
 
 /**
  * @author MZ
- * @email sanfenruxi1@163.com
- * @date 16/6/12.
+ *         email sanfenruxi1@163.com
+ *         date 16/6/12.
  */
-public class SplashActivity extends Activity {
-    private Queue<AssetSplash> mSplashList = new LinkedList<AssetSplash>();
+public class SplashActivity extends BaseActivity implements ISplashView {
+    ISplashPresenter mPreseneter;
 
-    protected boolean notShowSplash = false;
+    public static final int LOGIN = 0x1;
+    public static final int MAIN = 0x2;
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
 
 //        在这里初始化Activity
         PushService.setDefaultPushCallback(this, PushActivity.class);
-
-        if (notShowSplash) {
-            onSplashStop();
-            return;
-        }
-
-        FrameLayout frame = new FrameLayout(this);
-
-        ImageView image = new ImageView(this);
-
-        image.setScaleType(ImageView.ScaleType.FIT_XY);
-        frame.addView(image, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.MATCH_PARENT));
-
-        frame.setBackgroundColor(getBackgroundColor());
-        String[] paths = null;
-        try {
-            paths = getAssets().list("splash");
-        } catch (IOException e) {
-            LogUtils.printExceptionStackTrace(e);
-        }
-        if (paths == null || paths.length == 0) {
-            onSplashStop();
-        } else {
-            for (String path : paths) {
-                mSplashList.add(new AssetSplash(image, "splash/" + path));
-            }
-            setContentView(frame);
-        }
-
-        TransulcentUtils.setFixWindow(this);
+        mPreseneter = new ISplashPresenter(this);
+        initView();
+        initDatas();
     }
 
-    /**
-     * 背景颜色 Color.WHITE
-     */
-    protected int getBackgroundColor() {
-        return Color.WHITE;
+    private void initView() {
+        ImageView imageView = new ImageView(this);
+        imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT));
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        HotelImageLoad.loadImage(this, imageView, getImage());
+        setContentView(imageView);
+    }
+
+    private void initDatas() {
+        mPreseneter.initDatas();
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        if (!isFinishing()) playSplash();
+    public void showImage(Object obj) {
+
     }
 
-    private void playSplash() {
-        AssetSplash splash = mSplashList.poll();
-        if (splash == null) {
-            onSplashStop();
-            return;
-        }
-        SplashListener listener = new SplashListener() {
-            @Override
-            public void onStop() {
-                playSplash();
+    @Override
+    public void startActivity(int type) {
+        new Handler().postDelayed(() -> {
+            if (type == MAIN) {
+                startActivity(MainActivity.class);
+            } else {
+                startActivity(LoginActivity.class);
             }
-        };
-        splash.play(this, listener);
+            SplashActivity.this.finish();
+        }, 3000);
     }
 
-    private static class AssetSplash {
-        String path;
-        ImageView image;
-
-        AssetSplash(ImageView image, String path) {
-            this.path = path;
-            this.image = image;
-        }
-
-        void play(final Activity context, final SplashListener listener) {
-            new AsyncTask<Void, Void, Bitmap>() {
-                @Override
-                protected Bitmap doInBackground(Void... params) {
-                    try {
-                        InputStream in = context.getAssets().open(path);
-                        Bitmap bm = BitmapFactory.decodeStream(in);
-                        return bm;
-                    } catch (IOException e) {
-                        LogUtils.w("decode asset image failed: " + path);
-                        return null;
-                    }
-                }
-
-                @Override
-                protected void onPostExecute(Bitmap result) {
-                    if (result == null) {
-                        listener.onStop();
-                    } else {
-                        image.setImageBitmap(result);
-                        Animation anim = getSplashAnimation();
-                        anim.setAnimationListener(new Animation.AnimationListener() {
-
-                            @Override
-                            public void onAnimationStart(Animation animation) {
-                                image.setVisibility(View.VISIBLE);
-                            }
-
-                            @Override
-                            public void onAnimationRepeat(Animation animation) {
-
-                            }
-
-                            @Override
-                            public void onAnimationEnd(Animation animation) {
-                                image.setVisibility(View.INVISIBLE);
-                                listener.onStop();
-                            }
-                        });
-
-                        image.startAnimation(anim);
-                    }
-                }
-            }.execute();
-        }
-
-        Animation getSplashAnimation() {
-            Animation fadeIn = new AlphaAnimation(0.0F, 1.0F);
-            fadeIn.setInterpolator(new DecelerateInterpolator());
-            fadeIn.setDuration(500L);
-
-            Animation fadeOut = new AlphaAnimation(1.0F, 0.0F);
-            fadeOut.setInterpolator(new AccelerateInterpolator());
-            fadeOut.setStartOffset(1500L);
-            fadeOut.setDuration(500L);
-
-            AnimationSet animation = new AnimationSet(false);
-            animation.addAnimation(fadeIn);
-            animation.addAnimation(fadeOut);
-            return animation;
-        }
+    public Object getImage() {
+        return mPreseneter.getImage();
     }
 
-    interface SplashListener {
-        void onStop();
+    //    必须要调这个方法
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPreseneter.destroy();
     }
 
-    protected void onSplashStop() {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-        this.finish();
+    //    完全不需要重下下面的方法
+    @Override
+    public String getUserName() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return null;
+    }
+
+    //   只需重写这个方法
+    @Override
+    public void startHomeActivity() {
+        startActivity(MAIN);
+    }
+
+    @Override
+    public String getIntallationId() {
+        return null;
     }
 }
