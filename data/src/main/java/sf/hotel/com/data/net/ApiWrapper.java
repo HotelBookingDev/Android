@@ -10,6 +10,7 @@ import sf.hotel.com.data.entity.netresult.LoginResult;
 import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.entity.netresult.TokenResult;
 import sf.hotel.com.data.entity.netresult.person.OrderManagerResult;
+import sf.hotel.com.data.utils.LogUtils;
 
 /**
  * @author MZ
@@ -78,6 +79,7 @@ public class ApiWrapper extends RetrofitHelper {
     public Observable<NormalResult> postIntallation(Intallation mIntallation) {
         Gson gson = new Gson();
         String s = gson.toJson(mIntallation);
+        LogUtils.d("sr",s);
         return mService.postIntallation(mIntallation).compose(this.<NormalResult>applySchedulers());
     }
 

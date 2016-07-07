@@ -2,7 +2,9 @@ package sf.hotel.com.data.interfaceeneity.person;
 
 import android.content.Context;
 
+import rx.Observable;
 import sf.hotel.com.data.entity.UserEntity;
+import sf.hotel.com.data.entity.netresult.NormalResult;
 
 /**
  * Created by 林其望
@@ -28,4 +30,6 @@ public interface ILRCommend {
 
     //    更新用户资料和保存用户信息
     void upDateUserInfo(Context context, UserEntity entity);
+
+    Observable<NormalResult> postInllation(String deviceType, String phoneNum, String id);
 }

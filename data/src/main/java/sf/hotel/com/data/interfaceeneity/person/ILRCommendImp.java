@@ -2,8 +2,11 @@ package sf.hotel.com.data.interfaceeneity.person;
 
 import android.content.Context;
 
+import rx.Observable;
 import sf.hotel.com.data.cache.UserCacheImpl;
 import sf.hotel.com.data.entity.UserEntity;
+import sf.hotel.com.data.entity.netresult.NormalResult;
+import sf.hotel.com.data.net.ApiWrapper;
 import sf.hotel.com.data.utils.PreferencesUtils;
 
 /**
@@ -41,5 +44,11 @@ public class ILRCommendImp implements ILRCommend {
     public void upDateUserInfo(Context context, UserEntity entity) {
         new UserCacheImpl().update(entity, context);
         saveLogin(context, true);
+    }
+
+    @Override
+    public Observable<NormalResult> postInllation(String deviceType, String phoneNum,
+            String invatllationId) {
+        return ApiWrapper.getInstance().postIntalltion(deviceType, phoneNum, invatllationId);
     }
 }

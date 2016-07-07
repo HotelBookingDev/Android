@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.avos.avoscloud.AVInstallation;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -74,16 +76,6 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
     }
 
     @Override
-    public String getUName() {
-        return editRegName.getText().toString();
-    }
-
-    @Override
-    public String getPwd() {
-        return editRegPwd.getText().toString();
-    }
-
-    @Override
     public String getCaptcha() {
         return editRegCaptcha.getText().toString();
     }
@@ -96,11 +88,6 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
     @Override
     public Context getBottomContext() {
         return getActivity();
-    }
-
-    @Override
-    public void showLogin() {
-        RxBus.getDefault().post(MessageFactory.createLoginMessage(LoginMessage.FRAGMENT_BACK));
     }
 
     @Override
@@ -122,5 +109,25 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
             //发送验证码
             callPhoneCaptcha();
         }
+    }
+
+    @Override
+    public String getUserName() {
+        return editRegName.getText().toString();
+    }
+
+    @Override
+    public String getPassword() {
+        return editRegPwd.getText().toString();
+    }
+
+    @Override
+    public void startHomeActivity() {
+        RxBus.getDefault().post(MessageFactory.createLoginMessage(LoginMessage.SHOW_MAIN));
+    }
+
+    @Override
+    public String getIntallationId() {
+        return AVInstallation.getCurrentInstallation().getInstallationId();
     }
 }

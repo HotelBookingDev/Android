@@ -2,12 +2,9 @@ package sf.hotel.com.hotel_client.view.presenter.login;
 
 import android.text.TextUtils;
 
-import rx.Observable;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
-import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.entity.netresult.LoginResult;
-import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.interfaceeneity.person.ILoginEntity;
 import sf.hotel.com.data.interfaceeneity.person.LoginEntityImp;
 import sf.hotel.com.data.net.Exception.APIException;
@@ -93,26 +90,8 @@ public class ILoginPresenter extends ILRcomPresenter {
                     @Override
                     public void onNext(LoginResult loginResult) {
                         super.onNext(loginResult);
-                        //TODO  后台测试
-                        postIntallationId();
-                        //保存用户信息
-                        Observable.just(loginResult)
-                                .filter(loginResult1 -> loginResult1 ==
-                                        null ? Boolean.FALSE : Boolean.TRUE)
-                                .filter(loginResult1 -> loginResult1.getUserEntity() ==
-                                        null ? Boolean.FALSE : Boolean.TRUE)
-                                .doOnNext(loginResult1 -> saveUserInfo(mILoginEntity,
-                                        mILoginView.getBottomContext(), mILoginView.getUserName(),
-                                        pwd, loginResult.getUserEntity().getAvatar(),
-                                        String.valueOf(loginResult.getUserEntity().getUserId())))
-                                .doOnNext(loginResult1 -> mILoginEntity.upDateUserInfo(
-                                        mILoginView.getBottomContext(),
-                                        loginResult1.getUserEntity()))
-                                .doOnNext(loginResult1 -> EntityContext.getInstance()
-                                        .setmCurrentUser(loginResult1.getUserEntity()))
-                                .subscribe(loginResult1 -> {
-                                    mILoginView.startHomeActivity();
-                                });
+//                        登录和注册的父类方法
+                        suceess(loginResult, mILoginEntity, mILoginView, pwd);
                     }
 
                     @Override
@@ -133,22 +112,5 @@ public class ILoginPresenter extends ILRcomPresenter {
             }
         }
         return pwd;
-    }
-
-    private void postIntallationId() {
-        Subscription subscribe = mILoginEntity.postInllation("android", mILoginView.getUserName(),
-                mILoginView.getIntallationId())
-                .subscribe(new SimpleSubscriber<NormalResult>(mILoginView.getBottomContext()) {
-                    @Override
-                    public void onNext(NormalResult loginResult) {
-                        super.onNext(loginResult);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        super.onError(e);
-                    }
-                });
-        mCompositeSubscription.add(subscribe);
     }
 }

@@ -40,12 +40,7 @@ public class LoginEntityImp extends ILRCommendImp implements ILoginEntity {
         });
     }
 
-    @Override
-    public Observable<NormalResult> postInllation(String deviceType, String phoneNum,
-            String invatllationId) {
-        LogUtils.d(invatllationId);
-        return ApiWrapper.getInstance().postIntalltion(deviceType, phoneNum, invatllationId);
-    }
+
 
     @Override
     public String getAvatar(Context context) {

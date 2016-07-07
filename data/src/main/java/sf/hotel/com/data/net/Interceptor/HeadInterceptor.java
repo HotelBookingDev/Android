@@ -7,6 +7,7 @@ import java.io.IOException;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import sf.hotel.com.data.config.EntityContext;
+import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.data.utils.PreferencesUtils;
 
 /**
@@ -31,6 +32,7 @@ public class HeadInterceptor implements Interceptor {
     private Request addToken(Request request) {
         String token = PreferencesUtils.getToken(EntityContext.getContext());
         if (!TextUtils.isEmpty(token)) {
+            LogUtils.d("token",token);
             //添加token
             Request.Builder requestBuilder = request.newBuilder()
                     .addHeader(TOEKNKEY, JWT + token)
