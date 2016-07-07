@@ -95,4 +95,12 @@ public abstract class BaseActivity extends SupportActivity {
             }
         }
     }
+
+    public Context getBottomContext() {
+        return this;
+    }
+
+    public void showViewToast(String msg) {
+        TToast.showToast(msg);
+    }
 }

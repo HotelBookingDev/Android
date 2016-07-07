@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <!-- bugly 权限 -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -68,7 +68,8 @@
         <activity android:name=".view.activity.hotel.TimesActivity" />
         <activity android:name=".view.activity.pay.PayActivity" />
         <activity android:name=".view.activity.hotel.RoomActivity" />
-        <activity android:name=".view.activity.hotel.HotelsActivity"/>
+        <activity android:name=".view.activity.hotel.HotelsActivity" />
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
