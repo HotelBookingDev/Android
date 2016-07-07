@@ -1,4 +1,4 @@
-package sf.hotel.com.data.interfaceeneity.person;
+package sf.hotel.com.data.interfaceeneity.login;
 
 import rx.Observable;
 import sf.hotel.com.data.entity.netresult.LoginResult;

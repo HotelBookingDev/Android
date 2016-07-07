@@ -1,18 +1,14 @@
-package sf.hotel.com.data.interfaceeneity.person;
+package sf.hotel.com.data.interfaceeneity.login;
 
 import android.content.Context;
 
 import rx.Observable;
 import rx.Subscriber;
-import sf.hotel.com.data.cache.UserCacheImpl;
-import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.entity.netresult.LoginResult;
-import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.net.ApiWrapper;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.Exception.CodeException;
 import sf.hotel.com.data.utils.CheckUtils;
-import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.data.utils.PreferencesUtils;
 
 /**

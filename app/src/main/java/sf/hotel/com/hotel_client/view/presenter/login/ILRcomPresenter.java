@@ -6,7 +6,7 @@ import rx.Observable;
 import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.entity.netresult.LoginResult;
 import sf.hotel.com.data.entity.netresult.NormalResult;
-import sf.hotel.com.data.interfaceeneity.person.ILRCommend;
+import sf.hotel.com.data.interfaceeneity.login.ILRCommend;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.view.interfaceview.login.ILRConmView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;

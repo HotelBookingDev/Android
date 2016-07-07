@@ -1,9 +1,8 @@
-package sf.hotel.com.data.interfaceeneity.person;
+package sf.hotel.com.data.interfaceeneity.login;
 
 import android.content.Context;
 
 import rx.Observable;
-import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.entity.netresult.LoginResult;
 import sf.hotel.com.data.entity.netresult.NormalResult;
 
