@@ -49,7 +49,11 @@ public class ILRcomPresenter extends SuperPresenter {
                 .flatMap(loginResult1 -> postIntallationId(commend, view))
                 .subscribe(loginResult1 -> {
                     view.startHomeActivity();
-                }, LogUtils::logThrowadle);
+                }, this::loginError);
+    }
+
+    public void loginError(Throwable throwable) {
+        LogUtils.logThrowadle(throwable);
     }
 
     protected Observable<NormalResult> postIntallationId(ILRCommend commend, ILRConmView view) {

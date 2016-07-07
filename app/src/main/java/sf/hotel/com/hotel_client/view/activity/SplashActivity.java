@@ -74,4 +74,26 @@ public class SplashActivity extends BaseActivity implements ISplashView {
         super.onDestroy();
         mPreseneter.destroy();
     }
+
+    //    完全不需要重下下面的方法
+    @Override
+    public String getUserName() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return null;
+    }
+
+    //   只需重写这个方法
+    @Override
+    public void startHomeActivity() {
+        startActivity(MAIN);
+    }
+
+    @Override
+    public String getIntallationId() {
+        return null;
+    }
 }
