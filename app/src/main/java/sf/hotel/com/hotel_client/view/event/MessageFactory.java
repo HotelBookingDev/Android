@@ -6,6 +6,8 @@ import sf.hotel.com.hotel_client.view.event.hotel.CityMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.HomeMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
 import sf.hotel.com.hotel_client.view.event.hotel.RoomMessage;
+import sf.hotel.com.hotel_client.view.event.hotel.SearchHotelMessage;
+import sf.hotel.com.hotel_client.view.event.hotel.TimerMessage;
 import sf.hotel.com.hotel_client.view.event.person.LoginMessage;
 import sf.hotel.com.hotel_client.view.event.person.OrderMessage;
 import sf.hotel.com.hotel_client.view.event.person.PersonMessage;
@@ -55,5 +57,18 @@ public class MessageFactory {
 
     public static OrderMessage createOrderMessage(int what) {
         return new OrderMessage(what);
+    }
+
+
+    public static TimerMessage createTimerMessage(int what){
+        return new TimerMessage(what);
+    }
+
+    public static SearchHotelMessage createSearchHotelMessage(int what){
+        return new SearchHotelMessage(what);
+    }
+
+    public static SearchHotelMessage createSearchHotelMessage(int what, Object o){
+        return new SearchHotelMessage(what, "", o);
     }
 }

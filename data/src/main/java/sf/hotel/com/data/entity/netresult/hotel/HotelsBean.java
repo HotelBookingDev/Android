@@ -11,30 +11,30 @@ import java.util.List;
  * @date 16/7/4.
  */
 public class HotelsBean implements Parcelable{
-    private int id;
-    private String name;
     private String address;
-    private String introduce;
-    private String contact_phone;
+    private String name;
     private int city;
-    private List<String> house_imgs;
+    private String contact_phone;
+    private String introduce;
+    private int id;
+    private List<String> hotel_imgs;
     /**
      * id : 1
-     * house_imgs : []
-     * housePackages : [{"need_point":20,"front_price":350,"package_state":"1","room_avaliable":0,"detail":"细节"}]
-     * name : 商务大床
      */
 
     private List<HotelHousesBean> hotel_houses;
 
+
+    public HotelsBean(){}
+
     protected HotelsBean(Parcel in) {
-        id = in.readInt();
-        name = in.readString();
         address = in.readString();
-        introduce = in.readString();
-        contact_phone = in.readString();
+        name = in.readString();
         city = in.readInt();
-        house_imgs = in.createStringArrayList();
+        contact_phone = in.readString();
+        introduce = in.readString();
+        id = in.readInt();
+        hotel_houses = in.createTypedArrayList(HotelHousesBean.CREATOR);
     }
 
     public static final Creator<HotelsBean> CREATOR = new Creator<HotelsBean>() {
@@ -49,12 +49,12 @@ public class HotelsBean implements Parcelable{
         }
     };
 
-    public int getId() {
-        return id;
+    public String getAddress() {
+        return address;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getName() {
@@ -65,20 +65,12 @@ public class HotelsBean implements Parcelable{
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
+    public int getCity() {
+        return city;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getIntroduce() {
-        return introduce;
-    }
-
-    public void setIntroduce(String introduce) {
-        this.introduce = introduce;
+    public void setCity(int city) {
+        this.city = city;
     }
 
     public String getContact_phone() {
@@ -89,20 +81,28 @@ public class HotelsBean implements Parcelable{
         this.contact_phone = contact_phone;
     }
 
-    public int getCity() {
-        return city;
+    public String getIntroduce() {
+        return introduce;
     }
 
-    public void setCity(int city) {
-        this.city = city;
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
     }
 
-    public List<String> getHouse_imgs() {
-        return house_imgs;
+    public int getId() {
+        return id;
     }
 
-    public void setHouse_imgs(List<String> house_imgs) {
-        this.house_imgs = house_imgs;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<String> getHotel_imgs() {
+        return hotel_imgs;
+    }
+
+    public void setHotel_imgs(List<String> hotel_imgs) {
+        this.hotel_imgs = hotel_imgs;
     }
 
     public List<HotelHousesBean> getHotel_houses() {
@@ -120,12 +120,12 @@ public class HotelsBean implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
-        dest.writeString(name);
         dest.writeString(address);
-        dest.writeString(introduce);
-        dest.writeString(contact_phone);
+        dest.writeString(name);
         dest.writeInt(city);
-        dest.writeStringList(house_imgs);
+        dest.writeString(contact_phone);
+        dest.writeString(introduce);
+        dest.writeInt(id);
+        dest.writeTypedList(hotel_houses);
     }
 }

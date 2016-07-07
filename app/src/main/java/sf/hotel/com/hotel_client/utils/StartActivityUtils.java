@@ -3,6 +3,7 @@ package sf.hotel.com.hotel_client.utils;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 
 import java.net.URISyntaxException;
 
@@ -13,7 +14,7 @@ import sf.hotel.com.data.utils.LogUtils;
  * @email sanfenruxi1@163.com
  * @date 16/7/5.
  */
-public class LBSUtils {
+public class StartActivityUtils {
 
     public static boolean startLBS(Activity c,
                                 String location,
@@ -42,4 +43,11 @@ public class LBSUtils {
             return false;
         }
     }
+
+
+    public static void startPhone(Activity c, String phone){
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+ phone));
+        c.startActivity(intent);
+    }
+
 }

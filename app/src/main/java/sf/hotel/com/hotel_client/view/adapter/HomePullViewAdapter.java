@@ -59,10 +59,12 @@ public class HomePullViewAdapter extends RecyclerViewBaseAdapter<HomePullViewAda
 
         holder.mTextContent.setText(hotelsBean.getAddress());
 
-        if (hotelsBean.getHouse_imgs() != null && hotelsBean.getHouse_imgs().size() > 0){
+        if (hotelsBean.getHotel_imgs() != null && hotelsBean.getHotel_imgs().size() > 0){
             HotelImageLoad.loadImage(mContext, holder.mImage, hotelsBean
-                    .getHouse_imgs()
+                    .getHotel_imgs()
                     .get(0));
+        }else {
+            HotelImageLoad.loadImage(mContext, holder.mImage, "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3256474343,2114829206&fm=23&gp=0.jpg");
         }
 
         if (mOnItemClickListener != null) {

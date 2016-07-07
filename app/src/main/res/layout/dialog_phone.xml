@@ -13,6 +13,7 @@
         android:gravity="center"
         android:background="@color/white"
         android:text="0000-1111"
+        android:id="@+id/dialog_phone_text"
         />
 
     <include layout="@layout/item_line" />

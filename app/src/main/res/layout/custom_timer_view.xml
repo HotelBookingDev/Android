@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_height"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+
+        <sf.hotel.com.hotel_client.view.custom.HotelSearchTitle
+
+            android:id="@+id/custom_timer_start"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/btn_height"
+            app:tag_text="入住"
+            app:hotel_title_content_text="7月21日"
+            app:des_text="星期四"
+            />
+
+        <TextView
+            android:id="@+id/custom_timer_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="一晚"
+            />
+
+        <sf.hotel.com.hotel_client.view.custom.HotelSearchTitle
+            android:id="@+id/custom_timer_end"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/btn_height"
+            app:tag_text="退房"
+            app:hotel_title_content_text="7月21日"
+            app:des_text="星期四"
+            />
+    </LinearLayout>
+</LinearLayout>

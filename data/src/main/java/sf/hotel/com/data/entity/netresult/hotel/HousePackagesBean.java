@@ -9,18 +9,19 @@ import android.os.Parcelable;
  * @date 16/7/4.
  */
 public class HousePackagesBean implements Parcelable{
-    private int need_point;
     private int front_price;
-    private String package_state;
-    private int room_avaliable;
+    private int need_point;
     private String detail;
+    private int id;
+
+    public HousePackagesBean() {
+    }
 
     protected HousePackagesBean(Parcel in) {
-        need_point = in.readInt();
         front_price = in.readInt();
-        package_state = in.readString();
-        room_avaliable = in.readInt();
+        need_point = in.readInt();
         detail = in.readString();
+        id = in.readInt();
     }
 
     public static final Creator<HousePackagesBean> CREATOR = new Creator<HousePackagesBean>() {
@@ -35,14 +36,6 @@ public class HousePackagesBean implements Parcelable{
         }
     };
 
-    public int getNeed_point() {
-        return need_point;
-    }
-
-    public void setNeed_point(int need_point) {
-        this.need_point = need_point;
-    }
-
     public int getFront_price() {
         return front_price;
     }
@@ -51,20 +44,12 @@ public class HousePackagesBean implements Parcelable{
         this.front_price = front_price;
     }
 
-    public String getPackage_state() {
-        return package_state;
+    public int getNeed_point() {
+        return need_point;
     }
 
-    public void setPackage_state(String package_state) {
-        this.package_state = package_state;
-    }
-
-    public int getRoom_avaliable() {
-        return room_avaliable;
-    }
-
-    public void setRoom_avaliable(int room_avaliable) {
-        this.room_avaliable = room_avaliable;
+    public void setNeed_point(int need_point) {
+        this.need_point = need_point;
     }
 
     public String getDetail() {
@@ -75,6 +60,14 @@ public class HousePackagesBean implements Parcelable{
         this.detail = detail;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -82,10 +75,9 @@ public class HousePackagesBean implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(need_point);
         dest.writeInt(front_price);
-        dest.writeString(package_state);
-        dest.writeInt(room_avaliable);
+        dest.writeInt(need_point);
         dest.writeString(detail);
+        dest.writeInt(id);
     }
 }

@@ -42,17 +42,14 @@ public class PriceLayout extends LinearLayout{
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.PriceLayout);
 
-
+        ta.recycle();
 
         initView();
     }
 
     private void initView() {
-
         setOrientation(HORIZONTAL);
         setGravity(Gravity.CENTER_VERTICAL);
-
-
 
         initLeftImg();
         initNowPrice();
@@ -86,6 +83,15 @@ public class PriceLayout extends LinearLayout{
         leftImg.setBackgroundResource(leftImgSrcId);
 
         addView(leftImg, leftImgParams);
+    }
+
+
+    public void setNowPriceText(String text){
+        nowPrice.setText(text);
+    }
+
+    public void setOldPriceText(String text){
+        oldPrice.setText(text);
     }
 
 

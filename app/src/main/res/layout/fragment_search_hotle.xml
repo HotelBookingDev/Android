@@ -22,31 +22,10 @@
 
     <include layout="@layout/item_line"/>
 
-    <LinearLayout
+    <sf.hotel.com.hotel_client.view.custom.CustomTimerView
+        android:id="@+id/fragment_search_hotel_timer"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/btn_height"
-        android:orientation="horizontal"
-        >
-
-        <sf.hotel.com.hotel_client.view.custom.HotelSearchTitle
-
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="@dimen/btn_height"
-            app:tag_text="入住"
-            app:hotel_title_content_text="7月21日"
-            app:des_text="星期四"
-            />
-
-        <sf.hotel.com.hotel_client.view.custom.HotelSearchTitle
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="@dimen/btn_height"
-            app:tag_text="退房"
-            app:hotel_title_content_text="7月21日"
-            app:des_text="星期四"
-            />
-    </LinearLayout>
+        android:layout_height="@dimen/btn_height"/>
 
 
     <include layout="@layout/item_line"/>

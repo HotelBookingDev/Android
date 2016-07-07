@@ -19,13 +19,18 @@
         android:background="#FFFFFF"
         />
 
-    <mehdi.sakout.fancybuttons.FancyButton
-        android:id="@+id/fragment_times_submit"
+    <!--<mehdi.sakout.fancybuttons.FancyButton-->
+        <!--android:id="@+id/fragment_times_submit"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/btn_height"-->
+        <!--fancy:fb_defaultColor="@color/white"-->
+        <!--fancy:fb_focusColor="@color/bg_person"-->
+        <!--fancy:fb_text="@string/search_times"-->
+        <!--fancy:fb_textColor="@color/black"-->
+        <!--/>-->
+
+    <Button
         android:layout_width="match_parent"
-        android:layout_height="@dimen/btn_height"
-        fancy:fb_defaultColor="@color/white"
-        fancy:fb_focusColor="@color/bg_person"
-        fancy:fb_text="@string/search_times"
-        fancy:fb_textColor="@color/black"
-        />
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_times_submit"/>
 </LinearLayout>

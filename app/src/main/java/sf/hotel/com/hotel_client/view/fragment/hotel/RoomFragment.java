@@ -26,7 +26,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.DensityUtils;
-import sf.hotel.com.hotel_client.utils.LBSUtils;
+import sf.hotel.com.hotel_client.utils.StartActivityUtils;
 import sf.hotel.com.hotel_client.view.adapter.DialogBedAdapter;
 import sf.hotel.com.hotel_client.view.adapter.LocalImageHodlerView;
 import sf.hotel.com.hotel_client.view.custom.HideTitle;
@@ -44,6 +44,7 @@ import sf.hotel.com.hotel_client.view.presenter.hotel.IRoomPresenter;
  * email sanfenruxi1@163.com
  * date 16/6/16.
  */
+
 public class RoomFragment extends BaseFragment implements IRoomView {
 
     private static Bundle args;
@@ -74,6 +75,10 @@ public class RoomFragment extends BaseFragment implements IRoomView {
 
     PersonalItemView mLocation;
 
+
+    TextView phoneText;
+    FancyButton phoneCancel;
+    FancyButton phoneSubmit;
 
     public static RoomFragment newInstance(Bundle bundle) {
 
@@ -123,14 +128,43 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         mPhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (phoneDialog == null){
                     View phoneView = LayoutInflater.from(getBottomContext()).inflate(R.layout.dialog_phone, null, false);
                     ViewHolder holder = new ViewHolder(phoneView);
+
+                    phoneCancel = (FancyButton) phoneView.findViewById(R.id.dialog_cancel);
+                    phoneSubmit = (FancyButton) phoneView.findViewById(R.id.dialog_submit);
+                    phoneText = (TextView) phoneView.findViewById(R.id.dialog_phone_text);
+
+                    phoneText.setText(mPhone.getText());
                     phoneDialog = DialogPlus.newDialog(getBottomContext())
                             .setContentHolder(holder)
                             .setCancelable(true)
                             .setGravity(Gravity.CENTER)
                             .create();
+
+
+                    phoneCancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (phoneDialog != null && phoneDialog.isShowing())
+                                phoneDialog.onBackPressed(phoneDialog);
+                        }
+                    });
+
+                    phoneSubmit.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            if (phoneDialog != null && phoneDialog.isShowing()){
+                                phoneDialog.dismiss();
+                            }
+
+                            StartActivityUtils.startPhone(getActivity(), phoneText.getText().toString());
+                        }
+                    });
+
                 }
                 phoneDialog.show();
             }
@@ -139,7 +173,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         mLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!LBSUtils.startLBS(getActivity(), "", "", "")){
+                if (!StartActivityUtils.startLBS(getActivity(), "", "", "")){
                     showViewToast("没有安装百度地图");
                 }
             }
@@ -162,6 +196,8 @@ public class RoomFragment extends BaseFragment implements IRoomView {
             }
         });
     }
+
+
 
 
     private void initBanner() {
@@ -187,8 +223,6 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     @Override
     public void onResume() {
         super.onResume();
-
-
         convenientBanner.startTurning(5000);
     }
 
@@ -251,5 +285,19 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+
+        if (dialogPlus != null){
+            if (dialogPlus.isShowing()){
+                dialogPlus.dismiss();
+            }
+            dialogPlus = null;
+        }
+
+        if (phoneDialog != null){
+            if (phoneDialog.isShowing()){
+                phoneDialog.dismiss();
+            }
+            phoneDialog = null;
+        }
     }
 }

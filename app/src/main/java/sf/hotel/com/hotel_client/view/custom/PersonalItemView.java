@@ -22,6 +22,7 @@ import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 public class PersonalItemView extends FrameLayout {
 
     private ImageView mIconRightView;
+    private TextView mTextView;
 
     private int defaultIcon = R.mipmap.ic_launcher;
     private String showString;
@@ -52,11 +53,11 @@ public class PersonalItemView extends FrameLayout {
     private void initViews(Context context) {
         View inflate = LayoutInflater.from(context).inflate(R.layout.item_person, this);
         ImageView mIconView = (ImageView) inflate.findViewById(R.id.iv_item_persion);
-        TextView textView = (TextView) inflate.findViewById(R.id.tv_item_persion_content);
+        mTextView = (TextView) inflate.findViewById(R.id.tv_item_persion_content);
         String defaultString = "PensionItemView";
-        textView.setText(defaultString);
+        mTextView.setText(defaultString);
         if (!TextUtils.isEmpty(showString)) {
-            textView.setText(showString);
+            mTextView.setText(showString);
         }
 
         HotelImageLoad.loadImage(context, mIconView, defaultIcon);
@@ -69,5 +70,13 @@ public class PersonalItemView extends FrameLayout {
             tv_right.setVisibility(VISIBLE);
             tv_right.setText(rightString);
         }
+    }
+
+    public void setText(String s){
+        mTextView.setText(s);
+    }
+
+    public String getText(){
+        return mTextView.getText().toString();
     }
 }

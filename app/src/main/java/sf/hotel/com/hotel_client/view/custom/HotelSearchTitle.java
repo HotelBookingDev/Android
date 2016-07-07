@@ -55,4 +55,20 @@ public class HotelSearchTitle extends RelativeLayout{
         mTextDescribe.setText(mDesStr);
 
     }
+
+    public  void setContentText(String s){
+        mContent.setText(s);
+    }
+
+    public String getContentText(){
+        return mContent.getText().toString();
+    }
+
+    public void setDesText(String s){
+        mTextDescribe.setText(s);
+    }
+
+    public String getDesText() {
+        return mTextDescribe.getText().toString();
+    }
 }

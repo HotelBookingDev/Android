@@ -18,12 +18,14 @@
             android:layout_weight="1"
             android:text="床是我们使用频率最高也是不可或缺的的家具用品"
             style="@style/titleTextStyle"
+            android:id="@+id/item_bed_title"
             />
 
-        <sf.hotel.com.hotel_client.view.custom.CustomRadioButton
+        <RadioButton
+            android:layout_margin="10dp"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:background="@drawable/select_bed"
+            android:id="@+id/item_bed_selected"
             />
 
     </LinearLayout>
@@ -33,7 +35,9 @@
         android:layout_marginStart="8dp"
         android:padding="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:id="@+id/item_bed_price"
+        />
 
     <include layout="@layout/item_line"/>
 </LinearLayout>

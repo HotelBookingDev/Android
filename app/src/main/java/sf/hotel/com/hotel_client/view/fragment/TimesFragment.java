@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.squareup.timessquare.CalendarCellDecorator;
 import com.squareup.timessquare.CalendarPickerView;
@@ -20,8 +21,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mehdi.sakout.fancybuttons.FancyButton;
+import rx.Subscription;
+import rx.functions.Action1;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.event.MessageFactory;
+import sf.hotel.com.hotel_client.view.event.RxBus;
+import sf.hotel.com.hotel_client.view.event.hotel.SearchHotelMessage;
+import sf.hotel.com.hotel_client.view.event.hotel.TimerMessage;
 
 /**
  * @author MZ
@@ -34,7 +41,7 @@ public class TimesFragment extends BaseFragment {
     CalendarPickerView mCalendarView;
 
     @BindView(R.id.fragment_times_submit)
-    FancyButton mSubmit;
+    Button mSubmit;
 
     public static TimesFragment newInstance() {
 
@@ -50,23 +57,16 @@ public class TimesFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_times, container, false);
-
         ButterKnife.bind(this, view);
-
         initCalendarView();
-
         return view;
     }
 
+
     @OnClick(R.id.fragment_times_submit)
     public void onSubmitClick() {
-
         List<Date> selectedDates = mCalendarView.getSelectedDates();
-
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        for (Date date : selectedDates) {
-            LogUtils.d("---->", format.format(date) + "");
-        }
+        RxBus.getDefault().post(MessageFactory.createSearchHotelMessage(TimerMessage.REQUEST_SEARCH_HOTEL, selectedDates));
     }
 
     private void initCalendarView() {

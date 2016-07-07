@@ -5,11 +5,10 @@ import android.os.Parcelable;
 
 import com.j256.ormlite.table.DatabaseTable;
 
-import java.io.Serializable;
 import java.util.List;
 
+import sf.hotel.com.data.entity.netresult.hotel.HotelHousesBean;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
-import sf.hotel.com.data.entity.netresult.hotel.HousePackagesBean;
 
 /**
  * @author MZ
@@ -20,14 +19,14 @@ import sf.hotel.com.data.entity.netresult.hotel.HousePackagesBean;
 public class HotelResult implements Parcelable {
 
     /**
-     * id : 1
-     * house_imgs : []
-     * hotel_houses : [{"id":1,"house_imgs":[],"housePackages":[{"need_point":20,"front_price":350,"package_state":"1","room_avaliable":0,"detail":"细节"}],"name":"商务大床"}]
-     * name : 酒店名
      * address : 地址
-     * introduce : 介绍
-     * contact_phone : 123456
+     * name : 酒店名
      * city : 1
+     * hotel_imgs : []
+     * contact_phone : 123456
+     * introduce : 介绍
+     * id : 1
+     * hotel_houses : [{"id":1}]
      */
 
     private List<HotelsBean> hotels;
@@ -47,6 +46,7 @@ public class HotelResult implements Parcelable {
             return new HotelResult[size];
         }
     };
+
 
     public List<HotelsBean> getHotels() {
         return hotels;
