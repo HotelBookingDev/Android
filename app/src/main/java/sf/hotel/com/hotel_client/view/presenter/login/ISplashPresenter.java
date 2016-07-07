@@ -16,6 +16,7 @@ import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.data.utils.PreferencesUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.LocationHelper;
+import sf.hotel.com.hotel_client.view.activity.SplashActivity;
 import sf.hotel.com.hotel_client.view.interfaceview.login.ISplashView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 
@@ -89,7 +90,7 @@ public class ISplashPresenter extends SuperPresenter {
                                     PreferencesUtils.saveInstallationId(view.getBottomContext(),
                                             AVInstallation.getCurrentInstallation()
                                                     .getInstallationId());
-                                    view.startLoginActivity();
+                                    view.startActivity(SplashActivity.LOGIN);
                                 }
 
                                 @Override
@@ -103,7 +104,7 @@ public class ISplashPresenter extends SuperPresenter {
                                                             .getInstallationId());
                                         }
                                     }
-                                    view.startLoginActivity();
+                                    view.startActivity(SplashActivity.LOGIN);
                                 }
 
                                 @Override
@@ -112,7 +113,7 @@ public class ISplashPresenter extends SuperPresenter {
                                 }
                             });
                 } else {
-                    view.startLoginActivity();
+                    view.startActivity(SplashActivity.LOGIN);
                 }
             }
         });

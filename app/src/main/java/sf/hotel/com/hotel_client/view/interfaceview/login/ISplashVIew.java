@@ -12,5 +12,5 @@ public interface ISplashView extends BaseView {
 
     void showPrompt(int type);
 
-    void startLoginActivity();
+    void startActivity(int type);
 }

@@ -1,6 +1,5 @@
 package sf.hotel.com.hotel_client.view.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.ViewGroup;
@@ -20,6 +19,9 @@ import sf.hotel.com.hotel_client.view.presenter.login.ISplashPresenter;
  */
 public class SplashActivity extends BaseActivity implements ISplashView {
     ISplashPresenter mPreseneter;
+
+    public static final int LOGIN = 0x1;
+    public static final int MAIN = 0x2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,17 +47,21 @@ public class SplashActivity extends BaseActivity implements ISplashView {
         mPreseneter.initDatas();
     }
 
-    public void startLoginActivity() {
-        new Handler().postDelayed(() -> {
-            Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-            startActivity(intent);
-            SplashActivity.this.finish();
-        }, 3000);
-    }
-
     @Override
     public void showImage(Object obj) {
 
+    }
+
+    @Override
+    public void startActivity(int type) {
+        new Handler().postDelayed(() -> {
+            if (type == MAIN) {
+                startActivity(MainActivity.class);
+            } else {
+                startActivity(LoginActivity.class);
+            }
+            SplashActivity.this.finish();
+        }, 3000);
     }
 
     public Object getImage() {
