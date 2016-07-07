@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <sf.hotel.com.hotel_client.view.custom.HideTitle
+        android:id="@+id/frag_room_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/view_title"
+        app:add_status_view="true"
+        app:left_img="@mipmap/ic_title_back_arrow"
+        app:mid_text="@string/room"
+        app:right_img1="@mipmap/ic_collections_bookmark_black_36dp"
+        app:right_img2="@mipmap/ic_share_black_36dp"
+        app:title_size="@dimen/title_text_size"
+        />
+</LinearLayout>

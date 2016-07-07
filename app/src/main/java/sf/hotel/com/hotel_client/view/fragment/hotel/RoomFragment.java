@@ -2,7 +2,6 @@ package sf.hotel.com.hotel_client.view.fragment.hotel;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -31,8 +30,8 @@ import sf.hotel.com.hotel_client.utils.LBSUtils;
 import sf.hotel.com.hotel_client.view.adapter.DialogBedAdapter;
 import sf.hotel.com.hotel_client.view.adapter.LocalImageHodlerView;
 import sf.hotel.com.hotel_client.view.custom.HideTitle;
-import sf.hotel.com.hotel_client.view.custom.NoScrollView;
 import sf.hotel.com.hotel_client.view.custom.PersonalItemView;
+import sf.hotel.com.hotel_client.view.custom.PullScrollView;
 import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.RoomMessage;
@@ -55,10 +54,8 @@ public class RoomFragment extends BaseFragment implements IRoomView {
 
     IRoomPresenter mIRoomPresenter;
 
-    @BindView(R.id.frame_room_banner)
     ConvenientBanner convenientBanner;
 
-    @BindView(R.id.fragment_room_content)
     TextView mRoomContent;
 
     @BindView(R.id.frag_room_search)
@@ -66,17 +63,15 @@ public class RoomFragment extends BaseFragment implements IRoomView {
 
     DialogPlus dialogPlus, phoneDialog;
 
-    @BindView(R.id.frag_room_title)
+
     HideTitle mTitle;
 
     @BindView(R.id.frag_room_scrollview)
-    NoScrollView mNoScrollView;
+    PullScrollView mNoScrollView;
 
 
-    @BindView(R.id.fragment_room_phone)
     PersonalItemView mPhone;
 
-    @BindView(R.id.fragment_room_location)
     PersonalItemView mLocation;
 
 
@@ -102,25 +97,76 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
+                             @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_room, container, false);
         mIRoomPresenter = new IRoomPresenter(this);
         ButterKnife.bind(this, view);
-        hotelsBean = args.getParcelable("room");
-        initBanner();
-       // initScrollView();
-        initTitle();
 
+        hotelsBean = args.getParcelable("room");
+
+        initHeader();
+        initContent();
 
         return view;
+    }
+
+    private void initContent() {
+        View content = LayoutInflater.from(getBottomContext()).inflate(R.layout.content_room, null, false);
+        mPhone = (PersonalItemView) content.findViewById(R.id.fragment_room_phone);
+        mLocation = (PersonalItemView) content.findViewById(R.id.fragment_room_location);
+        mRoomContent = (TextView) content.findViewById(R.id.fragment_room_content);
+        convenientBanner = (ConvenientBanner) content.findViewById(R.id.frame_room_banner);
+
+
+
+        mPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (phoneDialog == null){
+                    View phoneView = LayoutInflater.from(getBottomContext()).inflate(R.layout.dialog_phone, null, false);
+                    ViewHolder holder = new ViewHolder(phoneView);
+                    phoneDialog = DialogPlus.newDialog(getBottomContext())
+                            .setContentHolder(holder)
+                            .setCancelable(true)
+                            .setGravity(Gravity.CENTER)
+                            .create();
+                }
+                phoneDialog.show();
+            }
+        });
+
+        mLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!LBSUtils.startLBS(getActivity(), "", "", "")){
+                    showViewToast("没有安装百度地图");
+                }
+            }
+        });
+
+        initBanner();
+        mNoScrollView.addContentView(content);
+    }
+
+    private void initHeader() {
+
+        View header = LayoutInflater.from(getBottomContext()).inflate(R.layout.header_room, null,false);
+        mTitle = (HideTitle) header.findViewById(R.id.frag_room_title);
+        initTitle();
+        mNoScrollView.addHeaderView(header);
+        mNoScrollView.setHideHeardListener(new PullScrollView.HideHeardListener() {
+            @Override
+            public void onHideView(float alpha) {
+                mTitle.setViewAlpha(alpha);
+            }
+        });
     }
 
 
     private void initBanner() {
 
         mImageList = new ArrayList<>();
-
         mImageList.add("http://f.hiphotos.baidu.com/image/h%3D300/sign=e50211178e18367ab28979dd1e738b68/0b46f21fbe096b63a377826e04338744ebf8aca6.jpg");
         mImageList.add("http://img0.imgtn.bdimg.com/it/u=2460737275,599413823&fm=23&gp=0.jpg");
         convenientBanner.setPages(new CBViewHolderCreator<LocalImageHodlerView>() {
@@ -141,6 +187,8 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     @Override
     public void onResume() {
         super.onResume();
+
+
         convenientBanner.startTurning(5000);
     }
 
@@ -152,22 +200,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
 
     private void initTitle() {
         int hideHeight =  DensityUtils.dp2px(getBottomContext(), 200);
-        mNoScrollView.setOnScrollListener(new NoScrollView.onScrollListener() {
-            @Override
-            public void onScroll(View view, int x, int y, int oldX, int oldY) {
 
-                int curr = y - 1500;
-
-                if(curr < hideHeight){
-                    float alpha = curr / (float)hideHeight;
-                    if (alpha < 0)
-                        alpha = 0;
-                    if (alpha > 1)
-                        alpha = 1;
-                    mTitle.setViewAlpha(alpha);
-                }
-            }
-        });
 
         mTitle.addLeftViewOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,9 +211,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         });
     }
 
-    @OnClick({R.id.frag_room_search,
-            R.id.fragment_room_phone,
-            R.id.fragment_room_location})
+    @OnClick({R.id.frag_room_search})
     public void onSearchClick(View v) {
 
         switch (v.getId()){
@@ -207,30 +238,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
                 }
                 dialogPlus.show();
                 break;
-
-            case R.id.fragment_room_phone:
-
-                if (phoneDialog == null){
-                    View phoneView = LayoutInflater.from(getBottomContext()).inflate(R.layout.dialog_phone, null, false);
-                    ViewHolder holder = new ViewHolder(phoneView);
-                    phoneDialog = DialogPlus.newDialog(getBottomContext())
-                            .setContentHolder(holder)
-                            .setCancelable(true)
-                            .setGravity(Gravity.CENTER)
-                            .create();
-                }
-                phoneDialog.show();
-                break;
-            case R.id.fragment_room_location:
-
-                if (!LBSUtils.startLBS(getActivity(), "", "", "")){
-                    showViewToast("没有安装百度地图");
-                }
-
-                break;
-
         }
-
     }
 
 

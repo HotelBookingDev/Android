@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/zoom_room"/>
 
     <View
         style="@style/splitLineStyle"
