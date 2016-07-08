@@ -17,12 +17,11 @@ import sf.hotel.com.hotel_client.R;
  * @email sanfenruxi1@163.com
  * @date 16/7/7.
  */
-public class CustomTimerView extends RelativeLayout{
+public class CustomTimerView extends RelativeLayout {
 
     HotelSearchTitle mStartView, mEndView;
 
     TextView mAllTime;
-
 
     Date[] dates = new Date[2];
 
@@ -48,8 +47,7 @@ public class CustomTimerView extends RelativeLayout{
         setTimer(dates[0], dates[1]);
     }
 
-
-    public void setTimer(Date start, Date end){
+    public void setTimer(Date start, Date end) {
         dates[0] = start;
         dates[1] = end;
 
@@ -63,7 +61,7 @@ public class CustomTimerView extends RelativeLayout{
         String startWeek = formatE.format(start);
         String endWeek = formatE.format(end);
 
-        int time = (int) ((end.getTime() - start.getTime()) / (1000 * 60 * 60 *24));
+        int time = (int) ((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
 
         mStartView.setContentText(startTime);
         mEndView.setContentText(endTime);
@@ -74,8 +72,7 @@ public class CustomTimerView extends RelativeLayout{
         mAllTime.setText(String.valueOf(time) + "晚");
     }
 
-    public Date[] getTimer(){
-       return dates;
+    public Date[] getTimer() {
+        return dates;
     }
-
 }

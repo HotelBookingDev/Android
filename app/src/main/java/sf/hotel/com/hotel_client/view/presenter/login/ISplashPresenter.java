@@ -72,6 +72,7 @@ public class ISplashPresenter extends ILRcomPresenter {
 
     //发送设备号
     private void saveIntallationId() {
+        LogUtils.d("id", AVInstallation.getCurrentInstallation().getInstallationId());
         AVInstallation.getCurrentInstallation().saveInBackground(new SaveCallback() {
             @Override
             public void done(AVException e) {
@@ -120,6 +121,7 @@ public class ISplashPresenter extends ILRcomPresenter {
     }
 
     private void postInstallId() {
+
         ApiWrapper.getInstance()
                 .postIntallation(new Intallation("android",
                         AVInstallation.getCurrentInstallation().getInstallationId()))

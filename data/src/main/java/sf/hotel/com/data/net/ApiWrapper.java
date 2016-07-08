@@ -79,7 +79,7 @@ public class ApiWrapper extends RetrofitHelper {
     public Observable<NormalResult> postIntallation(Intallation mIntallation) {
         Gson gson = new Gson();
         String s = gson.toJson(mIntallation);
-        LogUtils.d("sr",s);
+        LogUtils.d("sr", s);
         return mService.postIntallation(mIntallation).compose(this.<NormalResult>applySchedulers());
     }
 
@@ -102,5 +102,9 @@ public class ApiWrapper extends RetrofitHelper {
 
     public Observable<OrderManagerResult> getOrderManager() {
         return mService.getOrderManager().compose(this.applySchedulers());
+    }
+
+    public Observable<NormalResult> putChangePwd(String phoneNum, String pwd, String newPwd) {
+        return mService.putChangePwd(phoneNum, pwd, newPwd).compose(this.applySchedulers());
     }
 }
