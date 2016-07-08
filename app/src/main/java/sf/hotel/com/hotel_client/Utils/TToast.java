@@ -1,5 +1,7 @@
 package sf.hotel.com.hotel_client.utils;
 
+import android.widget.Toast;
+
 import com.github.johnpersano.supertoasts.SuperToast;
 
 import sf.hotel.com.hotel_client.HotelApplication;
@@ -25,8 +27,12 @@ public final class TToast {
     }
 
     public static void showToast(String message) {
-        if (superToast.isShowing()) return;
-        superToast.setText(message);
-        superToast.show();
+        if (AndroidUtils.isMIUI()) {
+            Toast.makeText(HotelApplication.context, message, Toast.LENGTH_SHORT).show();
+        } else {
+            if (superToast.isShowing()) return;
+            superToast.setText(message);
+            superToast.show();
+        }
     }
 }
