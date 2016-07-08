@@ -52,7 +52,7 @@ crashlytics-build.properties
 
 # Files for the Dalvik VM
 *.dex
-
+z
 # Java class files
 *.class
 
@@ -76,3 +76,4 @@ proguard/
 # Android Studio Navigation editor temp files
 .navigation/
 *.hprof
+/gradle/
