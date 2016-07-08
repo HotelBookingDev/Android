@@ -101,6 +101,6 @@ public abstract class BaseActivity extends SupportActivity {
     }
 
     public void showViewToast(String msg) {
-        TToast.showToast(msg);
+        showToast(msg);
     }
 }
