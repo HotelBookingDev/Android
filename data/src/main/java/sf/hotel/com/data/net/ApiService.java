@@ -6,7 +6,6 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
 import retrofit2.http.Query;
 import rx.Observable;
 import sf.hotel.com.data.entity.Intallation;
@@ -73,7 +72,8 @@ public interface ApiService {
     @GET(AppUrl.ORDER_URL)
     Observable<HttpResult<OrderManagerResult>> getOrderManager();
 
-    @PUT(AppUrl.CHANGEPWD_URL)
+    @FormUrlEncoded
+    @POST(AppUrl.CHANGEPWD_URL)
     Observable<HttpResult<NormalResult>> putChangePwd(@Field(PHONE_NUMBER) String phoneNum,
             @Field(PASSWORD) String password, @Field(HttpParam.NEWPASSWORD) String newPassword);
 }

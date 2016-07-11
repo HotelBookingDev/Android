@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.avos.avoscloud.AVInstallation;
 import com.avos.avoscloud.PushService;
 
 import sf.hotel.com.hotel_client.utils.HotelImageLoad;
@@ -78,7 +79,7 @@ public class SplashActivity extends BaseActivity implements ISplashView {
     //    完全不需要重下下面的方法
     @Override
     public String getUserName() {
-        return null;
+        return mPreseneter.getUserName();
     }
 
     @Override
@@ -94,6 +95,6 @@ public class SplashActivity extends BaseActivity implements ISplashView {
 
     @Override
     public String getIntallationId() {
-        return null;
+        return AVInstallation.getCurrentInstallation().getInstallationId();
     }
 }

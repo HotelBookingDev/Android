@@ -38,6 +38,7 @@ public class ChangePersenter extends SuperPresenter {
                     StringUtils.changePud(newPwd)).subscribe(normalResult -> {
                 iChangePwd.savePwd(mIChangePwdView.getBottomContext(),
                         StringUtils.changePud(newPwd));
+                mIChangePwdView.showViewToast("修改成功");
             }, this::handlingException);
         }
     }

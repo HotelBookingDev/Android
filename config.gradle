@@ -49,7 +49,7 @@ ext {
             //butterknife的依赖库
             butterknife                      : "com.jakewharton:butterknife:${butterknifeVersion}",
             //bugly的依赖库
-            buglySDK                         : "com.tencent.bugly:crashreport:${buglySDKVersion}",
+                buglySDK                         : "com.tencent.bugly:crashreport:${buglySDKVersion}",
             buglyNDK                         : "com.tencent.bugly:nativecrashreport:${buglyNDKVersion}",
             flaviofaria                      : "com.flaviofaria:kenburnsview:${flaviofariaVersion}",
 
