@@ -13,4 +13,5 @@ public class HttpParam {
     public static final String CITY_ID = "cityId";
     public static final String PAGE = "page";
     public static final String USER_ID = "userId";
+    public static final String NEWPASSWORD = "newPassword";
 }

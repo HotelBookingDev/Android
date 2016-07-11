@@ -8,7 +8,9 @@ import android.content.Context;
  * email: 1105896230@qq.com
  */
 public interface ISplashEntity extends ILoginEntity {
-    void saveCityCode(Context context,String code);
+    void saveCityCode(Context context, String code);
 
-    void saveCityName(Context context,String cityname);
+    void saveCityName(Context context, String cityname);
+
+    String getUserName(Context context);
 }

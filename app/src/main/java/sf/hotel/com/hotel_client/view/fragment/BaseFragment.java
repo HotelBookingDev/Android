@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import me.yokeyword.fragmentation.SupportFragment;
 import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.utils.LogUtils;
+import sf.hotel.com.hotel_client.utils.AndroidUtils;
 import sf.hotel.com.hotel_client.utils.TToast;
 
 /**
@@ -60,5 +61,9 @@ public class BaseFragment extends SupportFragment {
 
     protected void showLog(String msg) {
         LogUtils.e(TAG, msg);
+    }
+
+    public String getIntallationId() {
+        return AndroidUtils.getInstallationId();
     }
 }

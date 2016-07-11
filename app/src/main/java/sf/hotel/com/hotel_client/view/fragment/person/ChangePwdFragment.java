@@ -47,7 +47,7 @@ public class ChangePwdFragment extends BaseFragment implements IChangePwdView {
         return view;
     }
 
-    @OnClick({R.id.submit_btn,R.id.rl_old_pwd,R.id.rl_new_pwd,R.id.rl_determine_new_pwd})
+    @OnClick({R.id.submit_btn, R.id.rl_old_pwd, R.id.rl_new_pwd, R.id.rl_determine_new_pwd})
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.submit_btn) {
@@ -56,17 +56,17 @@ public class ChangePwdFragment extends BaseFragment implements IChangePwdView {
     }
 
     @Override
-    public EditText getOldPwd() {
-        return mOldEditTxt;
+    public String getOldPwd() {
+        return mOldEditTxt.getText().toString().trim();
     }
 
     @Override
-    public EditText getNewPwd() {
-        return mNewEditTxt;
+    public String getNewPwd() {
+        return mNewEditTxt.getText().toString().trim();
     }
 
     @Override
-    public EditText getConfimPwd() {
-        return mConfirmPwdEditTxt;
+    public String getConfimPwd() {
+        return mConfirmPwdEditTxt.getText().toString().trim();
     }
 }

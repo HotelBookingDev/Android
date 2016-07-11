@@ -6,7 +6,6 @@ package sf.hotel.com.data.net;
  */
 public class AppUrl {
 
-    //public static final String API_HOST = "http://114.55.144.169/";
     public static final String API_HOST = "http://agesd.com/";
     public static final String LOGIN_URL = "/user/login/";
     public static final String REGISTER_URL = "/user/register/";
@@ -20,4 +19,6 @@ public class AppUrl {
     public static final String PROVINCES_URL = "/province/";
 
     public static final String ORDER_URL = "/customer/orders/";
+
+    public static final String CHANGEPWD_URL = "/user/password/";
 }

@@ -71,4 +71,9 @@ public interface ApiService {
 
     @GET(AppUrl.ORDER_URL)
     Observable<HttpResult<OrderManagerResult>> getOrderManager();
+
+    @FormUrlEncoded
+    @POST(AppUrl.CHANGEPWD_URL)
+    Observable<HttpResult<NormalResult>> putChangePwd(@Field(PHONE_NUMBER) String phoneNum,
+            @Field(PASSWORD) String password, @Field(HttpParam.NEWPASSWORD) String newPassword);
 }

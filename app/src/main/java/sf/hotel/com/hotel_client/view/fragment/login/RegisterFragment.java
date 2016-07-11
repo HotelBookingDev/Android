@@ -8,13 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.avos.avoscloud.AVInstallation;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mehdi.sakout.fancybuttons.FancyButton;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.utils.AndroidUtils;
 import sf.hotel.com.hotel_client.view.custom.CaptchaText;
 import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.event.RxBus;
@@ -126,8 +125,5 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
         RxBus.getDefault().post(MessageFactory.createLoginMessage(LoginMessage.SHOW_MAIN));
     }
 
-    @Override
-    public String getIntallationId() {
-        return AVInstallation.getCurrentInstallation().getInstallationId();
-    }
+
 }

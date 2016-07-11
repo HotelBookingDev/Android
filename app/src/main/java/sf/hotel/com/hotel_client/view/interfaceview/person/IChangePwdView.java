@@ -1,7 +1,5 @@
 package sf.hotel.com.hotel_client.view.interfaceview.person;
 
-import android.widget.EditText;
-
 import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
 
 /**
@@ -10,9 +8,9 @@ import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
  * email: 1105896230@qq.com
  */
 public interface IChangePwdView extends BaseView {
-    EditText getOldPwd();
+    String getOldPwd();
 
-    EditText getNewPwd();
+    String getNewPwd();
 
-    EditText getConfimPwd();
+    String getConfimPwd();
 }
