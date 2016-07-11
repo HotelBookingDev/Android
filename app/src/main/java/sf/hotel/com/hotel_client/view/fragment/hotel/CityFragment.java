@@ -63,10 +63,9 @@ public class CityFragment extends BaseFragment implements ICityView {
         ProvincesResult provincesResult = mICityPresenter.getProcincesResult(getBottomContext());
         if (provincesResult != null) {
             mCityListAdapter.setList(provincesResult);
-        }else{
+        } else {
             initCityList();
         }
-
     }
 
     private void onRxEvent() {
@@ -91,7 +90,7 @@ public class CityFragment extends BaseFragment implements ICityView {
             @Override
             public void onItemClick(View view, int position) {
                 CityBean selectCityBean = mCityListAdapter.getSelectCityBean();
-                if (selectCityBean != null){
+                if (selectCityBean != null) {
                     mICityPresenter.saveSelectCity(selectCityBean);
                 }
             }
@@ -112,7 +111,7 @@ public class CityFragment extends BaseFragment implements ICityView {
     public void setCityAdapterList(ProvincesResult provincesResult) {
         mCityListAdapter.setList(provincesResult);
         CityBean cityBean = mICityPresenter.getCityBean();
-        if (cityBean != null){
+        if (cityBean != null) {
             mCityListAdapter.setSelectCityBean(cityBean);
         }
     }
