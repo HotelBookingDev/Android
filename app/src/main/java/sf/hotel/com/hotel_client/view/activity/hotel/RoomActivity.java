@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import rx.Subscription;
 import rx.functions.Action1;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
@@ -28,12 +29,12 @@ public class RoomActivity extends BaseActivity {
     }
 
     private void onRxEvent() {
-        RxBus.getDefault().toObservable(RoomMessage.class)
+        Subscription subscribe = RxBus.getDefault().toObservable(RoomMessage.class)
                 .subscribe(new Action1<RoomMessage>() {
                     @Override
                     public void call(RoomMessage roomMessage) {
-                        if (roomMessage != null){
-                            switch (roomMessage.what){
+                        if (roomMessage != null) {
+                            switch (roomMessage.what) {
                                 case RoomMessage.ACTIVITY_BACK:
                                     finish();
                                     break;
@@ -46,6 +47,8 @@ public class RoomActivity extends BaseActivity {
 
                     }
                 });
+
+        mCompositeSubscription.add(subscribe);
     }
 
     private void initIntent() {

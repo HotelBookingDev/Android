@@ -21,4 +21,5 @@ public class TimerMessage extends Message {
     public TimerMessage(int what, String message, Object obj) {
         super(what, message, obj);
     }
+
 }

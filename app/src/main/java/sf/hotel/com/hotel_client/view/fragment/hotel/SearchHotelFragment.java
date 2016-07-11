@@ -108,10 +108,9 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_TIMER){
+        if (requestCode == REQUEST_TIMER && data != null) {
             Bundle bundle = data.getExtras();
             Date[] dates = (Date[]) bundle.getSerializable("dates");
-
             assert dates != null;
             mTimerView.setTimer(dates[0], dates[1]);
         }
@@ -122,6 +121,5 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
 
         startActivity(intent);
     }
-
 
 }

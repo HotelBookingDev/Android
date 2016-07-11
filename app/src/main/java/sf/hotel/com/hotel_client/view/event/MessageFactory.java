@@ -64,6 +64,10 @@ public class MessageFactory {
         return new TimerMessage(what);
     }
 
+    public static TimerMessage createTimerMessage(int what, Object obj){
+        return new TimerMessage(what, "", obj);
+    }
+
     public static SearchHotelMessage createSearchHotelMessage(int what){
         return new SearchHotelMessage(what);
     }
