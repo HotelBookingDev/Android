@@ -81,9 +81,7 @@ public class ISplashPresenter extends ILRcomPresenter {
             private void postIntallationId() {
                 String installationId = PreferencesUtils.getInstallationId(view.getBottomContext());
                 //每次登陆判断本地的设备id和初始化的id 是否是同一个不相同就发送一次请求信息
-                if (installationId == null ||
-                        !installationId.equals(
-                                AVInstallation.getCurrentInstallation().getInstallationId())) {
+                if (installationId == null || !installationId.equals(view.getIntallationId())) {
                     postInstallId();
                 } else {
 //                    在本地一致的情况下发送自动登录的账号密码
@@ -122,13 +120,12 @@ public class ISplashPresenter extends ILRcomPresenter {
     private void postInstallId() {
 
         ApiWrapper.getInstance()
-                .postIntallation(new Intallation("android",
-                        AVInstallation.getCurrentInstallation().getInstallationId()))
+                .postIntallation(new Intallation("android", view.getIntallationId()))
                 .subscribe(new Subscriber<NormalResult>() {
                     @Override
                     public void onCompleted() {
                         PreferencesUtils.saveInstallationId(view.getBottomContext(),
-                                AVInstallation.getCurrentInstallation().getInstallationId());
+                                view.getIntallationId());
                         view.startActivity(SplashActivity.LOGIN);
                     }
 
@@ -137,8 +134,7 @@ public class ISplashPresenter extends ILRcomPresenter {
                         if (e instanceof APIException) {
                             if (((APIException) e).getCode() == Code.INTALLATIONIDISEXIT) {
                                 PreferencesUtils.saveInstallationId(view.getBottomContext(),
-                                        AVInstallation.getCurrentInstallation()
-                                                .getInstallationId());
+                                        view.getIntallationId());
                             }
                         }
                         view.startActivity(SplashActivity.LOGIN);

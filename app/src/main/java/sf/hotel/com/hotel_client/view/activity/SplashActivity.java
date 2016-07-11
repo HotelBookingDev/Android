@@ -5,9 +5,9 @@ import android.os.Handler;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.avos.avoscloud.AVInstallation;
 import com.avos.avoscloud.PushService;
 
+import sf.hotel.com.hotel_client.utils.AndroidUtils;
 import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 import sf.hotel.com.hotel_client.view.activity.register.LoginActivity;
 import sf.hotel.com.hotel_client.view.interfaceview.login.ISplashView;
@@ -93,8 +93,5 @@ public class SplashActivity extends BaseActivity implements ISplashView {
         startActivity(MAIN);
     }
 
-    @Override
-    public String getIntallationId() {
-        return AVInstallation.getCurrentInstallation().getInstallationId();
-    }
+
 }

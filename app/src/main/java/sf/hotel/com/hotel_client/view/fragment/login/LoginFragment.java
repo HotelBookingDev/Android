@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.avos.avoscloud.AVInstallation;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -73,11 +71,6 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     @Override
     public void clearPassword() {
         mEditPw.setText("");
-    }
-
-    @Override
-    public String getIntallationId() {
-        return AVInstallation.getCurrentInstallation().getInstallationId();
     }
 
     @Override

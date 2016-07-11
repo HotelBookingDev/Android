@@ -16,6 +16,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
 import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.utils.AndroidUtils;
 import sf.hotel.com.hotel_client.utils.TToast;
 import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
 
@@ -102,5 +103,9 @@ public abstract class BaseActivity extends SupportActivity {
 
     public void showViewToast(String msg) {
         showToast(msg);
+    }
+
+    public String getIntallationId() {
+        return AndroidUtils.getInstallationId();
     }
 }

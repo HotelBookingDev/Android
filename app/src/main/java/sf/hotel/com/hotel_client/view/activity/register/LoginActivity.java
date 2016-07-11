@@ -2,18 +2,7 @@ package sf.hotel.com.hotel_client.view.activity.register;
 
 import android.os.Bundle;
 
-import com.avos.avoscloud.AVException;
-import com.avos.avoscloud.AVInstallation;
-import com.avos.avoscloud.SaveCallback;
-
-import rx.Subscriber;
 import rx.Subscription;
-import sf.hotel.com.data.entity.Intallation;
-import sf.hotel.com.data.entity.netresult.NormalResult;
-import sf.hotel.com.data.net.ApiWrapper;
-import sf.hotel.com.data.net.Exception.APIException;
-import sf.hotel.com.data.net.Exception.Code;
-import sf.hotel.com.data.utils.PreferencesUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
 import sf.hotel.com.hotel_client.view.activity.BaseActivity;
@@ -37,8 +26,6 @@ public class LoginActivity extends BaseActivity {
         super.onResume();
         TransulcentUtils.setFixWindow(this);
     }
-
-
 
     @Override
     protected void onDestroy() {

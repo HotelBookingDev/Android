@@ -6,6 +6,8 @@ import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.util.Log;
 
+import com.avos.avoscloud.AVInstallation;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.Locale;
@@ -79,4 +81,9 @@ public class AndroidUtils {
         String language = locale.getLanguage();
         if (language.endsWith("zh")) { return true; } else return false;
     }
+
+    public static String getInstallationId() {
+        return AVInstallation.getCurrentInstallation().getInstallationId();
+    }
 }
+
