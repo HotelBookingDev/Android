@@ -10,6 +10,7 @@ import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
 
+import sf.hotel.com.data.entity.Hotelshot;
 import sf.hotel.com.data.entity.LocalOrder;
 import sf.hotel.com.data.entity.Order;
 import sf.hotel.com.data.entity.UserEntity;
@@ -21,7 +22,7 @@ import sf.hotel.com.data.entity.netresult.HotelResult;
  */
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String TABLE_NAME = "hotel.db";
-    private static final int databaseVersion = 17;
+    private static final int databaseVersion = 18;
     private Dao<UserEntity, Integer> userDao;
     private Dao<HotelResult, Integer> hotelDao;
     private Dao<LocalOrder, Integer> localOrders;
@@ -49,6 +50,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 //            TableUtils.createTable(connectionSource, HotelResult.class);
             TableUtils.createTable(connectionSource, LocalOrder.class);
             TableUtils.createTable(connectionSource, Order.class);
+            TableUtils.createTable(connectionSource, Hotelshot.class);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -62,6 +64,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 //            TableUtils.dropTable(connectionSource, HotelResult.class, true);
             TableUtils.dropTable(connectionSource, LocalOrder.class, true);
             TableUtils.dropTable(connectionSource, Order.class, true);
+            TableUtils.dropTable(connectionSource, Hotelshot.class, true);
             onCreate(database, connectionSource);
         } catch (SQLException e) {
             e.printStackTrace();

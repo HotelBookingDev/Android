@@ -6,6 +6,7 @@ import java.util.List;
 
 import rx.Observable;
 import sf.hotel.com.data.entity.Order;
+import sf.hotel.com.data.entity.netresult.NormalResult;
 
 /**
  * Created by 林其望
@@ -14,5 +15,9 @@ import sf.hotel.com.data.entity.Order;
  */
 public interface IOrder {
     Observable<List<Order>> getOrderByDb(Context context, int position);
+
     Observable<List<Order>> getOrderByNet(Context context, int position);
+
+
+    Observable<NormalResult> detect(Order order);
 }

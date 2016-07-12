@@ -1,9 +1,5 @@
 package sf.hotel.com.hotel_client.view.presenter.person;
 
-import java.util.List;
-
-import rx.Observable;
-import rx.functions.Func1;
 import sf.hotel.com.data.entity.Order;
 import sf.hotel.com.data.interfaceeneity.person.IOrder;
 import sf.hotel.com.data.interfaceeneity.person.IOrderImp;
@@ -16,7 +12,7 @@ import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
  * data：2016/7/4
  * email: 1105896230@qq.com
  */
-public class UserOrderPresenter extends SuperPresenter{
+public class UserOrderPresenter extends SuperPresenter {
     IUserOrderView mIUserOrderView;
     IOrder mIorder;
 
@@ -34,7 +30,8 @@ public class UserOrderPresenter extends SuperPresenter{
                 .doOnNext(orderAndHotels -> {
                     mIUserOrderView.showOrder(orderAndHotels);
                 })
-                .flatMap(orderAndHotels -> mIorder.getOrderByNet(mIUserOrderView.getBottomContext(), position))
+                .flatMap(orderAndHotels -> mIorder.getOrderByNet(mIUserOrderView.getBottomContext(),
+                        position))
                 .subscribe(orderAndHotels -> {
                     mIUserOrderView.showOrder(orderAndHotels);
                 }, this::handlingException);
@@ -43,5 +40,11 @@ public class UserOrderPresenter extends SuperPresenter{
     @Override
     public void destroy() {
 
+    }
+
+    public void detect(Order order) {
+        mIorder.detect(order).subscribe(normalResult -> {
+            mIUserOrderView.showViewToast("取消成功");
+        }, LogUtils::logThrowadle);
     }
 }

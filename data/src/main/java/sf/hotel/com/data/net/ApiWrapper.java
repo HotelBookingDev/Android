@@ -85,7 +85,6 @@ public class ApiWrapper extends RetrofitHelper {
     }
 
     /**
-     *
      * @param cityId 城市ID
      * @param page 页码
      * @param inTime 开始时间
@@ -93,25 +92,24 @@ public class ApiWrapper extends RetrofitHelper {
      * @param exclude 忽略的酒店
      * @return
      */
-    public Observable<HotelResult> callHotelsByCityId(String cityId, String page, String inTime, String outTime, String exclude) {
+    public Observable<HotelResult> callHotelsByCityId(String cityId, String page, String inTime,
+            String outTime, String exclude) {
         return mService.callHotelsByCityId(cityId, page, inTime, outTime, exclude)
                 .compose(this.<HotelResult>applySchedulers());
     }
 
-
     /**
-     *
      * @param auth 授权
      * @param productId 商品id
      * @param inTime 开始时间
      * @param outTime 结束时间
      * @return
      */
-    public Observable<HotelBookResult> callHotelBook(String auth, String productId, String inTime, String outTime){
+    public Observable<HotelBookResult> callHotelBook(String auth, String productId, String inTime,
+            String outTime) {
         return mService.callHotelBook(auth, productId, inTime, outTime)
                 .compose(this.<HotelBookResult>applySchedulers());
     }
-
 
     public Observable<TokenResult> getTokenResult() {
         return mService.getTokenResult().compose(this.<TokenResult>applySchedulers());
@@ -127,5 +125,9 @@ public class ApiWrapper extends RetrofitHelper {
 
     public Observable<NormalResult> putChangePwd(String phoneNum, String pwd, String newPwd) {
         return mService.putChangePwd(phoneNum, pwd, newPwd).compose(this.applySchedulers());
+    }
+
+    public Observable<NormalResult> deleteOrder(long number) {
+        return mService.deleteOrder("cancel", number).compose(this.applySchedulers());
     }
 }

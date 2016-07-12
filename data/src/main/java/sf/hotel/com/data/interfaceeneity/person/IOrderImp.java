@@ -10,6 +10,7 @@ import rx.schedulers.Schedulers;
 import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.entity.Order;
 import sf.hotel.com.data.entity.OrderManager;
+import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.entity.netresult.person.OrderManagerResult;
 import sf.hotel.com.data.net.ApiWrapper;
 
@@ -55,5 +56,10 @@ public class IOrderImp implements IOrder {
                 .doOnNext(list -> {
                     isDownLoad = true;
                 });
+    }
+
+    @Override
+    public Observable<NormalResult> detect(Order order) {
+        return ApiWrapper.getInstance().deleteOrder(order.getOrder_num());
     }
 }

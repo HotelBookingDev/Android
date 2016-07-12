@@ -17,6 +17,10 @@ public class Order {
     @SerializedName("user_id")
     public long userId;
 
+    public boolean isClosed() {
+        return isClosed;
+    }
+
     public void setUserId(long userId) {
         this.userId = userId;
     }
@@ -42,7 +46,7 @@ public class Order {
     @SerializedName("closed")
     private boolean isClosed;
     @SerializedName("hotelpackageordersnapshot")
-    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "id")
+    @DatabaseField(foreign = true, foreignAutoRefresh = true)
     private Hotelshot snapshot;
 
     public Hotelshot getHotelShot() {
@@ -59,5 +63,15 @@ public class Order {
 
     public void setSnapshot(Hotelshot snapshot) {
         this.snapshot = snapshot;
+    }
+
+    public String getStateMessage() {
+        String text = "";
+        if (state == 1) {
+            text = "订单当前在审核";
+        } else if (state == 2) {
+            text = "取消入住";
+        }
+        return text;
     }
 }
