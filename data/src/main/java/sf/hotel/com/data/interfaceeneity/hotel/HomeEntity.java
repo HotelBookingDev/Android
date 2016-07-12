@@ -1,7 +1,8 @@
 package sf.hotel.com.data.interfaceeneity.hotel;
 
-import rx.Observable;
-import sf.hotel.com.data.entity.ProvincesResult;
+import android.content.Context;
+
+import sf.hotel.com.data.entity.SearchItem;
 
 /**
  * @author MZ
@@ -9,5 +10,5 @@ import sf.hotel.com.data.entity.ProvincesResult;
  * @date 16/6/29.
  */
 public interface HomeEntity {
-    Observable<ProvincesResult> callCityList();
+    SearchItem getSearchItem(Context context);
 }

@@ -13,17 +13,14 @@ import java.util.Date;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import rx.Subscription;
-import rx.functions.Action1;
 import sf.hotel.com.data.entity.CityBean;
+import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.hotel.CityActivity;
 import sf.hotel.com.hotel_client.view.activity.hotel.HotelsActivity;
 import sf.hotel.com.hotel_client.view.activity.hotel.TimesActivity;
 import sf.hotel.com.hotel_client.view.custom.CustomSearchItem;
 import sf.hotel.com.hotel_client.view.custom.CustomTimerView;
-import sf.hotel.com.hotel_client.view.event.RxBus;
-import sf.hotel.com.hotel_client.view.event.hotel.SearchHotelMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.ISearchHotelView;
 import sf.hotel.com.hotel_client.view.presenter.hotel.ISearchHotelPresenter;
@@ -36,7 +33,6 @@ import sf.hotel.com.hotel_client.view.presenter.hotel.ISearchHotelPresenter;
 public class SearchHotelFragment extends BaseFragment implements ISearchHotelView {
 
     public static final int REQUEST_TIMER = 1001;
-
     public static final int REQUEST_CITY = 1002;
 
     @BindView(R.id.search_hotel)
@@ -50,7 +46,7 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
 
     ISearchHotelPresenter mISearchHotelPresenter;
 
-    CityBean cityBean;
+    SearchItem mSearchItem;
 
     public static SearchHotelFragment newInstance() {
 
@@ -69,23 +65,15 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
         View view = inflater.inflate(R.layout.fragment_search_hotle, container, false);
         ButterKnife.bind(this, view);
         mISearchHotelPresenter = new ISearchHotelPresenter(this);
-
-        onRxEvent();
+        initSearchItem();
 
         return view;
     }
 
-    private void onRxEvent() {
-
-        Subscription subscribe = RxBus.getDefault().toObservable(SearchHotelMessage.class).subscribe(new Action1<SearchHotelMessage>() {
-            @Override
-            public void call(SearchHotelMessage searchHotelMessage) {
-
-            }
-        });
-
-        mCompositeSubscription.add(subscribe);
-
+    private void initSearchItem() {
+        mSearchItem = new SearchItem();
+        mISearchHotelPresenter.loadSearchItem();
+        mISearchHotelPresenter.callCityList();
     }
 
     @OnClick({R.id.search_hotel,
@@ -101,7 +89,6 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
                 break;
             case R.id.fragment_search_hotel_city:
                 showCities();
-
                 break;
         }
 
@@ -109,7 +96,7 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
 
     private void showCities() {
         Intent intent = new Intent(getBottomContext(), CityActivity.class);
-        intent.putExtra("action", "search_city");
+        intent.putExtra("action", "search_hotel");
         startActivityForResult(intent, REQUEST_CITY);
     }
 
@@ -119,32 +106,45 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
         startActivityForResult(intent, REQUEST_TIMER);
     }
 
+    private void showHotel() {
+
+        mISearchHotelPresenter.saveSearchItem();
+        Intent intent = new Intent(getBottomContext(), HotelsActivity.class);
+        intent.putExtra("action", "search_hotel");
+        startActivity(intent);
+    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_TIMER && data != null) {
-            Bundle bundle = data.getExtras();
-            Date[] dates = (Date[]) bundle.getSerializable("dates");
-            assert dates != null;
-            mTimerView.setTimer(dates[0], dates[1]);
+            mISearchHotelPresenter.getSearchDate(data);
         }else if (requestCode == REQUEST_CITY){
-            CityBean cityBean = mISearchHotelPresenter.getCityBean();
-            if (cityBean != null && cityBean.getName()!= null){
-                this.cityBean = cityBean;
-            }
-            setTextCityName(this.cityBean.getName());
+            mISearchHotelPresenter.getCityBean();
         }
     }
 
+    @Override
     public void setTextCityName(String name) {
         mSearchCity.setLeftTextStr(name);
     }
 
-
-    private void showHotel() {
-        Intent intent = new Intent(getBottomContext(), HotelsActivity.class);
-
-        startActivity(intent);
+    @Override
+    public void setSearchTimer(Date[] dates){
+        mTimerView.setTimer(dates[0], dates[1]);
     }
 
+    @Override
+    public SearchItem getSearchItem() {
+        return mSearchItem;
+    }
+
+    public void setSearchItem(SearchItem mSearchItem) {
+        this.mSearchItem = mSearchItem;
+    }
+
+    @Override
+    public void setCityBean(CityBean cityBean){
+        mSearchItem.cityBean = cityBean;
+    }
 }

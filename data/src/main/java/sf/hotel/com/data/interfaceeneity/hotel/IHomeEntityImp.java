@@ -1,8 +1,9 @@
 package sf.hotel.com.data.interfaceeneity.hotel;
 
-import rx.Observable;
-import sf.hotel.com.data.entity.ProvincesResult;
-import sf.hotel.com.data.net.ApiWrapper;
+import android.content.Context;
+
+import sf.hotel.com.data.datasource.HotelDao;
+import sf.hotel.com.data.entity.SearchItem;
 
 /**
  * @author MZ
@@ -10,10 +11,7 @@ import sf.hotel.com.data.net.ApiWrapper;
  * @date 16/6/29.
  */
 public class IHomeEntityImp implements HomeEntity {
-    @Override
-    public Observable<ProvincesResult> callCityList() {
-        return ApiWrapper.getInstance().callCityList();
+    public SearchItem getSearchItem(Context context){
+        return HotelDao.getSearchItem(context);
     }
-
-
 }

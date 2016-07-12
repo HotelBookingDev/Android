@@ -40,6 +40,8 @@ public class PreferencesUtils {
 
     public static final String HOTEL_PROC = "hotel_proc";
 
+    public static final String HOTEL_SEARCH = "hotel_search";
+
     private static void put(Context context, String key, String value) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
         preferences.edit().putString(key, value).apply();
@@ -178,4 +180,13 @@ public class PreferencesUtils {
     public static void saveProcincesResult(Context context, String procincesResult) {
         put(context, HOTEL_PROC, procincesResult);
     }
+
+    public static String getSearchItem(Context context){
+        return get(context, HOTEL_SEARCH);
+    }
+    public static void saveSearchItem(Context context,String str){
+        put(context, HOTEL_SEARCH, str);
+    }
+
+
 }

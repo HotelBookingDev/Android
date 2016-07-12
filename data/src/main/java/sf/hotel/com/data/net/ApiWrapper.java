@@ -84,11 +84,16 @@ public class ApiWrapper extends RetrofitHelper {
     }
 
     /**
-     * 获取酒店信息通过cityId
+     *
+     * @param cityId 城市ID
+     * @param page 页码
+     * @param inTime 开始时间
+     * @param outTime 结束时间
+     * @param exclude 忽略的酒店
+     * @return
      */
-
-    public Observable<HotelResult> callHotelsByCityId(String cityId, String page) {
-        return mService.callHotelsByCityId(cityId, page)
+    public Observable<HotelResult> callHotelsByCityId(String cityId, String page, String inTime, String outTime, String exclude) {
+        return mService.callHotelsByCityId(cityId, page, inTime, outTime, exclude)
                 .compose(this.<HotelResult>applySchedulers());
     }
 

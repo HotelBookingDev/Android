@@ -8,6 +8,7 @@ import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.datasource.HotelDao;
 import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.ProvincesResult;
+import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.data.interfaceeneity.hotel.HomeEntity;
 import sf.hotel.com.data.interfaceeneity.hotel.IHomeEntityImp;
 import sf.hotel.com.data.net.Exception.APIException;
@@ -34,21 +35,6 @@ public class IHomePresenter extends SuperPresenter {
         mCompositeSubscription = new CompositeSubscription();
     }
 
-    public void callCityList() {
-        Subscription subscribe = mEntityImp.callCityList()
-                .subscribe(new Action1<ProvincesResult>() {
-                    @Override
-                    public void call(ProvincesResult provincesResult) {
-                        onSuccessNext(provincesResult);
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        //handlingException(throwable);
-                    }
-                });
-        mCompositeSubscription.add(subscribe);
-    }
 
     public void loadCitysBeanCache() {
         CityBean cityBean = HotelDao.getCitysBean(
@@ -85,14 +71,21 @@ public class IHomePresenter extends SuperPresenter {
         }
     }
 
-    public void onSuccessNext(ProvincesResult provincesResult) {
-        HotelDao.saveProcincesResult(iHomeContainerView.getBottomContext(), provincesResult);
-    }
-
     @Override
     public void destroy() {
         if (mCompositeSubscription != null && mCompositeSubscription.isUnsubscribed()) {
             mCompositeSubscription.unsubscribe();
         }
+    }
+
+    public void loadSearchItem() {
+        SearchItem searchItem = mEntityImp.getSearchItem(iHomeContainerView.getBottomContext());
+        if (searchItem == null){
+            searchItem = new SearchItem();
+            if (searchItem.cityBean == null){
+                searchItem.cityBean = new CityBean();
+            }
+        }
+        iHomeContainerView.setmSearchItem(searchItem);
     }
 }

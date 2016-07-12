@@ -26,7 +26,7 @@ public class HotelsEntityImp implements IHotelsEntity {
     @Override
     public Observable<HotelResult> callHotelsByCityId(String cityId, String page) {
         return ApiWrapper.getInstance()
-                .callHotelsByCityId(cityId, page)
+                .callHotelsByCityId(cityId, page, "", "", "")
                 ;
     }
 }

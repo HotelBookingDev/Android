@@ -12,6 +12,9 @@ public class HttpParam {
     public static final String DEVICE_TYPE = "deviceType";
     public static final String CITY_ID = "cityId";
     public static final String PAGE = "page";
+    public static final String CHECK_IN_TIME = "checkintime";
+    public static final String CHECK_OUT_TIME = "checkouttime";
+    public static final String EXCLUDE = "exclude[]";
     public static final String USER_ID = "userId";
     public static final String NEWPASSWORD = "newPassword";
 }

@@ -19,6 +19,7 @@ import butterknife.ButterKnife;
 import rx.Subscription;
 import rx.functions.Action1;
 import sf.hotel.com.data.entity.CityBean;
+import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.hotel_client.R;
@@ -42,10 +43,10 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
     @BindView(R.id.fragment_hotels_list)
     PullToRefreshRecyclerView mPullView;
 
-    static volatile CityBean mCityBean = new CityBean();
+    static volatile SearchItem mSearchItem;
 
-    public static HotelsFragment newInstance(CityBean cityBean) {
-        mCityBean = cityBean;
+    public static HotelsFragment newInstance(SearchItem searchItem) {
+        mSearchItem = searchItem;
         Bundle args = new Bundle();
 
         HotelsFragment fragment = new HotelsFragment();
@@ -77,7 +78,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         if (hotelCache != null) {
             mPullAdapter.setList(hotelCache.getHotels());
         }
-        mIHotelPresenter.callHotelsByCityId(String.valueOf(mCityBean.getId()), "1");
+        mIHotelPresenter.callHotelsByCityId(String.valueOf(mSearchItem.cityBean.getId()), "1");
     }
 
     private void onRxEvent() {
@@ -89,10 +90,10 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                         switch (hotelMessage.what) {
                             case HotelMessage.REFRESH_LIST_VIEW_HOTEL:
                                 CityBean cityBean = (CityBean) hotelMessage.obj;
-                                mCityBean.setId(cityBean.getId());
-                                mCityBean.setName(cityBean.getName());
+                                mSearchItem.cityBean.setId(cityBean.getId());
+                                mSearchItem.cityBean.setName(cityBean.getName());
                                 mIHotelPresenter.callHotelsByCityId(
-                                        String.valueOf(mCityBean.getId()), "1");
+                                        String.valueOf(mSearchItem.cityBean.getId()), "1");
                                 break;
                         }
                     }
@@ -142,7 +143,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        mIHotelPresenter.callHotelsByCityId(String.valueOf(mCityBean.getId()), "1");
+                        mIHotelPresenter.callHotelsByCityId(String.valueOf(mSearchItem.cityBean.getId()), "1");
                         mPullView.setOnRefreshComplete();
                         mPullView.onFinishLoading(true, false);
                     }

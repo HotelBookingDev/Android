@@ -9,9 +9,9 @@ import android.os.Parcelable;
  * @date 16/7/4.
  */
 public class CityBean implements Parcelable {
-    private int id;
+    private int id = 1;
     private int code;
-    private String name;
+    private String name = "杭州";
     private String name_py;
     private String logo;
 

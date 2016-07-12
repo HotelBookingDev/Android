@@ -16,6 +16,7 @@ import sf.hotel.com.hotel_client.utils.HotelImageLoad;
  */
 public abstract class SuperPresenter implements Presenter {
 
+
     @Override
     public void resume() {
 

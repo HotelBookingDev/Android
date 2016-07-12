@@ -17,8 +17,11 @@ import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.entity.netresult.TokenResult;
 import sf.hotel.com.data.entity.netresult.person.OrderManagerResult;
 
+import static sf.hotel.com.data.net.HttpParam.CHECK_IN_TIME;
+import static sf.hotel.com.data.net.HttpParam.CHECK_OUT_TIME;
 import static sf.hotel.com.data.net.HttpParam.CITY_ID;
 import static sf.hotel.com.data.net.HttpParam.DEVICE_TYPE;
+import static sf.hotel.com.data.net.HttpParam.EXCLUDE;
 import static sf.hotel.com.data.net.HttpParam.INSTALLATION_CODE;
 import static sf.hotel.com.data.net.HttpParam.PAGE;
 import static sf.hotel.com.data.net.HttpParam.PASSWORD;
@@ -60,7 +63,10 @@ public interface ApiService {
 
     @GET(AppUrl.HOTELS_URL)
     Observable<HttpResult<HotelResult>> callHotelsByCityId(@Query(CITY_ID) String cityId,
-            @Query(PAGE) String page);
+                                                           @Query(PAGE) String page,
+                                                           @Query(CHECK_IN_TIME) String in,
+                                                           @Query(CHECK_OUT_TIME) String out,
+                                                           @Query(EXCLUDE) String exclude);
 
     //获取TOKEN
     @GET(AppUrl.TOKEN_URL)

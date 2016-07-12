@@ -1,7 +1,23 @@
 package sf.hotel.com.hotel_client.view.presenter.hotel;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.TextUtils;
+
+import com.google.gson.Gson;
+
+import java.util.Date;
+
+import rx.Subscription;
+import rx.functions.Action1;
+import rx.subscriptions.CompositeSubscription;
+import sf.hotel.com.data.datasource.HotelDao;
 import sf.hotel.com.data.entity.CityBean;
+import sf.hotel.com.data.entity.ProvincesResult;
+import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.data.interfaceeneity.hotel.ISearchHotelEntityImp;
+import sf.hotel.com.data.utils.PreferencesUtils;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.ISearchHotelView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 
@@ -16,17 +32,73 @@ public class ISearchHotelPresenter extends SuperPresenter {
 
     ISearchHotelView mISearchHotelView;
 
+
+    CompositeSubscription mCompositeSubscription;
     public ISearchHotelPresenter(ISearchHotelView mISearchHotelView) {
         this.mISearchHotelView = mISearchHotelView;
         mISearchHotelEntityImp = new ISearchHotelEntityImp();
+        mCompositeSubscription = new CompositeSubscription();
     }
 
     @Override
     public void destroy() {
-
+        if (mCompositeSubscription != null){
+            mCompositeSubscription.unsubscribe();
+        }
     }
 
-    public CityBean getCityBean() {
-        return mISearchHotelEntityImp.getCityBean(mISearchHotelView.getBottomContext());
+    public void getCityBean() {
+        CityBean cityBean = mISearchHotelEntityImp.getCityBean(mISearchHotelView.getBottomContext());
+
+        if (cityBean != null && cityBean.getName()!= null){
+            mISearchHotelView.getSearchItem().cityBean = cityBean;
+        }
+        mISearchHotelView.setTextCityName(mISearchHotelView.getSearchItem().cityBean.getName());
     }
+
+    public void getSearchDate(Intent data){
+        Bundle bundle = data.getExtras();
+        Date[] dates = (Date[]) bundle.getSerializable("dates");
+        mISearchHotelView.setSearchTimer(dates);
+    }
+
+
+    public void callCityList() {
+        Subscription subscribe = mISearchHotelEntityImp.callCityList()
+                .subscribe(new Action1<ProvincesResult>() {
+                    @Override
+                    public void call(ProvincesResult provincesResult) {
+                        if (provincesResult != null){
+                            mISearchHotelEntityImp.saveProvincesResult(mISearchHotelView.getBottomContext(),
+                                    provincesResult);
+                        }
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        //handlingException(throwable);
+                    }
+                });
+        mCompositeSubscription.add(subscribe);
+    }
+
+    public SearchItem getSearchItem(Context context){
+       return mISearchHotelEntityImp.getSearchItem(context);
+    }
+
+    public void saveSearchItem(){
+        mISearchHotelEntityImp.saveSearchItem(mISearchHotelView.getBottomContext(), mISearchHotelView.getSearchItem());
+    }
+
+    public void loadSearchItem() {
+        SearchItem searchItem = getSearchItem(mISearchHotelView.getBottomContext());
+        if (searchItem == null){
+            searchItem = new SearchItem();
+            if (searchItem.cityBean == null){
+                searchItem.cityBean = new CityBean();
+            }
+        }
+        mISearchHotelView.setSearchItem(searchItem);
+    }
+
 }

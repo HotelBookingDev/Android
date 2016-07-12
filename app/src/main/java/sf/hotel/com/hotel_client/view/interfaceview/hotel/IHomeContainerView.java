@@ -2,6 +2,7 @@ package sf.hotel.com.hotel_client.view.interfaceview.hotel;
 
 import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.ProvincesResult;
+import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
 
 /**
@@ -13,4 +14,8 @@ public interface IHomeContainerView extends BaseView {
     void setTextCityName(String cityName);
 
     void setCityBean(CityBean mCityBean);
+
+    SearchItem getmSearchItem();
+
+    void setmSearchItem(SearchItem mSearchItem);
 }

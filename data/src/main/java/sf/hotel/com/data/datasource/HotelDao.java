@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 
 import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.ProvincesResult;
+import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.data.utils.PreferencesUtils;
 
@@ -40,7 +41,6 @@ public class HotelDao{
         PreferencesUtils.saveCitysBean(context, citysJson);
     }
 
-
     public static void saveProcincesResult(Context context, ProvincesResult provincesResult){
         Gson gson = new Gson();
         String s = gson.toJson(provincesResult);
@@ -51,5 +51,16 @@ public class HotelDao{
         Gson gson = new Gson();
         String procincesResult = PreferencesUtils.getProcincesResult(context);
         return gson.fromJson(procincesResult, ProvincesResult.class);
+    }
+
+    public static SearchItem getSearchItem(Context context){
+        Gson gson = new Gson();
+        String searchItem = PreferencesUtils.getSearchItem(context);
+        return gson.fromJson(searchItem, SearchItem.class);
+    }
+    public static void saveSearchItem(Context context,SearchItem searchItem){
+        Gson gson = new Gson();
+        String s = gson.toJson(searchItem);
+        PreferencesUtils.saveSearchItem(context, s);
     }
 }
