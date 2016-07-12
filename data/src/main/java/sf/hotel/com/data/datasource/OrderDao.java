@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import rx.Observable;
+import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.entity.Order;
 
 /**
@@ -41,18 +42,16 @@ public class OrderDao {
         }
     }
 
-    public static List<Order> getOrder(Context context, int position, long userId) {
+    public static List<Order> getOrder(Context context, boolean isClose, long userId) {
         List<Order> mLists = null;
-        if (position == Order.ALRADYORDER || position == Order.NOTORDER) {
-            try {
-                QueryBuilder<Order, Integer> orderIntegerQueryBuilder = DatabaseHelper.getHelper(
-                        context).getOrders().queryBuilder();
-                orderIntegerQueryBuilder.where().eq("state", position);
-                orderIntegerQueryBuilder.where().eq("user_id", userId);
-                mLists = orderIntegerQueryBuilder.query();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        try {
+            QueryBuilder<Order, Integer> orderIntegerQueryBuilder = DatabaseHelper.getHelper(
+                    context).getOrders().queryBuilder();
+            orderIntegerQueryBuilder.where().eq("closed", isClose);
+            orderIntegerQueryBuilder.where().eq("user_id", userId);
+            mLists = orderIntegerQueryBuilder.query();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return mLists;
     }
@@ -63,6 +62,7 @@ public class OrderDao {
                 .filter(orderAndHotel -> mOrder.getHotelShot() ==
                         null ? Boolean.FALSE : Boolean.TRUE)
                 .subscribe(orderAndHotel -> {
+                    mOrder.setUserId(EntityContext.getInstance().getmCurrentUser().getUserId());
                     mOrder.getHotelShot().setId(mOrder.getOrder_num());
                 });
     }

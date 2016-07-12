@@ -40,7 +40,11 @@ public class OrderManager {
 
     private List<Order> initDatas(Context context, List<Order> mlists, int position, long userId) {
         if (mlists == null) {
-            mlists = OrderDao.getOrder(context, position, userId);
+            if (position == Order.ALRADYORDER) {
+                mlists = OrderDao.getOrder(context, true, userId);
+            } else if (position == Order.NOTORDER) {
+                mlists = OrderDao.getOrder(context, false, userId);
+            }
         }
         return mlists;
     }

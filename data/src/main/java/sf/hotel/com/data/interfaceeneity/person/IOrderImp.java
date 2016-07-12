@@ -6,7 +6,6 @@ import java.util.List;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.entity.Order;
@@ -22,6 +21,8 @@ import sf.hotel.com.data.net.ApiWrapper;
 public class IOrderImp implements IOrder {
     OrderManager mOrderManager;
 
+    private boolean isDownLoad = false;
+
     public IOrderImp() {
         mOrderManager = new OrderManager();
     }
@@ -33,6 +34,10 @@ public class IOrderImp implements IOrder {
     }
 
     public Observable<List<Order>> getOrderByNet(Context context, int position) {
+        if (isDownLoad) {
+            return Observable.just(mOrderManager.getOrders(context, position,
+                    EntityContext.getInstance().getmCurrentUser().getUserId()));
+        }
         return ApiWrapper.getInstance()
                 .getOrderManager()
                 .filter(orderManagerResult -> orderManagerResult ==
@@ -46,6 +51,9 @@ public class IOrderImp implements IOrder {
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(orderManager -> mOrderManager.getOrders(context, position,
-                        EntityContext.getInstance().getmCurrentUser().getUserId()));
+                        EntityContext.getInstance().getmCurrentUser().getUserId()))
+                .doOnNext(list -> {
+                    isDownLoad = true;
+                });
     }
 }
