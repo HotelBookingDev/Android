@@ -17,5 +17,7 @@ public final class Code {
     public static final int SMS_CODE_NULL = 107;
     public static final int PW_NULL = 108;
     public static final int INTALLATIONIDISEXIT = -100;
+
+    public static final int INTALLATIONIDNOREGISTR =208;
 }
 

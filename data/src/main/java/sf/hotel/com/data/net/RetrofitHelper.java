@@ -1,5 +1,6 @@
 package sf.hotel.com.data.net;
 
+import java.net.HttpURLConnection;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;

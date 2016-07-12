@@ -3,6 +3,7 @@ package sf.hotel.com.data.interfaceeneity.login;
 import android.content.Context;
 
 import rx.Observable;
+import sf.hotel.com.data.entity.Intallation;
 import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.entity.netresult.NormalResult;
 
@@ -32,4 +33,6 @@ public interface ILRCommend {
     void upDateUserInfo(Context context, UserEntity entity);
 
     Observable<NormalResult> postInllation(String deviceType, String phoneNum, String id);
+
+    Observable<NormalResult> postIntallation(Intallation intallation);
 }
