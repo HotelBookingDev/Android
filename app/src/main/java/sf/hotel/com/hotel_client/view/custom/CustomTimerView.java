@@ -21,8 +21,6 @@ public class CustomTimerView extends RelativeLayout {
 
     HotelSearchTitle mStartView, mEndView;
 
-    TextView mAllTime;
-
     Date[] dates = new Date[2];
 
     public CustomTimerView(Context context) {
@@ -43,7 +41,6 @@ public class CustomTimerView extends RelativeLayout {
 
         mStartView = (HotelSearchTitle) view.findViewById(R.id.custom_timer_start);
         mEndView = (HotelSearchTitle) view.findViewById(R.id.custom_timer_end);
-        mAllTime = (TextView) view.findViewById(R.id.custom_timer_all);
         setTimer(dates[0], dates[1]);
     }
 
@@ -51,7 +48,7 @@ public class CustomTimerView extends RelativeLayout {
         dates[0] = start;
         dates[1] = end;
 
-        SimpleDateFormat format = new SimpleDateFormat("MM月dd日");
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd");
 
         SimpleDateFormat formatE = new SimpleDateFormat("E");
 
@@ -61,7 +58,7 @@ public class CustomTimerView extends RelativeLayout {
         String startWeek = formatE.format(start);
         String endWeek = formatE.format(end);
 
-        int time = (int) ((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
+        //int time = (int) ((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
 
         mStartView.setContentText(startTime);
         mEndView.setContentText(endTime);
@@ -69,7 +66,6 @@ public class CustomTimerView extends RelativeLayout {
         mStartView.setDesText(startWeek);
         mEndView.setDesText(endWeek);
 
-        mAllTime.setText(String.valueOf(time) + "晚");
     }
 
     public Date[] getTimer() {

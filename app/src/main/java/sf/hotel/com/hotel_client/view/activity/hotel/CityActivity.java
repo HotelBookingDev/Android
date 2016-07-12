@@ -30,10 +30,10 @@ public class CityActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city);
         ButterKnife.bind(this);
-        init();
+
         onRxEvent();
 
-
+        init();
         mHotelTitleView.addLeftClick(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
