@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import rx.Observable;
-import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.entity.Order;
 
 /**
@@ -47,8 +46,7 @@ public class OrderDao {
         try {
             QueryBuilder<Order, Integer> orderIntegerQueryBuilder = DatabaseHelper.getHelper(
                     context).getOrders().queryBuilder();
-            orderIntegerQueryBuilder.where().eq("closed", isClose);
-            orderIntegerQueryBuilder.where().eq("user_id", userId);
+            orderIntegerQueryBuilder.where().eq("closed", isClose).and().eq("user_id", userId);
             mLists = orderIntegerQueryBuilder.query();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -62,7 +60,6 @@ public class OrderDao {
                 .filter(orderAndHotel -> mOrder.getHotelShot() ==
                         null ? Boolean.FALSE : Boolean.TRUE)
                 .subscribe(orderAndHotel -> {
-                    mOrder.setUserId(EntityContext.getInstance().getmCurrentUser().getUserId());
                     mOrder.getHotelShot().setId(mOrder.getOrder_num());
                 });
     }

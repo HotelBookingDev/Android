@@ -89,9 +89,14 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
             mAdapter.setmUserOrderClick(this::showDialog);
         } else {
             mAdapter.setOrders(mOrders);
-            mAdapter.notifyDataSetChanged();
         }
         mRecyclerview.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public int getPosition() {
+        return position;
     }
 
     private void showDialog(Order order) {

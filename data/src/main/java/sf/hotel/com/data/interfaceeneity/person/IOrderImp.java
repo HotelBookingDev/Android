@@ -48,9 +48,6 @@ public class IOrderImp implements IOrder {
                         EntityContext.getInstance().getmCurrentUser().getUserId()))
                 .doOnNext(orderManager -> mOrderManager.update(context, orderManager,
                         EntityContext.getInstance().getmCurrentUser().getUserId()))
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
                 .map(orderManager -> mOrderManager.getOrders(context, position,
                         EntityContext.getInstance().getmCurrentUser().getUserId()))
                 .doOnNext(list -> {

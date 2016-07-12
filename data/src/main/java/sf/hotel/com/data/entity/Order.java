@@ -14,7 +14,7 @@ public class Order {
     public static final int ALRADYORDER = 0x1;
     public static final int NOTORDER = 0x0;
     @DatabaseField(columnName = "user_id")
-    @SerializedName("user_id")
+    @SerializedName("customer")
     public long userId;
 
     public boolean isClosed() {
@@ -30,7 +30,7 @@ public class Order {
         return order_num;
     }
 
-    @DatabaseField(generatedId = true, columnName = "number")
+    @DatabaseField(id = true, unique = true, columnName = "number")
     @SerializedName("number")
     private long order_num;
     //    订单的状态
@@ -46,7 +46,7 @@ public class Order {
     @SerializedName("closed")
     private boolean isClosed;
     @SerializedName("hotelpackageordersnapshot")
-    @DatabaseField(foreign = true, foreignAutoRefresh = true)
+    @DatabaseField(foreign = true, foreignColumnName = "id", columnName = "shot_id")
     private Hotelshot snapshot;
 
     public Hotelshot getHotelShot() {

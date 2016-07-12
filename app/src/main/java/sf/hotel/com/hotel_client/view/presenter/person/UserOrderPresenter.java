@@ -33,7 +33,10 @@ public class UserOrderPresenter extends SuperPresenter {
                 .flatMap(orderAndHotels -> mIorder.getOrderByNet(mIUserOrderView.getBottomContext(),
                         position))
                 .subscribe(orderAndHotels -> {
-                    mIUserOrderView.showOrder(orderAndHotels);
+//                    异步加载完成判断当前显示是否是开始点击时候需要查看的订单列表
+                    if (mIUserOrderView.getPosition() == position) {
+                        mIUserOrderView.showOrder(orderAndHotels);
+                    }
                 }, this::handlingException);
     }
 
