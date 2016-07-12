@@ -87,6 +87,8 @@
     <string name="room_money">房间价格</string>
     <string name="package_details">套餐详情</string>
 
+    <string name="list_hotel">酒店列表</string>
+
     <string name="search">搜索</string>
     <string name="in_hotel_time">入住日期</string>
     <string name="out_hotel_time">退房日期</string>

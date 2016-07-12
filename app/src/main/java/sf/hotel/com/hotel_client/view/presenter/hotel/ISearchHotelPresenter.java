@@ -96,10 +96,11 @@ public class ISearchHotelPresenter extends SuperPresenter {
 
     public void loadSearchItem() {
         SearchItem searchItem = getSearchItem(mISearchHotelView.getBottomContext());
-        if (searchItem != null){
-            mISearchHotelView.setSearchItem(searchItem);
+        if (searchItem == null){
+            searchItem = new SearchItem();
         }
-
+        mISearchHotelView.setSearchItem(searchItem);
+        mISearchHotelView.setTextCityName(searchItem.cityBean.getName());
     }
 
 }

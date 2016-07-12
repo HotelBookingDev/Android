@@ -35,26 +35,6 @@ public class IHomePresenter extends SuperPresenter {
         mCompositeSubscription = new CompositeSubscription();
     }
 
-
-    public void loadCitysBeanCache() {
-        CityBean cityBean = HotelDao.getCitysBean(
-                iHomeContainerView.getBottomContext());
-        if (cityBean != null && !TextUtils.isEmpty(cityBean.getName())) {
-            iHomeContainerView.setTextCityName(cityBean.getName());
-            iHomeContainerView.setCityBean(cityBean);
-        } else {
-            String cityCode = PreferencesUtils.getCityCode(iHomeContainerView.getBottomContext());
-            String cityName = PreferencesUtils.getCityName(iHomeContainerView.getBottomContext());
-            if (cityCode != null && cityName != null) {
-                iHomeContainerView.setTextCityName(cityName);
-                cityBean = new CityBean();
-                cityBean.setName(cityName);
-                cityBean.setId(Integer.valueOf(cityCode));
-                iHomeContainerView.setCityBean(cityBean);
-            }
-        }
-    }
-
     public void saveCityBean(CityBean cityBean) {
         HotelDao.saveCitysBean(iHomeContainerView.getBottomContext(), cityBean);
     }

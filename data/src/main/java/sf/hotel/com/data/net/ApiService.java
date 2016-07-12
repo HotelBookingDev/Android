@@ -4,10 +4,12 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 import rx.Observable;
+import sf.hotel.com.data.entity.HotelBookResult;
 import sf.hotel.com.data.entity.Intallation;
 import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.data.entity.netresult.HotelResult;
@@ -17,6 +19,7 @@ import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.entity.netresult.TokenResult;
 import sf.hotel.com.data.entity.netresult.person.OrderManagerResult;
 
+import static sf.hotel.com.data.net.HttpParam.AUTHORIZATION;
 import static sf.hotel.com.data.net.HttpParam.CHECK_IN_TIME;
 import static sf.hotel.com.data.net.HttpParam.CHECK_OUT_TIME;
 import static sf.hotel.com.data.net.HttpParam.CITY_ID;
@@ -26,6 +29,7 @@ import static sf.hotel.com.data.net.HttpParam.INSTALLATION_CODE;
 import static sf.hotel.com.data.net.HttpParam.PAGE;
 import static sf.hotel.com.data.net.HttpParam.PASSWORD;
 import static sf.hotel.com.data.net.HttpParam.PHONE_NUMBER;
+import static sf.hotel.com.data.net.HttpParam.PRODUCTID;
 import static sf.hotel.com.data.net.HttpParam.SMS_CODE;
 
 /**
@@ -67,6 +71,14 @@ public interface ApiService {
                                                            @Query(CHECK_IN_TIME) String in,
                                                            @Query(CHECK_OUT_TIME) String out,
                                                            @Query(EXCLUDE) String exclude);
+
+
+    @POST(AppUrl.HOTELS_BOOK_URL)
+    Observable<HttpResult<HotelBookResult>> callHotelBook(@Header(AUTHORIZATION) String auth,
+                                                          @Field(PRODUCTID) String productId,
+                                                          @Field(CHECK_IN_TIME) String inTime,
+                                                          @Field(CHECK_OUT_TIME) String outTime);
+
 
     //获取TOKEN
     @GET(AppUrl.TOKEN_URL)

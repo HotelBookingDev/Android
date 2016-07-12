@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <include
-        android:layout_height="50dp"
-        android:layout_width="match_parent"
-        layout="@layout/custom_title"
-        android:id="@+id/fragment_detail_title"/>
 
-    <!--<FrameLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="200dp"-->
-        <!--android:id="@+id/fragment_container_hor_home_frame"-->
-        <!--/>-->
+    <sf.hotel.com.hotel_client.view.custom.HotelTitleView
+        android:id="@+id/fragment_container_home_title"
+        style="@style/view_title"
+        app:titleText="@string/list_hotel"
+        app:leftBtnIcon="@mipmap/ic_title_back_arrow"
+        app:rightBtnIcon="@mipmap/ic_search_white_36dp"
+        />
+
 
     <FrameLayout
         android:layout_width="match_parent"

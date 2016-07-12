@@ -11,7 +11,6 @@ import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
  * email: 1105896230@qq.com
  */
 public interface IHomeContainerView extends BaseView {
-    void setTextCityName(String cityName);
 
     void setCityBean(CityBean mCityBean);
 

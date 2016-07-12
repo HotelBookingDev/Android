@@ -3,6 +3,7 @@ package sf.hotel.com.data.net;
 import com.google.gson.Gson;
 
 import rx.Observable;
+import sf.hotel.com.data.entity.HotelBookResult;
 import sf.hotel.com.data.entity.Intallation;
 import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.data.entity.netresult.HotelResult;
@@ -96,6 +97,21 @@ public class ApiWrapper extends RetrofitHelper {
         return mService.callHotelsByCityId(cityId, page, inTime, outTime, exclude)
                 .compose(this.<HotelResult>applySchedulers());
     }
+
+
+    /**
+     *
+     * @param auth 授权
+     * @param productId 商品id
+     * @param inTime 开始时间
+     * @param outTime 结束时间
+     * @return
+     */
+    public Observable<HotelBookResult> callHotelBook(String auth, String productId, String inTime, String outTime){
+        return mService.callHotelBook(auth, productId, inTime, outTime)
+                .compose(this.<HotelBookResult>applySchedulers());
+    }
+
 
     public Observable<TokenResult> getTokenResult() {
         return mService.getTokenResult().compose(this.<TokenResult>applySchedulers());

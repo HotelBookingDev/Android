@@ -64,7 +64,6 @@ public class RoomFragment extends BaseFragment implements IRoomView {
 
     DialogPlus dialogPlus, phoneDialog;
 
-
     HideTitle mTitle;
 
     @BindView(R.id.frag_room_scrollview)
