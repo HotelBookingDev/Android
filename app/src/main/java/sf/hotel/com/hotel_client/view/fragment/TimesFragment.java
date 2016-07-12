@@ -85,4 +85,6 @@ public class TimesFragment extends BaseFragment {
         mCalendarView.init(new Date(), nextYear.getTime()) //
                 .inMode(CalendarPickerView.SelectionMode.RANGE);//
     }
+
+
 }

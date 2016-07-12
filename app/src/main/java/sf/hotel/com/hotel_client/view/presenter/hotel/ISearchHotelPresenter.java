@@ -1,5 +1,6 @@
 package sf.hotel.com.hotel_client.view.presenter.hotel;
 
+import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.interfaceeneity.hotel.ISearchHotelEntityImp;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.ISearchHotelView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
@@ -23,5 +24,9 @@ public class ISearchHotelPresenter extends SuperPresenter {
     @Override
     public void destroy() {
 
+    }
+
+    public CityBean getCityBean() {
+        return mISearchHotelEntityImp.getCityBean(mISearchHotelView.getBottomContext());
     }
 }

@@ -6,25 +6,24 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import me.yokeyword.fragmentation.SupportFragment;
-import mehdi.sakout.fancybuttons.FancyButton;
 import rx.Subscription;
 import rx.functions.Action1;
+import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.activity.hotel.CityActivity;
 import sf.hotel.com.hotel_client.view.activity.hotel.HotelsActivity;
 import sf.hotel.com.hotel_client.view.activity.hotel.TimesActivity;
+import sf.hotel.com.hotel_client.view.custom.CustomSearchItem;
 import sf.hotel.com.hotel_client.view.custom.CustomTimerView;
-import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.SearchHotelMessage;
-import sf.hotel.com.hotel_client.view.event.hotel.TimerMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.ISearchHotelView;
 import sf.hotel.com.hotel_client.view.presenter.hotel.ISearchHotelPresenter;
@@ -38,13 +37,20 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
 
     public static final int REQUEST_TIMER = 1001;
 
+    public static final int REQUEST_CITY = 1002;
+
     @BindView(R.id.search_hotel)
-    FancyButton search_hotel;
+    Button search_hotel;
 
     @BindView(R.id.fragment_search_hotel_timer)
     CustomTimerView mTimerView;
 
+    @BindView(R.id.fragment_search_hotel_city)
+    CustomSearchItem mSearchCity;
+
     ISearchHotelPresenter mISearchHotelPresenter;
+
+    CityBean cityBean;
 
     public static SearchHotelFragment newInstance() {
 
@@ -61,9 +67,8 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
                              @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_search_hotle, container, false);
-
-        mISearchHotelPresenter = new ISearchHotelPresenter(this);
         ButterKnife.bind(this, view);
+        mISearchHotelPresenter = new ISearchHotelPresenter(this);
 
         onRxEvent();
 
@@ -84,19 +89,28 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
     }
 
     @OnClick({R.id.search_hotel,
-            R.id.fragment_search_hotel_timer})
+            R.id.fragment_search_hotel_timer,
+            R.id.fragment_search_hotel_city})
     public void onViewClick(View v){
         switch (v.getId()){
             case R.id.search_hotel:
                 showHotel();
                 break;
             case R.id.fragment_search_hotel_timer:
-
                 showTimer();
+                break;
+            case R.id.fragment_search_hotel_city:
+                showCities();
 
                 break;
         }
 
+    }
+
+    private void showCities() {
+        Intent intent = new Intent(getBottomContext(), CityActivity.class);
+        intent.putExtra("action", "search_city");
+        startActivityForResult(intent, REQUEST_CITY);
     }
 
     private void showTimer() {
@@ -113,8 +127,19 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
             Date[] dates = (Date[]) bundle.getSerializable("dates");
             assert dates != null;
             mTimerView.setTimer(dates[0], dates[1]);
+        }else if (requestCode == REQUEST_CITY){
+            CityBean cityBean = mISearchHotelPresenter.getCityBean();
+            if (cityBean != null && cityBean.getName()!= null){
+                this.cityBean = cityBean;
+            }
+            setTextCityName(this.cityBean.getName());
         }
     }
+
+    public void setTextCityName(String name) {
+        mSearchCity.setLeftTextStr(name);
+    }
+
 
     private void showHotel() {
         Intent intent = new Intent(getBottomContext(), HotelsActivity.class);

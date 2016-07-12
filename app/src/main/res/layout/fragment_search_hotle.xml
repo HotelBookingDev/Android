@@ -12,45 +12,56 @@
         style="@style/view_title"
         app:titleText="@string/search_hotel" />
 
-    <sf.hotel.com.hotel_client.view.custom.HotelSearchTitle
+    <sf.hotel.com.hotel_client.view.custom.CustomSearchItem
         android:layout_width="match_parent"
-        android:layout_height="@dimen/btn_height"
-        app:tag_text="目的地"
-        app:hotel_title_content_text="宁波"
-        app:des_text=""
+        android:layout_height="@dimen/search_item_height"
+        android:layout_marginLeft="@dimen/search_margin"
+        android:layout_marginRight="@dimen/search_margin"
+        android:layout_marginTop="@dimen/search_margin_top"
+        android:background="@drawable/item_bj"
+        app:custom_item_img="@mipmap/close_circle_48px"
+        app:custom_item_text1="2个成人"
+        android:id="@+id/fragment_search_hotel_city"
         />
+
 
     <include layout="@layout/item_line"/>
 
     <sf.hotel.com.hotel_client.view.custom.CustomTimerView
+        android:gravity="center"
+        android:layout_marginLeft="@dimen/search_margin"
+        android:layout_marginRight="@dimen/search_margin"
         android:id="@+id/fragment_search_hotel_timer"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/btn_height"/>
-
+        android:layout_height="@dimen/search_timer_height"
+        android:background="@drawable/item_bj"
+        />
+    <include layout="@layout/item_line"/>
 
     <include layout="@layout/item_line"/>
 
-    <sf.hotel.com.hotel_client.view.custom.HotelSearchItem
+    <sf.hotel.com.hotel_client.view.custom.CustomSearchItem
         android:layout_width="match_parent"
-        android:layout_height="@dimen/btn_height"
-        app:hint="关键词/位置/品牌/酒店名"
+        android:layout_height="@dimen/search_item_height"
+        android:layout_marginLeft="@dimen/search_margin"
+        android:layout_marginRight="@dimen/search_margin"
+        app:custom_item_img="@mipmap/close_circle_48px"
+        app:custom_item_text1="2个成人"
+        app:custom_item_text2="0个小孩"
+        app:custom_item_style="1"
+        android:background="@drawable/item_bj"
         />
 
-    <include layout="@layout/item_line"/>
-    <sf.hotel.com.hotel_client.view.custom.HotelSearchItem
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/btn_height"
-        app:hint="价格/星级"
-        />
-
-    <include layout="@layout/item_line"/>
-    <mehdi.sakout.fancybuttons.FancyButton
+    <Button
         android:id="@+id/search_hotel"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/btn_height"
-        fancy:fb_defaultColor="@color/white"
-        fancy:fb_focusColor="@color/bg_person"
-        fancy:fb_text="@string/search_hotel"
-        fancy:fb_textColor="@color/black" />
+        android:layout_height="@dimen/search_item_height"
+        android:background="@drawable/item_bj"
+        android:layout_marginLeft="@dimen/search_margin"
+        android:layout_marginRight="@dimen/search_margin"
+        android:text="@string/search"
+        android:textSize="20sp"
+        android:textColor="@color/title_gray"
+        />
 
 </LinearLayout>
