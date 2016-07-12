@@ -1,6 +1,10 @@
 package sf.hotel.com.data.interfaceeneity;
 
+import android.content.Context;
+
 import rx.Observable;
+import sf.hotel.com.data.datasource.HotelDao;
+import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 
 /**
@@ -10,5 +14,7 @@ import sf.hotel.com.data.entity.netresult.HotelResult;
  */
 interface IHotelsEntity {
 
-    Observable<HotelResult> callHotelsByCityId(String cityId, String page);
+    Observable<HotelResult> callHotelsByCityId(SearchItem searchItem,String page, String exclude);
+    SearchItem getSearchItem(Context context);
+    void saveSearchItem(Context context,SearchItem searchItem);
 }

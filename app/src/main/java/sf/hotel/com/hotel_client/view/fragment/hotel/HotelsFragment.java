@@ -43,10 +43,9 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
     @BindView(R.id.fragment_hotels_list)
     PullToRefreshRecyclerView mPullView;
 
-    static volatile SearchItem mSearchItem;
+    SearchItem mSearchItem;
 
-    public static HotelsFragment newInstance(SearchItem searchItem) {
-        mSearchItem = searchItem;
+    public static HotelsFragment newInstance() {
         Bundle args = new Bundle();
 
         HotelsFragment fragment = new HotelsFragment();
@@ -67,10 +66,16 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         View view = inflater.inflate(R.layout.fragment_hotels, container, false);
         ButterKnife.bind(this, view);
         mIHotelPresenter = new IHotelPresenter(this);
+
+        initCache();
         initPullView();
         onRxEvent();
         initHotelCache();
         return view;
+    }
+
+    private void initCache() {
+        mIHotelPresenter.loadSearchItem();
     }
 
     private void initHotelCache() {
@@ -78,7 +83,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         if (hotelCache != null) {
             mPullAdapter.setList(hotelCache.getHotels());
         }
-        mIHotelPresenter.callHotelsByCityId(String.valueOf(mSearchItem.cityBean.getId()), "1");
+        mIHotelPresenter.callHotelsByCityId("1");
     }
 
     private void onRxEvent() {
@@ -92,8 +97,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                                 CityBean cityBean = (CityBean) hotelMessage.obj;
                                 mSearchItem.cityBean.setId(cityBean.getId());
                                 mSearchItem.cityBean.setName(cityBean.getName());
-                                mIHotelPresenter.callHotelsByCityId(
-                                        String.valueOf(mSearchItem.cityBean.getId()), "1");
+                                mIHotelPresenter.callHotelsByCityId("1");
                                 break;
                         }
                     }
@@ -117,7 +121,6 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        mPullAdapter.setCount(mPullAdapter.getItemCount() + 20);
                         mPullAdapter.notifyDataSetChanged();
                         mPullView.onFinishLoading(true, false);
                         showLog("show");
@@ -143,7 +146,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        mIHotelPresenter.callHotelsByCityId(String.valueOf(mSearchItem.cityBean.getId()), "1");
+                        mIHotelPresenter.callHotelsByCityId("1");
                         mPullView.setOnRefreshComplete();
                         mPullView.onFinishLoading(true, false);
                     }
@@ -155,9 +158,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         mPullAdapter.setOnItemClickLitener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
                 HotelsBean itemByPos = mPullAdapter.getItemByPos(position);
-
                 showDetail(itemByPos);
             }
 
@@ -195,5 +196,13 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
     @Override
     public void setHotelAdapterList(HotelResult hotelResult) {
         mPullAdapter.setList(hotelResult.getHotels());
+    }
+
+    public SearchItem getSearchItem() {
+        return mSearchItem;
+    }
+
+    public void setSearchItem(SearchItem mSearchItem) {
+        this.mSearchItem = mSearchItem;
     }
 }

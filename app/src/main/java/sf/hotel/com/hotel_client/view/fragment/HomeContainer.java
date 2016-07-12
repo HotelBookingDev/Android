@@ -69,12 +69,12 @@ public class HomeContainer extends BaseFragment implements IHomeContainerView {
         View view = inflater.inflate(R.layout.fragment_container_home, container, false);
         ButterKnife.bind(this, view);
         mIHomePresenter = new IHomePresenter(this);
-        initView();
+        initCache();
         init(savedInstanceState);
         return view;
     }
 
-    private void initView() {
+    private void initCache() {
         //这是加载当前信息
         mIHomePresenter.loadSearchItem();
     }
@@ -82,7 +82,7 @@ public class HomeContainer extends BaseFragment implements IHomeContainerView {
     private void init(@Nullable Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             loadRootFragment(R.id.fragment_container_home_frame,
-                    HotelsFragment.newInstance(mSearchItem));
+                    HotelsFragment.newInstance());
         }
     }
 

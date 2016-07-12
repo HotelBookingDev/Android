@@ -13,11 +13,11 @@ import java.util.Date;
 public class SearchItem implements Parcelable{
 
 
-    public Date inTime;
-    public Date outTime;
-    public CityBean cityBean;
-    public int adultCount;
-    public int childCount;
+    public Date inTime = new Date(System.currentTimeMillis());
+    public Date outTime = new Date(System.currentTimeMillis());
+    public CityBean cityBean = new CityBean();
+    public int adultCount = 0;
+    public int childCount = 0;
 
 
     public SearchItem(){}

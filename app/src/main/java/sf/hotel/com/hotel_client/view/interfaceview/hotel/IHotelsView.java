@@ -1,5 +1,6 @@
 package sf.hotel.com.hotel_client.view.interfaceview.hotel;
 
+import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
 
@@ -10,4 +11,8 @@ import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
  */
 public interface IHotelsView  extends BaseView {
     void setHotelAdapterList(HotelResult hotelResult);
+
+    SearchItem getSearchItem();
+
+    void setSearchItem(SearchItem mSearchItem);
 }

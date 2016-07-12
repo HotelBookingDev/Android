@@ -60,6 +60,10 @@ public class ISearchHotelPresenter extends SuperPresenter {
         Bundle bundle = data.getExtras();
         Date[] dates = (Date[]) bundle.getSerializable("dates");
         mISearchHotelView.setSearchTimer(dates);
+        assert dates != null;
+        mISearchHotelView.getSearchItem().inTime = dates[0];
+        mISearchHotelView.getSearchItem().outTime = dates[1];
+
     }
 
 
@@ -92,13 +96,10 @@ public class ISearchHotelPresenter extends SuperPresenter {
 
     public void loadSearchItem() {
         SearchItem searchItem = getSearchItem(mISearchHotelView.getBottomContext());
-        if (searchItem == null){
-            searchItem = new SearchItem();
-            if (searchItem.cityBean == null){
-                searchItem.cityBean = new CityBean();
-            }
+        if (searchItem != null){
+            mISearchHotelView.setSearchItem(searchItem);
         }
-        mISearchHotelView.setSearchItem(searchItem);
+
     }
 
 }

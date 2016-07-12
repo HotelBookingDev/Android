@@ -2,8 +2,11 @@ package sf.hotel.com.data.interfaceeneity;
 
 import android.content.Context;
 
+import java.text.SimpleDateFormat;
+
 import rx.Observable;
 import sf.hotel.com.data.datasource.HotelDao;
+import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.data.net.ApiWrapper;
 
@@ -24,9 +27,28 @@ public class HotelsEntityImp implements IHotelsEntity {
     }
 
     @Override
-    public Observable<HotelResult> callHotelsByCityId(String cityId, String page) {
+    public Observable<HotelResult> callHotelsByCityId(SearchItem searchItem, String page, String exclude) {
+
+        String cityId = String.valueOf(searchItem.cityBean.getId());
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+        String inTime = format.format(searchItem.inTime);
+        String outTime = format.format(searchItem.outTime);
+
+
         return ApiWrapper.getInstance()
-                .callHotelsByCityId(cityId, page, "", "", "")
+                .callHotelsByCityId(cityId, page, inTime, outTime, exclude)
                 ;
     }
+
+
+
+    public SearchItem getSearchItem(Context context){
+        return HotelDao.getSearchItem(context);
+    }
+    public void saveSearchItem(Context context,SearchItem searchItem){
+        HotelDao.saveSearchItem(context, searchItem);
+    }
+
 }

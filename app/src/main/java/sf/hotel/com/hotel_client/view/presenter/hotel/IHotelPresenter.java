@@ -2,6 +2,8 @@ package sf.hotel.com.hotel_client.view.presenter.hotel;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
+import sf.hotel.com.data.entity.CityBean;
+import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.data.interfaceeneity.HotelsEntityImp;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
@@ -42,8 +44,14 @@ public class IHotelPresenter extends SuperPresenter {
     }
 
 
-    public void callHotelsByCityId(String cityId, String page){
-        Subscription subscribe = mHotelsEntity.callHotelsByCityId(cityId, page).subscribe(new SimpleSubscriber<HotelResult>(mIHotelsView.getBottomContext()) {
+    public void callHotelsByCityId(String page){
+
+        SearchItem item = mIHotelsView.getSearchItem();
+
+        String ex = "";
+
+        Subscription subscribe = mHotelsEntity.callHotelsByCityId(item, page, ex)
+                .subscribe(new SimpleSubscriber<HotelResult>(mIHotelsView.getBottomContext()) {
             @Override
             public void onNext(HotelResult hotelResult) {
                 super.onNext(hotelResult);
@@ -61,6 +69,18 @@ public class IHotelPresenter extends SuperPresenter {
 
         mCompositeSubscription.add(subscribe);
     }
+
+    public void loadSearchItem() {
+        SearchItem searchItem = mHotelsEntity.getSearchItem(mIHotelsView.getBottomContext());
+        if (searchItem == null){
+            searchItem = new SearchItem();
+            if (searchItem.cityBean == null){
+                searchItem.cityBean = new CityBean();
+            }
+        }
+        mIHotelsView.setSearchItem(searchItem);
+    }
+
 
 
     @Override
