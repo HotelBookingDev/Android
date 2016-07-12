@@ -4,6 +4,7 @@ import android.content.Context;
 
 import rx.Observable;
 import sf.hotel.com.data.cache.UserCacheImpl;
+import sf.hotel.com.data.entity.Intallation;
 import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.net.ApiWrapper;
@@ -50,5 +51,10 @@ public class ILRCommendImp implements ILRCommend {
     public Observable<NormalResult> postInllation(String deviceType, String phoneNum,
             String invatllationId) {
         return ApiWrapper.getInstance().postIntalltion(deviceType, phoneNum, invatllationId);
+    }
+
+    @Override
+    public Observable<NormalResult> postIntallation(Intallation intallation) {
+        return ApiWrapper.getInstance().postIntallation(intallation);
     }
 }

@@ -9,6 +9,7 @@ import java.util.HashMap;
 import rx.Subscriber;
 import sf.hotel.com.data.entity.Intallation;
 import sf.hotel.com.data.entity.netresult.NormalResult;
+import sf.hotel.com.data.interfaceeneity.login.ILRCommend;
 import sf.hotel.com.data.interfaceeneity.login.ISplahImp;
 import sf.hotel.com.data.interfaceeneity.login.ISplashEntity;
 import sf.hotel.com.data.net.ApiWrapper;
@@ -20,6 +21,7 @@ import sf.hotel.com.data.utils.PreferencesUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.LocationHelper;
 import sf.hotel.com.hotel_client.view.activity.SplashActivity;
+import sf.hotel.com.hotel_client.view.interfaceview.login.ILRConmView;
 import sf.hotel.com.hotel_client.view.interfaceview.login.ISplashView;
 
 /**
@@ -103,12 +105,11 @@ public class ISplashPresenter extends ILRcomPresenter {
             view.startActivity(SplashActivity.LOGIN);
         }
     }
-
     //    重下登录成功保存信息出错
     @Override
-    public void loginError(Throwable throwable) {
-        super.loginError(throwable);
-        view.startActivity(SplashActivity.LOGIN);
+    public void loginError(Throwable throwable, ILRCommend commend, ILRConmView view) {
+        super.loginError(throwable, commend, view);
+        this.view.startActivity(SplashActivity.LOGIN);
     }
 
     @Override

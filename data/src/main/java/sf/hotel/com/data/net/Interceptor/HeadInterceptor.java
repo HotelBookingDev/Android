@@ -6,7 +6,10 @@ import java.io.IOException;
 
 import okhttp3.Interceptor;
 import okhttp3.Request;
+import rx.Observable;
 import sf.hotel.com.data.config.EntityContext;
+import sf.hotel.com.data.net.AppUrl;
+import sf.hotel.com.data.utils.CheckUtils;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.data.utils.PreferencesUtils;
 
@@ -20,9 +23,11 @@ public class HeadInterceptor implements Interceptor {
 
     @Override
     public okhttp3.Response intercept(okhttp3.Interceptor.Chain chain) throws IOException {
-        Request request = chain.request();
-        request = addToken(request);
-        okhttp3.Response response = chain.proceed(request);
+        final Request[] request = {chain.request()};
+        isAddToken(request[0].url().toString(), request[0]).subscribe(reques -> {
+            request[0] = reques;
+        });
+        okhttp3.Response response = chain.proceed(request[0]);
         saveToken(response);
         okhttp3.MediaType mediaType = response.body().contentType();
         String content = response.body().string();
@@ -32,7 +37,6 @@ public class HeadInterceptor implements Interceptor {
     private Request addToken(Request request) {
         String token = PreferencesUtils.getToken(EntityContext.getContext());
         if (!TextUtils.isEmpty(token)) {
-            LogUtils.d("token",token);
             //添加token
             Request.Builder requestBuilder = request.newBuilder()
                     .addHeader(TOEKNKEY, JWT + token)
@@ -49,5 +53,25 @@ public class HeadInterceptor implements Interceptor {
             token = token.trim();
             PreferencesUtils.saveToken(EntityContext.getContext(), token);
         }
+    }
+
+    private Observable<Request> isAddToken(String url, Request request) {
+        return Observable.just(url)
+                .filter(s -> !CheckUtils.isTextViewEmpty(url))
+                .map(s -> s.split(AppUrl.API_HOST))
+                .map(strings -> strings[1])
+                .filter(s -> !CheckUtils.isTextViewEmpty(s))
+                .filter(this::isNeed)
+                .map(s -> addToken(request));
+    }
+
+    private boolean isNeed(String url) {
+        boolean isNeed = false;
+        for (String s : AppUrl.NEEDTOKENURL) {
+            if (s.equals(url)) {
+                isNeed = true;
+            }
+        }
+        return isNeed;
     }
 }
