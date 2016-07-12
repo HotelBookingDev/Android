@@ -31,6 +31,5 @@ public class ICityEntityImp implements CityEntity {
     @Override
     public Observable<ProvincesResult> callCityList() {
         return ApiWrapper.getInstance().callCityList();
-
     }
 }

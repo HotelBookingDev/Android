@@ -63,7 +63,7 @@ public interface ApiService {
             @Query(PAGE) String page);
 
     //获取TOKEN
-    @POST(AppUrl.TOKEN_URL)
+    @GET(AppUrl.TOKEN_URL)
     Observable<HttpResult<TokenResult>> getTokenResult();
 
     @GET(AppUrl.PROVINCES_URL)
