@@ -9,7 +9,8 @@
     <sf.hotel.com.hotel_client.view.custom.caledarlistview.DayPickerView
         android:id="@+id/fragment_times_calendar_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         calendar:drawRoundRect="true"/>
 
     <mehdi.sakout.fancybuttons.FancyButton
