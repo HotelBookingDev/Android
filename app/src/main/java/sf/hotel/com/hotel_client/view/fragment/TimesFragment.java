@@ -5,13 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SimpleAdapter;
 
-import com.squareup.timessquare.CalendarCellDecorator;
-import com.squareup.timessquare.CalendarPickerView;
-
-import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 
 import butterknife.BindView;
@@ -63,11 +57,16 @@ public class TimesFragment extends BaseFragment {
     @OnClick(R.id.fragment_times_submit)
     public void onSubmitClick() {
         SimpleMonthAdapter.SelectedDays<SimpleMonthAdapter.CalendarDay> selectedDays = mCalendarView.getSelectedDays();
-
         SelectDates selectDates = new SelectDates();
+        if (selectedDays.getFirst() != null
+                && selectedDays.getLast() != null){
+            if (selectedDays.getFirst().getDate() != null
+                    && selectedDays.getLast().getDate() != null){
+                selectDates.dates.add(selectedDays.getFirst().getDate());
+                selectDates.dates.add(selectedDays.getLast().getDate());
+            }
 
-        selectDates.dates.add(selectedDays.getFirst().getDate());
-        selectDates.dates.add(selectedDays.getLast().getDate());
+        }
 
         RxBus.getDefault().post(MessageFactory.createTimerMessage(TimerMessage.REQUEST_SEARCH_HOTEL, selectDates));
 

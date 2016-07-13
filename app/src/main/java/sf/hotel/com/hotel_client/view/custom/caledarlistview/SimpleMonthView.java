@@ -236,16 +236,23 @@ class SimpleMonthView extends View
                 else
                     canvas.drawCircle(x, y - MINI_DAY_NUMBER_TEXT_SIZE / 3, DAY_SELECTED_CIRCLE_SIZE, mSelectedCirclePaint);
             }
-            if (mHasToday && (mToday == day)) {
-                mMonthNumPaint.setColor(mCurrentDayTextColor);
-                mMonthNumPaint.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-            } else if (day < mToday){
-                mMonthNumPaint.setColor(mHideDayTextColor);
-                mMonthNumPaint.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+
+            if(mHasToday){
+                if (mToday == day){
+                    mMonthNumPaint.setColor(mCurrentDayTextColor);
+                    mMonthNumPaint.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+                } else if (day < mToday){
+                    mMonthNumPaint.setColor(mHideDayTextColor);
+                    mMonthNumPaint.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                } else {
+                    mMonthNumPaint.setColor(mDayNumColor);
+                    mMonthNumPaint.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                }
             } else {
-				mMonthNumPaint.setColor(mDayNumColor);
+                mMonthNumPaint.setColor(mDayNumColor);
                 mMonthNumPaint.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
             }
+
 
             if ((mMonth == mSelectedBeginMonth && mSelectedBeginDay == day && mSelectedBeginYear == mYear) || (mMonth == mSelectedLastMonth && mSelectedLastDay == day && mSelectedLastYear == mYear))
                 mMonthNumPaint.setColor(mMonthTitleBGColor);
@@ -378,7 +385,10 @@ class SimpleMonthView extends View
 	public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_UP) {
             SimpleMonthAdapter.CalendarDay calendarDay = getDayFromLocation(event.getX(), event.getY());
-            if (calendarDay != null && calendarDay.day >= mToday) {
+            if (calendarDay != null) {
+                if (mHasToday && calendarDay.day < mToday){
+                    return true;
+                }
                 onDayClick(calendarDay);
             }
         }

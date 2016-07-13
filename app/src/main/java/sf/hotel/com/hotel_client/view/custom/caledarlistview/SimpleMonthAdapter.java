@@ -33,6 +33,7 @@ import android.widget.AbsListView;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -164,7 +165,13 @@ public class SimpleMonthAdapter extends RecyclerView.Adapter<SimpleMonthAdapter.
 	public void setSelectedDay(CalendarDay calendarDay) {
         if (selectedDays.getFirst() != null && selectedDays.getLast() == null)
         {
-            selectedDays.setLast(calendarDay);
+
+            if (selectedDays.getFirst().compareTo(calendarDay) < 0){
+                selectedDays.setLast(selectedDays.first);
+                selectedDays.setFirst(calendarDay);
+            }else {
+                selectedDays.setLast(calendarDay);
+            }
 
             if (selectedDays.getFirst().month < calendarDay.month)
             {
@@ -182,10 +189,11 @@ public class SimpleMonthAdapter extends RecyclerView.Adapter<SimpleMonthAdapter.
         else
             selectedDays.setFirst(calendarDay);
 
+
 		notifyDataSetChanged();
 	}
 
-	public static class CalendarDay implements Serializable
+	public static class CalendarDay implements Serializable, Comparable<Object>
     {
         private static final long serialVersionUID = -5456695978688356202L;
         private Calendar calendar;
@@ -243,6 +251,7 @@ public class SimpleMonthAdapter extends RecyclerView.Adapter<SimpleMonthAdapter.
             return calendar.getTime();
         }
 
+
         @Override
         public String toString()
         {
@@ -256,6 +265,16 @@ public class SimpleMonthAdapter extends RecyclerView.Adapter<SimpleMonthAdapter.
             stringBuilder.append(" }");
 
             return stringBuilder.toString();
+        }
+
+
+        @Override
+        public int compareTo(Object another) {
+            if (another instanceof CalendarDay){
+                CalendarDay anotherDay = (CalendarDay) another;
+                return ((anotherDay.year - year) * 10000 + (anotherDay.month - month) * 100 + (anotherDay.day - day));
+            }
+            throw new ClassCastException("Cannot compare CalendarDay with" + another.getClass().getName());
         }
     }
 

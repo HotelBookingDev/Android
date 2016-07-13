@@ -1,8 +1,13 @@
 package sf.hotel.com.hotel_client.view.presenter.hotel;
 
+import java.util.List;
+
+import rx.Observable;
 import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.entity.HotelBookResult;
+import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.data.interfaceeneity.hotel.IRoomEntityImp;
+import sf.hotel.com.data.net.ApiWrapper;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IRoomView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
@@ -49,5 +54,25 @@ public class IRoomPresenter extends SuperPresenter {
         });
     }
 
+
+    public void callHotelBean(){
+        mIRoomEntityImp.callHotelBean(String.valueOf(mIRoomView.getHotelId()))
+                .subscribe(new SimpleSubscriber<HotelsBean>(mIRoomView.getBottomContext()){
+                    @Override
+                    public void onNext(HotelsBean hotelsBean) {
+                        super.onNext(hotelsBean);
+                        onNextHotelBean(hotelsBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                    }
+                });
+    }
+
+    private void onNextHotelBean(HotelsBean hotelsBean) {
+        mIRoomView.setHotelsBean(hotelsBean);
+    }
 
 }

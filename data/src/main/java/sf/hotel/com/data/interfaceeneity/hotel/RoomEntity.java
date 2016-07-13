@@ -2,6 +2,7 @@ package sf.hotel.com.data.interfaceeneity.hotel;
 
 import rx.Observable;
 import sf.hotel.com.data.entity.HotelBookResult;
+import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 
 /**
  * @author MZ
@@ -10,4 +11,11 @@ import sf.hotel.com.data.entity.HotelBookResult;
  */
 public interface RoomEntity {
     Observable<HotelBookResult> callHotelBook(String auth, String productId, String inTime, String outTime);
+
+
+    /**
+     * @param id hotel的id
+     * @return
+     */
+    Observable<HotelsBean> callHotelBean(String id);
 }

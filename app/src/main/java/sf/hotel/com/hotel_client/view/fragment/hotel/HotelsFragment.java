@@ -159,7 +159,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
             @Override
             public void onItemClick(View view, int position) {
                 HotelsBean itemByPos = mPullAdapter.getItemByPos(position);
-                showDetail(itemByPos);
+                showDetail(itemByPos.getId());
             }
 
             @Override
@@ -171,10 +171,11 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         mPullView.onFinishLoading(true, false);
     }
 
-    public void showDetail(HotelsBean hotelsBean) {
+    public void showDetail(int id) {
         Intent intent = new Intent(getBottomContext(), RoomActivity.class);
+        intent.putExtra("action", "hotels");
         Bundle bundle = new Bundle();
-        bundle.putParcelable("room", hotelsBean);
+        bundle.putInt("room", id);
         intent.putExtras(bundle);
         startActivity(intent);
     }

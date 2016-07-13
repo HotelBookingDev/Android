@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
@@ -52,8 +53,10 @@ public class RoomFragment extends BaseFragment implements IRoomView {
 
     private static Bundle args;
 
+    private int hotelId;
     private HotelsBean hotelsBean;
 
+    //ListImg
     private List<String> mImageList;
 
     IRoomPresenter mIRoomPresenter;
@@ -72,11 +75,9 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     @BindView(R.id.frag_room_scrollview)
     PullScrollView mNoScrollView;
 
-
     PersonalItemView mPhone;
 
     PersonalItemView mLocation;
-
 
     TextView phoneText;
     FancyButton phoneCancel;
@@ -109,13 +110,18 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         View view = inflater.inflate(R.layout.fragment_room, container, false);
         mIRoomPresenter = new IRoomPresenter(this);
         ButterKnife.bind(this, view);
-
-        hotelsBean = args.getParcelable("room");
-
         initHeader();
         initContent();
 
+
+        initDate(args);
+
         return view;
+    }
+
+    private void initDate(Bundle args) {
+        hotelId = args.getInt("room");
+        mIRoomPresenter.callHotelBean();
     }
 
     private void initContent() {
@@ -193,6 +199,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         mImageList = new ArrayList<>();
         mImageList.add("http://f.hiphotos.baidu.com/image/h%3D300/sign=e50211178e18367ab28979dd1e738b68/0b46f21fbe096b63a377826e04338744ebf8aca6.jpg");
         mImageList.add("http://img0.imgtn.bdimg.com/it/u=2460737275,599413823&fm=23&gp=0.jpg");
+
         convenientBanner.setPages(new CBViewHolderCreator<LocalImageHodlerView>() {
             @Override
             public LocalImageHodlerView createHolder() {
@@ -313,5 +320,32 @@ public class RoomFragment extends BaseFragment implements IRoomView {
             }
             phoneDialog = null;
         }
+    }
+
+    public int getHotelId() {
+        return hotelId;
+    }
+
+
+    public void setImageList(List<String> list){
+        mImageList.clear();
+        mImageList.addAll(list);
+        convenientBanner.notifyDataSetChanged();
+    }
+
+
+    public void setRoomContentText(String text){
+        mRoomContent.setText(text);
+    }
+
+    public void setHotelsBean(HotelsBean hotelsBean){
+        this.hotelsBean = hotelsBean;
+        notifyDataSetChanged();
+    }
+
+
+    public void notifyDataSetChanged(){
+        setImageList(hotelsBean.getHotel_imgs());
+        setRoomContentText(hotelsBean.getIntroduce());
     }
 }
