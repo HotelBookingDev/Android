@@ -20,11 +20,16 @@ import sf.hotel.com.hotel_client.R;
  */
 public class UserOrderAdapter extends RecyclerViewBaseAdapter {
     List<Order> mOrders;
+    UserOrderClick mUserOrderClick;
 
     public UserOrderAdapter(Context context, List<Order> mOrders) {
         super(context);
         this.mOrders = mOrders;
         setCount(mOrders.size());
+    }
+
+    public void setmUserOrderClick(UserOrderClick mUserOrderClick) {
+        this.mUserOrderClick = mUserOrderClick;
     }
 
     public void setOrders(List<Order> orders) {
@@ -42,7 +47,6 @@ public class UserOrderAdapter extends RecyclerViewBaseAdapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        super.onBindViewHolder(holder, position);
         ViewHolder viewHolder = (ViewHolder) holder;
         Order order = mOrders.get(position);
         if (order == null || order.getHotelShot() == null) return;
@@ -50,6 +54,10 @@ public class UserOrderAdapter extends RecyclerViewBaseAdapter {
         setText(order.getTime() + "", viewHolder.mTime);
         setText(order.getHotelShot().getHouse_name(), viewHolder.mRoomName);
         setText(order.getHotelShot().getFron_price() + "", viewHolder.mRoomMoney);
+        setState(order, viewHolder.mSateTxt);
+        viewHolder.mSateTxt.getRootView().setOnClickListener(v -> {
+            if (mUserOrderClick != null) mUserOrderClick.click(order);
+        });
     }
 
     private void setText(String text, TextView view) {
@@ -58,12 +66,17 @@ public class UserOrderAdapter extends RecyclerViewBaseAdapter {
         }
     }
 
+    private void setState(Order order, TextView textView) {
+        textView.setText(order.getStateMessage());
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView mHotelIcon;
         TextView mHotelName;
         TextView mTime;
         TextView mRoomName;
         TextView mRoomMoney;
+        TextView mSateTxt;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -72,6 +85,11 @@ public class UserOrderAdapter extends RecyclerViewBaseAdapter {
             mTime = (TextView) itemView.findViewById(R.id.tv_time);
             mRoomMoney = (TextView) itemView.findViewById(R.id.tv_money);
             mRoomName = (TextView) itemView.findViewById(R.id.tv_room);
+            mSateTxt = (TextView) itemView.findViewById(R.id.tv_state);
         }
+    }
+
+    public interface UserOrderClick {
+        void click(Order order);
     }
 }

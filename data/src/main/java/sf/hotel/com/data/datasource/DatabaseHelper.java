@@ -10,6 +10,7 @@ import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
 
+import sf.hotel.com.data.entity.Hotelshot;
 import sf.hotel.com.data.entity.LocalOrder;
 import sf.hotel.com.data.entity.Order;
 import sf.hotel.com.data.entity.UserEntity;
@@ -21,11 +22,12 @@ import sf.hotel.com.data.entity.netresult.HotelResult;
  */
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String TABLE_NAME = "hotel.db";
-    private static final int databaseVersion = 16;
+    private static final int databaseVersion = 19;
     private Dao<UserEntity, Integer> userDao;
     private Dao<HotelResult, Integer> hotelDao;
     private Dao<LocalOrder, Integer> localOrders;
     private Dao<Order, Integer> orders;
+    private Dao<Hotelshot, Integer> hotelshots;
     private static DatabaseHelper instance;
 
     private DatabaseHelper(Context context) {
@@ -49,6 +51,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 //            TableUtils.createTable(connectionSource, HotelResult.class);
             TableUtils.createTable(connectionSource, LocalOrder.class);
             TableUtils.createTable(connectionSource, Order.class);
+            TableUtils.createTable(connectionSource, Hotelshot.class);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -62,6 +65,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 //            TableUtils.dropTable(connectionSource, HotelResult.class, true);
             TableUtils.dropTable(connectionSource, LocalOrder.class, true);
             TableUtils.dropTable(connectionSource, Order.class, true);
+            TableUtils.dropTable(connectionSource, Hotelshot.class, true);
             onCreate(database, connectionSource);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -96,6 +100,13 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return orders;
     }
 
+    public Dao<Hotelshot, Integer> getHotelShot() throws SQLException {
+        if (hotelshots == null) {
+            hotelshots = getDao(Hotelshot.class);
+        }
+        return hotelshots;
+    }
+
     /**
      * 释放资源
      */
@@ -106,5 +117,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         hotelDao = null;
         localOrders = null;
         orders = null;
+        hotelshots = null;
     }
 }

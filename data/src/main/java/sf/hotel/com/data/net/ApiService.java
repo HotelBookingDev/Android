@@ -21,6 +21,7 @@ import sf.hotel.com.data.entity.netresult.TokenResult;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.data.entity.netresult.person.OrderManagerResult;
 
+import static sf.hotel.com.data.net.HttpParam.ACTION;
 import static sf.hotel.com.data.net.HttpParam.AUTHORIZATION;
 import static sf.hotel.com.data.net.HttpParam.CHECK_IN_TIME;
 import static sf.hotel.com.data.net.HttpParam.CHECK_OUT_TIME;
@@ -28,6 +29,7 @@ import static sf.hotel.com.data.net.HttpParam.CITY_ID;
 import static sf.hotel.com.data.net.HttpParam.DEVICE_TYPE;
 import static sf.hotel.com.data.net.HttpParam.EXCLUDE;
 import static sf.hotel.com.data.net.HttpParam.INSTALLATION_CODE;
+import static sf.hotel.com.data.net.HttpParam.NUMBER;
 import static sf.hotel.com.data.net.HttpParam.PAGE;
 import static sf.hotel.com.data.net.HttpParam.PASSWORD;
 import static sf.hotel.com.data.net.HttpParam.PHONE_NUMBER;
@@ -69,19 +71,14 @@ public interface ApiService {
 
     @GET(AppUrl.HOTELS_URL)
     Observable<HttpResult<HotelResult>> callHotelsByCityId(@Query(CITY_ID) String cityId,
-                                                           @Query(PAGE) String page,
-                                                           @Query(CHECK_IN_TIME) String in,
-                                                           @Query(CHECK_OUT_TIME) String out,
-                                                           @Query(EXCLUDE) String exclude);
-
+            @Query(PAGE) String page, @Query(CHECK_IN_TIME) String in,
+            @Query(CHECK_OUT_TIME) String out, @Query(EXCLUDE) String exclude);
 
     @FormUrlEncoded
     @POST(AppUrl.HOTELS_BOOK_URL)
     Observable<HttpResult<HotelBookResult>> callHotelBook(@Header(AUTHORIZATION) String auth,
-                                                          @Field(PRODUCTID) String productId,
-                                                          @Field(CHECK_IN_TIME) String inTime,
-                                                          @Field(CHECK_OUT_TIME) String outTime);
-
+            @Field(PRODUCTID) String productId, @Field(CHECK_IN_TIME) String inTime,
+            @Field(CHECK_OUT_TIME) String outTime);
 
     @GET("hotel/{id}")
     Observable<HttpResult<HotelsBean>> callHotelBeanById(@Path("id") String id);
@@ -100,4 +97,9 @@ public interface ApiService {
     @POST(AppUrl.CHANGEPWD_URL)
     Observable<HttpResult<NormalResult>> putChangePwd(@Field(PHONE_NUMBER) String phoneNum,
             @Field(PASSWORD) String password, @Field(HttpParam.NEWPASSWORD) String newPassword);
+
+    @FormUrlEncoded
+    @POST(AppUrl.DELETE_URL)
+    Observable<HttpResult<NormalResult>> deleteOrder(@Field(ACTION) String action,
+            @Field(NUMBER) long number);
 }

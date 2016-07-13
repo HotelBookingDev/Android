@@ -12,4 +12,6 @@ import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
  */
 public interface IUserOrderView extends BaseView {
     void showOrder(List<Order> mOrders);
+
+    int getPosition();
 }

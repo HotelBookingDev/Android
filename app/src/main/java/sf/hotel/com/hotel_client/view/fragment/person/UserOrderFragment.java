@@ -2,6 +2,7 @@ package sf.hotel.com.hotel_client.view.fragment.person;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -85,10 +86,30 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
         if (mOrders == null) return;
         if (mAdapter == null) {
             mAdapter = new UserOrderAdapter(getActivity(), mOrders);
+            mAdapter.setmUserOrderClick(this::showDialog);
         } else {
             mAdapter.setOrders(mOrders);
-            mAdapter.notifyDataSetChanged();
         }
         mRecyclerview.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public int getPosition() {
+        return position;
+    }
+
+    private void showDialog(Order order) {
+        if (order.isClosed()) return;
+        AlertDialog.Builder builder = new AlertDialog.Builder(getBottomContext());
+        builder.setMessage("确认取消订单吗?");
+        builder.setTitle("取消订单");
+        builder.setPositiveButton("确认", (dialog, which) -> {
+            mUserOrderPresenter.detect(order);
+        });
+        builder.setNegativeButton("取消", (dialog, which) -> {
+            dialog.dismiss();
+        });
+        builder.show();
     }
 }

@@ -7,6 +7,7 @@
     app:cardElevation="5dp">
 
     <LinearLayout
+        android:id="@+id/order_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -27,6 +28,14 @@
                 style="@style/normal_text"
                 android:layout_gravity="center"
                 android:text="@string/order_time" />
+
+            <TextView
+                android:id="@+id/tv_state"
+                style="@style/normal_text"
+                android:layout_width="0dp"
+                android:gravity="right|center"
+                android:layout_weight="1"
+                android:text="@string/account_state" />
         </LinearLayout>
 
         <LinearLayout

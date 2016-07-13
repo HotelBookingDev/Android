@@ -13,7 +13,7 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "tb_hotel_shot")
 public class Hotelshot {
     @SerializedName("id")
-    @DatabaseField(generatedId = true, columnName = "id")
+    @DatabaseField(id = true, unique = true, columnName = "id")
     private long id;
     @DatabaseField(columnName = "hotel_id")
     @SerializedName("hotel_id")

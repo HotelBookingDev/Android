@@ -13,35 +13,40 @@ import com.j256.ormlite.table.DatabaseTable;
 public class Order {
     public static final int ALRADYORDER = 0x1;
     public static final int NOTORDER = 0x0;
-
-    //    订单号
-
-    public long getOrder_num() {
-        return order_num;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    @DatabaseField(generatedId = true, columnName = "order_num")
+    @DatabaseField(columnName = "user_id")
+    @SerializedName("customer")
+    public long userId;
+    @DatabaseField(id = true, unique = true, columnName = "number")
     @SerializedName("number")
     private long order_num;
     //    订单的状态
-    @DatabaseField(columnName = "state")
+    @DatabaseField(columnName = "payment_status")
     @SerializedName("payment_status")
     private int state;
     //    下单时间
     @DatabaseField(columnName = "time")
     @SerializedName("created_on")
     private String time;
-    @DatabaseField(columnName = "user_id")
-    @SerializedName("id")
-    private long id;
 
-    @SerializedName("snapshot")
-    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "id")
+    @DatabaseField(columnName = "closed")
+    @SerializedName("closed")
+    private boolean isClosed;
+    @SerializedName("hotelpackageordersnapshot")
+    @DatabaseField(foreign = true, canBeNull = true, foreignAutoRefresh = true, columnName = "hotelshot_id")
     private Hotelshot snapshot;
+
+    public boolean isClosed() {
+        return isClosed;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+//    订单号
+
+    public long getOrder_num() {
+        return order_num;
+    }
 
     public Hotelshot getHotelShot() {
         return snapshot;
@@ -57,5 +62,19 @@ public class Order {
 
     public void setSnapshot(Hotelshot snapshot) {
         this.snapshot = snapshot;
+    }
+
+    public String getStateMessage() {
+        String text = "";
+        if (state == 1) {
+            text = "订单当前在审核";
+        } else if (state == 2) {
+            text = "取消入住";
+        }
+        return text;
+    }
+
+    public void setClosed(boolean closed) {
+        this.isClosed = closed;
     }
 }
