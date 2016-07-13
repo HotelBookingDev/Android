@@ -47,7 +47,6 @@ public class UserOrderAdapter extends RecyclerViewBaseAdapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        super.onBindViewHolder(holder, position);
         ViewHolder viewHolder = (ViewHolder) holder;
         Order order = mOrders.get(position);
         if (order == null || order.getHotelShot() == null) return;
@@ -65,10 +64,6 @@ public class UserOrderAdapter extends RecyclerViewBaseAdapter {
         if (!TextUtils.isEmpty(text)) {
             view.setText(text);
         }
-    }
-
-    public void setmOrders(List<Order> mOrders) {
-        this.mOrders = mOrders;
     }
 
     private void setState(Order order, TextView textView) {

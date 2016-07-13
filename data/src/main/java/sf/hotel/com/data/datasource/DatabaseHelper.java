@@ -22,11 +22,12 @@ import sf.hotel.com.data.entity.netresult.HotelResult;
  */
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String TABLE_NAME = "hotel.db";
-    private static final int databaseVersion = 18;
+    private static final int databaseVersion = 19;
     private Dao<UserEntity, Integer> userDao;
     private Dao<HotelResult, Integer> hotelDao;
     private Dao<LocalOrder, Integer> localOrders;
     private Dao<Order, Integer> orders;
+    private Dao<Hotelshot, Integer> hotelshots;
     private static DatabaseHelper instance;
 
     private DatabaseHelper(Context context) {
@@ -99,6 +100,13 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return orders;
     }
 
+    public Dao<Hotelshot, Integer> getHotelShot() throws SQLException {
+        if (hotelshots == null) {
+            hotelshots = getDao(Hotelshot.class);
+        }
+        return hotelshots;
+    }
+
     /**
      * 释放资源
      */
@@ -109,5 +117,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         hotelDao = null;
         localOrders = null;
         orders = null;
+        hotelshots = null;
     }
 }

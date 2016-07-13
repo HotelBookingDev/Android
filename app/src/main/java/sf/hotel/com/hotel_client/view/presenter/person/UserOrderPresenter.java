@@ -26,7 +26,7 @@ public class UserOrderPresenter extends SuperPresenter {
     }
 
     private void getDb(int position) {
-        mIorder.getOrderByDb(mIUserOrderView.getBottomContext(), position)
+        mIorder.getOrder(mIUserOrderView.getBottomContext(), position)
                 .doOnNext(orderAndHotels -> {
                     mIUserOrderView.showOrder(orderAndHotels);
                 })
@@ -47,6 +47,12 @@ public class UserOrderPresenter extends SuperPresenter {
 
     public void detect(Order order) {
         mIorder.detect(order).subscribe(normalResult -> {
+            order.setClosed(true);
+            mIorder.update(mIUserOrderView.getBottomContext(), order);
+            mIorder.getOrder(mIUserOrderView.getBottomContext(), mIUserOrderView.getPosition())
+                    .subscribe(list -> {
+                        mIUserOrderView.showOrder(list);
+                    });
             mIUserOrderView.showViewToast("取消成功");
         }, LogUtils::logThrowadle);
     }

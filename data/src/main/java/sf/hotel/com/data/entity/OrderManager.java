@@ -60,4 +60,8 @@ public class OrderManager {
         OrderDao.update(orderManager.getOrders(context, Order.ALRADYORDER, userId), context);
         OrderDao.update(orderManager.getOrders(context, Order.NOTORDER, userId), context);
     }
+
+    public void update(Context context, Order order) {
+        OrderDao.update(order, context);
+    }
 }

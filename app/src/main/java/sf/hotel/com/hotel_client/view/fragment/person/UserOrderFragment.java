@@ -110,5 +110,6 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
         builder.setNegativeButton("取消", (dialog, which) -> {
             dialog.dismiss();
         });
+        builder.show();
     }
 }

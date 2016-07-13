@@ -14,10 +14,11 @@ import sf.hotel.com.data.entity.netresult.NormalResult;
  * email: 1105896230@qq.com
  */
 public interface IOrder {
-    Observable<List<Order>> getOrderByDb(Context context, int position);
+    Observable<List<Order>> getOrder(Context context, int position);
 
     Observable<List<Order>> getOrderByNet(Context context, int position);
 
-
     Observable<NormalResult> detect(Order order);
+
+    void update(Context context, Order order);
 }

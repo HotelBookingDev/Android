@@ -5,14 +5,13 @@ import android.content.Context;
 import java.util.List;
 
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.entity.Order;
 import sf.hotel.com.data.entity.OrderManager;
 import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.entity.netresult.person.OrderManagerResult;
 import sf.hotel.com.data.net.ApiWrapper;
+import sf.hotel.com.data.net.callback.CommSubscriber;
 
 /**
  * Created by 林其望
@@ -29,7 +28,7 @@ public class IOrderImp implements IOrder {
     }
 
     @Override
-    public Observable<List<Order>> getOrderByDb(Context context, int position) {
+    public Observable<List<Order>> getOrder(Context context, int position) {
         return Observable.just(mOrderManager.getOrders(context, position,
                 EntityContext.getInstance().getmCurrentUser().getUserId()));
     }
@@ -58,5 +57,13 @@ public class IOrderImp implements IOrder {
     @Override
     public Observable<NormalResult> detect(Order order) {
         return ApiWrapper.getInstance().deleteOrder(order.getOrder_num());
+    }
+
+    @Override
+    public void update(Context context, Order order) {
+        mOrderManager.update(context, order);
+        mOrderManager.setmNotOrders(null);
+        mOrderManager.setmAlreadyOrders(null);
+        getOrder(context, Order.ALRADYORDER).subscribe(new CommSubscriber<>());
     }
 }

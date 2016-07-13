@@ -29,6 +29,7 @@ public class OrderDao {
         initdata(order);
         try {
             DatabaseHelper.getHelper(context).getOrders().createOrUpdate(order);
+            HotelShotDao.update(order.getHotelShot(), context);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -48,6 +49,9 @@ public class OrderDao {
                     context).getOrders().queryBuilder();
             orderIntegerQueryBuilder.where().eq("closed", isClose).and().eq("user_id", userId);
             mLists = orderIntegerQueryBuilder.query();
+            for (Order order : mLists) {
+                order.setSnapshot(HotelShotDao.getHotelshot(order.getOrder_num(), context));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

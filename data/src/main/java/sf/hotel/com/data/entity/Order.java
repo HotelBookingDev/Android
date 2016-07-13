@@ -16,20 +16,6 @@ public class Order {
     @DatabaseField(columnName = "user_id")
     @SerializedName("customer")
     public long userId;
-
-    public boolean isClosed() {
-        return isClosed;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-//    订单号
-
-    public long getOrder_num() {
-        return order_num;
-    }
-
     @DatabaseField(id = true, unique = true, columnName = "number")
     @SerializedName("number")
     private long order_num;
@@ -46,8 +32,21 @@ public class Order {
     @SerializedName("closed")
     private boolean isClosed;
     @SerializedName("hotelpackageordersnapshot")
-    @DatabaseField(foreign = true, foreignColumnName = "id", columnName = "shot_id")
+    @DatabaseField(foreign = true, canBeNull = true, foreignAutoRefresh = true, columnName = "hotelshot_id")
     private Hotelshot snapshot;
+
+    public boolean isClosed() {
+        return isClosed;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+//    订单号
+
+    public long getOrder_num() {
+        return order_num;
+    }
 
     public Hotelshot getHotelShot() {
         return snapshot;
@@ -73,5 +72,9 @@ public class Order {
             text = "取消入住";
         }
         return text;
+    }
+
+    public void setClosed(boolean closed) {
+        this.isClosed = closed;
     }
 }
