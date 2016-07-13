@@ -3,6 +3,7 @@
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/tools"
     android:orientation="vertical">
 
 
@@ -11,6 +12,9 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:id="@+id/frag_room_scrollview"
+        app:pull_is_eff="true"
+        app:pull_header_layout="@layout/header_room"
+        app:pull_content_layout="@layout/content_room"
         />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -22,6 +26,5 @@
         fancy:fb_text="@string/search_times"
         fancy:fb_textColor="@color/black"
         />
-
 
 </LinearLayout>

@@ -1,11 +1,14 @@
 package sf.hotel.com.hotel_client.view.custom;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.DensityUtils;
 
 /**
@@ -17,10 +20,12 @@ public class PullScrollView extends FrameLayout {
 
     private FrameLayout mHeaderContainer;
     private NoScrollView mContentContainer;
-
     private FrameLayout mContentView;
-
     private int hideHeight;
+
+    private boolean isEff;
+    private int headerLayout;
+    private int contentLayout;
 
     public interface HideHeardListener {
         void onHideView(float alpha);
@@ -46,6 +51,13 @@ public class PullScrollView extends FrameLayout {
     public PullScrollView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.PullScrollView);
+
+        headerLayout = typedArray.getResourceId(R.styleable.PullScrollView_pull_header_layout, R.layout.header_room);
+        contentLayout = typedArray.getResourceId(R.styleable.PullScrollView_pull_content_layout, R.layout.content_room);
+        isEff = typedArray.getBoolean(R.styleable.PullScrollView_pull_is_eff, true);
+
+        typedArray.recycle();
         hideHeight = DensityUtils.dp2px(context, 200);
         initView();
     }
@@ -70,19 +82,28 @@ public class PullScrollView extends FrameLayout {
 
         mHeaderContainer.bringToFront();
 
-        mContentContainer.setOnScrollListener(new NoScrollView.onScrollListener() {
-            @Override
-            public void onScroll(View view, int x, int y, int oldX, int oldY) {
-                int curr = y - 1500;
+        View header = LayoutInflater.from(getContext()).inflate(headerLayout, null);
+        View content = LayoutInflater.from(getContext()).inflate(contentLayout, null);
 
-                if (curr < hideHeight) {
-                    float alpha = curr / (float) hideHeight;
-                    if (alpha < 0) alpha = 0;
-                    if (alpha > 1) alpha = 1;
-                    mHideHeardListener.onHideView(alpha);
+        addHeaderView(header);
+        addContentView(content);
+
+        if (isEff){
+            mContentContainer.setOnScrollListener(new NoScrollView.onScrollListener() {
+                @Override
+                public void onScroll(View view, int x, int y, int oldX, int oldY) {
+                    int curr = y - 1500;
+
+                    if (curr < hideHeight) {
+                        float alpha = curr / (float) hideHeight;
+                        if (alpha < 0) alpha = 0;
+                        if (alpha > 1) alpha = 1;
+                        mHideHeardListener.onHideView(alpha);
+                    }
                 }
-            }
-        });
+            });
+        }
+
     }
 
     public void addHeaderView(View view) {

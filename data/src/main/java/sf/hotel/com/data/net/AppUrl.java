@@ -14,6 +14,7 @@ public class AppUrl {
     public static final String INSTALLATION_URL = "user/installation/";
     public static final String HOTELS_URL = "hotel";
     public static final String HOTELS_BOOK_URL = "hotel/book";
+    public static final String HOTEL = "hotel";
     public static final String TOKEN_URL = "user/avatar/token";
 
     public static final String PROVINCES_URL = "province/";

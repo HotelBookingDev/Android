@@ -10,6 +10,7 @@ import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.data.entity.netresult.LoginResult;
 import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.entity.netresult.TokenResult;
+import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.data.entity.netresult.person.OrderManagerResult;
 import sf.hotel.com.data.utils.LogUtils;
 
@@ -112,6 +113,15 @@ public class ApiWrapper extends RetrofitHelper {
                 .compose(this.<HotelBookResult>applySchedulers());
     }
 
+
+    /**
+     * @param id hotel的id
+     * @return
+     */
+    public Observable<HotelsBean> callHotelBean(String id){
+        return mService.callHotelBeanById(id)
+                .compose(this.<HotelsBean>applySchedulers());
+    }
 
     public Observable<TokenResult> getTokenResult() {
         return mService.getTokenResult().compose(this.<TokenResult>applySchedulers());

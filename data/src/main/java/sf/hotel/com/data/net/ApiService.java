@@ -7,6 +7,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 import sf.hotel.com.data.entity.HotelBookResult;
@@ -17,6 +18,7 @@ import sf.hotel.com.data.entity.netresult.HttpResult;
 import sf.hotel.com.data.entity.netresult.LoginResult;
 import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.entity.netresult.TokenResult;
+import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.data.entity.netresult.person.OrderManagerResult;
 
 import static sf.hotel.com.data.net.HttpParam.AUTHORIZATION;
@@ -73,12 +75,16 @@ public interface ApiService {
                                                            @Query(EXCLUDE) String exclude);
 
 
+    @FormUrlEncoded
     @POST(AppUrl.HOTELS_BOOK_URL)
     Observable<HttpResult<HotelBookResult>> callHotelBook(@Header(AUTHORIZATION) String auth,
                                                           @Field(PRODUCTID) String productId,
                                                           @Field(CHECK_IN_TIME) String inTime,
                                                           @Field(CHECK_OUT_TIME) String outTime);
 
+
+    @GET("hotel/{id}")
+    Observable<HttpResult<HotelsBean>> callHotelBeanById(@Path("id") String id);
 
     //获取TOKEN
     @GET(AppUrl.TOKEN_URL)

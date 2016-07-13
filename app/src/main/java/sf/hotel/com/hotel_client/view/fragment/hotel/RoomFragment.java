@@ -7,6 +7,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
@@ -24,6 +26,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mehdi.sakout.fancybuttons.FancyButton;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
+import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.DensityUtils;
 import sf.hotel.com.hotel_client.utils.StartActivityUtils;
@@ -116,33 +119,24 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     }
 
     private void initContent() {
-        View content = LayoutInflater.from(getBottomContext()).inflate(R.layout.content_room, null, false);
-        mPhone = (PersonalItemView) content.findViewById(R.id.fragment_room_phone);
-        mLocation = (PersonalItemView) content.findViewById(R.id.fragment_room_location);
-        mRoomContent = (TextView) content.findViewById(R.id.fragment_room_content);
-        convenientBanner = (ConvenientBanner) content.findViewById(R.id.frame_room_banner);
-
-
+        mPhone = (PersonalItemView) mNoScrollView.findViewById(R.id.fragment_room_phone);
+        mLocation = (PersonalItemView) mNoScrollView.findViewById(R.id.fragment_room_location);
+        mRoomContent = (TextView) mNoScrollView.findViewById(R.id.fragment_room_content);
+        convenientBanner = (ConvenientBanner) mNoScrollView.findViewById(R.id.frame_room_banner);
 
         mPhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (phoneDialog == null){
-                    View phoneView = LayoutInflater.from(getBottomContext()).inflate(R.layout.dialog_phone, null, false);
-                    ViewHolder holder = new ViewHolder(phoneView);
-
-                    phoneCancel = (FancyButton) phoneView.findViewById(R.id.dialog_cancel);
-                    phoneSubmit = (FancyButton) phoneView.findViewById(R.id.dialog_submit);
-                    phoneText = (TextView) phoneView.findViewById(R.id.dialog_phone_text);
-
-                    phoneText.setText(mPhone.getText());
                     phoneDialog = DialogPlus.newDialog(getBottomContext())
-                            .setContentHolder(holder)
+                            .setContentHolder(new ViewHolder(R.layout.dialog_phone))
                             .setCancelable(true)
                             .setGravity(Gravity.CENTER)
                             .create();
-
+                    phoneCancel = (FancyButton) phoneDialog.findViewById(R.id.dialog_cancel);
+                    phoneSubmit = (FancyButton) phoneDialog.findViewById(R.id.dialog_submit);
+                    phoneText = (TextView) phoneDialog.findViewById(R.id.dialog_phone_text);
+                    phoneText.setText(mPhone.getText());
 
                     phoneCancel.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -151,11 +145,9 @@ public class RoomFragment extends BaseFragment implements IRoomView {
                                 phoneDialog.onBackPressed(phoneDialog);
                         }
                     });
-
                     phoneSubmit.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-
                             if (phoneDialog != null && phoneDialog.isShowing()){
                                 phoneDialog.dismiss();
                             }
@@ -179,15 +171,12 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         });
 
         initBanner();
-        mNoScrollView.addContentView(content);
     }
 
     private void initHeader() {
 
-        View header = LayoutInflater.from(getBottomContext()).inflate(R.layout.header_room, null,false);
-        mTitle = (HideTitle) header.findViewById(R.id.frag_room_title);
+        mTitle = (HideTitle) mNoScrollView.findViewById(R.id.frag_room_title);
         initTitle();
-        mNoScrollView.addHeaderView(header);
         mNoScrollView.setHideHeardListener(new PullScrollView.HideHeardListener() {
             @Override
             public void onHideView(float alpha) {
@@ -249,6 +238,22 @@ public class RoomFragment extends BaseFragment implements IRoomView {
 
         switch (v.getId()){
             case R.id.frag_room_search:
+                DialogBedAdapter dialogBedAdapter = new DialogBedAdapter(getBottomContext());
+                dialogBedAdapter.setOnItemClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+
+                dialogBedAdapter.setBedListOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        LogUtils.d("==------->", "onItemClick");
+                        callHotelBook();
+                    }
+                });
+
                 if (dialogPlus == null) {
                     dialogPlus = DialogPlus.newDialog(getBottomContext())
                             .setContentHolder(new ListHolder())
@@ -256,10 +261,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
                             .setGravity(Gravity.BOTTOM)
                             .setFooter(R.layout.footer_bed)
                             .setHeader(R.layout.header_bed)
-                            .setAdapter(new DialogBedAdapter(getBottomContext()))
-                            .setOnItemClickListener((dialog, item, view, position) -> {
-
-                            })
+                            .setAdapter(dialogBedAdapter)
                             .setOnDismissListener(dialog -> {
 
                             })
@@ -269,9 +271,22 @@ public class RoomFragment extends BaseFragment implements IRoomView {
                             .setExpanded(true)
                             .create();
                 }
+
+                ImageView dialogClose = (ImageView) dialogPlus.findViewById(R.id.header_bed_close);
+                dialogClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialogPlus.onBackPressed(dialogPlus);
+                    }
+                });
+
                 dialogPlus.show();
                 break;
         }
+    }
+
+    private void callHotelBook() {
+        mIRoomPresenter.callHotelBook();
     }
 
 

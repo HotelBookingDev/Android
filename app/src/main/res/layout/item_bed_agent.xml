@@ -2,16 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
+    android:layout_height="match_parent"
+    android:background="@drawable/item_bj"
+    >
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="5dp"
@@ -24,7 +19,7 @@
                 android:layout_weight="1"
                 android:text="床是我们使用频率最高也是不可或缺的的家具用品"
                 style="@style/titleTextStyle"
-                android:id="@+id/item_bed_title"
+                android:id="@+id/item_bed_agent_title"
                 />
 
             <sf.hotel.com.hotel_client.view.custom.PriceLayout
@@ -33,29 +28,7 @@
                 android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/item_bed_price"
+                android:id="@+id/item_bed_agent_price"
                 />
         </LinearLayout>
-
-
-       <Button
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:id="@+id/item_bed_selected"
-           />
-
-
-    </LinearLayout>
-
-
-    <sf.hotel.com.hotel_client.view.custom.BedListView
-        android:id="@+id/item_bed_listView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        />
-
-    <include layout="@layout/item_line"/>
-
-
 </LinearLayout>

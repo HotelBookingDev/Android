@@ -86,4 +86,10 @@
         <attr name="custom_item_text2" format="string"/>
         <attr name="custom_item_style" format="integer"/>
     </declare-styleable>
+
+    <declare-styleable name="PullScrollView">
+        <attr name="pull_header_layout" format="reference"/>
+        <attr name="pull_content_layout" format="reference"/>
+        <attr name="pull_is_eff" format="boolean"/>
+    </declare-styleable>
 </resources>
