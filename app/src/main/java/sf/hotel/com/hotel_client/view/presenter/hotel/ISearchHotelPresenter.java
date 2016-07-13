@@ -60,14 +60,14 @@ public class ISearchHotelPresenter extends SuperPresenter {
     public void getSearchDate(Intent data){
         Bundle bundle = data.getExtras();
         SelectDates dates = (SelectDates) bundle.getSerializable("dates");
-        Date[] datasList = new Date[2];
-        assert dates != null;
-        datasList[0] = dates.dates.get(0);
-        datasList[1] = dates.dates.get(1);
-        mISearchHotelView.setSearchTimer(datasList);
-        mISearchHotelView.getSearchItem().inTime = datasList[0];
-        mISearchHotelView.getSearchItem().outTime = datasList[1];
-
+        if (dates != null && dates.dates.size() > 1){
+            Date[] datasList = new Date[2];
+            datasList[0] = dates.dates.get(0);
+            datasList[1] = dates.dates.get(dates.dates.size() - 1);
+            mISearchHotelView.setSearchTimer(datasList);
+            mISearchHotelView.getSearchItem().inTime = datasList[0];
+            mISearchHotelView.getSearchItem().outTime = datasList[1];
+        }
     }
 
 

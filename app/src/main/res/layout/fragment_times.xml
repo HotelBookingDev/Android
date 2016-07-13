@@ -1,23 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:calendar="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <com.squareup.timessquare.CalendarPickerView
+    <sf.hotel.com.hotel_client.view.custom.caledarlistview.DayPickerView
         android:id="@+id/fragment_times_calendar_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingBottom="16dp"
-        android:scrollbarStyle="outsideOverlay"
-        android:clipToPadding="false"
-        android:background="#FFFFFF"
-        />
+        android:layout_height="match_parent"
+        calendar:drawRoundRect="true"/>
 
     <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/fragment_times_submit"

@@ -94,4 +94,6 @@
     <string name="out_hotel_time">退房日期</string>
     <string name="account_state">状态</string>
 
+    <string name="sans_serif" translatable="false">sans-serif</string>
+
 </resources>

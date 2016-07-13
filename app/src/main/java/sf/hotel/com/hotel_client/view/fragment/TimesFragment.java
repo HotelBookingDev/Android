@@ -5,23 +5,24 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SimpleAdapter;
 
 import com.squareup.timessquare.CalendarCellDecorator;
 import com.squareup.timessquare.CalendarPickerView;
-import com.squareup.timessquare.DefaultDayViewAdapter;
 
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mehdi.sakout.fancybuttons.FancyButton;
 import sf.hotel.com.data.net.SelectDates;
-import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.custom.caledarlistview.DatePickerController;
+import sf.hotel.com.hotel_client.view.custom.caledarlistview.DayPickerView;
+import sf.hotel.com.hotel_client.view.custom.caledarlistview.SimpleMonthAdapter;
 import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.TimerMessage;
@@ -34,7 +35,7 @@ import sf.hotel.com.hotel_client.view.event.hotel.TimerMessage;
 public class TimesFragment extends BaseFragment {
 
     @BindView(R.id.fragment_times_calendar_view)
-    CalendarPickerView mCalendarView;
+    DayPickerView mCalendarView;
 
     @BindView(R.id.fragment_times_submit)
     FancyButton mSubmit;
@@ -61,10 +62,12 @@ public class TimesFragment extends BaseFragment {
 
     @OnClick(R.id.fragment_times_submit)
     public void onSubmitClick() {
-        List<Date> selectedDates = mCalendarView.getSelectedDates();
+        SimpleMonthAdapter.SelectedDays<SimpleMonthAdapter.CalendarDay> selectedDays = mCalendarView.getSelectedDays();
 
         SelectDates selectDates = new SelectDates();
-        selectDates.dates = selectedDates;
+
+        selectDates.dates.add(selectedDays.getFirst().getDate());
+        selectDates.dates.add(selectedDays.getLast().getDate());
 
         RxBus.getDefault().post(MessageFactory.createTimerMessage(TimerMessage.REQUEST_SEARCH_HOTEL, selectDates));
 
@@ -73,17 +76,33 @@ public class TimesFragment extends BaseFragment {
 
     private void initCalendarView() {
 
-        final Calendar nextYear = Calendar.getInstance();
-        nextYear.add(Calendar.YEAR, 1);
+        mCalendarView.setController(new DatePickerController() {
+            @Override
+            public int getMaxYear() {
+                return 0;
+            }
 
-        final Calendar lastYear = Calendar.getInstance();
-        lastYear.add(Calendar.YEAR, -1);
+            @Override
+            public int getMaxMonth() {
+                return 1;
+            }
 
-        mCalendarView.setCustomDayView(new DefaultDayViewAdapter());
+            @Override
+            public Date getStartTime() {
+                return null;
+            }
 
-        mCalendarView.setDecorators(Collections.<CalendarCellDecorator>emptyList());
-        mCalendarView.init(new Date(), nextYear.getTime()) //
-                .inMode(CalendarPickerView.SelectionMode.RANGE);//
+            @Override
+            public void onDayOfMonthSelected(int year, int month, int day) {
+
+            }
+
+            @Override
+            public void onDateRangeSelected(SimpleMonthAdapter.SelectedDays<SimpleMonthAdapter.CalendarDay> selectedDays) {
+
+            }
+        });
+
     }
 
 
