@@ -17,6 +17,7 @@ import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.data.interfaceeneity.hotel.ISearchHotelEntityImp;
+import sf.hotel.com.data.net.SelectDates;
 import sf.hotel.com.data.utils.PreferencesUtils;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.ISearchHotelView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
@@ -58,11 +59,14 @@ public class ISearchHotelPresenter extends SuperPresenter {
 
     public void getSearchDate(Intent data){
         Bundle bundle = data.getExtras();
-        Date[] dates = (Date[]) bundle.getSerializable("dates");
-        mISearchHotelView.setSearchTimer(dates);
+        SelectDates dates = (SelectDates) bundle.getSerializable("dates");
+        Date[] datasList = new Date[2];
         assert dates != null;
-        mISearchHotelView.getSearchItem().inTime = dates[0];
-        mISearchHotelView.getSearchItem().outTime = dates[1];
+        datasList[0] = dates.dates.get(0);
+        datasList[1] = dates.dates.get(1);
+        mISearchHotelView.setSearchTimer(datasList);
+        mISearchHotelView.getSearchItem().inTime = datasList[0];
+        mISearchHotelView.getSearchItem().outTime = datasList[1];
 
     }
 

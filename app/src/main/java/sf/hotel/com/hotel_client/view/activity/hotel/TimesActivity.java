@@ -60,15 +60,9 @@ public class TimesActivity extends BaseActivity {
                             case TimerMessage.REQUEST_SEARCH_HOTEL:
                                 SelectDates selectDates = (SelectDates) timerMessage.obj;
 
-                                Date[] dates = new Date[2];
-
-                                if (selectDates.dates != null && selectDates.dates.size() > 1) {
-                                    dates[0] = selectDates.dates.get(0);
-                                    dates[1] = selectDates.dates.get(selectDates.dates.size() - 1);
-                                }
                                 Intent intent = new Intent();
                                 Bundle bundle = new Bundle();
-                                bundle.putSerializable("dates", dates);
+                                bundle.putSerializable("dates", selectDates);
                                 intent.putExtras(bundle);
                                 setResult(SearchHotelFragment.REQUEST_TIMER, intent);
                                 finish();
