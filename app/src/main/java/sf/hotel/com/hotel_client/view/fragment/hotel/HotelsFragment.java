@@ -95,7 +95,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                         switch (hotelMessage.what) {
                             case HotelMessage.REFRESH_LIST_VIEW_HOTEL:
                                 CityBean cityBean = (CityBean) hotelMessage.obj;
-                                mSearchItem.cityBean.setId(cityBean.getId());
+                                mSearchItem.cityBean.setCode(cityBean.getCode());
                                 mSearchItem.cityBean.setName(cityBean.getName());
                                 mIHotelPresenter.callHotelsByCityId("1");
                                 break;
