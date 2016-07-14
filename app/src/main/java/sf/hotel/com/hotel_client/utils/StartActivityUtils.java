@@ -45,9 +45,16 @@ public class StartActivityUtils {
     }
 
 
-    public static void startPhone(Activity c, String phone){
-        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+ phone));
-        c.startActivity(intent);
+    public static boolean startPhone(Activity c, String phone){
+        try {
+            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+ phone));
+            c.startActivity(intent);
+            return true;
+        }catch (ActivityNotFoundException e){
+            LogUtils.printExceptionStackTrace(e);
+            return false;
+        }
+
     }
 
 }

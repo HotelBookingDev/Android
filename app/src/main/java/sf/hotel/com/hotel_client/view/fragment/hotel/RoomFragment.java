@@ -158,7 +158,9 @@ public class RoomFragment extends BaseFragment implements IRoomView {
                                 phoneDialog.dismiss();
                             }
 
-                            StartActivityUtils.startPhone(getActivity(), phoneText.getText().toString());
+                            if (StartActivityUtils.startPhone(getActivity(), phoneText.getText().toString())){
+                                LogUtils.d("没有拨打电话功能");
+                            }
                         }
                     });
 
@@ -328,9 +330,11 @@ public class RoomFragment extends BaseFragment implements IRoomView {
 
 
     public void setImageList(List<String> list){
-        mImageList.clear();
-        mImageList.addAll(list);
-        convenientBanner.notifyDataSetChanged();
+        if (list != null && list.size() > 0){
+            mImageList.clear();
+            mImageList.addAll(list);
+            convenientBanner.notifyDataSetChanged();
+        }
     }
 
 

@@ -1,7 +1,5 @@
 package sf.hotel.com.data.entity.netresult;
 
-import java.util.List;
-
 import sf.hotel.com.data.entity.netresult.hotel.HouseBean;
 
 /**

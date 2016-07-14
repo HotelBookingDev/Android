@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.HotelImageLoad;
+import sf.hotel.com.hotel_client.view.custom.CustomRatingBar;
 
 /**
  * @author MZ
@@ -57,7 +59,7 @@ public class HomePullViewAdapter extends RecyclerViewBaseAdapter<HomePullViewAda
 
         holder.mTitle.setText(hotelsBean.getName());
 
-        holder.mTextContent.setText(hotelsBean.getAddress());
+        holder.mCustomRatingBar.setRatingBarCount(3.5f);
 
         if (hotelsBean.getHotel_imgs() != null && hotelsBean.getHotel_imgs().size() > 0){
             HotelImageLoad.loadImage(mContext, holder.mImage, hotelsBean
@@ -80,13 +82,15 @@ public class HomePullViewAdapter extends RecyclerViewBaseAdapter<HomePullViewAda
 
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView mImage;
-        TextView mTitle, mTextContent;
+        TextView mTitle;
+
+        CustomRatingBar mCustomRatingBar;
 
         public ViewHolder(View itemView) {
             super(itemView);
             mImage = (ImageView) itemView.findViewById(R.id.item_hotels_img);
             mTitle = (TextView) itemView.findViewById(R.id.item_hotels_name);
-            mTextContent = (TextView) itemView.findViewById(R.id.item_hotels_content);
+            mCustomRatingBar = (CustomRatingBar) itemView.findViewById(R.id.item_hotels_ratingBar);
         }
     }
 }

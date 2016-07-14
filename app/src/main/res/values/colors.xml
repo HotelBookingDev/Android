@@ -42,4 +42,7 @@
     <color name="normal_day">#ff999999</color>
     <color name="selected_day_background">#E75F49</color>
     <color name="selected_day_text">#fff2f2f2</color>
+
+    <color name="hotels_text_color_green">#7ec9c6</color>
+    <color name="hotels_text_color_gray">#626262</color>
 </resources>

@@ -111,6 +111,11 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
     }
 
     private void initPullView() {
+
+        View view = LayoutInflater.from(getBottomContext()).inflate(R.layout.header_hotels, null);
+
+        mPullView.addHeaderView(view);
+
         mPullView.setSwipeEnable(true);
         //加载更多
         mPullView.setLayoutManager(new LinearLayoutManager(getBottomContext()));

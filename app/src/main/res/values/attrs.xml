@@ -140,4 +140,9 @@
             <enum name="december" value="11" />
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="PriceText">
+        <attr name="price_text_price" format="string"/>
+        <attr name="price_text_poins" format="string"/>
+    </declare-styleable>
 </resources>
