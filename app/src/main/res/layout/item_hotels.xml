@@ -47,6 +47,7 @@
                 android:layout_weight="1"/>
 
             <sf.hotel.com.hotel_client.view.custom.PriceText
+                android:id="@+id/item_hotels_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"

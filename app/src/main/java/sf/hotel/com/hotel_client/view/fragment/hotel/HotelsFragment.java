@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,16 +16,23 @@ import com.lhh.ptrrv.library.footer.loadmore.BaseLoadMoreView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
 import rx.Subscription;
 import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.utils.DensityUtils;
 import sf.hotel.com.hotel_client.view.activity.hotel.RoomActivity;
+import sf.hotel.com.hotel_client.view.adapter.BaseRecyclerAdapter;
 import sf.hotel.com.hotel_client.view.adapter.HomePullViewAdapter;
 import sf.hotel.com.hotel_client.view.adapter.OnItemClickListener;
 import sf.hotel.com.hotel_client.view.custom.DividerItemDecoration;
+import sf.hotel.com.hotel_client.view.custom.hotelheader.RentalsSunHeaderView;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
@@ -39,7 +47,11 @@ import sf.hotel.com.hotel_client.view.presenter.hotel.IHotelPresenter;
 public class HotelsFragment extends BaseFragment implements IHotelsView {
 
     @BindView(R.id.fragment_hotels_list)
-    PullToRefreshRecyclerView mPullView;
+    RecyclerView mPullView;
+
+    @BindView(R.id.fragment_hotels_ptr_frame)
+    PtrClassicFrameLayout mPtrFrame;
+
 
     SearchItem mSearchItem;
 
@@ -54,7 +66,6 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
     HomePullViewAdapter mPullAdapter;
 
     private IHotelPresenter mIHotelPresenter;
-    Handler handler = new Handler();
 
     @Nullable
     @Override
@@ -67,10 +78,61 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
 
         initCache();
         initPullView();
+        initPtrFrame();
         onRxEvent();
         initHotelCache();
         return view;
     }
+
+    private void initPtrFrame() {
+        mPtrFrame.setLastUpdateTimeRelateObject(this);
+        mPtrFrame.setPtrHandler(new PtrHandler() {
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+            }
+
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                upDateDate();
+            }
+        });
+
+        final RentalsSunHeaderView header = new RentalsSunHeaderView(getContext());
+        header.setLayoutParams(new PtrFrameLayout.LayoutParams(-1, -2));
+        header.setPadding(0, DensityUtils.dp2px(getBottomContext(),15), 0, DensityUtils.dp2px(getBottomContext(), 10));
+        header.setUp(mPtrFrame);
+
+
+        mPtrFrame.setHeaderView(header);
+        mPtrFrame.addPtrUIHandler(header);
+
+        mPtrFrame.setResistance(1.7f);
+        mPtrFrame.setRatioOfHeaderHeightToRefresh(1.2f);
+        mPtrFrame.setDurationToClose(200);
+        mPtrFrame.setDurationToCloseHeader(1000);
+        // default is false
+        mPtrFrame.setPullToRefresh(false);
+        // default is true
+        mPtrFrame.setKeepHeaderWhenRefresh(true);
+
+        mPtrFrame.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mPtrFrame.autoRefresh();
+            }
+        }, 100);
+    }
+
+    private void upDateDate() {
+        mIHotelPresenter.callHotelsByCityId("1");
+    }
+
+
+    public void refreshComplete(){
+        mPtrFrame.refreshComplete();
+    }
+
 
     private void initCache() {
         mIHotelPresenter.loadSearchItem();
@@ -79,7 +141,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
     private void initHotelCache() {
         HotelResult hotelCache = mIHotelPresenter.getHotelCache();
         if (hotelCache != null) {
-            mPullAdapter.setList(hotelCache.getHotels());
+            mPullAdapter.setDatas(hotelCache.getHotels());
         }
         mIHotelPresenter.callHotelsByCityId("1");
     }
@@ -105,53 +167,21 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
     private void initPullView() {
 
         View view = LayoutInflater.from(getBottomContext()).inflate(R.layout.header_hotels, null);
-
-        mPullView.addHeaderView(view);
-
-        mPullView.setSwipeEnable(true);
-        //加载更多
         mPullView.setLayoutManager(new LinearLayoutManager(getBottomContext()));
-        mPullView.setPagingableListener(() -> {
-            mIHotelPresenter.loadMoreHotel();
-            handler.post(() -> {
-                mPullAdapter.notifyDataSetChanged();
-                mPullView.onFinishLoading(true, false);
-                showLog("show");
-            });
-        });
 
-        //设置间隔线
-        mPullView.getRecyclerView()
-                .addItemDecoration(new DividerItemDecoration(getBottomContext(),
-                        DividerItemDecoration.VERTICAL_LIST));
-
-        //设置上拉加载
-        BaseLoadMoreView loadMoreView = new BaseLoadMoreView(getBottomContext(),
-                mPullView.getRecyclerView());
-        mPullView.setLoadMoreFooter(loadMoreView);
-
-        //刷新
-        mPullView.setOnRefreshListener(() -> handler.post(() -> {
-            mIHotelPresenter.callHotelsByCityId("1");
-            mPullView.setOnRefreshComplete();
-            mPullView.onFinishLoading(true, false);
-        }));
-        //设置适配器
+        mPullView.addItemDecoration(new DividerItemDecoration(getBottomContext(),
+                DividerItemDecoration.VERTICAL_LIST));
         mPullAdapter = new HomePullViewAdapter(getBottomContext());
-        mPullAdapter.setOnItemClickLitener(new OnItemClickListener() {
+        mPullAdapter.setHeaderView(view);
+
+        mPullAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
-                HotelsBean itemByPos = mPullAdapter.getItemByPos(position);
+            public void onItemClick(int position, Object data) {
+                HotelsBean itemByPos = (HotelsBean) data;
                 showDetail(itemByPos.getId());
-            }
-
-            @Override
-            public void onItemLongClick(View view, int position) {
-
             }
         });
         mPullView.setAdapter(mPullAdapter);
-        mPullView.onFinishLoading(true, false);
     }
 
     public void showDetail(int id) {
@@ -179,7 +209,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
 
     @Override
     public void setHotelAdapterList(HotelResult hotelResult) {
-        mPullAdapter.setList(hotelResult.getHotels());
+        mPullAdapter.setDatas(hotelResult.getHotels());
     }
 
     public SearchItem getSearchItem() {

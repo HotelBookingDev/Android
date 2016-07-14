@@ -1,6 +1,7 @@
 package sf.hotel.com.hotel_client.view.presenter.hotel;
 
 import rx.Subscription;
+import rx.functions.Action1;
 import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.SearchItem;
@@ -33,9 +34,6 @@ public class IHotelPresenter extends SuperPresenter {
         mCompositeSubscription = new CompositeSubscription();
     }
 
-    public void loadMoreHotel() {
-
-    }
 
 
     public HotelResult getHotelCache(){
@@ -51,25 +49,23 @@ public class IHotelPresenter extends SuperPresenter {
         String ex = "";
 
         Subscription subscribe = mHotelsEntity.callHotelsByCityId(item, page, ex)
-                .subscribe(new SimpleSubscriber<HotelResult>(mIHotelsView.getBottomContext()) {
-            @Override
-            public void onNext(HotelResult hotelResult) {
-                super.onNext(hotelResult);
-                mHotelsEntity.saveHotelCache(mIHotelsView.getBottomContext(), hotelResult);
-                mIHotelsView.setHotelAdapterList(hotelResult);
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                super.onError(e);
-                mIHotelsView.showViewToast(e.getMessage() + "加载失败");
-                LogUtils.d(e.getMessage());
-            }
-        });
+                .subscribe(new Action1<HotelResult>() {
+                    @Override
+                    public void call(HotelResult hotelResult) {
+                        mHotelsEntity.saveHotelCache(mIHotelsView.getBottomContext(), hotelResult);
+                        mIHotelsView.setHotelAdapterList(hotelResult);
+                        mIHotelsView.refreshComplete();
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        mIHotelsView.showViewToast(throwable.getMessage() + "加载失败");
+                        LogUtils.d(throwable.getMessage());
+                    }
+                });
 
         mCompositeSubscription.add(subscribe);
     }
-
     public void loadSearchItem() {
         SearchItem searchItem = mHotelsEntity.getSearchItem(mIHotelsView.getBottomContext());
         if (searchItem == null){

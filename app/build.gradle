@@ -94,4 +94,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.orhanobut:dialogplus:1.11@aar'
     compile 'com.bigkoo:convenientbanner:2.0.5'
+    compile 'in.srain.cube:ultra-ptr:1.0.11'
 }
