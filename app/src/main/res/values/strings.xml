@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hotel-Client</string>
+    <string name="app_name">CHAO booking</string>
     <string name="btn_login">登陆</string>
     <string name="tv_forgot_pw">忘记密码</string>
     <string name="password">密码</string>
