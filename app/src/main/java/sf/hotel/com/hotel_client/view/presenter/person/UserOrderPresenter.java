@@ -56,4 +56,15 @@ public class UserOrderPresenter extends SuperPresenter {
             mIUserOrderView.showViewToast("取消成功");
         }, LogUtils::logThrowadle);
     }
+
+    public void refresh(int position) {
+        mIorder.forceRefresh(mIUserOrderView.getBottomContext(), position)
+                .subscribe(orderAndHotels -> {
+//                    异步加载完成判断当前显示是否是开始点击时候需要查看的订单列表
+                    if (mIUserOrderView.getPosition() == position) {
+                        mIUserOrderView.showOrder(orderAndHotels);
+                    }
+                    mIUserOrderView.pullViewComplete();
+                }, this::handlingException);
+    }
 }

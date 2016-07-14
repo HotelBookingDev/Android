@@ -29,7 +29,7 @@ public class HotelsEntityImp implements IHotelsEntity {
     @Override
     public Observable<HotelResult> callHotelsByCityId(SearchItem searchItem, String page, String exclude) {
 
-        String cityId = String.valueOf(searchItem.cityBean.getId());
+        String cityId = String.valueOf(searchItem.cityBean.getCode());
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 

@@ -59,7 +59,6 @@ public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.Vie
     public CityListAdapter(Context context) {
         super(context);
         selectCityBean = new CityBean();
-        selectCityBean.setId(-1);
     }
 
     @Override
@@ -72,14 +71,14 @@ public class CityListAdapter extends RecyclerViewBaseAdapter<CityListAdapter.Vie
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.button.setText(mList.get(position).getName());
 
-        if (mList.get(position).getId() != selectCityBean.getId())
+        if (mList.get(position).getCode() != selectCityBean.getCode())
             holder.button.setChecked(false);
 
         if (mOnItemClickListener != null) {
             holder.button.setOnClickListener(v -> {
                 //每次点击都记录当前位置,刷新整个界面
                 int pos = holder.getLayoutPosition();
-                if (mList.get(position).getId() != selectCityBean.getId()) {
+                if (mList.get(position).getCode() != selectCityBean.getCode()) {
                     selectCityBean = mList.get(pos);
                     notifyDataSetChanged();
                 }

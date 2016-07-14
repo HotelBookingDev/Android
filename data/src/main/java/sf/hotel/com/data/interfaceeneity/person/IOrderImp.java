@@ -66,4 +66,10 @@ public class IOrderImp implements IOrder {
         mOrderManager.setmAlreadyOrders(null);
         getOrder(context, Order.ALRADYORDER).subscribe(new CommSubscriber<>());
     }
+
+    @Override
+    public Observable<List<Order>> forceRefresh(Context context, int position) {
+        isDownLoad = false;
+        return getOrderByNet(context, position);
+    }
 }

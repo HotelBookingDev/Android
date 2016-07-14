@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
@@ -105,14 +104,13 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+            @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_room, container, false);
         mIRoomPresenter = new IRoomPresenter(this);
         ButterKnife.bind(this, view);
         initHeader();
         initContent();
-
 
         initDate(args);
 
@@ -133,7 +131,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         mPhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (phoneDialog == null){
+                if (phoneDialog == null) {
                     phoneDialog = DialogPlus.newDialog(getBottomContext())
                             .setContentHolder(new ViewHolder(R.layout.dialog_phone))
                             .setCancelable(true)
@@ -147,23 +145,24 @@ public class RoomFragment extends BaseFragment implements IRoomView {
                     phoneCancel.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (phoneDialog != null && phoneDialog.isShowing())
+                            if (phoneDialog != null && phoneDialog.isShowing()) {
                                 phoneDialog.onBackPressed(phoneDialog);
+                            }
                         }
                     });
                     phoneSubmit.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (phoneDialog != null && phoneDialog.isShowing()){
+                            if (phoneDialog != null && phoneDialog.isShowing()) {
                                 phoneDialog.dismiss();
                             }
 
                             if (StartActivityUtils.startPhone(getActivity(), phoneText.getText().toString())){
                                 LogUtils.d("没有拨打电话功能");
                             }
+
                         }
                     });
-
                 }
                 phoneDialog.show();
             }
@@ -172,7 +171,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         mLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!StartActivityUtils.startLBS(getActivity(), "", "", "")){
+                if (!StartActivityUtils.startLBS(getActivity(), "", "", "")) {
                     showViewToast("没有安装百度地图");
                 }
             }
@@ -193,13 +192,11 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         });
     }
 
-
-
-
     private void initBanner() {
 
         mImageList = new ArrayList<>();
-        mImageList.add("http://f.hiphotos.baidu.com/image/h%3D300/sign=e50211178e18367ab28979dd1e738b68/0b46f21fbe096b63a377826e04338744ebf8aca6.jpg");
+        mImageList.add(
+                "http://f.hiphotos.baidu.com/image/h%3D300/sign=e50211178e18367ab28979dd1e738b68/0b46f21fbe096b63a377826e04338744ebf8aca6.jpg");
         mImageList.add("http://img0.imgtn.bdimg.com/it/u=2460737275,599413823&fm=23&gp=0.jpg");
 
         convenientBanner.setPages(new CBViewHolderCreator<LocalImageHodlerView>() {
@@ -230,8 +227,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     }
 
     private void initTitle() {
-        int hideHeight =  DensityUtils.dp2px(getBottomContext(), 200);
-
+        int hideHeight = DensityUtils.dp2px(getBottomContext(), 200);
 
         mTitle.addLeftViewOnClickListener(new View.OnClickListener() {
             @Override
@@ -245,7 +241,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     @OnClick({R.id.frag_room_search})
     public void onSearchClick(View v) {
 
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.frag_room_search:
                 DialogBedAdapter dialogBedAdapter = new DialogBedAdapter(getBottomContext());
                 dialogBedAdapter.setOnItemClickListener(new View.OnClickListener() {
@@ -255,13 +251,15 @@ public class RoomFragment extends BaseFragment implements IRoomView {
                     }
                 });
 
-                dialogBedAdapter.setBedListOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        LogUtils.d("==------->", "onItemClick");
-                        callHotelBook();
-                    }
-                });
+                dialogBedAdapter.setBedListOnItemClickListener(
+                        new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                                LogUtils.d("==------->", "onItemClick");
+                                callHotelBook();
+                            }
+                        });
 
                 if (dialogPlus == null) {
                     dialogPlus = DialogPlus.newDialog(getBottomContext())
@@ -298,26 +296,24 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         mIRoomPresenter.callHotelBook();
     }
 
-
     @Override
     public Context getBottomContext() {
         return getActivity();
     }
 
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
 
-        if (dialogPlus != null){
-            if (dialogPlus.isShowing()){
+        if (dialogPlus != null) {
+            if (dialogPlus.isShowing()) {
                 dialogPlus.dismiss();
             }
             dialogPlus = null;
         }
 
-        if (phoneDialog != null){
-            if (phoneDialog.isShowing()){
+        if (phoneDialog != null) {
+            if (phoneDialog.isShowing()) {
                 phoneDialog.dismiss();
             }
             phoneDialog = null;
@@ -328,7 +324,6 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         return hotelId;
     }
 
-
     public void setImageList(List<String> list){
         if (list != null && list.size() > 0){
             mImageList.clear();
@@ -337,18 +332,16 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         }
     }
 
-
-    public void setRoomContentText(String text){
+    public void setRoomContentText(String text) {
         mRoomContent.setText(text);
     }
 
-    public void setHotelsBean(HotelsBean hotelsBean){
+    public void setHotelsBean(HotelsBean hotelsBean) {
         this.hotelsBean = hotelsBean;
         notifyDataSetChanged();
     }
 
-
-    public void notifyDataSetChanged(){
+    public void notifyDataSetChanged() {
         setImageList(hotelsBean.getHotel_imgs());
         setRoomContentText(hotelsBean.getIntroduce());
     }

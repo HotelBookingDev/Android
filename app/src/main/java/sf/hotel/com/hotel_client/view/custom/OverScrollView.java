@@ -416,7 +416,7 @@ public class OverScrollView extends FrameLayout implements OnTouchListener
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
 	{
-		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+			super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
 		if (!mFillViewport)
 		{

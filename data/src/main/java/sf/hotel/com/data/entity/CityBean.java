@@ -9,17 +9,14 @@ import android.os.Parcelable;
  * @date 16/7/4.
  */
 public class CityBean implements Parcelable {
-    private int id = 1;
     private int code;
     private String name = "杭州";
     private String name_py;
     private String logo;
 
-
-    public CityBean(){}
+    public CityBean() {}
 
     protected CityBean(Parcel in) {
-        id = in.readInt();
         code = in.readInt();
         name = in.readString();
         name_py = in.readString();
@@ -37,14 +34,6 @@ public class CityBean implements Parcelable {
             return new CityBean[size];
         }
     };
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getCode() {
         return code;
@@ -85,7 +74,6 @@ public class CityBean implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
         dest.writeInt(code);
         dest.writeString(name);
         dest.writeString(name_py);

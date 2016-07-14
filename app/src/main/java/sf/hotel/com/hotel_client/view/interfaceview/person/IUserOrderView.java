@@ -14,4 +14,6 @@ public interface IUserOrderView extends BaseView {
     void showOrder(List<Order> mOrders);
 
     int getPosition();
+
+    void pullViewComplete();
 }

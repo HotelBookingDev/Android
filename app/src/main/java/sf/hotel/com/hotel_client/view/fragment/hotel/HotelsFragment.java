@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +16,6 @@ import com.lhh.ptrrv.library.footer.loadmore.BaseLoadMoreView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Subscription;
-import rx.functions.Action1;
 import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.data.entity.netresult.HotelResult;
@@ -52,7 +50,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         fragment.setArguments(args);
         return fragment;
     }
-    
+
     HomePullViewAdapter mPullAdapter;
 
     private IHotelPresenter mIHotelPresenter;
@@ -89,23 +87,17 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
     private void onRxEvent() {
         Subscription subscribe = RxBus.getDefault()
                 .toObservable(HotelMessage.class)
-                .subscribe(new Action1<HotelMessage>() {
-                    @Override
-                    public void call(HotelMessage hotelMessage) {
-                        switch (hotelMessage.what) {
-                            case HotelMessage.REFRESH_LIST_VIEW_HOTEL:
-                                CityBean cityBean = (CityBean) hotelMessage.obj;
-                                mSearchItem.cityBean.setId(cityBean.getId());
-                                mSearchItem.cityBean.setName(cityBean.getName());
-                                mIHotelPresenter.callHotelsByCityId("1");
-                                break;
-                        }
+                .subscribe(hotelMessage -> {
+                    switch (hotelMessage.what) {
+                        case HotelMessage.REFRESH_LIST_VIEW_HOTEL:
+                            CityBean cityBean = (CityBean) hotelMessage.obj;
+                            mSearchItem.cityBean.setCode(cityBean.getCode());
+                            mSearchItem.cityBean.setName(cityBean.getName());
+                            mIHotelPresenter.callHotelsByCityId("1");
+                            break;
                     }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
+                }, throwable -> {
 
-                    }
                 });
         mCompositeSubscription.add(subscribe);
     }
@@ -119,19 +111,13 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         mPullView.setSwipeEnable(true);
         //加载更多
         mPullView.setLayoutManager(new LinearLayoutManager(getBottomContext()));
-        mPullView.setPagingableListener(new PullToRefreshRecyclerView.PagingableListener() {
-            @Override
-            public void onLoadMoreItems() {
-                mIHotelPresenter.loadMoreHotel();
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mPullAdapter.notifyDataSetChanged();
-                        mPullView.onFinishLoading(true, false);
-                        showLog("show");
-                    }
-                });
-            }
+        mPullView.setPagingableListener(() -> {
+            mIHotelPresenter.loadMoreHotel();
+            handler.post(() -> {
+                mPullAdapter.notifyDataSetChanged();
+                mPullView.onFinishLoading(true, false);
+                showLog("show");
+            });
         });
 
         //设置间隔线
@@ -145,19 +131,11 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         mPullView.setLoadMoreFooter(loadMoreView);
 
         //刷新
-        mPullView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mIHotelPresenter.callHotelsByCityId("1");
-                        mPullView.setOnRefreshComplete();
-                        mPullView.onFinishLoading(true, false);
-                    }
-                });
-            }
-        });
+        mPullView.setOnRefreshListener(() -> handler.post(() -> {
+            mIHotelPresenter.callHotelsByCityId("1");
+            mPullView.setOnRefreshComplete();
+            mPullView.onFinishLoading(true, false);
+        }));
         //设置适配器
         mPullAdapter = new HomePullViewAdapter(getBottomContext());
         mPullAdapter.setOnItemClickLitener(new OnItemClickListener() {
