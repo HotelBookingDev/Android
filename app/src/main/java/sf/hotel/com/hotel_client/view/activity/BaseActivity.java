@@ -14,6 +14,7 @@ import me.yokeyword.fragmentation.SupportActivity;
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 import rx.subscriptions.CompositeSubscription;
+import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.AndroidUtils;
@@ -107,5 +108,9 @@ public abstract class BaseActivity extends SupportActivity {
 
     public String getIntallationId() {
         return AndroidUtils.getInstallationId();
+    }
+
+    protected boolean checkUserLogin() {
+        return EntityContext.getInstance().getmCurrentUser() == null;
     }
 }

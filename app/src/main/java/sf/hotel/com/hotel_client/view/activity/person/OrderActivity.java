@@ -6,7 +6,7 @@ import butterknife.ButterKnife;
 import rx.Subscription;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.BaseActivity;
-import sf.hotel.com.hotel_client.view.event.Message;
+import sf.hotel.com.hotel_client.view.activity.SplashActivity;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.person.OrderMessage;
 import sf.hotel.com.hotel_client.view.fragment.SearchFragment;
@@ -18,6 +18,11 @@ public class OrderActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
+//        推送进来进行用户是否登陆做判断
+        if (checkUserLogin()) {
+            startActivity(SplashActivity.class);
+            finish();
+        }
         loadRootFragment(R.id.order_content, OrderFragment.newInstance());
         ButterKnife.bind(this);
         initView();
@@ -28,10 +33,7 @@ public class OrderActivity extends BaseActivity {
         Subscription subscribe = RxBus.getDefault()
                 .toObservable(OrderMessage.class)
                 .subscribe(OrderMessage -> {
-                    if (OrderMessage.what ==
-                            Message.ISEXIT) {
-                        finish();
-                    } else if (OrderMessage.what == OrderMessage.SEARCHMESSAGE) {
+                    if (OrderMessage.what == OrderMessage.SEARCHMESSAGE) {
                         start(SearchFragment.newInstance());
                     }
                 }, throwable -> {

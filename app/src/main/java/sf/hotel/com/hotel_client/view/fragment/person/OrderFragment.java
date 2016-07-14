@@ -10,7 +10,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
-import sf.hotel.com.hotel_client.view.event.Message;
 import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.person.OrderMessage;
@@ -45,8 +44,7 @@ public class OrderFragment extends BaseFragment {
     private void initView() {
         mTabLayout.addTab(mTabLayout.newTab().setText(mTab[0]));
         mTabLayout.addTab(mTabLayout.newTab().setText(mTab[1]));
-        mView_title.addLeftClick(
-                v -> RxBus.getDefault().post(MessageFactory.createOrderMessage(Message.ISEXIT)));
+        mView_title.addLeftClick(v -> getActivity().finish());
         mView_title.addRightClick(v -> RxBus.getDefault()
                 .post(MessageFactory.createOrderMessage(OrderMessage.SEARCHMESSAGE)));
         mTabLayout.setOnTabSelectedListener(new TabSelectListener());

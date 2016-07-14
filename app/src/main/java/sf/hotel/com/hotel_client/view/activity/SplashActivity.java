@@ -29,7 +29,7 @@ public class SplashActivity extends BaseActivity implements ISplashView {
         super.onCreate(savedInstanceState);
 
 //        在这里初始化Activity
-        PushService.setDefaultPushCallback(this, PushActivity.class);
+        PushService.setDefaultPushCallback(this, PushBaseActivity.class);
         mPreseneter = new ISplashPresenter(this);
         initView();
         initDatas();

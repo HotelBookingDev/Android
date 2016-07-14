@@ -1,5 +1,9 @@
 package sf.hotel.com.hotel_client.view.fragment.person;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -17,6 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Subscription;
 import sf.hotel.com.data.entity.Order;
+import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.adapter.UserOrderAdapter;
 import sf.hotel.com.hotel_client.view.event.RxBus;
@@ -29,6 +34,8 @@ import sf.hotel.com.hotel_client.view.presenter.person.UserOrderPresenter;
  * A simple {@link Fragment} subclass.
  */
 public class UserOrderFragment extends BaseFragment implements IUserOrderView {
+
+    private static final String PUSH_ORDER = "com.pushHotel.action";
 
     private UserOrderPresenter mUserOrderPresenter;
 
@@ -44,6 +51,7 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
     @BindView(R.id.rv_order)
     PullToRefreshRecyclerView mPullView;
 
+    private boolean isRegisterReceiver = false;
     //    判断当前的订单列表该显示那个
     private int position;
 
@@ -60,7 +68,19 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
         mUserOrderPresenter = new UserOrderPresenter(this);
 //        根据你需要的订单来获取
         mUserOrderPresenter.getDatas(position);
+        registerReceiver();
         return view;
+    }
+
+    private void registerReceiver() {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(PUSH_ORDER);
+        getActivity().registerReceiver(receiver, filter);
+        isRegisterReceiver = true;
+    }
+
+    private void unregisterReceiver() {
+        if (isRegisterReceiver) getActivity().unregisterReceiver(receiver);
     }
 
     private void initRefreshView() {
@@ -90,7 +110,7 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
                             orderMessage.what != OrderMessage.SEARCHMESSAGE) {
                         mUserOrderPresenter.getDatas(position);
                     }
-                });
+                }, LogUtils::logThrowadle);
         mCompositeSubscription.add(subscribe);
     }
 
@@ -105,6 +125,12 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
             mAdapter.setOrders(mOrders);
         }
         mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver();
     }
 
     @Override
@@ -131,4 +157,13 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
         });
         builder.show();
     }
+
+    BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(PUSH_ORDER)) {
+                mUserOrderPresenter.refresh(getPosition());
+            }
+        }
+    };
 }

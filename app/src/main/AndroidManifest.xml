@@ -77,7 +77,7 @@
 
         <activity
             android:name=".view.activity.person.OrderActivity"
-            android:label="@string/title_activity_order_fragment"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.activity.person.UserInfoActivity"
@@ -95,8 +95,6 @@
 
         <!-- alipay sdk end -->
 
-        <activity android:name=".view.activity.PushActivity" />
-
         <!-- leanCloud -->
         <service
             android:name="com.avos.avoscloud.PushService"
@@ -113,7 +111,6 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.USER_PRESENT" />
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-                <action android:name="com.avos.UPDATE_STATUS" />
                 <action android:name="com.pushHotel.action" />
             </intent-filter>
         </receiver>
