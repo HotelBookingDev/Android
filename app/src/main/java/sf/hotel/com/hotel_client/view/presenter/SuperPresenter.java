@@ -29,8 +29,8 @@ public abstract class SuperPresenter implements Presenter {
 
     @Override
     public void handlingException(Throwable e) {
-        if (e != null && e.getMessage() != null) {
-            LogUtils.d(e.getMessage());
+        if (e != null){
+            LogUtils.logThrowadle(e);
         }
     }
 

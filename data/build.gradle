@@ -27,13 +27,12 @@ dependencies {
     //gson解析
     compile rootProject.ext.dependenciesdata.gson
     //rx系列
-    compile rootProject.ext.dependenciesdata.rxJava
-    compile rootProject.ext.dependenciesdata.rxAndroid
+    compile rootProject.ext.commentdencie.rxJava
+    compile rootProject.ext.commentdencie.rxAndroid
     //数据库orm框架
     compile rootProject.ext.dependenciesdata.ormlite_core
     compile rootProject.ext.dependenciesdata.ormlite_android
-    //dagger2依赖注入
-    compile rootProject.ext.dependenciesdata.dagger2
+
     //网络请求框架
     compile rootProject.ext.dependenciesdata.retrofit
     compile rootProject.ext.dependenciesdata.convertergson
@@ -45,7 +44,7 @@ dependencies {
     compile rootProject.ext.dependenciesdata.commonsio
     testCompile 'junit:junit:4.12'
     //本身data层不该涉及view层 但是view层中的对象需要依赖他自己的对象暂时保留
-    compile rootProject.ext.dependenciesdata.searcheview
+    compile rootProject.ext.commentdencie.searcheview
     //Logger日志框架
     compile rootProject.ext.dependenciesdata.logger
     compile files('libs/google-collections-1.0.jar')

@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.lhh.ptrrv.library.PullToRefreshRecyclerView;
+import com.lhh.ptrrv.library.footer.loadmore.BaseLoadMoreView;
 
 import java.util.List;
 
@@ -40,7 +42,7 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
     }
 
     @BindView(R.id.rv_order)
-    RecyclerView mRecyclerview;
+    PullToRefreshRecyclerView mPullView;
 
     //    判断当前的订单列表该显示那个
     private int position;
@@ -54,17 +56,28 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
         ButterKnife.bind(this, view);
         position = OrderMessage.ALREADYCONSUMED;
         initRxevent();
-        initRecycle();
+        initRefreshView();
         mUserOrderPresenter = new UserOrderPresenter(this);
 //        根据你需要的订单来获取
         mUserOrderPresenter.getDatas(position);
         return view;
     }
 
-    private void initRecycle() {
+    private void initRefreshView() {
+        //加载更多
+        mPullView.setSwipeEnable(true);
+        mPullView.setLayoutManager(new LinearLayoutManager(getBottomContext()));
+        //设置上拉加载
+        BaseLoadMoreView loadMoreView = new BaseLoadMoreView(getBottomContext(),
+                mPullView.getRecyclerView());
+        mPullView.setLoadMoreFooter(loadMoreView);
+        //刷新
+        mPullView.setOnRefreshListener(() -> {
+            mUserOrderPresenter.refresh(getPosition());
+        });
         LinearLayoutManager layout = new LinearLayoutManager(getBottomContext(),
                 LinearLayoutManager.VERTICAL, false);
-        mRecyclerview.setLayoutManager(layout);
+        mPullView.setLayoutManager(layout);
     }
 
     private void initRxevent() {
@@ -87,16 +100,22 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
         if (mAdapter == null) {
             mAdapter = new UserOrderAdapter(getActivity(), mOrders);
             mAdapter.setmUserOrderClick(this::showDialog);
+            mPullView.setAdapter(mAdapter);
         } else {
             mAdapter.setOrders(mOrders);
         }
-        mRecyclerview.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
     }
 
     @Override
     public int getPosition() {
         return position;
+    }
+
+    @Override
+    public void pullViewComplete() {
+        mPullView.setOnRefreshComplete();
+        mPullView.onFinishLoading(true, false);
     }
 
     private void showDialog(Order order) {

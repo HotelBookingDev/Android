@@ -87,7 +87,8 @@ dependencies {
     //facebook 动画库
     compile rootProject.ext.dependencies.rebound
 //  搜索框
-    compile rootProject.ext.dependencies.searcheview
+    compile rootProject.ext.commentdencie.searcheview
+
     compile files('libs/locSDK_6.23.jar')
     compile files('libs/alipaySdk-20160516.jar')
     testCompile 'junit:junit:4.12'

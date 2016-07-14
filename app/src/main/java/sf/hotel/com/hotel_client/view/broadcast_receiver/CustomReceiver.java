@@ -13,7 +13,6 @@ import org.json.JSONObject;
 
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.utils.TToast;
 import sf.hotel.com.hotel_client.view.activity.PushActivity;
 
 /**
@@ -25,7 +24,6 @@ public class CustomReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         LogUtils.d("CustomReceiver", "isReceiver");
-        TToast.showToast("CustomReceiver");
         try {
             if (intent.getAction().equals("com.pushHotel.action")) {
                 JSONObject json = new JSONObject(
