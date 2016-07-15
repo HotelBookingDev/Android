@@ -40,6 +40,8 @@ public class EntityContext {
             getUserByDb().subscribe(userEntity -> {
                 mCurrentUser = userEntity;
             });
+        } else {
+            mCurrentUser = null;
         }
         return mCurrentUser;
     }
