@@ -3,6 +3,7 @@ package sf.hotel.com.data.interfaceeneity.hotel;
 
 import rx.Observable;
 import sf.hotel.com.data.entity.HotelBookResult;
+import sf.hotel.com.data.entity.netresult.hotel.Hotel1Result;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.data.net.ApiWrapper;
 
@@ -18,7 +19,7 @@ public class IRoomEntityImp implements RoomEntity{
      * @param id hotel的id
      * @return
      */
-    public Observable<HotelsBean> callHotelBean(String id){
+    public Observable<Hotel1Result> callHotelBean(String id){
         return ApiWrapper.getInstance().callHotelBean(id);
     }
 

@@ -64,7 +64,6 @@ public class RoomActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        TransulcentUtils.setFixWindow(this);
     }
 
     protected void init(Bundle bundle) {

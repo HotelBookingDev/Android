@@ -5,6 +5,7 @@ import java.util.List;
 import rx.Observable;
 import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.entity.HotelBookResult;
+import sf.hotel.com.data.entity.netresult.hotel.Hotel1Result;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.data.interfaceeneity.hotel.IRoomEntityImp;
 import sf.hotel.com.data.net.ApiWrapper;
@@ -57,11 +58,11 @@ public class IRoomPresenter extends SuperPresenter {
 
     public void callHotelBean(){
         mIRoomEntityImp.callHotelBean(String.valueOf(mIRoomView.getHotelId()))
-                .subscribe(new SimpleSubscriber<HotelsBean>(mIRoomView.getBottomContext()){
+                .subscribe(new SimpleSubscriber<Hotel1Result>(mIRoomView.getBottomContext()){
                     @Override
-                    public void onNext(HotelsBean hotelsBean) {
-                        super.onNext(hotelsBean);
-                        onNextHotelBean(hotelsBean);
+                    public void onNext(Hotel1Result hotel1Result) {
+                        super.onNext(hotel1Result);
+                        onNextHotelBean(hotel1Result);
                     }
 
                     @Override
@@ -71,8 +72,8 @@ public class IRoomPresenter extends SuperPresenter {
                 });
     }
 
-    private void onNextHotelBean(HotelsBean hotelsBean) {
-        mIRoomView.setHotelsBean(hotelsBean);
+    private void onNextHotelBean(Hotel1Result hotelsBean) {
+        mIRoomView.setHotelsBean(hotelsBean.getHotel());
     }
 
 }

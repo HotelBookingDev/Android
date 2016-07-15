@@ -13,16 +13,23 @@
     <TextView
         android:id="@+id/fragment_room_v2_content"
         style="@style/titleTextStyle"
+        android:textStyle="italic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="5dp"
         android:text="香格里拉（Shangri-la）藏语意为“心中的日月”，是云南省迪庆藏族自治州下辖市及首府所在地" />
 
 
     <sf.hotel.com.hotel_client.view.custom.CustomRatingBar
         android:layout_width="match_parent"
-        android:layout_margin="20dp"
         android:id="@+id/content_room_v2_ratingBar"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="5dp"
         android:layout_height="20dp"/>
 
     <sf.hotel.com.hotel_client.view.custom.PersonalItemView
@@ -30,10 +37,6 @@
         style="@style/group_item"
         app:contextText="xx区xx路xx号"
         app:leftIcon="@mipmap/ic_add_location_black_36dp" />
-
-
-    <include layout="@layout/item_line" />
-
 
     <sf.hotel.com.hotel_client.view.custom.PersonalItemView
         android:id="@+id/fragment_room_v2_phone"
@@ -43,12 +46,12 @@
 
     <include layout="@layout/item_line" />
 
-
-    <TextView
+    <sf.hotel.com.hotel_client.view.custom.CustomImgText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:gravity="center"
-        android:text="商家详情"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         />
 
 </LinearLayout>

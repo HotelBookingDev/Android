@@ -42,6 +42,7 @@ import sf.hotel.com.hotel_client.view.adapter.DialogBedAdapter;
 import sf.hotel.com.hotel_client.view.adapter.LocalImageHodlerView;
 import sf.hotel.com.hotel_client.view.adapter.RoomRecyclerAdapter;
 import sf.hotel.com.hotel_client.view.custom.HideTitle;
+import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.custom.PersonalItemView;
 import sf.hotel.com.hotel_client.view.custom.PullScrollView;
 import sf.hotel.com.hotel_client.view.event.MessageFactory;
@@ -76,8 +77,6 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
 
     DialogPlus dialogPlus, phoneDialog;
 
-    HideTitle mTitle;
-
     PersonalItemView mPhone;
 
     PersonalItemView mLocation;
@@ -91,6 +90,9 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
     TextView phoneText;
     FancyButton phoneCancel;
     FancyButton phoneSubmit;
+
+    @BindView(R.id.fragment_room_v2_title)
+    HotelTitleView mTitle;
 
     public static RoomFragmentV2 newInstance(Bundle bundle) {
 
@@ -196,6 +198,18 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
         initBanner();
     }
 
+    @OnClick({R.id.fragment_room_v2_title})
+    public void onViewClick(View view){
+        switch (view.getId()){
+            case R.id.fragment_room_v2_title:
+
+                RxBus.getDefault().post(MessageFactory.createRoomMessage(RoomMessage.ACTIVITY_BACK));
+
+                break;
+        }
+    }
+
+
     private void initBanner() {
 
         mImageList = new ArrayList<>();
@@ -211,11 +225,14 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
         }, mImageList)
                 .setPageIndicator(
                         new int[]{R.mipmap.ic_page_indicator, R.mipmap.ic_page_indicator_focused})
+                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_LEFT)
                 .setOnItemClickListener(new OnItemClickListener() {
                     @Override
                     public void onItemClick(int position) {
                     }
-                });
+                })
+
+            ;
     }
 
     @Override
@@ -230,70 +247,6 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
         convenientBanner.stopTurning();
     }
 
-    private void initTitle() {
-        int hideHeight = DensityUtils.dp2px(getBottomContext(), 200);
-
-        mTitle.addLeftViewOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RxBus.getDefault()
-                        .post(MessageFactory.createRoomMessage(RoomMessage.ACTIVITY_BACK));
-            }
-        });
-    }
-
-    public void onSearchClick(View v) {
-
-        switch (v.getId()) {
-            case R.id.frag_room_search:
-                DialogBedAdapter dialogBedAdapter = new DialogBedAdapter(getBottomContext());
-                dialogBedAdapter.setOnItemClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    }
-                });
-
-                dialogBedAdapter.setBedListOnItemClickListener(
-                        new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position,
-                                                    long id) {
-                                LogUtils.d("==------->", "onItemClick");
-                                callHotelBook();
-                            }
-                        });
-
-                if (dialogPlus == null) {
-                    dialogPlus = DialogPlus.newDialog(getBottomContext())
-                            .setContentHolder(new ListHolder())
-                            .setCancelable(true)
-                            .setGravity(Gravity.BOTTOM)
-                            .setFooter(R.layout.footer_bed)
-                            .setHeader(R.layout.header_bed)
-                            .setAdapter(dialogBedAdapter)
-                            .setOnDismissListener(dialog -> {
-
-                            })
-                            .setOnCancelListener(dialog -> {
-
-                            })
-                            .setExpanded(true)
-                            .create();
-                }
-
-                ImageView dialogClose = (ImageView) dialogPlus.findViewById(R.id.header_bed_close);
-                dialogClose.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialogPlus.onBackPressed(dialogPlus);
-                    }
-                });
-
-                dialogPlus.show();
-                break;
-        }
-    }
 
     private void callHotelBook() {
         mIRoomPresenter.callHotelBook();

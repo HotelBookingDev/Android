@@ -47,7 +47,7 @@ public class IHotelPresenter extends SuperPresenter {
 
         SearchItem item = mIHotelsView.getSearchItem();
 
-        String ex = "";
+        String ex = "types";
 
         Subscription subscribe = mHotelsEntity.callHotelsByCityId(item, String.valueOf(page), ex)
                 .subscribe(new Action1<HotelResult>() {
@@ -62,6 +62,7 @@ public class IHotelPresenter extends SuperPresenter {
                     public void call(Throwable throwable) {
                         mIHotelsView.showViewToast(throwable.getMessage() + "加载失败");
                         LogUtils.d(throwable.getMessage());
+                        mIHotelsView.loadMoreFinish();
                     }
                 });
 
@@ -74,7 +75,7 @@ public class IHotelPresenter extends SuperPresenter {
 
         SearchItem item = mIHotelsView.getSearchItem();
 
-        String ex = "";
+        String ex = "types";
 
         Subscription subscribe = mHotelsEntity.callHotelsByCityId(item, page, ex)
                 .subscribe(new Action1<HotelResult>() {
@@ -89,6 +90,7 @@ public class IHotelPresenter extends SuperPresenter {
                     public void call(Throwable throwable) {
                         mIHotelsView.showViewToast(throwable.getMessage() + "加载失败");
                         LogUtils.d(throwable.getMessage());
+                        mIHotelsView.refreshComplete();
                     }
                 });
 

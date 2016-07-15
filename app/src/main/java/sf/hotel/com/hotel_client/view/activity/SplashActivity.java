@@ -9,6 +9,7 @@ import com.avos.avoscloud.PushService;
 
 import sf.hotel.com.hotel_client.utils.AndroidUtils;
 import sf.hotel.com.hotel_client.utils.HotelImageLoad;
+import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
 import sf.hotel.com.hotel_client.view.activity.register.LoginActivity;
 import sf.hotel.com.hotel_client.view.interfaceview.login.ISplashView;
 import sf.hotel.com.hotel_client.view.presenter.login.ISplashPresenter;
@@ -42,6 +43,12 @@ public class SplashActivity extends BaseActivity implements ISplashView {
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         HotelImageLoad.loadImage(this, imageView, getImage());
         setContentView(imageView);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        TransulcentUtils.setFixWindow(this);
     }
 
     private void initDatas() {

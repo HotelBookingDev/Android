@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <sf.hotel.com.hotel_client.view.custom.HotelTitleView
+        android:id="@+id/fragment_room_v2_title"
+        style="@style/view_title"
+        app:titleText="@string/room"
+        app:leftBtnIcon="@mipmap/ic_title_back_arrow"
+        />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/fragment_room_recyclerView"

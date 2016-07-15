@@ -1,16 +1,11 @@
 package sf.hotel.com.data.entity.netresult.hotel;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import java.util.List;
-
 /**
  * @author MZ
  * @email sanfenruxi1@163.com
- * @date 16/7/4.
+ * @date 16/7/15.
  */
-public class HotelsBean implements Parcelable{
+public class Hotel1Result {
 
     /**
      * hotel_imgs : []
@@ -24,142 +19,15 @@ public class HotelsBean implements Parcelable{
      * types : [{"id":1,"name":"商务大床"},{"id":4,"name":"123"},{"id":5,"name":"123"},{"id":6,"name":"123"},{"id":7,"name":"123"},{"id":21,"name":"123"},{"id":22,"name":"123"},{"id":23,"name":"123"},{"id":24,"name":"\u201cnb\""},{"id":25,"name":"123"},{"id":30,"name":"\u201cnb\""},{"id":35,"name":"豪华"}]
      */
 
-    private String address;
-    private String introduce;
-    private int id;
-    private int city;
-    private String contact_phone;
-    private String name;
-    private List<String> hotel_imgs;
-    /**
-     * hotel : 1
-     * checked : true
-     * name : 商务大床
-     * house_imgs : []
-     * housePackages : [{"breakfast":1,"states":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"detail":"3333","need_point":123,"id":"c4080588-1ef1-4b16-85f5-741f538c9f0e","front_price":22},{"breakfast":1,"states":[],"detail":"","need_point":123,"id":"92ebd074-de5c-4bef-b4c4-ec7b72ee2631","front_price":123},{"breakfast":1,"states":[],"detail":"","need_point":123,"id":"6871a171-bb53-4048-910d-6014615e671e","front_price":123},{"breakfast":1,"states":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"detail":"zao","need_point":20,"id":"4d587e07-8704-4048-b59f-41067528e2c0","front_price":130},{"breakfast":1,"states":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"detail":"dddd","need_point":12,"id":"100f5982-cfca-4c80-a7cb-7f0b229a06bb","front_price":340}]
-     * id : 1
-     * enabled : true
-     */
+    private HotelsBean hotel;
 
-    private List<HotelHousesBean> hotel_houses;
-    /**
-     * id : 1
-     * name : 商务大床
-     */
-
-    private List<TypesBean> types;
-
-    protected HotelsBean(Parcel in) {
-        address = in.readString();
-        introduce = in.readString();
-        id = in.readInt();
-        city = in.readInt();
-        contact_phone = in.readString();
-        name = in.readString();
-        hotel_imgs = in.createStringArrayList();
-        hotel_houses = in.createTypedArrayList(HotelHousesBean.CREATOR);
-        types = in.createTypedArrayList(TypesBean.CREATOR);
+    public HotelsBean getHotel() {
+        return hotel;
     }
 
-    public static final Creator<HotelsBean> CREATOR = new Creator<HotelsBean>() {
-        @Override
-        public HotelsBean createFromParcel(Parcel in) {
-            return new HotelsBean(in);
-        }
-
-        @Override
-        public HotelsBean[] newArray(int size) {
-            return new HotelsBean[size];
-        }
-    };
-
-    public String getAddress() {
-        return address;
+    public void setHotel(HotelsBean hotel) {
+        this.hotel = hotel;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
-    public String getIntroduce() {
-        return introduce;
-    }
-
-    public void setIntroduce(String introduce) {
-        this.introduce = introduce;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getCity() {
-        return city;
-    }
-
-    public void setCity(int city) {
-        this.city = city;
-    }
-
-    public String getContact_phone() {
-        return contact_phone;
-    }
-
-    public void setContact_phone(String contact_phone) {
-        this.contact_phone = contact_phone;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<String> getHotel_imgs() {
-        return hotel_imgs;
-    }
-
-    public void setHotel_imgs(List<String> hotel_imgs) {
-        this.hotel_imgs = hotel_imgs;
-    }
-
-    public List<HotelHousesBean> getHotel_houses() {
-        return hotel_houses;
-    }
-
-    public void setHotel_houses(List<HotelHousesBean> hotel_houses) {
-        this.hotel_houses = hotel_houses;
-    }
-
-    public List<TypesBean> getTypes() {
-        return types;
-    }
-
-    public void setTypes(List<TypesBean> types) {
-        this.types = types;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(address);
-        dest.writeString(introduce);
-        dest.writeInt(id);
-        dest.writeInt(city);
-        dest.writeString(contact_phone);
-        dest.writeString(name);
-        dest.writeStringList(hotel_imgs);
-        dest.writeTypedList(hotel_houses);
-        dest.writeTypedList(types);
-    }
 }
