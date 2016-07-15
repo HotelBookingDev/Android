@@ -74,4 +74,10 @@ public class AccountBalanceFragmentView extends BaseFragment
                 break;
         }
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mAccountPresenter.destroy();
+    }
 }

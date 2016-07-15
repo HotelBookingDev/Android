@@ -101,4 +101,10 @@ public class HomeContainer extends BaseFragment implements IHomeContainerView {
     public void setmSearchItem(SearchItem mSearchItem) {
         this.mSearchItem = mSearchItem;
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mIHomePresenter.destroy();
+    }
 }

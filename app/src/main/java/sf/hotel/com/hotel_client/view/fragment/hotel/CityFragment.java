@@ -115,4 +115,10 @@ public class CityFragment extends BaseFragment implements ICityView {
             mCityListAdapter.setSelectCityBean(cityBean);
         }
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mICityPresenter.destroy();
+    }
 }

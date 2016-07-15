@@ -69,4 +69,10 @@ public class ChangePwdFragment extends BaseFragment implements IChangePwdView {
     public String getConfimPwd() {
         return mConfirmPwdEditTxt.getText().toString().trim();
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mChangePersenter.destroy();
+    }
 }

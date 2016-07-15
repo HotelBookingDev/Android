@@ -131,6 +131,7 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
     public void onDestroy() {
         super.onDestroy();
         unregisterReceiver();
+        mUserOrderPresenter.destroy();
     }
 
     @Override

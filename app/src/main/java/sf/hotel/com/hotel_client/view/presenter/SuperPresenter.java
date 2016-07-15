@@ -65,7 +65,11 @@ public abstract class SuperPresenter implements Presenter {
 
     @Override
     public void destroy() {
-        if (mCompositeSubscription != null) mCompositeSubscription.unsubscribe();
+        if (mCompositeSubscription != null) {
+            if (mCompositeSubscription.isUnsubscribed()) {
+                mCompositeSubscription.unsubscribe();
+            }
+        }
     }
 
     protected void addSubsrcicitpition(Subscription subscription) {

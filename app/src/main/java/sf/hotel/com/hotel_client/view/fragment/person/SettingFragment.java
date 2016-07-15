@@ -180,4 +180,10 @@ public class SettingFragment extends BaseFragment implements ISettingView {
     public void showLoginActivity() {
         RxBus.getDefault().post(new LoginMessage(LoginMessage.SHOW_LOGIN));
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        settingPresenter.destroy();
+    }
 }

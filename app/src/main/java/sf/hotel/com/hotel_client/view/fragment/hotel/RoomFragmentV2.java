@@ -280,6 +280,11 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
         return hotelId;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mIRoomPresenter.destroy();
+    }
 
     public void setImageList(List<String> list){
         if (list != null && list.size() > 0){

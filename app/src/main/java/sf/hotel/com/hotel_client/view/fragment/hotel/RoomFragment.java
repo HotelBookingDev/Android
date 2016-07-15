@@ -347,4 +347,10 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         setImageList(hotelsBean.getHotel_imgs());
         setRoomContentText(hotelsBean.getIntroduce());
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mIRoomPresenter.destroy();
+    }
 }
