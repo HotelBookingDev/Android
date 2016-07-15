@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import me.yokeyword.fragmentation.SupportFragment;
+import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.utils.AndroidUtils;
@@ -19,12 +20,16 @@ import sf.hotel.com.hotel_client.utils.TToast;
  */
 public class BaseFragment extends SupportFragment {
     protected String TAG = this.getClass().getSimpleName();
-    protected CompositeSubscription mCompositeSubscription;
+    private CompositeSubscription mCompositeSubscription;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCompositeSubscription = new CompositeSubscription();
+    }
+
+    public void addSubscription(Subscription subscription) {
+        mCompositeSubscription.add(subscription);
     }
 
     @Nullable
@@ -46,9 +51,6 @@ public class BaseFragment extends SupportFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (mCompositeSubscription != null) {
-            if (mCompositeSubscription.isUnsubscribed()) mCompositeSubscription.unsubscribe();
-        }
     }
 
     public Context getBottomContext() {

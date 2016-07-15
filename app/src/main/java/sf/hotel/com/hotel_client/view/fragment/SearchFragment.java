@@ -98,4 +98,10 @@ public class SearchFragment extends BaseFragment implements ISearchView {
             mSearchView.swapSuggestions(localOrders);
         }
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mSearchPresenter.destroy();
+    }
 }

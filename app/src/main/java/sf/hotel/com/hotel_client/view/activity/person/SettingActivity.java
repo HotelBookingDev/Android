@@ -5,8 +5,8 @@ import android.os.Bundle;
 import rx.Subscription;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.BaseActivity;
-import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.Message;
+import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.person.PersonMessage;
 import sf.hotel.com.hotel_client.view.fragment.person.ChangePwdFragment;
 import sf.hotel.com.hotel_client.view.fragment.person.SettingFragment;
@@ -19,7 +19,6 @@ public class SettingActivity extends BaseActivity {
         setContentView(R.layout.activity_setting);
         loadRootFragment(R.id.fl_setting, SettingFragment.newInstance());
         initRxEvent();
-
     }
 
     private void initRxEvent() {
@@ -34,6 +33,6 @@ public class SettingActivity extends BaseActivity {
                         }
                     }
                 });
-        mCompositeSubscription.add(subscribe);
+        addSubscription(subscribe);
     }
 }

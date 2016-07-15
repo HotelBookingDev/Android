@@ -180,7 +180,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
                 }, throwable -> {
 
                 });
-        mCompositeSubscription.add(subscribe);
+        addSubscription(subscribe);
     }
 
     private void initPullView() {

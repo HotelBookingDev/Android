@@ -111,7 +111,7 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
                         mUserOrderPresenter.getDatas(position);
                     }
                 }, LogUtils::logThrowadle);
-        mCompositeSubscription.add(subscribe);
+        addSubscription(subscribe);
     }
 
     @Override
@@ -131,6 +131,7 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
     public void onDestroy() {
         super.onDestroy();
         unregisterReceiver();
+        mUserOrderPresenter.destroy();
     }
 
     @Override

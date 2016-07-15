@@ -56,11 +56,10 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
         return fragment;
     }
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+            @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_search_hotle, container, false);
         ButterKnife.bind(this, view);
@@ -76,11 +75,11 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
         mISearchHotelPresenter.callCityList();
     }
 
-    @OnClick({R.id.search_hotel,
-            R.id.fragment_search_hotel_timer,
-            R.id.fragment_search_hotel_city})
-    public void onViewClick(View v){
-        switch (v.getId()){
+    @OnClick({
+            R.id.search_hotel, R.id.fragment_search_hotel_timer, R.id.fragment_search_hotel_city
+    })
+    public void onViewClick(View v) {
+        switch (v.getId()) {
             case R.id.search_hotel:
                 showHotel();
                 break;
@@ -91,7 +90,6 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
                 showCities();
                 break;
         }
-
     }
 
     private void showCities() {
@@ -114,12 +112,11 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
         startActivity(intent);
     }
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_TIMER && data != null) {
             mISearchHotelPresenter.getSearchDate(data);
-        }else if (requestCode == REQUEST_CITY){
+        } else if (requestCode == REQUEST_CITY) {
             mISearchHotelPresenter.getCityBean();
         }
     }
@@ -130,7 +127,7 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
     }
 
     @Override
-    public void setSearchTimer(Date[] dates){
+    public void setSearchTimer(Date[] dates) {
         mTimerView.setTimer(dates[0], dates[1]);
     }
 
@@ -144,7 +141,13 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
     }
 
     @Override
-    public void setCityBean(CityBean cityBean){
+    public void setCityBean(CityBean cityBean) {
         mSearchItem.cityBean = cityBean;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mISearchHotelPresenter.destroy();
     }
 }

@@ -13,6 +13,7 @@ import com.baidu.location.BDLocation;
 import me.yokeyword.fragmentation.SupportActivity;
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
+import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.utils.LogUtils;
@@ -27,7 +28,7 @@ import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
  */
 public abstract class BaseActivity extends SupportActivity {
 
-    public CompositeSubscription mCompositeSubscription;
+    private CompositeSubscription mCompositeSubscription;
 
     protected String TAG = this.getClass().getSimpleName();
 
@@ -39,6 +40,10 @@ public abstract class BaseActivity extends SupportActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         mCompositeSubscription = new CompositeSubscription();
         super.onCreate(savedInstanceState);
+    }
+
+    public void addSubscription(Subscription subscription) {
+        mCompositeSubscription.add(subscription);
     }
 
     @Override

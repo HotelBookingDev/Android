@@ -149,4 +149,10 @@ public class DetailFragment extends BaseFragment implements IDetailView {
     public void showViewToast(String msg) {
 
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mIDetailPresenter.destroy();
+    }
 }
