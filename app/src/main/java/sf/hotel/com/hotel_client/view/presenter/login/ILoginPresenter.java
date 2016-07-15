@@ -3,7 +3,6 @@ package sf.hotel.com.hotel_client.view.presenter.login;
 import android.text.TextUtils;
 
 import rx.Subscription;
-import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.entity.netresult.LoginResult;
 import sf.hotel.com.data.interfaceeneity.login.ILoginEntity;
 import sf.hotel.com.data.interfaceeneity.login.LoginEntityImp;
@@ -21,12 +20,9 @@ public class ILoginPresenter extends ILRcomPresenter {
     private ILoginView mILoginView;
     private ILoginEntity mILoginEntity;
 
-    private CompositeSubscription mCompositeSubscription;
-
     public ILoginPresenter(ILoginView mILoginView) {
         this.mILoginView = mILoginView;
         mILoginEntity = new LoginEntityImp();
-        mCompositeSubscription = new CompositeSubscription();
         //初始化讲登录状态设置为false
         mILoginEntity.saveLogin(mILoginView.getBottomContext(), false);
         initView();
@@ -49,10 +45,7 @@ public class ILoginPresenter extends ILRcomPresenter {
     public void pause() {
     }
 
-    @Override
-    public void destroy() {
-        mCompositeSubscription.unsubscribe();
-    }
+
 
     @Override
     public void handlingException(Throwable e) {
@@ -100,7 +93,7 @@ public class ILoginPresenter extends ILRcomPresenter {
                         handlingException(e);
                     }
                 });
-        mCompositeSubscription.add(subscribe);
+        addSubsrcicitpition(subscribe);
     }
 
     private String getPostPwd(String pwd) {

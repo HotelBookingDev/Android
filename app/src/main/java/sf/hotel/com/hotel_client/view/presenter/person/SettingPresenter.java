@@ -14,12 +14,8 @@ public class SettingPresenter extends SuperPresenter {
     ISettingView mSettingView;
 
     public SettingPresenter(ISettingView mSettingView) {
+        super();
         this.mSettingView = mSettingView;
-    }
-
-    @Override
-    public void destroy() {
-
     }
 
     public void changeAcceptMsg() {

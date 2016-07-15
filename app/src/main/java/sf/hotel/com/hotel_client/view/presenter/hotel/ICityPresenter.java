@@ -3,11 +3,9 @@ package sf.hotel.com.hotel_client.view.presenter.hotel;
 import android.content.Context;
 
 import rx.Subscription;
-import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.data.interfaceeneity.CityEntity;
-import sf.hotel.com.data.interfaceeneity.ICityEntityImp;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.ICityView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
@@ -22,19 +20,15 @@ public class ICityPresenter extends SuperPresenter {
 
     private CityEntity mICityEntityImp;
 
-    private CompositeSubscription mCompositeSubscription;
-
     public ICityPresenter(ICityView mICityView) {
         this.mICityView = mICityView;
-        mCompositeSubscription = new CompositeSubscription();
-        mICityEntityImp = new ICityEntityImp();
     }
 
     public ProvincesResult getProcincesResult(Context context) {
         return mICityEntityImp.getProcincesResult(context);
     }
 
-    public CityBean getCityBean(){
+    public CityBean getCityBean() {
         return mICityEntityImp.getCityBean(mICityView.getBottomContext());
     }
 
@@ -52,17 +46,10 @@ public class ICityPresenter extends SuperPresenter {
                         mICityView.setCityAdapterList(procincesResult);
                     }
                 });
-        mCompositeSubscription.add(subscribe);
+        addSubsrcicitpition(subscribe);
     }
 
     public void saveSelectCity(CityBean cityBean) {
         mICityEntityImp.saveCitysBean(mICityView.getBottomContext(), cityBean);
-    }
-
-    @Override
-    public void destroy() {
-        if (mCompositeSubscription != null && !mCompositeSubscription.isUnsubscribed()) {
-            mCompositeSubscription.unsubscribe();
-        }
     }
 }

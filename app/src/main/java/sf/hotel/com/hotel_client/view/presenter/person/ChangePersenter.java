@@ -2,6 +2,7 @@ package sf.hotel.com.hotel_client.view.presenter.person;
 
 import android.text.TextUtils;
 
+import rx.Subscription;
 import sf.hotel.com.data.interfaceeneity.person.IChagePwdImp;
 import sf.hotel.com.data.interfaceeneity.person.IChangePwd;
 import sf.hotel.com.data.utils.CheckUtils;
@@ -34,12 +35,14 @@ public class ChangePersenter extends SuperPresenter {
         } else if (!newPwd.equals(confimPwd)) {
             mIChangePwdView.showViewToast("密码不相等");
         } else {
-            iChangePwd.chagngePwd(iChangePwd.getPhoneNum(), StringUtils.changePud(oldPwd),
-                    StringUtils.changePud(newPwd)).subscribe(normalResult -> {
-                iChangePwd.savePwd(mIChangePwdView.getBottomContext(),
-                        StringUtils.changePud(newPwd));
-                mIChangePwdView.showViewToast("修改成功");
-            }, this::handlingException);
+            Subscription subscribe = iChangePwd.chagngePwd(iChangePwd.getPhoneNum(),
+                    StringUtils.changePud(oldPwd), StringUtils.changePud(newPwd))
+                    .subscribe(normalResult -> {
+                        iChangePwd.savePwd(mIChangePwdView.getBottomContext(),
+                                StringUtils.changePud(newPwd));
+                        mIChangePwdView.showViewToast("修改成功");
+                    }, this::handlingException);
+            addSubsrcicitpition(subscribe);
         }
     }
 

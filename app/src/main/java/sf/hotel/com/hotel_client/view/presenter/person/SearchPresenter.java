@@ -3,6 +3,7 @@ package sf.hotel.com.hotel_client.view.presenter.person;
 import java.util.List;
 
 import rx.Subscriber;
+import rx.Subscription;
 import sf.hotel.com.data.entity.LocalOrder;
 import sf.hotel.com.data.interfaceeneity.person.ISearchOrder;
 import sf.hotel.com.data.interfaceeneity.person.ISearchOrderImp;
@@ -23,13 +24,8 @@ public class SearchPresenter extends SuperPresenter {
     ISearchView mISearchView;
     ISearchOrder mISearchOrder;
 
-    @Override
-    public void destroy() {
-
-    }
-
     public void getmLocalOrder() {
-        mISearchOrder.getOrders(mISearchView.getBottomContext())
+        Subscription subscribe = mISearchOrder.getOrders(mISearchView.getBottomContext())
                 .subscribe(new Subscriber<List<LocalOrder>>() {
                     @Override
                     public void onCompleted() {
@@ -52,6 +48,7 @@ public class SearchPresenter extends SuperPresenter {
                         mISearchView.showProgress();
                     }
                 });
+        addSubsrcicitpition(subscribe);
     }
 
     public void query(String query) {
@@ -59,5 +56,4 @@ public class SearchPresenter extends SuperPresenter {
         mISearchOrder.search(query);
         mISearchOrder.update(query, mISearchView.getBottomContext());
     }
-
 }

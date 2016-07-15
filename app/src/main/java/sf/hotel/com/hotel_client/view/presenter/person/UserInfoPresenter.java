@@ -8,7 +8,6 @@ import java.io.File;
 
 import rx.Observable;
 import rx.Subscription;
-import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.interfaceeneity.person.IUserInfoEntity;
 import sf.hotel.com.data.interfaceeneity.person.IUserInfoEntityImp;
@@ -28,12 +27,11 @@ import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 public class UserInfoPresenter extends SuperPresenter {
     IUserInfoView mIUserInfoView;
     private IUserInfoEntity mIUserInfoEntity;
-    private CompositeSubscription mCompositeSubscription;
 
     public UserInfoPresenter(IUserInfoView mIUserInfoView) {
+        super();
         this.mIUserInfoView = mIUserInfoView;
         mIUserInfoEntity = new IUserInfoEntityImp();
-        mCompositeSubscription = new CompositeSubscription();
         initAvater(mIUserInfoView.getBottomContext(), mIUserInfoView.getAvatar());
         initAttribute();
     }
@@ -46,7 +44,7 @@ public class UserInfoPresenter extends SuperPresenter {
                     mIUserInfoView.setUserName(userEntity.getFullname());
                     mIUserInfoView.setUserPwd(getPhone(userEntity.getPhoneNumber()));
                 });
-        mCompositeSubscription.add(subscribe);
+        addSubsrcicitpition(subscribe);
     }
 
     private String getPhone(long phone) {
@@ -59,7 +57,7 @@ public class UserInfoPresenter extends SuperPresenter {
                 .subscribe(s -> {
                     showPhone[0] = s;
                 });
-        mCompositeSubscription.add(subscribe);
+        addSubsrcicitpition(subscribe);
         return showPhone[0];
     }
 
@@ -74,12 +72,6 @@ public class UserInfoPresenter extends SuperPresenter {
                 phone.substring(0, 3) +
                 "****" +
                 phone.substring(7, 11);
-    }
-
-    @Override
-
-    public void destroy() {
-        mCompositeSubscription.unsubscribe();
     }
 
     public void upFile(Uri uri) {
@@ -103,14 +95,14 @@ public class UserInfoPresenter extends SuperPresenter {
                         super.onCompleted();
                     }
                 });
-        mCompositeSubscription.add(subscribe);
+        addSubsrcicitpition(subscribe);
     }
 
     private void upFile(File file) {
         Subscription subscribe = mIUserInfoEntity.getToken().subscribe(tokenResult -> {
             QNUpFileUtils.upFileByQN(file, tokenResult);
         }, this::handlingException);
-        mCompositeSubscription.add(subscribe);
+        addSubsrcicitpition(subscribe);
     }
 
     private File getFile(Uri uri, Context context) {

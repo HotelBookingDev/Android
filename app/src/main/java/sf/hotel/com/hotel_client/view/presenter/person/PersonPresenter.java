@@ -40,12 +40,6 @@ public class PersonPresenter extends SuperPresenter {
         }
     }
 
-    //TODO 这个界面会进行网络请求在界面销毁记得要把网络cancel了
-    @Override
-    public void destroy() {
-
-    }
-
     public void clickPerson() {
         if (checkIsLogin()) {
             mIPersonView.showItemActivity(PersonFragment.USERINFO);
