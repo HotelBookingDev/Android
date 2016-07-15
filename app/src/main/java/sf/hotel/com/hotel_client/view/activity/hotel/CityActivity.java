@@ -37,10 +37,9 @@ public class CityActivity extends BaseActivity {
         mHotelTitleView.addLeftClick(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               onBackPressed();
+                onBackPressed();
             }
         });
-
     }
 
     private void onRxEvent() {
@@ -50,7 +49,7 @@ public class CityActivity extends BaseActivity {
 
                 }, throwable -> {
                 });
-        mCompositeSubscription.add(subscribe);
+        addSubscription(subscribe);
     }
 
     private void init() {

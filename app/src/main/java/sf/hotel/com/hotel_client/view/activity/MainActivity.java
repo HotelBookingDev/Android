@@ -61,7 +61,7 @@ public class MainActivity extends BaseActivity {
                         }
                     }
                 });
-        mCompositeSubscription.add(subscribe);
+        addSubscription(subscribe);
     }
 
     private void initView() {

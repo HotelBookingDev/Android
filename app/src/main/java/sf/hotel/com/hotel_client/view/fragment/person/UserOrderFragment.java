@@ -111,7 +111,7 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
                         mUserOrderPresenter.getDatas(position);
                     }
                 }, LogUtils::logThrowadle);
-        mCompositeSubscription.add(subscribe);
+        addSubscription(subscribe);
     }
 
     @Override

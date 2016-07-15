@@ -38,7 +38,7 @@ public class OrderActivity extends BaseActivity {
                     }
                 }, throwable -> {
                 });
-        mCompositeSubscription.add(subscribe);
+        addSubscription(subscribe);
     }
 
     private void initView() {

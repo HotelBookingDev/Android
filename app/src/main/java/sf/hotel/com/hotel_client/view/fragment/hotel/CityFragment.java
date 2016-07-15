@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import rx.Subscription;
 import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.hotel_client.R;
@@ -69,11 +70,14 @@ public class CityFragment extends BaseFragment implements ICityView {
     }
 
     private void onRxEvent() {
-        RxBus.getDefault().toObservable(CityMessage.class).subscribe(cityMessage -> {
+        Subscription subscribe = RxBus.getDefault()
+                .toObservable(CityMessage.class)
+                .subscribe(cityMessage -> {
 
-        }, throwable -> {
+                }, throwable -> {
 
-        });
+                });
+        addSubscription(subscribe);
     }
 
     private void initCityList() {

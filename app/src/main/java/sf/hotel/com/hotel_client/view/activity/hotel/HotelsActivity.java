@@ -39,7 +39,7 @@ public class HotelsActivity extends BaseActivity{
                 }
             }
         });
-        mCompositeSubscription.add(subscribe);
+       addSubscription(subscribe);
     }
 
     private void init() {

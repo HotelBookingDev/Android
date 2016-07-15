@@ -52,7 +52,7 @@ public class LoginActivity extends BaseActivity {
                             onBackPressed();
                     }
                 });
-        mCompositeSubscription.add(subscribe);
+        addSubscription(subscribe);
     }
 
     private void init(Bundle savedInstanceState) {

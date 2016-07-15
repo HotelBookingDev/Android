@@ -76,7 +76,7 @@ public class TimesActivity extends BaseActivity {
                         LogUtils.d("------>", "hahahhaahaha");
                     }
                 });
-        mCompositeSubscription.add(subscription);
+        addSubscription(subscription);
     }
 
     private void init() {

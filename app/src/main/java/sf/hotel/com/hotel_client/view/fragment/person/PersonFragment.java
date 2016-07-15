@@ -67,7 +67,7 @@ public class PersonFragment extends BaseFragment implements IPersonView {
                         }
                     }
                 });
-        mCompositeSubscription.add(subscribe);
+        addSubscription(subscribe);
     }
 
     @Override
