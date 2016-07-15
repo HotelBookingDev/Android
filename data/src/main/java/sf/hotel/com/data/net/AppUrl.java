@@ -6,7 +6,8 @@ package sf.hotel.com.data.net;
  */
 public class AppUrl {
 
-    public static final String API_HOST = "http://agesd.com/";
+    public static final String VERSION = "";
+    public static final String API_HOST = "http://agesd.com/" + VERSION;
     public static final String LOGIN_URL = "user/login/";
     public static final String REGISTER_URL = "user/register/";
     public static final String SMS_URL = "ems/member/regist/";
