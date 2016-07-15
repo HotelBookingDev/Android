@@ -123,7 +123,7 @@ public class ISplashPresenter extends ILRcomPresenter {
 
     private void postInstallId() {
 
-        ApiWrapper.getInstance()
+        Subscription subscribe = ApiWrapper.getInstance()
                 .postIntallation(new Intallation("android", view.getIntallationId()))
                 .subscribe(new Subscriber<NormalResult>() {
                     @Override
@@ -149,6 +149,7 @@ public class ISplashPresenter extends ILRcomPresenter {
 
                     }
                 });
+        addSubsrcicitpition(subscribe);
     }
 
     public String getUserName() {
