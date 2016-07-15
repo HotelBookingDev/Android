@@ -1,7 +1,6 @@
 package sf.hotel.com.hotel_client.view.presenter.login;
 
 import rx.Subscription;
-import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.entity.netresult.LoginResult;
 import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.interfaceeneity.login.IRegisterEntity;
@@ -20,12 +19,11 @@ public class IRegisterPresenter extends ILRcomPresenter {
     private IRegisterView mIRegisterView;
 
     private IRegisterEntity mIRegisterEntity;
-    private CompositeSubscription mCompositeSubscription;
 
     public IRegisterPresenter(IRegisterView mIRegisterView) {
+        super();
         this.mIRegisterView = mIRegisterView;
         mIRegisterEntity = new RegisterEntityImp();
-        mCompositeSubscription = new CompositeSubscription();
     }
 
     public void register() {
@@ -46,7 +44,7 @@ public class IRegisterPresenter extends ILRcomPresenter {
                         suceess(loginResult, mIRegisterEntity, mIRegisterView, pwd);
                     }
                 });
-        mCompositeSubscription.add(subscribe);
+        addSubsrcicitpition(subscribe);
     }
 
     public void callPhoneCaptcha() {
@@ -65,7 +63,7 @@ public class IRegisterPresenter extends ILRcomPresenter {
                         mIRegisterView.showViewToast("获取验证码成功");
                     }
                 });
-        mCompositeSubscription.add(subscribe);
+        addSubsrcicitpition(subscribe);
     }
 
     @Override
@@ -76,11 +74,6 @@ public class IRegisterPresenter extends ILRcomPresenter {
     @Override
     public void pause() {
 
-    }
-
-    @Override
-    public void destroy() {
-        mCompositeSubscription.unsubscribe();
     }
 
     @Override

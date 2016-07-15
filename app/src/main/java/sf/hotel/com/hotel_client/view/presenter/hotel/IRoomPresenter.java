@@ -1,13 +1,9 @@
 package sf.hotel.com.hotel_client.view.presenter.hotel;
 
-import java.util.List;
-
-import rx.Observable;
-import rx.subscriptions.CompositeSubscription;
+import rx.Subscription;
 import sf.hotel.com.data.entity.HotelBookResult;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.data.interfaceeneity.hotel.IRoomEntityImp;
-import sf.hotel.com.data.net.ApiWrapper;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IRoomView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
@@ -22,42 +18,32 @@ public class IRoomPresenter extends SuperPresenter {
 
     private IRoomEntityImp mIRoomEntityImp;
 
-    CompositeSubscription mCompositeSubscription;
-
     public IRoomPresenter(IRoomView mIRoomView) {
+        super();
         this.mIRoomView = mIRoomView;
         mIRoomEntityImp = new IRoomEntityImp();
-
-        mCompositeSubscription = new CompositeSubscription();
     }
 
-    @Override
-    public void destroy() {
-        if (mCompositeSubscription != null){
-            mCompositeSubscription.unsubscribe();
-        }
+    public void callHotelBook() {
+        Subscription subscribe = mIRoomEntityImp.callHotelBook("", "", "", "")
+                .subscribe(new SimpleSubscriber<HotelBookResult>(mIRoomView.getBottomContext()) {
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                    }
+
+                    @Override
+                    public void onNext(HotelBookResult hotelBookResult) {
+                        super.onNext(hotelBookResult);
+                    }
+                });
+        addSubsrcicitpition(subscribe);
     }
 
-
-    public void callHotelBook(){
-        mIRoomEntityImp.callHotelBook("", "", "", "")
-                .subscribe(new SimpleSubscriber<HotelBookResult>(mIRoomView.getBottomContext()){
-            @Override
-            public void onError(Throwable e) {
-                super.onError(e);
-            }
-
-            @Override
-            public void onNext(HotelBookResult hotelBookResult) {
-                super.onNext(hotelBookResult);
-            }
-        });
-    }
-
-
-    public void callHotelBean(){
-        mIRoomEntityImp.callHotelBean(String.valueOf(mIRoomView.getHotelId()))
-                .subscribe(new SimpleSubscriber<HotelsBean>(mIRoomView.getBottomContext()){
+    public void callHotelBean() {
+        Subscription subscribe = mIRoomEntityImp.callHotelBean(
+                String.valueOf(mIRoomView.getHotelId()))
+                .subscribe(new SimpleSubscriber<HotelsBean>(mIRoomView.getBottomContext()) {
                     @Override
                     public void onNext(HotelsBean hotelsBean) {
                         super.onNext(hotelsBean);
@@ -69,10 +55,10 @@ public class IRoomPresenter extends SuperPresenter {
                         super.onError(e);
                     }
                 });
+        addSubsrcicitpition(subscribe);
     }
 
     private void onNextHotelBean(HotelsBean hotelsBean) {
         mIRoomView.setHotelsBean(hotelsBean);
     }
-
 }

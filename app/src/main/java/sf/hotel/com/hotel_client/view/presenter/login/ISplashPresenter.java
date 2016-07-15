@@ -7,6 +7,7 @@ import com.avos.avoscloud.SaveCallback;
 import java.util.HashMap;
 
 import rx.Subscriber;
+import rx.Subscription;
 import sf.hotel.com.data.entity.Intallation;
 import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.interfaceeneity.login.ILRCommend;
@@ -98,13 +99,15 @@ public class ISplashPresenter extends ILRcomPresenter {
         String pwd = entity.getPwd(view.getBottomContext());
 //        存在本地不是真实密码不需要比对
         if (!CheckUtils.isTextViewEmpty(phone) && !CheckUtils.isTextViewEmpty(pwd)) {
-            entity.login(phone, pwd).subscribe(loginResult -> {
+            Subscription subscribe = entity.login(phone, pwd).subscribe(loginResult -> {
                 suceess(loginResult, entity, view, pwd);
             }, this::handlingException);
+            addSubsrcicitpition(subscribe);
         } else {
             view.startActivity(SplashActivity.LOGIN);
         }
     }
+
     //    重下登录成功保存信息出错
     @Override
     public void loginError(Throwable throwable, ILRCommend commend, ILRConmView view) {

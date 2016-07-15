@@ -4,6 +4,8 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.widget.ImageView;
 
+import rx.Subscription;
+import rx.subscriptions.CompositeSubscription;
 import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.data.utils.PreferencesUtils;
@@ -15,7 +17,11 @@ import sf.hotel.com.hotel_client.utils.HotelImageLoad;
  * EMAILE 1105896230@qq.com.
  */
 public abstract class SuperPresenter implements Presenter {
+    private CompositeSubscription mCompositeSubscription;
 
+    public SuperPresenter() {
+        mCompositeSubscription = new CompositeSubscription();
+    }
 
     @Override
     public void resume() {
@@ -29,7 +35,7 @@ public abstract class SuperPresenter implements Presenter {
 
     @Override
     public void handlingException(Throwable e) {
-        if (e != null){
+        if (e != null) {
             LogUtils.logThrowadle(e);
         }
     }
@@ -55,5 +61,17 @@ public abstract class SuperPresenter implements Presenter {
         } catch (Exception e) {
             return context.getResources().getString(R.string.error);
         }
+    }
+
+    @Override
+    public void destroy() {
+        if (mCompositeSubscription != null) mCompositeSubscription.unsubscribe();
+    }
+
+    protected void addSubsrcicitpition(Subscription subscription) {
+        if (mCompositeSubscription == null) {
+            mCompositeSubscription = new CompositeSubscription();
+        }
+        mCompositeSubscription.add(subscription);
     }
 }
