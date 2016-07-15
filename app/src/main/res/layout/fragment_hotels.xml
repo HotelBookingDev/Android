@@ -16,15 +16,19 @@
         cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
         cube_ptr:ptr_resistance="1.7">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/fragment_hotels_list"
+        <in.srain.cube.views.loadmore.LoadMoreListViewContainer
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
+            android:id="@+id/fragment_hotels_load_more"
+            >
+            <ListView
+                android:id="@+id/fragment_hotels_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                />
 
-
-        </android.support.v7.widget.RecyclerView>
+        </in.srain.cube.views.loadmore.LoadMoreListViewContainer>
 
     </in.srain.cube.views.ptr.PtrClassicFrameLayout>
 

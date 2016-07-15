@@ -11,7 +11,7 @@ import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
 import sf.hotel.com.hotel_client.view.activity.BaseActivity;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.RoomMessage;
-import sf.hotel.com.hotel_client.view.fragment.hotel.RoomFragment;
+import sf.hotel.com.hotel_client.view.fragment.hotel.RoomFragmentV2;
 
 /**
  * @author MZ
@@ -68,6 +68,6 @@ public class RoomActivity extends BaseActivity {
     }
 
     protected void init(Bundle bundle) {
-        loadRootFragment(R.id.activity_hotel_frame, RoomFragment.newInstance(bundle));
+        loadRootFragment(R.id.activity_hotel_frame, RoomFragmentV2.newInstance(bundle));
     }
 }

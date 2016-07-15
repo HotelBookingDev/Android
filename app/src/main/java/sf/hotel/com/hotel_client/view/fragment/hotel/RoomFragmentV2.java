@@ -1,8 +1,16 @@
 package sf.hotel.com.hotel_client.view.fragment.hotel;
 
+/**
+ * @author MZ
+ * @email sanfenruxi1@163.com
+ * @date 16/7/14.
+ */
+
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +40,7 @@ import sf.hotel.com.hotel_client.utils.DensityUtils;
 import sf.hotel.com.hotel_client.utils.StartActivityUtils;
 import sf.hotel.com.hotel_client.view.adapter.DialogBedAdapter;
 import sf.hotel.com.hotel_client.view.adapter.LocalImageHodlerView;
+import sf.hotel.com.hotel_client.view.adapter.RoomRecyclerAdapter;
 import sf.hotel.com.hotel_client.view.custom.HideTitle;
 import sf.hotel.com.hotel_client.view.custom.PersonalItemView;
 import sf.hotel.com.hotel_client.view.custom.PullScrollView;
@@ -42,13 +51,14 @@ import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IRoomView;
 import sf.hotel.com.hotel_client.view.presenter.hotel.IRoomPresenter;
 
+
 /**
  * author MZ
  * email sanfenruxi1@163.com
  * date 16/6/16.
  */
 
-public class RoomFragment extends BaseFragment implements IRoomView {
+public class RoomFragmentV2 extends BaseFragment implements IRoomView {
 
     private static Bundle args;
 
@@ -64,39 +74,39 @@ public class RoomFragment extends BaseFragment implements IRoomView {
 
     TextView mRoomContent;
 
-    @BindView(R.id.frag_room_search)
-    FancyButton mBtnSearch;
-
     DialogPlus dialogPlus, phoneDialog;
 
     HideTitle mTitle;
-
-    @BindView(R.id.frag_room_scrollview)
-    PullScrollView mNoScrollView;
 
     PersonalItemView mPhone;
 
     PersonalItemView mLocation;
 
+    @BindView(R.id.fragment_room_recyclerView)
+    RecyclerView mRecyclerView;
+
+
+    RoomRecyclerAdapter mRecyclerAdapter;
+
     TextView phoneText;
     FancyButton phoneCancel;
     FancyButton phoneSubmit;
 
-    public static RoomFragment newInstance(Bundle bundle) {
+    public static RoomFragmentV2 newInstance(Bundle bundle) {
 
         if (bundle != null) {
             args = bundle;
         } else {
             args = new Bundle();
         }
-        RoomFragment fragment = new RoomFragment();
+        RoomFragmentV2 fragment = new RoomFragmentV2();
         fragment.setArguments(args);
         return fragment;
     }
 
-    public static RoomFragment newInstance() {
+    public static RoomFragmentV2 newInstance() {
         Bundle args = new Bundle();
-        RoomFragment fragment = new RoomFragment();
+        RoomFragmentV2 fragment = new RoomFragmentV2();
         fragment.setArguments(args);
         return fragment;
     }
@@ -104,29 +114,36 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
+                             @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_room, container, false);
+        View view = inflater.inflate(R.layout.fragment_room_v2, container, false);
         mIRoomPresenter = new IRoomPresenter(this);
         ButterKnife.bind(this, view);
-        initHeader();
-        initContent();
-
+        initRecycler();
         initDate(args);
-
         return view;
     }
+
+    private void initRecycler() {
+        View header = LayoutInflater.from(getBottomContext()).inflate(R.layout.header_room_v2, null);
+        initHeader(header);
+        mRecyclerAdapter = new RoomRecyclerAdapter(getBottomContext());
+        mRecyclerAdapter.setHeaderView(header);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getBottomContext()));
+        mRecyclerView.setAdapter(mRecyclerAdapter);
+    }
+
 
     private void initDate(Bundle args) {
         hotelId = args.getInt("room");
         mIRoomPresenter.callHotelBean();
     }
 
-    private void initContent() {
-        mPhone = (PersonalItemView) mNoScrollView.findViewById(R.id.fragment_room_phone);
-        mLocation = (PersonalItemView) mNoScrollView.findViewById(R.id.fragment_room_location);
-        mRoomContent = (TextView) mNoScrollView.findViewById(R.id.fragment_room_content);
-        convenientBanner = (ConvenientBanner) mNoScrollView.findViewById(R.id.frame_room_banner);
+    private void initHeader(View view) {
+        mPhone = (PersonalItemView) view.findViewById(R.id.fragment_room_v2_phone);
+        mLocation = (PersonalItemView) view.findViewById(R.id.fragment_room_v2_location);
+        mRoomContent = (TextView) view.findViewById(R.id.fragment_room_v2_content);
+        convenientBanner = (ConvenientBanner) view.findViewById(R.id.frame_room_banner);
 
         mPhone.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -176,20 +193,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
                 }
             }
         });
-
         initBanner();
-    }
-
-    private void initHeader() {
-
-        mTitle = (HideTitle) mNoScrollView.findViewById(R.id.frag_room_title);
-        initTitle();
-        mNoScrollView.setHideHeardListener(new PullScrollView.HideHeardListener() {
-            @Override
-            public void onHideView(float alpha) {
-                mTitle.setViewAlpha(alpha);
-            }
-        });
     }
 
     private void initBanner() {
@@ -238,7 +242,6 @@ public class RoomFragment extends BaseFragment implements IRoomView {
         });
     }
 
-    @OnClick({R.id.frag_room_search})
     public void onSearchClick(View v) {
 
         switch (v.getId()) {
@@ -255,7 +258,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
                         new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position,
-                                    long id) {
+                                                    long id) {
                                 LogUtils.d("==------->", "onItemClick");
                                 callHotelBook();
                             }
@@ -346,5 +349,7 @@ public class RoomFragment extends BaseFragment implements IRoomView {
     public void notifyDataSetChanged() {
         setImageList(hotelsBean.getHotel_imgs());
         setRoomContentText(hotelsBean.getIntroduce());
+        mRecyclerAdapter.setDatas(hotelsBean.getHotel_houses());
+
     }
 }

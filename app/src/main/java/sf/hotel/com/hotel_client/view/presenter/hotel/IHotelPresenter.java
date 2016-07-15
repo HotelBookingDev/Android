@@ -42,6 +42,34 @@ public class IHotelPresenter extends SuperPresenter {
     }
 
 
+
+    public void loadHotelsByCityId(int page){
+
+        SearchItem item = mIHotelsView.getSearchItem();
+
+        String ex = "";
+
+        Subscription subscribe = mHotelsEntity.callHotelsByCityId(item, String.valueOf(page), ex)
+                .subscribe(new Action1<HotelResult>() {
+                    @Override
+                    public void call(HotelResult hotelResult) {
+                        mHotelsEntity.saveHotelCache(mIHotelsView.getBottomContext(), hotelResult);
+                        mIHotelsView.addHotelAdapterList(hotelResult);
+                        mIHotelsView.loadMoreFinish();
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        mIHotelsView.showViewToast(throwable.getMessage() + "加载失败");
+                        LogUtils.d(throwable.getMessage());
+                    }
+                });
+
+        mCompositeSubscription.add(subscribe);
+    }
+
+
+
     public void callHotelsByCityId(String page){
 
         SearchItem item = mIHotelsView.getSearchItem();

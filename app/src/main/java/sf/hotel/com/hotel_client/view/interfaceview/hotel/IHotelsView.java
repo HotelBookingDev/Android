@@ -12,9 +12,12 @@ import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
 public interface IHotelsView  extends BaseView {
     void setHotelAdapterList(HotelResult hotelResult);
 
+    void addHotelAdapterList(HotelResult hotelResult);
+
     SearchItem getSearchItem();
 
     void setSearchItem(SearchItem mSearchItem);
 
+    void loadMoreFinish();
     void refreshComplete();
 }

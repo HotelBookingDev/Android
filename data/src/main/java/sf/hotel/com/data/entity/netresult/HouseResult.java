@@ -1,5 +1,7 @@
 package sf.hotel.com.data.entity.netresult;
 
+import java.util.List;
+
 import sf.hotel.com.data.entity.netresult.hotel.HouseBean;
 
 /**
@@ -17,13 +19,14 @@ public class HouseResult {
      * id : 1
      */
 
-    private HouseBean house;
+    private List<HouseBean> hotel_houses;
 
-    public HouseBean getHouse() {
-        return house;
+
+    public List<HouseBean> getHotel_houses() {
+        return hotel_houses;
     }
 
-    public void setHouse(HouseBean house) {
-        this.house = house;
+    public void setHotel_houses(List<HouseBean> hotel_houses) {
+        this.hotel_houses = hotel_houses;
     }
 }
