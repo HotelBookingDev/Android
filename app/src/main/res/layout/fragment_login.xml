@@ -72,6 +72,8 @@
                         style="@style/login_edit"
                         android:digits="@string/edittext_digits"
                         android:hint="@string/phoneNum"
+                        android:text="15726816099"
+
                         android:imeOptions="actionNext"
                         android:inputType="phone"
                         android:maxLength="11" />
@@ -117,6 +119,7 @@
                     <EditText
                         android:id="@+id/edit_pw"
                         style="@style/login_edit"
+                        android:text="123456"
                         android:hint="@string/password" />
 
                     <ImageView
