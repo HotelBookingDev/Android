@@ -77,12 +77,13 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(AppUrl.HOTELS_BOOK_URL)
-    Observable<HttpResult<HotelBookResult>> callHotelBook(@Header(AUTHORIZATION) String auth,
-            @Field(PRODUCTID) String productId, @Field(CHECK_IN_TIME) String inTime,
-            @Field(CHECK_OUT_TIME) String outTime);
+    Observable<HttpResult<HotelBookResult>> callHotelBook(@Field(PRODUCTID) String productId,
+                                                          @Field(CHECK_IN_TIME) String inTime,
+                                                          @Field(CHECK_OUT_TIME) String outTime);
 
     @GET("hotel/{id}")
-    Observable<HttpResult<Hotel1Result>> callHotelBeanById(@Path("id") String id);
+    Observable<HttpResult<Hotel1Result>> callHotelBeanById(@Path("id") String id,
+                                                           @Query(EXCLUDE) String exclude);
 
     //获取TOKEN
     @GET(AppUrl.TOKEN_URL)

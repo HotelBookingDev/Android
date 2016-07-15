@@ -101,15 +101,14 @@ public class ApiWrapper extends RetrofitHelper {
     }
 
     /**
-     * @param auth 授权
      * @param productId 商品id
      * @param inTime 开始时间
      * @param outTime 结束时间
      * @return
      */
-    public Observable<HotelBookResult> callHotelBook(String auth, String productId, String inTime,
+    public Observable<HotelBookResult> callHotelBook(String productId, String inTime,
             String outTime) {
-        return mService.callHotelBook(auth, productId, inTime, outTime)
+        return mService.callHotelBook(productId, inTime, outTime)
                 .compose(this.<HotelBookResult>applySchedulers());
     }
 
@@ -118,8 +117,8 @@ public class ApiWrapper extends RetrofitHelper {
      * @param id hotel的id
      * @return
      */
-    public Observable<Hotel1Result> callHotelBean(String id){
-        return mService.callHotelBeanById(id)
+    public Observable<Hotel1Result> callHotelBean(String id, String exclude){
+        return mService.callHotelBeanById(id, exclude)
                 .compose(this.<Hotel1Result>applySchedulers());
     }
 

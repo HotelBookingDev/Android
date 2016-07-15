@@ -19,21 +19,7 @@ public class IRoomEntityImp implements RoomEntity{
      * @param id hotel的id
      * @return
      */
-    public Observable<Hotel1Result> callHotelBean(String id){
-        return ApiWrapper.getInstance().callHotelBean(id);
+    public Observable<Hotel1Result> callHotelBean(String id, String ex){
+        return ApiWrapper.getInstance().callHotelBean(id, ex);
     }
-
-
-    /**
-     *
-     * @param auth 授权
-     * @param productId 商品id
-     * @param inTime 开始时间
-     * @param outTime 结束时间
-     * @return
-     */
-    public Observable<HotelBookResult> callHotelBook(String auth, String productId, String inTime, String outTime){
-        return ApiWrapper.getInstance().callHotelBook(auth, productId, inTime, outTime);
-    }
-
 }

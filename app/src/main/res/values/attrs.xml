@@ -145,4 +145,13 @@
         <attr name="price_text_price" format="string"/>
         <attr name="price_text_poins" format="string"/>
     </declare-styleable>
+
+    <declare-styleable name="CustomBookingItem">
+        <attr name="booking_item_name" format="string"/>
+        <attr name="booking_item_content" format="string"/>
+        <attr name="booking_item_name_color" format="reference"/>
+        <attr name="booking_item_content_color" format="reference" />
+        <attr name="booking_item_name_background" format="reference"/>
+        <attr name="booking_item_content_background" format="reference"/>
+    </declare-styleable>
 </resources>

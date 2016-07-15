@@ -25,25 +25,10 @@ public class IRoomPresenter extends SuperPresenter {
         mIRoomEntityImp = new IRoomEntityImp();
     }
 
-    public void callHotelBook() {
-        Subscription subscribe = mIRoomEntityImp.callHotelBook("", "", "", "")
-                .subscribe(new SimpleSubscriber<HotelBookResult>(mIRoomView.getBottomContext()) {
-                    @Override
-                    public void onError(Throwable e) {
-                        super.onError(e);
-                    }
-
-                    @Override
-                    public void onNext(HotelBookResult hotelBookResult) {
-                        super.onNext(hotelBookResult);
-                    }
-                });
-        addSubsrcicitpition(subscribe);
-    }
-
-
     public void callHotelBean(){
-        Subscription subscribe = mIRoomEntityImp.callHotelBean(String.valueOf(mIRoomView.getHotelId()))
+        String ex = "types";
+
+        Subscription subscribe = mIRoomEntityImp.callHotelBean(String.valueOf(mIRoomView.getHotelId()), ex)
                 .subscribe(new SimpleSubscriber<Hotel1Result>(mIRoomView.getBottomContext()) {
 
                     @Override

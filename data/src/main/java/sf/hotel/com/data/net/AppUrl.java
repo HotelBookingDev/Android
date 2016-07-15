@@ -27,6 +27,6 @@ public class AppUrl {
     public static final String DELETE_URL = "order/customer/";
 
     public static final String[] NEEDTOKENURL = {
-            INSTALLATIONS_BIND_URL, CHANGEPWD_URL, TOKEN_URL, ORDER_URL, DELETE_URL
+            INSTALLATIONS_BIND_URL, CHANGEPWD_URL, TOKEN_URL, ORDER_URL, DELETE_URL, HOTELS_BOOK_URL
     };
 }

@@ -257,7 +257,6 @@ public class RoomFragment extends BaseFragment implements IRoomView {
                             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                                 LogUtils.d("==------->", "onItemClick");
-                                callHotelBook();
                             }
                         });
 
@@ -290,10 +289,6 @@ public class RoomFragment extends BaseFragment implements IRoomView {
                 dialogPlus.show();
                 break;
         }
-    }
-
-    private void callHotelBook() {
-        mIRoomPresenter.callHotelBook();
     }
 
     @Override
