@@ -162,4 +162,9 @@
 
     <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="pay_menu_animation">
+        <item name="android:windowEnterAnimation">@anim/pay_menu_up</item>
+        <item name="android:windowExitAnimation">@anim/pay_menu_down</item>
+    </style>
+
 </resources>

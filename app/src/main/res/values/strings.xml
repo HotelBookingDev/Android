@@ -100,5 +100,12 @@
     <string name="notice">请仔细确认以上行程信息，一面为您的旅途带去不便。</string>
 
     <string name="sans_serif" translatable="false">sans-serif</string>
+    <string name="amount_of_charge">充值金额</string>
+    <string name="Recharge_method">支付方式</string>
+    <string name="payment_package">支付宝</string>
+    <string name="input_one_hundred">请输入100倍数的金额</string>
+    <string name="wechat_pay">微信支付</string>
+    <string name="recharge">充值</string>
+    <string name="recharge_confirmation">确认充值</string>
 
 </resources>

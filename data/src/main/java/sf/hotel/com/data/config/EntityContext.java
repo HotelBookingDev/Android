@@ -40,7 +40,8 @@ public class EntityContext {
             getUserByDb().subscribe(userEntity -> {
                 mCurrentUser = userEntity;
             });
-        } else {
+//            已经登陆，但是记录中标记为未登录，将内存至为null
+        } else if (mCurrentUser != null && !PreferencesUtils.getLogin(context)) {
             mCurrentUser = null;
         }
         return mCurrentUser;

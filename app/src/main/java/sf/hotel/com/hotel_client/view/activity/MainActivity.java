@@ -3,6 +3,7 @@ package sf.hotel.com.hotel_client.view.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -14,6 +15,7 @@ import me.yokeyword.fragmentation.SupportFragment;
 import rx.Subscription;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.register.LoginActivity;
+import sf.hotel.com.hotel_client.view.custom.PayBottomView;
 import sf.hotel.com.hotel_client.view.event.Message;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.person.LoginMessage;
@@ -85,6 +87,7 @@ public class MainActivity extends BaseActivity {
         public void onSelected(int index, Object tag) {
             showHideFragment(mFragments[index], mFragments[currentIndex]);
             currentIndex = index;
+
         }
 
         //列表也可以回到自定页或者刷新数据
