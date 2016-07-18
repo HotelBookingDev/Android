@@ -66,7 +66,8 @@ public class PayBottomView extends PopupWindow implements View.OnTouchListener {
                 if (RbWeChat.isChecked()) {
                     position = PAYWECHAT;
                 }
-                click.Click(Long.parseLong(moneyText.getText().toString()), position);
+                if (moneyText.getText().toString().equals("")) return;
+                click.Click(moneyText.getText().toString(), position);
             }
         });
     }
@@ -82,6 +83,6 @@ public class PayBottomView extends PopupWindow implements View.OnTouchListener {
     }
 
     public interface PayClick {
-        void Click(long money, int postion);
+        void Click(String money, int postion);
     }
 }

@@ -25,8 +25,13 @@ public class AccountBalancePresenter extends SuperPresenter {
         iAccountBalanceFragmentView.showMoney("5000.00");
     }
 
-    public void addMoney(long money, int position) {
-        if (money % 100 != 0) {
+    public void addMoney(String money, int position) {
+        if (money.equals("")) {
+            iAccountBalanceFragmentView.showMoney("请输入金额");
+            return;
+        }
+        Long moenys = Long.parseLong(money);
+        if (moenys % 100 != 0) {
             iAccountBalanceFragmentView.showViewToast("请输入100的倍数");
             return;
         }
