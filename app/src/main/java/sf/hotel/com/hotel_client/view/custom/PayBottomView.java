@@ -40,13 +40,6 @@ public class PayBottomView extends PopupWindow implements View.OnTouchListener {
         init();
     }
 
-    public PayBottomView(View contentView, int width, int height, boolean focusable,
-            Context context) {
-        super(contentView, width, height, focusable);
-        mContext = context;
-        init();
-    }
-
     private void init() {
         LayoutInflater layoutInflater = (LayoutInflater) mContext.getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
@@ -73,7 +66,7 @@ public class PayBottomView extends PopupWindow implements View.OnTouchListener {
                 if (RbWeChat.isChecked()) {
                     position = PAYWECHAT;
                 }
-                click.Click(Long.getLong(moneyText.getText().toString()), position);
+                click.Click(Long.parseLong(moneyText.getText().toString()), position);
             }
         });
     }

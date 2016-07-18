@@ -1,6 +1,7 @@
 package sf.hotel.com.hotel_client.view.fragment.person;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
+import sf.hotel.com.hotel_client.view.custom.PayBottomView;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.person.IAccountBalanceFragmentView;
 import sf.hotel.com.hotel_client.view.presenter.person.AccountBalancePresenter;
@@ -34,6 +36,8 @@ public class AccountBalanceFragmentView extends BaseFragment
 
     AccountBalancePresenter mAccountPresenter;
 
+    PayBottomView PayView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
@@ -46,13 +50,7 @@ public class AccountBalanceFragmentView extends BaseFragment
     }
 
     private void initView() {
-        mViewTitle.addLeftClick(v -> pop());
-    }
-
-    //    充值的方法
-    @Override
-    public void Recharge() {
-
+        mViewTitle.addLeftClick(v -> getActivity().finish());
     }
 
     @Override
@@ -65,12 +63,26 @@ public class AccountBalanceFragmentView extends BaseFragment
         mAccountPresenter.initViews();
     }
 
+    @Override
+    public void ShowPayBottom() {
+        PayView = new PayBottomView(getBottomContext(),
+                (money, postion) -> mAccountPresenter.addMoney(money, postion));
+        PayView.showAtLocation(mViewTitle, Gravity.BOTTOM, 0, 0);
+    }
+
+    @Override
+    public void dissPayBottom() {
+        if (PayView != null && PayView.isShowing()) {
+            PayView.dismiss();
+        }
+    }
+
     @OnClick({R.id.add_money})
     public void onClick(View view) {
         int id = view.getId();
         switch (id) {
             case R.id.add_money:
-                Recharge();
+                ShowPayBottom();
                 break;
         }
     }

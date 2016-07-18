@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.BaseActivity;
-import sf.hotel.com.hotel_client.view.fragment.person.MoneyFragment;
+import sf.hotel.com.hotel_client.view.fragment.person.AccountBalanceFragmentView;
 
 public class MoneyActivity extends BaseActivity {
 
@@ -16,6 +16,6 @@ public class MoneyActivity extends BaseActivity {
     }
 
     private void initView() {
-        loadRootFragment(R.id.money_content, MoneyFragment.newInstance());
+        loadRootFragment(R.id.money_content, AccountBalanceFragmentView.newInstance());
     }
 }
