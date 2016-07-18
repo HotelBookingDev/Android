@@ -166,7 +166,12 @@ public class SimpleMonthAdapter extends RecyclerView.Adapter<SimpleMonthAdapter.
         if (selectedDays.getFirst() != null && selectedDays.getLast() == null)
         {
 
-            if (selectedDays.getFirst().compareTo(calendarDay) < 0){
+            if(selectedDays.getFirst().compareTo(calendarDay) == 0){
+                selectedDays.setFirst(null);
+                notifyDataSetChanged();
+                return;
+            }
+            else if (selectedDays.getFirst().compareTo(calendarDay) < 0){
                 selectedDays.setLast(selectedDays.first);
                 selectedDays.setFirst(calendarDay);
             }else {
