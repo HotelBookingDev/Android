@@ -7,6 +7,7 @@ import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.List;
 
+import sf.hotel.com.data.entity.netresult.hotel.Hotel1Bean;
 import sf.hotel.com.data.entity.netresult.hotel.HotelHousesBean;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 
@@ -29,10 +30,10 @@ public class HotelResult implements Parcelable {
      * hotel_houses : [{"id":1}]
      */
 
-    private List<HotelsBean> hotels;
+    private List<Hotel1Bean> hotels;
 
     protected HotelResult(Parcel in) {
-        hotels = in.createTypedArrayList(HotelsBean.CREATOR);
+        hotels = in.createTypedArrayList(Hotel1Bean.CREATOR);
     }
 
     public static final Creator<HotelResult> CREATOR = new Creator<HotelResult>() {
@@ -48,11 +49,11 @@ public class HotelResult implements Parcelable {
     };
 
 
-    public List<HotelsBean> getHotels() {
+    public List<Hotel1Bean> getHotels() {
         return hotels;
     }
 
-    public void setHotels(List<HotelsBean> hotels) {
+    public void setHotels(List<Hotel1Bean> hotels) {
         this.hotels = hotels;
     }
 

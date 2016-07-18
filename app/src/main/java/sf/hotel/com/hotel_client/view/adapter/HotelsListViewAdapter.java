@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import sf.hotel.com.data.entity.netresult.hotel.Hotel1Bean;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.HotelImageLoad;
@@ -24,7 +25,7 @@ import sf.hotel.com.hotel_client.view.custom.PriceText;
  */
 public class HotelsListViewAdapter extends BaseAdapter {
 
-    private List<HotelsBean> mData;
+    private List<Hotel1Bean> mData;
     private Context mContext;
 
 
@@ -33,11 +34,11 @@ public class HotelsListViewAdapter extends BaseAdapter {
         mData = new ArrayList<>();
     }
 
-    public void addDatas(List<HotelsBean> data){
+    public void addDatas(List<Hotel1Bean> data){
         mData.addAll(data);
     }
 
-    public void setDatas(List<HotelsBean> data){
+    public void setDatas(List<Hotel1Bean> data){
         if (data != null){
             mData.clear();
             mData.addAll(data);
@@ -45,7 +46,7 @@ public class HotelsListViewAdapter extends BaseAdapter {
     }
 
 
-    public HotelsBean getDataById(int pos){
+    public Hotel1Bean getDataById(int pos){
         return mData.get(pos);
     }
 
@@ -77,7 +78,7 @@ public class HotelsListViewAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        HotelsBean data = mData.get(position);
+        Hotel1Bean data = mData.get(position);
 
         holder.mName.setText(data.getName());
         holder.mRatingBar.setRatingBarCount(3.5f);

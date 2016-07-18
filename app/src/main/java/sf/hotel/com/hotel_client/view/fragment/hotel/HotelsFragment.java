@@ -3,18 +3,12 @@ package sf.hotel.com.hotel_client.view.fragment.hotel;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
-import com.lhh.ptrrv.library.PullToRefreshRecyclerView;
-import com.lhh.ptrrv.library.footer.loadmore.BaseLoadMoreView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,22 +18,16 @@ import in.srain.cube.views.loadmore.LoadMoreListViewContainer;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
-import in.srain.cube.views.ptr.PtrHandler;
 import rx.Subscription;
 import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.data.entity.netresult.HotelResult;
+import sf.hotel.com.data.entity.netresult.hotel.Hotel1Bean;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
-import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.DensityUtils;
 import sf.hotel.com.hotel_client.view.activity.hotel.RoomActivity;
-import sf.hotel.com.hotel_client.view.adapter.BaseRecyclerAdapter;
-import sf.hotel.com.hotel_client.view.adapter.HomePullViewAdapter;
 import sf.hotel.com.hotel_client.view.adapter.HotelsListViewAdapter;
-import sf.hotel.com.hotel_client.view.adapter.OnItemClickListener;
-import sf.hotel.com.hotel_client.view.adapter.PtrDefaultHandler2;
-import sf.hotel.com.hotel_client.view.custom.DividerItemDecoration;
 import sf.hotel.com.hotel_client.view.custom.hotelheader.RentalsSunHeaderView;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
@@ -195,7 +183,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                HotelsBean itemByPos =  mPullAdapter.getDataById(position - 1);
+                Hotel1Bean itemByPos =  mPullAdapter.getDataById(position - 1);
                 showDetail(itemByPos.getId());
             }
         });
