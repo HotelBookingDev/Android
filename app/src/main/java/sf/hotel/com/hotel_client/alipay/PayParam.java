@@ -15,7 +15,7 @@ public class PayParam {
     /**
      * 签约卖家支付宝账号
      */
-    private String seller_id = "12";
+    private String seller_id = Config.SELLER;
 
     /**
      * 商户网站唯一订单号
@@ -47,18 +47,18 @@ public class PayParam {
      * 服务器接口名称，固定值
      */
 
-    private String service = "\"mobile.securitypay.pay\"";
+    private String service = "mobile.securitypay.pay";
 
     /**
      * 支付类型
      */
-    private String payment_type = "\"1\"";
+    private String payment_type = "1";
 
 
     /**
      * 参数编码，固定值
      */
-    private String _input_charset = "\"utf-8\"";
+    private String _input_charset = "utf-8";
 
     /**
      *  设置未付款交易的超时时间
@@ -68,12 +68,12 @@ public class PayParam {
       该参数数值不接受小数点，如1.5h，可转换为90m。
 
      */
-    private String orderInfo = "\"30m\"";
+    private String orderInfo = "30m";
 
     /**
      * 支付宝处理完请求后，当前页面跳转到商户指定页面的路径，可空
      */
-    private String return_url = "\"m.alipay.com\"";
+    private String return_url = "m.alipay.com";
 
 
     public void setPartner(String partner) {

@@ -26,9 +26,10 @@ public class IHotelPresenter extends SuperPresenter {
         mHotelsEntity = new HotelsEntityImp();
     }
 
-    public HotelResult getHotelCache() {
-        //TODO 需要处理如果当城市id和当前酒店列表不一致的情况处理 可能就默认将酒店列表的城市信息显示 将正确的覆盖
-        return mHotelsEntity.getHotelCache(mIHotelsView.getBottomContext());
+    public void getHotelCache() {
+        HotelResult hotelCache = mHotelsEntity.getHotelCache(mIHotelsView.getBottomContext());
+        if (hotelCache != null)
+        mIHotelsView.addHotelAdapterList(hotelCache);
     }
 
     public void loadHotelsByCityId(int page) {
@@ -61,7 +62,7 @@ public class IHotelPresenter extends SuperPresenter {
 
         SearchItem item = mIHotelsView.getSearchItem();
 
-        String ex = "types";
+        String ex = "";
 
         Subscription subscribe = mHotelsEntity.callHotelsByCityId(item, page, ex)
                 .subscribe(new Action1<HotelResult>() {

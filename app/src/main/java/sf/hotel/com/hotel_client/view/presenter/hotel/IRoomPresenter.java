@@ -26,7 +26,7 @@ public class IRoomPresenter extends SuperPresenter {
     }
 
     public void callHotelBean(){
-        String ex = "types";
+        String ex = "";
 
         Subscription subscribe = mIRoomEntityImp.callHotelBean(String.valueOf(mIRoomView.getHotelId()), ex)
                 .subscribe(new SimpleSubscriber<Hotel1Result>(mIRoomView.getBottomContext()) {

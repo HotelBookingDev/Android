@@ -3,6 +3,8 @@ package sf.hotel.com.data.entity.netresult.hotel;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -36,11 +38,15 @@ public class Hotel1Bean implements Parcelable{
     private boolean active;
     private int id;
     private String address;
+
+    @SerializedName("hotel_imgs")
     private List<String> hotel_imgs;
+
+    @SerializedName("types")
+    private List<RoomBean> roomBeanList;
 
     public Hotel1Bean() {
     }
-
 
     protected Hotel1Bean(Parcel in) {
         city = in.readInt();
@@ -51,6 +57,8 @@ public class Hotel1Bean implements Parcelable{
         active = in.readByte() != 0;
         id = in.readInt();
         address = in.readString();
+        hotel_imgs = in.createStringArrayList();
+        roomBeanList = in.createTypedArrayList(RoomBean.CREATOR);
     }
 
     public static final Creator<Hotel1Bean> CREATOR = new Creator<Hotel1Bean>() {
@@ -64,6 +72,17 @@ public class Hotel1Bean implements Parcelable{
             return new Hotel1Bean[size];
         }
     };
+
+    public List<RoomBean> getRoomBeanList() {
+        return roomBeanList;
+    }
+
+    public void setRoomBeanList(List<RoomBean> roomBeanList) {
+        this.roomBeanList = roomBeanList;
+    }
+
+
+
 
     public int getCity() {
         return city;
@@ -152,58 +171,7 @@ public class Hotel1Bean implements Parcelable{
         dest.writeByte((byte) (active ? 1 : 0));
         dest.writeInt(id);
         dest.writeString(address);
-    }
-
-
-    public static class MinPriceBean implements Parcelable {
-        private int default_front_price;
-        private int default_point;
-
-        protected MinPriceBean(Parcel in) {
-            default_front_price = in.readInt();
-            default_point = in.readInt();
-        }
-
-        public MinPriceBean() {
-        }
-
-        public static final Creator<MinPriceBean> CREATOR = new Creator<MinPriceBean>() {
-            @Override
-            public MinPriceBean createFromParcel(Parcel in) {
-                return new MinPriceBean(in);
-            }
-
-            @Override
-            public MinPriceBean[] newArray(int size) {
-                return new MinPriceBean[size];
-            }
-        };
-
-        public int getDefault_front_price() {
-            return default_front_price;
-        }
-
-        public void setDefault_front_price(int default_front_price) {
-            this.default_front_price = default_front_price;
-        }
-
-        public int getDefault_point() {
-            return default_point;
-        }
-
-        public void setDefault_point(int default_point) {
-            this.default_point = default_point;
-        }
-
-        @Override
-        public int describeContents() {
-            return 0;
-        }
-
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-            dest.writeInt(default_front_price);
-            dest.writeInt(default_point);
-        }
+        dest.writeStringList(hotel_imgs);
+        dest.writeTypedList(roomBeanList);
     }
 }

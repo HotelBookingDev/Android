@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import sf.hotel.com.data.entity.netresult.hotel.HotelHousesBean;
 import sf.hotel.com.data.entity.netresult.hotel.HouseBean;
+import sf.hotel.com.data.entity.netresult.hotel.RoomBean;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 
@@ -17,7 +18,7 @@ import sf.hotel.com.hotel_client.utils.HotelImageLoad;
  * @email sanfenruxi1@163.com
  * @date 16/7/14.
  */
-public class RoomRecyclerAdapter extends BaseRecyclerAdapter<HotelHousesBean> {
+public class RoomRecyclerAdapter extends BaseRecyclerAdapter<RoomBean> {
     public RoomRecyclerAdapter(Context mContext) {
         super(mContext);
     }
@@ -29,17 +30,17 @@ public class RoomRecyclerAdapter extends BaseRecyclerAdapter<HotelHousesBean> {
     }
 
     @Override
-    public void onBind(RecyclerView.ViewHolder viewHolder, int RealPosition, HotelHousesBean data) {
+    public void onBind(RecyclerView.ViewHolder viewHolder, int RealPosition, RoomBean data) {
         if (viewHolder instanceof RoomRecyclerAdapter.ViewHolder){
             RoomRecyclerAdapter.ViewHolder holder = (RoomRecyclerAdapter.ViewHolder) viewHolder;
 
-            if (data.getHouse_imgs() != null && data.getHouse_imgs().size() > 0){
-                HotelImageLoad.loadImage(mContext, holder.mImageView, data.getHouse_imgs().get(0));
-            }else {
+//            if (data.getHouse_imgs() != null && data.getHouse_imgs().size() > 0){
+//                HotelImageLoad.loadImage(mContext, holder.mImageView, data.getHouse_imgs().get(0));
+//            }else {
                 HotelImageLoad.loadImage(mContext,
                         holder.mImageView,
                         "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3256474343,2114829206&fm=23&gp=0.jpg");
-            }
+//            }
         }
     }
 

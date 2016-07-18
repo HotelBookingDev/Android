@@ -25,6 +25,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mehdi.sakout.fancybuttons.FancyButton;
+import sf.hotel.com.data.entity.netresult.hotel.Hotel1Bean;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
@@ -331,6 +332,11 @@ public class RoomFragment extends BaseFragment implements IRoomView {
 
     public void setRoomContentText(String text) {
         mRoomContent.setText(text);
+    }
+
+    @Override
+    public void setHotelsBean(Hotel1Bean hotelsBean) {
+
     }
 
     public void setHotelsBean(HotelsBean hotelsBean) {

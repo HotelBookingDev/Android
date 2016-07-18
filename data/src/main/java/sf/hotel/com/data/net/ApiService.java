@@ -29,6 +29,7 @@ import static sf.hotel.com.data.net.HttpParam.CHECK_OUT_TIME;
 import static sf.hotel.com.data.net.HttpParam.CITY_ID;
 import static sf.hotel.com.data.net.HttpParam.DEVICE_TYPE;
 import static sf.hotel.com.data.net.HttpParam.EXCLUDE;
+import static sf.hotel.com.data.net.HttpParam.GUESTS;
 import static sf.hotel.com.data.net.HttpParam.INSTALLATION_CODE;
 import static sf.hotel.com.data.net.HttpParam.NUMBER;
 import static sf.hotel.com.data.net.HttpParam.PAGE;
@@ -79,7 +80,8 @@ public interface ApiService {
     @POST(AppUrl.HOTELS_BOOK_URL)
     Observable<HttpResult<HotelBookResult>> callHotelBook(@Field(PRODUCTID) String productId,
                                                           @Field(CHECK_IN_TIME) String inTime,
-                                                          @Field(CHECK_OUT_TIME) String outTime);
+                                                          @Field(CHECK_OUT_TIME) String outTime,
+                                                          @Field(GUESTS) String guests);
 
     @GET("hotel/{id}")
     Observable<HttpResult<Hotel1Result>> callHotelBeanById(@Path("id") String id,
