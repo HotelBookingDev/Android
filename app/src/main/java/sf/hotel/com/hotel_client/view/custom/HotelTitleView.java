@@ -118,7 +118,7 @@ public class HotelTitleView extends RelativeLayout {
         mViewGroup.addView(mTvTitle);
         //添加下标
         if (isShowUnderLine) {
-            addUnderLine(mViewGroup);
+//            addUnderLine(mViewGroup);
         }
         initTitlteStyle();
     }
@@ -128,7 +128,7 @@ public class HotelTitleView extends RelativeLayout {
         if (spannableString == null) {
             spannableString = new SpannableString(mTitle);
         }
-        spannableString.setSpan(new TypefaceSpan("monospace"), 0, mTitle.length(),
+        spannableString.setSpan(new TypefaceSpan("sans-serif"), 0, mTitle.length(),
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         spannableString.setSpan(new StyleSpan(android.graphics.Typeface.BOLD_ITALIC), 0,
                 mTitle.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -137,6 +137,7 @@ public class HotelTitleView extends RelativeLayout {
         mTvTitle.setText(spannableString);
     }
 
+    //    文字后面添加下标
     private void addUnderLine(ViewGroup mViewGroup) {
         mUnderline = new ImageView(getContext());
         mUnderline.setBackgroundResource(R.mipmap.ic_search_drop_down_arrow);
