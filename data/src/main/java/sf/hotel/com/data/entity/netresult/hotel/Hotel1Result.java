@@ -19,13 +19,13 @@ public class Hotel1Result {
      * types : [{"id":1,"name":"商务大床"},{"id":4,"name":"123"},{"id":5,"name":"123"},{"id":6,"name":"123"},{"id":7,"name":"123"},{"id":21,"name":"123"},{"id":22,"name":"123"},{"id":23,"name":"123"},{"id":24,"name":"\u201cnb\""},{"id":25,"name":"123"},{"id":30,"name":"\u201cnb\""},{"id":35,"name":"豪华"}]
      */
 
-    private HotelsBean hotel;
+    private Hotel1Bean hotel;
 
-    public HotelsBean getHotel() {
+    public Hotel1Bean getHotel() {
         return hotel;
     }
 
-    public void setHotel(HotelsBean hotel) {
+    public void setHotel(Hotel1Bean hotel) {
         this.hotel = hotel;
     }
 

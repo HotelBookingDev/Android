@@ -20,7 +20,7 @@
         android:layout_marginTop="@dimen/search_margin_top"
         android:layout_marginBottom="10dp"
         android:background="@drawable/bg_serch_hotel"
-        app:custom_item_img="@mipmap/close_circle_48px"
+        app:custom_item_img="@mipmap/ic_add_location_black_36dp"
         app:custom_item_text1="2个成人"
         android:id="@+id/fragment_search_hotel_city"
         />
@@ -46,7 +46,7 @@
         android:layout_marginRight="@dimen/search_margin"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        app:custom_item_img="@mipmap/close_circle_48px"
+        app:custom_item_img="@mipmap/ic_add_location_black_36dp"
         app:custom_item_text1="2个成人"
         app:custom_item_text2="0个小孩"
         app:custom_item_style="1"

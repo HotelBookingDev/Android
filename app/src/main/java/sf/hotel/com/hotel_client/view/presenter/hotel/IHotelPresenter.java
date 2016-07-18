@@ -61,7 +61,7 @@ public class IHotelPresenter extends SuperPresenter {
 
         SearchItem item = mIHotelsView.getSearchItem();
 
-        String ex = "types";
+        String ex = "";
 
         Subscription subscribe = mHotelsEntity.callHotelsByCityId(item, page, ex)
                 .subscribe(new Action1<HotelResult>() {

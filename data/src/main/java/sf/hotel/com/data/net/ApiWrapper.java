@@ -104,11 +104,12 @@ public class ApiWrapper extends RetrofitHelper {
      * @param productId 商品id
      * @param inTime 开始时间
      * @param outTime 结束时间
+     *
      * @return
      */
     public Observable<HotelBookResult> callHotelBook(String productId, String inTime,
-            String outTime) {
-        return mService.callHotelBook(productId, inTime, outTime)
+            String outTime, String guests) {
+        return mService.callHotelBook(productId, inTime, outTime, guests)
                 .compose(this.<HotelBookResult>applySchedulers());
     }
 

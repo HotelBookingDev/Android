@@ -15,6 +15,7 @@ public class HttpParam {
     public static final String AUTHORIZATION = "Authorization";
     public static final String PRODUCTID = "productId";
     public static final String CHECK_IN_TIME = "checkinTime";
+    public static final String GUESTS = "guests";
     public static final String CHECK_OUT_TIME = "checkoutTime";
     public static final String EXCLUDE = "exclude[]";
     public static final String USER_ID = "userId";
