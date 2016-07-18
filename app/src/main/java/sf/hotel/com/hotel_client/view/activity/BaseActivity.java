@@ -49,7 +49,7 @@ public abstract class BaseActivity extends SupportActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        TransulcentUtils.setColorWindow(this, R.color.view_title);
+        TransulcentUtils.setColorWindow(this, R.color.black);
     }
 
     @Override

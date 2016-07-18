@@ -2,7 +2,12 @@ package sf.hotel.com.hotel_client.view.custom;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
+import android.text.style.TypefaceSpan;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -37,6 +42,7 @@ public class HotelTitleView extends RelativeLayout {
     private String mTitle;
     private LayoutParams mLeftBtnParams;
     private LayoutParams mRightBtnParams;
+    SpannableString spannableString;
 
     public HotelTitleView(Context context) {
         this(context, null);
@@ -109,12 +115,26 @@ public class HotelTitleView extends RelativeLayout {
         }
         mTvTitle.setLayoutParams(titleParams);
         mTvTitle.setText(mTitle);
-
         mViewGroup.addView(mTvTitle);
         //添加下标
         if (isShowUnderLine) {
             addUnderLine(mViewGroup);
         }
+        initTitlteStyle();
+    }
+
+    //   设置Title的字体风格
+    private void initTitlteStyle() {
+        if (spannableString == null) {
+            spannableString = new SpannableString(mTitle);
+        }
+        spannableString.setSpan(new TypefaceSpan("monospace"), 0, mTitle.length(),
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new StyleSpan(android.graphics.Typeface.BOLD_ITALIC), 0,
+                mTitle.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new RelativeSizeSpan(1.3f), 0, mTitle.length(),
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);  //2.0f表示默认字体大小的两倍
+        mTvTitle.setText(spannableString);
     }
 
     private void addUnderLine(ViewGroup mViewGroup) {

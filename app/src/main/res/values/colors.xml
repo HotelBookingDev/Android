@@ -22,7 +22,7 @@
     <color name="main_divide">#ffe2e5e5</color>
 
     <!--默认使用-->
-    <color name="view_title">#1A9AB7</color>
+    <color name="view_title">#1b1b1b</color>
 
     <color name="hint_gray">#ffc3c3c3</color>
 
@@ -36,6 +36,7 @@
 
     <!--充值的按钮-->
     <color name="add_money">#84ccc9</color>
+    <color name="money_num">#689a98</color>
     <color name="hint_text">#C0FFFFFF</color>
 
     <color name="hide_normal_day">#99999999</color>
@@ -47,8 +48,9 @@
     <color name="hotels_text_color_gray">#626262</color>
     <color name="hotels_text_color_white">#ffffff</color>
 
-
     <color name="hide">#00ffffff</color>
     <color name="content_bg">#66666666</color>
+    <color name="about_money">#ababab</color>
+    <color name="about_money_one">#d5d5d5</color>
 
 </resources>

@@ -22,6 +22,13 @@ public class AccountBalancePresenter extends SuperPresenter {
 
     public void initViews() {
         //TODO 为网络请求
-        iAccountBalanceFragmentView.showMoney("￥0.0");
+        iAccountBalanceFragmentView.showMoney("5000.00");
+    }
+
+    public void addMoney(long money, int position) {
+        if (money % 100 != 0) {
+            iAccountBalanceFragmentView.showViewToast("请输入100的倍数");
+            return;
+        }
     }
 }
