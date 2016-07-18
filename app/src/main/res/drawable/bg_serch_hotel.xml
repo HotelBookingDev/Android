@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_checked="true">
+    <item android:state_pressed="true">
         <shape android:shape="rectangle">
             <!--填充颜色-->
-            <solid android:color="@color/bg_white" />
+            <solid android:color="@color/bg_gray" />
             <!--设置按钮的四个角为弧形-->
-            <corners android:radius="1dp" />
+            <corners android:radius="5dp" />
             <!--间距-->
-            <padding android:bottom="5dp" android:left="5dp" android:right="5dp" android:top="5dp" />
-
-            <stroke android:width="2dp" android:color="@color/bg_black"/>
+            <padding android:bottom="10dp" android:left="10dp" android:right="10dp" android:top="10dp" />
         </shape>
     </item>
 
@@ -18,9 +16,9 @@
             <!--填充颜色-->
             <solid android:color="@color/bg_white" />
             <!--设置按钮的四个角为弧形-->
-            <corners android:radius="1dp" />
+            <corners android:radius="5dp" />
             <!--间距-->
-            <padding android:bottom="5dp" android:left="5dp" android:right="5dp" android:top="5dp" />
+            <padding android:bottom="10dp" android:left="10dp" android:right="10dp" android:top="10dp" />
         </shape>
     </item>
 </selector>

@@ -36,7 +36,7 @@
 
     <dimen name="search_text_size">24sp</dimen>
 
-    <dimen name="search_margin">20dp</dimen>
+    <dimen name="search_margin">30dp</dimen>
     <dimen name="search_margin_top">30dp</dimen>
     <dimen name="search_timer_height">90dp</dimen>
     <dimen name="search_item_height">70dp</dimen>

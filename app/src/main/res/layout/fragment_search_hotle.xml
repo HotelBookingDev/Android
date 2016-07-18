@@ -18,14 +18,13 @@
         android:layout_marginLeft="@dimen/search_margin"
         android:layout_marginRight="@dimen/search_margin"
         android:layout_marginTop="@dimen/search_margin_top"
-        android:background="@drawable/item_bj"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bg_serch_hotel"
         app:custom_item_img="@mipmap/close_circle_48px"
         app:custom_item_text1="2个成人"
         android:id="@+id/fragment_search_hotel_city"
         />
 
-
-    <include layout="@layout/item_line"/>
 
     <sf.hotel.com.hotel_client.view.custom.CustomTimerView
         android:gravity="center"
@@ -34,31 +33,35 @@
         android:id="@+id/fragment_search_hotel_timer"
         android:layout_width="match_parent"
         android:layout_height="@dimen/search_timer_height"
-        android:background="@drawable/item_bj"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_serch_hotel"
         />
-    <include layout="@layout/item_line"/>
 
-    <include layout="@layout/item_line"/>
 
     <sf.hotel.com.hotel_client.view.custom.CustomSearchItem
         android:layout_width="match_parent"
         android:layout_height="@dimen/search_item_height"
         android:layout_marginLeft="@dimen/search_margin"
         android:layout_marginRight="@dimen/search_margin"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         app:custom_item_img="@mipmap/close_circle_48px"
         app:custom_item_text1="2个成人"
         app:custom_item_text2="0个小孩"
         app:custom_item_style="1"
-        android:background="@drawable/item_bj"
+        android:background="@drawable/bg_serch_hotel"
         />
 
     <Button
         android:id="@+id/search_hotel"
         android:layout_width="match_parent"
         android:layout_height="@dimen/search_item_height"
-        android:background="@drawable/item_bj"
+        android:background="@drawable/bg_serch_hotel"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_marginLeft="@dimen/search_margin"
         android:layout_marginRight="@dimen/search_margin"
+        android:layout_marginTop="10dp"
         android:text="@string/search"
         android:textSize="20sp"
         android:textColor="@color/title_gray"
