@@ -22,5 +22,5 @@ public interface ISearchHotelView extends BaseView {
 
     void setCityBean(CityBean cityBean);
 
-
+    Date[] getSearchTimer();
 }

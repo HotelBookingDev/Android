@@ -32,7 +32,7 @@ public class CustomTimerView extends RelativeLayout {
         long l = System.currentTimeMillis();
         Date date = new Date(l);
         dates[0] = date;
-        dates[1] = date;
+        dates[1] = new Date(l + 60 * 60 * 24 * 1000);
         initView();
     }
 

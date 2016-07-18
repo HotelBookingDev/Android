@@ -91,5 +91,8 @@ public class ISearchHotelPresenter extends SuperPresenter {
         }
         mISearchHotelView.setSearchItem(searchItem);
         mISearchHotelView.setTextCityName(searchItem.cityBean.getName());
+
+        mISearchHotelView.setSearchTimer(new Date[]{searchItem.inTime, searchItem.outTime});
+
     }
 }

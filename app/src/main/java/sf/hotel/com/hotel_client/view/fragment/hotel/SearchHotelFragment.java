@@ -99,6 +99,7 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
     }
 
     private void showTimer() {
+        mISearchHotelPresenter.saveSearchItem();
         Intent intent = new Intent(getBottomContext(), TimesActivity.class);
         intent.putExtra("action", "search_hotel");
         startActivityForResult(intent, REQUEST_TIMER);
@@ -132,6 +133,11 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
     }
 
     @Override
+    public Date[] getSearchTimer(){
+        return mTimerView.getTimer();
+    }
+
+    @Override
     public SearchItem getSearchItem() {
         return mSearchItem;
     }
@@ -144,6 +150,7 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
     public void setCityBean(CityBean cityBean) {
         mSearchItem.cityBean = cityBean;
     }
+
 
     @Override
     public void onDestroy() {

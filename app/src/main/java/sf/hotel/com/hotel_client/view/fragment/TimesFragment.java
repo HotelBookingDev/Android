@@ -12,6 +12,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mehdi.sakout.fancybuttons.FancyButton;
+import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.data.net.SelectDates;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.custom.caledarlistview.DatePickerController;
@@ -20,19 +21,25 @@ import sf.hotel.com.hotel_client.view.custom.caledarlistview.SimpleMonthAdapter;
 import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.TimerMessage;
+import sf.hotel.com.hotel_client.view.interfaceview.hotel.ITimerView;
+import sf.hotel.com.hotel_client.view.presenter.hotel.TimerPresenter;
 
 /**
  * @author MZ
  * @email sanfenruxi1@163.com
  * @date 16/6/27.
  */
-public class TimesFragment extends BaseFragment {
+public class TimesFragment extends BaseFragment implements ITimerView{
 
     @BindView(R.id.fragment_times_calendar_view)
     DayPickerView mCalendarView;
 
     @BindView(R.id.fragment_times_submit)
     FancyButton mSubmit;
+
+    TimerPresenter mTimerPresenter;
+
+    SearchItem searchItem;
 
     public static TimesFragment newInstance() {
 
@@ -49,8 +56,14 @@ public class TimesFragment extends BaseFragment {
             @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_times, container, false);
         ButterKnife.bind(this, view);
+        mTimerPresenter = new TimerPresenter(this);
+        initDate();
         initCalendarView();
         return view;
+    }
+
+    private void initDate() {
+        mTimerPresenter.getSearchItem();
     }
 
 
@@ -74,7 +87,6 @@ public class TimesFragment extends BaseFragment {
     }
 
     private void initCalendarView() {
-
         mCalendarView.setController(new DatePickerController() {
             @Override
             public int getMaxYear() {
@@ -93,16 +105,30 @@ public class TimesFragment extends BaseFragment {
 
             @Override
             public void onDayOfMonthSelected(int year, int month, int day) {
-
             }
-
             @Override
             public void onDateRangeSelected(SimpleMonthAdapter.SelectedDays<SimpleMonthAdapter.CalendarDay> selectedDays) {
 
             }
-        });
 
+            @Override
+            public SimpleMonthAdapter.SelectedDays<SimpleMonthAdapter.CalendarDay> setOnStartSelectedDays() {
+
+                SimpleMonthAdapter.SelectedDays<SimpleMonthAdapter.CalendarDay> selectedDays = new SimpleMonthAdapter.SelectedDays<SimpleMonthAdapter.CalendarDay>();
+
+                selectedDays.setFirst(new SimpleMonthAdapter.CalendarDay(searchItem.inTime.getTime()));
+                selectedDays.setLast(new SimpleMonthAdapter.CalendarDay(searchItem.outTime.getTime()));
+
+                return selectedDays;
+            }
+        });
     }
 
+    public SearchItem getSearchItem() {
+        return searchItem;
+    }
 
+    public void setSearchItem(SearchItem searchItem) {
+        this.searchItem = searchItem;
+    }
 }

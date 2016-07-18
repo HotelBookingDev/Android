@@ -14,7 +14,7 @@ public class SearchItem implements Parcelable{
 
 
     public Date inTime = new Date(System.currentTimeMillis());
-    public Date outTime = new Date(System.currentTimeMillis());
+    public Date outTime = new Date(System.currentTimeMillis() + 60 * 60 * 24 * 1000);
     public CityBean cityBean = new CityBean();
     public int adultCount = 0;
     public int childCount = 0;

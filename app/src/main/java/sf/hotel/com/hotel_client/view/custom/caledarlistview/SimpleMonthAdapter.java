@@ -45,7 +45,7 @@ public class SimpleMonthAdapter extends RecyclerView.Adapter<SimpleMonthAdapter.
 	private final Context mContext;
 	private final DatePickerController mController;
     private final Calendar calendar;
-    private final SelectedDays<CalendarDay> selectedDays;
+    private SelectedDays<CalendarDay> selectedDays;
     private final Integer firstMonth;
     private final Integer lastMonth;
 
@@ -54,7 +54,9 @@ public class SimpleMonthAdapter extends RecyclerView.Adapter<SimpleMonthAdapter.
         calendar = Calendar.getInstance();
         firstMonth = typedArray.getInt(R.styleable.DayPickerView_firstMonth, calendar.get(Calendar.MONTH));
         lastMonth = typedArray.getInt(R.styleable.DayPickerView_lastMonth, (calendar.get(Calendar.MONTH) - 1) % MONTHS_IN_YEAR);
-        selectedDays = new SelectedDays<>();
+        selectedDays = datePickerController.setOnStartSelectedDays();
+        if (selectedDays == null)
+            selectedDays = new SelectedDays<>();
 		mContext = context;
 		mController = datePickerController;
 		init();

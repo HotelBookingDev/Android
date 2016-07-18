@@ -6,6 +6,7 @@ import rx.Subscription;
 import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.data.interfaceeneity.CityEntity;
+import sf.hotel.com.data.interfaceeneity.ICityEntityImp;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.ICityView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
@@ -22,6 +23,7 @@ public class ICityPresenter extends SuperPresenter {
 
     public ICityPresenter(ICityView mICityView) {
         this.mICityView = mICityView;
+        mICityEntityImp = new ICityEntityImp();
     }
 
     public ProvincesResult getProcincesResult(Context context) {

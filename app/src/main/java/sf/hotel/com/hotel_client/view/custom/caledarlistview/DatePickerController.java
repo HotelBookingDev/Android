@@ -36,4 +36,6 @@ public interface DatePickerController {
 
 	void onDateRangeSelected(final SimpleMonthAdapter.SelectedDays<SimpleMonthAdapter.CalendarDay> selectedDays);
 
+	SimpleMonthAdapter.SelectedDays<SimpleMonthAdapter.CalendarDay> setOnStartSelectedDays();
+
 }
