@@ -268,13 +268,13 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
     }
 
     public void showBooking(){
-        if (mIRoomPresenter.checkIsLogin()){
+        //if (mIRoomPresenter.checkIsLogin()){
             Intent intent = new Intent(getActivity(), BookingActivity.class);
             intent.putExtra("action", "Room");
             startActivity(intent);
-        } else {
-            RxBus.getDefault().post(MessageFactory.createLoginMessage(LoginMessage.SHOW_LOGIN));
-        }
+//        } else {
+//            RxBus.getDefault().post(MessageFactory.createLoginMessage(LoginMessage.SHOW_LOGIN));
+//        }
     }
 
     public int getHotelId() {

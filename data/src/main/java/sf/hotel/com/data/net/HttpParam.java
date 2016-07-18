@@ -14,8 +14,8 @@ public class HttpParam {
     public static final String PAGE = "page";
     public static final String AUTHORIZATION = "Authorization";
     public static final String PRODUCTID = "productId";
-    public static final String CHECK_IN_TIME = "checkintime";
-    public static final String CHECK_OUT_TIME = "checkouttime";
+    public static final String CHECK_IN_TIME = "checkinTime";
+    public static final String CHECK_OUT_TIME = "checkoutTime";
     public static final String EXCLUDE = "exclude[]";
     public static final String USER_ID = "userId";
     public static final String NEWPASSWORD = "newPassword";

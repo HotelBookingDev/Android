@@ -1,7 +1,12 @@
 package sf.hotel.com.data.interfaceeneity.hotel;
 
+import android.content.Context;
+
 import rx.Observable;
+import sf.hotel.com.data.datasource.HotelDao;
 import sf.hotel.com.data.entity.HotelBookResult;
+import sf.hotel.com.data.entity.SearchItem;
+import sf.hotel.com.data.net.ApiWrapper;
 
 /**
  * @author MZ
@@ -9,13 +14,8 @@ import sf.hotel.com.data.entity.HotelBookResult;
  * @date 16/7/15.
  */
 public interface BookingEntity {
-
-    /**
-     * @param productId 商品id
-     * @param inTime 开始时间
-     * @param outTime 结束时间
-     * @return
-     */
-    Observable<HotelBookResult> callHotelBook(String productId, String inTime, String outTime);
+    Observable<HotelBookResult> callHotelBook( String productId, SearchItem searchItem);
+    SearchItem getSearchItem(Context context);
+    void saveSearchItem(Context context,SearchItem searchItem);
 
 }
