@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:background="#66666666"
+        android:background="@drawable/bg_room_price"
         android:textColor="@color/hotels_text_color_white"
         android:textSize="@dimen/hotels_item_price"
         app:price_text_poins="1000"

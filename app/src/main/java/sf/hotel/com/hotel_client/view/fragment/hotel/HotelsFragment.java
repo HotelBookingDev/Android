@@ -76,12 +76,10 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         View view = inflater.inflate(R.layout.fragment_hotels, container, false);
         ButterKnife.bind(this, view);
         mIHotelPresenter = new IHotelPresenter(this);
-
-        initCache();
         initPullView();
+        initCache();
         initPtrFrame();
         onRxEvent();
-        initHotelCache();
         return view;
     }
 
@@ -143,14 +141,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
 
     private void initCache() {
         mIHotelPresenter.loadSearchItem();
-    }
-
-    private void initHotelCache() {
-        HotelResult hotelCache = mIHotelPresenter.getHotelCache();
-        if (hotelCache != null) {
-            mPullAdapter.setDatas(hotelCache.getHotels());
-        }
-        mIHotelPresenter.callHotelsByCityId("1");
+        mIHotelPresenter.getHotelCache();
     }
 
     private void onRxEvent() {
