@@ -3,13 +3,15 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
     >
+
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/fragment_city_grid">
+        android:id="@+id/fragment_city_grid"
+        android:layout_gravity="center_horizontal"
+        >
     </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

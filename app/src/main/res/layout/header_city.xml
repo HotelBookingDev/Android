@@ -18,8 +18,11 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:text="@string/list_city"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
         android:background="@color/bg_gray"
         />
 
