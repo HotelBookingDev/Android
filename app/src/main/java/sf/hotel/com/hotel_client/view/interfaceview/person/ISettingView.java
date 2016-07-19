@@ -13,8 +13,4 @@ public interface ISettingView extends BaseView {
 
     ToggleButton getAcceptMsg();
 
-
-    void toChangePwFragment();
-
-    void showLoginActivity();
 }

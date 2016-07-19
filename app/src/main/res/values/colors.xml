@@ -55,7 +55,7 @@
 
     <color name="hide">#00ffffff</color>
     <color name="content_bg">#66666666</color>
-    <color name="about_money">#ababab</color>
+    <color name="hit_text">#ababab</color>
     <color name="about_money_one">#d5d5d5</color>
 
 </resources>

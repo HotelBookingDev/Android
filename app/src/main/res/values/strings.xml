@@ -47,9 +47,9 @@
     <string name="cities">选择城市</string>
     <string name="edition">当前版本</string>
     <string name="my">我的</string>
-    <string name="receive_message">接受消息</string>
+    <string name="receive_message">接受推送</string>
     <string name="about_us">关于我们</string>
-    <string name="feedback">意见反馈</string>
+    <string name="question">常见问题</string>
     <string name="safe">账户与安全</string>
     <string name="change_pwd">修改密码</string>
     <string name="determine">确定</string>
@@ -115,5 +115,8 @@
     <string name="about_money_two">暂时先留这么多空具体看之后的文案</string>
     <string name="current_user">当前账户</string>
     <string name="pay_pwd">支付密码</string>
+    <string name="service_and_privacy_provisions">服务及隐私条款</string>
+    <string name="feedback">反馈意见</string>
+    <string name="setting">Settings</string>
 
 </resources>

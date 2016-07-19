@@ -5,6 +5,7 @@
         <attr name="contextText" format="string" />
         <attr name="rightText" format="string" />
         <attr name="is_show_right_icon" format="string" />
+        <attr name="left_string_color" format="color" />
     </declare-styleable>
 
     <declare-styleable name="HotelTitleBar">

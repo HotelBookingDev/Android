@@ -31,12 +31,4 @@ public class SettingPresenter extends SuperPresenter {
         mSettingView.setSwitch(PreferencesUtils.getAcceptMeg(mSettingView.getBottomContext()),
                 acceptMsg);
     }
-
-    public void forgeoPwd() {
-        if (checkIsLogin()) {
-            mSettingView.toChangePwFragment();
-        } else {
-            mSettingView.showLoginActivity();
-        }
-    }
 }

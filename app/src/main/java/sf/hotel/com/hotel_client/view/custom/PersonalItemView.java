@@ -29,6 +29,7 @@ public class PersonalItemView extends FrameLayout {
     private String rightString;
     private TextView tv_right;
     private boolean isShowRightIcon;
+    private int leftTxtColor = R.color.black;
 
     public PersonalItemView(Context context) {
         this(context, null);
@@ -47,6 +48,7 @@ public class PersonalItemView extends FrameLayout {
             showString = a.getString(R.styleable.PersonalItemView_contextText);
             rightString = a.getString(R.styleable.PersonalItemView_rightText);
             isShowRightIcon = a.getBoolean(R.styleable.PersonalItemView_is_show_right_icon, true);
+            leftTxtColor = a.getColor(R.styleable.PersonalItemView_left_string_color, R.color.black);
         } finally {
             a.recycle();
         }
@@ -63,6 +65,7 @@ public class PersonalItemView extends FrameLayout {
         tv_right = (TextView) inflate.findViewById(R.id.tv_right);
         String defaultString = "PensionItemView";
         mTextView.setText(defaultString);
+        mTextView.setTextColor(leftTxtColor);
         if (!TextUtils.isEmpty(showString)) {
             mTextView.setText(showString);
         }

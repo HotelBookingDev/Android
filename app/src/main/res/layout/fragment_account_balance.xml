@@ -52,7 +52,7 @@
                 style="@style/normal_text"
                 android:layout_margin="10dp"
                 android:text="@string/about_money"
-                android:textColor="@color/about_money"
+                android:textColor="@color/hit_text"
                 android:textSize="@dimen/text_mid" />
 
             <TextView
