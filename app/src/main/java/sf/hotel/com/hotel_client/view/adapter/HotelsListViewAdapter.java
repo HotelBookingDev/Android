@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sf.hotel.com.data.entity.netresult.hotel.Hotel1Bean;
-import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 import sf.hotel.com.hotel_client.view.custom.CustomRatingBar;
@@ -28,28 +27,25 @@ public class HotelsListViewAdapter extends BaseAdapter {
     private List<Hotel1Bean> mData;
     private Context mContext;
 
-
     public HotelsListViewAdapter(Context context) {
         this.mContext = context;
         mData = new ArrayList<>();
     }
 
-    public void addDatas(List<Hotel1Bean> data){
+    public void addDatas(List<Hotel1Bean> data) {
         mData.addAll(data);
     }
 
-    public void setDatas(List<Hotel1Bean> data){
-        if (data != null){
+    public void setDatas(List<Hotel1Bean> data) {
+        if (data != null) {
             mData.clear();
             mData.addAll(data);
         }
     }
 
-
-    public Hotel1Bean getDataById(int pos){
+    public Hotel1Bean getDataById(int pos) {
         return mData.get(pos);
     }
-
 
     @Override
     public int getCount() {
@@ -70,11 +66,12 @@ public class HotelsListViewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
 
-        if (convertView == null){
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_hotels, parent, false);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(mContext)
+                    .inflate(R.layout.item_hotels, parent, false);
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
-        }else {
+        } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
@@ -83,11 +80,10 @@ public class HotelsListViewAdapter extends BaseAdapter {
         holder.mName.setText(data.getName());
         holder.mRatingBar.setRatingBarCount(3.5f);
 
-        if (data.getHotel_imgs() != null && data.getHotel_imgs().size() > 0){
+        if (data.getHotel_imgs() != null && data.getHotel_imgs().size() > 0) {
             HotelImageLoad.loadImage(mContext, holder.mImageView, data.getHotel_imgs().get(0));
-        }else {
-            HotelImageLoad.loadImage(mContext,
-                    holder.mImageView,
+        } else {
+            HotelImageLoad.loadImage(mContext, holder.mImageView,
                     "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3256474343,2114829206&fm=23&gp=0.jpg");
         }
 

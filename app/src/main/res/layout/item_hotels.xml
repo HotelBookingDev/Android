@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:gravity="center"
-    >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_margin="10dp"
         android:gravity="center"
-        android:layout_margin = "10dp"
-        >
+        android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/item_hotels_img"
             android:layout_width="150dp"
             android:layout_height="100dp"
-            android:src="@mipmap/ic_launcher"
-            android:scaleType="fitXY"/>
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,39 +30,37 @@
             <TextView
                 android:id="@+id/item_hotels_name"
                 style="@style/titleTextStyle"
-                android:textColor="@color/hotels_text_color_gray"
-                android:textSize="@dimen/hotels_item_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="三亚 | 国际连锁"/>
+                android:text="三亚 | 国际连锁"
+                android:textColor="@color/hotels_text_color_gray"
+                android:textSize="@dimen/hotels_item_title" />
 
             <sf.hotel.com.hotel_client.view.custom.CustomRatingBar
-                android:layout_width="match_parent"
                 android:id="@+id/item_hotels_ratingBar"
-                android:layout_height="20dp"/>
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
             <sf.hotel.com.hotel_client.view.custom.PriceText
                 android:id="@+id/item_hotels_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="right"
                 android:padding="5dp"
                 android:textColor="@color/hotels_text_color_green"
                 android:textSize="@dimen/hotels_item_price"
                 app:price_text_poins="1000"
-                app:price_text_price="1024"
-                android:layout_gravity="right"
-                />
+                app:price_text_price="1024" />
         </LinearLayout>
     </LinearLayout>
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+    <include
+        android:id="@+id/item_line"
+        layout="@layout/item_line" />
 
 </LinearLayout>
