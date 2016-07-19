@@ -23,7 +23,7 @@
     <dimen name="common_margin">20.0dip</dimen>
     <!--item里面文字的大小-->
     <dimen name="text_small">14.0dip</dimen>
-
+    <dimen name="text_small_double">10.0dip</dimen>
     <dimen name="item_height">45dp</dimen>
     <dimen name="search_view_inset">5dp</dimen>
     <!--账户资料里面的head 的高-->

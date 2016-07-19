@@ -10,4 +10,14 @@ import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
 
 public interface IInvoiceView extends BaseView {
     void setInvoice(String string);
+
+    String getInVoiceMoney();
+
+    String getInVoiceMakeUp();
+
+    String getInVoiceirecipientName();
+
+    String getInVoiceeContactInformation();
+
+    String getInVoiceMaillAdress();
 }
