@@ -1,5 +1,7 @@
 package sf.hotel.com.data.net;
 
+import okhttp3.Request;
+import okhttp3.ResponseBody;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -35,6 +37,7 @@ import static sf.hotel.com.data.net.HttpParam.NUMBER;
 import static sf.hotel.com.data.net.HttpParam.PAGE;
 import static sf.hotel.com.data.net.HttpParam.PASSWORD;
 import static sf.hotel.com.data.net.HttpParam.PHONE_NUMBER;
+import static sf.hotel.com.data.net.HttpParam.POINT;
 import static sf.hotel.com.data.net.HttpParam.PRODUCTID;
 import static sf.hotel.com.data.net.HttpParam.SMS_CODE;
 
@@ -106,4 +109,8 @@ public interface ApiService {
     @POST(AppUrl.DELETE_URL)
     Observable<HttpResult<NormalResult>> deleteOrder(@Field(ACTION) String action,
             @Field(NUMBER) long number);
+
+
+    @GET(AppUrl.PAY_URL)
+    Observable<ResponseBody> callPay(@Query(POINT) String point);
 }

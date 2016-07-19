@@ -20,6 +20,7 @@ public class HttpParam {
     public static final String EXCLUDE = "exclude[]";
     public static final String USER_ID = "userId";
     public static final String NEWPASSWORD = "newPassword";
+    public static final String POINT = "point";
 
     public static final String ACTION = "action";
     public static final String NUMBER = "number";

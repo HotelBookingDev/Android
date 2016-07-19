@@ -1,5 +1,6 @@
 package sf.hotel.com.hotel_client.view.fragment.person;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.activity.pay.PayActivity;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.custom.PayBottomView;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
@@ -65,9 +67,12 @@ public class AccountBalanceFragmentView extends BaseFragment
 
     @Override
     public void ShowPayBottom() {
-        PayView = new PayBottomView(getBottomContext(),
-                (money, postion) -> mAccountPresenter.addMoney(money, postion));
-        PayView.showAtLocation(mViewTitle, Gravity.BOTTOM, 0, 0);
+//        PayView = new PayBottomView(getBottomContext(),
+//                (money, postion) -> mAccountPresenter.addMoney(money, postion));
+//        PayView.showAtLocation(mViewTitle, Gravity.BOTTOM, 0, 0);
+
+        Intent intent = new Intent(getActivity(), PayActivity.class);
+        startActivity(intent);
     }
 
     @Override

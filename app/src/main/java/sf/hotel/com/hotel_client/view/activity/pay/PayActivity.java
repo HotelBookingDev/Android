@@ -5,6 +5,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
+import rx.Subscriber;
+import sf.hotel.com.data.net.ApiWrapper;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.alipay.PayCallBack;
 import sf.hotel.com.hotel_client.alipay.PayHelper;
@@ -31,22 +36,38 @@ public class PayActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PayParam payParam = new PayParam();
-
-                payParam.setSubject("111");
-                payParam.setBody("222");
-                payParam.setOrderInfo("123123123");
-                payParam.setTotal_fee("100");
-
-                PayHelper.getInstance().pay(PayActivity.this, payParam, new PayCallBack() {
+                ApiWrapper.getInstance().callPay("1").subscribe(new Subscriber<ResponseBody>() {
                     @Override
-                    public void success() {
-                        LogUtils.d("success");
+                    public void onCompleted() {
+
                     }
 
                     @Override
-                    public void failed() {
-                        LogUtils.d("failed");
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(ResponseBody responseBody) {
+                        try {
+                            String s = responseBody.string();
+                            PayHelper.getInstance().pay(PayActivity.this, s, new PayCallBack() {
+                                @Override
+                                public void success() {
+                                    LogUtils.d("我成功了！！");
+                                }
+
+                                @Override
+                                public void failed() {
+                                    LogUtils.d("。。。！！");
+                                }
+                            });
+
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
                     }
                 });
             }

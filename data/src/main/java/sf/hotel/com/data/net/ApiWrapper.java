@@ -2,7 +2,10 @@ package sf.hotel.com.data.net;
 
 import com.google.gson.Gson;
 
+import okhttp3.ResponseBody;
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 import sf.hotel.com.data.entity.HotelBookResult;
 import sf.hotel.com.data.entity.Intallation;
 import sf.hotel.com.data.entity.ProvincesResult;
@@ -122,6 +125,13 @@ public class ApiWrapper extends RetrofitHelper {
     public Observable<Hotel1Result> callHotelBean(String id, String exclude){
         return mService.callHotelBeanById(id, exclude)
                 .compose(this.<Hotel1Result>applySchedulers());
+    }
+
+    public Observable<ResponseBody> callPay(String point){
+        return mService.callPay(point)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                ;
     }
 
     public Observable<TokenResult> getTokenResult() {
