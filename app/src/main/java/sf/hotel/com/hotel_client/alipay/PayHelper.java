@@ -7,6 +7,10 @@ import com.alipay.sdk.app.PayTask;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Random;
 
 import sf.hotel.com.data.utils.LogUtils;
 
@@ -42,13 +46,16 @@ public class PayHelper {
                      * 仅需对sign 做URL编码
                      */
                     sign = URLEncoder.encode(sign, "UTF-8");
+
+
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
 
-
-
                 String payInfo =  orderInfo + "&sign=\"" + sign + "\"&" + getSignType();
+
+
+                LogUtils.d(payInfo);
                 PayTask alipay = new PayTask(c);
                 return alipay.pay(payInfo , true);
             }
@@ -78,7 +85,7 @@ public class PayHelper {
         orderInfo += "&seller_id=" + "\"" + payParam.getSeller_id() + "\"";
 
         // 商户网站唯一订单号
-        orderInfo += "&out_trade_no=" + "\"" + payParam.getOut_trade_no() + "\"";
+        orderInfo += "&out_trade_no=" + "\"" + getOutTradeNo() + "\"";
 
         // 商品名称
         orderInfo += "&subject=" + "\"" + payParam.getSubject() + "\"";
@@ -128,6 +135,17 @@ public class PayHelper {
         return "sign_type=\"RSA\"";
     }
 
+
+    private String getOutTradeNo() {
+        SimpleDateFormat format = new SimpleDateFormat("MMddHHmmss", Locale.getDefault());
+        Date date = new Date();
+        String key = format.format(date);
+
+        Random r = new Random();
+        key = key + r.nextInt();
+        key = key.substring(0, 15);
+        return key;
+    }
 
     /**
      * sign the order info. 对订单信息进行签名

@@ -7,7 +7,7 @@ package sf.hotel.com.hotel_client.alipay;
  */
 class Config {
     // 商户PID
-    public static final String PARTNER = " 2016071301611593";
+    public static final String PARTNER = "2016071301611593";
     // 商户收款账号
     public static final String SELLER = "chaomengshidai@aegsd.com";
     // 商户私钥，pkcs8格式

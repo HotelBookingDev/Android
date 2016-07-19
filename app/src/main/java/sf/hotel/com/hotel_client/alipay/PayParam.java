@@ -25,12 +25,12 @@ public class PayParam {
     /**
      * 商品名称
      */
-    private String subject = "111";
+    private String subject = "商品一号";
 
     /**
      * 商品详情
      */
-    private String body = "222";
+    private String body = "这是一件商品";
 
     /**
      * 商品金额
@@ -41,7 +41,7 @@ public class PayParam {
     /**
      * 服务器异步通知页面路径
      */
-    private String notify_url;
+    private String notify_url = "http://notify.msp.hk/notify.htm";
 
     /**
      * 服务器接口名称，固定值
