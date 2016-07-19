@@ -72,6 +72,13 @@ public class HeadInterceptor implements Interceptor {
                 isNeed = true;
             }
         }
+        if (!isNeed) {
+            for (String s : AppUrl.SPEICALURL) {
+                if (url.contains(s)) {
+                    isNeed = true;
+                }
+            }
+        }
         return isNeed;
     }
 }
