@@ -87,7 +87,6 @@ public class MainActivity extends BaseActivity {
         public void onSelected(int index, Object tag) {
             showHideFragment(mFragments[index], mFragments[currentIndex]);
             currentIndex = index;
-
         }
 
         //列表也可以回到自定页或者刷新数据

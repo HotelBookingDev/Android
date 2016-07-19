@@ -59,7 +59,7 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_userd_order, container, false);
         ButterKnife.bind(this, view);
         position = OrderMessage.ALREADYCONSUMED;
@@ -131,7 +131,8 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
     public void onDestroy() {
         super.onDestroy();
         unregisterReceiver();
-        mUserOrderPresenter.destroy();
+        if (mUserOrderPresenter != null)
+            mUserOrderPresenter.destroy();
     }
 
     @Override
