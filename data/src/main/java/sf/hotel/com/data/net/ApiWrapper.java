@@ -7,6 +7,7 @@ import sf.hotel.com.data.entity.HotelBookResult;
 import sf.hotel.com.data.entity.Intallation;
 import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.data.entity.netresult.HotelResult;
+import sf.hotel.com.data.entity.netresult.HttpResult;
 import sf.hotel.com.data.entity.netresult.LoginResult;
 import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.entity.netresult.TokenResult;
@@ -141,5 +142,10 @@ public class ApiWrapper extends RetrofitHelper {
 
     public Observable<NormalResult> deleteOrder(long number) {
         return mService.deleteOrder("cancel", number).compose(this.applySchedulers());
+    }
+
+    @Override
+    protected <T> Observable.Transformer<HttpResult<T>, T> applySchedulers() {
+        return super.applySchedulers();
     }
 }

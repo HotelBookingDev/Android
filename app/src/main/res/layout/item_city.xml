@@ -10,6 +10,7 @@
         android:layout_height="50dp"
         android:gravity="center"
         android:text="宁波"
+        android:layout_margin="10dp"
         android:id="@+id/item_city_btn"
         android:background="@drawable/bg_selector_city"
         app:text_color="@color/title_gray"

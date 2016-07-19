@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Subscription;
@@ -17,6 +19,7 @@ import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.adapter.CityListAdapter;
 import sf.hotel.com.hotel_client.view.adapter.OnItemClickListener;
+import sf.hotel.com.hotel_client.view.custom.CustomImgText;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.CityMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
@@ -32,6 +35,8 @@ public class CityFragment extends BaseFragment implements ICityView {
 
     @BindView(R.id.fragment_city_grid)
     RecyclerView mGridRecyclerView;
+
+    CustomImgText mHeaderText;
 
     private CityListAdapter mCityListAdapter;
 
@@ -60,13 +65,8 @@ public class CityFragment extends BaseFragment implements ICityView {
     }
 
     private void initCityCache() {
-        // 取消if else 每次都去网络请求
-        ProvincesResult provincesResult = mICityPresenter.getProcincesResult(getBottomContext());
-        if (provincesResult != null) {
-            mCityListAdapter.setList(provincesResult);
-        } else {
-            initCityList();
-        }
+        mICityPresenter.getProcincesResult();
+        mICityPresenter.getCityBean();
     }
 
     private void onRxEvent() {
@@ -80,28 +80,21 @@ public class CityFragment extends BaseFragment implements ICityView {
         addSubscription(subscribe);
     }
 
-    private void initCityList() {
-        mICityPresenter.callCityList();
-    }
-
     //    界面排版
     private void initGrid() {
-        //设置3列
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getBottomContext(), 3);
+
+
+        //设置4列
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getBottomContext(), 4);
         mGridRecyclerView.setLayoutManager(gridLayoutManager);
         mCityListAdapter = new CityListAdapter(getBottomContext());
-        mCityListAdapter.setOnItemClickLitener(new OnItemClickListener() {
+        View header = LayoutInflater.from(getBottomContext()).inflate(R.layout.header_city, null);
+        mHeaderText = (CustomImgText) header.findViewById(R.id.header_city_location);
+        mCityListAdapter.setHeaderView(header);
+        mCityListAdapter.setOnTextClickListener(new CityListAdapter.OnTextClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
-                CityBean selectCityBean = mCityListAdapter.getSelectCityBean();
-                if (selectCityBean != null) {
-                    mICityPresenter.saveSelectCity(selectCityBean);
-                }
-            }
-
-            @Override
-            public void onItemLongClick(View view, int position) {
-
+            public void onTextClick(View view, int pos) {
+                mICityPresenter.onTextClick(view, pos);
             }
         });
         mGridRecyclerView.setAdapter(mCityListAdapter);
@@ -112,12 +105,26 @@ public class CityFragment extends BaseFragment implements ICityView {
         return getActivity();
     }
 
-    public void setCityAdapterList(ProvincesResult provincesResult) {
-        mCityListAdapter.setList(provincesResult);
-        CityBean cityBean = mICityPresenter.getCityBean();
-        if (cityBean != null) {
-            mCityListAdapter.setSelectCityBean(cityBean);
-        }
+
+    @Override
+    public void setCityListAdapterDate(List<CityBean> cityBeen) {
+        mCityListAdapter.setDatas(cityBeen);
+    }
+
+    @Override
+    public void setCityListAdapterSelect(CityBean cityBeen) {
+        mCityListAdapter.setSelectCityBean(cityBeen);
+    }
+
+    @Override
+    public void setHeadTextStr(String text){
+        mHeaderText.setText(text);
+    }
+
+
+    @Override
+    public CityListAdapter getCityListAdapter() {
+        return mCityListAdapter;
     }
 
     @Override

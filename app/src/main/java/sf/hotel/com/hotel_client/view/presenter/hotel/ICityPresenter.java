@@ -1,10 +1,11 @@
 package sf.hotel.com.hotel_client.view.presenter.hotel;
 
-import android.content.Context;
+import android.view.View;
+
+import java.util.List;
 
 import rx.Subscription;
 import sf.hotel.com.data.entity.CityBean;
-import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.data.interfaceeneity.CityEntity;
 import sf.hotel.com.data.interfaceeneity.ICityEntityImp;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
@@ -26,32 +27,49 @@ public class ICityPresenter extends SuperPresenter {
         mICityEntityImp = new ICityEntityImp();
     }
 
-    public ProvincesResult getProcincesResult(Context context) {
-        return mICityEntityImp.getProcincesResult(context);
+
+    public void onTextClick(View view, int pos) {
+        CityBean selectCityBean = mICityView.getCityListAdapter().getSelectCityBean();
+        saveSelectCity(selectCityBean);
+        mICityView.setHeadTextStr(selectCityBean.getName());
     }
 
-    public CityBean getCityBean() {
-        return mICityEntityImp.getCityBean(mICityView.getBottomContext());
+    public void getProcincesResult() {
+        List<CityBean> cityBeen = mICityEntityImp.getProcincesResult(mICityView.getBottomContext());
+        if (cityBeen  != null){
+            mICityView.setCityListAdapterDate(cityBeen);
+        }else {
+            callCityList();
+        }
+    }
+
+    public void getCityBean() {
+        CityBean cityBean = mICityEntityImp.getCityBean(mICityView.getBottomContext());
+        if (cityBean != null){
+            mICityView.setCityListAdapterSelect(cityBean);
+        }
     }
 
     public void callCityList() {
         Subscription subscribe = mICityEntityImp.callCityList()
-                .subscribe(new SimpleSubscriber<ProvincesResult>(mICityView.getBottomContext()) {
+                .subscribe(new SimpleSubscriber<List<CityBean>>(mICityView.getBottomContext()){
                     @Override
-                    public void onError(Throwable e) {
-                        super.onError(e);
+                    public void onNext(List<CityBean> cityBeen) {
+                        super.onNext(cityBeen);
+                        mICityView.setCityListAdapterDate(cityBeen);
                     }
 
                     @Override
-                    public void onNext(ProvincesResult procincesResult) {
-                        super.onNext(procincesResult);
-                        mICityView.setCityAdapterList(procincesResult);
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        handlingException(e);
                     }
                 });
         addSubsrcicitpition(subscribe);
     }
 
     public void saveSelectCity(CityBean cityBean) {
-        mICityEntityImp.saveCitysBean(mICityView.getBottomContext(), cityBean);
+        if (cityBean != null)
+            mICityEntityImp.saveCitysBean(mICityView.getBottomContext(), cityBean);
     }
 }
