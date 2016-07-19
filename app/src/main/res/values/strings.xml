@@ -63,7 +63,7 @@
     <string name="verificationcode">验证码</string>
     <string name="input_old_pwd">输入旧密码</string>
     <string name="phone_prefix">+86</string>
-    <string name="user_info">个人资料</string>
+    <string name="user_info">My Account</string>
     <string name="avatar">头像</string>
     <string name="user_name">昵称</string>
     <string name="name">昵称</string>
@@ -113,5 +113,7 @@
     <string name="about_money">关于余额</string>
     <string name="about_money_one">一些关于余额的介绍，使用范围等</string>
     <string name="about_money_two">暂时先留这么多空具体看之后的文案</string>
+    <string name="current_user">当前用户</string>
+    <string name="pay_pwd">支付密码</string>
 
 </resources>

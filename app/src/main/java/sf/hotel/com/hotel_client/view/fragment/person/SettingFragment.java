@@ -22,7 +22,6 @@ import sf.hotel.com.data.utils.WebViewModelFactory;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.AndroidUtils;
 import sf.hotel.com.hotel_client.view.activity.WebViewActivity;
-import sf.hotel.com.hotel_client.view.activity.register.LoginActivity;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.custom.ToggleButton;
 import sf.hotel.com.hotel_client.view.event.MessageFactory;
@@ -58,7 +57,7 @@ public class SettingFragment extends BaseFragment implements ISettingView {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
         ButterKnife.bind(this, view);
@@ -79,21 +78,11 @@ public class SettingFragment extends BaseFragment implements ISettingView {
         });
     }
 
-    public void loginOut() {
-        //清空本地设置
-        settingPresenter.loginOut();
-    }
 
     public void aboutUs() {
         toWebView(WebViewModelFactory.getModel(WebViewModelFactory.BAIDU));
-//        showViewToast("aboutUs");
     }
 
-    public void logOutToLoginActivity() {
-        Intent intent = new Intent(getActivity(), LoginActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-    }
 
     public void setting_clear() {
         HotelFileUtils.clearDiskCache();
@@ -140,7 +129,6 @@ public class SettingFragment extends BaseFragment implements ISettingView {
             R.id.tb_accept_msg,
             R.id.setting_clear,
             R.id.piv_about_us,
-            R.id.setting_out,
             R.id.piv_feed_back,
             R.id.piv_safe
     })
@@ -155,10 +143,6 @@ public class SettingFragment extends BaseFragment implements ISettingView {
             //关于我们
         } else if (id == R.id.piv_about_us) {
             aboutUs();
-            //退出
-        } else if (id == R.id.setting_out) {
-            loginOut();
-            //意见反馈
         } else if (id == R.id.piv_feed_back) {
             feedBack();
         } else if (id == R.id.piv_safe) {

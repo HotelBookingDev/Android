@@ -40,7 +40,7 @@
     <color name="normal_color">#ffa4a4a4</color>
 
     <!--充值的按钮-->
-    <color name="add_money">#84ccc9</color>
+    <color name="default_button">#84ccc9</color>
     <color name="money_num">#689a98</color>
     <color name="hint_text">#C0FFFFFF</color>
 

@@ -1,6 +1,7 @@
 package sf.hotel.com.data.interfaceeneity.person;
 
 import rx.Observable;
+import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.entity.netresult.TokenResult;
 
 /**
@@ -10,4 +11,7 @@ import sf.hotel.com.data.entity.netresult.TokenResult;
  */
 public interface IUserInfoEntity {
     Observable<TokenResult> getToken();
+
+    UserEntity getUserEntity();
+
 }

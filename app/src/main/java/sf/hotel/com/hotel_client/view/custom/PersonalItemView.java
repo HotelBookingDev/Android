@@ -27,6 +27,8 @@ public class PersonalItemView extends FrameLayout {
     private int defaultIcon = R.mipmap.ic_launcher;
     private String showString;
     private String rightString;
+    private TextView tv_right;
+    private boolean isShowRightIcon;
 
     public PersonalItemView(Context context) {
         this(context, null);
@@ -44,6 +46,7 @@ public class PersonalItemView extends FrameLayout {
             defaultIcon = a.getResourceId(R.styleable.PersonalItemView_leftIcon, defaultIcon);
             showString = a.getString(R.styleable.PersonalItemView_contextText);
             rightString = a.getString(R.styleable.PersonalItemView_rightText);
+            isShowRightIcon = a.getBoolean(R.styleable.PersonalItemView_is_show_right_icon, true);
         } finally {
             a.recycle();
         }
@@ -53,7 +56,11 @@ public class PersonalItemView extends FrameLayout {
     private void initViews(Context context) {
         View inflate = LayoutInflater.from(context).inflate(R.layout.item_person, this);
         ImageView mIconView = (ImageView) inflate.findViewById(R.id.iv_item_persion);
+        if (!isShowRightIcon) {
+            inflate.findViewById(R.id.iv_right_icon).setVisibility(GONE);
+        }
         mTextView = (TextView) inflate.findViewById(R.id.tv_item_persion_content);
+        tv_right = (TextView) inflate.findViewById(R.id.tv_right);
         String defaultString = "PensionItemView";
         mTextView.setText(defaultString);
         if (!TextUtils.isEmpty(showString)) {
@@ -66,17 +73,21 @@ public class PersonalItemView extends FrameLayout {
         }
 //        加载右侧的文字描述
         if (!TextUtils.isEmpty(rightString)) {
-            TextView tv_right = (TextView) inflate.findViewById(R.id.tv_right);
             tv_right.setVisibility(VISIBLE);
             tv_right.setText(rightString);
         }
     }
 
-    public void setText(String s){
+    public void setText(String s) {
         mTextView.setText(s);
     }
 
-    public String getText(){
+    public void setRightText(String s) {
+        tv_right.setVisibility(VISIBLE);
+        tv_right.setText(s);
+    }
+
+    public String getText() {
         return mTextView.getText().toString();
     }
 }

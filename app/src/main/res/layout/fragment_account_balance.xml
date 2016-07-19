@@ -76,7 +76,8 @@
             android:layout_margin="30dp"
             fancy:fb_borderColor="#FFFFFF"
             fancy:fb_borderWidth="1dp"
-            fancy:fb_defaultColor="@color/add_money"
-            fancy:fb_text="@string/recharge" />
+            fancy:fb_defaultColor="@color/default_button"
+            fancy:fb_text="@string/recharge"
+            />
     </LinearLayout>
 </FrameLayout>

@@ -22,12 +22,13 @@
         android:text="@string/my" />
 
     <TextView
-        android:visibility="gone"
         android:id="@+id/tv_right"
         style="@style/normal_text"
-        android:text="@string/my" />
+        android:text="@string/my"
+        android:visibility="gone" />
 
     <ImageView
+        android:id="@+id/iv_right_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

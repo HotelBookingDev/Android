@@ -102,17 +102,6 @@
 
         </LinearLayout>
 
-        <mehdi.sakout.fancybuttons.FancyButton
-            android:id="@+id/setting_out"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/btn_height"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/btn_height"
-            fancy:fb_borderColor="@color/black"
-            fancy:fb_borderWidth="1dp"
-            fancy:fb_defaultColor="@color/white"
-            fancy:fb_focusColor="@color/bg_person"
-            fancy:fb_text="@string/login_out"
-            fancy:fb_textColor="@color/black" />
+
     </RelativeLayout>
 </FrameLayout>

@@ -133,7 +133,7 @@ public class HotelTitleView extends RelativeLayout {
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         spannableString.setSpan(new StyleSpan(android.graphics.Typeface.BOLD_ITALIC), 0,
                 mTitle.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        spannableString.setSpan(new RelativeSizeSpan(1.3f), 0, mTitle.length(),
+        spannableString.setSpan(new RelativeSizeSpan(0.8f), 0, mTitle.length(),
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);  //2.0f表示默认字体大小的两倍
         mTvTitle.setText(spannableString);
     }

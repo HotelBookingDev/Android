@@ -1,5 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -14,92 +15,34 @@
             app:leftBtnIcon="@mipmap/ic_title_back_arrow"
             app:titleText="@string/user_info" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <TextView
-                style="@style/normal_text"
-                android:text="@string/avatar" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/iv_avatar"
-                    android:layout_width="60.0dip"
-                    android:layout_height="60.0dip"
-                    android:layout_margin="10dp" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@mipmap/arrow_button_right_light" />
-            </LinearLayout>
-
-        </RelativeLayout>
+        <sf.hotel.com.hotel_client.view.custom.PersonalItemView
+            android:id="@+id/piv_use"
+            style="@style/group_item"
+            android:layout_marginTop="@dimen/fab_margin"
+            app:contextText="@string/current_user"
+            app:is_show_right_icon="false" />
 
         <include layout="@layout/item_line" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                style="@style/normal_text"
-                android:text="@string/name" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_user_name"
-                    style="@style/normal_text"
-                    android:text="@string/tv_user_name" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@mipmap/arrow_button_right_light" />
-            </LinearLayout>
-
-        </RelativeLayout>
+        <sf.hotel.com.hotel_client.view.custom.PersonalItemView
+            android:id="@+id/piv_pay_pwd"
+            style="@style/group_item"
+            android:layout_marginTop="@dimen/fab_margin"
+            app:contextText="@string/pay_pwd" />
 
         <include layout="@layout/item_line" />
 
-        <RelativeLayout
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/setting_out"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="@dimen/btn_height"
+            android:layout_margin="@dimen/btn_height"
+            fancy:fb_borderColor="#FFFFFF"
+            fancy:fb_borderWidth="1dp"
+            fancy:fb_defaultColor="@color/default_button"
+            fancy:fb_text="@string/login_out"
+            fancy:fb_textColor="@color/white" />
 
-            <TextView
-                style="@style/normal_text"
-                android:text="@string/phone" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_user_phone"
-                    style="@style/normal_text" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@mipmap/arrow_button_right_light" />
-            </LinearLayout>
-
-        </RelativeLayout>
     </LinearLayout>
 </FrameLayout>

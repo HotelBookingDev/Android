@@ -39,20 +39,4 @@ public class SettingPresenter extends SuperPresenter {
             mSettingView.showLoginActivity();
         }
     }
-
-    public void loginOut() {
-        invalidate();
-        mSettingView.logOutToLoginActivity();
-    }
-
-    private void invalidate() {
-        PreferencesUtils.saveToken(mSettingView.getBottomContext(), null);
-        PreferencesUtils.saveAvatar(mSettingView.getBottomContext(), null);
-        PreferencesUtils.saveInstallationId(mSettingView.getBottomContext(), null);
-        PreferencesUtils.savePassWord(mSettingView.getBottomContext(), null);
-        PreferencesUtils.savePhone(mSettingView.getBottomContext(), null);
-        PreferencesUtils.saveLogin(mSettingView.getBottomContext(), false);
-        PreferencesUtils.saveUserId(mSettingView.getBottomContext(), null);
-        PreferencesUtils.saveHotelResult(mSettingView.getBottomContext(), null);
-    }
 }

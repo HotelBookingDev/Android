@@ -100,7 +100,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/btn_height"
         android:layout_marginTop="10dp"
-        fancy:fb_defaultColor="@color/add_money"
+        fancy:fb_defaultColor="@color/default_button"
         fancy:fb_text="@string/recharge_confirmation"
         fancy:fb_textColor="@color/white" />
 </LinearLayout>
