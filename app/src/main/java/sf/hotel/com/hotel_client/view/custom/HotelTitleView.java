@@ -125,6 +125,7 @@ public class HotelTitleView extends RelativeLayout {
 
     //   设置Title的字体风格
     private void initTitlteStyle() {
+        if(mTitle==null)return;
         if (spannableString == null) {
             spannableString = new SpannableString(mTitle);
         }
