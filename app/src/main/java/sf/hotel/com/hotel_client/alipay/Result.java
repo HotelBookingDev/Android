@@ -64,14 +64,14 @@ public class Result  {
                     memo = gatValue(resultParam, "memo");
                 }
             }
-
             isSignOk = checkSign(result);
-            JSONObject j = string2JSON(result, "&");
-            j.get("success");
-            String success = j.getString("success");
-            success = success.replace("\"", "");
-            isSuccess = success.equals("true");
-
+            if (isSignOk){
+               JSONObject j = string2JSON(result, "&");
+               j.get("success");
+               String success = j.getString("success");
+               success = success.replace("\"", "");
+               isSuccess = success.equals("true");
+            }
         } catch (Exception e) {
             LogUtils.printExceptionStackTrace(e);
         }
@@ -79,11 +79,12 @@ public class Result  {
 
     //检查result是否是真实的
     private boolean checkSign(String result) {
+        if (result == null || result.length() == 0){
+            return false;
+        }
         boolean retVal = false;
         try {
-
             JSONObject json = string2JSON(result, "&");
-
             int pos = result.indexOf("&sign=");
             int pos2 = result.indexOf("&sign_type=");
             String signContent = result.substring(0, pos);

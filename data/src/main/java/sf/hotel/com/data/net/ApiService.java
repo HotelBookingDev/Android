@@ -22,6 +22,7 @@ import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.entity.netresult.TokenResult;
 import sf.hotel.com.data.entity.netresult.hotel.Hotel1Result;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
+import sf.hotel.com.data.entity.netresult.pay.PayResult;
 import sf.hotel.com.data.entity.netresult.person.OrderManagerResult;
 
 import static sf.hotel.com.data.net.HttpParam.ACTION;
@@ -112,5 +113,5 @@ public interface ApiService {
 
 
     @GET(AppUrl.PAY_URL)
-    Observable<ResponseBody> callPay(@Query(POINT) String point);
+    Observable<HttpResult<PayResult>> callPay(@Query(POINT) String point);
 }

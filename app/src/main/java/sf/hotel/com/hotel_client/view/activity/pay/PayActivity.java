@@ -9,6 +9,8 @@ import java.io.IOException;
 
 import okhttp3.ResponseBody;
 import rx.Subscriber;
+import rx.functions.Action1;
+import sf.hotel.com.data.entity.netresult.pay.PayResult;
 import sf.hotel.com.data.net.ApiWrapper;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.alipay.PayCallBack;
@@ -36,38 +38,21 @@ public class PayActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ApiWrapper.getInstance().callPay("1").subscribe(new Subscriber<ResponseBody>() {
+                ApiWrapper.getInstance().callPay("1").subscribe(new Action1<PayResult>() {
                     @Override
-                    public void onCompleted() {
+                    public void call(PayResult payResult) {
+                        String s = payResult.getUrl();
+                        PayHelper.getInstance().pay(PayActivity.this, new PayParam(), new PayCallBack() {
+                            @Override
+                            public void success() {
+                                LogUtils.d("chenggggggg");
+                            }
 
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onNext(ResponseBody responseBody) {
-                        try {
-                            String s = responseBody.string();
-                            PayHelper.getInstance().pay(PayActivity.this, s, new PayCallBack() {
-                                @Override
-                                public void success() {
-                                    LogUtils.d("我成功了！！");
-                                }
-
-                                @Override
-                                public void failed() {
-                                    LogUtils.d("。。。！！");
-                                }
-                            });
-
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
+                            @Override
+                            public void failed() {
+                                LogUtils.d("shibaisss");
+                            }
+                        });
                     }
                 });
             }

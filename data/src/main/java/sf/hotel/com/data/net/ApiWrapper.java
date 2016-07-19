@@ -16,6 +16,7 @@ import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.entity.netresult.TokenResult;
 import sf.hotel.com.data.entity.netresult.hotel.Hotel1Result;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
+import sf.hotel.com.data.entity.netresult.pay.PayResult;
 import sf.hotel.com.data.entity.netresult.person.OrderManagerResult;
 import sf.hotel.com.data.utils.LogUtils;
 
@@ -127,10 +128,9 @@ public class ApiWrapper extends RetrofitHelper {
                 .compose(this.<Hotel1Result>applySchedulers());
     }
 
-    public Observable<ResponseBody> callPay(String point){
+    public Observable<PayResult> callPay(String point){
         return mService.callPay(point)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(this.<PayResult>applySchedulers())
                 ;
     }
 
