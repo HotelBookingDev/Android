@@ -126,5 +126,10 @@
     <string name="invoice">Invoice</string>
     <string name="histroy">历史</string>
     <string name="invoice_amount">可开票金额(CNY)</string>
+    <string name="invoice_make_up">开票抬头</string>
+    <string name="invoice_value">发票金额</string>
+    <string name="irecipient_name">收件人名字</string>
+    <string name="contact_information">联系方式</string>
+    <string name="mail_address">邮寄地址</string>
 
 </resources>

@@ -130,6 +130,17 @@
         <item name="android:digits">@string/edit_text_password</item>
     </style>
 
+    <style name="invoice_edit">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_marginLeft">10.0dip</item>
+        <item name="android:layout_marginRight">15.0dip</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColorHint">@color/hint_gray</item>
+        <item name="android:textSize">@dimen/text_small</item>
+    </style>
     <!--登录界面的编辑框-->
     <style name="login_edit" parent="edit_pwd">
         <item name="android:layout_weight">1</item>
