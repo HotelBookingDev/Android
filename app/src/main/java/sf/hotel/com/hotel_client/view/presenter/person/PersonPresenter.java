@@ -44,4 +44,12 @@ public class PersonPresenter extends SuperPresenter {
     public void clickSetting() {
         mIPersonView.showItemActivity(PersonFragment.SETTING);
     }
+
+    public void clicInvoice() {
+        if (checkIsLogin()) {
+            mIPersonView.showItemActivity(PersonFragment.INVOICE);
+        } else {
+            mIPersonView.showLoginFragment();
+        }
+    }
 }

@@ -1,0 +1,45 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="sf.hotel.com.hotel_client.view.fragment.person.InvoiceFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <sf.hotel.com.hotel_client.view.custom.HotelTitleView
+            android:id="@+id/view_title"
+            style="@style/view_title"
+            app:leftBtnIcon="@mipmap/ic_title_back_arrow"
+            app:rightBtnText="@string/histroy"
+            app:titleText="@string/invoice" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/invoice"
+            android:background="@color/view_title">
+
+            <TextView
+                android:id="@+id/tv_invoice"
+                style="@style/normal_text"
+                android:layout_centerVertical="false"
+                android:layout_margin="10dp"
+                android:text="@string/invoice_amount"
+                android:textColor="@color/money_num"
+                android:textSize="@dimen/text_mid" />
+
+            <TextView
+                android:id="@+id/tv_invoice_money"
+                style="@style/normal_text"
+                android:layout_below="@+id/tv_invoice"
+                android:layout_centerInParent="true"
+                android:text="@string/account_balance"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_big_size" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</FrameLayout>

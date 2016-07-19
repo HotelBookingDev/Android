@@ -52,5 +52,6 @@
     <dimen name="hotels_item_title">18sp</dimen>
     <dimen name="hotels_item_price">20sp</dimen>
     <dimen name="hotel_item_tag">12sp</dimen>
-    <dimen name="text_mid">20sp</dimen>
+    <dimen name="text_mid">15sp</dimen>
+    <dimen name="invoice">150dp</dimen>
 </resources>

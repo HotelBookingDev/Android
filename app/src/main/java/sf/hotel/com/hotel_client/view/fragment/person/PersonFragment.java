@@ -11,6 +11,7 @@ import butterknife.OnClick;
 import rx.Subscription;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.person.EvalueActivity;
+import sf.hotel.com.hotel_client.view.activity.person.InvoiceActivity;
 import sf.hotel.com.hotel_client.view.activity.person.MoneyActivity;
 import sf.hotel.com.hotel_client.view.activity.person.OrderActivity;
 import sf.hotel.com.hotel_client.view.activity.person.SettingActivity;
@@ -31,8 +32,8 @@ public class PersonFragment extends BaseFragment implements IPersonView {
     public static final int SETTING = 0x2;
     public static final int ORDER = 0x3;
     public static final int MONEY = 0x4;
-
     public static final int EVALUATE = 0x5;
+    public static final int INVOICE = 0x6;
     PersonPresenter mPersonPresenter;
 
     public static PersonFragment newInstance() {
@@ -92,7 +93,15 @@ public class PersonFragment extends BaseFragment implements IPersonView {
         } else if (type == EVALUATE) {
             Intent intent = new Intent(getActivity(), EvalueActivity.class);
             startActivity(intent);
+        } else if (type == INVOICE) {
+            Intent intent = new Intent(getActivity(), InvoiceActivity.class);
+            startActivity(intent);
         }
+    }
+
+    @Override
+    public void clickMyInvoice() {
+        mPersonPresenter.clicInvoice();
     }
 
     @Override
@@ -112,6 +121,8 @@ public class PersonFragment extends BaseFragment implements IPersonView {
             clickPerson();
         } else if (id == R.id.piv_setting) {
             clickSetting();
+        } else if (id == R.id.piv_invoice) {
+            clickMyInvoice();
         }
     }
 

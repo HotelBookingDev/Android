@@ -123,5 +123,8 @@
     <string name="already_accumulated">已积累</string>
     <string name="my_collection">我的收藏</string>
     <string name="my_invoice">我的发票</string>
+    <string name="invoice">Invoice</string>
+    <string name="histroy">历史</string>
+    <string name="invoice_amount">可开票金额(CNY)</string>
 
 </resources>

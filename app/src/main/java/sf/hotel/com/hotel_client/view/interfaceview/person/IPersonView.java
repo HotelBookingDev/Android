@@ -14,4 +14,6 @@ public interface IPersonView {
     void showLoginFragment();
 
     void showItemActivity(int type);
+
+    void clickMyInvoice();
 }
