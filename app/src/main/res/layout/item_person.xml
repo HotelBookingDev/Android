@@ -8,6 +8,7 @@
         android:id="@+id/iv_item_persion"
         android:layout_width="@dimen/iv_item_persion"
         android:layout_height="@dimen/iv_item_persion"
+        android:layout_marginLeft="20dp"
         android:padding="@dimen/iv_item_persion_padding"
         android:src="@mipmap/ic_launcher" />
 

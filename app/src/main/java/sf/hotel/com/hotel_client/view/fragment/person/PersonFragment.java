@@ -46,7 +46,7 @@ public class PersonFragment extends BaseFragment implements IPersonView {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_person, container, false);
         ButterKnife.bind(this, view);
@@ -101,17 +101,15 @@ public class PersonFragment extends BaseFragment implements IPersonView {
         mPersonPresenter.destroy();
     }
 
-    @OnClick({R.id.piv_money, R.id.piv_order, R.id.piv_person, R.id.piv_evaluate, R.id.piv_setting})
+    @OnClick({R.id.ln_my_money, R.id.ln_order, R.id.piv_person, R.id.piv_setting, R.id.piv_help, R.id.piv_about_us, R.id.piv_invoice})
     public void onClick(View view) {
         int id = view.getId();
-        if (id == R.id.piv_money) {
+        if (id == R.id.ln_my_money) {
             clickMoney();
-        } else if (id == R.id.piv_order) {
+        } else if (id == R.id.ln_order) {
             clickOrder();
         } else if (id == R.id.piv_person) {
             clickPerson();
-        } else if (id == R.id.piv_evaluate) {
-            clickEvaluate();
         } else if (id == R.id.piv_setting) {
             clickSetting();
         }
@@ -129,9 +127,6 @@ public class PersonFragment extends BaseFragment implements IPersonView {
         mPersonPresenter.clickPerson();
     }
 
-    public void clickEvaluate() {
-        mPersonPresenter.clickEvaluate();
-    }
 
     public void clickSetting() {
         mPersonPresenter.clickSetting();

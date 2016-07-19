@@ -10,7 +10,6 @@ public interface IPersonView {
 
     void clickOrder();
 
-    void clickEvaluate();
 
     void showLoginFragment();
 

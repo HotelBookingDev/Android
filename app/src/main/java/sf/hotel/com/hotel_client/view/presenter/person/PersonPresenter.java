@@ -32,13 +32,6 @@ public class PersonPresenter extends SuperPresenter {
         }
     }
 
-    public void clickEvaluate() {
-        if (checkIsLogin()) {
-            mIPersonView.showItemActivity(PersonFragment.EVALUATE);
-        } else {
-            mIPersonView.showLoginFragment();
-        }
-    }
 
     public void clickPerson() {
         if (checkIsLogin()) {

@@ -41,7 +41,7 @@
     <string name="edit_text_password">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_</string>
     <string name="edittext_digits">1234567890</string>
     <string name="back">返回</string>
-    <string name="my_info">我的资料</string>
+    <string name="my_info">账户</string>
     <string name="my_setting">我的设置</string>
     <string name="times">选择行程</string>
     <string name="cities">选择城市</string>
@@ -118,5 +118,10 @@
     <string name="service_and_privacy_provisions">服务及隐私条款</string>
     <string name="feedback">反馈意见</string>
     <string name="setting">Settings</string>
+    <string name="help">帮助</string>
+    <string name="num_point">XX积分</string>
+    <string name="already_accumulated">已积累</string>
+    <string name="my_collection">我的收藏</string>
+    <string name="my_invoice">我的发票</string>
 
 </resources>

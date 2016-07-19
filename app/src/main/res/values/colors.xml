@@ -37,7 +37,7 @@
     <color name="bg_common">#ffe9efef</color>
 
     <!--默认正常的文字颜色-->
-    <color name="normal_color">#ffa4a4a4</color>
+    <color name="normal_color">#ababab</color>
 
     <!--充值的按钮-->
     <color name="default_button">#84ccc9</color>
