@@ -42,7 +42,7 @@ public class AccountBalanceFragmentView extends BaseFragment
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account_balance, container, false);
         ButterKnife.bind(this, view);
         initView();
@@ -67,12 +67,9 @@ public class AccountBalanceFragmentView extends BaseFragment
 
     @Override
     public void ShowPayBottom() {
-//        PayView = new PayBottomView(getBottomContext(),
-//                (money, postion) -> mAccountPresenter.addMoney(money, postion));
-//        PayView.showAtLocation(mViewTitle, Gravity.BOTTOM, 0, 0);
-
-        Intent intent = new Intent(getActivity(), PayActivity.class);
-        startActivity(intent);
+        PayView = new PayBottomView(getBottomContext(),
+                (money, postion) -> mAccountPresenter.addMoney(money, postion));
+        PayView.showAtLocation(mViewTitle, Gravity.BOTTOM, 0, 0);
     }
 
     @Override

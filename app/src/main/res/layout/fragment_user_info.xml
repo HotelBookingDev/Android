@@ -38,8 +38,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/btn_height"
             android:layout_margin="@dimen/btn_height"
-            fancy:fb_borderColor="#FFFFFF"
-            fancy:fb_borderWidth="1dp"
             fancy:fb_defaultColor="@color/default_button"
             fancy:fb_text="@string/login_out"
             fancy:fb_textColor="@color/white" />
