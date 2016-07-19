@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 import butterknife.BindView;
@@ -37,6 +38,7 @@ public class SettingFragment extends BaseFragment implements ISettingView {
     @BindView(R.id.view_title)
     HotelTitleView view_title;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -59,7 +61,7 @@ public class SettingFragment extends BaseFragment implements ISettingView {
         if (isOpen) {
             viewSwitch.setToggleOn(true);
         } else {
-            viewSwitch.setToggleOff(false);
+            viewSwitch.setToggleOff(true);
         }
     }
 
@@ -85,10 +87,13 @@ public class SettingFragment extends BaseFragment implements ISettingView {
         //修改是否接受消息
         if (id == R.id.tb_accept_msg) {
             sendMsg();
-        } else if (id == R.id.piv_service) {
-        } else if (id == R.id.piv_question) {
-        } else if (id == R.id.piv_feed_back) {
-
+        } else switch (id) {
+            case R.id.piv_service:
+                break;
+            case R.id.piv_question:
+                break;
+            case R.id.piv_feed_back:
+                break;
         }
     }
 
