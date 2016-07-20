@@ -35,7 +35,7 @@ public class PayParam {
     /**
      * 商品金额
      */
-    private String total_fee ="1.01";
+    private String total_fee ="0.01";
 
 
     /**

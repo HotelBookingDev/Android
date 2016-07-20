@@ -42,7 +42,7 @@ public class PayActivity extends BaseActivity {
                     @Override
                     public void call(PayResult payResult) {
                         String s = payResult.getUrl();
-                        PayHelper.getInstance().pay(PayActivity.this, new PayParam(), new PayCallBack() {
+                        PayHelper.getInstance().pay(PayActivity.this, s, new PayCallBack() {
                             @Override
                             public void success() {
                                 LogUtils.d("chenggggggg");

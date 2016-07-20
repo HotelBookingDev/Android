@@ -86,9 +86,28 @@ public class PayHelper {
         new AsyncTask<String, String, String>() {
             @Override
             protected String doInBackground(String... params) {
+
+
+                String sign = sign("100");
+                try {
+                    /**
+                     * 仅需对sign 做URL编码
+                     */
+                    sign = URLEncoder.encode(sign, "UTF-8");
+
+
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+
+                LogUtils.e("100==", sign);
+
+
                 LogUtils.d(s);
                 PayTask alipay = new PayTask(c);
                 return alipay.pay(s , true);
+
+
             }
 
             @Override
