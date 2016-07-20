@@ -30,11 +30,11 @@ public class OrderFragment extends BaseFragment {
     TabLayout mTabLayout;
     @BindView(R.id.view_title)
     HotelTitleView mView_title;
-    private String[] mTab = new String[]{"已消费", "未消费"};
+    private String[] mTab = new String[]{"待确认", "未入住", "已完成"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_order, container, false);
         ButterKnife.bind(this, view);
         initView();
@@ -44,9 +44,9 @@ public class OrderFragment extends BaseFragment {
     private void initView() {
         mTabLayout.addTab(mTabLayout.newTab().setText(mTab[0]));
         mTabLayout.addTab(mTabLayout.newTab().setText(mTab[1]));
+        mTabLayout.addTab(mTabLayout.newTab().setText(mTab[2]));
+        mTabLayout.setSelectedTabIndicatorColor(getBottomContext().getResources().getColor(R.color.default_button));
         mView_title.addLeftClick(v -> getActivity().finish());
-        mView_title.addRightClick(v -> RxBus.getDefault()
-                .post(MessageFactory.createOrderMessage(OrderMessage.SEARCHMESSAGE)));
         mTabLayout.setOnTabSelectedListener(new TabSelectListener());
         loadRootFragment(R.id.fl_order, UserOrderFragment.newInstance());
     }
@@ -72,7 +72,7 @@ public class OrderFragment extends BaseFragment {
 
     private OrderMessage getMessage(int type) {
         OrderMessage message = null;
-        if (type == 0) {
+        if (type == 2) {
             message = MessageFactory.createOrderMessage(OrderMessage.ALREADYCONSUMED);
         } else if (type == 1) {
             message = MessageFactory.createOrderMessage(OrderMessage.NOTCONSUMED);

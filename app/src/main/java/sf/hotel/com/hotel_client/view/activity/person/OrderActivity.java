@@ -26,20 +26,8 @@ public class OrderActivity extends BaseActivity {
         loadRootFragment(R.id.order_content, OrderFragment.newInstance());
         ButterKnife.bind(this);
         initView();
-        initRx();
     }
 
-    private void initRx() {
-        Subscription subscribe = RxBus.getDefault()
-                .toObservable(OrderMessage.class)
-                .subscribe(OrderMessage -> {
-                    if (OrderMessage.what == OrderMessage.SEARCHMESSAGE) {
-                        start(SearchFragment.newInstance());
-                    }
-                }, throwable -> {
-                });
-        addSubscription(subscribe);
-    }
 
     private void initView() {
 

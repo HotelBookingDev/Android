@@ -52,4 +52,12 @@ public class PersonPresenter extends SuperPresenter {
             mIPersonView.showLoginFragment();
         }
     }
+
+    public void clickInfo() {
+        if (checkIsLogin()) {
+            mIPersonView.showItemActivity(PersonFragment.INFO);
+        } else {
+            mIPersonView.showLoginFragment();
+        }
+    }
 }

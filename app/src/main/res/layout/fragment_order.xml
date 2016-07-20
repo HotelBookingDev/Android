@@ -14,8 +14,7 @@
             android:id="@+id/view_title"
             style="@style/view_title"
             app:isShowUnderLine="true"
-            app:leftBtnText="@string/back"
-            app:rightBtnText="@string/search_order"
+            app:leftBtnIcon="@mipmap/ic_title_back_arrow"
             app:titleText="@string/my_order" />
 
         <android.support.design.widget.TabLayout

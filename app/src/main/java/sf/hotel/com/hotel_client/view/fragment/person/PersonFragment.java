@@ -10,6 +10,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rx.Subscription;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.activity.person.CampaignInfoActivity;
 import sf.hotel.com.hotel_client.view.activity.person.EvalueActivity;
 import sf.hotel.com.hotel_client.view.activity.person.InvoiceActivity;
 import sf.hotel.com.hotel_client.view.activity.person.MoneyActivity;
@@ -34,6 +35,7 @@ public class PersonFragment extends BaseFragment implements IPersonView {
     public static final int MONEY = 0x4;
     public static final int EVALUATE = 0x5;
     public static final int INVOICE = 0x6;
+    public static final int INFO = 0x7;
     PersonPresenter mPersonPresenter;
 
     public static PersonFragment newInstance() {
@@ -96,6 +98,9 @@ public class PersonFragment extends BaseFragment implements IPersonView {
         } else if (type == INVOICE) {
             Intent intent = new Intent(getActivity(), InvoiceActivity.class);
             startActivity(intent);
+        } else if (type == INFO) {
+            Intent intent = new Intent(getActivity(), CampaignInfoActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -110,7 +115,7 @@ public class PersonFragment extends BaseFragment implements IPersonView {
         mPersonPresenter.destroy();
     }
 
-    @OnClick({R.id.ln_my_money, R.id.ln_order, R.id.piv_person, R.id.piv_setting, R.id.piv_help, R.id.piv_about_us, R.id.piv_invoice})
+    @OnClick({R.id.ln_my_money, R.id.ln_order, R.id.piv_person, R.id.piv_setting, R.id.piv_help, R.id.piv_about_us, R.id.piv_invoice, R.id.iv_clock})
     public void onClick(View view) {
         int id = view.getId();
         if (id == R.id.ln_my_money) {
@@ -123,7 +128,13 @@ public class PersonFragment extends BaseFragment implements IPersonView {
             clickSetting();
         } else if (id == R.id.piv_invoice) {
             clickMyInvoice();
+        } else if (id == R.id.iv_clock) {
+            clickInfo();
         }
+    }
+
+    private void clickInfo() {
+        mPersonPresenter.clickInfo();
     }
 
     public void clickMoney() {

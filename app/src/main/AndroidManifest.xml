@@ -119,7 +119,8 @@
         <activity android:name=".view.activity.person.MoneyActivity" />
         <activity android:name=".view.activity.person.EvalueActivity" />
         <activity android:name=".view.activity.WebViewActivity" />
-        <activity android:name=".view.activity.person.InvoiceActivity"></activity>
+        <activity android:name=".view.activity.person.InvoiceActivity" />
+        <activity android:name=".view.activity.person.CampaignInfoActivity"></activity>
     </application>
 
 </manifest>

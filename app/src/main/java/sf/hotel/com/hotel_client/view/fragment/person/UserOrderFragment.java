@@ -63,12 +63,12 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
         View view = inflater.inflate(R.layout.fragment_userd_order, container, false);
         ButterKnife.bind(this, view);
         position = OrderMessage.ALREADYCONSUMED;
-        initRxevent();
         initRefreshView();
         mUserOrderPresenter = new UserOrderPresenter(this);
 //        根据你需要的订单来获取
         mUserOrderPresenter.getDatas(position);
         registerReceiver();
+        initRxevent();
         return view;
     }
 
@@ -106,8 +106,7 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
                 .subscribe(orderMessage -> {
                     if (orderMessage == null) return;
                     position = orderMessage.what;
-                    if (orderMessage.what != sf.hotel.com.hotel_client.view.event.Message.ISEXIT &&
-                            orderMessage.what != OrderMessage.SEARCHMESSAGE) {
+                    if (orderMessage.what != sf.hotel.com.hotel_client.view.event.Message.ISEXIT) {
                         mUserOrderPresenter.getDatas(position);
                     }
                 }, LogUtils::logThrowadle);
