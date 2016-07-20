@@ -1,0 +1,13 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="sf.hotel.com.hotel_client.view.fragment.person.CampaignInfoFragment">
+
+    <sf.hotel.com.hotel_client.view.custom.HotelTitleView
+        android:id="@+id/view_title"
+        style="@style/view_title"
+        app:leftBtnIcon="@mipmap/ic_title_back_arrow"
+        app:titleText="@string/info" />
+</FrameLayout>

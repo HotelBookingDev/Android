@@ -138,5 +138,7 @@
     <string name="check_in_time">入住时间</string>
     <string name="book_number">预定号</string>
     <string name="cancle_order">取消订单</string>
+    <string name="info">Information</string>
+    <string name="my_orders">我的订单</string>
 
 </resources>
