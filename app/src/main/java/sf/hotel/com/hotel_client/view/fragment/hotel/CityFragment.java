@@ -20,6 +20,7 @@ import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.adapter.CityListAdapter;
 import sf.hotel.com.hotel_client.view.adapter.OnItemClickListener;
 import sf.hotel.com.hotel_client.view.custom.CustomImgText;
+import sf.hotel.com.hotel_client.view.custom.CustomSearchItem;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.CityMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
@@ -36,7 +37,7 @@ public class CityFragment extends BaseFragment implements ICityView {
     @BindView(R.id.fragment_city_grid)
     RecyclerView mGridRecyclerView;
 
-    CustomImgText mHeaderText;
+    CustomSearchItem mHeaderText;
 
     private CityListAdapter mCityListAdapter;
 
@@ -89,7 +90,7 @@ public class CityFragment extends BaseFragment implements ICityView {
         mGridRecyclerView.setLayoutManager(gridLayoutManager);
         mCityListAdapter = new CityListAdapter(getBottomContext());
         View header = LayoutInflater.from(getBottomContext()).inflate(R.layout.header_city, null);
-        mHeaderText = (CustomImgText) header.findViewById(R.id.header_city_location);
+        mHeaderText = (CustomSearchItem) header.findViewById(R.id.header_city_location);
         mCityListAdapter.setHeaderView(header);
         mCityListAdapter.setOnTextClickListener(new CityListAdapter.OnTextClickListener() {
             @Override
@@ -118,7 +119,7 @@ public class CityFragment extends BaseFragment implements ICityView {
 
     @Override
     public void setHeadTextStr(String text){
-        mHeaderText.setText(text);
+        mHeaderText.setLeftTextStr(text);
     }
 
 

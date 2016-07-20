@@ -3,6 +3,8 @@ package sf.hotel.com.data.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -22,6 +24,7 @@ public class ProvincesBean implements Parcelable {
      * logo : http://img4.imgtn.bdimg.com/it/u=2524053065,1600155239&fm=21&gp=0.jpg
      */
 
+    @SerializedName("citys")
     private List<CityBean> citys;
 
     protected ProvincesBean(Parcel in) {

@@ -52,10 +52,12 @@ public class CityListAdapter extends BaseRecyclerAdapter<CityBean> {
             CityListAdapter.ViewHolder holder = (ViewHolder) viewHolder;
             holder.button.setText(data.getName());
 
-            if (data.getCode() != selectCityBean.getCode()){
-                holder.button.setChecked(false);
-            }else {
-                holder.button.setChecked(true);
+            if (selectCityBean != null){
+                if (data.getCode() != selectCityBean.getCode()){
+                    holder.button.setChecked(false);
+                }else {
+                    holder.button.setChecked(true);
+                }
             }
 
             if (mOnTextClickListener != null){
@@ -63,7 +65,8 @@ public class CityListAdapter extends BaseRecyclerAdapter<CityBean> {
                     @Override
                     public void onClick(View v) {
                         int pos = holder.getLayoutPosition();
-                        if (data.getCode() != selectCityBean.getCode()){
+
+                        if (selectCityBean == null || data.getCode() != selectCityBean.getCode()){
                             selectCityBean = data;
                             notifyDataSetChanged();
                         }

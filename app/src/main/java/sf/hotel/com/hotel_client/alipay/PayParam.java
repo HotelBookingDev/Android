@@ -25,23 +25,23 @@ public class PayParam {
     /**
      * 商品名称
      */
-    private String subject = "商品一号";
+    private String subject = "商品详情";
 
     /**
      * 商品详情
      */
-    private String body = "这是一件商品";
+    private String body = "积分充值";
 
     /**
      * 商品金额
      */
-    private String total_fee ="1";
+    private String total_fee ="1.01";
 
 
     /**
      * 服务器异步通知页面路径
      */
-    private String notify_url = "http://notify.msp.hk/notify.htm";
+    private String notify_url = "http://agesd.com/alipay/notify/";
 
     /**
      * 服务器接口名称，固定值

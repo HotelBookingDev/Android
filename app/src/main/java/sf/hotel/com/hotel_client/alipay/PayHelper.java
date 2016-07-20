@@ -30,12 +30,14 @@ public class PayHelper {
         new AsyncTask<String, String, String>() {
             @Override
             protected String doInBackground(String... params) {
+                LogUtils.e("100==", sign("100"));
 
-                payParam.setTotal_fee("1");
+
 
                 String orderInfo = getOrderInfo(payParam);
 
-                LogUtils.d(orderInfo);
+                LogUtils.e(orderInfo);
+
 
                 /**
                  * 特别注意，这里的签名逻辑需要放在服务端，切勿将私钥泄露在代码中！
@@ -52,12 +54,41 @@ public class PayHelper {
                     e.printStackTrace();
                 }
 
+                LogUtils.e(sign);
+
                 String payInfo =  orderInfo + "&sign=\"" + sign + "\"&" + getSignType();
 
 
                 LogUtils.d(payInfo);
                 PayTask alipay = new PayTask(c);
                 return alipay.pay(payInfo , true);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+
+                LogUtils.e("s===" + s);
+                Result result = new Result(s);
+                result.parseResult();
+
+                String resultStatus = result.resultStatus;
+                if (result.isSuccess){
+                    callBack.success();
+                }else {
+                    callBack.failed();
+                }
+
+            }
+        }.execute();
+    }
+
+    public void pay(Activity c, String s, PayCallBack callBack){
+        new AsyncTask<String, String, String>() {
+            @Override
+            protected String doInBackground(String... params) {
+                LogUtils.d(s);
+                PayTask alipay = new PayTask(c);
+                return alipay.pay(s , true);
             }
 
             @Override
@@ -78,11 +109,13 @@ public class PayHelper {
         }.execute();
     }
 
+
     private String getOrderInfo(PayParam payParam) {
         // 签约合作者身份ID
-        String orderInfo = "partner=" + "\"" + payParam.getPartner() + "\"";
+        String orderInfo = "partner=" + "\"" + Config.PARTNER + "\"";
+
         // 签约卖家支付宝账号
-        orderInfo += "&seller_id=" + "\"" + payParam.getSeller_id() + "\"";
+        orderInfo += "&seller_id=" + "\"" + Config.SELLER + "\"";
 
         // 商户网站唯一订单号
         orderInfo += "&out_trade_no=" + "\"" + getOutTradeNo() + "\"";
@@ -91,13 +124,13 @@ public class PayHelper {
         orderInfo += "&subject=" + "\"" + payParam.getSubject() + "\"";
 
         // 商品详情
-        orderInfo += "&body=" + "\"" + payParam.getBody()+ "\"";
+        orderInfo += "&body=" + "\"" + payParam.getBody() + "\"";
 
         // 商品金额
         orderInfo += "&total_fee=" + "\"" + payParam.getTotal_fee() + "\"";
 
         // 服务器异步通知页面路径
-        orderInfo += "&notify_url=" + "\"" + payParam.getNotify_url()+ "\"";
+        orderInfo += "&notify_url=" + "\"" + "http://notify.msp.hk/notify.htm" + "\"";
 
         // 服务接口名称， 固定值
         orderInfo += "&service=\"mobile.securitypay.pay\"";
@@ -123,7 +156,6 @@ public class PayHelper {
 
         // 调用银行卡支付，需配置此参数，参与签名， 固定值 （需要签约《无线银行卡快捷支付》才能使用）
         // orderInfo += "&paymethod=\"expressGateway\"";
-
         return orderInfo;
     }
 

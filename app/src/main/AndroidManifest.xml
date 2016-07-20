@@ -70,7 +70,6 @@
         <activity android:name=".view.activity.hotel.RoomActivity" />
         <activity android:name=".view.activity.hotel.HotelsActivity" />
         <activity android:name=".view.activity.hotel.BookingActivity" />
-
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
