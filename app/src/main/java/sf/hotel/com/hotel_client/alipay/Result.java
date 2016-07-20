@@ -31,6 +31,8 @@ public class Result  {
 
     public Result(String result) {
         this.mPayResult = result;
+
+        
     }
 
     static {
