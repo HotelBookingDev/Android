@@ -156,4 +156,5 @@
         <attr name="booking_item_name_background" format="reference" />
         <attr name="booking_item_content_background" format="reference" />
     </declare-styleable>
+
 </resources>

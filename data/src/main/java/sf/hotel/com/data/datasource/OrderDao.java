@@ -16,20 +16,18 @@ import sf.hotel.com.data.entity.Order;
  * email: 1105896230@qq.com
  */
 public class OrderDao {
-    public static void addOrder(Order order, Context context) {
-        initdata(order);
-        try {
-            DatabaseHelper.getHelper(context).getOrders().createIfNotExists(order);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     public static void update(Order order, Context context) {
-        initdata(order);
         try {
-            DatabaseHelper.getHelper(context).getOrders().createOrUpdate(order);
-            HotelShotDao.update(order.getHotelShot(), context);
+            if (order.isDeleted()) {
+                boolean exitDb = isExitDb(context, order);
+                if (exitDb) {
+                    DatabaseHelper.getHelper(context).getOrders().delete(order);
+                }
+            } else {
+                DatabaseHelper.getHelper(context).getOrders().createOrUpdate(order);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -49,22 +47,26 @@ public class OrderDao {
                     context).getOrders().queryBuilder();
             orderIntegerQueryBuilder.where().eq("closed", isClose).and().eq("user_id", userId);
             mLists = orderIntegerQueryBuilder.query();
-            for (Order order : mLists) {
-                order.setSnapshot(HotelShotDao.getHotelshot(order.getOrder_num(), context));
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return mLists;
     }
 
-    private static void initdata(Order mOrder) {
-        Observable.just(mOrder)
-                .filter(orderAndHotel -> mOrder == null ? Boolean.FALSE : Boolean.TRUE)
-                .filter(orderAndHotel -> mOrder.getHotelShot() ==
-                        null ? Boolean.FALSE : Boolean.TRUE)
-                .subscribe(orderAndHotel -> {
-                    mOrder.getHotelShot().setId(mOrder.getOrder_num());
-                });
+    private static boolean isExitDb(Context context, Order order) {
+        boolean isExit = false;
+        if (order == null) return isExit;
+        try {
+            QueryBuilder<Order, Integer> orderIntegerQueryBuilder = DatabaseHelper.getHelper(
+                    context).getOrders().queryBuilder();
+            orderIntegerQueryBuilder.where().eq("number", order.getOrder_num());
+            List<Order> query = orderIntegerQueryBuilder.query();
+            if (query != null && query.size() > 0) {
+                isExit = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return isExit;
     }
 }

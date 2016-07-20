@@ -21,7 +21,7 @@
     <string name="title">hotel name</string>
     <string name="just_look">随便看看</string>
     <string name="my_money">我的钱包</string>
-    <string name="my_order">我的订单</string>
+    <string name="my_order">My Order</string>
     <string name="my_evaluate">我的评价</string>
 
     <string name="header_map">地图 ></string>
@@ -133,5 +133,10 @@
     <string name="mail_address">邮寄地址</string>
     <string name="invoice_remind">请仔细核对上述信息,避免对您带去不必要的麻烦。</string>
     <string name="confirm">确认</string>
+    <string name="Total">总价</string>
+    <string name="room_type">房型</string>
+    <string name="check_in_time">入住时间</string>
+    <string name="book_number">预定号</string>
+    <string name="cancle_order">取消订单</string>
 
 </resources>
