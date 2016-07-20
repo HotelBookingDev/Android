@@ -8,6 +8,7 @@
         android:id="@+id/iv_item_persion"
         android:layout_width="@dimen/iv_item_persion"
         android:layout_height="@dimen/iv_item_persion"
+        android:layout_marginLeft="20dp"
         android:padding="@dimen/iv_item_persion_padding"
         android:src="@mipmap/ic_launcher" />
 
@@ -22,12 +23,13 @@
         android:text="@string/my" />
 
     <TextView
-        android:visibility="gone"
         android:id="@+id/tv_right"
         style="@style/normal_text"
-        android:text="@string/my" />
+        android:text="@string/my"
+        android:visibility="gone" />
 
     <ImageView
+        android:id="@+id/iv_right_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

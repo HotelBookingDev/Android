@@ -11,6 +11,7 @@ import butterknife.OnClick;
 import rx.Subscription;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.person.EvalueActivity;
+import sf.hotel.com.hotel_client.view.activity.person.InvoiceActivity;
 import sf.hotel.com.hotel_client.view.activity.person.MoneyActivity;
 import sf.hotel.com.hotel_client.view.activity.person.OrderActivity;
 import sf.hotel.com.hotel_client.view.activity.person.SettingActivity;
@@ -31,8 +32,8 @@ public class PersonFragment extends BaseFragment implements IPersonView {
     public static final int SETTING = 0x2;
     public static final int ORDER = 0x3;
     public static final int MONEY = 0x4;
-
     public static final int EVALUATE = 0x5;
+    public static final int INVOICE = 0x6;
     PersonPresenter mPersonPresenter;
 
     public static PersonFragment newInstance() {
@@ -46,7 +47,7 @@ public class PersonFragment extends BaseFragment implements IPersonView {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_person, container, false);
         ButterKnife.bind(this, view);
@@ -92,7 +93,15 @@ public class PersonFragment extends BaseFragment implements IPersonView {
         } else if (type == EVALUATE) {
             Intent intent = new Intent(getActivity(), EvalueActivity.class);
             startActivity(intent);
+        } else if (type == INVOICE) {
+            Intent intent = new Intent(getActivity(), InvoiceActivity.class);
+            startActivity(intent);
         }
+    }
+
+    @Override
+    public void clickMyInvoice() {
+        mPersonPresenter.clicInvoice();
     }
 
     @Override
@@ -101,19 +110,19 @@ public class PersonFragment extends BaseFragment implements IPersonView {
         mPersonPresenter.destroy();
     }
 
-    @OnClick({R.id.piv_money, R.id.piv_order, R.id.piv_person, R.id.piv_evaluate, R.id.piv_setting})
+    @OnClick({R.id.ln_my_money, R.id.ln_order, R.id.piv_person, R.id.piv_setting, R.id.piv_help, R.id.piv_about_us, R.id.piv_invoice})
     public void onClick(View view) {
         int id = view.getId();
-        if (id == R.id.piv_money) {
+        if (id == R.id.ln_my_money) {
             clickMoney();
-        } else if (id == R.id.piv_order) {
+        } else if (id == R.id.ln_order) {
             clickOrder();
         } else if (id == R.id.piv_person) {
             clickPerson();
-        } else if (id == R.id.piv_evaluate) {
-            clickEvaluate();
         } else if (id == R.id.piv_setting) {
             clickSetting();
+        } else if (id == R.id.piv_invoice) {
+            clickMyInvoice();
         }
     }
 
@@ -129,9 +138,6 @@ public class PersonFragment extends BaseFragment implements IPersonView {
         mPersonPresenter.clickPerson();
     }
 
-    public void clickEvaluate() {
-        mPersonPresenter.clickEvaluate();
-    }
 
     public void clickSetting() {
         mPersonPresenter.clickSetting();

@@ -1,6 +1,5 @@
 package sf.hotel.com.hotel_client.view.interfaceview.person;
 
-import android.widget.ImageView;
 
 import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
 
@@ -11,9 +10,9 @@ import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
  */
 public interface IUserInfoView extends BaseView {
 
-    ImageView getAvatar();
-
     void setUserName(String name);
 
-    void setUserPwd(String pwd);
+    void logOutToLoginActivity();
+
+
 }

@@ -6,54 +6,68 @@
     android:background="@color/white"
     tools:context=".view.fragment.person.PersonFragment">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <sf.hotel.com.hotel_client.view.custom.HotelTitleView
-            android:id="@+id/view_title"
-            style="@style/view_title"
-            app:titleText="@string/my" />
-
-        <LinearLayout
+        <include
+            layout="@layout/head_user"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/view_title"
-            android:orientation="vertical">
+            android:layout_height="300dp" />
 
-            <sf.hotel.com.hotel_client.view.custom.PersonalItemView
-                android:id="@+id/piv_person"
-                style="@style/group_item"
-                app:contextText="@string/my_info" />
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-            <include layout="@layout/item_line" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            <sf.hotel.com.hotel_client.view.custom.PersonalItemView
-                android:id="@+id/piv_money"
-                style="@style/group_item"
-                app:contextText="@string/my_money" />
+                <include layout="@layout/item_line" />
 
-            <include layout="@layout/item_line" />
+                <sf.hotel.com.hotel_client.view.custom.PersonalItemView
+                    android:id="@+id/piv_person"
+                    style="@style/group_item"
+                    app:leftIcon="@mipmap/alipay"
+                    app:contextText="@string/my_info" />
 
-            <sf.hotel.com.hotel_client.view.custom.PersonalItemView
-                android:id="@+id/piv_order"
-                style="@style/group_item"
-                app:contextText="@string/my_order" />
+                <include layout="@layout/item_line" />
 
-            <include layout="@layout/item_line" />
+                <sf.hotel.com.hotel_client.view.custom.PersonalItemView
+                    android:id="@+id/piv_invoice"
+                    style="@style/group_item"
+                    app:leftIcon="@mipmap/alipay"
 
-            <sf.hotel.com.hotel_client.view.custom.PersonalItemView
-                android:id="@+id/piv_evaluate"
-                style="@style/group_item"
-                app:contextText="@string/my_evaluate" />
+                    app:contextText="@string/my_invoice" />
 
-            <include layout="@layout/item_line" />
+                <include layout="@layout/item_line" />
 
-            <sf.hotel.com.hotel_client.view.custom.PersonalItemView
-                android:id="@+id/piv_setting"
-                style="@style/group_item"
-                app:contextText="@string/my_setting" />
+                <sf.hotel.com.hotel_client.view.custom.PersonalItemView
+                    android:id="@+id/piv_setting"
+                    app:leftIcon="@mipmap/alipay"
 
-        </LinearLayout>
-    </RelativeLayout>
+                    style="@style/group_item"
+                    app:contextText="@string/my_setting" />
+
+                <include layout="@layout/item_line" />
+
+                <sf.hotel.com.hotel_client.view.custom.PersonalItemView
+                    android:id="@+id/piv_help"
+                    app:leftIcon="@mipmap/alipay"
+
+                    style="@style/group_item"
+                    app:contextText="@string/help" />
+
+                <include layout="@layout/item_line" />
+
+                <sf.hotel.com.hotel_client.view.custom.PersonalItemView
+                    android:id="@+id/piv_about_us"
+                    style="@style/group_item"
+                    app:leftIcon="@mipmap/alipay"
+                    app:contextText="@string/about_us" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 </FrameLayout>

@@ -2,6 +2,8 @@ package sf.hotel.com.data.interfaceeneity.person;
 
 import rx.Observable;
 import rx.Subscriber;
+import sf.hotel.com.data.config.EntityContext;
+import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.entity.netresult.TokenResult;
 import sf.hotel.com.data.net.ApiWrapper;
 
@@ -19,5 +21,10 @@ public class IUserInfoEntityImp implements IUserInfoEntity {
                 ApiWrapper.getInstance().getTokenResult().subscribe(subscriber);
             }
         });
+    }
+
+    @Override
+    public UserEntity getUserEntity() {
+        return EntityContext.getInstance().getmCurrentUser();
     }
 }

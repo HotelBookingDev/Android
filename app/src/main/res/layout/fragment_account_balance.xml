@@ -52,7 +52,7 @@
                 style="@style/normal_text"
                 android:layout_margin="10dp"
                 android:text="@string/about_money"
-                android:textColor="@color/about_money"
+                android:textColor="@color/hit_text"
                 android:textSize="@dimen/text_mid" />
 
             <TextView
@@ -74,9 +74,7 @@
             android:layout_width="250dp"
             android:layout_gravity="center"
             android:layout_margin="30dp"
-            fancy:fb_borderColor="#FFFFFF"
-            fancy:fb_borderWidth="1dp"
-            fancy:fb_defaultColor="@color/add_money"
+            fancy:fb_defaultColor="@color/default_button"
             fancy:fb_text="@string/recharge" />
     </LinearLayout>
 </FrameLayout>

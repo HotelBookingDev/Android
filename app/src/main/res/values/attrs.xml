@@ -4,6 +4,8 @@
         <attr name="leftIcon" format="reference" />
         <attr name="contextText" format="string" />
         <attr name="rightText" format="string" />
+        <attr name="is_show_right_icon" format="string" />
+        <attr name="left_string_color" format="color" />
     </declare-styleable>
 
     <declare-styleable name="HotelTitleBar">
@@ -31,24 +33,24 @@
     </declare-styleable>
 
     <declare-styleable name="CustomRadioButton">
-        <attr name="text_color" format="color|integer"/>
-        <attr name="select_text_color" format="color|integer"/>
+        <attr name="text_color" format="color|integer" />
+        <attr name="select_text_color" format="color|integer" />
     </declare-styleable>
 
 
     <declare-styleable name="HideTitle">
-        <attr name="mid_text" format="string"/>
-        <attr name="left_img" format="reference"/>
-        <attr name="right_img1" format="reference"/>
-        <attr name="right_img2" format="reference"/>
-        <attr name="add_status_view" format="boolean"/>
-        <attr name="hide_background" format="color"/>
-        <attr name="title_size" format="dimension"/>
+        <attr name="mid_text" format="string" />
+        <attr name="left_img" format="reference" />
+        <attr name="right_img1" format="reference" />
+        <attr name="right_img2" format="reference" />
+        <attr name="add_status_view" format="boolean" />
+        <attr name="hide_background" format="color" />
+        <attr name="title_size" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="ListText">
-        <attr name="title_text" format="string"/>
-        <attr name="content_text" format="string"/>
+        <attr name="title_text" format="string" />
+        <attr name="content_text" format="string" />
 
     </declare-styleable>
 
@@ -60,49 +62,49 @@
     </declare-styleable>
 
     <declare-styleable name="PriceLayout">
-        <attr name="now_price" format="string"/>
-        <attr name="old_price" format="string"/>
-        <attr name="left_price_img" format="reference"/>
+        <attr name="now_price" format="string" />
+        <attr name="old_price" format="string" />
+        <attr name="left_price_img" format="reference" />
     </declare-styleable>
 
 
     <declare-styleable name="HotelSearchItem">
-        <attr name="text" format="string"/>
-        <attr name="hint" format="string"/>
-        <attr name="close_src" format="reference"/>
+        <attr name="text" format="string" />
+        <attr name="hint" format="string" />
+        <attr name="close_src" format="reference" />
 
     </declare-styleable>
 
     <declare-styleable name="HotelSearchTitle">
-        <attr name="hotel_title_content_text" format="string"/>
-        <attr name="tag_text" format="string"/>
-        <attr name="des_text" format="string"/>
+        <attr name="hotel_title_content_text" format="string" />
+        <attr name="tag_text" format="string" />
+        <attr name="des_text" format="string" />
 
     </declare-styleable>
 
     <declare-styleable name="CustomSearchItem">
-        <attr name="custom_item_img" format="reference"/>
-        <attr name="custom_item_text1" format="string"/>
-        <attr name="custom_item_text2" format="string"/>
-        <attr name="custom_item_style" format="integer"/>
+        <attr name="custom_item_img" format="reference" />
+        <attr name="custom_item_text1" format="string" />
+        <attr name="custom_item_text2" format="string" />
+        <attr name="custom_item_style" format="integer" />
     </declare-styleable>
 
     <declare-styleable name="PullScrollView">
-        <attr name="pull_header_layout" format="reference"/>
-        <attr name="pull_content_layout" format="reference"/>
-        <attr name="pull_is_eff" format="boolean"/>
+        <attr name="pull_header_layout" format="reference" />
+        <attr name="pull_content_layout" format="reference" />
+        <attr name="pull_is_eff" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="DayPickerView">
-        <attr name="colorCurrentDay" format="color"/>
-        <attr name="colorHideDay" format="color"/>
-        <attr name="colorSelectedDayBackground" format="color"/>
-        <attr name="colorSelectedDayText" format="color"/>
-        <attr name="colorPreviousDay" format="color"/>
+        <attr name="colorCurrentDay" format="color" />
+        <attr name="colorHideDay" format="color" />
+        <attr name="colorSelectedDayBackground" format="color" />
+        <attr name="colorSelectedDayText" format="color" />
+        <attr name="colorPreviousDay" format="color" />
         <attr name="colorNormalDay" format="color" />
         <attr name="colorMonthName" format="color" />
         <attr name="colorDayName" format="color" />
-        <attr name="textSizeDay" format="dimension"/>
+        <attr name="textSizeDay" format="dimension" />
         <attr name="textSizeMonth" format="dimension" />
         <attr name="textSizeDayName" format="dimension" />
         <attr name="headerMonthHeight" format="dimension" />
@@ -142,16 +144,16 @@
     </declare-styleable>
 
     <declare-styleable name="PriceText">
-        <attr name="price_text_price" format="string"/>
-        <attr name="price_text_poins" format="string"/>
+        <attr name="price_text_price" format="string" />
+        <attr name="price_text_poins" format="string" />
     </declare-styleable>
 
     <declare-styleable name="CustomBookingItem">
-        <attr name="booking_item_name" format="string"/>
-        <attr name="booking_item_content" format="string"/>
-        <attr name="booking_item_name_color" format="reference"/>
+        <attr name="booking_item_name" format="string" />
+        <attr name="booking_item_content" format="string" />
+        <attr name="booking_item_name_color" format="reference" />
         <attr name="booking_item_content_color" format="reference" />
-        <attr name="booking_item_name_background" format="reference"/>
-        <attr name="booking_item_content_background" format="reference"/>
+        <attr name="booking_item_name_background" format="reference" />
+        <attr name="booking_item_content_background" format="reference" />
     </declare-styleable>
 </resources>

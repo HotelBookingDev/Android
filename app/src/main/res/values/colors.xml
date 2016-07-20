@@ -37,10 +37,10 @@
     <color name="bg_common">#ffe9efef</color>
 
     <!--默认正常的文字颜色-->
-    <color name="normal_color">#ffa4a4a4</color>
+    <color name="normal_color">#ababab</color>
 
     <!--充值的按钮-->
-    <color name="add_money">#84ccc9</color>
+    <color name="default_button">#84ccc9</color>
     <color name="money_num">#689a98</color>
     <color name="hint_text">#C0FFFFFF</color>
 
@@ -55,7 +55,7 @@
 
     <color name="hide">#00ffffff</color>
     <color name="content_bg">#66666666</color>
-    <color name="about_money">#ababab</color>
+    <color name="hit_text">#ababab</color>
     <color name="about_money_one">#d5d5d5</color>
 
 </resources>
