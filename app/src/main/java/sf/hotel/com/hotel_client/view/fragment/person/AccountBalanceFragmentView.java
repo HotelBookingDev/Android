@@ -67,12 +67,12 @@ public class AccountBalanceFragmentView extends BaseFragment
 
     @Override
     public void ShowPayBottom() {
-//        PayView = new PayBottomView(getBottomContext(),
-//                (money, postion) -> mAccountPresenter.addMoney(money, postion));
-//        PayView.showAtLocation(mViewTitle, Gravity.BOTTOM, 0, 0);
+        PayView = new PayBottomView(getBottomContext(),
+                (money, postion) -> mAccountPresenter.addMoney(money, postion));
+        PayView.showAtLocation(mViewTitle, Gravity.BOTTOM, 0, 0);
 //
-        Intent intent = new Intent(getActivity(), PayActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(getActivity(), PayActivity.class);
+//        s/tartActivity(intent);
     }
 
     @Override

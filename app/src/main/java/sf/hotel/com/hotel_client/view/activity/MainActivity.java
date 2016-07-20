@@ -3,23 +3,19 @@ package sf.hotel.com.hotel_client.view.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Gravity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.majiajie.pagerbottomtabstrip.Controller;
 import me.majiajie.pagerbottomtabstrip.PagerBottomTabLayout;
-import me.majiajie.pagerbottomtabstrip.TabLayoutMode;
 import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectListener;
 import me.yokeyword.fragmentation.SupportFragment;
 import rx.Subscription;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.register.LoginActivity;
-import sf.hotel.com.hotel_client.view.custom.PayBottomView;
 import sf.hotel.com.hotel_client.view.event.Message;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.person.LoginMessage;
-import sf.hotel.com.hotel_client.view.fragment.HomeContainer;
 import sf.hotel.com.hotel_client.view.fragment.hotel.SearchHotelFragment;
 import sf.hotel.com.hotel_client.view.fragment.person.PersonGroupFragment;
 
