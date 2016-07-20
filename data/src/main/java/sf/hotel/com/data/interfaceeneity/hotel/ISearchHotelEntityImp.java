@@ -17,20 +17,8 @@ import sf.hotel.com.data.utils.PreferencesUtils;
  * @email sanfenruxi1@163.com
  * @date 16/7/7.
  */
-public class ISearchHotelEntityImp implements SearchHotelEntity {
-
-    public CityBean getCityBean(Context context){
-        return HotelDao.getCitysBean(context);
-    }
-
-
-    public SearchItem getSearchItem(Context context){
-       return HotelDao.getSearchItem(context);
-    }
-    public void saveSearchItem(Context context,SearchItem searchItem){
-       HotelDao.saveSearchItem(context, searchItem);
-    }
-
+public class ISearchHotelEntityImp extends DataEntityImp implements SearchHotelEntity {
+    
     @Override
     public Observable<ProvincesResult> callCityList() {
         return ApiWrapper.getInstance().callCityList();

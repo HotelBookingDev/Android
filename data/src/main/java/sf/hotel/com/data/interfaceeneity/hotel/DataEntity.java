@@ -1,21 +1,20 @@
-package sf.hotel.com.data.interfaceeneity;
+package sf.hotel.com.data.interfaceeneity.hotel;
 
 import android.content.Context;
 
 import java.util.List;
 
-import rx.Observable;
 import sf.hotel.com.data.entity.CityBean;
-import sf.hotel.com.data.entity.ProvincesResult;
+import sf.hotel.com.data.entity.SearchItem;
 
 /**
  * @author MZ
  * @email sanfenruxi1@163.com
- * @date 16/6/22.
+ * @date 16/7/20.
  */
-public interface CityEntity {
-    Observable<List<CityBean>> callCityList();
-
+public interface DataEntity {
+    SearchItem getSearchItem(Context context);
+    void saveSearchItem(Context context,SearchItem searchItem);
     List<CityBean> getProcincesResult(Context context);
 
     void saveCitysBean(Context context, CityBean cityBean);

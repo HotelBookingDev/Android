@@ -7,6 +7,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import sf.hotel.com.data.entity.netresult.hotel.room.RoomBean;
+
 /**
  * @author MZ
  * @email sanfenruxi1@163.com

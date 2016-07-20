@@ -6,10 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListView;
 
-import sf.hotel.com.data.entity.netresult.hotel.HotelHousesBean;
-import sf.hotel.com.data.entity.netresult.hotel.HouseBean;
-import sf.hotel.com.data.entity.netresult.hotel.RoomBean;
+import sf.hotel.com.data.entity.netresult.hotel.room.RoomBean;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 
@@ -41,15 +40,19 @@ public class RoomRecyclerAdapter extends BaseRecyclerAdapter<RoomBean> {
                         holder.mImageView,
                         "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3256474343,2114829206&fm=23&gp=0.jpg");
 //            }
+
+
+
         }
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
         ImageView mImageView;
-
+        ListView mListView;
         public ViewHolder(View itemView) {
             super(itemView);
             mImageView = (ImageView) itemView.findViewById(R.id.item_bed_v2_img);
+            mListView = (ListView) itemView.findViewById(R.id.item_bed_v2_bed_list);
         }
     }
 }

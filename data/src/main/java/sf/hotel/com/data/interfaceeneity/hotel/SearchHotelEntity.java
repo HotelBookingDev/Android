@@ -17,13 +17,10 @@ import sf.hotel.com.data.utils.PreferencesUtils;
  * @email sanfenruxi1@163.com
  * @date 16/7/7.
  */
-public interface SearchHotelEntity {
+public interface SearchHotelEntity extends DataEntity{
 
-    CityBean getCityBean(Context context);
 
-    SearchItem getSearchItem(Context context);
 
-    void saveSearchItem(Context context, SearchItem searchItem);
 
     Observable<ProvincesResult> callCityList();
 }

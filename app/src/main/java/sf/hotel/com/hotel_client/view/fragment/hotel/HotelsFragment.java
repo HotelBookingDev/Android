@@ -168,9 +168,9 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
         mPullView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 Hotel1Bean itemByPos = mPullAdapter.getDataById(position - 1);
-                showDetail(itemByPos.getId());
+                if (itemByPos!= null)
+                    showDetail(itemByPos.getId());
             }
         });
         mPullView.setAdapter(mPullAdapter);

@@ -6,8 +6,8 @@ import java.util.List;
 
 import rx.Subscription;
 import sf.hotel.com.data.entity.CityBean;
-import sf.hotel.com.data.interfaceeneity.CityEntity;
-import sf.hotel.com.data.interfaceeneity.ICityEntityImp;
+import sf.hotel.com.data.interfaceeneity.hotel.CityEntity;
+import sf.hotel.com.data.interfaceeneity.hotel.ICityEntityImp;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.ICityView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;

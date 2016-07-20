@@ -5,7 +5,7 @@ import rx.functions.Action1;
 import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.data.entity.netresult.HotelResult;
-import sf.hotel.com.data.interfaceeneity.HotelsEntityImp;
+import sf.hotel.com.data.interfaceeneity.hotel.HotelsEntityImp;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IHotelsView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;

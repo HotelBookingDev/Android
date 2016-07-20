@@ -13,9 +13,6 @@ import sf.hotel.com.data.net.ApiWrapper;
  * @email sanfenruxi1@163.com
  * @date 16/7/15.
  */
-public interface BookingEntity {
+public interface BookingEntity extends DataEntity{
     Observable<HotelBookResult> callHotelBook( String productId, SearchItem searchItem);
-    SearchItem getSearchItem(Context context);
-    void saveSearchItem(Context context,SearchItem searchItem);
-
 }

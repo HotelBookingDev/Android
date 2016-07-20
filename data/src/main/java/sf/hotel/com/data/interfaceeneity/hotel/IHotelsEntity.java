@@ -1,9 +1,6 @@
-package sf.hotel.com.data.interfaceeneity;
-
-import android.content.Context;
+package sf.hotel.com.data.interfaceeneity.hotel;
 
 import rx.Observable;
-import sf.hotel.com.data.datasource.HotelDao;
 import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 
@@ -12,9 +9,6 @@ import sf.hotel.com.data.entity.netresult.HotelResult;
  * @email sanfenruxi1@163.com
  * @date 16/6/13.
  */
-interface IHotelsEntity {
-
+interface IHotelsEntity extends DataEntity{
     Observable<HotelResult> callHotelsByCityId(SearchItem searchItem,String page, String exclude);
-    SearchItem getSearchItem(Context context);
-    void saveSearchItem(Context context,SearchItem searchItem);
 }

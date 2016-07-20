@@ -10,8 +10,5 @@ import sf.hotel.com.data.entity.SearchItem;
  * @email sanfenruxi1@163.com
  * @date 16/6/29.
  */
-public class IHomeEntityImp implements HomeEntity {
-    public SearchItem getSearchItem(Context context){
-        return HotelDao.getSearchItem(context);
-    }
+public class IHomeEntityImp extends DataEntityImp implements HomeEntity {
 }

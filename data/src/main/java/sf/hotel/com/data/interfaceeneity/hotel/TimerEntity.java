@@ -9,8 +9,7 @@ import sf.hotel.com.data.entity.SearchItem;
  * @email sanfenruxi1@163.com
  * @date 16/7/18.
  */
-public interface TimerEntity {
-    SearchItem getSearchItem(Context context);
-    void saveSearchItem(Context context,SearchItem searchItem);
+public interface TimerEntity extends DataEntity{
+
 
 }

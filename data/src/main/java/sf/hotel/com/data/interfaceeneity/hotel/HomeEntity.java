@@ -9,6 +9,5 @@ import sf.hotel.com.data.entity.SearchItem;
  * @email sanfenruxi1@163.com
  * @date 16/6/29.
  */
-public interface HomeEntity {
-    SearchItem getSearchItem(Context context);
+public interface HomeEntity extends DataEntity {
 }

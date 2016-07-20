@@ -22,6 +22,7 @@ import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.entity.netresult.TokenResult;
 import sf.hotel.com.data.entity.netresult.hotel.Hotel1Result;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
+import sf.hotel.com.data.entity.netresult.hotel.room.RoomBean;
 import sf.hotel.com.data.entity.netresult.pay.PayResult;
 import sf.hotel.com.data.entity.netresult.person.OrderManagerResult;
 
@@ -88,8 +89,10 @@ public interface ApiService {
                                                           @Field(GUESTS) String guests);
 
     @GET("hotel/{id}")
-    Observable<HttpResult<Hotel1Result>> callHotelBeanById(@Path("id") String id,
-                                                           @Query(EXCLUDE) String exclude);
+    Observable<HttpResult<RoomBean>> callHotelBeanById(@Path("id") String id,
+                                                       @Query(CHECK_IN_TIME) String inTime,
+                                                       @Query(CHECK_OUT_TIME) String outTime,
+                                                       @Query(EXCLUDE) String exclude);
 
     //获取TOKEN
     @GET(AppUrl.TOKEN_URL)

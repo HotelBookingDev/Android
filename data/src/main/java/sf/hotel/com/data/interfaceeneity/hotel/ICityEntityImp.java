@@ -1,6 +1,4 @@
-package sf.hotel.com.data.interfaceeneity;
-
-import android.content.Context;
+package sf.hotel.com.data.interfaceeneity.hotel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +6,6 @@ import java.util.List;
 import rx.Observable;
 import rx.Subscriber;
 import rx.functions.Func1;
-import sf.hotel.com.data.datasource.HotelDao;
 import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.ProvincesBean;
 import sf.hotel.com.data.entity.ProvincesResult;
@@ -19,28 +16,7 @@ import sf.hotel.com.data.net.ApiWrapper;
  * @email sanfenruxi1@163.com
  * @date 16/6/22.
  */
-public class ICityEntityImp implements CityEntity {
-
-    public List<CityBean> getProcincesResult(Context context){
-        List<CityBean> citys = null;
-
-        ProvincesResult procincesResult = HotelDao.getProcincesResult(context);
-        List<ProvincesBean> procinces = procincesResult.getProvinces();
-        for (ProvincesBean procincesBean : procinces) {
-            citys = procincesBean.getCitys();
-        }
-
-        return citys;
-    }
-
-    public void saveCitysBean(Context context, CityBean cityBean){
-        HotelDao.saveCitysBean(context, cityBean);
-    }
-
-    @Override
-    public CityBean getCityBean(Context bottomContext) {
-        return HotelDao.getCitysBean(bottomContext);
-    }
+public class ICityEntityImp extends DataEntityImp implements CityEntity {
 
     @Override
     public Observable<List<CityBean>> callCityList() {

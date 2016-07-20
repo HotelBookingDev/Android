@@ -44,6 +44,9 @@ public class HotelsListViewAdapter extends BaseAdapter {
     }
 
     public Hotel1Bean getDataById(int pos) {
+        if(mData == null || mData.size() == 0 || pos < 0){
+            return null;
+        }
         return mData.get(pos);
     }
 

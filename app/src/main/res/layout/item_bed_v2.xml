@@ -70,6 +70,12 @@
                 android:layout_gravity="right"
                 />
         </LinearLayout>
+
+        <sf.hotel.com.hotel_client.view.custom.BedListView
+            android:id="@+id/item_bed_v2_bed_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
     </LinearLayout>
 
     <View

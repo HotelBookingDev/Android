@@ -1,4 +1,4 @@
-package sf.hotel.com.data.interfaceeneity;
+package sf.hotel.com.data.interfaceeneity.hotel;
 
 import android.content.Context;
 
@@ -15,8 +15,7 @@ import sf.hotel.com.data.net.ApiWrapper;
  * @email sanfenruxi1@163.com
  * @date 16/6/13.
  */
-public class HotelsEntityImp implements IHotelsEntity {
-
+public class HotelsEntityImp extends DataEntityImp implements IHotelsEntity {
 
     public HotelResult getHotelCache(Context context){
         return HotelDao.getHotelResult(context);
@@ -41,14 +40,4 @@ public class HotelsEntityImp implements IHotelsEntity {
                 .callHotelsByCityId(cityId, page, inTime, outTime, exclude)
                 ;
     }
-
-
-
-    public SearchItem getSearchItem(Context context){
-        return HotelDao.getSearchItem(context);
-    }
-    public void saveSearchItem(Context context,SearchItem searchItem){
-        HotelDao.saveSearchItem(context, searchItem);
-    }
-
 }

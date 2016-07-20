@@ -88,7 +88,8 @@ public class PayHelper {
             protected String doInBackground(String... params) {
 
 
-                String sign = sign("100");
+                String sign = sign("partner=\"2088421443875084\"&notify_url=\"http://agesd.com/alipay/notify/\"&body=\"商品详情\"&payment_type=\"1\"&subject=\"积分充值\"&service=\"mobile.securitypay.pay\"&_input_charset=\"utf-8\"&seller_id=\"chaomengshidai@agesd.com\"&out_trade_no=\"100\"&total_fee=\"100\"");
+                LogUtils.e("100==", sign);
                 try {
                     /**
                      * 仅需对sign 做URL编码
