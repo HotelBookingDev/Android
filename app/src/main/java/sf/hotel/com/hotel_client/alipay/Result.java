@@ -139,8 +139,7 @@ public class Result  {
 
             signature.update(content.getBytes("utf-8"));
 
-            boolean bverify = signature.verify(Base64.decode(sign));
-
+            return signature.verify(Base64.decode(sign));
         }catch (Exception e){
             LogUtils.printExceptionStackTrace(e);
         }
