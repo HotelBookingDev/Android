@@ -1,5 +1,7 @@
 package sf.hotel.com.data.interfaceeneity.hotel;
 
+import android.content.Context;
+
 import rx.Observable;
 import sf.hotel.com.data.entity.HotelBookResult;
 import sf.hotel.com.data.entity.SearchItem;
@@ -18,5 +20,5 @@ public interface RoomEntity extends DataEntity{
      * @param id hotel的id
      * @return
      */
-    Observable<RoomBean> callHotelBean(String id, SearchItem searchItem, String ex);
+    Observable<RoomBean> callHotelBean(Context context ,String id, String ex);
 }

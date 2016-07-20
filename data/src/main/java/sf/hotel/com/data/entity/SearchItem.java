@@ -3,6 +3,7 @@ package sf.hotel.com.data.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -27,6 +28,20 @@ public class SearchItem implements Parcelable{
         adultCount = in.readInt();
         childCount = in.readInt();
     }
+
+
+    public String getSimpleInTime(){
+        return getSimpleDate(inTime);
+    }
+
+    public String getSimpleOutTime(){
+        return getSimpleDate(outTime);
+    }
+    private String getSimpleDate(Date date){
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return format.format(date);
+    }
+
 
     public static final Creator<SearchItem> CREATOR = new Creator<SearchItem>() {
         @Override

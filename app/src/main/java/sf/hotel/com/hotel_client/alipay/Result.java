@@ -18,7 +18,7 @@ import sf.hotel.com.data.utils.LogUtils;
  */
 public class Result  {
 
-    private static final Map<String, String> mResultStatus;
+    public static final Map<String, String> mResultStatus;
 
     private String mPayResult;
 

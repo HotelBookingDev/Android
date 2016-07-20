@@ -6,7 +6,7 @@ package sf.hotel.com.hotel_client.alipay;
  * @date 16/6/24.
  */
 public interface PayCallBack {
-    void success();
+    void success(Result result);
 
-    void failed();
+    void failed(Result result);
 }
