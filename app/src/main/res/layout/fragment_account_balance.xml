@@ -74,6 +74,7 @@
             android:layout_width="250dp"
             android:layout_gravity="center"
             android:layout_margin="30dp"
+            fancy:fb_focusColor="@color/focus_color"
             fancy:fb_defaultColor="@color/default_button"
             fancy:fb_text="@string/recharge" />
     </LinearLayout>

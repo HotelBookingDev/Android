@@ -1,6 +1,5 @@
 package sf.hotel.com.hotel_client.view.fragment.person;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -12,14 +11,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.view.activity.pay.PayActivity;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.custom.PayBottomView;
-import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
+import sf.hotel.com.hotel_client.view.fragment.pay.PayFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.person.IAccountBalanceFragmentView;
 import sf.hotel.com.hotel_client.view.presenter.person.AccountBalancePresenter;
 
-public class AccountBalanceFragmentView extends BaseFragment
+public class AccountBalanceFragmentView extends PayFragment
         implements IAccountBalanceFragmentView {
 
     public static AccountBalanceFragmentView newInstance() {
@@ -37,8 +35,6 @@ public class AccountBalanceFragmentView extends BaseFragment
     TextView tvAccountBalance;
 
     AccountBalancePresenter mAccountPresenter;
-
-    PayBottomView PayView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,29 +61,13 @@ public class AccountBalanceFragmentView extends BaseFragment
         mAccountPresenter.initViews();
     }
 
-    @Override
-    public void ShowPayBottom() {
-//        PayView = new PayBottomView(getBottomContext(),
-//                (money, postion) -> mAccountPresenter.addMoney(money, postion));
-//        PayView.showAtLocation(mViewTitle, Gravity.BOTTOM, 0, 0);
-//
-        Intent intent = new Intent(getActivity(), PayActivity.class);
-        startActivity(intent);
-    }
-
-    @Override
-    public void dissPayBottom() {
-        if (PayView != null && PayView.isShowing()) {
-            PayView.dismiss();
-        }
-    }
 
     @OnClick({R.id.add_money})
     public void onClick(View view) {
         int id = view.getId();
         switch (id) {
             case R.id.add_money:
-                ShowPayBottom();
+                mAccountPresenter.showPayView();
                 break;
         }
     }

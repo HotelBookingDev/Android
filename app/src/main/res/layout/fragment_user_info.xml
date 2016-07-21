@@ -39,6 +39,7 @@
             android:layout_height="@dimen/btn_height"
             android:layout_margin="@dimen/btn_height"
             fancy:fb_defaultColor="@color/default_button"
+            fancy:fb_focusColor="@color/focus_color"
             fancy:fb_text="@string/login_out"
             fancy:fb_textColor="@color/white" />
 

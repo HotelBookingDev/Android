@@ -115,6 +115,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     fancy:fb_borderColor="@color/default_button"
+                    fancy:fb_focusColor="@color/focus_color"
                     fancy:fb_borderWidth="1dp"
                     fancy:fb_defaultColor="@color/white"
                     fancy:fb_radius="3dp"
