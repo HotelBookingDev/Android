@@ -29,15 +29,7 @@ public class IOrderImp implements IOrder {
 
     @Override
     public Observable<List<Order>> getOrder(Context context, int position) {
-        return mOrderManager.getMaps(context, position, EntityContext.getInstance().getmCurrentUser().getUserId()).flatMap(new Func1<List<Order>, Observable<List<Order>>>() {
-            @Override
-            public Observable<List<Order>> call(List<Order> orders) {
-                if (orders == null || orders.size() == 0) {
-                    return loadDatas(context, position);
-                }
-                return Observable.just(orders);
-            }
-        });
+        return mOrderManager.getMaps(context, position, EntityContext.getInstance().getmCurrentUser().getUserId());
     }
 
     public Observable<List<Order>> loadDatas(Context context, int position) {
