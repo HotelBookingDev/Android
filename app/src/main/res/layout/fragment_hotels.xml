@@ -1,8 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/dark_gray"
+        >
+
+        <sf.hotel.com.hotel_client.view.custom.CustomHotelText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:hotel_text_name="目的地："
+            app:hotel_text_content="宁波"
+            />
+        <sf.hotel.com.hotel_client.view.custom.CustomHotelText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:hotel_text_name="预定日期："
+            app:hotel_text_content="07-19-07-20"
+            />
+
+        <sf.hotel.com.hotel_client.view.custom.CustomHotelText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:hotel_text_name="入住人数"
+            app:hotel_text_content="2人"
+            />
+
+    </LinearLayout>
 
     <in.srain.cube.views.ptr.PtrClassicFrameLayout android:id="@+id/fragment_hotels_ptr_frame"
         xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
@@ -31,4 +60,4 @@
 
     </in.srain.cube.views.ptr.PtrClassicFrameLayout>
 
-</RelativeLayout>
+</LinearLayout>

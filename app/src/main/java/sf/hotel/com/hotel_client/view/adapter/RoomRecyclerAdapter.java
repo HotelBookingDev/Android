@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import sf.hotel.com.data.entity.netresult.hotel.room.RoomBean;
+import sf.hotel.com.data.entity.netresult.hotel.room.RoomPackagesBean;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 
@@ -17,7 +18,7 @@ import sf.hotel.com.hotel_client.utils.HotelImageLoad;
  * @email sanfenruxi1@163.com
  * @date 16/7/14.
  */
-public class RoomRecyclerAdapter extends BaseRecyclerAdapter<RoomBean> {
+public class RoomRecyclerAdapter extends BaseRecyclerAdapter<RoomPackagesBean> {
     public RoomRecyclerAdapter(Context mContext) {
         super(mContext);
     }
@@ -29,7 +30,7 @@ public class RoomRecyclerAdapter extends BaseRecyclerAdapter<RoomBean> {
     }
 
     @Override
-    public void onBind(RecyclerView.ViewHolder viewHolder, int RealPosition, RoomBean data) {
+    public void onBind(RecyclerView.ViewHolder viewHolder, int RealPosition, RoomPackagesBean data) {
         if (viewHolder instanceof RoomRecyclerAdapter.ViewHolder){
             RoomRecyclerAdapter.ViewHolder holder = (RoomRecyclerAdapter.ViewHolder) viewHolder;
 

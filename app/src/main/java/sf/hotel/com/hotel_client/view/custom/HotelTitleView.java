@@ -18,8 +18,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.andexert.library.RippleView;
+
 import sf.hotel.com.hotel_client.R;
 
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 /**
@@ -27,7 +30,13 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
  * data：2016/6/22
  * email: 1105896230@qq.com
  */
-public class HotelTitleView extends RelativeLayout {
+public class HotelTitleView extends RippleView {
+    private RelativeLayout mLayout;
+
+    private RelativeLayout.LayoutParams mParams;
+
+    private int mTitleBackground;
+
     private int mLeftBtnIcon;
     private int mRightBtnIcon;
     private String mLeftBtnText;
@@ -64,14 +73,20 @@ public class HotelTitleView extends RelativeLayout {
             mRightBtnText = a.getString(R.styleable.HotelTitleBar_rightBtnText);
             mTitle = a.getString(R.styleable.HotelTitleBar_titleText);
             isShowUnderLine = a.getBoolean(R.styleable.HotelTitleBar_isShowUnderLine, false);
+            mTitleBackground = a.getResourceId(R.styleable.HotelTitleBar_titleBackground, R.color.bg_black);
         } finally {
             a.recycle();
         }
         init();
-        this.setBackgroundResource(R.color.view_title);
     }
 
     private void init() {
+
+        mLayout = new RelativeLayout(getContext());
+        mParams = new LayoutParams(MATCH_PARENT, MATCH_PARENT);
+        mLayout.setBackgroundResource(mTitleBackground);
+        addView(mLayout, mParams);
+
         mLeftBtnParams = new LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
         mLeftBtnParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
         mLeftBtnParams.addRule(RelativeLayout.CENTER_VERTICAL);
@@ -100,7 +115,7 @@ public class HotelTitleView extends RelativeLayout {
         linearParams.addRule(RelativeLayout.CENTER_IN_PARENT);
         mLinearLayout.setLayoutParams(linearParams);
         addContentView(mLinearLayout);
-        addView(mLinearLayout);
+        mLayout.addView(mLinearLayout);
     }
 
     private void addContentView(ViewGroup mViewGroup) {
@@ -161,7 +176,7 @@ public class HotelTitleView extends RelativeLayout {
             ((TextView) mBtnLeft).setTextColor(getResources().getColorStateList(R.color.white));
             ((TextView) mBtnLeft).setTextSize(TypedValue.COMPLEX_UNIT_PX,
                     getResources().getDimension(R.dimen.title_text_size));
-            addView(mBtnLeft);
+            mLayout.addView(mBtnLeft);
         } else {
             ((TextView) mBtnLeft).setText(text);
         }
@@ -174,7 +189,7 @@ public class HotelTitleView extends RelativeLayout {
             mBtnLeft = new ImageView(getContext());
             mBtnLeft.setPadding(20, 0, 50, 0);
             mBtnLeft.setLayoutParams(mLeftBtnParams);
-            addView(mBtnLeft);
+            mLayout.addView(mBtnLeft);
         }
         ((ImageView) mBtnLeft).setImageResource(iconId);
 
@@ -189,7 +204,7 @@ public class HotelTitleView extends RelativeLayout {
             mBtnRight.setLayoutParams(mRightBtnParams);
             ((TextView) mBtnRight).setTextSize(17);
             ((TextView) mBtnRight).setTextColor(getResources().getColorStateList(R.color.white));
-            addView(mBtnRight);
+            mLayout.addView(mBtnRight);
         }
         ((TextView) mBtnRight).setText(text);
 
@@ -202,7 +217,7 @@ public class HotelTitleView extends RelativeLayout {
             mBtnRight = new ImageView(getContext());
             mBtnRight.setPadding(50, 0, 20, 0);
             mBtnRight.setLayoutParams(mRightBtnParams);
-            addView(mBtnRight);
+            mLayout.addView(mBtnRight);
         }
         ((ImageView) mBtnRight).setImageResource(iconId);
 

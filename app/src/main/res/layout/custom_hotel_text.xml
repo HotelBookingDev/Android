@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+
+    <TextView
+        android:id="@+id/custom_hotel_text_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="目的地："
+        android:textColor="@color/text_white"
+        />
+
+    <TextView
+        android:id="@+id/custom_hotel_text_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="宁波"
+        android:textColor="@color/text_white"
+        />
+</LinearLayout>

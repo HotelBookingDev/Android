@@ -3,6 +3,7 @@ package sf.hotel.com.data.entity.netresult;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public class HotelResult implements Parcelable {
      * hotel_houses : [{"id":1}]
      */
 
+    @SerializedName("hotels")
     private List<Hotel1Bean> hotels;
 
     protected HotelResult(Parcel in) {

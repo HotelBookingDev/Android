@@ -45,6 +45,6 @@ public class IRoomPresenter extends SuperPresenter {
     }
 
     private void onNextHotelBean(RoomBean roomBean) {
-       // mIRoomView.setHotelsBean(hotelsBean.getHotel());
+       mIRoomView.setHotelsBean(roomBean);
     }
 }

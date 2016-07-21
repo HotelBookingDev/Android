@@ -4,6 +4,7 @@ import java.util.List;
 
 import sf.hotel.com.data.entity.netresult.hotel.Hotel1Bean;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
+import sf.hotel.com.data.entity.netresult.hotel.room.RoomBean;
 import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
 
 /**
@@ -19,9 +20,7 @@ public interface IRoomView extends BaseView {
 
     void setRoomContentText(String text);
 
-
-    void setHotelsBean(Hotel1Bean hotelsBean);
-
+    void setHotelsBean(RoomBean hotel1Bean);
 
     void notifyDataSetChanged();
 }

@@ -33,6 +33,7 @@ import butterknife.OnClick;
 import mehdi.sakout.fancybuttons.FancyButton;
 import sf.hotel.com.data.entity.netresult.hotel.Hotel1Bean;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
+import sf.hotel.com.data.entity.netresult.hotel.room.RoomBean;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.StartActivityUtils;
@@ -63,7 +64,7 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
     private static Bundle args;
 
     private int hotelId;
-    private Hotel1Bean hotelsBean;
+    private RoomBean hotelsBean;
 
     //ListImg
     private List<String> mImageList;
@@ -110,6 +111,14 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
         View view = inflater.inflate(R.layout.fragment_room_v2, container, false);
         mIRoomPresenter = new IRoomPresenter(this);
         ButterKnife.bind(this, view);
+
+        mTitle.addLeftClick(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RxBus.getDefault().post(MessageFactory.createRoomMessage(RoomMessage.ACTIVITY_BACK));
+            }
+        });
+
         initRecycler();
         initDate(args);
         return view;
@@ -194,16 +203,6 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
         initBanner();
     }
 
-
-
-    @OnClick({R.id.fragment_room_v2_title})
-    public void onViewClick(View view){
-        switch (view.getId()){
-            case R.id.fragment_room_v2_title:
-                RxBus.getDefault().post(MessageFactory.createRoomMessage(RoomMessage.ACTIVITY_BACK));
-                break;
-        }
-    }
 
 
     private void initBanner() {
@@ -304,16 +303,16 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
 
 
     @Override
-    public void setHotelsBean(Hotel1Bean hotel1Bean) {
+    public void setHotelsBean(RoomBean hotel1Bean) {
         this.hotelsBean = hotel1Bean;
         notifyDataSetChanged();
     }
 
     public void notifyDataSetChanged() {
-        setImageList(hotelsBean.getHotel_imgs());
-        setRoomContentText(hotelsBean.getIntroduce());
-        mRecyclerAdapter.setDatas(hotelsBean.getRoomBeanList());
-        phoneText.setText(hotelsBean.getContact_phone());
-        mLocation.setText(hotelsBean.getAddress());
+        setImageList(hotelsBean.getRoom_imgs());
+        setRoomContentText(hotelsBean.getName());
+        mRecyclerAdapter.setDatas(hotelsBean.getRoomPackages());
+        phoneText.setText(hotelsBean.getName());
+        mLocation.setText(hotelsBean.getName());
     }
 }

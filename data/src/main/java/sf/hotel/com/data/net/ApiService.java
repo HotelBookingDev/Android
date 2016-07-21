@@ -78,8 +78,10 @@ public interface ApiService {
 
     @GET(AppUrl.HOTELS_URL)
     Observable<HttpResult<HotelResult>> callHotelsByCityId(@Query(CITY_ID) String cityId,
-            @Query(PAGE) String page, @Query(CHECK_IN_TIME) String in,
-            @Query(CHECK_OUT_TIME) String out, @Query(EXCLUDE) String exclude);
+                                                           @Query(PAGE) String page,
+                                                           @Query(CHECK_IN_TIME) String in,
+                                                           @Query(CHECK_OUT_TIME) String out,
+                                                           @Query(EXCLUDE) String exclude);
 
     @FormUrlEncoded
     @POST(AppUrl.HOTELS_BOOK_URL)
