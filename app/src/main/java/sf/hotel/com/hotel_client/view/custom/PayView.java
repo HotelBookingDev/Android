@@ -20,8 +20,8 @@ import sf.hotel.com.hotel_client.R;
  */
 
 public class PayView extends FrameLayout implements View.OnTouchListener {
-    private static final int PAYALIAL = 1;
-    private static final int PAYWECHAT = 2;
+    public static final int PAYALIAL = 1;
+    public static final int PAYWECHAT = 2;
     private Context mContext;
     private View mRoootView;
     private FancyButton btn;

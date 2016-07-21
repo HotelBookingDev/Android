@@ -7,13 +7,9 @@ import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
  * data：2016/6/30
  * email: 1105896230@qq.com
  */
-public interface IAccountBalanceFragmentView extends BaseView {
+public interface IAccountBalanceFragmentView extends IPayView {
 
     void showMoney(String money);
 
     void showViews();
-
-    void ShowPayBottom();
-
-    void dissPayBottom();
 }

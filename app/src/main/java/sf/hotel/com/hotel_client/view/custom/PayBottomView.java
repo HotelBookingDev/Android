@@ -3,15 +3,9 @@ package sf.hotel.com.hotel_client.view.custom;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.PopupWindow;
-import android.widget.RadioButton;
 
-import mehdi.sakout.fancybuttons.FancyButton;
 import sf.hotel.com.hotel_client.R;
 
 /**
