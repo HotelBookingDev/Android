@@ -16,7 +16,7 @@ public class Order {
     //    未入住
     public static final int NOTORDER = 0x11;
     //    待确认
-    public static final int PENDING_CONFIRMATION = 0x3;
+    public static final int PENDING_CONFIRMATION = 0x1;
 
     //    无早餐
     public static final int BREAFKFAST_NOT = 1;
