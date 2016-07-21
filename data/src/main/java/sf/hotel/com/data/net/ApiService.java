@@ -101,8 +101,7 @@ public interface ApiService {
     Observable<HttpResult<OrderResult>> getOrders(@Query(HttpParam.PROCESS_SATE) int postion);
 
 
-    @GET(AppUrl.ORDER_URL_CLOSE)
-    Observable<HttpResult<OrderResult>> getOrdersClose(@Query(HttpParam.CLOSE_SATE) int postion);
+
 
     @FormUrlEncoded
     @POST(AppUrl.CHANGEPWD_URL)
