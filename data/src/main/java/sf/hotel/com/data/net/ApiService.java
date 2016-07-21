@@ -1,12 +1,9 @@
 package sf.hotel.com.data.net;
 
-import okhttp3.Request;
-import okhttp3.ResponseBody;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -20,14 +17,11 @@ import sf.hotel.com.data.entity.netresult.HttpResult;
 import sf.hotel.com.data.entity.netresult.LoginResult;
 import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.entity.netresult.TokenResult;
-import sf.hotel.com.data.entity.netresult.hotel.Hotel1Result;
-import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.data.entity.netresult.hotel.room.RoomBean;
 import sf.hotel.com.data.entity.netresult.pay.PayResult;
-import sf.hotel.com.data.entity.netresult.person.OrderManagerResult;
+import sf.hotel.com.data.entity.netresult.person.OrderResult;
 
 import static sf.hotel.com.data.net.HttpParam.ACTION;
-import static sf.hotel.com.data.net.HttpParam.AUTHORIZATION;
 import static sf.hotel.com.data.net.HttpParam.CHECK_IN_TIME;
 import static sf.hotel.com.data.net.HttpParam.CHECK_OUT_TIME;
 import static sf.hotel.com.data.net.HttpParam.CITY_ID;
@@ -53,12 +47,12 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(AppUrl.LOGIN_URL)
     Observable<HttpResult<LoginResult>> callLogin(@Field(PHONE_NUMBER) String phone,
-            @Field(PASSWORD) String pwd);
+                                                  @Field(PASSWORD) String pwd);
 
     @FormUrlEncoded
     @POST(AppUrl.REGISTER_URL)
     Observable<HttpResult<LoginResult>> callRegister(@Field(PHONE_NUMBER) String phone,
-            @Field(SMS_CODE) String smsCode, @Field(PASSWORD) String pwd);
+                                                     @Field(SMS_CODE) String smsCode, @Field(PASSWORD) String pwd);
 
     @FormUrlEncoded
     @POST(AppUrl.SMS_URL)
@@ -68,8 +62,8 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(AppUrl.INSTALLATIONS_BIND_URL)
     Observable<HttpResult<NormalResult>> postInstallation(@Field(DEVICE_TYPE) String type,
-            @Field(PHONE_NUMBER) String phoneNum,
-            @Field(INSTALLATION_CODE) String installation_code);
+                                                          @Field(PHONE_NUMBER) String phoneNum,
+                                                          @Field(INSTALLATION_CODE) String installation_code);
 
     //上传设备号
     @POST(AppUrl.INSTALLATION_URL)
@@ -104,17 +98,21 @@ public interface ApiService {
     Observable<HttpResult<ProvincesResult>> callCityList();
 
     @GET(AppUrl.ORDER_URL)
-    Observable<HttpResult<OrderManagerResult>> getOrderManager();
+    Observable<HttpResult<OrderResult>> getOrders(@Query(HttpParam.PROCESS_SATE) int postion);
+
+
+    @GET(AppUrl.ORDER_URL_CLOSE)
+    Observable<HttpResult<OrderResult>> getOrdersClose(@Query(HttpParam.CLOSE_SATE) int postion);
 
     @FormUrlEncoded
     @POST(AppUrl.CHANGEPWD_URL)
     Observable<HttpResult<NormalResult>> putChangePwd(@Field(PHONE_NUMBER) String phoneNum,
-            @Field(PASSWORD) String password, @Field(HttpParam.NEWPASSWORD) String newPassword);
+                                                      @Field(PASSWORD) String password, @Field(HttpParam.NEWPASSWORD) String newPassword);
 
     @FormUrlEncoded
     @POST(AppUrl.DELETE_URL)
     Observable<HttpResult<NormalResult>> deleteOrder(@Field(ACTION) String action,
-            @Field(NUMBER) long number);
+                                                     @Field(NUMBER) long number);
 
 
     @GET(AppUrl.PAY_URL)

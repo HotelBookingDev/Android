@@ -52,7 +52,7 @@ public class OrderFragment extends BaseFragment {
     }
 
     //用户选择的tab的监听
-    class TabSelectListener implements TabLayout.OnTabSelectedListener {
+    private class TabSelectListener implements TabLayout.OnTabSelectedListener {
 
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
@@ -71,11 +71,17 @@ public class OrderFragment extends BaseFragment {
     }
 
     private OrderMessage getMessage(int type) {
-        OrderMessage message = null;
-        if (type == 2) {
-            message = MessageFactory.createOrderMessage(OrderMessage.ALREADYCONSUMED);
+        return MessageFactory.createOrderMessage(UITypeToOrderType(type));
+    }
+
+    private int UITypeToOrderType(int type) {
+        int message = OrderMessage.PENDING_CONFIRMATION;
+        if (type == 0) {
+            message = OrderMessage.PENDING_CONFIRMATION;
         } else if (type == 1) {
-            message = MessageFactory.createOrderMessage(OrderMessage.NOTCONSUMED);
+            message = OrderMessage.NOTCONSUMED;
+        } else if (type == 2) {
+            message = OrderMessage.ALREADYCONSUMED;
         }
         return message;
     }

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -92,9 +93,7 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
                 mPullView.getRecyclerView());
         mPullView.setLoadMoreFooter(loadMoreView);
         //刷新
-        mPullView.setOnRefreshListener(() -> {
-            mUserOrderPresenter.refresh(getPosition());
-        });
+        mPullView.setOnRefreshListener(() -> mUserOrderPresenter.refresh(UserOrderFragment.this.getPosition()));
         LinearLayoutManager layout = new LinearLayoutManager(getBottomContext(),
                 LinearLayoutManager.VERTICAL, false);
         mPullView.setLayoutManager(layout);

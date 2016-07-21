@@ -5,13 +5,14 @@ import android.content.Context;
 import java.util.List;
 
 import rx.Observable;
+import rx.functions.Func1;
 import sf.hotel.com.data.config.EntityContext;
+import sf.hotel.com.data.datasource.OrderDao;
 import sf.hotel.com.data.entity.Order;
-import sf.hotel.com.data.entity.OrderManager;
+import sf.hotel.com.data.entity.OrderManagerMaps;
 import sf.hotel.com.data.entity.netresult.NormalResult;
-import sf.hotel.com.data.entity.netresult.person.OrderManagerResult;
+import sf.hotel.com.data.entity.netresult.person.OrderResult;
 import sf.hotel.com.data.net.ApiWrapper;
-import sf.hotel.com.data.net.callback.CommSubscriber;
 
 /**
  * Created by 林其望
@@ -19,57 +20,45 @@ import sf.hotel.com.data.net.callback.CommSubscriber;
  * email: 1105896230@qq.com
  */
 public class IOrderImp implements IOrder {
-    OrderManager mOrderManager;
+    OrderManagerMaps mOrderManager;
 
-    private boolean isDownLoad = false;
 
     public IOrderImp() {
-        mOrderManager = new OrderManager();
+        mOrderManager = new OrderManagerMaps();
     }
 
     @Override
     public Observable<List<Order>> getOrder(Context context, int position) {
-        return Observable.just(mOrderManager.getOrders(context, position,
-                EntityContext.getInstance().getmCurrentUser().getUserId()));
+        return mOrderManager.getMaps(context, position, EntityContext.getInstance().getmCurrentUser().getUserId()).flatMap(new Func1<List<Order>, Observable<List<Order>>>() {
+            @Override
+            public Observable<List<Order>> call(List<Order> orders) {
+                if (orders == null || orders.size() == 0) {
+                    return loadDatas(context, position);
+                }
+                return Observable.just(orders);
+            }
+        });
     }
 
-    public Observable<List<Order>> getOrderByNet(Context context, int position) {
-        if (isDownLoad) {
-            return Observable.just(mOrderManager.getOrders(context, position,
-                    EntityContext.getInstance().getmCurrentUser().getUserId()));
-        }
-        return ApiWrapper.getInstance()
-                .getOrderManager()
-                .filter(orderManagerResult -> orderManagerResult ==
-                        null ? Boolean.FALSE : Boolean.TRUE)
-                .map(OrderManagerResult::getManager)
-                .doOnNext(orderManager -> mOrderManager.saveDb(context, orderManager,
-                        EntityContext.getInstance().getmCurrentUser().getUserId()))
-                .doOnNext(orderManager -> mOrderManager.update(context, orderManager,
-                        EntityContext.getInstance().getmCurrentUser().getUserId()))
-                .map(orderManager -> mOrderManager.getOrders(context, position,
-                        EntityContext.getInstance().getmCurrentUser().getUserId()))
-                .doOnNext(list -> {
-                    isDownLoad = true;
+    public Observable<List<Order>> loadDatas(Context context, int position) {
+        return ApiWrapper.getInstance().getOrders(position).filter(orderResult -> orderResult == null ? Boolean.FALSE : Boolean.TRUE)
+                .map(OrderResult::getOrderList).doOnNext(orders -> mOrderManager.upDate(position, orders, context));
+    }
+
+    @Override
+    public Observable<List<Order>> detect(Context context, Order order, int position) {
+        return ApiWrapper.getInstance().deleteOrder(order.getOrder_num()).
+                doOnNext(normalResult -> mOrderManager.resert()).
+                doOnNext(normalResult -> {
+                    order.setClosed(true);
+                    OrderDao.update(order, context);
+                }).
+                flatMap(new Func1<NormalResult, Observable<List<Order>>>() {
+                    @Override
+                    public Observable<List<Order>> call(NormalResult normalResult) {
+                        return mOrderManager.getMaps(context, position, EntityContext.getInstance().getmCurrentUser().getUserId());
+                    }
                 });
     }
 
-    @Override
-    public Observable<NormalResult> detect(Order order) {
-        return ApiWrapper.getInstance().deleteOrder(order.getOrder_num());
-    }
-
-    @Override
-    public void update(Context context, Order order) {
-        mOrderManager.update(context, order);
-        mOrderManager.setmNotOrders(null);
-        mOrderManager.setmAlreadyOrders(null);
-        getOrder(context, Order.ALRADYORDER).subscribe(new CommSubscriber<>());
-    }
-
-    @Override
-    public Observable<List<Order>> forceRefresh(Context context, int position) {
-        isDownLoad = false;
-        return getOrderByNet(context, position);
-    }
 }

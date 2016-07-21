@@ -1,6 +1,14 @@
 package sf.hotel.com.hotel_client.view.presenter.person;
 
+import android.content.Intent;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import rx.Observable;
 import rx.Subscription;
+import rx.functions.Action1;
+import rx.functions.Func1;
 import sf.hotel.com.data.entity.Order;
 import sf.hotel.com.data.interfaceeneity.person.IOrder;
 import sf.hotel.com.data.interfaceeneity.person.IOrderImp;
@@ -16,6 +24,7 @@ import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 public class UserOrderPresenter extends SuperPresenter {
     IUserOrderView mIUserOrderView;
     IOrder mIorder;
+    private final List<Integer> list = new ArrayList();
 
     public UserOrderPresenter(IUserOrderView mIUserOrderView) {
         super();
@@ -29,11 +38,18 @@ public class UserOrderPresenter extends SuperPresenter {
 
     private void getDb(int position) {
         Subscription subscribe = mIorder.getOrder(mIUserOrderView.getBottomContext(), position)
-                .doOnNext(orderAndHotels -> {
-                    mIUserOrderView.showOrder(orderAndHotels);
+                .doOnNext(orderAndHotels -> mIUserOrderView.showOrder(orderAndHotels))
+                .flatMap(new Func1<List<Order>, Observable<List<Order>>>() {
+                    @Override
+                    public Observable<List<Order>> call(List<Order> orders) {
+//
+                        if (list.contains(position)) {
+                            Observable.just(orders);
+                        }
+                        list.add(position);
+                        return mIorder.loadDatas(mIUserOrderView.getBottomContext(), position);
+                    }
                 })
-                .flatMap(orderAndHotels -> mIorder.getOrderByNet(mIUserOrderView.getBottomContext(),
-                        position))
                 .subscribe(orderAndHotels -> {
 //                    异步加载完成判断当前显示是否是开始点击时候需要查看的订单列表
                     if (mIUserOrderView.getPosition() == position) {
@@ -44,20 +60,18 @@ public class UserOrderPresenter extends SuperPresenter {
     }
 
     public void detect(Order order) {
-        Subscription subscribe = mIorder.detect(order).subscribe(normalResult -> {
-            order.setClosed(true);
-            mIorder.update(mIUserOrderView.getBottomContext(), order);
-            mIorder.getOrder(mIUserOrderView.getBottomContext(), mIUserOrderView.getPosition())
-                    .subscribe(list -> {
-                        mIUserOrderView.showOrder(list);
-                    });
-            mIUserOrderView.showViewToast("取消成功");
-        }, LogUtils::logThrowadle);
+        Subscription subscribe = mIorder.detect(mIUserOrderView.getBottomContext(), order, mIUserOrderView.getPosition()).subscribe(new Action1<List<Order>>() {
+            @Override
+            public void call(List<Order> orders) {
+                mIUserOrderView.showOrder(orders);
+                mIUserOrderView.showViewToast("取消成功");
+            }
+        });
         addSubsrcicitpition(subscribe);
     }
 
     public void refresh(int position) {
-        Subscription subscribe = mIorder.forceRefresh(mIUserOrderView.getBottomContext(), position)
+        Subscription subscribe = mIorder.loadDatas(mIUserOrderView.getBottomContext(), position)
                 .subscribe(orderAndHotels -> {
 //                    异步加载完成判断当前显示是否是开始点击时候需要查看的订单列表
                     if (mIUserOrderView.getPosition() == position) {
@@ -67,4 +81,5 @@ public class UserOrderPresenter extends SuperPresenter {
                 }, this::handlingException);
         addSubsrcicitpition(subscribe);
     }
+
 }
