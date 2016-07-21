@@ -27,6 +27,7 @@ import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.DensityUtils;
 import sf.hotel.com.hotel_client.view.activity.hotel.RoomActivity;
 import sf.hotel.com.hotel_client.view.adapter.HotelsListViewAdapter;
+import sf.hotel.com.hotel_client.view.custom.CustomHotelText;
 import sf.hotel.com.hotel_client.view.custom.hotelheader.RentalsSunHeaderView;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.HotelMessage;
@@ -49,6 +50,16 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
 
     @BindView(R.id.fragment_hotels_load_more)
     LoadMoreListViewContainer mLoadContainer;
+
+
+    @BindView(R.id.fragment_hotel_city)
+    CustomHotelText mHotelCity;
+
+    @BindView( R.id.fragment_hotel_timer)
+    CustomHotelText mHotelTimer;
+
+    @BindView( R.id.fragment_hotel_person)
+    CustomHotelText mHotelPerson;
 
     SearchItem mSearchItem;
 
@@ -219,5 +230,12 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
 
     public void setSearchItem(SearchItem mSearchItem) {
         this.mSearchItem = mSearchItem;
+    }
+
+    public void setHeaderStr(SearchItem searchItem){
+        mHotelPerson.setContentStr(searchItem.adultCount + searchItem.childCount + "");
+        mHotelCity.setContentStr(searchItem.cityBean.getName());
+        mHotelTimer.setNameStr(searchItem.getSimpleInTime() + "-" + searchItem.getSimpleOutTime());
+
     }
 }

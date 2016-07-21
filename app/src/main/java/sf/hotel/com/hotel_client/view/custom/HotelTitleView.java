@@ -18,9 +18,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.andexert.library.RippleView;
-
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.custom.rippleview.RippleView;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;

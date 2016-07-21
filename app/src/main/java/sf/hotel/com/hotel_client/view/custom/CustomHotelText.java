@@ -47,4 +47,19 @@ public class CustomHotelText extends LinearLayout {
     }
 
 
+    public void setNameStr(String str) {
+        mNameText.setText(str);
+    }
+
+    public void setContentStr(String str) {
+        mContentText.setText(str);
+    }
+
+    public String getNameStr() {
+        return mNameText.getText().toString();
+    }
+
+    public String getContentStr() {
+        return mContentText.getText().toString();
+    }
 }

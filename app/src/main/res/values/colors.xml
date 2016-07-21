@@ -63,4 +63,6 @@
     <color name="hit_text">#ababab</color>
     <color name="about_money_one">#d5d5d5</color>
 
+    <color name="rippelColor">#FFFFFF</color>
+
 </resources>

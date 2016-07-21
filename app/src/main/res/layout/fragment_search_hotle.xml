@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_search"
-    >
+    android:background="@drawable/bg_search">
 
 
     <sf.hotel.com.hotel_client.view.custom.HotelTitleView
@@ -16,13 +14,14 @@
 
 
 
-    <com.andexert.library.RippleView
+    <sf.hotel.com.hotel_client.view.custom.rippleview.RippleView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/search_margin"
         android:layout_marginRight="@dimen/search_margin"
         android:layout_marginTop="@dimen/search_margin_top"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        >
         <sf.hotel.com.hotel_client.view.custom.CustomSearchItem
             android:layout_width="match_parent"
             android:layout_height="@dimen/search_item_height"
@@ -31,11 +30,11 @@
             app:custom_item_text1="2个成人"
             android:id="@+id/fragment_search_hotel_city"
             />
-    </com.andexert.library.RippleView>
+    </sf.hotel.com.hotel_client.view.custom.rippleview.RippleView>
 
 
 
-    <com.andexert.library.RippleView
+    <sf.hotel.com.hotel_client.view.custom.rippleview.RippleView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/search_margin"
@@ -50,10 +49,10 @@
             android:layout_height="@dimen/search_timer_height"
             android:background="@drawable/bg_serch_hotel"
             />
-    </com.andexert.library.RippleView>
+    </sf.hotel.com.hotel_client.view.custom.rippleview.RippleView>
 
 
-    <com.andexert.library.RippleView
+    <sf.hotel.com.hotel_client.view.custom.rippleview.RippleView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/search_margin"
@@ -113,10 +112,10 @@
         </LinearLayout>
 
 
-    </com.andexert.library.RippleView>
+    </sf.hotel.com.hotel_client.view.custom.rippleview.RippleView>
 
 
-    <com.andexert.library.RippleView
+    <sf.hotel.com.hotel_client.view.custom.rippleview.RippleView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/search_margin"
@@ -132,7 +131,7 @@
             android:textSize="20sp"
             android:textColor="@color/title_text_color_while"
             />
-    </com.andexert.library.RippleView>
+    </sf.hotel.com.hotel_client.view.custom.rippleview.RippleView>
 
 
 </LinearLayout>

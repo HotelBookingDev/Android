@@ -19,5 +19,8 @@ public interface IHotelsView  extends BaseView {
     void setSearchItem(SearchItem mSearchItem);
 
     void loadMoreFinish();
+
     void refreshComplete();
+
+    void setHeaderStr(SearchItem searchItem);
 }
