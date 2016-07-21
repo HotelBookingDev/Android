@@ -63,7 +63,7 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_userd_order, container, false);
         ButterKnife.bind(this, view);
-        position = OrderMessage.ALREADYCONSUMED;
+        position = OrderMessage.PENDING_CONFIRMATION;
         initRefreshView();
         mUserOrderPresenter = new UserOrderPresenter(this);
 //        根据你需要的订单来获取

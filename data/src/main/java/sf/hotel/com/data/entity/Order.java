@@ -25,7 +25,7 @@ public class Order {
     //    双早餐
     public static final int BREAFKFAST_DOUBLE = 3;
 
-    @DatabaseField(columnName = "user_id")
+    @DatabaseField(columnName = "customer")
     @SerializedName("customer")
     public long userId;
     @DatabaseField(id = true, unique = true, columnName = "number")
@@ -73,6 +73,15 @@ public class Order {
     @SerializedName("breakfast")
 
     private int breakfast;
+    @DatabaseField(columnName = "process_state")
+    @SerializedName("process_state")
+
+    private int process_state;
+
+    @DatabaseField(columnName = "seller")
+    @SerializedName("seller")
+
+    private int seller;
 
     public String getCheckin_time() {
         return checkin_time;

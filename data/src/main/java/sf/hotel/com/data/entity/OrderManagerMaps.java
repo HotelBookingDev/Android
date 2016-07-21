@@ -23,6 +23,7 @@ public class OrderManagerMaps {
         List<Order> orders = map.get(position);
         if (orders == null || orders.size() == 0) {
             orders = OrderDao.getOrder(context, position, userId);
+            map.put(position,orders);
         }
         return Observable.just(orders);
     }

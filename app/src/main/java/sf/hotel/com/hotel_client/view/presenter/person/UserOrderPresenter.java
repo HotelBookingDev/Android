@@ -44,7 +44,7 @@ public class UserOrderPresenter extends SuperPresenter {
                     public Observable<List<Order>> call(List<Order> orders) {
 //
                         if (list.contains(position)) {
-                            Observable.just(orders);
+                           return Observable.just(orders);
                         }
                         list.add(position);
                         return mIorder.loadDatas(mIUserOrderView.getBottomContext(), position);

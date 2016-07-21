@@ -45,7 +45,7 @@ public class OrderDao {
         try {
             QueryBuilder<Order, Integer> orderIntegerQueryBuilder = DatabaseHelper.getHelper(
                     context).getOrders().queryBuilder();
-            orderIntegerQueryBuilder.where().eq("payment_status", position).and().eq("user_id", userId);
+            orderIntegerQueryBuilder.where().eq("process_state", position).and().eq("customer", userId);
             mLists = orderIntegerQueryBuilder.query();
         } catch (SQLException e) {
             e.printStackTrace();

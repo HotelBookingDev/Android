@@ -28,5 +28,5 @@ public class AppUrl {
     public static final String[] NEEDTOKENURL = {
             INSTALLATIONS_BIND_URL, CHANGEPWD_URL, TOKEN_URL, ORDER_URL, DELETE_URL, HOTELS_BOOK_URL
     };
-    public static final String[] SPEICALURL = {PAY_URL};
+    public static final String[] SPEICALURL = {PAY_URL,ORDER_URL};
 }
