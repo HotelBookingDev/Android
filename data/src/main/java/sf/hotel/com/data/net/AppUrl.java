@@ -20,7 +20,6 @@ public class AppUrl {
     public static final String PROVINCES_URL = "province/";
 
     public static final String ORDER_URL = "customer/orders/";
-
     public static final String CHANGEPWD_URL = "user/password/";
 
     public static final String DELETE_URL = "order/customer/";

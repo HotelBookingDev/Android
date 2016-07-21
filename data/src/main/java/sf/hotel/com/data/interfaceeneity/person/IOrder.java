@@ -16,13 +16,8 @@ import sf.hotel.com.data.entity.netresult.NormalResult;
 public interface IOrder {
     Observable<List<Order>> getOrder(Context context, int position);
 
-    //    拉去网络数据默认只进行一次
-    Observable<List<Order>> getOrderByNet(Context context, int position);
 
-    Observable<NormalResult> detect(Order order);
+    Observable<List<Order>> detect(Context context, Order order, int position);
 
-    void update(Context context, Order order);
-
-    //    下拉刷新获取数据强制获取数据
-    Observable<List<Order>> forceRefresh(Context context, int position);
+    Observable<List<Order>> loadDatas(Context context, int position);
 }

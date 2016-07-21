@@ -12,9 +12,9 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "tb_order")
 public class Order {
     //    已完成
-    public static final int ALRADYORDER = 0x1;
+    public static final int ALRADYORDER = -100;
     //    未入住
-    public static final int NOTORDER = 0x0;
+    public static final int NOTORDER = 0x11;
     //    待确认
     public static final int PENDING_CONFIRMATION = 0x3;
 

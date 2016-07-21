@@ -40,12 +40,12 @@ public class OrderDao {
         }
     }
 
-    public static List<Order> getOrder(Context context, boolean isClose, long userId) {
+    public static List<Order> getOrder(Context context, int position, long userId) {
         List<Order> mLists = null;
         try {
             QueryBuilder<Order, Integer> orderIntegerQueryBuilder = DatabaseHelper.getHelper(
                     context).getOrders().queryBuilder();
-            orderIntegerQueryBuilder.where().eq("closed", isClose).and().eq("user_id", userId);
+            orderIntegerQueryBuilder.where().eq("payment_status", position).and().eq("user_id", userId);
             mLists = orderIntegerQueryBuilder.query();
         } catch (SQLException e) {
             e.printStackTrace();
