@@ -13,7 +13,8 @@ import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.entity.netresult.TokenResult;
 import sf.hotel.com.data.entity.netresult.hotel.room.RoomBean;
 import sf.hotel.com.data.entity.netresult.pay.PayResult;
-import sf.hotel.com.data.entity.netresult.person.OrderResult;
+import sf.hotel.com.data.entity.netresult.person.OrderListsResult;
+import sf.hotel.com.data.entity.netresult.person.OrderReuslt;
 import sf.hotel.com.data.utils.LogUtils;
 
 /**
@@ -137,7 +138,7 @@ public class ApiWrapper extends RetrofitHelper {
         return mService.callCityList().compose(this.<ProvincesResult>applySchedulers());
     }
 
-    public Observable<OrderResult> getOrders(int position) {
+    public Observable<OrderListsResult> getOrders(int position) {
         return mService.getOrders(position).compose(this.applySchedulers());
     }
 
@@ -146,8 +147,8 @@ public class ApiWrapper extends RetrofitHelper {
         return mService.putChangePwd(phoneNum, pwd, newPwd).compose(this.applySchedulers());
     }
 
-    public Observable<NormalResult> deleteOrder(long number) {
-        return mService.deleteOrder("cancel", number).compose(this.applySchedulers());
+    public Observable<OrderReuslt> deleteOrder(long number) {
+        return mService.deleteOrder(number,"cancel").compose(this.applySchedulers());
     }
 
     @Override

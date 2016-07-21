@@ -1,7 +1,5 @@
 package sf.hotel.com.hotel_client.view.presenter.person;
 
-import android.content.Intent;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +10,6 @@ import rx.functions.Func1;
 import sf.hotel.com.data.entity.Order;
 import sf.hotel.com.data.interfaceeneity.person.IOrder;
 import sf.hotel.com.data.interfaceeneity.person.IOrderImp;
-import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.view.interfaceview.person.IUserOrderView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 
@@ -44,7 +41,7 @@ public class UserOrderPresenter extends SuperPresenter {
                     public Observable<List<Order>> call(List<Order> orders) {
 //
                         if (list.contains(position)) {
-                           return Observable.just(orders);
+                            return Observable.just(orders);
                         }
                         list.add(position);
                         return mIorder.loadDatas(mIUserOrderView.getBottomContext(), position);
@@ -60,13 +57,10 @@ public class UserOrderPresenter extends SuperPresenter {
     }
 
     public void detect(Order order) {
-        Subscription subscribe = mIorder.detect(mIUserOrderView.getBottomContext(), order, mIUserOrderView.getPosition()).subscribe(new Action1<List<Order>>() {
-            @Override
-            public void call(List<Order> orders) {
-                mIUserOrderView.showOrder(orders);
-                mIUserOrderView.showViewToast("取消成功");
-            }
-        });
+        Subscription subscribe = mIorder.detect(mIUserOrderView.getBottomContext(), order, mIUserOrderView.getPosition()).subscribe(orders -> {
+            mIUserOrderView.showOrder(orders);
+            mIUserOrderView.showViewToast("取消成功");
+        }, this::handlingException);
         addSubsrcicitpition(subscribe);
     }
 

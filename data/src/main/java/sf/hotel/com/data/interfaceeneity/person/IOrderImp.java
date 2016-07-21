@@ -10,8 +10,8 @@ import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.datasource.OrderDao;
 import sf.hotel.com.data.entity.Order;
 import sf.hotel.com.data.entity.OrderManagerMaps;
-import sf.hotel.com.data.entity.netresult.NormalResult;
-import sf.hotel.com.data.entity.netresult.person.OrderResult;
+import sf.hotel.com.data.entity.netresult.person.OrderListsResult;
+import sf.hotel.com.data.entity.netresult.person.OrderReuslt;
 import sf.hotel.com.data.net.ApiWrapper;
 
 /**
@@ -34,20 +34,18 @@ public class IOrderImp implements IOrder {
 
     public Observable<List<Order>> loadDatas(Context context, int position) {
         return ApiWrapper.getInstance().getOrders(position).filter(orderResult -> orderResult == null ? Boolean.FALSE : Boolean.TRUE)
-                .map(OrderResult::getOrderList).doOnNext(orders -> mOrderManager.upDate(position, orders, context));
+                .map(OrderListsResult::getOrderList).doOnNext(orders -> mOrderManager.upDate(position, orders, context));
     }
 
     @Override
     public Observable<List<Order>> detect(Context context, Order order, int position) {
         return ApiWrapper.getInstance().deleteOrder(order.getOrder_num()).
-                doOnNext(normalResult -> mOrderManager.resert()).
-                doOnNext(normalResult -> {
-                    order.setClosed(true);
-                    OrderDao.update(order, context);
-                }).
-                flatMap(new Func1<NormalResult, Observable<List<Order>>>() {
+                map(OrderReuslt::getOrder).
+                doOnNext(order13 -> OrderDao.update(order13, context))
+                .doOnNext(order12 -> mOrderManager.resert())
+                .flatMap(new Func1<Order, Observable<List<Order>>>() {
                     @Override
-                    public Observable<List<Order>> call(NormalResult normalResult) {
+                    public Observable<List<Order>> call(Order order1) {
                         return mOrderManager.getMaps(context, position, EntityContext.getInstance().getmCurrentUser().getUserId());
                     }
                 });

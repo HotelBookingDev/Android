@@ -7,8 +7,6 @@ import java.util.List;
 
 import rx.Observable;
 import sf.hotel.com.data.datasource.OrderDao;
-import sf.hotel.com.data.entity.netresult.person.OrderResult;
-import sf.hotel.com.data.net.ApiWrapper;
 
 /**
  * Created by "林其望".
