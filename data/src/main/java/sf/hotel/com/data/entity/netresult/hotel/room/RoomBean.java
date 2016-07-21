@@ -3,6 +3,8 @@ package sf.hotel.com.data.entity.netresult.hotel.room;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -37,6 +39,7 @@ public class RoomBean implements Parcelable{
      * default_point : 30
      */
 
+    @SerializedName("roomPackages")
     private List<RoomPackagesBean> roomPackages;
     private List<String> room_imgs;
 

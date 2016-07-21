@@ -17,15 +17,37 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
+        android:textColor="@color/hotels_text_color_gray"
+        android:text="含早"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:textColor="@color/hotels_text_color_green"
-        android:text="单早"
+        android:background="@drawable/bg_item_tag"
+        android:text="普票"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/hotels_text_color_green"
-        android:text="普票"
+        android:text="禁烟"
+        android:background="@drawable/bg_item_tag"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/hotels_text_color_green"
+        android:background="@drawable/bg_item_tag"
+        android:text="双早"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         />

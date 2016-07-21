@@ -235,7 +235,6 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
     public void setHeaderStr(SearchItem searchItem){
         mHotelPerson.setContentStr(searchItem.adultCount + searchItem.childCount + "");
         mHotelCity.setContentStr(searchItem.cityBean.getName());
-        mHotelTimer.setNameStr(searchItem.getSimpleInTime() + "-" + searchItem.getSimpleOutTime());
-
+        mHotelTimer.setContentStr(searchItem.getSimpleInTime() + "-" + searchItem.getSimpleOutTime());
     }
 }

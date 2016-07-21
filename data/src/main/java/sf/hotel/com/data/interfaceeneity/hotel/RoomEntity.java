@@ -8,6 +8,7 @@ import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.data.entity.netresult.hotel.Hotel1Result;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.data.entity.netresult.hotel.room.RoomBean;
+import sf.hotel.com.data.entity.netresult.hotel.room.RoomResult;
 import sf.hotel.com.data.net.ApiWrapper;
 
 /**
@@ -20,5 +21,5 @@ public interface RoomEntity extends DataEntity{
      * @param id hotel的id
      * @return
      */
-    Observable<RoomBean> callHotelBean(Context context ,String id, String ex);
+    Observable<RoomResult> callHotelBean(Context context , String id, String ex);
 }

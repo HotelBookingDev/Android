@@ -31,6 +31,7 @@ public class BookingFragment extends BaseFragment implements IBookingView {
 
     SearchItem searchItem;
 
+
     public static BookingFragment newInstance() {
         Bundle args = new Bundle();
         BookingFragment fragment = new BookingFragment();

@@ -32,7 +32,7 @@ public class IBookingEntityImp extends DataEntityImp implements BookingEntity {
 
         String guests = "";
         LogUtils.d(inTime + outTime + "----------");
-        return ApiWrapper.getInstance().callHotelBook("100f5982-cfca-4c80-a7cb-7f0b229a06bb", inTime, outTime, guests);
+        return ApiWrapper.getInstance().callHotelBook("2", inTime, outTime, guests);
     }
 
 }

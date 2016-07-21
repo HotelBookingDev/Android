@@ -17,6 +17,7 @@ import sf.hotel.com.data.entity.netresult.TokenResult;
 import sf.hotel.com.data.entity.netresult.hotel.Hotel1Result;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.data.entity.netresult.hotel.room.RoomBean;
+import sf.hotel.com.data.entity.netresult.hotel.room.RoomResult;
 import sf.hotel.com.data.entity.netresult.pay.PayResult;
 import sf.hotel.com.data.entity.netresult.person.OrderManagerResult;
 import sf.hotel.com.data.utils.LogUtils;
@@ -124,9 +125,9 @@ public class ApiWrapper extends RetrofitHelper {
      * @param id hotel的id
      * @return
      */
-    public Observable<RoomBean> callHotelBean(String id, String inTime, String outTime, String exclude){
+    public Observable<RoomResult> callHotelBean(String id, String inTime, String outTime, String exclude){
         return mService.callHotelBeanById(id, inTime, outTime, exclude)
-                .compose(this.<RoomBean>applySchedulers());
+                .compose(this.<RoomResult>applySchedulers());
     }
 
     public Observable<PayResult> callPay(String point){

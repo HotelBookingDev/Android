@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="100dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="高级房"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="普票"
+            />
+
+        <sf.hotel.com.hotel_client.view.custom.PriceView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            />
+
+        <sf.hotel.com.hotel_client.view.custom.PriceText
+            android:id="@+id/item_hotels_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textColor="@color/hotels_text_color_green"
+            android:textSize="@dimen/hotels_item_price"
+            app:price_text_poins="1000"
+            app:price_text_price="1024"
+            android:layout_gravity="right"
+            />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/item_room_pager_submit"
+        android:layout_gravity="right"
+        android:text="立即预定"
+        />
+</LinearLayout>

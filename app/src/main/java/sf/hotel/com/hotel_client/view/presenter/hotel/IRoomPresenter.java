@@ -5,6 +5,7 @@ import sf.hotel.com.data.entity.HotelBookResult;
 import sf.hotel.com.data.entity.netresult.hotel.Hotel1Result;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.data.entity.netresult.hotel.room.RoomBean;
+import sf.hotel.com.data.entity.netresult.hotel.room.RoomResult;
 import sf.hotel.com.data.interfaceeneity.hotel.IRoomEntityImp;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IRoomView;
@@ -30,11 +31,11 @@ public class IRoomPresenter extends SuperPresenter {
         String ex = "";
 
         Subscription subscribe = mIRoomEntityImp.callHotelBean(mIRoomView.getBottomContext(), String.valueOf(mIRoomView.getHotelId()), ex)
-                .subscribe(new SimpleSubscriber<RoomBean>(mIRoomView.getBottomContext()) {
+                .subscribe(new SimpleSubscriber<RoomResult>(mIRoomView.getBottomContext()) {
                     @Override
-                    public void onNext(RoomBean roomBean) {
-                        super.onNext(roomBean);
-                        onNextHotelBean(roomBean);
+                    public void onNext(RoomResult roomResult) {
+                        super.onNext(roomResult);
+                        onNextHotelBean(roomResult);
                     }
                     @Override
                     public void onError(Throwable e) {
@@ -44,7 +45,7 @@ public class IRoomPresenter extends SuperPresenter {
         addSubsrcicitpition(subscribe);
     }
 
-    private void onNextHotelBean(RoomBean roomBean) {
-       mIRoomView.setHotelsBean(roomBean);
+    private void onNextHotelBean(RoomResult roomResult) {
+       mIRoomView.setHotelsBean(roomResult);
     }
 }

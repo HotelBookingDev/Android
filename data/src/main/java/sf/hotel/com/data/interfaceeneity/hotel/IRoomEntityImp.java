@@ -12,6 +12,7 @@ import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.data.entity.netresult.hotel.Hotel1Result;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.data.entity.netresult.hotel.room.RoomBean;
+import sf.hotel.com.data.entity.netresult.hotel.room.RoomResult;
 import sf.hotel.com.data.net.ApiWrapper;
 
 /**
@@ -26,20 +27,16 @@ public class IRoomEntityImp extends DataEntityImp implements RoomEntity{
      * @param id hotel的id
      * @return
      */
-    public Observable<RoomBean> callHotelBean(Context context, String id, String ex){
+    public Observable<RoomResult> callHotelBean(Context context, String id, String ex){
 
-        return Observable.create(new Observable.OnSubscribe<RoomBean>() {
+        return Observable.create(new Observable.OnSubscribe<RoomResult>() {
             @Override
-            public void call(Subscriber<? super RoomBean> subscriber) {
+            public void call(Subscriber<? super RoomResult> subscriber) {
                 SearchItem searchItem = getSearchItem(context);
                 if (searchItem == null){
                     subscriber.onError(new NullPointerException("searchItem = null"));
                 }else {
-                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-
-
-                    ApiWrapper.getInstance().callHotelBean(id, "", "", ex).subscribe(subscriber);
+                    ApiWrapper.getInstance().callHotelBean(id, searchItem.getSimpleInTime(), searchItem.getSimpleOutTime() , ex).subscribe(subscriber);
                 }
             }
         });

@@ -23,6 +23,7 @@ import sf.hotel.com.data.entity.netresult.TokenResult;
 import sf.hotel.com.data.entity.netresult.hotel.Hotel1Result;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.data.entity.netresult.hotel.room.RoomBean;
+import sf.hotel.com.data.entity.netresult.hotel.room.RoomResult;
 import sf.hotel.com.data.entity.netresult.pay.PayResult;
 import sf.hotel.com.data.entity.netresult.person.OrderManagerResult;
 
@@ -76,25 +77,25 @@ public interface ApiService {
     @Headers({"Content-Type: application/json;charset=UTF-8"})
     Observable<HttpResult<NormalResult>> postIntallation(@Body Intallation mIntallation);
 
-    @GET(AppUrl.HOTELS_URL)
-    Observable<HttpResult<HotelResult>> callHotelsByCityId(@Query(CITY_ID) String cityId,
-                                                           @Query(PAGE) String page,
-                                                           @Query(CHECK_IN_TIME) String in,
-                                                           @Query(CHECK_OUT_TIME) String out,
-                                                           @Query(EXCLUDE) String exclude);
-
     @FormUrlEncoded
-    @POST(AppUrl.HOTELS_BOOK_URL)
-    Observable<HttpResult<HotelBookResult>> callHotelBook(@Field(PRODUCTID) String productId,
-                                                          @Field(CHECK_IN_TIME) String inTime,
-                                                          @Field(CHECK_OUT_TIME) String outTime,
-                                                          @Field(GUESTS) String guests);
+    @POST(AppUrl.HOTELS_URL)
+    Observable<HttpResult<HotelResult>> callHotelsByCityId(@Field(CITY_ID) String cityId,
+                                                           @Field(PAGE) String page,
+                                                           @Field(CHECK_IN_TIME) String in,
+                                                           @Field(CHECK_OUT_TIME) String out,
+                                                           @Field(EXCLUDE) String exclude);
+
+    @GET(AppUrl.HOTELS_BOOK_URL)
+    Observable<HttpResult<HotelBookResult>> callHotelBook(@Query(PRODUCTID) String productId,
+                                                          @Query(CHECK_IN_TIME) String inTime,
+                                                          @Query(CHECK_OUT_TIME) String outTime,
+                                                          @Query(GUESTS) String guests);
 
     @GET("hotel/{id}")
-    Observable<HttpResult<RoomBean>> callHotelBeanById(@Path("id") String id,
-                                                       @Query(CHECK_IN_TIME) String inTime,
-                                                       @Query(CHECK_OUT_TIME) String outTime,
-                                                       @Query(EXCLUDE) String exclude);
+    Observable<HttpResult<RoomResult>> callHotelBeanById(@Path("id") String id,
+                                                         @Query(CHECK_IN_TIME) String inTime,
+                                                         @Query(CHECK_OUT_TIME) String outTime,
+                                                         @Query(EXCLUDE) String exclude);
 
     //获取TOKEN
     @GET(AppUrl.TOKEN_URL)

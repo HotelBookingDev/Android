@@ -29,11 +29,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import mehdi.sakout.fancybuttons.FancyButton;
-import sf.hotel.com.data.entity.netresult.hotel.Hotel1Bean;
-import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
-import sf.hotel.com.data.entity.netresult.hotel.room.RoomBean;
+import sf.hotel.com.data.entity.netresult.hotel.room.RoomResult;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.StartActivityUtils;
@@ -43,7 +40,6 @@ import sf.hotel.com.hotel_client.view.adapter.LocalImageHodlerView;
 import sf.hotel.com.hotel_client.view.adapter.RoomRecyclerAdapter;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.custom.PersonalItemView;
-import sf.hotel.com.hotel_client.view.event.Message;
 import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.RoomMessage;
@@ -64,7 +60,7 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
     private static Bundle args;
 
     private int hotelId;
-    private RoomBean hotelsBean;
+    private RoomResult hotelsBean;
 
     //ListImg
     private List<String> mImageList;
@@ -272,6 +268,7 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
         if (mIRoomPresenter.checkIsLogin()){
             Intent intent = new Intent(getActivity(), BookingActivity.class);
             intent.putExtra("action", "Room");
+            intent.putExtra("productId", "1");
             startActivity(intent);
         } else {
             RxBus.getDefault().post(MessageFactory.createLoginMessage(LoginMessage.SHOW_LOGIN));
@@ -303,16 +300,16 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
 
 
     @Override
-    public void setHotelsBean(RoomBean hotel1Bean) {
+    public void setHotelsBean(RoomResult hotel1Bean) {
         this.hotelsBean = hotel1Bean;
         notifyDataSetChanged();
     }
 
     public void notifyDataSetChanged() {
-        setImageList(hotelsBean.getRoom_imgs());
-        setRoomContentText(hotelsBean.getName());
-        mRecyclerAdapter.setDatas(hotelsBean.getRoomPackages());
-        phoneText.setText(hotelsBean.getName());
-        mLocation.setText(hotelsBean.getName());
+//        setImageList(hot);
+        setRoomContentText(hotelsBean.getHotelBean().getName());
+        mRecyclerAdapter.setDatas(hotelsBean.getHotelBean().getRooms());
+        phoneText.setText(hotelsBean.getHotelBean().getName());
+        mLocation.setText(hotelsBean.getHotelBean().getName());
     }
 }

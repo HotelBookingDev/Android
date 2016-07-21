@@ -1,6 +1,7 @@
 package sf.hotel.com.hotel_client.view.custom;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.widget.ListView;
 
@@ -9,7 +10,7 @@ import android.widget.ListView;
  * @email sanfenruxi1@163.com
  * @date 16/7/12.
  */
-public class BedListView extends ListView {
+public class BedListView extends RecyclerView {
 
     public BedListView(Context context) {
         this(context, null);

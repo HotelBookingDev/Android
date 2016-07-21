@@ -35,6 +35,7 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.support.annotation.ColorRes;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
@@ -138,12 +139,12 @@ public class RippleView extends RelativeLayout {
             @Override
             public void onLongPress(MotionEvent event) {
                 super.onLongPress(event);
-                animateRipple(event);
                 sendClickEvent(true);
             }
 
             @Override
             public boolean onSingleTapConfirmed(MotionEvent e) {
+
                 return true;
             }
 
@@ -273,14 +274,16 @@ public class RippleView extends RelativeLayout {
             if (rippleType == 1 && originBitmap == null)
                 originBitmap = getDrawingCache(true);
 
-            invalidate();
+            postInvalidate();
         }
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        animateRipple(event);
-        if (gestureDetector.onTouchEvent(event)) {
+        if (event.getAction() == MotionEvent.ACTION_UP){
+            animateRipple(event);
+        }
+        if (gestureDetector.onTouchEvent(event)){
             sendClickEvent(false);
         }
         return super.onTouchEvent(event);

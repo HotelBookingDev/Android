@@ -12,6 +12,7 @@
         app:leftBtnIcon="@mipmap/ic_title_back_arrow"
         />
 
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/fragment_room_recyclerView"
         android:layout_width="match_parent"

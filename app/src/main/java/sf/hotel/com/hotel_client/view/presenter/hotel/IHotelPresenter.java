@@ -93,6 +93,7 @@ public class IHotelPresenter extends SuperPresenter {
             }
         }
         mIHotelsView.setSearchItem(searchItem);
+        mIHotelsView.setHeaderStr(searchItem);
     }
 
     @Override
