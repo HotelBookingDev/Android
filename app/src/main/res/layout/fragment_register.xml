@@ -191,6 +191,7 @@
                     android:layout_marginTop="40.0dip"
                     fancy:fb_borderColor="#FFFFFF"
                     fancy:fb_borderWidth="1dp"
+                    fancy:fb_focusColor="@color/focus_color"
                     fancy:fb_defaultColor="@color/forgot_color"
                     fancy:fb_radius="100dp"
                     fancy:fb_text="@string/btn_register" />

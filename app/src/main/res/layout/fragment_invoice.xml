@@ -143,6 +143,7 @@
             style="@style/button_green"
             android:layout_width="280dp"
             android:layout_gravity="center"
+            fancy:fb_focusColor="@color/focus_color"
             fancy:fb_defaultColor="@color/default_button"
             fancy:fb_text="@string/confirm" />
     </LinearLayout>
