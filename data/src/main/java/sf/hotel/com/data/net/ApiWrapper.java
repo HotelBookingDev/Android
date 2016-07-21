@@ -142,7 +142,6 @@ public class ApiWrapper extends RetrofitHelper {
     }
 
 
-
     public Observable<NormalResult> putChangePwd(String phoneNum, String pwd, String newPwd) {
         return mService.putChangePwd(phoneNum, pwd, newPwd).compose(this.applySchedulers());
     }
