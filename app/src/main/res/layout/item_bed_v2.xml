@@ -1,100 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    android:padding="10dp"
-    android:background="@drawable/bg_item_room"
-    >
-
-
+    android:orientation="horizontal">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_item_room"
         android:orientation="horizontal"
-        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:padding="5dp"
         >
         <ImageView
             android:id="@+id/item_bed_v2_img"
             android:layout_width="150dp"
             android:layout_height="100dp"
-            android:src="@mipmap/ic_launcher"
-            android:scaleType="fitXY"/>
-
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
             android:orientation="vertical">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-
-
+                android:orientation="horizontal">
                 <TextView
                     android:id="@+id/item_bed_v2_name"
                     style="@style/titleTextStyle"
-                    android:textColor="@color/hotels_text_color_green"
-                    android:textSize="@dimen/hotels_item_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="三亚 | 国际连锁"/>
-
+                    android:text="三亚 | 国际连锁"
+                    android:textColor="@color/hotels_text_color_green"
+                    android:textSize="@dimen/hotels_item_title" />
                 <View
                     android:layout_width="0dp"
                     android:layout_height="1dp"
-                    android:layout_weight="1"
-                    />
+                    android:layout_weight="1" />
+
                 <ImageView
+                    android:id="@+id/item_bed_v2_more"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
-                    android:src="@mipmap/ic_close_black_36dp"
-                    android:id="@+id/item_bed_v2_more"
-                    />
+                    android:src="@mipmap/ic_close_black_36dp" />
 
             </LinearLayout>
 
 
             <TextView
                 android:id="@+id/item_bed_v2_tag"
-                android:textColor="@color/hotels_text_color_gray"
-                android:textSize="@dimen/hotel_item_tag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="(King Room)"/>
+                android:text="(King Room)"
+                android:textColor="@color/hotels_text_color_gray"
+                android:textSize="@dimen/hotel_item_tag" />
 
             <sf.hotel.com.hotel_client.view.custom.CustomBedType
                 android:layout_width="match_parent"
-                android:layout_height="20dp"/>
-
+                android:layout_height="wrap_content"
+                app:bed_type_name="含早"
+                app:bed_type_tag1="普票"
+                app:bed_type_tag2="禁烟"
+                />
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
             <sf.hotel.com.hotel_client.view.custom.PriceText
                 android:id="@+id/item_hotels_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="right"
                 android:padding="5dp"
                 android:textColor="@color/hotels_text_color_green"
                 android:textSize="@dimen/hotels_item_price"
                 app:price_text_poins="1000"
-                app:price_text_price="1024"
-                android:layout_gravity="right"
-                />
+                app:price_text_price="1024" />
         </LinearLayout>
-
     </LinearLayout>
-
-    <sf.hotel.com.hotel_client.view.custom.BedListView
-        android:id="@+id/item_bed_v2_bed_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 </LinearLayout>

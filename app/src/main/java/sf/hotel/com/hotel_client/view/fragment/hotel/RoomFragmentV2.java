@@ -10,12 +10,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
@@ -30,13 +29,15 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mehdi.sakout.fancybuttons.FancyButton;
+import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
+import sf.hotel.com.data.entity.netresult.hotel.room.HotelBean;
 import sf.hotel.com.data.entity.netresult.hotel.room.RoomResult;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.StartActivityUtils;
 import sf.hotel.com.hotel_client.view.activity.hotel.BookingActivity;
-import sf.hotel.com.hotel_client.view.adapter.BaseRecyclerAdapter;
 import sf.hotel.com.hotel_client.view.adapter.LocalImageHodlerView;
+import sf.hotel.com.hotel_client.view.adapter.RoomExpandListAdapter;
 import sf.hotel.com.hotel_client.view.adapter.RoomRecyclerAdapter;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.custom.PersonalItemView;
@@ -70,8 +71,14 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
     DialogPlus dialogPlus, phoneDialog;
     PersonalItemView mPhone;
     PersonalItemView mLocation;
-    @BindView(R.id.fragment_room_recyclerView)
-    RecyclerView mRecyclerView;
+//    @BindView(R.id.fragment_room_recyclerView)
+//    RecyclerView mRecyclerView;
+
+    @BindView(R.id.fragment_room_listview)
+    ExpandableListView mListView;
+
+    RoomExpandListAdapter mAdapter;
+
     RoomRecyclerAdapter mRecyclerAdapter;
     TextView phoneText;
     FancyButton phoneCancel;
@@ -123,17 +130,29 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
     private void initRecycler() {
         View header = LayoutInflater.from(getBottomContext()).inflate(R.layout.header_room_v2, null);
         initHeader(header);
-        mRecyclerAdapter = new RoomRecyclerAdapter(getBottomContext());
-        mRecyclerAdapter.setHeaderView(header);
-        mRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
+//        mRecyclerAdapter = new RoomRecyclerAdapter(getBottomContext());
+//        mRecyclerAdapter.setHeaderView(header);
+//        mRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(int position, Object data) {
+//                showBooking();
+//            }
+//        });
+//
+//        mRecyclerView.setLayoutManager(new LinearLayoutManager(getBottomContext()));
+//        mRecyclerView.setAdapter(mRecyclerAdapter);
+
+        mAdapter = new RoomExpandListAdapter(getBottomContext());
+        mAdapter.setChildSubmitClickListener(new RoomExpandListAdapter.OnChildSubmitClickListener() {
             @Override
-            public void onItemClick(int position, Object data) {
-                showBooking();
+            public void onChildSubmitClick(int groupPos, int childPos) {
+
+                LogUtils.e(groupPos + "--->" + childPos);
+                showBooking(groupPos, childPos);
             }
         });
-
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getBottomContext()));
-        mRecyclerView.setAdapter(mRecyclerAdapter);
+        mListView.addHeaderView(header);
+        mListView.setAdapter(mAdapter);
     }
 
 
@@ -220,7 +239,6 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
                 .setOnItemClickListener(new OnItemClickListener() {
                     @Override
                     public void onItemClick(int position) {
-                        showBooking();
                     }
                 })
 
@@ -264,11 +282,11 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
         }
     }
 
-    public void showBooking(){
+    public void showBooking(int groupPos, int childPos){
         if (mIRoomPresenter.checkIsLogin()){
+            mIRoomPresenter.saveBooking(groupPos, childPos);
             Intent intent = new Intent(getActivity(), BookingActivity.class);
             intent.putExtra("action", "Room");
-            intent.putExtra("productId", "1");
             startActivity(intent);
         } else {
             RxBus.getDefault().post(MessageFactory.createLoginMessage(LoginMessage.SHOW_LOGIN));
@@ -308,8 +326,15 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
     public void notifyDataSetChanged() {
 //        setImageList(hot);
         setRoomContentText(hotelsBean.getHotelBean().getName());
-        mRecyclerAdapter.setDatas(hotelsBean.getHotelBean().getRooms());
+        mAdapter.setDatas(hotelsBean.getHotelBean().getRooms());
         phoneText.setText(hotelsBean.getHotelBean().getName());
         mLocation.setText(hotelsBean.getHotelBean().getName());
     }
+
+    @Override
+    public HotelBean getHotelsBean() {
+        return hotelsBean.getHotelBean();
+    }
+
+
 }

@@ -4,10 +4,12 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 
+import sf.hotel.com.data.entity.BookingBean;
 import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.data.entity.netresult.HotelResult;
+import sf.hotel.com.data.interfaceeneity.hotel.BookingEntity;
 import sf.hotel.com.data.utils.PreferencesUtils;
 
 /**
@@ -62,5 +64,17 @@ public class HotelDao{
         Gson gson = new Gson();
         String s = gson.toJson(searchItem);
         PreferencesUtils.saveSearchItem(context, s);
+    }
+
+    public static BookingBean getBookingBean(Context context){
+        Gson gson = new Gson();
+        String bookingBean = PreferencesUtils.getBookingBean(context);
+        return gson.fromJson(bookingBean, BookingBean.class);
+    }
+
+    public static void saveBookingBean(Context context,BookingBean bookingBean){
+        Gson gson = new Gson();
+        String s = gson.toJson(bookingBean);
+        PreferencesUtils.saveBookingBean(context, s);
     }
 }

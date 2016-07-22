@@ -10,7 +10,7 @@ import android.widget.ListView;
  * @email sanfenruxi1@163.com
  * @date 16/7/12.
  */
-public class BedListView extends RecyclerView {
+public class BedListView extends ListView {
 
     public BedListView(Context context) {
         this(context, null);

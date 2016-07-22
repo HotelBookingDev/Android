@@ -64,9 +64,7 @@ public class RoomRecyclerAdapter extends BaseRecyclerAdapter<RoomBean> {
 //            }
 
             BedListAdapter bedAdapter = (BedListAdapter) holder.mListView.getAdapter();
-            bedAdapter.setDatas(data.getRoomPackages());
-            holder.mListView.requestLayout();
-
+            bedAdapter.setData(data.getRoomPackages());
 
         }
     }
@@ -80,16 +78,13 @@ public class RoomRecyclerAdapter extends BaseRecyclerAdapter<RoomBean> {
         public ViewHolder(View itemView) {
             super(itemView);
             mImageView = (ImageView) itemView.findViewById(R.id.item_bed_v2_img);
-            mListView = (BedListView) itemView.findViewById(R.id.item_bed_v2_bed_list);
+            //mListView = (BedListView) itemView.findViewById(R.id.item_bed_v2_bed_list);
             mMore = (ImageView) itemView.findViewById(R.id.item_bed_v2_more);
 
             BedListAdapter bedListAdapter = new BedListAdapter(mContext);
-            if (mOnSubmitClickListener != null){
-                bedListAdapter.setSubmitOnClickListener(mOnSubmitClickListener);
-            }
-            mListView.setLayoutManager(new LinearLayoutManager(mContext));
             mListView.setAdapter(new BedListAdapter(mContext));
 
+           // mListView.setVisibility(View.GONE);
             mMore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

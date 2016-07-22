@@ -1,12 +1,8 @@
 package sf.hotel.com.data.interfaceeneity.hotel;
 
-import android.content.Context;
-
 import rx.Observable;
-import sf.hotel.com.data.datasource.HotelDao;
+import sf.hotel.com.data.entity.BookingBean;
 import sf.hotel.com.data.entity.HotelBookResult;
-import sf.hotel.com.data.entity.SearchItem;
-import sf.hotel.com.data.net.ApiWrapper;
 
 /**
  * @author MZ
@@ -14,5 +10,6 @@ import sf.hotel.com.data.net.ApiWrapper;
  * @date 16/7/15.
  */
 public interface BookingEntity extends DataEntity{
-    Observable<HotelBookResult> callHotelBook( String productId, SearchItem searchItem);
+    Observable<HotelBookResult> callHotelBook(BookingBean bookingBean);
+
 }

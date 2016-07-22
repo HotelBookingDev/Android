@@ -5,10 +5,14 @@ import android.content.Context;
 import java.util.List;
 
 import sf.hotel.com.data.datasource.HotelDao;
+import sf.hotel.com.data.datasource.UserDao;
+import sf.hotel.com.data.entity.BookingBean;
 import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.ProvincesBean;
 import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.data.entity.SearchItem;
+import sf.hotel.com.data.entity.UserEntity;
+import sf.hotel.com.data.utils.PreferencesUtils;
 
 /**
  * @author MZ
@@ -27,6 +31,23 @@ public abstract class DataEntityImp implements DataEntity{
         return HotelDao.getCitysBean(context);
     }
 
+    @Override
+    public BookingBean getBookingBean(Context context) {
+        return HotelDao.getBookingBean(context);
+    }
+
+
+    @Override
+    public UserEntity getUserEntity(Context context) {
+        long userId = Long.parseLong(PreferencesUtils.getUserId(context));
+        return UserDao.getUserEntity(userId, context);
+    }
+
+    @Override
+    public void saveBookingBean(Context context, BookingBean bookingBean) {
+        HotelDao.saveBookingBean(context, bookingBean);
+    }
+
     public List<CityBean> getProcincesResult(Context context){
         List<CityBean> citys = null;
 
@@ -42,5 +63,7 @@ public abstract class DataEntityImp implements DataEntity{
     public void saveCitysBean(Context context, CityBean cityBean){
         HotelDao.saveCitysBean(context, cityBean);
     }
+
+
 
 }

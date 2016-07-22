@@ -71,19 +71,19 @@ public interface ApiService {
     @Headers({"Content-Type: application/json;charset=UTF-8"})
     Observable<HttpResult<NormalResult>> postIntallation(@Body Intallation mIntallation);
 
-    @FormUrlEncoded
-    @POST(AppUrl.HOTELS_URL)
-    Observable<HttpResult<HotelResult>> callHotelsByCityId(@Field(CITY_ID) String cityId,
-                                                           @Field(PAGE) String page,
-                                                           @Field(CHECK_IN_TIME) String in,
-                                                           @Field(CHECK_OUT_TIME) String out,
-                                                           @Field(EXCLUDE) String exclude);
+    @GET(AppUrl.HOTELS_URL)
+    Observable<HttpResult<HotelResult>> callHotelsByCityId(@Query(CITY_ID) String cityId,
+                                                           @Query(PAGE) String page,
+                                                           @Query(CHECK_IN_TIME) String in,
+                                                           @Query(CHECK_OUT_TIME) String out,
+                                                           @Query(EXCLUDE) String exclude);
 
-    @GET(AppUrl.HOTELS_BOOK_URL)
-    Observable<HttpResult<HotelBookResult>> callHotelBook(@Query(PRODUCTID) String productId,
-                                                          @Query(CHECK_IN_TIME) String inTime,
-                                                          @Query(CHECK_OUT_TIME) String outTime,
-                                                          @Query(GUESTS) String guests);
+    @FormUrlEncoded
+    @POST(AppUrl.HOTELS_BOOK_URL)
+    Observable<HttpResult<HotelBookResult>> callHotelBook(@Field(PRODUCTID) String productId,
+                                                          @Field(CHECK_IN_TIME) String inTime,
+                                                          @Field(CHECK_OUT_TIME) String outTime,
+                                                          @Field(GUESTS) String guests);
 
     @GET("hotel/{id}")
     Observable<HttpResult<RoomResult>> callHotelBeanById(@Path("id") String id,

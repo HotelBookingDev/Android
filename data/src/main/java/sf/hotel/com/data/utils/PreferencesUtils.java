@@ -42,6 +42,8 @@ public class PreferencesUtils {
 
     public static final String HOTEL_SEARCH = "hotel_search";
 
+    public static final String HOTEL_ROOM_BOOKING = "hotel_room_booking";
+
     private static void put(Context context, String key, String value) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
         preferences.edit().putString(key, value).apply();
@@ -188,5 +190,10 @@ public class PreferencesUtils {
         put(context, HOTEL_SEARCH, str);
     }
 
-
+    public static String getBookingBean(Context context){
+        return get(context, HOTEL_ROOM_BOOKING);
+    }
+    public static void saveBookingBean(Context context,String str){
+        put(context, HOTEL_ROOM_BOOKING, str);
+    }
 }

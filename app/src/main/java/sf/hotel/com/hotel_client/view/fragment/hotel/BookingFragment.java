@@ -10,6 +10,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mehdi.sakout.fancybuttons.FancyButton;
+import sf.hotel.com.data.entity.BookingBean;
 import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
@@ -29,7 +30,7 @@ public class BookingFragment extends BaseFragment implements IBookingView {
     @BindView(R.id.fragment_booking_pay)
     FancyButton mPay;
 
-    SearchItem searchItem;
+    BookingBean bookingBean;
 
 
     public static BookingFragment newInstance() {
@@ -51,7 +52,8 @@ public class BookingFragment extends BaseFragment implements IBookingView {
     }
 
     private void initDate() {
-        mIBookingPresenter.getSearchItem();
+        mIBookingPresenter.getBookingBean();
+        notifyDataSetChanged();
     }
 
     @OnClick({R.id.fragment_booking_pay})
@@ -63,11 +65,17 @@ public class BookingFragment extends BaseFragment implements IBookingView {
         }
     }
 
-    public SearchItem getSearchItem() {
-        return searchItem;
+    public BookingBean getBookingBean() {
+        return bookingBean;
     }
 
-    public void setSearchItem(SearchItem searchItem) {
-        this.searchItem = searchItem;
+    public void setBookingBean(BookingBean bookingBean) {
+        this.bookingBean = bookingBean;
     }
+
+    public void notifyDataSetChanged() {
+
+
+    }
+
 }

@@ -3,48 +3,83 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
-
+    android:layout_height="120dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_item_room"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:padding="5dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            >
+
+            <TextView
+                android:id="@+id/item_bed_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="高级房"
+                android:textSize="20sp"
+                />
+            <sf.hotel.com.hotel_client.view.custom.CustomBedType
+                android:id="@+id/item_bed_tag"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                app:bed_type_tag1="普票"
+                app:bed_type_tag2="禁烟"
+                app:bed_type_tag3="双早"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                />
+
+            <sf.hotel.com.hotel_client.view.custom.PriceText
+                android:id="@+id/item_bed_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:paddingEnd="10dp"
+                android:gravity="right"
+                android:textColor="@color/hotels_text_color_green"
+                android:textSize="@dimen/hotels_item_price"
+                app:price_text_poins="1000"
+                app:price_text_price="1024"
+                />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="高级房"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="普票"
-            />
-
-        <sf.hotel.com.hotel_client.view.custom.PriceView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            />
-
-        <sf.hotel.com.hotel_client.view.custom.PriceText
-            android:id="@+id/item_hotels_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:textColor="@color/hotels_text_color_green"
-            android:textSize="@dimen/hotels_item_price"
-            app:price_text_poins="1000"
-            app:price_text_price="1024"
+            android:id="@+id/item_room_pager_submit"
+            android:background="@drawable/bg_item_room_bed"
+            android:textColor="@color/hotels_text_color_white"
             android:layout_gravity="right"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="10dp"
+            android:text="立即预定"
             />
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/item_room_pager_submit"
-        android:layout_gravity="right"
-        android:text="立即预定"
-        />
+
 </LinearLayout>

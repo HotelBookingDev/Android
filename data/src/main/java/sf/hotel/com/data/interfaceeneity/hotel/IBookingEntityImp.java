@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import rx.Observable;
+import sf.hotel.com.data.entity.BookingBean;
 import sf.hotel.com.data.entity.HotelBookResult;
 import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.data.net.ApiWrapper;
@@ -16,14 +17,17 @@ import sf.hotel.com.data.utils.LogUtils;
  */
 public class IBookingEntityImp extends DataEntityImp implements BookingEntity {
 
-    /**
-     *
-     * @param productId 商品id
-     * @param searchItem
-     * @return
-     */
-    public Observable<HotelBookResult> callHotelBook(String productId, SearchItem searchItem){
+    public Observable<HotelBookResult> callHotelBook(BookingBean bookingBean){
 
+        int id = bookingBean
+                .getRoomBean()
+                .getRooms()
+                .get(bookingBean.getGroupPos())
+                .getRoomPackages()
+                .get(bookingBean.getChildPos())
+                .getId();
+
+        SearchItem searchItem = bookingBean.getSearchItem();
         Date inTimeDate = searchItem.inTime;
         Date outTimeDate = searchItem.outTime;
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -32,7 +36,7 @@ public class IBookingEntityImp extends DataEntityImp implements BookingEntity {
 
         String guests = "";
         LogUtils.d(inTime + outTime + "----------");
-        return ApiWrapper.getInstance().callHotelBook("2", inTime, outTime, guests);
+        return ApiWrapper.getInstance().callHotelBook(String.valueOf(id), inTime, outTime, guests);
     }
 
 }

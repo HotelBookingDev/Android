@@ -1,55 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:gravity="center_vertical"
     >
 
     <ImageView
+        android:id="@+id/bed_type_dot"
         android:layout_width="8dp"
         android:layout_height="8dp"
         android:src="@mipmap/dot_16px"
+        android:visibility="gone"
         />
 
     <TextView
+        android:id="@+id/bed_type_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
         android:textColor="@color/hotels_text_color_gray"
         android:text="含早"
+        android:visibility="gone"
         />
 
 
     <TextView
+        android:id="@+id/bed_type_tag1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
         android:textColor="@color/hotels_text_color_green"
         android:background="@drawable/bg_item_tag"
+        android:textSize="10sp"
         android:text="普票"
+        android:visibility="gone"
         />
 
     <TextView
+        android:id="@+id/bed_type_tag2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/hotels_text_color_green"
         android:text="禁烟"
+        android:textSize="10sp"
         android:background="@drawable/bg_item_tag"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:visibility="gone"
         />
 
     <TextView
+        android:id="@+id/bed_type_tag3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/hotels_text_color_green"
         android:background="@drawable/bg_item_tag"
         android:text="双早"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
+        android:textSize="10sp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:visibility="gone"
         />
 
 </LinearLayout>
