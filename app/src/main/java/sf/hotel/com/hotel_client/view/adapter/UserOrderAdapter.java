@@ -55,6 +55,10 @@ public class UserOrderAdapter extends RecyclerViewBaseAdapter {
         } else {
             viewHolder.cancleBtn.setVisibility(View.VISIBLE);
         }
+        viewHolder.cancleBtn.setOnClickListener(v -> {
+            if (mUserOrderClick != null)
+                mUserOrderClick.click(order);
+        });
         setText(order.getHotel_name(), viewHolder.mHotelName);
         setMoney(order, viewHolder.mRoomMoney);
         setText(order.getOrder_num() + "", viewHolder.mBookingNumber);

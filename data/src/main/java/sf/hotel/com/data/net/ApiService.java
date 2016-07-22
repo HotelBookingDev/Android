@@ -11,6 +11,7 @@ import retrofit2.http.Query;
 import rx.Observable;
 import sf.hotel.com.data.entity.HotelBookResult;
 import sf.hotel.com.data.entity.Intallation;
+import sf.hotel.com.data.entity.Order;
 import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.data.entity.netresult.HttpResult;
@@ -20,7 +21,8 @@ import sf.hotel.com.data.entity.netresult.TokenResult;
 import sf.hotel.com.data.entity.netresult.hotel.room.RoomBean;
 import sf.hotel.com.data.entity.netresult.hotel.room.RoomResult;
 import sf.hotel.com.data.entity.netresult.pay.PayResult;
-import sf.hotel.com.data.entity.netresult.person.OrderResult;
+import sf.hotel.com.data.entity.netresult.person.OrderListsResult;
+import sf.hotel.com.data.entity.netresult.person.OrderReuslt;
 
 import static sf.hotel.com.data.net.HttpParam.ACTION;
 import static sf.hotel.com.data.net.HttpParam.CHECK_IN_TIME;
@@ -99,9 +101,7 @@ public interface ApiService {
     Observable<HttpResult<ProvincesResult>> callCityList();
 
     @GET(AppUrl.ORDER_URL)
-    Observable<HttpResult<OrderResult>> getOrders(@Query(HttpParam.PROCESS_SATE) int postion);
-
-
+    Observable<HttpResult<OrderListsResult>> getOrders(@Query(HttpParam.PROCESS_SATE) int postion);
 
 
     @FormUrlEncoded
@@ -109,10 +109,8 @@ public interface ApiService {
     Observable<HttpResult<NormalResult>> putChangePwd(@Field(PHONE_NUMBER) String phoneNum,
                                                       @Field(PASSWORD) String password, @Field(HttpParam.NEWPASSWORD) String newPassword);
 
-    @FormUrlEncoded
-    @POST(AppUrl.DELETE_URL)
-    Observable<HttpResult<NormalResult>> deleteOrder(@Field(ACTION) String action,
-                                                     @Field(NUMBER) long number);
+    @GET(AppUrl.DELETE_URL + "{number}" + "/" + "handle")
+    Observable<HttpResult<OrderReuslt>> deleteOrder(@Path(NUMBER) long number, @Query(ACTION) String action);
 
 
     @GET(AppUrl.PAY_URL)

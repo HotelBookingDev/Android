@@ -11,7 +11,7 @@ import sf.hotel.com.data.entity.Order;
  * data：2016/7/4
  * email: 1105896230@qq.com
  */
-public class OrderResult {
+public class OrderListsResult {
     @SerializedName("orders")
     private List<Order> orderList;
 

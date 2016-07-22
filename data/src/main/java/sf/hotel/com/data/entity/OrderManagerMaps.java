@@ -7,8 +7,6 @@ import java.util.List;
 
 import rx.Observable;
 import sf.hotel.com.data.datasource.OrderDao;
-import sf.hotel.com.data.entity.netresult.person.OrderResult;
-import sf.hotel.com.data.net.ApiWrapper;
 
 /**
  * Created by "林其望".
@@ -23,6 +21,7 @@ public class OrderManagerMaps {
         List<Order> orders = map.get(position);
         if (orders == null || orders.size() == 0) {
             orders = OrderDao.getOrder(context, position, userId);
+            map.put(position,orders);
         }
         return Observable.just(orders);
     }

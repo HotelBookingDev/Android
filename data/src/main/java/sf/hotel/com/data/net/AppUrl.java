@@ -22,11 +22,11 @@ public class AppUrl {
     public static final String ORDER_URL = "customer/orders/";
     public static final String CHANGEPWD_URL = "user/password/";
 
-    public static final String DELETE_URL = "order/customer/";
+    public static final String DELETE_URL = "customer/orders/";
     public static final String PAY_URL = "point/pay/";
 
     public static final String[] NEEDTOKENURL = {
             INSTALLATIONS_BIND_URL, CHANGEPWD_URL, TOKEN_URL, ORDER_URL, DELETE_URL, HOTELS_BOOK_URL
     };
-    public static final String[] SPEICALURL = {PAY_URL};
+    public static final String[] SPEICALURL = {PAY_URL, ORDER_URL};
 }
