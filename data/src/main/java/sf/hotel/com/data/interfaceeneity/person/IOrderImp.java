@@ -22,7 +22,6 @@ import sf.hotel.com.data.net.ApiWrapper;
 public class IOrderImp implements IOrder {
     OrderManagerMaps mOrderManager;
 
-
     public IOrderImp() {
         mOrderManager = new OrderManagerMaps();
     }

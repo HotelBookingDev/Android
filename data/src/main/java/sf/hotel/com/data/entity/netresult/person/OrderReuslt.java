@@ -2,8 +2,6 @@ package sf.hotel.com.data.entity.netresult.person;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 import sf.hotel.com.data.entity.Order;
 
 /**

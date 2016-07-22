@@ -5,7 +5,6 @@ import java.util.List;
 
 import rx.Observable;
 import rx.Subscription;
-import rx.functions.Action1;
 import rx.functions.Func1;
 import sf.hotel.com.data.entity.Order;
 import sf.hotel.com.data.interfaceeneity.person.IOrder;
@@ -39,7 +38,6 @@ public class UserOrderPresenter extends SuperPresenter {
                 .flatMap(new Func1<List<Order>, Observable<List<Order>>>() {
                     @Override
                     public Observable<List<Order>> call(List<Order> orders) {
-//
                         if (list.contains(position)) {
                             return Observable.just(orders);
                         }

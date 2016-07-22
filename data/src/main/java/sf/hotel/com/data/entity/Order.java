@@ -28,8 +28,8 @@ public class Order {
     @DatabaseField(columnName = "customer")
     @SerializedName("customer")
     public long userId;
-    @DatabaseField(id = true, unique = true, columnName = "number")
-    @SerializedName("number")
+    @DatabaseField(id = true, unique = true, columnName = "order")
+    @SerializedName("order")
     private long order_num;
     //    订单的状态
     @DatabaseField(columnName = "payment_status")
