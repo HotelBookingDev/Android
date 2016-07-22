@@ -73,8 +73,8 @@ public class UserOrderPresenter extends SuperPresenter {
                 }, this::handlingException);
         addSubsrcicitpition(subscribe);
     }
-    public void updateOrder(long orderId,int position){
-        Subscription subscribe = mIorder.updateOrder(mIUserOrderView.getBottomContext(),orderId,position)
+    public void updateOrder(String order,int position){
+        Subscription subscribe = mIorder.updateOrder(mIUserOrderView.getBottomContext(),order,position)
                 .subscribe(orderAndHotels -> {
 //                    异步加载完成判断当前显示是否是开始点击时候需要查看的订单列表
                     if (mIUserOrderView.getPosition() == position) {

@@ -11,7 +11,6 @@ import com.avos.avospush.notification.NotificationCompat;
 
 import org.json.JSONObject;
 
-import sf.hotel.com.data.net.ApiWrapper;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.person.OrderActivity;
@@ -31,6 +30,7 @@ public class CustomReceiver extends BroadcastReceiver {
                 JSONObject json = new JSONObject(
                         intent.getExtras().getString("com.avos.avoscloud.Data"));
                 final String message = json.getString("alert");
+                LogUtils.d("test","json");
                 String type = json.getString("type");
                 buildNotification(getIntent(type,json,context), message);
             }
@@ -44,7 +44,7 @@ public class CustomReceiver extends BroadcastReceiver {
         //订单类型
         if (type.equals("1")) {
             intent = new Intent(AVOSCloud.applicationContext, OrderActivity.class);
-            long order=jsonObject.getLong("order");
+            String order=jsonObject.getString("order");
             presenter.updateOrder(order,context);
         }
         return intent;

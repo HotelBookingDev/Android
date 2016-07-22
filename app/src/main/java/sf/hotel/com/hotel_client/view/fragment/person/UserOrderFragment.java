@@ -171,7 +171,7 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
                 try {
                     JSONObject json = new JSONObject(
                             intent.getExtras().getString("com.avos.avoscloud.Data"));
-                    long order = json.getLong("order");
+                    String order = json.getString("order");
                     mUserOrderPresenter.updateOrder(order,position);
                 } catch (JSONException e) {
                     e.printStackTrace();

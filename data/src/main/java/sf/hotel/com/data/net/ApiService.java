@@ -103,8 +103,6 @@ public interface ApiService {
     @GET(AppUrl.ORDER_URL)
     Observable<HttpResult<OrderListsResult>> getOrders(@Query(HttpParam.PROCESS_SATE) int postion);
 
-    @GET(AppUrl.ORDER_URL+"{id}")
-    Observable<HttpResult<OrderReuslt>> getOrderById(@Path("id") long id);
 
     @FormUrlEncoded
     @POST(AppUrl.CHANGEPWD_URL)

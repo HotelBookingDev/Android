@@ -2,6 +2,8 @@ package sf.hotel.com.hotel_client.view.presenter;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+
 import sf.hotel.com.data.datasource.OrderDao;
 import sf.hotel.com.data.entity.Order;
 import sf.hotel.com.data.entity.netresult.person.OrderReuslt;
@@ -16,14 +18,9 @@ import sf.hotel.com.data.utils.LogUtils;
  */
 
 public class CustomReceiverPresenter {
-    public void updateOrder(long order, Context context) {
-        ApiWrapper.getInstance().getOrderById(order).map(OrderReuslt::getOrder)
-                .doOnNext(order1 -> OrderDao.update(order1,context)).
-                subscribe(new CommSubscriber<Order>(){
-                    @Override
-                    public void onError(Throwable e) {
-                        LogUtils.logThrowadle(e);
-                    }
-                });
+    public void updateOrder(String order, Context context) {
+        Gson gson=new Gson();
+        Order order2 = gson.fromJson(order, Order.class);
+        OrderDao.update(order2,context);
     }
 }
