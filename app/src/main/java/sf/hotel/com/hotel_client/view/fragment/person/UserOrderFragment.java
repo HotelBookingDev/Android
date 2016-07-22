@@ -122,7 +122,9 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
         } else {
             mAdapter.setOrders(mOrders);
         }
+        //加载更多
         mAdapter.notifyDataSetChanged();
+        initRefreshView();
     }
 
     @Override
