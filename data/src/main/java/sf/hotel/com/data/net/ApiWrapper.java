@@ -149,7 +149,7 @@ public class ApiWrapper extends RetrofitHelper {
     }
 
     public Observable<OrderReuslt> deleteOrder(long number) {
-        return mService.deleteOrder(number,"cancel").compose(this.applySchedulers());
+        return mService.deleteOrder(number).compose(this.applySchedulers());
     }
 
     @Override

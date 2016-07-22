@@ -109,8 +109,8 @@ public interface ApiService {
     Observable<HttpResult<NormalResult>> putChangePwd(@Field(PHONE_NUMBER) String phoneNum,
                                                       @Field(PASSWORD) String password, @Field(HttpParam.NEWPASSWORD) String newPassword);
 
-    @GET(AppUrl.DELETE_URL + "{number}" + "/" + "handle")
-    Observable<HttpResult<OrderReuslt>> deleteOrder(@Path(NUMBER) long number, @Query(ACTION) String action);
+    @GET(AppUrl.DELETE_URL + "{number}" + "/" + "cancel")
+    Observable<HttpResult<OrderReuslt>> deleteOrder(@Path(NUMBER) long number);
 
 
     @GET(AppUrl.PAY_URL)
