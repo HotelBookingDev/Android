@@ -20,4 +20,6 @@ public interface IOrder {
     Observable<List<Order>> detect(Context context, Order order, int position);
 
     Observable<List<Order>> loadDatas(Context context, int position);
+
+    Observable<List<Order>> updateOrder(Context context, long id,int position);
 }

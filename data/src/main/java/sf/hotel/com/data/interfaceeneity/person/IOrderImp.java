@@ -35,7 +35,18 @@ public class IOrderImp implements IOrder {
         return ApiWrapper.getInstance().getOrders(position).filter(orderResult -> orderResult == null ? Boolean.FALSE : Boolean.TRUE)
                 .map(OrderListsResult::getOrderList).doOnNext(orders -> mOrderManager.upDate(position, orders, context));
     }
-
+    @Override
+    public Observable<List<Order>> updateOrder(Context context, long id,int position) {
+        return ApiWrapper.getInstance().getOrderById(id). map(OrderReuslt::getOrder).
+                doOnNext(order13 -> OrderDao.update(order13, context))
+                .doOnNext(order12 -> mOrderManager.resert())
+                .flatMap(new Func1<Order, Observable<List<Order>>>() {
+                    @Override
+                    public Observable<List<Order>> call(Order order1) {
+                        return mOrderManager.getMaps(context, position, EntityContext.getInstance().getmCurrentUser().getUserId());
+                    }
+                });
+    }
     @Override
     public Observable<List<Order>> detect(Context context, Order order, int position) {
         return ApiWrapper.getInstance().deleteOrder(order.getOrder_num()).
