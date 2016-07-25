@@ -132,14 +132,13 @@ public class HotelTitleView extends RippleView {
         mViewGroup.addView(mTvTitle);
         //添加下标
         if (isShowUnderLine) {
-//            addUnderLine(mViewGroup);
         }
         initTitlteStyle();
     }
 
     //   设置Title的字体风格
     private void initTitlteStyle() {
-        if(mTitle==null)return;
+        if (mTitle == null) return;
         if (spannableString == null) {
             spannableString = new SpannableString(mTitle);
         }
@@ -152,18 +151,6 @@ public class HotelTitleView extends RippleView {
         mTvTitle.setText(spannableString);
     }
 
-    //    文字后面添加下标
-    private void addUnderLine(ViewGroup mViewGroup) {
-        mUnderline = new ImageView(getContext());
-        mUnderline.setBackgroundResource(R.mipmap.ic_search_drop_down_arrow);
-        if (mViewGroup instanceof LinearLayout) {
-            LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(WRAP_CONTENT,
-                    WRAP_CONTENT);
-            titleParams.gravity = Gravity.CENTER;
-            mUnderline.setLayoutParams(titleParams);
-        }
-        mViewGroup.addView(mUnderline);
-    }
 
     private void addLeftView(String text) {
         if (mBtnLeft == null) {

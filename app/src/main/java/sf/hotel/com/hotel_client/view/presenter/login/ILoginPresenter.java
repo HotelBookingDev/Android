@@ -34,7 +34,6 @@ public class ILoginPresenter extends ILRcomPresenter {
             mILoginView.setEditPhone(mILoginEntity.getPhone(mILoginView.getBottomContext()));
             mILoginView.setEditPwd(mILoginEntity.getPwd(mILoginView.getBottomContext()));
         }
-        initAvater(mILoginView.getBottomContext(), mILoginView.getAvatar());
     }
 
     @Override

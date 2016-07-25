@@ -30,8 +30,6 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     @BindView(R.id.edit_pw)
     EditText mEditPw;
 
-    @BindView(R.id.iv_avatar)
-    ImageView mIvAvatar;
     ILoginPresenter mILoginPresenter;
 
     public static LoginFragment newInstance() {
@@ -45,7 +43,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this, view);
@@ -88,10 +86,6 @@ public class LoginFragment extends BaseFragment implements ILoginView {
         mEditPw.setText(pwd);
     }
 
-    @Override
-    public ImageView getAvatar() {
-        return mIvAvatar;
-    }
 
     @Override
     public Context getContext() {
@@ -109,13 +103,11 @@ public class LoginFragment extends BaseFragment implements ILoginView {
         mILoginPresenter.destroy();
     }
 
-    @OnClick({R.id.login_btn, R.id.tv_just_look, R.id.register_btn})
+    @OnClick({R.id.login_btn, R.id.register_btn})
     public void onClick(View view) {
         int id = view.getId();
         if (id == R.id.login_btn) {
             login();
-        } else if (id == R.id.tv_just_look) {
-            justLook();
         } else if (id == R.id.register_btn) {
             register();
         }

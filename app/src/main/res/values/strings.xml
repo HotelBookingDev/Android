@@ -147,5 +147,9 @@
     <string name="booking_prompt">正常办理入住时间为14:00, 18:00后到店请提供信用卡担保</string>
 
     <string name="city_search">搜索城市</string>
+    <string name="regist">还没注册?立即注册</string>
+    <string name="sms_code">短信验证码</string>
+    <string name="chao_life">CHAO life</string>
+    <string name="send_sms_code">发送验证码</string>
 
 </resources>

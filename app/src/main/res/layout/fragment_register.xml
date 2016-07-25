@@ -3,7 +3,7 @@
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@mipmap/bg_get_start">
+    android:background="@mipmap/login_bg">
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -24,12 +24,12 @@
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="50.0dip"
-                    android:background="@drawable/bg_edittext_login"
+                    android:background="@color/white"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@id/ll_country_phone_code"
+                        android:id="@+id/ll_country_phone_code"
                         android:layout_width="70.0dip"
                         android:layout_height="fill_parent"
                         android:gravity="center"
@@ -44,10 +44,6 @@
                             android:textColor="@android:color/white"
                             android:textSize="12.0dip" />
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/ic_search_drop_down_arrow" />
                     </LinearLayout>
 
                     <View
@@ -68,7 +64,7 @@
                         android:maxLength="11" />
 
                     <ImageView
-                        android:id="@id/iv_clear"
+                        android:id="@+id/iv_clear"
                         android:layout_width="20.0dip"
                         android:layout_height="20.0dip"
                         android:layout_marginLeft="10.0dip"
@@ -81,7 +77,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="50.0dip"
                     android:layout_marginTop="25.0dip"
-                    android:background="@drawable/bg_edittext_login"
+                    android:background="@color/white"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -124,7 +120,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="50.0dip"
                     android:layout_marginTop="25.0dip"
-                    android:background="@drawable/bg_edittext_login"
+                    android:background="@color/white"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 

@@ -15,7 +15,7 @@
         <attr name="rightBtnIcon" format="reference" />
         <attr name="titleText" format="string" />
         <attr name="isShowUnderLine" format="boolean" />
-        <attr name="titleBackground" format="reference"/>
+        <attr name="titleBackground" format="reference" />
     </declare-styleable>
     <declare-styleable name="ToggleButton">
         <attr name="tbwidth" format="dimension" />
@@ -37,7 +37,9 @@
         <attr name="text_color" format="color|integer" />
         <attr name="select_text_color" format="color|integer" />
     </declare-styleable>
-
+    <declare-styleable name="SpecialTextView">
+        <attr name="context_special_Text" format="string" />
+    </declare-styleable>
 
     <declare-styleable name="HideTitle">
         <attr name="mid_text" format="string" />
@@ -88,9 +90,9 @@
         <attr name="custom_item_text1" format="string" />
         <attr name="custom_item_text2" format="string" />
         <attr name="custom_item_style" format="integer" />
-        <attr name="custom_item_background" format="reference"/>
-        <attr name="custom_item_color1" format="reference"/>
-        <attr name="custom_item_color2" format="reference"/>
+        <attr name="custom_item_background" format="reference" />
+        <attr name="custom_item_color1" format="reference" />
+        <attr name="custom_item_color2" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="PullScrollView">
@@ -172,22 +174,22 @@
     </declare-styleable>
 
     <declare-styleable name="CustomHotelText">
-        <attr name="hotel_text_name" format="string"/>
-        <attr name="hotel_text_content" format="string"/>
-        <attr name="hotel_text_name_color" format="reference"/>
-        <attr name="hotel_text_content_color" format="reference"/>
+        <attr name="hotel_text_name" format="string" />
+        <attr name="hotel_text_content" format="string" />
+        <attr name="hotel_text_name_color" format="reference" />
+        <attr name="hotel_text_content_color" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="RippleView">
         <attr name="rv_alpha" format="integer" />
-        <attr name="rv_framerate" format="integer"/>
-        <attr name="rv_rippleDuration" format="integer"/>
+        <attr name="rv_framerate" format="integer" />
+        <attr name="rv_rippleDuration" format="integer" />
         <attr name="rv_zoomDuration" format="integer" />
         <attr name="rv_color" format="color" />
         <attr name="rv_centered" format="boolean" />
         <attr name="rv_type" format="enum">
-            <enum name="simpleRipple" value="0"/>
-            <enum name="doubleRipple" value="1"/>
+            <enum name="simpleRipple" value="0" />
+            <enum name="doubleRipple" value="1" />
             <enum name="rectangle" value="2" />
         </attr>
         <attr name="rv_ripplePadding" format="dimension" />
@@ -197,9 +199,9 @@
 
 
     <declare-styleable name="CustomBedType">
-        <attr name="bed_type_name" format="string"/>
-        <attr name="bed_type_tag1" format="string"/>
-        <attr name="bed_type_tag2" format="string"/>
-        <attr name="bed_type_tag3" format="string"/>
+        <attr name="bed_type_name" format="string" />
+        <attr name="bed_type_tag1" format="string" />
+        <attr name="bed_type_tag2" format="string" />
+        <attr name="bed_type_tag3" format="string" />
     </declare-styleable>
 </resources>

@@ -150,8 +150,8 @@
     <style name="login_edit" parent="edit_pwd">
         <item name="android:layout_weight">1</item>
         <item name="android:layout_marginRight">10.0dip</item>
-        <item name="android:textColorHint">#80ffffff</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/hit_text</item>
+        <item name="android:textColor">@color/hit_text</item>
 
     </style>
 
