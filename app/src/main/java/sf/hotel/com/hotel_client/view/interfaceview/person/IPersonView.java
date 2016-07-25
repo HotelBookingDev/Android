@@ -16,4 +16,6 @@ public interface IPersonView {
     void showItemActivity(int type);
 
     void clickMyInvoice();
+
+    void setPoints(String points);
 }

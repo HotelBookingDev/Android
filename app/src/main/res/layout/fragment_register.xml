@@ -95,7 +95,7 @@
                     android:singleLine="true"
                     android:text="@string/get_code"
                     android:textColor="@android:color/white"
-                    android:textSize="11.0dip" />
+                    android:textSize="15sp" />
             </LinearLayout>
 
 

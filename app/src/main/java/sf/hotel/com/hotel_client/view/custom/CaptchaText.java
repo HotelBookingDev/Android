@@ -6,6 +6,8 @@ import android.util.AttributeSet;
 import android.widget.Button;
 import android.widget.TextView;
 
+import sf.hotel.com.hotel_client.utils.DensityUtils;
+
 /**
  * @author MZ
  * @email sanfenruxi1@163.com
@@ -25,7 +27,7 @@ public class CaptchaText extends Button {
 
     public void startTimer() {
         if (mTextCount == null) {
-            mTextCount = new TextCount(10 * 1000, 1000);
+            mTextCount = new TextCount(60 * 1000, 1000);
         }
         setClickable(false);
         mTextCount.start();

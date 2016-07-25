@@ -50,7 +50,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(AppUrl.LOGIN)
     Observable<HttpResult<LoginResult>> callLogin(@Field(PHONE_NUMBER) String phone,
-                                                  @Field(HttpParam.POONE_NUMBER) String code);
+                                                  @Field(HttpParam.SMS_CODE) String code);
 
     @FormUrlEncoded
     @POST(AppUrl.REGISTER_URL)

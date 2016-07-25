@@ -11,7 +11,7 @@ public class AppUrl {
     public static final String LOGIN_SMS_URL = "user/sms/login/";
     public static final String LOGIN = "user/login/";
     public static final String REGISTER_URL = "user/register/";
-    public static final String SMS_URL = "ems/member/regist/";
+    public static final String SMS_URL = "user/sms/register/";
     public static final String INSTALLATIONS_BIND_URL = "user/installation/bind/";
     public static final String INSTALLATION_URL = "user/installation/";
     public static final String HOTELS_URL = "hotels/";

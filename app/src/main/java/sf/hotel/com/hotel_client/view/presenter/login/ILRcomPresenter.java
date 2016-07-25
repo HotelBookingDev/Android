@@ -105,10 +105,11 @@ public class ILRcomPresenter extends SuperPresenter {
 
     public void handlingException(ILRConmView view, Throwable e) {
         if (e instanceof APIException) {
-            int i = ((APIException) e).getCode();
             int msgid = ((APIException) e).getMessageId();
             if (msgid != 0) {
                 view.showViewToast(getErrorString(msgid, view.getBottomContext()));
+            } else {
+                view.showViewToast(e.getMessage());
             }
         }
     }
