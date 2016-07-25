@@ -49,23 +49,48 @@
             android:orientation="vertical">
 
             <TextView
-                style="@style/normal_text"
+                style="@style/waltter_txt"
                 android:layout_margin="10dp"
                 android:text="@string/about_money"
                 android:textColor="@color/hit_text"
-                android:textSize="@dimen/text_mid" />
+                android:textSize="17sp" />
 
-            <TextView
-                style="@style/normal_text"
-                android:layout_marginLeft="10dp"
-                android:text="@string/about_money_one"
-                android:textColor="@color/about_money_one" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:orientation="horizontal">
 
-            <TextView
-                style="@style/normal_text"
-                android:layout_marginLeft="10dp"
-                android:text="@string/about_money_one"
-                android:textColor="@color/about_money_one" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/dot_icon" />
+
+                <TextView
+                    style="@style/waltter_txt"
+                    android:text="@string/about_money_one"
+                    android:textColor="@color/about_money_one" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/dot_icon" />
+
+                <TextView
+                    style="@style/waltter_txt"
+                    android:text="@string/about_money_one"
+                    android:textColor="@color/about_money_one" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <mehdi.sakout.fancybuttons.FancyButton
@@ -74,8 +99,8 @@
             android:layout_width="250dp"
             android:layout_gravity="center"
             android:layout_margin="30dp"
-            fancy:fb_focusColor="@color/focus_color"
             fancy:fb_defaultColor="@color/default_button"
+            fancy:fb_focusColor="@color/focus_color"
             fancy:fb_text="@string/recharge" />
     </LinearLayout>
 </FrameLayout>

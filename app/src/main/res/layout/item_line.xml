@@ -4,4 +4,4 @@
     android:layout_height="1.0dip"
     android:layout_marginLeft="12.0dip"
     android:layout_marginRight="12.0dip"
-    android:background="@color/main_divide" />
+    android:background="@color/white" />

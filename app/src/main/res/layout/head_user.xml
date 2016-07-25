@@ -10,7 +10,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:padding="10dp"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@mipmap/information_icon" />
 
     <TextView
         android:id="@+id/tx_num_point"
@@ -49,11 +49,13 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/wallet_icon" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/hit_text"
+
                 android:text="@string/my_money" />
         </LinearLayout>
 
@@ -68,11 +70,13 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/order_icon" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/hit_text"
+
                 android:text="@string/my_orders" />
         </LinearLayout>
 
@@ -86,11 +90,12 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/favorite_icon" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/hit_text"
                 android:text="@string/my_collection" />
         </LinearLayout>
     </LinearLayout>
