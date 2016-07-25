@@ -81,8 +81,8 @@ public interface ApiService {
                                                            @Query(EXCLUDE) String exclude);
 
     @FormUrlEncoded
-    @POST(AppUrl.HOTELS_BOOK_URL)
-    Observable<HttpResult<HotelBookResult>> callHotelBook(@Field(PRODUCTID) String productId,
+    @POST("roompackage/{productId}/book/")
+    Observable<HttpResult<HotelBookResult>> callHotelBook(@Path(PRODUCTID) String productId,
                                                           @Field(CHECK_IN_TIME) String inTime,
                                                           @Field(CHECK_OUT_TIME) String outTime,
                                                           @Field(GUESTS) String guests);

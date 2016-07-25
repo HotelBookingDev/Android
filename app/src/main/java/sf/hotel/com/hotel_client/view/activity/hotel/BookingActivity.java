@@ -1,5 +1,7 @@
 package sf.hotel.com.hotel_client.view.activity.hotel;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 
@@ -33,7 +35,22 @@ public class BookingActivity extends BaseActivity {
         mTitle.addLeftClick(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                AlertDialog.Builder builder = new AlertDialog.Builder(BookingActivity.this);
+                builder.setMessage("确定取消吗?");
+                builder.setTitle("提示");
+                builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.create().show();
             }
         });
     }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="25dp"
+    android:paddingStart="25dp"
+    android:gravity="center_vertical"
+    >
+
+    <CheckBox
+        android:id="@+id/booking_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textSize="12sp"
+        android:textColor="@color/hotels_text_color_gray"
+        android:text="我已认真阅读并同意"
+        android:checked="true"
+        />
+
+    <TextView
+        android:id="@+id/booking_reserve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textColor="@color/hotels_text_color_green"
+        android:text="《预定须知》"
+        />
+</LinearLayout>

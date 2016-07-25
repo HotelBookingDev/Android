@@ -63,8 +63,13 @@
     </style>
 
     <style name="splitLineStyle">
-        <item name="android:background">@color/main_divide</item>
+        <item name="android:background">@color/bg_gray</item>
     </style>
+
+    <style name="splitLineGrayStyle">
+        <item name="android:background">@color/bg_more_gray_black</item>
+    </style>
+
 
     <style name="layoutStyle">
         <item name="android:layout_margin">5dp</item>

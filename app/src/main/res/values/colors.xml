@@ -10,6 +10,8 @@
     <color name="bg_hide">#00000000</color>
     <color name="bg_green">#ff7ec9c6</color>
     <color name="bg_gray_green">#ff9ec9c6</color>
+    <color name="bg_gray_black">#262626</color>
+    <color name="bg_more_gray_black">#313131</color>
 
     <color name="text_white">#FFFFFFFF</color>
 
@@ -64,5 +66,8 @@
     <color name="about_money_one">#d5d5d5</color>
 
     <color name="rippelColor">#FFFFFF</color>
+    
+    <color name="booking_text_gray_while">#cbcbcb</color>
+    <color name="booking_text_gray">#6f6f6f</color>
 
 </resources>

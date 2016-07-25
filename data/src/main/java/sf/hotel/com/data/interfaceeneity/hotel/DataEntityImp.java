@@ -48,6 +48,11 @@ public abstract class DataEntityImp implements DataEntity{
         HotelDao.saveBookingBean(context, bookingBean);
     }
 
+    @Override
+    public void clearBookingBean(Context context){
+        HotelDao.clearBookingBean(context);
+    }
+
     public List<CityBean> getProcincesResult(Context context){
         List<CityBean> citys = null;
 
@@ -56,7 +61,6 @@ public abstract class DataEntityImp implements DataEntity{
         for (ProvincesBean procincesBean : procinces) {
             citys = procincesBean.getCitys();
         }
-
         return citys;
     }
 

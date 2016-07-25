@@ -34,6 +34,7 @@ public class HotelsListViewAdapter extends BaseAdapter {
 
     public void addDatas(List<Hotel1Bean> data) {
         mData.addAll(data);
+        notifyDataSetChanged();
     }
 
     public void setDatas(List<Hotel1Bean> data) {
@@ -41,6 +42,7 @@ public class HotelsListViewAdapter extends BaseAdapter {
             mData.clear();
             mData.addAll(data);
         }
+        notifyDataSetChanged();
     }
 
     public Hotel1Bean getDataById(int pos) {
@@ -82,6 +84,7 @@ public class HotelsListViewAdapter extends BaseAdapter {
 
         holder.mName.setText(data.getName());
         holder.mRatingBar.setRatingBarCount(3.5f);
+        holder.mPrice.setPoinsAndPrice(data.getMin_price().getDefault_point() + "" , data.getMin_price().getDefault_front_price() + "");
 
         if (data.getHotel_imgs() != null && data.getHotel_imgs().size() > 0) {
             HotelImageLoad.loadImage(mContext, holder.mImageView, data.getHotel_imgs().get(0));

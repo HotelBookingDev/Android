@@ -1,11 +1,14 @@
 package sf.hotel.com.hotel_client.view.presenter.hotel;
 
+import android.widget.Toast;
+
 import rx.Subscription;
 import rx.functions.Action1;
 import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.data.interfaceeneity.hotel.HotelsEntityImp;
+import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.view.interfaceview.hotel.IHotelsView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
@@ -75,7 +78,15 @@ public class IHotelPresenter extends SuperPresenter {
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        mIHotelsView.showViewToast(throwable.getMessage() + "加载失败");
+
+                        if (throwable instanceof APIException){
+                            APIException e = (APIException) throwable;
+                            mIHotelsView.showViewToast(e.getMessage());
+                        }else {
+                            mIHotelsView.showViewToast(throwable.getMessage());
+                        }
+
+
                         LogUtils.d(throwable.getMessage());
                         mIHotelsView.refreshComplete();
                     }

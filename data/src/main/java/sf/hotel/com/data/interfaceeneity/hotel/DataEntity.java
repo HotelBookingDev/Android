@@ -26,4 +26,6 @@ public interface DataEntity {
 
     UserEntity getUserEntity(Context context);
 
+    void clearBookingBean(Context context);
+
 }

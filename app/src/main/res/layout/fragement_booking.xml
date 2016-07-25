@@ -4,7 +4,8 @@
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray_black">
 
 
 
@@ -25,20 +26,22 @@
                 app:booking_item_name="酒店名称"
                 app:booking_item_content_background="@color/hide"
                 app:booking_item_content="XXX酒店"
+                app:booking_item_content_color="@color/booking_text_gray_while"
                 />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"
                 android:text="宁波市海曙区桃源街xxx号"
+                android:textColor="@color/booking_text_gray"
                 android:paddingLeft="25dp"
                 android:paddingStart="25dp"
                 />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/splitLineStyle"/>
+                android:layout_height="0.5dp"
+                style="@style/splitLineGrayStyle"/>
 
             <sf.hotel.com.hotel_client.view.custom.CustomBookingItem
                 android:layout_width="match_parent"
@@ -46,29 +49,30 @@
                 app:booking_item_name="入住日期"
                 app:booking_item_content="07月15日 - 07月xx日 共一晚"
                 app:booking_item_content_background="@color/hide"
+                app:booking_item_content_color="@color/booking_text_gray_while"
                 />
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/splitLineStyle"/>
+                android:layout_height="0.5dp"
+                style="@style/splitLineGrayStyle"/>
 
             <sf.hotel.com.hotel_client.view.custom.CustomBookingItem
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"
                 app:booking_item_name="房型"
                 app:booking_item_content="豪华房 - 含双早"
+                app:booking_item_content_color="@color/booking_text_gray_while"
                 app:booking_item_content_background="@color/hide"
                 />
-
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/splitLineStyle"/>
+                android:layout_height="0.5dp"
+                style="@style/splitLineGrayStyle"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"
                 android:text="@string/notice"
-
+                android:textColor="@color/hotels_text_color_gray"
                 android:paddingLeft="25dp"
                 android:paddingStart="25dp"
                 android:paddingTop="10dp"
@@ -76,50 +80,133 @@
                 />
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/splitLineStyle"/>
-            <sf.hotel.com.hotel_client.view.custom.CustomBookingItem
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/btn_height"
-                app:booking_item_name="住客姓名"
-                />
+                android:layout_height="0.5dp"
+                style="@style/splitLineGrayStyle"/>
 
-            <sf.hotel.com.hotel_client.view.custom.CustomBookingItem
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/btn_height"
-                app:booking_item_name="手机号码"
 
-                />
-
-            <sf.hotel.com.hotel_client.view.custom.CustomBookingItem
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/btn_height"
-                app:booking_item_name="其他要求"
-                />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/splitLineStyle"/>
-
-            <sf.hotel.com.hotel_client.view.custom.ListText
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:content_text="1.出境旅游产品：旅游度假目的地为中国已开放的旅游目的地国家及中国台湾、香港和澳门地区，从出发地到度假目的地往返交通票、目的地酒店住宿、旅行用车及其他可选择附加旅游产品。\n
-2.自助游旅游产品：该类产品包含前往度假目的地的往返机票、火车票、目的地住宿酒店、旅行用车及其它可选配的接送机、门票等项目的部分或全部。\n
-3.半自助游旅游产品：以酒店＋交通＋一半团队游＋一半自由行＋个性化可选服务为核心，既有充足的自由活动时间，又有专业导游带您游览经典景区，且不含任何强制购物和自费项目。\n
-4.团队游旅游产品：以酒店＋交通＋特色餐食＋景点门票＋旅游用车＋全程导游＋签证（海外）为核心，对行程、交通方式、食宿标准、游览项目均有固定安排，且有专职导游和专车带您游览经典景点。该类产品对成团人数有一定的要求。\n
-5.游客：指通过去哪儿网预订旅游产品供应商在去哪儿网上提供的旅游产品的用户，游客在去哪儿网上预订旅游产品成功后，游客和旅游产品供应商之间建立合同关系。\n
-6. 酒店入住登记要求：登记入住酒店的客人中至少要有1人超过18周岁，即未满18周岁的客人必须由18周岁以上的客人帮其办理酒店入住手续。"
-                app:title_text="@string/package_details" />
+                android:orientation="vertical"
+                android:background="@color/bg_more_gray_black"
+                >
+                <sf.hotel.com.hotel_client.view.custom.CustomBookingItem
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_height"
+                    app:booking_item_name="住客姓名"
+                    app:booking_item_content_color="@color/booking_text_gray_while"
+                    />
 
-            <sf.hotel.com.hotel_client.view.custom.CustomBookingItem
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/booking_prompt"
+                    android:textColor="@color/booking_text_gray"
+                    android:gravity="right"
+                    android:layout_gravity="right"
+                    android:textSize="8sp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    />
+                <sf.hotel.com.hotel_client.view.custom.CustomBookingItem
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_height"
+                    app:booking_item_name="联系方式"
+                    app:booking_item_content_color="@color/booking_text_gray_while"
+
+                    />
+
+                <sf.hotel.com.hotel_client.view.custom.CustomBookingSearch
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_height"
+                    app:booking_item_name="联系方式"
+                    app:booking_item_content_color="@color/booking_text_gray_while">
+
+
+                </sf.hotel.com.hotel_client.view.custom.CustomBookingSearch>
+
+                <sf.hotel.com.hotel_client.view.custom.CustomBookingItem
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_height"
+                    app:booking_item_name="其他要求"
+                    app:booking_item_content_color="@color/booking_text_gray_while"
+                    />
+            </LinearLayout>
+
+            <include
+                layout="@layout/custom_booking_checkbox"
+                />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"
-                app:booking_item_name="订单总价"
-                app:booking_item_content_background="@color/hide"
-                app:booking_item_content="1000points + 1280CNY"
-                />
+                android:background="@color/bg_more_gray_black"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/my_points"
+                    android:textColor="@color/hotels_text_color_gray"
+                    />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/hotels_text_color_gray"
+                    android:text="28372"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/hotels_text_color_gray"
+                    android:text="@string/points"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btn_height"
+                android:background="@color/bg_more_gray_black"
+                android:gravity="center_vertical"
+                >
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/hotels_text_color_gray"
+                    android:text="订单总价"
+                    />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    />
+
+                <sf.hotel.com.hotel_client.view.custom.PriceText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/hotels_text_color_gray"
+                    app:price_text_price="1280"
+                    app:price_text_poins="1000"
+                    />
+
+            </LinearLayout>
 
 
         </LinearLayout>

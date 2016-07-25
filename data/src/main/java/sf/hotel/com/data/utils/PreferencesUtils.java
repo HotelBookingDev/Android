@@ -196,4 +196,9 @@ public class PreferencesUtils {
     public static void saveBookingBean(Context context,String str){
         put(context, HOTEL_ROOM_BOOKING, str);
     }
+
+    public static void clearBookingBean(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(HOTEL_ROOM_BOOKING, 0);
+        preferences.edit().clear().apply();
+    }
 }

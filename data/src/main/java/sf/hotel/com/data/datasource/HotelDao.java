@@ -77,4 +77,8 @@ public class HotelDao{
         String s = gson.toJson(bookingBean);
         PreferencesUtils.saveBookingBean(context, s);
     }
+
+    public static void clearBookingBean(Context context){
+        PreferencesUtils.clearBookingBean(context);
+    }
 }
