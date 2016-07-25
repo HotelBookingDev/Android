@@ -2,6 +2,4 @@
 <View xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="1.0dip"
-    android:layout_marginLeft="12.0dip"
-    android:layout_marginRight="12.0dip"
-    android:background="@color/bg_more_gray_black" />
+    android:background="@color/item_line_color" />

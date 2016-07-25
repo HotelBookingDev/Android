@@ -66,8 +66,9 @@
     <color name="about_money_one">#d5d5d5</color>
 
     <color name="rippelColor">#FFFFFF</color>
-    
+
     <color name="booking_text_gray_while">#cbcbcb</color>
     <color name="booking_text_gray">#6f6f6f</color>
+    <color name="item_line_color">#d2d2d2</color>
 
 </resources>

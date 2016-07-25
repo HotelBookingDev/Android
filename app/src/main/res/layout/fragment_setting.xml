@@ -57,7 +57,7 @@
                 app:contextText="@string/service_and_privacy_provisions"
                 app:left_string_color="@color/hit_text" />
 
-            <include layout="@layout/item_line" />
+            <include layout="@layout/item_line_color_gray" />
 
             <sf.hotel.com.hotel_client.view.custom.PersonalItemView
                 android:id="@+id/piv_question"

@@ -34,6 +34,7 @@
     <dimen name="activity_feedback_im_widht">45dp</dimen>
     <dimen name="activity_settings_backnow_top">60dp</dimen>
 
+    <dimen name="activity_account_size">18sp</dimen>
     <dimen name="search_text_size">24sp</dimen>
 
     <dimen name="search_margin">30dp</dimen>
