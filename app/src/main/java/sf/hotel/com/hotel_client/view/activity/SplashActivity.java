@@ -7,7 +7,6 @@ import android.widget.ImageView;
 
 import com.avos.avoscloud.PushService;
 
-import sf.hotel.com.hotel_client.utils.AndroidUtils;
 import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
 import sf.hotel.com.hotel_client.view.activity.register.LoginActivity;
