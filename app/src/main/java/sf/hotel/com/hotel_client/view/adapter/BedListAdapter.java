@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,10 +69,10 @@ public class BedListAdapter extends BaseAdapter {
     }
 
     class ViewHolder{
-        Button mSubmit;
+        TextView mSubmit;
 
         public ViewHolder(View view) {
-            mSubmit = (Button) view.findViewById(R.id.item_room_pager_submit);
+            mSubmit = (TextView) view.findViewById(R.id.item_room_pager_submit);
         }
     }
 }

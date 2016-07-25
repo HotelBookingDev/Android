@@ -86,8 +86,8 @@ public class HotelsListViewAdapter extends BaseAdapter {
         holder.mRatingBar.setRatingBarCount(3.5f);
         holder.mPrice.setPoinsAndPrice(data.getMin_price().getDefault_point() + "" , data.getMin_price().getDefault_front_price() + "");
 
-        if (data.getHotel_imgs() != null && data.getHotel_imgs().size() > 0) {
-            HotelImageLoad.loadImage(mContext, holder.mImageView, data.getHotel_imgs().get(0));
+        if (data.getCover_img() != null && !"".equals(data.getCover_img())) {
+            HotelImageLoad.loadImage(mContext, holder.mImageView, data.getCover_img());
         } else {
             HotelImageLoad.loadImage(mContext, holder.mImageView,
                     "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3256474343,2114829206&fm=23&gp=0.jpg");

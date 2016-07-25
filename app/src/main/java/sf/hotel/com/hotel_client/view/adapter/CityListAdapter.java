@@ -59,18 +59,15 @@ public class CityListAdapter extends BaseRecyclerAdapter<CityBean> {
                     holder.button.setChecked(true);
                 }
             }
-
             if (mOnTextClickListener != null){
                 holder.button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int pos = holder.getLayoutPosition();
-
                         if (selectCityBean == null || data.getCode() != selectCityBean.getCode()){
                             selectCityBean = data;
                             notifyDataSetChanged();
                         }
-                        mOnTextClickListener.onTextClick(holder.button, pos);
+                        mOnTextClickListener.onTextClick(holder.button, RealPosition);
                     }
                 });
             }

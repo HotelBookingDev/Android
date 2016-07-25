@@ -29,7 +29,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mehdi.sakout.fancybuttons.FancyButton;
-import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.data.entity.netresult.hotel.room.HotelBean;
 import sf.hotel.com.data.entity.netresult.hotel.room.RoomResult;
 import sf.hotel.com.data.utils.LogUtils;
@@ -38,7 +37,6 @@ import sf.hotel.com.hotel_client.utils.StartActivityUtils;
 import sf.hotel.com.hotel_client.view.activity.hotel.BookingActivity;
 import sf.hotel.com.hotel_client.view.adapter.LocalImageHodlerView;
 import sf.hotel.com.hotel_client.view.adapter.RoomExpandListAdapter;
-import sf.hotel.com.hotel_client.view.adapter.RoomRecyclerAdapter;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.custom.PersonalItemView;
 import sf.hotel.com.hotel_client.view.event.MessageFactory;
@@ -79,7 +77,6 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
 
     RoomExpandListAdapter mAdapter;
 
-    RoomRecyclerAdapter mRecyclerAdapter;
     TextView phoneText;
     FancyButton phoneCancel;
     FancyButton phoneSubmit;

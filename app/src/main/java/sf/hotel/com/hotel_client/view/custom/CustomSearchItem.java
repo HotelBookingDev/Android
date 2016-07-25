@@ -2,6 +2,7 @@ package sf.hotel.com.hotel_client.view.custom;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,8 @@ public class CustomSearchItem extends RelativeLayout {
     TextView mLeftText, mRightText;
 
 
+    int leftColor, rightColor;
+
     int imgRes;
 
     String leftTextStr, rightTextStr;
@@ -39,6 +42,8 @@ public class CustomSearchItem extends RelativeLayout {
         imgRes = typedArray.getResourceId(R.styleable.CustomSearchItem_custom_item_img, R.mipmap.close_circle_48px);
         leftTextStr = typedArray.getString(R.styleable.CustomSearchItem_custom_item_text1);
         rightTextStr = typedArray.getString(R.styleable.CustomSearchItem_custom_item_text2);
+        leftColor = typedArray.getResourceId(R.styleable.CustomSearchItem_custom_item_color1, R.color.hotels_text_color_gray);
+        rightColor = typedArray.getResourceId(R.styleable.CustomSearchItem_custom_item_color2, R.color.hotels_text_color_gray);
 
         typedArray.recycle();
 
@@ -55,6 +60,9 @@ public class CustomSearchItem extends RelativeLayout {
         mLeftImg.setImageResource(imgRes);
         mLeftText.setText(leftTextStr);
         mRightText.setText(rightTextStr);
+
+        mLeftText.setTextColor(leftColor);
+        mRightText.setTextColor(rightColor);
     }
 
 

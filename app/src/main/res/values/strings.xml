@@ -146,4 +146,6 @@
     <string name="notice">请仔细确认以上行程信息，以免为您的旅途带去不便。</string>
     <string name="booking_prompt">正常办理入住时间为14:00, 18:00后到店请提供信用卡担保</string>
 
+    <string name="city_search">搜索城市</string>
+
 </resources>

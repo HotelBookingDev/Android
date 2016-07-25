@@ -5,13 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <EditText
+        android:id="@+id/sh"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/bg_city_edit"
+        android:drawableLeft="@mipmap/header_city_search"
+        android:drawableStart="@mipmap/header_city_search"
+        android:drawablePadding="5dp"
+        android:hint="@string/city_search"
+        android:padding="10dip"
+        android:textColor="#515151"
+        android:textSize="16dp" >
+    </EditText>
+
 
     <sf.hotel.com.hotel_client.view.custom.CustomSearchItem
         android:layout_width="match_parent"
         android:id="@+id/header_city_location"
         android:layout_height="@dimen/search_item_height"
         app:custom_item_img="@mipmap/ic_add_location_black_36dp"
-        app:custom_item_text1="当前城市： 宁波"
+        app:custom_item_text1="当前城市:"
+        app:custom_item_text2="宁波"
+        app:custom_item_color1="@color/hotels_text_color_green"
+        app:custom_item_color2="@color/hotels_text_color_green"
         app:custom_item_style="1"
         android:background="@drawable/bg_serch_hotel"
         />
