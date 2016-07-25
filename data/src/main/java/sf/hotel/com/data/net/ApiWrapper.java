@@ -144,6 +144,9 @@ public class ApiWrapper extends RetrofitHelper {
     public Observable<OrderListsResult> getOrders(int position) {
         return mService.getOrders(position).compose(this.applySchedulers());
     }
+    public Observable<OrderListsResult> getClosedOrders() {
+        return mService.getClosedOrders().compose(this.applySchedulers());
+    }
     public Observable<NormalResult> putChangePwd(String phoneNum, String pwd, String newPwd) {
         return mService.putChangePwd(phoneNum, pwd, newPwd).compose(this.applySchedulers());
     }

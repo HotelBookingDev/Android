@@ -34,7 +34,13 @@ public class IOrderImp implements IOrder {
     }
 
     public Observable<List<Order>> loadDatas(Context context, int position) {
-        return ApiWrapper.getInstance().getOrders(position).filter(orderResult -> orderResult == null ? Boolean.FALSE : Boolean.TRUE)
+        Observable<OrderListsResult> orders1;
+        if (position == Order.ALRADYORDER) {
+            orders1 = ApiWrapper.getInstance().getClosedOrders();
+        } else {
+            orders1 = ApiWrapper.getInstance().getOrders(position);
+        }
+        return orders1.filter(orderResult -> orderResult == null ? Boolean.FALSE : Boolean.TRUE)
                 .map(OrderListsResult::getOrderList).doOnNext(orders -> mOrderManager.upDate(position, orders, context));
     }
 
