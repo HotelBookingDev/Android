@@ -48,6 +48,7 @@ public class CustomBookingSearch extends LinearLayout {
         mTextNameBackGround = typedArray.getResourceId(R.styleable.CustomBookingItem_booking_item_name_background, R.color.hide);
         nTextContentBackGround = typedArray.getResourceId(R.styleable.CustomBookingItem_booking_item_content_background, R.color.content_bg);
 
+        typedArray.recycle();
         init();
     }
 
@@ -55,7 +56,7 @@ public class CustomBookingSearch extends LinearLayout {
         View inflate = LayoutInflater.from(getContext()).inflate(R.layout.custom_booking_searchview, this);
 
         mName = (TextView) inflate.findViewById(R.id.custom_booking_search_name);
-        mContent = (TextView) inflate.findViewById(R.id.hotel_search_item_content);
+        mContent = (TextView) inflate.findViewById(R.id.custom_booking_search_content);
 
         mName.setText(mTextNameStr);
         mContent.setText(mTextContentStr);

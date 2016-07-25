@@ -89,6 +89,8 @@
         <attr name="custom_item_text2" format="string" />
         <attr name="custom_item_style" format="integer" />
         <attr name="custom_item_background" format="reference"/>
+        <attr name="custom_item_color1" format="reference"/>
+        <attr name="custom_item_color2" format="reference"/>
     </declare-styleable>
 
     <declare-styleable name="PullScrollView">

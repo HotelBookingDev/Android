@@ -209,8 +209,6 @@ public class RoomExpandListAdapter implements ExpandableListAdapter {
         public ChildHolder(View view) {
             mSubmit = (TextView) view.findViewById(R.id.item_room_pager_submit);
             mPrice = (PriceText) view.findViewById(R.id.item_bed_price);
-
-
         }
     }
 }

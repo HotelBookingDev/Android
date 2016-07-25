@@ -64,6 +64,15 @@ public class ISearchHotelPresenter extends SuperPresenter {
                         if (provincesResult != null) {
                             mISearchHotelEntityImp.saveProvincesResult(
                                     mISearchHotelView.getBottomContext(), provincesResult);
+
+                            //todo 需要修改 临时处理
+                            mISearchHotelView.getSearchItem().cityBean = provincesResult
+                                    .getProvinces()
+                                    .get(0)
+                                    .getCitys()
+                                    .get(0);
+
+                            loadSearchItem();
                         }
                     }
                 }, new Action1<Throwable>() {

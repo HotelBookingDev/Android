@@ -71,7 +71,6 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
 
     private void initSearchItem() {
         mSearchItem = new SearchItem();
-        mISearchHotelPresenter.loadSearchItem();
         mISearchHotelPresenter.callCityList();
     }
 
