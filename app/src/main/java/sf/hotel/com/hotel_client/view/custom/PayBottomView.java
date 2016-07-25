@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.PopupWindow;
 
 import sf.hotel.com.hotel_client.R;
@@ -33,6 +34,7 @@ public class PayBottomView extends PopupWindow {
         setOutsideTouchable(false);
         setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         setAnimationStyle(R.style.pay_menu_animation);
+        this.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
     }
 

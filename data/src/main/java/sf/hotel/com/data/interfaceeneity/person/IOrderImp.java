@@ -2,6 +2,8 @@ package sf.hotel.com.data.interfaceeneity.person;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 
 import rx.Observable;
@@ -34,6 +36,23 @@ public class IOrderImp implements IOrder {
     public Observable<List<Order>> loadDatas(Context context, int position) {
         return ApiWrapper.getInstance().getOrders(position).filter(orderResult -> orderResult == null ? Boolean.FALSE : Boolean.TRUE)
                 .map(OrderListsResult::getOrderList).doOnNext(orders -> mOrderManager.upDate(position, orders, context));
+    }
+
+    @Override
+    public Observable<List<Order>> updateOrder(Context context, String orders, int position) {
+        return Observable.just(orders).flatMap(new Func1<String, Observable<Order>>() {
+            @Override
+            public Observable<Order> call(String s) {
+                return Observable.just(new Gson().fromJson(s, Order.class));
+            }
+        }).doOnNext(order -> OrderDao.update(order, context)).
+                doOnNext(order12 -> mOrderManager.resert())
+                .flatMap(new Func1<Order, Observable<List<Order>>>() {
+                    @Override
+                    public Observable<List<Order>> call(Order order1) {
+                        return mOrderManager.getMaps(context, position, EntityContext.getInstance().getmCurrentUser().getUserId());
+                    }
+                });
     }
 
     @Override

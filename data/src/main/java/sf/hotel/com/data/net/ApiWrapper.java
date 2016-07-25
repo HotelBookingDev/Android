@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import rx.Observable;
 import sf.hotel.com.data.entity.HotelBookResult;
 import sf.hotel.com.data.entity.Intallation;
+import sf.hotel.com.data.entity.Order;
 import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.data.entity.netresult.HttpResult;
@@ -143,14 +144,12 @@ public class ApiWrapper extends RetrofitHelper {
     public Observable<OrderListsResult> getOrders(int position) {
         return mService.getOrders(position).compose(this.applySchedulers());
     }
-
-
     public Observable<NormalResult> putChangePwd(String phoneNum, String pwd, String newPwd) {
         return mService.putChangePwd(phoneNum, pwd, newPwd).compose(this.applySchedulers());
     }
 
     public Observable<OrderReuslt> deleteOrder(long number) {
-        return mService.deleteOrder(number,"cancel").compose(this.applySchedulers());
+        return mService.deleteOrder(number).compose(this.applySchedulers());
     }
 
     @Override

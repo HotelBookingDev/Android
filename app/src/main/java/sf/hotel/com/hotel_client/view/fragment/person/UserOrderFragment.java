@@ -16,6 +16,9 @@ import android.view.ViewGroup;
 import com.lhh.ptrrv.library.PullToRefreshRecyclerView;
 import com.lhh.ptrrv.library.footer.loadmore.BaseLoadMoreView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
 
 import butterknife.BindView;
@@ -165,6 +168,14 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(PUSH_ORDER)) {
                 mUserOrderPresenter.refresh(getPosition());
+                try {
+                    JSONObject json = new JSONObject(
+                            intent.getExtras().getString("com.avos.avoscloud.Data"));
+                    String order = json.getString("order");
+                    mUserOrderPresenter.updateOrder(order,position);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }
     };

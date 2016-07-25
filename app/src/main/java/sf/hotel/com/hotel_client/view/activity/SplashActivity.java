@@ -31,6 +31,7 @@ public class SplashActivity extends BaseActivity implements ISplashView {
 
 //        在这里初始化Activity
         PushService.setDefaultPushCallback(this, PushBaseActivity.class);
+        PushService.subscribe(this, "customer", PushBaseActivity.class);
         mPreseneter = new ISplashPresenter(this);
         initView();
         initDatas();
