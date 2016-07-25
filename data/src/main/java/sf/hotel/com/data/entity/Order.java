@@ -1,8 +1,15 @@
 package sf.hotel.com.data.entity;
 
 import com.google.gson.annotations.SerializedName;
+import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.concurrent.TimeUnit;
+
+import sf.hotel.com.data.utils.TimeUtils;
 
 /**
  * Created by 林其望
@@ -82,6 +89,20 @@ public class Order {
     @SerializedName("seller")
 
     private int seller;
+    @DatabaseField(columnName = "modified")
+    @SerializedName("modified")
+    private String modified;
+
+    @DatabaseField(columnName = "update_time")
+    private long update_time;
+
+    public String getModified() {
+        return modified;
+    }
+
+    public void setUpdate_time(long update_time) {
+        this.update_time = update_time;
+    }
 
     public String getCheckin_time() {
         return checkin_time;
@@ -96,7 +117,6 @@ public class Order {
     }
 
     public boolean isDeleted() {
-
         return deleted;
     }
 
@@ -146,4 +166,8 @@ public class Order {
         this.isClosed = closed;
     }
 
+
+    public void timeAdapter() {
+        this.update_time= TimeUtils.TimeAdapter(this.modified);
+    }
 }
