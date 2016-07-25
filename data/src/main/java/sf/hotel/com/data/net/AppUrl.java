@@ -23,10 +23,12 @@ public class AppUrl {
     public static final String CHANGEPWD_URL = "user/password/";
 
     public static final String DELETE_URL = "customer/orders/";
+
+    public static final String GET_CLOSE_ORDER_URL=ORDER_URL+"?closed=true/";
     public static final String PAY_URL = "point/pay/";
 
     public static final String[] NEEDTOKENURL = {
             INSTALLATIONS_BIND_URL, CHANGEPWD_URL, TOKEN_URL, ORDER_URL, DELETE_URL, HOTELS_BOOK_URL
     };
-    public static final String[] SPEICALURL = {PAY_URL, ORDER_URL};
+    public static final String[] SPEICALURL = {PAY_URL, ORDER_URL,GET_CLOSE_ORDER_URL};
 }

@@ -29,4 +29,16 @@ public class TimeUtils {
         }
         return days;
     }
+
+    public static long TimeAdapter(String modified) {
+        String pattern = "yyyy-MM-dd'T'HH:mm:ss:SSSZZZ";
+        DateFormat df = new SimpleDateFormat(pattern);
+        long time = 0;
+        try {
+            Date parse = df.parse(modified);
+            time = parse.getTime();
+        } catch (Exception e) {
+        }
+        return time;
+    }
 }

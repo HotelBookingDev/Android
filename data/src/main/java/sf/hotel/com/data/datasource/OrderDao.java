@@ -26,6 +26,7 @@ public class OrderDao {
                     DatabaseHelper.getHelper(context).getOrders().delete(order);
                 }
             } else {
+                order.timeAdapter();
                 DatabaseHelper.getHelper(context).getOrders().createOrUpdate(order);
             }
         } catch (SQLException e) {
@@ -45,7 +46,12 @@ public class OrderDao {
         try {
             QueryBuilder<Order, Integer> orderIntegerQueryBuilder = DatabaseHelper.getHelper(
                     context).getOrders().queryBuilder();
-            orderIntegerQueryBuilder.where().eq("process_state", position).and().eq("customer", userId);
+            if (position==Order.ALRADYORDER){
+                orderIntegerQueryBuilder.where().eq("closed", true).and().eq("customer", userId);
+            }else {
+                orderIntegerQueryBuilder.where().eq("process_state", position).and().eq("customer", userId);
+            }
+            orderIntegerQueryBuilder.orderBy("update_time", true);
             mLists = orderIntegerQueryBuilder.query();
         } catch (SQLException e) {
             e.printStackTrace();
