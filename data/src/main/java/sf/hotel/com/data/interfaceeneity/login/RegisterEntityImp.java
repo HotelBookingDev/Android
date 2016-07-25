@@ -19,7 +19,7 @@ import sf.hotel.com.data.utils.CheckUtils;
 public class RegisterEntityImp extends ILRCommendImp implements IRegisterEntity {
 
     @Override
-    public Observable<LoginResult> register(String phone, String smsCode, String pwd) {
+    public Observable<LoginResult> register(String phone, String smsCode) {
         return Observable.create(new Observable.OnSubscribe<LoginResult>() {
             @Override
             public void call(Subscriber<? super LoginResult> subscriber) {
@@ -29,30 +29,13 @@ public class RegisterEntityImp extends ILRCommendImp implements IRegisterEntity 
                     subscriber.onError(new APIException(CodeException.REGIST_PHONE_ERROR));
                 } else if (TextUtils.isEmpty(smsCode)) {
                     subscriber.onError(new APIException(CodeException.SMS_CODE_NULL));
-                } else if (CheckUtils.isTextViewEmpty(pwd)) {
-                    subscriber.onError(new APIException(CodeException.PWD_NULL));
                 } else {
                     //网络请求的东西
-                    ApiWrapper.getInstance().doRegister(phone, smsCode, pwd).subscribe(subscriber);
+                    ApiWrapper.getInstance().doRegister(phone, smsCode).subscribe(subscriber);
                 }
             }
         });
     }
 
-    @Override
-    public Observable<NormalResult> getSmsCode(String phone) {
-        return Observable.create(new Observable.OnSubscribe<NormalResult>() {
-            @Override
-            public void call(Subscriber<? super NormalResult> subscriber) {
-                if (TextUtils.isEmpty(phone)) {
-                    subscriber.onError(new APIException(CodeException.REGIST_PHONE_NULL));
-                } else if (!(CheckUtils.checkPhoneNumber(phone))) {
-                    subscriber.onError(new APIException(CodeException.REGIST_PHONE_ERROR));
-                } else {
-                    //网络请求的东西
-                    ApiWrapper.getInstance().doGetSmsCode(phone).subscribe(subscriber);
-                }
-            }
-        });
-    }
+
 }

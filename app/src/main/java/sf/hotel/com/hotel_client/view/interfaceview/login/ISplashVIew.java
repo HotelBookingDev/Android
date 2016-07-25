@@ -6,7 +6,6 @@ package sf.hotel.com.hotel_client.view.interfaceview.login;
  * email: 1105896230@qq.com
  */
 public interface ISplashView extends ILRConmView {
-    void showImage(Object obj);
 
     void showPrompt(int type);
 

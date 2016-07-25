@@ -3,6 +3,7 @@ package sf.hotel.com.hotel_client.view.custom;
 import android.content.Context;
 import android.os.CountDownTimer;
 import android.util.AttributeSet;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -10,7 +11,7 @@ import android.widget.TextView;
  * @email sanfenruxi1@163.com
  * @date 16/6/7.
  */
-public class CaptchaText extends TextView {
+public class CaptchaText extends Button {
 
     TextCount mTextCount;
 

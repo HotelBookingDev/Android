@@ -46,11 +46,10 @@ public class ApiWrapper extends RetrofitHelper {
      * 登入
      *
      * @param username
-     * @param pwd
      * @return
      */
-    public Observable<LoginResult> doLogin(String username, String pwd) {
-        return mService.callLogin(username, pwd)
+    public Observable<LoginResult> doLogin(String username, String code) {
+        return mService.callLogin(username, code)
                 .compose(ApiWrapper.this.<LoginResult>applySchedulers());
     }
 
@@ -65,11 +64,10 @@ public class ApiWrapper extends RetrofitHelper {
      *
      * @param phone
      * @param smsCode
-     * @param pwd
      * @return
      */
-    public Observable<LoginResult> doRegister(String phone, String smsCode, String pwd) {
-        return mService.callRegister(phone, smsCode, pwd)
+    public Observable<LoginResult> doRegister(String phone, String smsCode) {
+        return mService.callRegister(phone, smsCode)
                 .compose(this.<LoginResult>applySchedulers());
     }
 
@@ -82,7 +80,9 @@ public class ApiWrapper extends RetrofitHelper {
     public Observable<NormalResult> doGetSmsCode(String phone) {
         return mService.callSmsCode(phone).compose(this.<NormalResult>applySchedulers());
     }
-
+    public Observable<NormalResult> doGetSmsCodeByLogin(String phone) {
+        return mService.callSmsCodeByLogin(phone).compose(this.<NormalResult>applySchedulers());
+    }
     public Observable<NormalResult> postIntallation(Intallation mIntallation) {
         Gson gson = new Gson();
         String s = gson.toJson(mIntallation);
@@ -121,7 +121,7 @@ public class ApiWrapper extends RetrofitHelper {
      * @param id hotel的id
      * @return
      */
-    public Observable<RoomResult> callHotelBean(String id, String inTime, String outTime, String exclude){
+    public Observable<RoomResult> callHotelBean(String id, String inTime, String outTime, String exclude) {
 
         return mService.callHotelBeanById(id, inTime, outTime, exclude)
                 .compose(this.<RoomResult>applySchedulers());
@@ -144,9 +144,11 @@ public class ApiWrapper extends RetrofitHelper {
     public Observable<OrderListsResult> getOrders(int position) {
         return mService.getOrders(position).compose(this.applySchedulers());
     }
+
     public Observable<OrderListsResult> getClosedOrders() {
         return mService.getClosedOrders().compose(this.applySchedulers());
     }
+
     public Observable<NormalResult> putChangePwd(String phoneNum, String pwd, String newPwd) {
         return mService.putChangePwd(phoneNum, pwd, newPwd).compose(this.applySchedulers());
     }

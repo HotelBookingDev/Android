@@ -3,11 +3,14 @@ package sf.hotel.com.hotel_client.view.presenter.login;
 import rx.Subscription;
 import sf.hotel.com.data.entity.netresult.LoginResult;
 import sf.hotel.com.data.entity.netresult.NormalResult;
+import sf.hotel.com.data.interfaceeneity.login.ILRCommend;
+import sf.hotel.com.data.interfaceeneity.login.ILRCommendImp;
 import sf.hotel.com.data.interfaceeneity.login.IRegisterEntity;
 import sf.hotel.com.data.interfaceeneity.login.RegisterEntityImp;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.data.utils.StringUtils;
+import sf.hotel.com.hotel_client.view.interfaceview.login.ILRConmView;
 import sf.hotel.com.hotel_client.view.interfaceview.login.IRegisterView;
 
 /**
@@ -27,10 +30,8 @@ public class IRegisterPresenter extends ILRcomPresenter {
     }
 
     public void register() {
-        //注册使用md5
-        String pwd = StringUtils.changePud(mIRegisterView.getPassword());
-        Subscription subscribe = mIRegisterEntity.register(mIRegisterView.getUserName(),
-                mIRegisterView.getCaptcha(), pwd)
+        Subscription subscribe = mIRegisterEntity.register(mIRegisterView.getPhoneNum(),
+                mIRegisterView.getCaptcha())
                 .subscribe(new SimpleSubscriber<LoginResult>(mIRegisterView.getBottomContext()) {
                     @Override
                     public void onError(Throwable e) {
@@ -41,30 +42,12 @@ public class IRegisterPresenter extends ILRcomPresenter {
                     @Override
                     public void onNext(LoginResult loginResult) {
                         super.onNext(loginResult);
-                        suceess(loginResult, mIRegisterEntity, mIRegisterView, pwd);
+                        suceess(loginResult, mIRegisterEntity, mIRegisterView);
                     }
                 });
         addSubsrcicitpition(subscribe);
     }
 
-    public void callPhoneCaptcha() {
-        Subscription subscribe = mIRegisterEntity.getSmsCode(mIRegisterView.getUserName())
-                .subscribe(new SimpleSubscriber<NormalResult>(mIRegisterView.getBottomContext()) {
-                    @Override
-                    public void onError(Throwable e) {
-                        super.onError(e);
-                        handlingException(e);
-                    }
-
-                    @Override
-                    public void onNext(NormalResult normalResult) {
-                        super.onNext(normalResult);
-                        mIRegisterView.startTimer();
-                        mIRegisterView.showViewToast("获取验证码成功");
-                    }
-                });
-        addSubsrcicitpition(subscribe);
-    }
 
     @Override
     public void resume() {
@@ -90,5 +73,9 @@ public class IRegisterPresenter extends ILRcomPresenter {
         } else {
             mIRegisterView.showViewToast(e.getMessage());
         }
+    }
+
+    public void sendCallCaptcha() {
+        callPhoneCaptcha(mIRegisterEntity, mIRegisterView, ILRCommendImp.REGISTER_SMS);
     }
 }

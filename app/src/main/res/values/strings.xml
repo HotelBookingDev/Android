@@ -151,5 +151,16 @@
     <string name="sms_code">短信验证码</string>
     <string name="chao_life">CHAO life</string>
     <string name="send_sms_code">发送验证码</string>
+    <string name="account_create">Account Creating</string>
+    <string name="next">下一步</string>
+    <string name="just_login">已有账号,立即登陆</string>
+    <string name="skip">skip</string>
+    <string name="regist_name">姓名</string>
+    <string name="real_name">请填写真实姓名</string>
+    <string name="sex">性别</string>
+    <string name="pay_order">用于支付订单</string>
+    <string name="confirm_pwd">确认密码</string>
+    <string name="man">男</string>
+    <string name="woman">女</string>
 
 </resources>

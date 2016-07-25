@@ -64,7 +64,6 @@ public class UserInfoPresenter extends SuperPresenter {
         PreferencesUtils.saveToken(mIUserInfoView.getBottomContext(), null);
         PreferencesUtils.saveAvatar(mIUserInfoView.getBottomContext(), null);
         PreferencesUtils.saveInstallationId(mIUserInfoView.getBottomContext(), null);
-        PreferencesUtils.savePassWord(mIUserInfoView.getBottomContext(), null);
         PreferencesUtils.savePhone(mIUserInfoView.getBottomContext(), null);
         PreferencesUtils.saveLogin(mIUserInfoView.getBottomContext(), false);
         PreferencesUtils.saveUserId(mIUserInfoView.getBottomContext(), null);

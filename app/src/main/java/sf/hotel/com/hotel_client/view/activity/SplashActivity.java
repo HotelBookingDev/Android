@@ -55,10 +55,6 @@ public class SplashActivity extends BaseActivity implements ISplashView {
         mPreseneter.initDatas();
     }
 
-    @Override
-    public void showImage(Object obj) {
-
-    }
 
     @Override
     public void startActivity(int type) {
@@ -83,15 +79,10 @@ public class SplashActivity extends BaseActivity implements ISplashView {
         mPreseneter.destroy();
     }
 
-    //    完全不需要重下下面的方法
-    @Override
-    public String getUserName() {
-        return mPreseneter.getUserName();
-    }
 
     @Override
-    public String getPassword() {
-        return null;
+    public String getPhoneNum() {
+        return mPreseneter.getPhoneNum();
     }
 
     //   只需重写这个方法
@@ -100,5 +91,8 @@ public class SplashActivity extends BaseActivity implements ISplashView {
         startActivity(MAIN);
     }
 
+    @Override
+    public void startTimer() {
 
+    }
 }

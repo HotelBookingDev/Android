@@ -10,7 +10,5 @@ import sf.hotel.com.data.entity.netresult.NormalResult;
  * @date 16/6/8.
  */
 public interface IRegisterEntity extends ILRCommend {
-    Observable<LoginResult> register(String phone, String smsCode, String pwd);
-
-    Observable<NormalResult> getSmsCode(String phone);
+    Observable<LoginResult> register(String phone, String smsCode);
 }

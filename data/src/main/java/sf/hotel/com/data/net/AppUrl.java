@@ -8,7 +8,8 @@ public class AppUrl {
 
     public static final String VERSION = "";
     public static final String API_HOST = "http://agesd.com/" + VERSION;
-    public static final String LOGIN_URL = "user/login/";
+    public static final String LOGIN_SMS_URL = "user/sms/login/";
+    public static final String LOGIN = "user/login/";
     public static final String REGISTER_URL = "user/register/";
     public static final String SMS_URL = "ems/member/regist/";
     public static final String INSTALLATIONS_BIND_URL = "user/installation/bind/";
@@ -24,11 +25,11 @@ public class AppUrl {
 
     public static final String DELETE_URL = "customer/orders/";
 
-    public static final String GET_CLOSE_ORDER_URL=ORDER_URL+"?closed=true/";
+    public static final String GET_CLOSE_ORDER_URL = ORDER_URL + "?closed=true/";
     public static final String PAY_URL = "point/pay/";
 
     public static final String[] NEEDTOKENURL = {
             INSTALLATIONS_BIND_URL, CHANGEPWD_URL, TOKEN_URL, ORDER_URL, DELETE_URL, HOTELS_BOOK_URL
     };
-    public static final String[] SPEICALURL = {PAY_URL, ORDER_URL,GET_CLOSE_ORDER_URL};
+    public static final String[] SPEICALURL = {PAY_URL, ORDER_URL, GET_CLOSE_ORDER_URL};
 }

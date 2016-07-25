@@ -95,17 +95,7 @@ public class ISplashPresenter extends ILRcomPresenter {
     }
 
     private void autoLogin() {
-        String phone = entity.getPhone(view.getBottomContext());
-        String pwd = entity.getPwd(view.getBottomContext());
-//        存在本地不是真实密码不需要比对
-        if (!CheckUtils.isTextViewEmpty(phone) && !CheckUtils.isTextViewEmpty(pwd)) {
-            Subscription subscribe = entity.login(phone, pwd).subscribe(loginResult -> {
-                suceess(loginResult, entity, view, pwd);
-            }, this::handlingException);
-            addSubsrcicitpition(subscribe);
-        } else {
-            view.startActivity(SplashActivity.LOGIN);
-        }
+       view.startActivity(SplashActivity.LOGIN);
     }
 
     //    重下登录成功保存信息出错
@@ -122,7 +112,6 @@ public class ISplashPresenter extends ILRcomPresenter {
     }
 
     private void postInstallId() {
-
         Subscription subscribe = ApiWrapper.getInstance()
                 .postIntallation(new Intallation("android", view.getIntallationId()))
                 .subscribe(new Subscriber<NormalResult>() {
@@ -152,7 +141,7 @@ public class ISplashPresenter extends ILRcomPresenter {
         addSubsrcicitpition(subscribe);
     }
 
-    public String getUserName() {
-        return entity.getUserName(view.getBottomContext());
+    public String getPhoneNum() {
+        return entity.getPhone(view.getBottomContext());
     }
 }
