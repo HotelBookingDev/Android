@@ -35,7 +35,6 @@ public class UserEntity {
     }
 
     @SerializedName("point")
-
     @DatabaseField(columnName = "point")
     private long point;
 

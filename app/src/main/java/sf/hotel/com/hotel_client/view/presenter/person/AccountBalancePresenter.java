@@ -2,6 +2,8 @@ package sf.hotel.com.hotel_client.view.presenter.person;
 
 import rx.functions.Action1;
 import sf.hotel.com.data.entity.netresult.pay.PayResult;
+import sf.hotel.com.data.interfaceeneity.person.IAccountBalanceEntity;
+import sf.hotel.com.data.interfaceeneity.person.IAccountBalanceEntityImp;
 import sf.hotel.com.data.net.ApiWrapper;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.alipay.PayCallBack;
@@ -17,16 +19,18 @@ import sf.hotel.com.hotel_client.view.interfaceview.person.IAccountBalanceFragme
  */
 public class AccountBalancePresenter extends PayPresenter {
     IAccountBalanceFragmentView iAccountBalanceFragmentView;
+    IAccountBalanceEntity entity;
 
     public AccountBalancePresenter(IAccountBalanceFragmentView iAccountBalanceFragmentView) {
         super(iAccountBalanceFragmentView);
         this.iAccountBalanceFragmentView = iAccountBalanceFragmentView;
+        entity = new IAccountBalanceEntityImp();
     }
 
 
     public void initViews() {
         //TODO 为网络请求
-        iAccountBalanceFragmentView.showMoney("5000.00");
+        iAccountBalanceFragmentView.showMoney(entity.getPoint() + "");
     }
 
 
