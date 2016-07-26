@@ -19,9 +19,4 @@ public class ISplahImp extends LoginEntityImp implements ISplashEntity {
     public void saveCityName(Context context,String cityname) {
         PreferencesUtils.saveCityName(context,cityname);
     }
-
-    @Override
-    public String getUserName(Context context) {
-        return PreferencesUtils.getPhone(context);
-    }
 }

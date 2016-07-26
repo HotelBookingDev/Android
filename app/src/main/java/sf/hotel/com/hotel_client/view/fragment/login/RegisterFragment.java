@@ -13,7 +13,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mehdi.sakout.fancybuttons.FancyButton;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.utils.AndroidUtils;
 import sf.hotel.com.hotel_client.view.custom.CaptchaText;
 import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.event.RxBus;
@@ -30,14 +29,12 @@ import sf.hotel.com.hotel_client.view.presenter.login.IRegisterPresenter;
 public class RegisterFragment extends BaseFragment implements IRegisterView {
 
     @BindView(R.id.et_phone)
-    EditText editRegName;
-    @BindView(R.id.et_password)
-    EditText editRegPwd;
+    EditText editPhone;
 
-    @BindView(R.id.edit_reg_captcha)
-    EditText editRegCaptcha;
+    @BindView(R.id.edit_code)
+    EditText editCode;
 
-    @BindView(R.id.btn_reg_captcha)
+    @BindView(R.id.btn_regist_captcha)
     CaptchaText btnRegCaptcha;
 
     @BindView(R.id.btn_reg_submit)
@@ -57,7 +54,7 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_register, container, false);
         ButterKnife.bind(this, view);
         mIRegisterPresenter = new IRegisterPresenter(this);
@@ -71,12 +68,12 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
 
     @Override
     public void callPhoneCaptcha() {
-        mIRegisterPresenter.callPhoneCaptcha();
+        mIRegisterPresenter.sendCallCaptcha();
     }
 
     @Override
     public String getCaptcha() {
-        return editRegCaptcha.getText().toString();
+        return editCode.getText().toString();
     }
 
     @Override
@@ -96,7 +93,7 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
     }
 
     @OnClick({
-            R.id.btn_reg_submit, R.id.btn_reg_captcha
+            R.id.btn_reg_submit, R.id.btn_regist_captcha, R.id.just_login_txt
     })
     void onClick(View view) {
         int id = view.getId();
@@ -104,26 +101,22 @@ public class RegisterFragment extends BaseFragment implements IRegisterView {
         if (id == R.id.btn_reg_submit) {
             //提交注册信息
             register();
-        } else if (id == R.id.btn_reg_captcha) {
+        } else if (id == R.id.btn_regist_captcha) {
             //发送验证码
             callPhoneCaptcha();
+        } else if (id == R.id.just_login_txt) {
+            pop();
         }
     }
 
-    @Override
-    public String getUserName() {
-        return editRegName.getText().toString();
-    }
 
     @Override
-    public String getPassword() {
-        return editRegPwd.getText().toString();
+    public String getPhoneNum() {
+        return editPhone.getText().toString().trim();
     }
 
     @Override
     public void startHomeActivity() {
-        RxBus.getDefault().post(MessageFactory.createLoginMessage(LoginMessage.SHOW_MAIN));
+        start(new FillInfolationFragment());
     }
-
-
 }

@@ -30,6 +30,14 @@ public class UserEntity {
     @DatabaseField(columnName = "sex")
     private int sex;
 
+    public long getPoint() {
+        return point;
+    }
+
+    @SerializedName("point")
+    @DatabaseField(columnName = "point")
+    private long point;
+
     @SerializedName("create_at")
     private String createTime;
 

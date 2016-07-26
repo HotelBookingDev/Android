@@ -15,7 +15,6 @@ public class PreferencesUtils {
 
     public static final String PHONE = "phone";
 
-    public static final String PASSWORD = "password";
 
     public static final String USERID = "userId";
     //用户头像
@@ -74,15 +73,6 @@ public class PreferencesUtils {
         return preferences.getString(PHONE, null);
     }
 
-    public static void savePassWord(Context context, String pwd) {
-        SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
-        preferences.edit().putString(PASSWORD, pwd).apply();
-    }
-
-    public static String getPassWord(Context context) {
-        SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
-        return preferences.getString(PASSWORD, null);
-    }
 
     public static void saveAvatar(Context context, String url) {
         if (!TextUtils.isEmpty(url)) {
@@ -177,23 +167,27 @@ public class PreferencesUtils {
         put(context, HOTEL_CITYS, citysBean);
     }
 
-    public static String getProcincesResult(Context context) {return get(context, HOTEL_PROC);}
+    public static String getProcincesResult(Context context) {
+        return get(context, HOTEL_PROC);
+    }
 
     public static void saveProcincesResult(Context context, String procincesResult) {
         put(context, HOTEL_PROC, procincesResult);
     }
 
-    public static String getSearchItem(Context context){
+    public static String getSearchItem(Context context) {
         return get(context, HOTEL_SEARCH);
     }
-    public static void saveSearchItem(Context context,String str){
+
+    public static void saveSearchItem(Context context, String str) {
         put(context, HOTEL_SEARCH, str);
     }
 
-    public static String getBookingBean(Context context){
+    public static String getBookingBean(Context context) {
         return get(context, HOTEL_ROOM_BOOKING);
     }
-    public static void saveBookingBean(Context context,String str){
+
+    public static void saveBookingBean(Context context, String str) {
         put(context, HOTEL_ROOM_BOOKING, str);
     }
 

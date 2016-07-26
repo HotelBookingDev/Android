@@ -3,14 +3,17 @@ package sf.hotel.com.hotel_client.view.custom;
 import android.content.Context;
 import android.os.CountDownTimer;
 import android.util.AttributeSet;
+import android.widget.Button;
 import android.widget.TextView;
+
+import sf.hotel.com.hotel_client.utils.DensityUtils;
 
 /**
  * @author MZ
  * @email sanfenruxi1@163.com
  * @date 16/6/7.
  */
-public class CaptchaText extends TextView {
+public class CaptchaText extends Button {
 
     TextCount mTextCount;
 
@@ -24,7 +27,7 @@ public class CaptchaText extends TextView {
 
     public void startTimer() {
         if (mTextCount == null) {
-            mTextCount = new TextCount(10 * 1000, 1000);
+            mTextCount = new TextCount(60 * 1000, 1000);
         }
         setClickable(false);
         mTextCount.start();

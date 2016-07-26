@@ -7,12 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.view.custom.CaptchaText;
 import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.person.LoginMessage;
@@ -27,11 +27,11 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @BindView(R.id.et_phone)
     EditText mEditPhone;
-    @BindView(R.id.edit_pw)
-    EditText mEditPw;
+    @BindView(R.id.edit_code)
+    EditText mEditCode;
+    @BindView(R.id.btn_login_captcha)
+    CaptchaText captchaText;
 
-    @BindView(R.id.iv_avatar)
-    ImageView mIvAvatar;
     ILoginPresenter mILoginPresenter;
 
     public static LoginFragment newInstance() {
@@ -45,7 +45,7 @@ public class LoginFragment extends BaseFragment implements ILoginView {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this, view);
@@ -53,25 +53,6 @@ public class LoginFragment extends BaseFragment implements ILoginView {
         return view;
     }
 
-    @Override
-    public String getUserName() {
-        return mEditPhone.getText().toString();
-    }
-
-    @Override
-    public String getPassword() {
-        return mEditPw.getText().toString();
-    }
-
-    @Override
-    public void clearUserName() {
-        mEditPhone.setText("");
-    }
-
-    @Override
-    public void clearPassword() {
-        mEditPw.setText("");
-    }
 
     @Override
     public void startHomeActivity() {
@@ -79,19 +60,15 @@ public class LoginFragment extends BaseFragment implements ILoginView {
     }
 
     @Override
+    public void startTimer() {
+        captchaText.startTimer();
+    }
+
+    @Override
     public void setEditPhone(String phone) {
         mEditPhone.setText(phone);
     }
 
-    @Override
-    public void setEditPwd(String pwd) {
-        mEditPw.setText(pwd);
-    }
-
-    @Override
-    public ImageView getAvatar() {
-        return mIvAvatar;
-    }
 
     @Override
     public Context getContext() {
@@ -109,16 +86,26 @@ public class LoginFragment extends BaseFragment implements ILoginView {
         mILoginPresenter.destroy();
     }
 
-    @OnClick({R.id.login_btn, R.id.tv_just_look, R.id.register_btn})
+    @OnClick({R.id.login_btn, R.id.register_btn,R.id.btn_login_captcha})
     public void onClick(View view) {
         int id = view.getId();
         if (id == R.id.login_btn) {
             login();
-        } else if (id == R.id.tv_just_look) {
-            justLook();
         } else if (id == R.id.register_btn) {
             register();
+        }else if (id==R.id.btn_login_captcha){
+            mILoginPresenter.sendSmsCode();
         }
+    }
+
+    @Override
+    public String getPhoneNum() {
+        return mEditPhone.getText().toString().trim();
+    }
+
+    @Override
+    public String getCode() {
+        return mEditCode.getText().toString();
     }
 
     @Override
@@ -126,9 +113,6 @@ public class LoginFragment extends BaseFragment implements ILoginView {
         mILoginPresenter.login();
     }
 
-    public void justLook() {
-        startHomeActivity();
-    }
 
     public void register() {
         RxBus.getDefault().post(MessageFactory.createLoginMessage(LoginMessage.SHOW_REGIST));

@@ -11,6 +11,4 @@ public interface ISplashEntity extends ILoginEntity {
     void saveCityCode(Context context, String code);
 
     void saveCityName(Context context, String cityname);
-
-    String getUserName(Context context);
 }

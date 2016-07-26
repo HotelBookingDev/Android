@@ -4,11 +4,11 @@ import android.os.Bundle;
 
 import rx.Subscription;
 import sf.hotel.com.hotel_client.R;
-import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
 import sf.hotel.com.hotel_client.view.activity.BaseActivity;
 import sf.hotel.com.hotel_client.view.activity.MainActivity;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.person.LoginMessage;
+import sf.hotel.com.hotel_client.view.fragment.login.FillInfolationFragment;
 import sf.hotel.com.hotel_client.view.fragment.login.LoginFragment;
 import sf.hotel.com.hotel_client.view.fragment.login.RegisterFragment;
 
@@ -19,12 +19,6 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
         init(savedInstanceState);
         onRxEvent();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        TransulcentUtils.setFixWindow(this);
     }
 
     @Override
@@ -48,8 +42,6 @@ public class LoginActivity extends BaseActivity {
                         case LoginMessage.SHOW_REGIST:
                             start(RegisterFragment.newInstance());
                             break;
-                        case LoginMessage.FRAGMENT_BACK:
-                            onBackPressed();
                     }
                 });
         addSubscription(subscribe);

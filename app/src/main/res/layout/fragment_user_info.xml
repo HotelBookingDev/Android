@@ -23,7 +23,7 @@
             app:contextText="@string/current_user"
             app:is_show_right_icon="false" />
 
-        <include layout="@layout/item_line" />
+        <include layout="@layout/item_line_color_gray" />
 
         <sf.hotel.com.hotel_client.view.custom.PersonalItemView
             android:id="@+id/piv_pay_pwd"
@@ -31,7 +31,7 @@
             android:layout_marginTop="@dimen/fab_margin"
             app:contextText="@string/pay_pwd" />
 
-        <include layout="@layout/item_line" />
+        <include layout="@layout/item_line_color_gray" />
 
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/setting_out"

@@ -8,11 +8,11 @@ import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
  * email: 1105896230@qq.com
  */
 public interface ILRConmView extends BaseView {
-    String getUserName();
-
-    String getPassword();
+    String getPhoneNum();
 
     void startHomeActivity();
 
     String getIntallationId();
+
+    void startTimer();
 }

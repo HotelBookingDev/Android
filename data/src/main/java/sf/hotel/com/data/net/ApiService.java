@@ -48,18 +48,22 @@ import static sf.hotel.com.data.net.HttpParam.SMS_CODE;
 public interface ApiService {
 
     @FormUrlEncoded
-    @POST(AppUrl.LOGIN_URL)
+    @POST(AppUrl.LOGIN)
     Observable<HttpResult<LoginResult>> callLogin(@Field(PHONE_NUMBER) String phone,
-                                                  @Field(PASSWORD) String pwd);
+                                                  @Field(HttpParam.SMS_CODE) String code);
 
     @FormUrlEncoded
     @POST(AppUrl.REGISTER_URL)
     Observable<HttpResult<LoginResult>> callRegister(@Field(PHONE_NUMBER) String phone,
-                                                     @Field(SMS_CODE) String smsCode, @Field(PASSWORD) String pwd);
+                                                     @Field(SMS_CODE) String smsCode);
 
     @FormUrlEncoded
     @POST(AppUrl.SMS_URL)
     Observable<HttpResult<NormalResult>> callSmsCode(@Field(PHONE_NUMBER) String phone);
+
+    @FormUrlEncoded
+    @POST(AppUrl.LOGIN_SMS_URL)
+    Observable<HttpResult<NormalResult>> callSmsCodeByLogin(@Field(PHONE_NUMBER) String phone);
 
     //绑定
     @FormUrlEncoded
@@ -102,6 +106,7 @@ public interface ApiService {
 
     @GET(AppUrl.ORDER_URL)
     Observable<HttpResult<OrderListsResult>> getOrders(@Query(HttpParam.PROCESS_SATE) int postion);
+
     @GET(AppUrl.GET_CLOSE_ORDER_URL)
     Observable<HttpResult<OrderListsResult>> getClosedOrders();
 

@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rx.Subscription;
@@ -38,6 +40,8 @@ public class PersonFragment extends BaseFragment implements IPersonView {
     public static final int INFO = 0x7;
     PersonPresenter mPersonPresenter;
 
+    @BindView(R.id.tx_num_point)
+    TextView tv_Point;
     public static PersonFragment newInstance() {
 
         Bundle args = new Bundle();
@@ -54,6 +58,7 @@ public class PersonFragment extends BaseFragment implements IPersonView {
         View view = inflater.inflate(R.layout.fragment_person, container, false);
         ButterKnife.bind(this, view);
         mPersonPresenter = new PersonPresenter(this);
+        mPersonPresenter.initViews();
         onRxEvent();
         return view;
     }
@@ -107,6 +112,11 @@ public class PersonFragment extends BaseFragment implements IPersonView {
     @Override
     public void clickMyInvoice() {
         mPersonPresenter.clicInvoice();
+    }
+
+    @Override
+    public void setPoints(String points) {
+        tv_Point.setText(points);
     }
 
     @Override

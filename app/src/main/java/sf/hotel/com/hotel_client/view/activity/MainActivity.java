@@ -71,7 +71,7 @@ public class MainActivity extends BaseActivity {
     private void initBottom() {
         Controller build = mPagerBottomTabLayout.builder()
                 .addTabItem(android.R.drawable.ic_menu_search, "首页", Color.BLUE)
-                .addTabItem(android.R.drawable.ic_menu_help, "个人", Color.BLUE)
+                .addTabItem(R.mipmap.tab_personal_icon, "个人", Color.BLUE)
                 .build();
         build.addTabItemClickListener(new TabItemListene());
     }

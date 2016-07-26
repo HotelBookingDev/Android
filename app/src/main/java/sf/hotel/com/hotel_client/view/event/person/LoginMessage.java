@@ -15,7 +15,6 @@ public class LoginMessage extends Message {
     public static final int SHOW_MAIN = 3;
 
 
-    public final static int FRAGMENT_BACK = 10;
 
     public LoginMessage(int what) {
         super(what);

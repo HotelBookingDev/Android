@@ -150,8 +150,8 @@
     <style name="login_edit" parent="edit_pwd">
         <item name="android:layout_weight">1</item>
         <item name="android:layout_marginRight">10.0dip</item>
-        <item name="android:textColorHint">#80ffffff</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/hit_text</item>
+        <item name="android:textColor">@color/hit_text</item>
 
     </style>
 
@@ -166,6 +166,7 @@
         <item name="android:singleLine">true</item>
         <item name="android:layout_centerVertical">true</item>
     </style>
+
 
     <style name="roomRatingBar" parent="@android:style/Widget.RatingBar">
         <item name="android:progressDrawable">@drawable/star_bar_full</item>
@@ -189,5 +190,9 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/hit_text</item>
+    </style>
+
+    <style name="waltter_txt" parent="order_txt">
+        <item name="android:textSize">15sp</item>
     </style>
 </resources>

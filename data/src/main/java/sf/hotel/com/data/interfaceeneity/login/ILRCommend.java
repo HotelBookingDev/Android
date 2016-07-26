@@ -6,6 +6,7 @@ import rx.Observable;
 import sf.hotel.com.data.entity.Intallation;
 import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.entity.netresult.NormalResult;
+import sf.hotel.com.data.net.Interceptor.LoggingInterceptor;
 
 /**
  * Created by 林其望
@@ -16,9 +17,6 @@ import sf.hotel.com.data.entity.netresult.NormalResult;
 public interface ILRCommend {
     //    保存手机号
     void savePhone(Context context, String phone);
-
-    //    保存密码
-    void savePwd(Context context, String pwd);
 
     //保存头像
     void saveAvatar(Context context, String url);
@@ -35,4 +33,6 @@ public interface ILRCommend {
     Observable<NormalResult> postInllation(String deviceType, String phoneNum, String id);
 
     Observable<NormalResult> postIntallation(Intallation intallation);
+
+    Observable<NormalResult> getSmsCode(String phone,int type);
 }

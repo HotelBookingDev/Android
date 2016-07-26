@@ -10,7 +10,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:padding="10dp"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@mipmap/information_icon" />
 
     <TextView
         android:id="@+id/tx_num_point"
@@ -27,9 +27,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/tx_num_point"
-        android:layout_marginLeft="80dp"
+        android:layout_marginLeft="100dp"
         android:text="@string/already_accumulated"
-        android:textSize="@dimen/text_mid" />
+        android:textColor="@color/hit_text"
+        android:textSize="@dimen/activity_account_size" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,12 +50,14 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/wallet_icon" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/my_money" />
+                android:text="@string/my_money"
+
+                android:textColor="@color/hit_text" />
         </LinearLayout>
 
         <LinearLayout
@@ -68,12 +71,14 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/order_icon" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/my_orders" />
+                android:text="@string/my_orders"
+
+                android:textColor="@color/hit_text" />
         </LinearLayout>
 
         <LinearLayout
@@ -86,12 +91,13 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/favorite_icon" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/my_collection" />
+                android:text="@string/my_collection"
+                android:textColor="@color/hit_text" />
         </LinearLayout>
     </LinearLayout>
 

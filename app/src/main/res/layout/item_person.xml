@@ -17,6 +17,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textColor="@color/white"
         android:layout_marginLeft="@dimen/fab_margin"
         android:layout_marginStart="@dimen/fab_margin"
         android:layout_weight="1"

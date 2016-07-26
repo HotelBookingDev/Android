@@ -12,6 +12,7 @@ import sf.hotel.com.data.interfaceeneity.login.ILRCommend;
 import sf.hotel.com.data.net.Exception.APIException;
 import sf.hotel.com.data.net.Exception.Code;
 import sf.hotel.com.data.net.callback.CommSubscriber;
+import sf.hotel.com.data.net.callback.SimpleSubscriber;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.data.utils.PreferencesUtils;
 import sf.hotel.com.hotel_client.view.interfaceview.login.ILRConmView;
@@ -24,24 +25,22 @@ import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
  */
 public class ILRcomPresenter extends SuperPresenter {
 
-    protected void saveUserInfo(ILRCommend commend, Context context, String phone, String pwd,
-            String avatar, String id) {
+    protected void saveUserInfo(ILRCommend commend, Context context, String phone,
+                                String avatar, String id) {
         commend.savePhone(context, phone);
-        commend.savePwd(context, pwd);
         commend.saveAvatar(context, avatar);
         commend.saveUserId(context, id);
     }
 
     //登录或者注册成功调用的方法
-    protected void suceess(LoginResult loginResult, ILRCommend commend, ILRConmView view,
-            String pwd) {
+    protected void suceess(LoginResult loginResult, ILRCommend commend, ILRConmView view) {
         //保存用户信息
         Subscription subscribe = Observable.just(loginResult)
                 .filter(loginResult1 -> loginResult1 == null ? Boolean.FALSE : Boolean.TRUE)
                 .filter(loginResult1 -> loginResult1.getUserEntity() ==
                         null ? Boolean.FALSE : Boolean.TRUE)
                 .doOnNext(loginResult1 -> saveUserInfo(commend, view.getBottomContext(),
-                        view.getUserName(), pwd, loginResult.getUserEntity().getAvatar(),
+                        view.getPhoneNum(), loginResult.getUserEntity().getAvatar(),
                         String.valueOf(loginResult.getUserEntity().getUserId())))
                 .doOnNext(loginResult1 -> commend.upDateUserInfo(view.getBottomContext(),
                         loginResult1.getUserEntity()))
@@ -76,12 +75,42 @@ public class ILRcomPresenter extends SuperPresenter {
         if (id == null) {
             observable = commend.postIntallation(
                     new Intallation("android", view.getIntallationId()))
-                    .flatMap(normalResult -> commend.postInllation("android", view.getUserName(),
+                    .flatMap(normalResult -> commend.postInllation("android", view.getPhoneNum(),
                             view.getIntallationId()));
         } else {
-            observable = commend.postInllation("android", view.getUserName(),
+            observable = commend.postInllation("android", view.getPhoneNum(),
                     view.getIntallationId());
         }
         return observable;
+    }
+
+    public void callPhoneCaptcha(ILRCommend commend, ILRConmView view, int type) {
+        Subscription subscribe = commend.getSmsCode(view.getPhoneNum(), type)
+                .subscribe(new SimpleSubscriber<NormalResult>(view.getBottomContext()) {
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        handlingException(view, e);
+                    }
+
+                    @Override
+                    public void onNext(NormalResult normalResult) {
+                        super.onNext(normalResult);
+                        view.startTimer();
+                        view.showViewToast("获取验证码成功");
+                    }
+                });
+        addSubsrcicitpition(subscribe);
+    }
+
+    public void handlingException(ILRConmView view, Throwable e) {
+        if (e instanceof APIException) {
+            int msgid = ((APIException) e).getMessageId();
+            if (msgid != 0) {
+                view.showViewToast(getErrorString(msgid, view.getBottomContext()));
+            } else {
+                view.showViewToast(e.getMessage());
+            }
+        }
     }
 }

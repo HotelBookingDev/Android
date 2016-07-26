@@ -1,5 +1,7 @@
 package sf.hotel.com.hotel_client.view.presenter.person;
 
+import sf.hotel.com.data.interfaceeneity.person.IPerson;
+import sf.hotel.com.data.interfaceeneity.person.IPersonImp;
 import sf.hotel.com.hotel_client.view.fragment.person.PersonFragment;
 import sf.hotel.com.hotel_client.view.interfaceview.person.IPersonView;
 import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
@@ -11,9 +13,11 @@ import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
  */
 public class PersonPresenter extends SuperPresenter {
     IPersonView mIPersonView;
+    IPerson person;
 
     public PersonPresenter(IPersonView mIPersonView) {
         this.mIPersonView = mIPersonView;
+        person = new IPersonImp();
     }
 
     public void clickMoney() {
@@ -59,5 +63,10 @@ public class PersonPresenter extends SuperPresenter {
         } else {
             mIPersonView.showLoginFragment();
         }
+    }
+
+    public void initViews() {
+        long points = person.getPoints();
+        mIPersonView.setPoints(points + "积分");
     }
 }

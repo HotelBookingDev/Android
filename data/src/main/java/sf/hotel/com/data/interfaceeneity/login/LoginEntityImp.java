@@ -18,7 +18,7 @@ import sf.hotel.com.data.utils.PreferencesUtils;
 public class LoginEntityImp extends ILRCommendImp implements ILoginEntity {
 
     @Override
-    public Observable<LoginResult> login(String username, String password) {
+    public Observable<LoginResult> login(String username, String code) {
         return Observable.create(new Observable.OnSubscribe<LoginResult>() {
             @Override
             public void call(Subscriber<? super LoginResult> subscriber) {
@@ -26,31 +26,21 @@ public class LoginEntityImp extends ILRCommendImp implements ILoginEntity {
                     subscriber.onError(new APIException(CodeException.LOGIN_NAME_NULL));
                 } else if (!(CheckUtils.checkPhoneNumber(username))) {
                     subscriber.onError(new APIException(CodeException.LOGIN_FORMAT_ERROR));
-                } else if (CheckUtils.isTextViewEmpty(password)) {
-                    subscriber.onError(new APIException(CodeException.LOGIN_PWD_NULL));
+                } else if ((CheckUtils.checkPhoneNumber(code))) {
+                    subscriber.onError(new APIException(CodeException.SMS_CODE_NULL));
                 } else {
                     //网络请求的东西
-                    ApiWrapper.getInstance().doLogin(username, password).subscribe(subscriber);
+                    ApiWrapper.getInstance().doLogin(username, code).subscribe(subscriber);
                 }
             }
         });
     }
 
 
-
-    @Override
-    public String getAvatar(Context context) {
-        return PreferencesUtils.getAvatar(context);
-    }
-
     @Override
     public String getPhone(Context context) {
         return PreferencesUtils.getPhone(context);
     }
 
-    @Override
-    public String getPwd(Context context) {
-        return PreferencesUtils.getPassWord(context);
-    }
 
 }
