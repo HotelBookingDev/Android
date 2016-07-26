@@ -19,7 +19,7 @@ import sf.hotel.com.data.utils.PreferencesUtils;
  */
 public class HeadInterceptor implements Interceptor {
     private static final String TOEKNKEY = "Authorization";
-    private static final String JWT = "JWT ";
+    private static final String JWT = "Token ";
 
     @Override
     public okhttp3.Response intercept(okhttp3.Interceptor.Chain chain) throws IOException {
