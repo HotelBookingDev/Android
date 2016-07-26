@@ -5,6 +5,7 @@ import java.util.List;
 import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.hotel_client.view.adapter.CityListAdapter;
+import sf.hotel.com.hotel_client.view.custom.city.CityListAllAdapter;
 import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
 
 /**
@@ -18,7 +19,5 @@ public interface ICityView extends BaseView {
 
     void setCityListAdapterSelect(CityBean cityBeen);
 
-    void setHeadTextStr(String text);
-
-    CityListAdapter getCityListAdapter();
+    CityListAllAdapter getCityListAllAdapter();
 }

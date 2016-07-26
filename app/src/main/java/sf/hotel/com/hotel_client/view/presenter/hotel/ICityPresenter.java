@@ -29,16 +29,25 @@ public class ICityPresenter extends SuperPresenter {
 
 
     public void onTextClick(View view, int pos) {
-        CityBean selectCityBean = mICityView.getCityListAdapter().getSelectCityBean();
-        saveSelectCity(selectCityBean);
-        mICityView.setHeadTextStr(selectCityBean.getName());
+
+//
+//        CityBean selectCityBean = mICityView.getCityListAllAdapter();
+//        saveSelectCity(selectCityBean);
+
     }
+
+    public void onHotTextClick(View view, int pos){
+//        CityBean selectCityBean = mICityView.getCityListAllAdapter();
+//        saveSelectCity(selectCityBean);
+    }
+
 
     public void getProcincesResult() {
         List<CityBean> cityBeen = mICityEntityImp.getProcincesResult(mICityView.getBottomContext());
         if (cityBeen  != null){
-            mICityView.setCityListAdapterDate(cityBeen);
-        }else {
+            mICityView.getCityListAllAdapter().setAllCityBeen(cityBeen);
+            mICityView.getCityListAllAdapter().setHotCityBeen(cityBeen);
+        } else {
             callCityList();
         }
     }
@@ -46,7 +55,7 @@ public class ICityPresenter extends SuperPresenter {
     public void getCityBean() {
         CityBean cityBean = mICityEntityImp.getCityBean(mICityView.getBottomContext());
         if (cityBean != null){
-            mICityView.setCityListAdapterSelect(cityBean);
+           // mICityView.setCityListAdapterSelect(cityBean);
         }
     }
 
@@ -56,7 +65,8 @@ public class ICityPresenter extends SuperPresenter {
                     @Override
                     public void onNext(List<CityBean> cityBeen) {
                         super.onNext(cityBeen);
-                        mICityView.setCityListAdapterDate(cityBeen);
+                        mICityView.getCityListAllAdapter().setAllCityBeen(cityBeen);
+                        mICityView.getCityListAllAdapter().setHotCityBeen(cityBeen);
                     }
 
                     @Override
@@ -69,7 +79,7 @@ public class ICityPresenter extends SuperPresenter {
     }
 
     public void saveSelectCity(CityBean cityBean) {
-        if (cityBean != null)
-            mICityEntityImp.saveCitysBean(mICityView.getBottomContext(), cityBean);
+//        if (cityBean != null)
+//            mICityEntityImp.saveCitysBean(mICityView.getBottomContext(), cityBean);
     }
 }

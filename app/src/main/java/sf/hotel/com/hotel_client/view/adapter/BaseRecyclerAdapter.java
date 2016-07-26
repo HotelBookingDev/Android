@@ -63,6 +63,8 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
         }
     }
 
+
+
     @Override
     public int getItemViewType(int position) {
         if(mHeaderView != null && position == 0)
@@ -166,4 +168,6 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
     public interface OnItemClickListener<T> {
         void onItemClick(int position, T data);
     }
+
+
 }

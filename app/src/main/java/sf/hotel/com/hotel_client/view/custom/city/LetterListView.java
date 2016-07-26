@@ -1,4 +1,4 @@
-package sf.hotel.com.hotel_client.view.custom;
+package sf.hotel.com.hotel_client.view.custom.city;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -11,7 +11,7 @@ import android.view.View;
 public class LetterListView extends View {
 
 	OnTouchingLetterChangedListener onTouchingLetterChangedListener;
-	String[] b = {"定位", "最近", "热门", "全部", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
+	String[] b = {"定位","城市列表","A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
 			"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X",
 			"Y", "Z" };
 	int choose = -1;
@@ -96,12 +96,11 @@ public class LetterListView extends View {
 		return super.onTouchEvent(event);
 	}
 
-	public void setOnTouchingLetterChangedListener(
-			OnTouchingLetterChangedListener onTouchingLetterChangedListener) {
+	public void setOnTouchingLetterChangedListener(OnTouchingLetterChangedListener onTouchingLetterChangedListener) {
 		this.onTouchingLetterChangedListener = onTouchingLetterChangedListener;
 	}
 
 	public interface OnTouchingLetterChangedListener {
-		public void onTouchingLetterChanged(String s);
+		void onTouchingLetterChanged(String s);
 	}
 }

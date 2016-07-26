@@ -91,6 +91,8 @@ dependencies {
 
     compile files('libs/locSDK_6.23.jar')
     compile files('libs/alipaySdk-20160516.jar')
+    compile files('libs/pinyin4android1.0.jar')
+    compile files('libs/pinyin4j-2.5.0.jar')
     //下拉刷新
     //上拉加载
     compile 'com.orhanobut:dialogplus:1.11@aar'

@@ -6,11 +6,11 @@
     android:layout_height="match_parent">
 
     <sf.hotel.com.hotel_client.view.custom.CustomRadioButton
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:text="宁波"
-        android:layout_margin="10dp"
+        android:gravity="center"
+        android:layout_margin="5dp"
         android:id="@+id/item_city_btn"
         android:background="@drawable/bg_selector_city"
         app:text_color="@color/title_gray"

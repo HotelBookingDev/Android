@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/custom_city_search_item"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/bg_city_edit"
+        android:drawableLeft="@mipmap/header_city_search"
+        android:drawableStart="@mipmap/header_city_search"
+        android:drawablePadding="5dp"
+        android:hint="@string/city_search"
+        android:padding="10dip"
+        android:textColor="#515151"
+        android:textSize="16dp" >
+    </EditText>
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/custom_city_all_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="7dp"
+        android:cacheColorHint="#00000000"
+        android:divider="#00000000"
+        android:dividerHeight="0dp"
+        android:listSelector="@android:color/transparent"
+        android:scrollbars="none"
+        android:layout_below="@id/custom_city_search_item">
+    </android.support.v7.widget.RecyclerView>
+
+
+
+    <sf.hotel.com.hotel_client.view.custom.city.LetterListView
+        android:id="@+id/custom_city_letter"
+        android:layout_width="25dip"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/custom_city_search_item"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginTop="7dp" />
+</RelativeLayout>
