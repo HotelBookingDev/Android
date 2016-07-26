@@ -8,6 +8,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
@@ -34,12 +35,14 @@ import static sf.hotel.com.data.net.HttpParam.DEVICE_TYPE;
 import static sf.hotel.com.data.net.HttpParam.EXCLUDE;
 import static sf.hotel.com.data.net.HttpParam.GUESTS;
 import static sf.hotel.com.data.net.HttpParam.INSTALLATION_CODE;
+import static sf.hotel.com.data.net.HttpParam.NAME;
 import static sf.hotel.com.data.net.HttpParam.NUMBER;
 import static sf.hotel.com.data.net.HttpParam.PAGE;
 import static sf.hotel.com.data.net.HttpParam.PASSWORD;
 import static sf.hotel.com.data.net.HttpParam.PHONE_NUMBER;
 import static sf.hotel.com.data.net.HttpParam.POINT;
 import static sf.hotel.com.data.net.HttpParam.PRODUCTID;
+import static sf.hotel.com.data.net.HttpParam.SEX;
 import static sf.hotel.com.data.net.HttpParam.SMS_CODE;
 import static sf.hotel.com.data.net.HttpParam.TOKEN;
 
@@ -128,4 +131,8 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(AppUrl.CHECK_TOKEN)
     Observable<HttpResult<NormalResult>> checkToken(@Field(PHONE_NUMBER) String phoneNum, @Field(TOKEN) String token);
+
+    @FormUrlEncoded
+    @PUT(AppUrl.PROFILE)
+    Observable<HttpResult<LoginResult>> putUserInfo(@Field(SEX) int sex, @Field(NAME) String name);
 }

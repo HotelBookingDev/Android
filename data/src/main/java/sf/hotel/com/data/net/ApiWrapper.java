@@ -7,6 +7,7 @@ import sf.hotel.com.data.entity.HotelBookResult;
 import sf.hotel.com.data.entity.Intallation;
 import sf.hotel.com.data.entity.Order;
 import sf.hotel.com.data.entity.ProvincesResult;
+import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.data.entity.netresult.HttpResult;
 import sf.hotel.com.data.entity.netresult.LoginResult;
@@ -135,8 +136,12 @@ public class ApiWrapper extends RetrofitHelper {
                 ;
     }
 
-    public Observable<NormalResult> checkToken(String phonenum,String token ) {
+    public Observable<NormalResult> checkToken(String phonenum, String token) {
         return mService.checkToken(phonenum, token).compose(this.applySchedulers());
+    }
+
+    public Observable<LoginResult> putUserInfo(int sex, String name) {
+        return mService.putUserInfo(sex, name).compose(this.applySchedulers());
     }
 
     public Observable<TokenResult> getTokenResult() {
