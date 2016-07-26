@@ -154,6 +154,16 @@ public class CityLayout extends RelativeLayout {
         mAllAdapter.setHotOnItemClickListener(mHotOnItemClickListener);
     }
 
+
+    public CityBean getHotCityBean(){
+        return mAllAdapter.getHotCityBean();
+    }
+
+
+    public void clearSearchHotCityBean(){
+        mAllAdapter.clearSearchHotCityBean();
+    }
+
     public List<CityBean> getAllCityBeen() {
         return mAllAdapter.getAllCityBeen();
     }

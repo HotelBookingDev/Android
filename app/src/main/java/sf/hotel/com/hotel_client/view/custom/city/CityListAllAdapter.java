@@ -9,9 +9,12 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import sf.hotel.com.data.entity.CityBean;
+import sf.hotel.com.data.utils.pinyin.PinyinUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.custom.CustomSearchItem;
 
@@ -26,6 +29,7 @@ public class CityListAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public final int HOT_CITY = 1;
     public final int NORMAL = 2;
 
+    public String currentStr;
 
     public CityBean currCityBean;
 
@@ -50,6 +54,15 @@ public class CityListAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         adapter.notifyDataSetChanged();
     }
 
+
+    public String getCurrentStr() {
+        return currentStr;
+    }
+
+    public void setCurrentStr(String currentStr) {
+        this.currentStr = currentStr;
+        notifyDataSetChanged();
+    }
 
     private OnCityItemClickListener mOnCityItemClickListener;
 
@@ -90,6 +103,7 @@ public class CityListAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         if (allCityBeen != null && allCityBeen.size() > 0){
             this.allCityBeen.clear();
             this.allCityBeen.addAll(allCityBeen);
+            Collections.sort(allCityBeen);
         }
         notifyDataSetChanged();
     }
@@ -155,6 +169,17 @@ public class CityListAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                 int realPos = position - 2;
 
+                if (position == 2){
+                    normalVH.mAlpha.setVisibility(View.VISIBLE);
+                } else {
+                    String curr = PinyinUtils.converterToFirstSpell(normalVH.mName.toString());
+                    String sh = PinyinUtils.converterToFirstSpell(allCityBeen.get(position - 1).getName());
+
+                    if (curr.equals(sh)){
+                        normalVH.mAlpha.setVisibility(View.VISIBLE);
+                    }
+                }
+
                 CityBean cityBean = allCityBeen.get(realPos);
                 normalVH.mName.setText(cityBean.getName());
                 //normalVH.mAlpha.setVisibility();
@@ -162,7 +187,7 @@ public class CityListAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     normalVH.mLayout.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-
+                            clearSearchHotCityBean();
                             mOnCityItemClickListener.onCityItemClick(normalVH.mLayout, realPos);
                         }
                     });
@@ -171,6 +196,30 @@ public class CityListAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 
+
+    /**
+     *
+     * @param str
+     * @return
+     */
+    private String getAlpha(String str) {
+        if (str == null) {
+            return "#";
+        }
+        if (str.trim().length() == 0) {
+            return "#";
+        }
+        String  sortStr = str.trim().substring(0, 1).toUpperCase();
+        if (sortStr.matches("[A-Z]")) {
+            return sortStr;
+        } else if ("0".equals(str)){
+            return "定位";
+        } else if("1".equals(str)){
+            return "热门";
+        } else {
+            return "#";
+        }
+    }
 
     @Override
     public int getItemViewType(int position) {

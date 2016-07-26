@@ -51,4 +51,6 @@ dependencies {
     compile files('libs/sun.misc.BASE64Decoder.jar')
     compile files('libs/google-common.jar')
     compile files('libs/com.google.common_1.0.0.201004262004.jar')
+    compile files('libs/pinyin4android1.0.jar')
+    compile files('libs/pinyin4j-2.5.0.jar')
 }

@@ -1,4 +1,4 @@
-package sf.hotel.com.hotel_client.utils.pinyin;
+package sf.hotel.com.data.utils.pinyin;
 
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;

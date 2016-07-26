@@ -3,12 +3,14 @@ package sf.hotel.com.data.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import sf.hotel.com.data.utils.pinyin.PinyinUtils;
+
 /**
  * @author MZ
  * @email sanfenruxi1@163.com
  * @date 16/7/4.
  */
-public class CityBean implements Parcelable {
+public class CityBean implements Parcelable, Comparable{
     private int code;
     private String name = "杭州";
     private String name_py;
@@ -78,5 +80,18 @@ public class CityBean implements Parcelable {
         dest.writeString(name);
         dest.writeString(name_py);
         dest.writeString(logo);
+    }
+
+
+    @Override
+    public int compareTo(Object another) {
+        if (another instanceof CityBean){
+            CityBean anoth = (CityBean) another;
+            String anPy = PinyinUtils.getPingYin(anoth.getName());
+            String currPy = PinyinUtils.getPingYin(name);
+            return currPy.compareTo(anPy);
+        }else {
+            throw new IllegalArgumentException();
+        }
     }
 }

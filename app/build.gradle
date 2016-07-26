@@ -91,14 +91,10 @@ dependencies {
 
     compile files('libs/locSDK_6.23.jar')
     compile files('libs/alipaySdk-20160516.jar')
-    compile files('libs/pinyin4android1.0.jar')
-    compile files('libs/pinyin4j-2.5.0.jar')
     //下拉刷新
     //上拉加载
     compile 'com.orhanobut:dialogplus:1.11@aar'
     compile 'com.bigkoo:convenientbanner:2.0.5'
     compile 'in.srain.cube:ultra-ptr:1.0.11'
     compile 'in.srain.cube:cube-sdk:1.0.44@aar'
-    compile 'com.android.support:support-v4:23.4.0'
-    testCompile 'junit:junit:4.12'
 }
