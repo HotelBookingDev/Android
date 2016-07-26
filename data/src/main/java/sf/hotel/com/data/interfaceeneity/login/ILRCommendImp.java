@@ -40,7 +40,7 @@ public class ILRCommendImp implements ILRCommend {
     }
 
     @Override
-    public void saveUserId(Context context, String id) {
+    public void saveUserId(Context context, long id) {
         PreferencesUtils.saveUserId(context, id);
     }
 

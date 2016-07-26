@@ -7,6 +7,7 @@ import sf.hotel.com.data.entity.HotelBookResult;
 import sf.hotel.com.data.entity.Intallation;
 import sf.hotel.com.data.entity.Order;
 import sf.hotel.com.data.entity.ProvincesResult;
+import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.data.entity.netresult.HttpResult;
 import sf.hotel.com.data.entity.netresult.LoginResult;
@@ -80,9 +81,11 @@ public class ApiWrapper extends RetrofitHelper {
     public Observable<NormalResult> doGetSmsCode(String phone) {
         return mService.callSmsCode(phone).compose(this.<NormalResult>applySchedulers());
     }
+
     public Observable<NormalResult> doGetSmsCodeByLogin(String phone) {
         return mService.callSmsCodeByLogin(phone).compose(this.<NormalResult>applySchedulers());
     }
+
     public Observable<NormalResult> postIntallation(Intallation mIntallation) {
         Gson gson = new Gson();
         String s = gson.toJson(mIntallation);
@@ -131,6 +134,14 @@ public class ApiWrapper extends RetrofitHelper {
         return mService.callPay(point)
                 .compose(this.<PayResult>applySchedulers())
                 ;
+    }
+
+    public Observable<NormalResult> checkToken(String phonenum, String token) {
+        return mService.checkToken(phonenum, token).compose(this.applySchedulers());
+    }
+
+    public Observable<LoginResult> putUserInfo(int sex, String name) {
+        return mService.putUserInfo(sex, name).compose(this.applySchedulers());
     }
 
     public Observable<TokenResult> getTokenResult() {

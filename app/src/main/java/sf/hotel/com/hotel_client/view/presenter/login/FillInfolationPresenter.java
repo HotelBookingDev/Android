@@ -1,6 +1,9 @@
 package sf.hotel.com.hotel_client.view.presenter.login;
 
 import rx.Subscription;
+import rx.functions.Action1;
+import sf.hotel.com.data.entity.UserEntity;
+import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.interfaceeneity.login.IFillnfolationEntity;
 import sf.hotel.com.data.interfaceeneity.login.IFillnfolationEntityImp;
 import sf.hotel.com.data.utils.CheckUtils;
@@ -35,14 +38,16 @@ public class FillInfolationPresenter extends SuperPresenter {
         } else if (!payPwd.equals(configPayPwd)) {
             view.showViewToast("两个密码不匹配");
         } else {
-//            submitInfo(name, sex, payPwd, configPayPwd);
+            submitInfo(name, sex, payPwd, configPayPwd);
         }
     }
 
     private void submitInfo(String name, int sex, String payPwd, String configPayPwd) {
-        Subscription subscribe = entity.submit(name, payPwd, configPayPwd, sex).subscribe(normalResult -> {
-            view.startHomeActivity();
-        }, this::handlingException);
+        Subscription subscribe = entity.submit(name, payPwd, configPayPwd, sex).
+                doOnNext(userEntity -> entity.saveUserEntity(userEntity, view.getBottomContext()))
+                .subscribe(normalResult -> {
+                    view.startHomeActivity();
+                }, this::handlingException);
         addSubsrcicitpition(subscribe);
     }
 }

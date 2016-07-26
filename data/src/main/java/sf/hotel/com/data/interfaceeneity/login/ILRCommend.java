@@ -25,7 +25,7 @@ public interface ILRCommend {
     void saveLogin(Context context, boolean isLogin);
 
     //保存用户id
-    void saveUserId(Context context, String id);
+    void saveUserId(Context context, long id);
 
     //    更新用户资料和保存用户信息
     void upDateUserInfo(Context context, UserEntity entity);

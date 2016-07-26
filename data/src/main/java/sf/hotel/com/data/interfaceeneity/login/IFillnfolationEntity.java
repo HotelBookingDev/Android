@@ -1,6 +1,9 @@
 package sf.hotel.com.data.interfaceeneity.login;
 
+import android.content.Context;
+
 import rx.Observable;
+import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.entity.netresult.NormalResult;
 
 /**
@@ -10,5 +13,7 @@ import sf.hotel.com.data.entity.netresult.NormalResult;
  */
 
 public interface IFillnfolationEntity {
-    Observable<NormalResult> submit(String name, String payPwd, String ConfigPayPwd, int sex);
+    Observable<UserEntity> submit(String name, String payPwd, String ConfigPayPwd, int sex);
+
+    void saveUserEntity(UserEntity userEntity, Context context);
 }

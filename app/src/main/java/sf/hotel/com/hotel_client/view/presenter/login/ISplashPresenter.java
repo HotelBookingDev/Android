@@ -8,7 +8,9 @@ import java.util.HashMap;
 
 import rx.Subscriber;
 import rx.Subscription;
+import rx.functions.Action1;
 import sf.hotel.com.data.entity.Intallation;
+import sf.hotel.com.data.entity.UserEntity;
 import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.interfaceeneity.login.ILRCommend;
 import sf.hotel.com.data.interfaceeneity.login.ISplahImp;
@@ -95,7 +97,23 @@ public class ISplashPresenter extends ILRcomPresenter {
     }
 
     private void autoLogin() {
-       view.startActivity(SplashActivity.LOGIN);
+        String phone = entity.getPhone(view.getBottomContext());
+        String token = entity.getToken(view.getBottomContext());
+        if (CheckUtils.isTextViewEmpty(phone) || CheckUtils.isTextViewEmpty(token)) {
+            view.startActivity(SplashActivity.LOGIN);
+        } else {
+            Subscription subscribe = entity.checkToken(phone, token).subscribe(normalResult -> {
+                UserEntity user = this.entity.initUserEntity(view.getBottomContext());
+                if (user != null) {
+                    view.startActivity(SplashActivity.MAIN);
+                } else {
+                    view.startActivity(SplashActivity.LOGIN);
+                }
+            }, throwable -> {
+                view.startActivity(SplashActivity.LOGIN);
+            });
+            addSubsrcicitpition(subscribe);
+        }
     }
 
     //    重下登录成功保存信息出错

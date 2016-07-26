@@ -3,6 +3,7 @@ package sf.hotel.com.hotel_client.view.fragment.login;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.RadioButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.event.MessageFactory;
@@ -85,5 +87,11 @@ public class FillInfolationFragment extends BaseFragment implements IFillnfolati
     @Override
     public void startHomeActivity() {
         RxBus.getDefault().post(MessageFactory.createLoginMessage(LoginMessage.SHOW_MAIN));
+    }
+
+    @Override
+    public boolean onBackPressedSupport() {
+        startHomeActivity();
+        return true;
     }
 }
