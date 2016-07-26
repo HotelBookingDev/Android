@@ -21,6 +21,7 @@ import sf.hotel.com.hotel_client.view.custom.CustomSearchItem;
 import sf.hotel.com.hotel_client.view.custom.city.CityHotAdapter;
 import sf.hotel.com.hotel_client.view.custom.city.CityLayout;
 import sf.hotel.com.hotel_client.view.custom.city.CityListAllAdapter;
+import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.CityMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
@@ -36,13 +37,13 @@ public class CityFragment extends BaseFragment implements ICityView {
 
     CustomSearchItem mHeaderText;
 
-    private CityListAdapter mCityListAdapter;
-
     private ICityPresenter mICityPresenter;
-
 
     private GridView mGridView;
     private CityHotAdapter mGridAdapter;
+
+    private List<CityBean> allCityBean;
+    private List<CityBean> hotCityBean;
 
     @BindView(R.id.fragment_city_citylayout)
     CityLayout mCityLayout;
@@ -78,13 +79,39 @@ public class CityFragment extends BaseFragment implements ICityView {
             }
         });
 
-        mCityLayout.setHotOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mCityLayout.setHotOnItemClickListener(new CityHotAdapter.OnTextClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mICityPresenter.onHotTextClick(view, position);
+            public void onTextClick(View view, int pos) {
+                mICityPresenter.onHotTextClick(view, pos);
             }
         });
     }
+
+
+    public List<CityBean> getHotCityBean() {
+        return hotCityBean;
+    }
+
+    public void setHotCityBean(List<CityBean> hotCityBean) {
+        this.hotCityBean = hotCityBean;
+        mCityLayout.setHotCityBeen(hotCityBean);
+
+    }
+
+    public List<CityBean> getAllCityBean() {
+        return allCityBean;
+    }
+
+    public void setAllCityBean(List<CityBean> allCityBean) {
+        this.allCityBean = allCityBean;
+        mCityLayout.setAllCityBeen(allCityBean);
+    }
+
+
+    public void onFinishing(){
+        //RxBus.getDefault().post(MessageFactory.createCityMessage(CityMessage.ACTIVITY_FINISH, ""));
+    }
+
 
     private void initCityCache() {
         mICityPresenter.getProcincesResult();
@@ -109,14 +136,9 @@ public class CityFragment extends BaseFragment implements ICityView {
     }
 
 
-    @Override
-    public void setCityListAdapterDate(List<CityBean> cityBeen) {
-        mCityListAdapter.setDatas(cityBeen);
-    }
 
-    @Override
-    public void setCityListAdapterSelect(CityBean cityBeen) {
-        mCityListAdapter.setSelectCityBean(cityBeen);
+    public void setCurrCityBean(CityBean currCityBean){
+        mCityLayout.setSearchCity(currCityBean);
     }
 
     @Override
@@ -124,9 +146,4 @@ public class CityFragment extends BaseFragment implements ICityView {
         super.onDestroy();
         mICityPresenter.destroy();
     }
-
-    public CityListAllAdapter getCityListAllAdapter() {
-        return mCityLayout.getAllAdapter();
-    }
-
 }

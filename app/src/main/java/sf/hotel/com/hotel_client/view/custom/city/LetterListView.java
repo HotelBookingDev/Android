@@ -8,15 +8,21 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import sf.hotel.com.hotel_client.R;
+
 public class LetterListView extends View {
 
 	OnTouchingLetterChangedListener onTouchingLetterChangedListener;
-	String[] b = {"定位","城市列表","A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
+	String[] b = {"定位","热门","A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
 			"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X",
 			"Y", "Z" };
 	int choose = -1;
 	Paint paint = new Paint();
 	boolean showBkg = false;
+
+
+	int textColor = R.color.hotels_text_color_green;
+	int bgColor = R.color.hint_color;
 
 	public LetterListView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
@@ -34,13 +40,13 @@ public class LetterListView extends View {
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		if (showBkg) {
-			canvas.drawColor(Color.parseColor("#40000000"));
+			canvas.drawColor(getContext().getResources().getColor(bgColor));
 		}
 		int height = getHeight();
 		int width = getWidth();
 		int singleHeight = height / b.length;
 		for (int i = 0; i < b.length; i++) {
-			paint.setColor(Color.parseColor("#8c8c8c"));
+			paint.setColor(getContext().getResources().getColor(textColor));
 			paint.setTextSize(26);
 			// paint.setTypeface(Typeface.DEFAULT_BOLD);
 			paint.setAntiAlias(true);

@@ -9,9 +9,10 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.utils.pinyin.PinyinUtils;
@@ -29,10 +30,9 @@ public class CityListAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public final int HOT_CITY = 1;
     public final int NORMAL = 2;
 
-    public String currentStr;
-
     public CityBean currCityBean;
 
+    public Map<String, Integer> selectList;
 
     private List<CityBean> allCityBeen;
 
@@ -55,12 +55,12 @@ public class CityListAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
 
-    public String getCurrentStr() {
-        return currentStr;
+    public CityBean getCurrCityBean() {
+        return currCityBean;
     }
 
-    public void setCurrentStr(String currentStr) {
-        this.currentStr = currentStr;
+    public void setCurrCityBean(CityBean currCityBean) {
+        this.currCityBean = currCityBean;
         notifyDataSetChanged();
     }
 
@@ -93,6 +93,13 @@ public class CityListAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         this.mContext = mContext;
         allCityBeen = new ArrayList<>();
         hotCityBeen = new ArrayList<>();
+
+        selectList = new HashMap<>();
+
+        selectList.put("定位", 0);
+        selectList.put("热门", 1);
+
+        adapter = new CityHotAdapter(mContext, CityListAllAdapter.this);
     }
 
     public List<CityBean> getAllCityBeen() {
@@ -104,6 +111,19 @@ public class CityListAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             this.allCityBeen.clear();
             this.allCityBeen.addAll(allCityBeen);
             Collections.sort(allCityBeen);
+
+            for (int i = 0; i < allCityBeen.size(); i++){
+                if (i == 0){
+                    String curr = PinyinUtils.getPingYinFirst(allCityBeen.get(i).getName());
+                    selectList.put(curr, i + 2);
+                }else {
+                    String curr = PinyinUtils.getPingYinFirst(allCityBeen.get(i).getName());
+                    String before = PinyinUtils.getPingYinFirst(allCityBeen.get(i-1).getName());
+                    if (!curr.equals(before)){
+                        selectList.put(curr, i + 2);
+                    }
+                }
+            }
         }
         notifyDataSetChanged();
     }
@@ -116,6 +136,7 @@ public class CityListAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         if (hotCityBeen != null && hotCityBeen.size() > 0){
             this.hotCityBeen.clear();
             this.hotCityBeen.addAll(hotCityBeen);
+            Collections.sort(allCityBeen);
         }
         notifyDataSetChanged();
     }
@@ -154,41 +175,38 @@ public class CityListAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         switch (viewType){
             case LOCATION:
                 LocationVH locationVH = (LocationVH) holder;
-//                locationVH.item.setRightTextStr(currCityBean.getName());
+                if (currCityBean != null)
+                    locationVH.item.setRightTextStr(currCityBean.getName());
                 break;
             case HOT_CITY:
                 HotCityVH hotCityVH = (HotCityVH) holder;
-                adapter.setData(hotCityBeen);
                 if (mHotOnItemClickListener != null){
                     hotCityVH.gridView.setOnItemClickListener(mHotOnItemClickListener);
                 }
+                adapter.setData(hotCityBeen);
                 break;
             case NORMAL:
                 NormalVH normalVH = (NormalVH) holder;
                 normalVH.mAlpha.setVisibility(View.GONE);
-
                 int realPos = position - 2;
-
-                if (position == 2){
-                    normalVH.mAlpha.setVisibility(View.VISIBLE);
-                } else {
-                    String curr = PinyinUtils.converterToFirstSpell(normalVH.mName.toString());
-                    String sh = PinyinUtils.converterToFirstSpell(allCityBeen.get(position - 1).getName());
-
-                    if (curr.equals(sh)){
-                        normalVH.mAlpha.setVisibility(View.VISIBLE);
-                    }
-                }
-
                 CityBean cityBean = allCityBeen.get(realPos);
                 normalVH.mName.setText(cityBean.getName());
-                //normalVH.mAlpha.setVisibility();
+
+                String curr = PinyinUtils.getPingYinFirst(normalVH.mName.getText().toString());
+                Integer integer = selectList.get(curr);
+                if (integer == position){
+                    normalVH.mAlpha.setText(curr);
+                    normalVH.mAlpha.setVisibility(View.VISIBLE);
+                }
+
                 if (mOnCityItemClickListener != null){
                     normalVH.mLayout.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             clearSearchHotCityBean();
+                            currCityBean = cityBean;
                             mOnCityItemClickListener.onCityItemClick(normalVH.mLayout, realPos);
+                            notifyDataSetChanged();
                         }
                     });
                 }
@@ -196,29 +214,17 @@ public class CityListAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 
-
     /**
      *
      * @param str
      * @return
      */
-    private String getAlpha(String str) {
-        if (str == null) {
-            return "#";
+    public int getAlpha(String str) {
+        Integer integer = selectList.get(str);
+        if (integer == null){
+            return -1;
         }
-        if (str.trim().length() == 0) {
-            return "#";
-        }
-        String  sortStr = str.trim().substring(0, 1).toUpperCase();
-        if (sortStr.matches("[A-Z]")) {
-            return sortStr;
-        } else if ("0".equals(str)){
-            return "定位";
-        } else if("1".equals(str)){
-            return "热门";
-        } else {
-            return "#";
-        }
+        return integer;
     }
 
     @Override
@@ -234,6 +240,7 @@ public class CityListAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 
     public void clearSearchHotCityBean(){
+        currCityBean = null;
         adapter.clearSelectCityBean();
     }
 
@@ -250,7 +257,6 @@ public class CityListAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         public HotCityVH(View itemView) {
             super(itemView);
             gridView = (CityGridView) itemView.findViewById(R.id.item_city_grid);
-            adapter = new CityHotAdapter(mContext);
             gridView.setAdapter(adapter);
         }
     }

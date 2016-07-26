@@ -6,13 +6,15 @@
 
 
 
+
     <TextView
         android:id="@+id/item_city_total"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_width="50dp"
+        android:layout_height="60dp"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
-        android:gravity="center_vertical"
+        android:background="@color/bg_hide_gray"
+        android:gravity="center"
         android:text="A"
         android:textColor="#000000"
         android:textSize="16sp" />

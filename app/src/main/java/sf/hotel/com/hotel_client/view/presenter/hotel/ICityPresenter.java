@@ -29,24 +29,23 @@ public class ICityPresenter extends SuperPresenter {
 
 
     public void onTextClick(View view, int pos) {
-
-//
-//        CityBean selectCityBean = mICityView.getCityListAllAdapter();
-//        saveSelectCity(selectCityBean);
-
+        CityBean selectCityBean = mICityView.getAllCityBean().get(pos);
+        saveSelectCity(selectCityBean);
+        mICityView.onFinishing();
     }
 
     public void onHotTextClick(View view, int pos){
-//        CityBean selectCityBean = mICityView.getCityListAllAdapter();
-//        saveSelectCity(selectCityBean);
+        CityBean selectCityBean = mICityView.getHotCityBean().get(pos);
+        saveSelectCity(selectCityBean);
+        mICityView.onFinishing();
     }
 
 
     public void getProcincesResult() {
         List<CityBean> cityBeen = mICityEntityImp.getProcincesResult(mICityView.getBottomContext());
-        if (cityBeen  != null){
-            mICityView.getCityListAllAdapter().setAllCityBeen(cityBeen);
-            mICityView.getCityListAllAdapter().setHotCityBeen(cityBeen);
+        if (cityBeen != null){
+            mICityView.setAllCityBean(cityBeen);
+            mICityView.setHotCityBean(cityBeen);
         } else {
             callCityList();
         }
@@ -55,7 +54,7 @@ public class ICityPresenter extends SuperPresenter {
     public void getCityBean() {
         CityBean cityBean = mICityEntityImp.getCityBean(mICityView.getBottomContext());
         if (cityBean != null){
-           // mICityView.setCityListAdapterSelect(cityBean);
+           mICityView.setCurrCityBean(cityBean);
         }
     }
 
@@ -65,8 +64,8 @@ public class ICityPresenter extends SuperPresenter {
                     @Override
                     public void onNext(List<CityBean> cityBeen) {
                         super.onNext(cityBeen);
-                        mICityView.getCityListAllAdapter().setAllCityBeen(cityBeen);
-                        mICityView.getCityListAllAdapter().setHotCityBeen(cityBeen);
+                        mICityView.setAllCityBean(cityBeen);
+                        mICityView.setHotCityBean(cityBeen);
                     }
 
                     @Override
@@ -79,7 +78,9 @@ public class ICityPresenter extends SuperPresenter {
     }
 
     public void saveSelectCity(CityBean cityBean) {
-//        if (cityBean != null)
-//            mICityEntityImp.saveCitysBean(mICityView.getBottomContext(), cityBean);
+        if (cityBean != null)
+            mICityEntityImp.saveCitysBean(mICityView.getBottomContext(), cityBean);
+
+
     }
 }

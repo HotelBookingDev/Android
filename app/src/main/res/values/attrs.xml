@@ -93,6 +93,8 @@
         <attr name="custom_item_background" format="reference" />
         <attr name="custom_item_color1" format="reference" />
         <attr name="custom_item_color2" format="reference" />
+        <attr name="custom_item_size1" format="reference"/>
+        <attr name="custom_item_size2" format="reference"/>
     </declare-styleable>
 
     <declare-styleable name="PullScrollView">

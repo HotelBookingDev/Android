@@ -10,6 +10,8 @@ import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombi
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import sf.hotel.com.data.utils.LogUtils;
+
 /**
  * @author MZ
  * @email sanfenruxi1@163.com
@@ -47,6 +49,17 @@ public class PinyinUtils  {
         } else {
             return "";
         }
+    }
+
+    public static String getPingYinFirst(String inputString){
+        String pingYin = getPingYin(inputString);
+
+        LogUtils.d("" , "pigying ------" + pingYin);
+        if (pingYin != null && pingYin.length() > 1){
+            String s = String.valueOf(pingYin.charAt(0));
+            return s.toUpperCase();
+        }
+        return "";
     }
 
     public static String converterToFirstSpell(String chines) {

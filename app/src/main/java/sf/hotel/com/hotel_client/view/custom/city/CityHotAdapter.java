@@ -25,11 +25,10 @@ public class CityHotAdapter extends BaseAdapter {
     private List<CityBean> mData;
     private Context mContext;
 
-
-    public CityBean selectCityBean;
+    public CityListAllAdapter cityListAllAdapter;
 
     public void clearSelectCityBean() {
-        selectCityBean = null;
+        cityListAllAdapter.currCityBean = null;
         notifyDataSetChanged();
     }
 
@@ -45,11 +44,11 @@ public class CityHotAdapter extends BaseAdapter {
 
 
     public CityBean getSelectCityBean() {
-        return selectCityBean;
+        return  cityListAllAdapter.currCityBean;
     }
 
     public void setSelectCityBean(CityBean selectCityBean) {
-        this.selectCityBean = selectCityBean;
+        cityListAllAdapter.currCityBean = selectCityBean;
         notifyDataSetChanged();
     }
 
@@ -65,8 +64,9 @@ public class CityHotAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public CityHotAdapter(Context mContext) {
+    public CityHotAdapter(Context mContext, CityListAllAdapter cityListAllAdapter) {
         this.mContext = mContext;
+        this.cityListAllAdapter = cityListAllAdapter;
         mData = new ArrayList<>();
     }
 
@@ -87,21 +87,23 @@ public class CityHotAdapter extends BaseAdapter {
 
         holder.button.setChecked(false);
 
-        if (selectCityBean != null) {
-            if (data.getCode() != selectCityBean.getCode()) {
-                holder.button.setChecked(false);
-            } else {
+        if ( cityListAllAdapter.currCityBean != null) {
+            if (data.getCode() == cityListAllAdapter.currCityBean.getCode()) {
                 holder.button.setChecked(true);
+            } else {
+                holder.button.setChecked(false);
             }
         }
+
         if (mOnTextClickListener != null) {
             final ViewHolder finalHolder = holder;
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (selectCityBean == null || data.getCode() != selectCityBean.getCode()) {
-                        selectCityBean = data;
-                        notifyDataSetChanged();
+                    if (cityListAllAdapter.currCityBean == null
+                            || data.getCode() !=  cityListAllAdapter.currCityBean.getCode()) {
+                        cityListAllAdapter.currCityBean = data;
+                        cityListAllAdapter.notifyDataSetChanged();
                     }
                     mOnTextClickListener.onTextClick(finalHolder.button, position);
                 }

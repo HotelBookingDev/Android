@@ -3,6 +3,7 @@ package sf.hotel.com.data.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.data.utils.pinyin.PinyinUtils;
 
 /**
@@ -88,7 +89,11 @@ public class CityBean implements Parcelable, Comparable{
         if (another instanceof CityBean){
             CityBean anoth = (CityBean) another;
             String anPy = PinyinUtils.getPingYin(anoth.getName());
+
+
             String currPy = PinyinUtils.getPingYin(name);
+
+            LogUtils.e("anoth", "anoth = " + anPy + "currpy = " + currPy);
             return currPy.compareTo(anPy);
         }else {
             throw new IllegalArgumentException();

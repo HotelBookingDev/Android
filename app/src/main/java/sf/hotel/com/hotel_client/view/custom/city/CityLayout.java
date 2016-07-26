@@ -88,6 +88,10 @@ public class CityLayout extends RelativeLayout {
         mLetterListView.setOnTouchingLetterChangedListener(new LetterListView.OnTouchingLetterChangedListener() {
             @Override
             public void onTouchingLetterChanged(String s) {
+                int alpha = mAllAdapter.getAlpha(s);
+                if (alpha != -1){
+                    mAllRecycler.scrollToPosition(alpha);
+                }
                 overlay.setText(s);
                 overlay.setVisibility(VISIBLE);
                 mHandler.removeCallbacks(overlayThread);
@@ -139,6 +143,7 @@ public class CityLayout extends RelativeLayout {
     }
 
 
+
     public CityListAllAdapter getAllAdapter() {
         return (CityListAllAdapter) mAllRecycler.getAdapter();
     }
@@ -149,9 +154,8 @@ public class CityLayout extends RelativeLayout {
     }
 
 
-
-    public void setHotOnItemClickListener(AdapterView.OnItemClickListener mHotOnItemClickListener) {
-        mAllAdapter.setHotOnItemClickListener(mHotOnItemClickListener);
+    public void setHotOnItemClickListener(CityHotAdapter.OnTextClickListener clickListener) {
+        mAllAdapter.setOnTextClickListener(clickListener);
     }
 
 
@@ -180,4 +184,8 @@ public class CityLayout extends RelativeLayout {
         mAllAdapter.setHotCityBeen(hotCityBeen);
     }
 
+
+    public void setSearchCity(CityBean cityBean){
+        mAllAdapter.setCurrCityBean(cityBean);
+    }
 }

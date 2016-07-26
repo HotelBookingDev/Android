@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.utils.DensityUtils;
 
 /**
  * @author MZ
@@ -30,6 +31,8 @@ public class CustomSearchItem extends RelativeLayout {
 
     String leftTextStr, rightTextStr;
 
+    int leftTextSize, rightTextSize;
+
     public CustomSearchItem(Context context) {
         super(context, null);
     }
@@ -44,6 +47,9 @@ public class CustomSearchItem extends RelativeLayout {
         rightTextStr = typedArray.getString(R.styleable.CustomSearchItem_custom_item_text2);
         leftColor = typedArray.getResourceId(R.styleable.CustomSearchItem_custom_item_color1, R.color.hotels_text_color_gray);
         rightColor = typedArray.getResourceId(R.styleable.CustomSearchItem_custom_item_color2, R.color.hotels_text_color_gray);
+
+        leftTextSize = typedArray.getResourceId(R.styleable.CustomSearchItem_custom_item_size1, R.dimen.search_item_size);
+        rightTextSize = typedArray.getResourceId(R.styleable.CustomSearchItem_custom_item_size1, R.dimen.search_item_size);
 
         typedArray.recycle();
 
@@ -63,6 +69,11 @@ public class CustomSearchItem extends RelativeLayout {
 
         mLeftText.setTextColor(leftColor);
         mRightText.setTextColor(rightColor);
+
+        mLeftText.setTextSize(DensityUtils.px2sp(getContext(),
+                getContext().getResources().getDimensionPixelSize(leftTextSize)));
+        mRightText.setTextSize(DensityUtils.px2sp(getContext(),
+                getContext().getResources().getDimensionPixelSize(rightTextSize)));
     }
 
 

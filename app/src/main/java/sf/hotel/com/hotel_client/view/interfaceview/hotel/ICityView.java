@@ -6,6 +6,9 @@ import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.hotel_client.view.adapter.CityListAdapter;
 import sf.hotel.com.hotel_client.view.custom.city.CityListAllAdapter;
+import sf.hotel.com.hotel_client.view.event.MessageFactory;
+import sf.hotel.com.hotel_client.view.event.RxBus;
+import sf.hotel.com.hotel_client.view.event.hotel.CityMessage;
 import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
 
 /**
@@ -15,9 +18,15 @@ import sf.hotel.com.hotel_client.view.interfaceview.BaseView;
  */
 public interface ICityView extends BaseView {
 
-    void setCityListAdapterDate(List<CityBean> cityBeen);
+    List<CityBean> getHotCityBean();
 
-    void setCityListAdapterSelect(CityBean cityBeen);
+    void setHotCityBean(List<CityBean> hotCityBean);
 
-    CityListAllAdapter getCityListAllAdapter();
+    List<CityBean> getAllCityBean();
+
+    void setAllCityBean(List<CityBean> allCityBean);
+
+    void onFinishing();
+
+    void setCurrCityBean(CityBean currCityBean);
 }

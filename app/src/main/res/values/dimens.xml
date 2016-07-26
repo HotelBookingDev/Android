@@ -57,4 +57,7 @@
     <dimen name="hotel_item_tag">12sp</dimen>
     <dimen name="text_mid">15sp</dimen>
     <dimen name="invoice">150dp</dimen>
+
+
+    <dimen name="search_item_size">20sp</dimen>
 </resources>

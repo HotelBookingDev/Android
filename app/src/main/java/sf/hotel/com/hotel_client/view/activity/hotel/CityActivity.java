@@ -46,7 +46,11 @@ public class CityActivity extends BaseActivity {
         Subscription subscribe = RxBus.getDefault()
                 .toObservable(CityMessage.class)
                 .subscribe(cityMessage -> {
-
+                        switch (cityMessage.what){
+                            case CityMessage.ACTIVITY_FINISH:
+                                finish();
+                                break;
+                        }
                 }, throwable -> {
                 });
         addSubscription(subscribe);
