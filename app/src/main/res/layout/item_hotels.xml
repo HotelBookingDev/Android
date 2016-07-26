@@ -59,8 +59,11 @@
         </LinearLayout>
     </LinearLayout>
 
-    <include
-        android:id="@+id/item_line"
-        layout="@layout/item_line" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_gray"
+        />
+
 
 </LinearLayout>

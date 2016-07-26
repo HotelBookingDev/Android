@@ -13,6 +13,7 @@
     <color name="bg_gray_black">#262626</color>
     <color name="bg_more_gray_black">#313131</color>
     <color name="bg_hide_gray">#33e1e3e2</color>
+    <color name="bg_normal_gray">#ffeaeaea</color>
 
     <color name="text_white">#FFFFFFFF</color>
 

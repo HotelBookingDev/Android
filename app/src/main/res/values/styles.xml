@@ -195,4 +195,5 @@
     <style name="waltter_txt" parent="order_txt">
         <item name="android:textSize">15sp</item>
     </style>
+
 </resources>

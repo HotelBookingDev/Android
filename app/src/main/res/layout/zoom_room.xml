@@ -12,16 +12,17 @@
         app:canLoop="true" />
 
 
-    <ImageView
+    <CheckBox
         android:id="@+id/zoom_room_img"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:src="@mipmap/ic_share_black_36dp"
+        android:button="@null"
+        android:background="@drawable/icon_zan"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
         />
 
     <sf.hotel.com.hotel_client.view.custom.PriceText

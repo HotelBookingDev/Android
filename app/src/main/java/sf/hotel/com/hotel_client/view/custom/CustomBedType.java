@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
 
 /**

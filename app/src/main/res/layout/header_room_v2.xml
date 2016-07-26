@@ -3,55 +3,65 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
-    <include layout="@layout/zoom_room"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        />
-
-    <TextView
-        android:id="@+id/fragment_room_v2_content"
-        style="@style/titleTextStyle"
-        android:textStyle="italic"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="5dp"
-        android:text="香格里拉（Shangri-la）藏语意为“心中的日月”，是云南省迪庆藏族自治州下辖市及首府所在地" />
+        android:orientation="vertical"
+        android:background="@color/bg_white"
+        >
+
+        <include layout="@layout/zoom_room"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            />
+
+        <TextView
+            android:id="@+id/fragment_room_v2_content"
+            style="@style/titleTextStyle"
+            android:textStyle="italic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="5dp"
+            android:text="香格里拉（Shangri-la）藏语意为“心中的日月”，是云南省迪庆藏族自治州下辖市及首府所在地" />
 
 
-    <sf.hotel.com.hotel_client.view.custom.CustomRatingBar
-        android:layout_width="match_parent"
-        android:id="@+id/content_room_v2_ratingBar"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="5dp"
-        android:layout_height="20dp"/>
+        <sf.hotel.com.hotel_client.view.custom.CustomRatingBar
+            android:layout_width="match_parent"
+            android:id="@+id/content_room_v2_ratingBar"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="5dp"
+            android:layout_height="20dp"/>
 
-    <sf.hotel.com.hotel_client.view.custom.PersonalItemView
-        android:id="@+id/fragment_room_v2_location"
-        style="@style/group_item"
-        app:contextText="xx区xx路xx号"
-        app:leftIcon="@mipmap/ic_add_location_black_36dp" />
+        <sf.hotel.com.hotel_client.view.custom.PersonalItemView
+            android:id="@+id/fragment_room_v2_location"
+            style="@style/group_item"
+            app:contextText="xx区xx路xx号"
+            app:leftIcon="@mipmap/ic_add_location_black_36dp" />
 
-    <sf.hotel.com.hotel_client.view.custom.PersonalItemView
-        android:id="@+id/fragment_room_v2_phone"
-        style="@style/group_item"
-        app:contextText="0887-8288889"
-        app:leftIcon="@mipmap/ic_local_phone_black_36dp" />
+        <sf.hotel.com.hotel_client.view.custom.PersonalItemView
+            android:id="@+id/fragment_room_v2_phone"
+            style="@style/group_item"
+            app:contextText="0887-8288889"
+            app:leftIcon="@mipmap/tel_icon" />
 
-    <include layout="@layout/item_line" />
+    </LinearLayout>
+
+
+
 
     <sf.hotel.com.hotel_client.view.custom.CustomImgText
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:gravity="center"
-        android:layout_marginTop="5dp"
+        android:layout_height="30dp"
         android:layout_marginBottom="5dp"
+        android:gravity="center"
         />
 
 </LinearLayout>
