@@ -139,14 +139,14 @@ public class PreferencesUtils {
         return preferences.getBoolean(ISLOGIN, false);
     }
 
-    public static void saveUserId(Context context, String userId) {
+    public static void saveUserId(Context context, long userId) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
-        preferences.edit().putString(USERID, userId).apply();
+        preferences.edit().putLong(USERID, userId).apply();
     }
 
-    public static String getUserId(Context context) {
+    public static Long getUserId(Context context) {
         SharedPreferences preferences = context.getSharedPreferences(HOTEL_PREF, 0);
-        return preferences.getString(USERID, "");
+        return preferences.getLong(USERID, -1);
     }
 
     public static void saveHotelResult(Context context, String hotelJson) {

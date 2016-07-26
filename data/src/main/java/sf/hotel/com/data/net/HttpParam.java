@@ -6,6 +6,7 @@ package sf.hotel.com.data.net;
  */
 public class HttpParam {
     public static final String PHONE_NUMBER = "phoneNumber";
+    public static final String TOKEN = "token";
     public static final String PASSWORD = "password";
     public static final String SMS_CODE = "smsCode";
     public static final String INSTALLATION_CODE = "installationId";

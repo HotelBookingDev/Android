@@ -80,9 +80,11 @@ public class ApiWrapper extends RetrofitHelper {
     public Observable<NormalResult> doGetSmsCode(String phone) {
         return mService.callSmsCode(phone).compose(this.<NormalResult>applySchedulers());
     }
+
     public Observable<NormalResult> doGetSmsCodeByLogin(String phone) {
         return mService.callSmsCodeByLogin(phone).compose(this.<NormalResult>applySchedulers());
     }
+
     public Observable<NormalResult> postIntallation(Intallation mIntallation) {
         Gson gson = new Gson();
         String s = gson.toJson(mIntallation);
@@ -131,6 +133,10 @@ public class ApiWrapper extends RetrofitHelper {
         return mService.callPay(point)
                 .compose(this.<PayResult>applySchedulers())
                 ;
+    }
+
+    public Observable<NormalResult> checkToken(String phonenum,String token ) {
+        return mService.checkToken(phonenum, token).compose(this.applySchedulers());
     }
 
     public Observable<TokenResult> getTokenResult() {

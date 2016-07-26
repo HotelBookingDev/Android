@@ -42,5 +42,10 @@ public class LoginEntityImp extends ILRCommendImp implements ILoginEntity {
         return PreferencesUtils.getPhone(context);
     }
 
+    @Override
+    public String getToken(Context context) {
+        return PreferencesUtils.getToken(context);
+    }
+
 
 }

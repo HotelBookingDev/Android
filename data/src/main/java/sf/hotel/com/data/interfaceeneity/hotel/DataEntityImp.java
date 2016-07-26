@@ -39,7 +39,7 @@ public abstract class DataEntityImp implements DataEntity{
 
     @Override
     public UserEntity getUserEntity(Context context) {
-        long userId = Long.parseLong(PreferencesUtils.getUserId(context));
+        long userId = PreferencesUtils.getUserId(context);
         return UserDao.getUserEntity(userId, context);
     }
 

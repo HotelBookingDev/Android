@@ -1,5 +1,7 @@
 package sf.hotel.com.data.net;
 
+import com.google.gson.annotations.Expose;
+
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -39,6 +41,7 @@ import static sf.hotel.com.data.net.HttpParam.PHONE_NUMBER;
 import static sf.hotel.com.data.net.HttpParam.POINT;
 import static sf.hotel.com.data.net.HttpParam.PRODUCTID;
 import static sf.hotel.com.data.net.HttpParam.SMS_CODE;
+import static sf.hotel.com.data.net.HttpParam.TOKEN;
 
 /**
  * @author MZ
@@ -121,4 +124,8 @@ public interface ApiService {
 
     @GET(AppUrl.PAY_URL)
     Observable<HttpResult<PayResult>> callPay(@Query(POINT) String point);
+
+    @FormUrlEncoded
+    @POST(AppUrl.CHECK_TOKEN)
+    Observable<HttpResult<NormalResult>> checkToken(@Field(PHONE_NUMBER) String phoneNum, @Field(TOKEN) String token);
 }

@@ -26,7 +26,7 @@ import sf.hotel.com.hotel_client.view.presenter.SuperPresenter;
 public class ILRcomPresenter extends SuperPresenter {
 
     protected void saveUserInfo(ILRCommend commend, Context context, String phone,
-                                String avatar, String id) {
+                                String avatar, long id) {
         commend.savePhone(context, phone);
         commend.saveAvatar(context, avatar);
         commend.saveUserId(context, id);
@@ -41,7 +41,7 @@ public class ILRcomPresenter extends SuperPresenter {
                         null ? Boolean.FALSE : Boolean.TRUE)
                 .doOnNext(loginResult1 -> saveUserInfo(commend, view.getBottomContext(),
                         view.getPhoneNum(), loginResult.getUserEntity().getAvatar(),
-                        String.valueOf(loginResult.getUserEntity().getUserId())))
+                        loginResult.getUserEntity().getUserId()))
                 .doOnNext(loginResult1 -> commend.upDateUserInfo(view.getBottomContext(),
                         loginResult1.getUserEntity()))
                 .doOnNext(loginResult1 -> EntityContext.getInstance()

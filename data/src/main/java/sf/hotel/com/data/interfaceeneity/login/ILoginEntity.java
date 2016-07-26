@@ -17,4 +17,6 @@ public interface ILoginEntity extends ILRCommend {
                                            String invatllationId);
 
     String getPhone(Context context);
+
+    String getToken(Context context);
 }

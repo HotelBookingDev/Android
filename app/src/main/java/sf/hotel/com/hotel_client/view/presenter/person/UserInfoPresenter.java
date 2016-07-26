@@ -55,6 +55,7 @@ public class UserInfoPresenter extends SuperPresenter {
             mIUserInfoView.showViewToast(e.getMessage());
         }
     }
+
     public void loginOut() {
         invalidate();
         mIUserInfoView.logOutToLoginActivity();
@@ -66,7 +67,7 @@ public class UserInfoPresenter extends SuperPresenter {
         PreferencesUtils.saveInstallationId(mIUserInfoView.getBottomContext(), null);
         PreferencesUtils.savePhone(mIUserInfoView.getBottomContext(), null);
         PreferencesUtils.saveLogin(mIUserInfoView.getBottomContext(), false);
-        PreferencesUtils.saveUserId(mIUserInfoView.getBottomContext(), null);
+        PreferencesUtils.saveUserId(mIUserInfoView.getBottomContext(), -1);
         PreferencesUtils.saveHotelResult(mIUserInfoView.getBottomContext(), null);
     }
     //    private String getPhone(long phone) {
