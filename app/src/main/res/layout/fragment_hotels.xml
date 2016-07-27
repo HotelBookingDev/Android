@@ -42,7 +42,8 @@
 
     </LinearLayout>
 
-    <in.srain.cube.views.ptr.PtrClassicFrameLayout android:id="@+id/fragment_hotels_ptr_frame"
+    <in.srain.cube.views.ptr.PtrClassicFrameLayout
+        android:id="@+id/fragment_hotels_ptr_frame"
         xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

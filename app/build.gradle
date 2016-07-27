@@ -74,9 +74,7 @@ dependencies {
     compile rootProject.ext.dependencies.avoscloud_push
     compile rootProject.ext.dependencies.Java_WebSocke
     compile rootProject.ext.dependencies.avoscloud_statistics
-    //下拉刷新
-    compile rootProject.ext.dependencies.pullToRefreshRecyclerView
-    compile rootProject.ext.dependencies.homhomlin_lib
+
     //button的定制
     compile rootProject.ext.dependencies.fancybuttons
     //glide图片加载框架

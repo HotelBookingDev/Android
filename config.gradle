@@ -60,9 +60,7 @@ ext {
             avoscloud_push                   : "cn.leancloud.android:avoscloud-push:${avosclou_PushVersion}",
             Java_WebSocke                    : "cn.leancloud.android:Java-WebSocket:${javaSocketVersion}",
             avoscloud_statistics             : "cn.leancloud.android:avoscloud-statistics:${avosclou_PushVersion}",
-            //下拉刷新控件
-            pullToRefreshRecyclerView        : "com.nineoldandroids:library:${pullToRefreshRecyclerViewVersion}",
-            homhomlin_lib                    : "homhomlin.lib:ptrrv-library:${homhomlin_lib_Version}",
+
             //button的定制
             fancybuttons                     : "com.github.medyo:fancybuttons:${fancybuttonsVersion}",
             //图片加载框架

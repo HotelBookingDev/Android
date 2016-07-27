@@ -6,15 +6,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.lhh.ptrrv.library.PullToRefreshRecyclerView;
-import com.lhh.ptrrv.library.footer.loadmore.BaseLoadMoreView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,6 +25,7 @@ import sf.hotel.com.data.entity.Order;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.adapter.UserOrderAdapter;
+import sf.hotel.com.hotel_client.view.custom.HotelRefreshHotelView;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.person.OrderMessage;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
@@ -52,9 +50,12 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
         return fragment;
     }
 
-    @BindView(R.id.rv_order)
-    PullToRefreshRecyclerView mPullView;
 
+    @BindView(R.id.rv_order)
+    RecyclerView mRecycleView;
+
+    @BindView(R.id.swipe_refresh)
+    HotelRefreshHotelView refreshHotelView;
     private boolean isRegisterReceiver = false;
     //    判断当前的订单列表该显示那个
     private int position;
@@ -88,13 +89,19 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
     }
 
     private void initRefreshView() {
-        //加载更多
-        mPullView.setSwipeEnable(true);
-        mPullView.setLayoutManager(new LinearLayoutManager(getBottomContext(),
+        mRecycleView.setLayoutManager(new LinearLayoutManager(getBottomContext(),
                 LinearLayoutManager.VERTICAL, false));
-        mPullView.setOnRefreshListener(() -> mUserOrderPresenter.refresh(UserOrderFragment.this.getPosition()));
-        mPullView.setPagingableListener(() -> mUserOrderPresenter.pullMoreData(UserOrderFragment.this.getPosition()));
-        mPullView.setLoadMoreCount(1);
+        refreshHotelView.setmRefresh(new HotelRefreshHotelView.refresh() {
+            @Override
+            public void loadMore() {
+                mUserOrderPresenter.pullMoreData(UserOrderFragment.this.getPosition());
+            }
+
+            @Override
+            public void refresh() {
+                mUserOrderPresenter.refresh(UserOrderFragment.this.getPosition());
+            }
+        });
     }
 
     private void initRxevent() {
@@ -116,14 +123,13 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
         if (mAdapter == null) {
             mAdapter = new UserOrderAdapter(getActivity(), mOrders);
             mAdapter.setmUserOrderClick(this::showDialog);
-            mPullView.setAdapter(mAdapter);
+            mRecycleView.setAdapter(mAdapter);
         } else {
             mAdapter.setOrders(mOrders);
         }
         //加载更多
         mAdapter.notifyDataSetChanged();
         mAdapter.setCount(mOrders.size());
-//        initRefreshView();
     }
 
     @Override
@@ -141,11 +147,7 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
 
     @Override
     public void pullViewComplete() {
-        mPullView.setOnRefreshComplete();
-        mPullView.onFinishLoading(true, false);
-        if (mAdapter != null) {
-            mAdapter.notifyDataSetChanged();
-        }
+        refreshHotelView.finsh();
     }
 
     private void showDialog(Order order) {
