@@ -84,5 +84,21 @@ public class UserOrderPresenter extends SuperPresenter {
                 }, this::handlingException);
         addSubsrcicitpition(subscribe);
     }
+    public void pullMoreData(int position){
+        Subscription subscribe = mIorder.pullMoreData(mIUserOrderView.getBottomContext(),position)
+                .subscribe(orderAndHotels -> {
+//                    异步加载完成判断当前显示是否是开始点击时候需要查看的订单列表
+                    if (mIUserOrderView.getPosition() == position) {
+                        mIUserOrderView.showOrder(orderAndHotels);
+                    }
+                    mIUserOrderView.pullViewComplete();
+                }, this::handlingException);
+        addSubsrcicitpition(subscribe);
+    }
 
+    @Override
+    public void handlingException(Throwable e) {
+        super.handlingException(e);
+        mIUserOrderView.pullViewComplete();
+    }
 }

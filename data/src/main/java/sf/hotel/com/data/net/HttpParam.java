@@ -29,4 +29,5 @@ public class HttpParam {
     public static final String NUMBER = "number";
     public static final String PROCESS_SATE = "process_state";
     public static final String CLOSE_SATE = "close_state";
+    public static final String COLSED="closed";
 }

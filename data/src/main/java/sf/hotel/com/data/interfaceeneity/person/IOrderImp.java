@@ -4,9 +4,11 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 
+import java.util.HashMap;
 import java.util.List;
 
 import rx.Observable;
+import rx.functions.Action1;
 import rx.functions.Func1;
 import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.datasource.OrderDao;
@@ -24,8 +26,11 @@ import sf.hotel.com.data.net.ApiWrapper;
 public class IOrderImp implements IOrder {
     OrderManagerMaps mOrderManager;
 
+    HashMap<Integer, Integer> map;
+
     public IOrderImp() {
         mOrderManager = new OrderManagerMaps();
+        map = new HashMap<>();
     }
 
     @Override
@@ -34,14 +39,25 @@ public class IOrderImp implements IOrder {
     }
 
     public Observable<List<Order>> loadDatas(Context context, int position) {
+//        必须做clear
+        return loadDatas(context, position, 1).doOnNext(orders -> map.clear());
+    }
+
+    //    真正获取订单的数据
+    private Observable<List<Order>> loadDatas(Context context, int position, int page) {
         Observable<OrderListsResult> orders1;
         if (position == Order.ALRADYORDER) {
-            orders1 = ApiWrapper.getInstance().getClosedOrders();
+            orders1 = ApiWrapper.getInstance().getClosedOrders(page);
         } else {
-            orders1 = ApiWrapper.getInstance().getOrders(position);
+            orders1 = ApiWrapper.getInstance().getOrders(position, page);
         }
         return orders1.filter(orderResult -> orderResult == null ? Boolean.FALSE : Boolean.TRUE)
-                .map(OrderListsResult::getOrderList).doOnNext(orders -> mOrderManager.upDate(position, orders, context));
+                .map(OrderListsResult::getOrderList).doOnNext(orders -> {
+                    if (page == 1) {
+//                        如果是第一页 默认覆盖本地内存中的数据
+                        mOrderManager.upDate(position, orders, context);
+                    }
+                });
     }
 
     @Override
@@ -59,6 +75,31 @@ public class IOrderImp implements IOrder {
                         return mOrderManager.getMaps(context, position, EntityContext.getInstance().getmCurrentUser().getUserId());
                     }
                 });
+    }
+
+    @Override
+    public Observable<List<Order>> pullMoreData(Context context, int position) {
+        return Observable.just(map).doOnNext(integerIntegerHashMap -> {
+            Integer integer = map.get(position);
+            if (integer == null || integer == 0) {
+                integer = 1;
+            }
+            map.put(position, integer);
+        }).flatMap(new Func1<HashMap<Integer, Integer>, Observable<List<Order>>>() {
+            @Override
+            public Observable<List<Order>> call(HashMap<Integer, Integer> integerIntegerHashMap) {
+                return loadDatas(context, position, map.get(position) + 1);
+            }
+        }).doOnNext(orders -> OrderDao.update(orders, context)).doOnNext(orders -> mOrderManager.addLists(position, orders)).flatMap(new Func1<List<Order>, Observable<List<Order>>>() {
+            @Override
+            public Observable<List<Order>> call(List<Order> orders) {
+                return mOrderManager.getMaps(context, position, EntityContext.getInstance().getmCurrentUser().getUserId());
+            }
+        }).doOnNext(orders -> {
+            Integer integer = map.get(position);
+            integer += 1;
+            map.put(position, integer);
+        });
     }
 
     @Override
