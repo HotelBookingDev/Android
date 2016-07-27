@@ -38,7 +38,11 @@ public class OrderManagerMaps {
         map.clear();
     }
 
-    public void addLists(int position, List<Order> orders, Context context) {
-
+    public void addLists(int position, List<Order> orders) {
+        List<Order> orders1 = map.get(position);
+        if (orders1 != null) {
+            orders1.addAll(orders);
+            map.put(position, orders1);
+        }
     }
 }

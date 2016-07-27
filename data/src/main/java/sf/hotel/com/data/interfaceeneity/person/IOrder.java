@@ -22,4 +22,6 @@ public interface IOrder {
     Observable<List<Order>> loadDatas(Context context, int position);
 
     Observable<List<Order>> updateOrder(Context context, String order,int position);
+
+    Observable<List<Order>> pullMoreData(Context context,int position);
 }

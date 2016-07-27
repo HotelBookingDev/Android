@@ -90,16 +90,11 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
     private void initRefreshView() {
         //加载更多
         mPullView.setSwipeEnable(true);
-        mPullView.setLayoutManager(new LinearLayoutManager(getBottomContext()));
-        //设置上拉加载
-        BaseLoadMoreView loadMoreView = new BaseLoadMoreView(getBottomContext(),
-                mPullView.getRecyclerView());
-        mPullView.setLoadMoreFooter(loadMoreView);
-        //刷新
+        mPullView.setLayoutManager(new LinearLayoutManager(getBottomContext(),
+                LinearLayoutManager.VERTICAL, false));
         mPullView.setOnRefreshListener(() -> mUserOrderPresenter.refresh(UserOrderFragment.this.getPosition()));
-        LinearLayoutManager layout = new LinearLayoutManager(getBottomContext(),
-                LinearLayoutManager.VERTICAL, false);
-        mPullView.setLayoutManager(layout);
+        mPullView.setPagingableListener(() -> mUserOrderPresenter.pullMoreData(UserOrderFragment.this.getPosition()));
+        mPullView.setLoadMoreCount(1);
     }
 
     private void initRxevent() {
@@ -127,7 +122,8 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
         }
         //加载更多
         mAdapter.notifyDataSetChanged();
-        initRefreshView();
+        mAdapter.setCount(mOrders.size());
+//        initRefreshView();
     }
 
     @Override
@@ -147,6 +143,9 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
     public void pullViewComplete() {
         mPullView.setOnRefreshComplete();
         mPullView.onFinishLoading(true, false);
+        if (mAdapter != null) {
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
     private void showDialog(Order order) {
@@ -172,7 +171,7 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
                     JSONObject json = new JSONObject(
                             intent.getExtras().getString("com.avos.avoscloud.Data"));
                     String order = json.getString("order");
-                    mUserOrderPresenter.updateOrder(order,position);
+                    mUserOrderPresenter.updateOrder(order, position);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
