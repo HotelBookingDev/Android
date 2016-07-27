@@ -7,6 +7,8 @@ import java.io.IOException;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import rx.Observable;
+import rx.functions.Action1;
+import rx.functions.Func1;
 import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.net.AppUrl;
 import sf.hotel.com.data.utils.CheckUtils;
@@ -26,7 +28,7 @@ public class HeadInterceptor implements Interceptor {
         final Request[] request = {chain.request()};
         isAddToken(request[0].url().toString(), request[0]).subscribe(reques -> {
             request[0] = reques;
-        });
+        }, LogUtils::logThrowadle);
         okhttp3.Response response = chain.proceed(request[0]);
         saveToken(response);
         okhttp3.MediaType mediaType = response.body().contentType();
@@ -57,9 +59,18 @@ public class HeadInterceptor implements Interceptor {
 
     private Observable<Request> isAddToken(String url, Request request) {
         return Observable.just(url)
-                .filter(s -> !CheckUtils.isTextViewEmpty(url))
-                .map(s -> s.split(AppUrl.API_HOST))
-                .map(strings -> strings[1])
+                .filter(s -> {
+                    return !CheckUtils.isTextViewEmpty(url);
+                })
+                .map(s -> {
+                    return s.split(AppUrl.API_HOST);
+                })
+                .map(new Func1<String[], String>() {
+                    @Override
+                    public String call(String[] strings) {
+                        return strings[1];
+                    }
+                })
                 .filter(s -> !CheckUtils.isTextViewEmpty(s))
                 .filter(this::isNeed)
                 .map(s -> addToken(request));

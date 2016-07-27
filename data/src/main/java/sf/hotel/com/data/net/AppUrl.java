@@ -8,7 +8,7 @@ public class AppUrl {
 
     public static final String VERSION = "";
     //    public static final String API_HOST = "http://agesd.com/" + VERSION;
-    public static final String API_HOST = "http://114.55.67.147:8080/" + VERSION;
+    public static final String API_HOST = "http://114.55.67.147/" + VERSION;
     public static final String LOGIN_SMS_URL = "user/sms/login/";
     public static final String CHECK_TOKEN = "api-token-verify/";
     public static final String PROFILE = "user/profile/";
