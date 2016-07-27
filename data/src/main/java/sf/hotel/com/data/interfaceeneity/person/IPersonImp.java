@@ -8,10 +8,12 @@ import sf.hotel.com.data.config.EntityContext;
  * email:1105896230@qq.com
  */
 
-public class IPersonImp implements IPerson{
+public class IPersonImp implements IPerson {
 
     @Override
     public long getPoints() {
+        if (EntityContext.getInstance().getmCurrentUser() == null)
+            return 0;
         return EntityContext.getInstance().getmCurrentUser().getPoint();
     }
 }
