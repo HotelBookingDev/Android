@@ -6,24 +6,6 @@
     android:orientation="vertical">
 
     <sf.hotel.com.hotel_client.view.custom.CustomBookingSearch
-        android:id="@+id/fragment_booking_search_time"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/btn_height"
-        app:booking_item_content_color="@color/booking_text_gray_while"
-        app:booking_item_name="@string/come_timer"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:gravity="right"
-        android:text="@string/booking_prompt"
-        android:textColor="@color/booking_text_gray"
-        android:textSize="8sp" />
-
-    <sf.hotel.com.hotel_client.view.custom.CustomBookingSearch
         android:id="@+id/fragment_booking_bank"
         android:layout_width="match_parent"
         android:layout_height="@dimen/btn_height"
@@ -32,9 +14,11 @@
 
 
     <sf.hotel.com.hotel_client.view.custom.CustomBookingItem
+        android:id="@+id/fragment_booking_bank_number"
         android:layout_width="match_parent"
         android:layout_height="@dimen/btn_height"
         app:booking_item_content_color="@color/booking_text_gray_while"
+        app:booking_item_content_enabled="true"
         app:booking_item_name="@string/card_number" />
 
     <LinearLayout
@@ -45,9 +29,7 @@
         >
 
         <TextView
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_width="80dp"
+            android:layout_width="90dp"
             android:gravity="right"
             android:layout_height="wrap_content"
             android:text="@string/term_validity"
@@ -55,11 +37,13 @@
             />
 
         <EditText
-            android:id="@+id/fragment_booking_year"
+            android:id="@+id/fragment_booking_bank_year"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
             android:layout_width="60dp"
-            android:lines="1"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:imeOptions="actionDone"
             android:layout_height="wrap_content"
             android:background="@color/content_bg"
             />
@@ -74,12 +58,14 @@
             />
 
         <EditText
-            android:id="@+id/fragment_booking_mouth"
+            android:id="@+id/fragment_booking_bank_mouth"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
             android:layout_width="60dp"
             android:background="@color/content_bg"
-            android:lines="1"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:imeOptions="actionDone"
             android:layout_height="wrap_content" />
 
         <TextView

@@ -2,28 +2,47 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="30dp"
     android:paddingLeft="25dp"
     android:paddingStart="25dp"
     android:gravity="center_vertical"
     >
 
-    <CheckBox
-        android:id="@+id/booking_checkbox"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:textSize="12sp"
-        android:textColor="@color/hotels_text_color_gray"
-        android:text="我已认真阅读并同意"
-        android:checked="true"
-        />
+        android:id="@+id/booking_checkbox_item"
+        >
+
+        <CheckBox
+            android:id="@+id/booking_checkbox"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:button="@null"
+            android:background="@drawable/bg_booking_check"
+            android:checked="true"
+            />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:textSize="12sp"
+            android:textColor="@color/hotels_text_color_gray"
+            android:text="我已认真阅读并同意"
+            />
+
+    </LinearLayout>
 
     <TextView
+        android:gravity="center_vertical"
         android:id="@+id/booking_reserve"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
+        android:layout_height="match_parent"
         android:textColor="@color/hotels_text_color_green"
         android:text="《预定须知》"
         />

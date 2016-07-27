@@ -158,11 +158,13 @@
 
     <declare-styleable name="CustomBookingItem">
         <attr name="booking_item_name" format="string" />
+        <attr name="booking_item_name_size" format="reference" />
         <attr name="booking_item_content" format="string" />
         <attr name="booking_item_name_color" format="reference" />
         <attr name="booking_item_content_color" format="reference" />
         <attr name="booking_item_name_background" format="reference" />
         <attr name="booking_item_content_background" format="reference" />
+        <attr name="booking_item_content_enabled" format="boolean"/>
     </declare-styleable>
 
 

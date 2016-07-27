@@ -2,19 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:gravity="center_vertical"
     >
 
 
     <TextView
         android:id="@+id/custom_booking_search_name"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
+        android:layout_width="90dp"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|right"
         android:padding="5dp"
+        android:textSize="@dimen/booking_name_size"
         android:text="住客姓名"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
         android:textColor="@color/hotels_text_color_green"
         />
 
@@ -22,7 +22,7 @@
     <LinearLayout
         android:id="@+id/custom_booking_search_item"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="horizontal"
         android:layout_marginLeft="10dp"
@@ -42,9 +42,9 @@
             />
 
         <ImageView
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:src="@mipmap/ic_launcher"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@mipmap/booking_more"
             />
 
     </LinearLayout>

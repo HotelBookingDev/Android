@@ -61,7 +61,7 @@ public class SplashActivity extends BaseActivity implements ISplashView {
     public void startActivity(int type) {
         new Handler().postDelayed(() -> {
             if (type == MAIN) {
-                startActivity(BookingActivity.class);
+                startActivity(MainActivity.class);
             } else {
                 startActivity(LoginActivity.class);
             }
