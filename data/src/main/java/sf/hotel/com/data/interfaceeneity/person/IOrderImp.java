@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import java.util.List;
 
 import rx.Observable;
+import rx.functions.Action1;
 import rx.functions.Func1;
 import sf.hotel.com.data.config.EntityContext;
 import sf.hotel.com.data.datasource.OrderDao;
@@ -34,14 +35,27 @@ public class IOrderImp implements IOrder {
     }
 
     public Observable<List<Order>> loadDatas(Context context, int position) {
+        return loadDatas(context, position, 1);
+    }
+
+    //    真正获取订单的数据
+    private Observable<List<Order>> loadDatas(Context context, int position, int page) {
         Observable<OrderListsResult> orders1;
         if (position == Order.ALRADYORDER) {
-            orders1 = ApiWrapper.getInstance().getClosedOrders();
+            orders1 = ApiWrapper.getInstance().getClosedOrders(page);
         } else {
-            orders1 = ApiWrapper.getInstance().getOrders(position);
+            orders1 = ApiWrapper.getInstance().getOrders(position, page);
         }
         return orders1.filter(orderResult -> orderResult == null ? Boolean.FALSE : Boolean.TRUE)
-                .map(OrderListsResult::getOrderList).doOnNext(orders -> mOrderManager.upDate(position, orders, context));
+                .map(OrderListsResult::getOrderList).doOnNext(orders -> {
+                    if (page == 1) {
+//                        如果是第一页 默认覆盖本地内存中的数据
+                        mOrderManager.upDate(position, orders, context);
+                    } else {
+                        //如果分页 考虑添加操作
+                        mOrderManager.addLists(position, orders, context);
+                    }
+                });
     }
 
     @Override

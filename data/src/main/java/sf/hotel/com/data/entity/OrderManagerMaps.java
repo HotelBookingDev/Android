@@ -21,7 +21,7 @@ public class OrderManagerMaps {
         List<Order> orders = map.get(position);
         if (orders == null || orders.size() == 0) {
             orders = OrderDao.getOrder(context, position, userId);
-            map.put(position,orders);
+            map.put(position, orders);
         }
         return Observable.just(orders);
     }
@@ -36,5 +36,9 @@ public class OrderManagerMaps {
 
     public void resert() {
         map.clear();
+    }
+
+    public void addLists(int position, List<Order> orders, Context context) {
+
     }
 }

@@ -111,10 +111,10 @@ public interface ApiService {
     Observable<HttpResult<ProvincesResult>> callCityList();
 
     @GET(AppUrl.ORDER_URL)
-    Observable<HttpResult<OrderListsResult>> getOrders(@Query(HttpParam.PROCESS_SATE) int postion);
+    Observable<HttpResult<OrderListsResult>> getOrders(@Query(HttpParam.PROCESS_SATE) int postion, @Query(HttpParam.PAGE) int page);
 
     @GET(AppUrl.ORDER_URL)
-    Observable<HttpResult<OrderListsResult>> getClosedOrders(@Query(HttpParam.COLSED) String closed);
+    Observable<HttpResult<OrderListsResult>> getClosedOrders(@Query(HttpParam.COLSED) String closed, @Query(HttpParam.PAGE) int page);
 
     @FormUrlEncoded
     @POST(AppUrl.CHANGEPWD_URL)
