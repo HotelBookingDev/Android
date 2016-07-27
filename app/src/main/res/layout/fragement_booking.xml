@@ -25,7 +25,7 @@
                 android:layout_height="@dimen/btn_height"
                 app:booking_item_name="酒店名称"
                 app:booking_item_content_background="@color/hide"
-                app:booking_item_content="XXX酒店"
+                app:booking_item_content="XXX1212酒店"
                 app:booking_item_content_color="@color/booking_text_gray_while"
                 />
 
@@ -83,7 +83,6 @@
                 android:layout_height="0.5dp"
                 style="@style/splitLineGrayStyle"/>
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -97,17 +96,6 @@
                     app:booking_item_content_color="@color/booking_text_gray_while"
                     />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/booking_prompt"
-                    android:textColor="@color/booking_text_gray"
-                    android:gravity="right"
-                    android:layout_gravity="right"
-                    android:textSize="8sp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
-                    />
                 <sf.hotel.com.hotel_client.view.custom.CustomBookingItem
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/btn_height"
@@ -116,14 +104,7 @@
 
                     />
 
-                <sf.hotel.com.hotel_client.view.custom.CustomBookingSearch
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/btn_height"
-                    app:booking_item_name="联系方式"
-                    app:booking_item_content_color="@color/booking_text_gray_while">
-
-
-                </sf.hotel.com.hotel_client.view.custom.CustomBookingSearch>
+                <include layout="@layout/custom_book_more"/>
 
                 <sf.hotel.com.hotel_client.view.custom.CustomBookingItem
                     android:layout_width="match_parent"
@@ -181,6 +162,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"
                 android:background="@color/bg_more_gray_black"
+                android:layout_marginTop="20dp"
                 android:gravity="center_vertical"
                 >
                 <TextView
