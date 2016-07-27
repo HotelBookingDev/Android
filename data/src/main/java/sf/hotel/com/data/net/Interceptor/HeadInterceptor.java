@@ -40,6 +40,7 @@ public class HeadInterceptor implements Interceptor {
         String token = PreferencesUtils.getToken(EntityContext.getContext());
         if (!TextUtils.isEmpty(token)) {
             //添加token
+            LogUtils.d(JWT + token);
             Request.Builder requestBuilder = request.newBuilder()
                     .addHeader(TOEKNKEY, JWT + token)
                     .method(request.method(), request.body());

@@ -39,9 +39,6 @@ public class CityFragment extends BaseFragment implements ICityView {
 
     private ICityPresenter mICityPresenter;
 
-    private GridView mGridView;
-    private CityHotAdapter mGridAdapter;
-
     private List<CityBean> allCityBean;
     private List<CityBean> hotCityBean;
 

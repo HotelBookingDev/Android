@@ -65,7 +65,7 @@ public class CityLayout extends RelativeLayout {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s == null || "".equals(s.toString())){
-
+                    //搜索内容
                 }
             }
 

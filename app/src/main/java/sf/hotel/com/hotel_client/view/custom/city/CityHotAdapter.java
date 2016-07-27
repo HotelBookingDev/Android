@@ -100,12 +100,13 @@ public class CityHotAdapter extends BaseAdapter {
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    mOnTextClickListener.onTextClick(finalHolder.button, position);
                     if (cityListAllAdapter.currCityBean == null
                             || data.getCode() !=  cityListAllAdapter.currCityBean.getCode()) {
                         cityListAllAdapter.currCityBean = data;
                         cityListAllAdapter.notifyDataSetChanged();
+                        notifyDataSetChanged();
                     }
-                    mOnTextClickListener.onTextClick(finalHolder.button, position);
                 }
             });
         }

@@ -29,8 +29,24 @@ public class RoomPackagesBean implements Parcelable{
     private int id;
     private String created_on;
     private Object extra;
+
+
+
+    @SerializedName("default_s_price")
     private int default_front_price;
+
+    @SerializedName("default_s_point")
     private int default_point;
+
+    @SerializedName("default_d_point")
+    private int default_d_point;
+
+    @SerializedName("default_d_price")
+    private int default_d_price;
+
+
+
+
     /**
      * need_point : 30
      * date : 2016-07-20
@@ -41,8 +57,6 @@ public class RoomPackagesBean implements Parcelable{
     @SerializedName("roomstates")
     private List<RoomStatusBean> roomStatus;
 
-    public RoomPackagesBean() {
-    }
 
     protected RoomPackagesBean(Parcel in) {
         breakfast = in.readInt();
@@ -50,6 +64,8 @@ public class RoomPackagesBean implements Parcelable{
         created_on = in.readString();
         default_front_price = in.readInt();
         default_point = in.readInt();
+        default_d_point = in.readInt();
+        default_d_price = in.readInt();
         roomStatus = in.createTypedArrayList(RoomStatusBean.CREATOR);
     }
 
@@ -121,6 +137,24 @@ public class RoomPackagesBean implements Parcelable{
         this.roomStatus = roomStatus;
     }
 
+
+    public int getDefault_d_point() {
+        return default_d_point;
+    }
+
+    public void setDefault_d_point(int default_d_point) {
+        this.default_d_point = default_d_point;
+    }
+
+    public int getDefault_d_price() {
+        return default_d_price;
+    }
+
+    public void setDefault_d_price(int default_d_price) {
+        this.default_d_price = default_d_price;
+    }
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -133,6 +167,8 @@ public class RoomPackagesBean implements Parcelable{
         dest.writeString(created_on);
         dest.writeInt(default_front_price);
         dest.writeInt(default_point);
+        dest.writeInt(default_d_point);
+        dest.writeInt(default_d_price);
         dest.writeTypedList(roomStatus);
     }
 }

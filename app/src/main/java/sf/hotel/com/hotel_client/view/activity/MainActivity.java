@@ -75,7 +75,7 @@ public class MainActivity extends BaseActivity {
                 .addTabItem(R.mipmap.tab_personal_icon, "个人", Color.BLUE)
                 .build();
         build.addTabItemClickListener(new TabItemListene());
-        build.setBackground(new ColorDrawable(Color.GRAY));
+        build.setBackgroundColor(this.getResources().getColor(R.color.hide));
     }
 
     private class TabItemListene implements OnTabItemSelectListener {

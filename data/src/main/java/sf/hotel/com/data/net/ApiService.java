@@ -1,7 +1,5 @@
 package sf.hotel.com.data.net;
 
-import com.google.gson.annotations.Expose;
-
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -14,37 +12,19 @@ import retrofit2.http.Query;
 import rx.Observable;
 import sf.hotel.com.data.entity.HotelBookResult;
 import sf.hotel.com.data.entity.Intallation;
-import sf.hotel.com.data.entity.Order;
 import sf.hotel.com.data.entity.ProvincesResult;
 import sf.hotel.com.data.entity.netresult.HotelResult;
 import sf.hotel.com.data.entity.netresult.HttpResult;
 import sf.hotel.com.data.entity.netresult.LoginResult;
 import sf.hotel.com.data.entity.netresult.NormalResult;
 import sf.hotel.com.data.entity.netresult.TokenResult;
-import sf.hotel.com.data.entity.netresult.hotel.room.RoomBean;
 import sf.hotel.com.data.entity.netresult.hotel.room.RoomResult;
 import sf.hotel.com.data.entity.netresult.pay.PayResult;
 import sf.hotel.com.data.entity.netresult.person.OrderListsResult;
 import sf.hotel.com.data.entity.netresult.person.OrderReuslt;
 
-import static sf.hotel.com.data.net.HttpParam.ACTION;
-import static sf.hotel.com.data.net.HttpParam.CHECK_IN_TIME;
-import static sf.hotel.com.data.net.HttpParam.CHECK_OUT_TIME;
-import static sf.hotel.com.data.net.HttpParam.CITY_ID;
-import static sf.hotel.com.data.net.HttpParam.DEVICE_TYPE;
-import static sf.hotel.com.data.net.HttpParam.EXCLUDE;
-import static sf.hotel.com.data.net.HttpParam.GUESTS;
-import static sf.hotel.com.data.net.HttpParam.INSTALLATION_CODE;
-import static sf.hotel.com.data.net.HttpParam.NAME;
-import static sf.hotel.com.data.net.HttpParam.NUMBER;
-import static sf.hotel.com.data.net.HttpParam.PAGE;
-import static sf.hotel.com.data.net.HttpParam.PASSWORD;
-import static sf.hotel.com.data.net.HttpParam.PHONE_NUMBER;
-import static sf.hotel.com.data.net.HttpParam.POINT;
-import static sf.hotel.com.data.net.HttpParam.PRODUCTID;
-import static sf.hotel.com.data.net.HttpParam.SEX;
-import static sf.hotel.com.data.net.HttpParam.SMS_CODE;
-import static sf.hotel.com.data.net.HttpParam.TOKEN;
+import static sf.hotel.com.data.net.HttpParam.*;
+
 
 /**
  * @author MZ
@@ -91,11 +71,12 @@ public interface ApiService {
                                                            @Query(EXCLUDE) String exclude);
 
     @FormUrlEncoded
-    @POST("roompackage/{productId}/book/")
+    @POST(AppUrl.ROOMPACKAGE + "{productId}/book/")
     Observable<HttpResult<HotelBookResult>> callHotelBook(@Path(PRODUCTID) String productId,
                                                           @Field(CHECK_IN_TIME) String inTime,
                                                           @Field(CHECK_OUT_TIME) String outTime,
-                                                          @Field(GUESTS) String guests);
+                                                          @Field(GUESTS) String guests,
+                                                          @Field(PRICE_TYPE) String priceType);
 
     @GET("hotel/{id}")
     Observable<HttpResult<RoomResult>> callHotelBeanById(@Path("id") String id,

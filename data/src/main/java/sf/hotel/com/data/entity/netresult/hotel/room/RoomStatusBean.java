@@ -18,10 +18,21 @@ public class RoomStatusBean  implements Parcelable{
      * state : 1
      */
 
-    @SerializedName("need_point")
+    @SerializedName("s_point")
     private int need_point;
-    private String date;
+
+    @SerializedName("s_price")
     private int front_price;
+
+
+    @SerializedName("d_point")
+    private int d_point;
+
+    @SerializedName("d_price")
+    private int d_price;
+
+    private String date;
+
     private int state;
 
     public RoomStatusBean() {
@@ -29,8 +40,10 @@ public class RoomStatusBean  implements Parcelable{
 
     protected RoomStatusBean(Parcel in) {
         need_point = in.readInt();
-        date = in.readString();
         front_price = in.readInt();
+        d_point = in.readInt();
+        d_price = in.readInt();
+        date = in.readString();
         state = in.readInt();
     }
 
@@ -78,6 +91,24 @@ public class RoomStatusBean  implements Parcelable{
         this.state = state;
     }
 
+
+    public int getD_point() {
+        return d_point;
+    }
+
+    public void setD_point(int d_point) {
+        this.d_point = d_point;
+    }
+
+    public int getD_price() {
+        return d_price;
+    }
+
+    public void setD_price(int d_price) {
+        this.d_price = d_price;
+    }
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -86,8 +117,10 @@ public class RoomStatusBean  implements Parcelable{
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(need_point);
-        dest.writeString(date);
         dest.writeInt(front_price);
+        dest.writeInt(d_point);
+        dest.writeInt(d_price);
+        dest.writeString(date);
         dest.writeInt(state);
     }
 }

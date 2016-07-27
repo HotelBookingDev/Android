@@ -1,207 +1,109 @@
 package sf.hotel.com.data.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * @author MZ
  * @email sanfenruxi1@163.com
  * @date 16/7/12.
  */
-public class HotelBookResult {
+public class HotelBookResult implements Parcelable{
 
     /**
-     * number : 10021607121522
-     * modified_by : null
-     * created_on : 2016-07-12T15:50:09.547411
-     * comment : null
-     * modified_on : 2016-07-12T15:50:09.547445
-     * label :
-     * checkin_time : 2016-07-14
-     * product : 4d587e07-8704-4048-b59f-41067528e2c0
-     * seller : 2
-     * uuid : b6c34999-ed4f-445e-89e0-2fd0d168928f
-     * process_state : 1
-     * request_notes : 需要双早
-     * id : 29
-     * payment_status : 1
-     * checkout_time : 2016-07-15
-     * closed : false
-     * deleted : false
-     * customer : 5
+     * total_front_prices : 0
      * shipping_status : 0
-     * hotelpackageordersnapshot : {"hotel_id":1,"house_id":1,"hotel_name":"酒店名字","house_name":"商务大床","front_price":130,"need_point":20}
+     * people_count : 1
+     * total_need_points : 0
+     * room_name : 商务爆炸大床
+     * breakfast : 1
+     * checkin_time : 2016-07-31
+     * hotel_name : 无敌酒店
+     * process_state : 1
+     * order : 100216072717242
+     * payment_status : 1
+     * modified_by : null
+     * room_count : 1
+     * customer : 4
+     * created : 2016-07-27T17:47:56.773495
+     * modified : 2016-07-27T17:47:56.792419
+     * seller : 3
+     * checkout_time : 2016-08-01
+     * request_notes : 需要wifi
+     * comment : null
+     * deleted : false
+     * closed : false
+     * product : 2
+     * guests : null
      */
 
-    private String number;
-    private Object modified_by;
-    private String created_on;
-    private Object comment;
-    private String modified_on;
-    private String label;
-    private String checkin_time;
-    private String product;
-    private int seller;
-    private String uuid;
-    private int process_state;
-    private String request_notes;
-    private int id;
-    private int payment_status;
-    private String checkout_time;
-    private boolean closed;
-    private boolean deleted;
-    private int customer;
+    private int total_front_prices;
     private int shipping_status;
-    /**
-     * hotel_id : 1
-     * house_id : 1
-     * hotel_name : 酒店名字
-     * house_name : 商务大床
-     * front_price : 130
-     * need_point : 20
-     */
+    private int people_count;
+    private int total_need_points;
+    private String room_name;
+    private int breakfast;
+    private String checkin_time;
+    private String hotel_name;
+    private int process_state;
+    private String order;
+    private int payment_status;
+    private Object modified_by;
+    private int room_count;
+    private int customer;
+    private String created;
+    private String modified;
+    private int seller;
+    private String checkout_time;
+    private String request_notes;
+    private Object comment;
+    private boolean deleted;
+    private boolean closed;
+    private int product;
+    private Object guests;
 
-    private HotelpackageordersnapshotBean hotelpackageordersnapshot;
-
-    public String getNumber() {
-        return number;
+    protected HotelBookResult(Parcel in) {
+        total_front_prices = in.readInt();
+        shipping_status = in.readInt();
+        people_count = in.readInt();
+        total_need_points = in.readInt();
+        room_name = in.readString();
+        breakfast = in.readInt();
+        checkin_time = in.readString();
+        hotel_name = in.readString();
+        process_state = in.readInt();
+        order = in.readString();
+        payment_status = in.readInt();
+        room_count = in.readInt();
+        customer = in.readInt();
+        created = in.readString();
+        modified = in.readString();
+        seller = in.readInt();
+        checkout_time = in.readString();
+        request_notes = in.readString();
+        deleted = in.readByte() != 0;
+        closed = in.readByte() != 0;
+        product = in.readInt();
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public static final Creator<HotelBookResult> CREATOR = new Creator<HotelBookResult>() {
+        @Override
+        public HotelBookResult createFromParcel(Parcel in) {
+            return new HotelBookResult(in);
+        }
+
+        @Override
+        public HotelBookResult[] newArray(int size) {
+            return new HotelBookResult[size];
+        }
+    };
+
+    public int getTotal_front_prices() {
+        return total_front_prices;
     }
 
-    public Object getModified_by() {
-        return modified_by;
-    }
-
-    public void setModified_by(Object modified_by) {
-        this.modified_by = modified_by;
-    }
-
-    public String getCreated_on() {
-        return created_on;
-    }
-
-    public void setCreated_on(String created_on) {
-        this.created_on = created_on;
-    }
-
-    public Object getComment() {
-        return comment;
-    }
-
-    public void setComment(Object comment) {
-        this.comment = comment;
-    }
-
-    public String getModified_on() {
-        return modified_on;
-    }
-
-    public void setModified_on(String modified_on) {
-        this.modified_on = modified_on;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
-    }
-
-    public String getCheckin_time() {
-        return checkin_time;
-    }
-
-    public void setCheckin_time(String checkin_time) {
-        this.checkin_time = checkin_time;
-    }
-
-    public String getProduct() {
-        return product;
-    }
-
-    public void setProduct(String product) {
-        this.product = product;
-    }
-
-    public int getSeller() {
-        return seller;
-    }
-
-    public void setSeller(int seller) {
-        this.seller = seller;
-    }
-
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
-
-    public int getProcess_state() {
-        return process_state;
-    }
-
-    public void setProcess_state(int process_state) {
-        this.process_state = process_state;
-    }
-
-    public String getRequest_notes() {
-        return request_notes;
-    }
-
-    public void setRequest_notes(String request_notes) {
-        this.request_notes = request_notes;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getPayment_status() {
-        return payment_status;
-    }
-
-    public void setPayment_status(int payment_status) {
-        this.payment_status = payment_status;
-    }
-
-    public String getCheckout_time() {
-        return checkout_time;
-    }
-
-    public void setCheckout_time(String checkout_time) {
-        this.checkout_time = checkout_time;
-    }
-
-    public boolean isClosed() {
-        return closed;
-    }
-
-    public void setClosed(boolean closed) {
-        this.closed = closed;
-    }
-
-    public boolean isDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(boolean deleted) {
-        this.deleted = deleted;
-    }
-
-    public int getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(int customer) {
-        this.customer = customer;
+    public void setTotal_front_prices(int total_front_prices) {
+        this.total_front_prices = total_front_prices;
     }
 
     public int getShipping_status() {
@@ -212,68 +114,209 @@ public class HotelBookResult {
         this.shipping_status = shipping_status;
     }
 
-    public HotelpackageordersnapshotBean getHotelpackageordersnapshot() {
-        return hotelpackageordersnapshot;
+    public int getPeople_count() {
+        return people_count;
     }
 
-    public void setHotelpackageordersnapshot(HotelpackageordersnapshotBean hotelpackageordersnapshot) {
-        this.hotelpackageordersnapshot = hotelpackageordersnapshot;
+    public void setPeople_count(int people_count) {
+        this.people_count = people_count;
     }
 
-    public static class HotelpackageordersnapshotBean {
-        private int hotel_id;
-        private int house_id;
-        private String hotel_name;
-        private String house_name;
-        private int front_price;
-        private int need_point;
+    public int getTotal_need_points() {
+        return total_need_points;
+    }
 
-        public int getHotel_id() {
-            return hotel_id;
-        }
+    public void setTotal_need_points(int total_need_points) {
+        this.total_need_points = total_need_points;
+    }
 
-        public void setHotel_id(int hotel_id) {
-            this.hotel_id = hotel_id;
-        }
+    public String getRoom_name() {
+        return room_name;
+    }
 
-        public int getHouse_id() {
-            return house_id;
-        }
+    public void setRoom_name(String room_name) {
+        this.room_name = room_name;
+    }
 
-        public void setHouse_id(int house_id) {
-            this.house_id = house_id;
-        }
+    public int getBreakfast() {
+        return breakfast;
+    }
 
-        public String getHotel_name() {
-            return hotel_name;
-        }
+    public void setBreakfast(int breakfast) {
+        this.breakfast = breakfast;
+    }
 
-        public void setHotel_name(String hotel_name) {
-            this.hotel_name = hotel_name;
-        }
+    public String getCheckin_time() {
+        return checkin_time;
+    }
 
-        public String getHouse_name() {
-            return house_name;
-        }
+    public void setCheckin_time(String checkin_time) {
+        this.checkin_time = checkin_time;
+    }
 
-        public void setHouse_name(String house_name) {
-            this.house_name = house_name;
-        }
+    public String getHotel_name() {
+        return hotel_name;
+    }
 
-        public int getFront_price() {
-            return front_price;
-        }
+    public void setHotel_name(String hotel_name) {
+        this.hotel_name = hotel_name;
+    }
 
-        public void setFront_price(int front_price) {
-            this.front_price = front_price;
-        }
+    public int getProcess_state() {
+        return process_state;
+    }
 
-        public int getNeed_point() {
-            return need_point;
-        }
+    public void setProcess_state(int process_state) {
+        this.process_state = process_state;
+    }
 
-        public void setNeed_point(int need_point) {
-            this.need_point = need_point;
-        }
+    public String getOrder() {
+        return order;
+    }
+
+    public void setOrder(String order) {
+        this.order = order;
+    }
+
+    public int getPayment_status() {
+        return payment_status;
+    }
+
+    public void setPayment_status(int payment_status) {
+        this.payment_status = payment_status;
+    }
+
+    public Object getModified_by() {
+        return modified_by;
+    }
+
+    public void setModified_by(Object modified_by) {
+        this.modified_by = modified_by;
+    }
+
+    public int getRoom_count() {
+        return room_count;
+    }
+
+    public void setRoom_count(int room_count) {
+        this.room_count = room_count;
+    }
+
+    public int getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(int customer) {
+        this.customer = customer;
+    }
+
+    public String getCreated() {
+        return created;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
+    }
+
+    public String getModified() {
+        return modified;
+    }
+
+    public void setModified(String modified) {
+        this.modified = modified;
+    }
+
+    public int getSeller() {
+        return seller;
+    }
+
+    public void setSeller(int seller) {
+        this.seller = seller;
+    }
+
+    public String getCheckout_time() {
+        return checkout_time;
+    }
+
+    public void setCheckout_time(String checkout_time) {
+        this.checkout_time = checkout_time;
+    }
+
+    public String getRequest_notes() {
+        return request_notes;
+    }
+
+    public void setRequest_notes(String request_notes) {
+        this.request_notes = request_notes;
+    }
+
+    public Object getComment() {
+        return comment;
+    }
+
+    public void setComment(Object comment) {
+        this.comment = comment;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    public boolean isClosed() {
+        return closed;
+    }
+
+    public void setClosed(boolean closed) {
+        this.closed = closed;
+    }
+
+    public int getProduct() {
+        return product;
+    }
+
+    public void setProduct(int product) {
+        this.product = product;
+    }
+
+    public Object getGuests() {
+        return guests;
+    }
+
+    public void setGuests(Object guests) {
+        this.guests = guests;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(total_front_prices);
+        dest.writeInt(shipping_status);
+        dest.writeInt(people_count);
+        dest.writeInt(total_need_points);
+        dest.writeString(room_name);
+        dest.writeInt(breakfast);
+        dest.writeString(checkin_time);
+        dest.writeString(hotel_name);
+        dest.writeInt(process_state);
+        dest.writeString(order);
+        dest.writeInt(payment_status);
+        dest.writeInt(room_count);
+        dest.writeInt(customer);
+        dest.writeString(created);
+        dest.writeString(modified);
+        dest.writeInt(seller);
+        dest.writeString(checkout_time);
+        dest.writeString(request_notes);
+        dest.writeByte((byte) (deleted ? 1 : 0));
+        dest.writeByte((byte) (closed ? 1 : 0));
+        dest.writeInt(product);
     }
 }

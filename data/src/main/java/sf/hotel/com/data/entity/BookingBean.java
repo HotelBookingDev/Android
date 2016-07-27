@@ -12,17 +12,31 @@ import sf.hotel.com.data.entity.netresult.hotel.room.RoomBean;
  * @date 16/7/21.
  */
 public class BookingBean implements Parcelable{
+
+    public final static String PRICE_S = "1";
+    public final static String PRICE_D = "2";
+
     private HotelBean roomBean;
 
     private UserEntity userEntity;
 
     private int groupPos, childPos;
 
+    private String priceType = PRICE_S;
+
     private SearchItem searchItem;
 
     public BookingBean() {
     }
 
+
+    public String getPriceType() {
+        return priceType;
+    }
+
+    public void setPriceType(String priceType) {
+        this.priceType = priceType;
+    }
 
     public HotelBean getRoomBean() {
         return roomBean;

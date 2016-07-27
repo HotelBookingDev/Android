@@ -33,10 +33,14 @@ public class IBookingEntityImp extends DataEntityImp implements BookingEntity {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String inTime = format.format(inTimeDate);
         String outTime = format.format(outTimeDate);
-
         String guests = "";
         LogUtils.d(inTime + outTime + "----------");
-        return ApiWrapper.getInstance().callHotelBook(String.valueOf(id), inTime, outTime, guests);
+        String price_type = bookingBean.getPriceType();
+
+
+        LogUtils.d("-->", id + inTime + outTime + guests + price_type );
+
+        return ApiWrapper.getInstance().callHotelBook(String.valueOf(id), inTime, outTime, guests, price_type);
     }
 
 }

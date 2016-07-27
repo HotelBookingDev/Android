@@ -16,10 +16,16 @@ public class LoggingInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
-        LogUtils.d(request.url().toString());
+        try{
+            LogUtils.d(request.url().toString());
+            LogUtils.d(request.headers().toString());
+        }catch (Exception e){
+
+        }
         Response response = chain.proceed(request);
         okhttp3.MediaType mediaType = response.body().contentType();
         String content = response.body().string();
+        LogUtils.d(content);
         LogUtils.logJson(content);
         return response.newBuilder().body(okhttp3.ResponseBody.create(mediaType, content)).build();
     }

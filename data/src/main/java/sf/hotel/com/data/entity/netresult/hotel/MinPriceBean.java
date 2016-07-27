@@ -12,17 +12,28 @@ import com.google.gson.annotations.SerializedName;
  */
 public class MinPriceBean implements Parcelable{
 
-    @SerializedName("default_front_price")
+    @SerializedName("default_s_price")
     private int default_front_price;
-    @SerializedName("default_point")
+    @SerializedName("default_s_point")
     private int default_point;
+
+
+    @SerializedName("default_d_point")
+    private int default_d_point;
+
+    @SerializedName("default_d_price")
+    private int default_d_price;
+
+
+
+    public MinPriceBean() {
+    }
 
     protected MinPriceBean(Parcel in) {
         default_front_price = in.readInt();
         default_point = in.readInt();
-    }
-
-    public MinPriceBean() {
+        default_d_point = in.readInt();
+        default_d_price = in.readInt();
     }
 
     public static final Creator<MinPriceBean> CREATOR = new Creator<MinPriceBean>() {
@@ -53,6 +64,22 @@ public class MinPriceBean implements Parcelable{
         this.default_point = default_point;
     }
 
+    public int getDefault_d_price() {
+        return default_d_price;
+    }
+
+    public void setDefault_d_price(int default_d_price) {
+        this.default_d_price = default_d_price;
+    }
+
+    public int getDefault_d_point() {
+        return default_d_point;
+    }
+
+    public void setDefault_d_point(int default_d_point) {
+        this.default_d_point = default_d_point;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -62,5 +89,7 @@ public class MinPriceBean implements Parcelable{
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(default_front_price);
         dest.writeInt(default_point);
+        dest.writeInt(default_d_point);
+        dest.writeInt(default_d_price);
     }
 }

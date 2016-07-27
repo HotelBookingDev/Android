@@ -24,14 +24,16 @@ public class AppUrl {
     public static final String PROVINCES_URL = "province/";
 
     public static final String ORDER_URL = "customer/orders/";
+
     public static final String CHANGEPWD_URL = "user/password/";
 
     public static final String DELETE_URL = "customer/orders/";
 
     public static final String PAY_URL = "point/pay/";
+    public static final String ROOMPACKAGE = "roompackage/";
 
     public static final String[] NEEDTOKENURL = {
-            INSTALLATIONS_BIND_URL, CHANGEPWD_URL, TOKEN_URL, ORDER_URL, DELETE_URL, HOTELS_BOOK_URL,PROFILE
+            INSTALLATIONS_BIND_URL, CHANGEPWD_URL, TOKEN_URL, DELETE_URL, HOTELS_BOOK_URL,PROFILE
     };
-    public static final String[] SPEICALURL = {PAY_URL, ORDER_URL};
+    public static final String[] SPEICALURL = {PAY_URL, ORDER_URL, ROOMPACKAGE};
 }
