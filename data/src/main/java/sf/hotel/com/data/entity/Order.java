@@ -162,12 +162,20 @@ public class Order {
         return text;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Order) {
+            return this.order_num == ((Order) o).getOrder_num();
+        }
+        return false;
+    }
+
     public void setClosed(boolean closed) {
         this.isClosed = closed;
     }
 
 
     public void timeAdapter() {
-        this.update_time= TimeUtils.TimeAdapter(this.modified);
+        this.update_time = TimeUtils.TimeAdapter(this.modified);
     }
 }

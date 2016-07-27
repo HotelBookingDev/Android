@@ -38,10 +38,20 @@ public class OrderManagerMaps {
         map.clear();
     }
 
+    //    避免出现重复的数据在分页的时候
     public void addLists(int position, List<Order> orders) {
         List<Order> orders1 = map.get(position);
         if (orders1 != null) {
-            orders1.addAll(orders);
+            for (int i = 0; i < orders.size(); i++) {
+                Order order = orders.get(i);
+//                重写了equals的方法如果出现重复的数据看下equals或者相关的数据
+                if (orders1.contains(order)) {
+                    orders1.remove(i);
+                    orders1.add(i, order);
+                } else {
+                    orders1.add(order);
+                }
+            }
             map.put(position, orders1);
         }
     }
