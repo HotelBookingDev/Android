@@ -113,8 +113,8 @@ public interface ApiService {
     @GET(AppUrl.ORDER_URL)
     Observable<HttpResult<OrderListsResult>> getOrders(@Query(HttpParam.PROCESS_SATE) int postion);
 
-    @GET(AppUrl.GET_CLOSE_ORDER_URL)
-    Observable<HttpResult<OrderListsResult>> getClosedOrders();
+    @GET(AppUrl.ORDER_URL)
+    Observable<HttpResult<OrderListsResult>> getClosedOrders(@Query(HttpParam.COLSED) String closed);
 
     @FormUrlEncoded
     @POST(AppUrl.CHANGEPWD_URL)
