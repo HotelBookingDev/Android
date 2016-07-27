@@ -6,10 +6,12 @@ import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import sf.hotel.com.hotel_client.R;
+import sf.hotel.com.hotel_client.utils.DensityUtils;
 
 /**
  * @author MZ
@@ -19,11 +21,15 @@ import sf.hotel.com.hotel_client.R;
 public class CustomBookingItem extends RelativeLayout {
 
     TextView mTextName;
-    TextView mTextContent;
+    EditText mTextContent;
 
     String mTextNameStr, mTextContentStr;
     int mTextNameColor, mTextConentColor;
     int mTextNameBackGround, nTextContentBackGround;
+
+    int mTextNameSize;
+
+    boolean mEnable = false;
 
 
     public CustomBookingItem(Context context) {
@@ -44,6 +50,10 @@ public class CustomBookingItem extends RelativeLayout {
         mTextNameBackGround = typedArray.getResourceId(R.styleable.CustomBookingItem_booking_item_name_background, R.color.hide);
         nTextContentBackGround = typedArray.getResourceId(R.styleable.CustomBookingItem_booking_item_content_background, R.color.content_bg);
 
+        mTextNameSize = typedArray.getResourceId(R.styleable.CustomBookingItem_booking_item_name_size, R.dimen.booking_name_size);
+
+        mEnable = typedArray.getBoolean(R.styleable.CustomBookingItem_booking_item_content_enabled, false);
+
         typedArray.recycle();
 
 
@@ -56,7 +66,7 @@ public class CustomBookingItem extends RelativeLayout {
 
 
         mTextName = (TextView) inflate.findViewById(R.id.custom_booking_item_name);
-        mTextContent = (TextView) inflate.findViewById(R.id.custom_booking_item_content);
+        mTextContent = (EditText) inflate.findViewById(R.id.custom_booking_item_content);
 
         mTextName.setText(mTextNameStr);
         mTextContent.setText(mTextContentStr);
@@ -66,6 +76,10 @@ public class CustomBookingItem extends RelativeLayout {
 
         mTextName.setBackgroundResource(mTextNameBackGround);
         mTextContent.setBackgroundResource(nTextContentBackGround);
+
+        mTextName.setTextSize(DensityUtils.px2sp(getContext(), getContext().getResources().getDimensionPixelSize(mTextNameSize)));
+
+        mTextContent.setEnabled(mEnable);
 
     }
 
@@ -77,4 +91,8 @@ public class CustomBookingItem extends RelativeLayout {
         return mTextContent.getText().toString();
     }
 
+
+    public void setEnable(boolean enable){
+        mTextContent.setEnabled(enable);
+    }
 }

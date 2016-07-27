@@ -5,6 +5,8 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -40,6 +42,14 @@ public class CustomBookingSearch extends LinearLayout {
     String mTextNameStr, mTextContentStr;
     int mTextNameColor, mTextConentColor;
     int mTextNameBackGround, nTextContentBackGround;
+
+    TextWatcher mContentTextWatcher;
+
+
+    public void setContentTextWatcher(TextWatcher mContentTextWatcher) {
+        this.mContentTextWatcher = mContentTextWatcher;
+        mContent.addTextChangedListener(mContentTextWatcher);
+    }
 
     OnTouchListener mOnPopWindowTouchListener;
 

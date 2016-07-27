@@ -9,7 +9,7 @@
 
 
 
-    <sf.hotel.com.hotel_client.view.custom.NoScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -21,17 +21,24 @@
             >
 
             <sf.hotel.com.hotel_client.view.custom.CustomBookingItem
+                android:id="@+id/fragment_booking_hotel_name"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 app:booking_item_name="酒店名称"
                 app:booking_item_content_background="@color/hide"
                 app:booking_item_content="XXX1212酒店"
+                app:booking_item_name_size="@dimen/booking_hotel_name_size"
                 app:booking_item_content_color="@color/booking_text_gray_while"
                 />
 
+
             <TextView
+                android:id="@+id/fragment_booking_address"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"
+                android:gravity="center_vertical"
                 android:text="宁波市海曙区桃源街xxx号"
                 android:textColor="@color/booking_text_gray"
                 android:paddingLeft="25dp"
@@ -44,6 +51,7 @@
                 style="@style/splitLineGrayStyle"/>
 
             <sf.hotel.com.hotel_client.view.custom.CustomBookingItem
+                android:id="@+id/fragment_booking_check_time"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"
                 app:booking_item_name="入住日期"
@@ -57,6 +65,7 @@
                 style="@style/splitLineGrayStyle"/>
 
             <sf.hotel.com.hotel_client.view.custom.CustomBookingItem
+                android:id="@+id/fragment_booking_bed_type"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"
                 app:booking_item_name="房型"
@@ -90,6 +99,7 @@
                 android:background="@color/bg_more_gray_black"
                 >
                 <sf.hotel.com.hotel_client.view.custom.CustomBookingItem
+                    android:id="@+id/fragment_booking_person_name"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/btn_height"
                     app:booking_item_name="住客姓名"
@@ -97,6 +107,7 @@
                     />
 
                 <sf.hotel.com.hotel_client.view.custom.CustomBookingItem
+                    android:id="@+id/fragment_booking_person_phone"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/btn_height"
                     app:booking_item_name="联系方式"
@@ -104,12 +115,35 @@
 
                     />
 
-                <include layout="@layout/custom_book_more"/>
+                <sf.hotel.com.hotel_client.view.custom.CustomBookingSearch
+                    android:id="@+id/fragment_booking_search_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_height"
+                    app:booking_item_content_color="@color/booking_text_gray_while"
+                    app:booking_item_name="@string/come_timer"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:text="@string/booking_prompt"
+                    android:textColor="@color/booking_text_gray"
+                    android:textSize="8sp" />
+
+                <include layout="@layout/custom_book_more"
+                    android:id="@+id/fragment_booking_moreLayout"
+                    />
+
 
                 <sf.hotel.com.hotel_client.view.custom.CustomBookingItem
+                    android:id="@+id/fragment_booking_other"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/btn_height"
                     app:booking_item_name="其他要求"
+                    app:booking_item_content_enabled="true"
                     app:booking_item_content_color="@color/booking_text_gray_while"
                     />
             </LinearLayout>
@@ -142,6 +176,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/fragment_booking_all_integral"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/hotels_text_color_gray"
@@ -152,6 +187,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/hotels_text_color_gray"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:text="@string/points"
                     android:layout_marginRight="20dp"
                     android:layout_marginEnd="20dp"
@@ -170,7 +207,8 @@
                     android:layout_marginStart="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/hotels_text_color_gray"
+                    android:textColor="@color/hotels_text_color_green"
+                    android:textSize="@dimen/booking_name_size"
                     android:text="订单总价"
                     />
 
@@ -181,6 +219,7 @@
                     />
 
                 <sf.hotel.com.hotel_client.view.custom.PriceText
+                    android:id="@+id/fragment_booking_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/hotels_text_color_gray"
@@ -188,12 +227,22 @@
                     app:price_text_poins="1000"
                     />
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/booking_price_arr"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
+                    />
+
             </LinearLayout>
 
 
         </LinearLayout>
 
-    </sf.hotel.com.hotel_client.view.custom.NoScrollView>
+    </ScrollView>
 
 
     <mehdi.sakout.fancybuttons.FancyButton

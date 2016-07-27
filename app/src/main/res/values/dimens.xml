@@ -60,4 +60,7 @@
 
 
     <dimen name="search_item_size">20sp</dimen>
+
+    <dimen name="booking_name_size">14sp</dimen>
+    <dimen name="booking_hotel_name_size">18sp</dimen>
 </resources>

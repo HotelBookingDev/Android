@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import sf.hotel.com.hotel_client.R;
@@ -13,7 +15,23 @@ import sf.hotel.com.hotel_client.R;
  * @email sanfenruxi1@163.com
  * @date 16/7/14.
  */
-public class PriceText extends TextView{
+public class PriceText extends LinearLayout{
+
+
+    TextView pointName,
+            priceName,
+            pointContent,
+            priceContent, addText;
+
+
+    LinearLayout.LayoutParams pointNameParams,
+            priceNameParams,
+            pointContentParams,
+            priceContentParams,
+            addParams;
+
+
+
 
     String poins;
     String price;
@@ -33,18 +51,71 @@ public class PriceText extends TextView{
 
         typedArray.recycle();
 
-        setPoinsAndPrice();
+        initView();
     }
 
-    public void setPoinsAndPrice(){
-        setPoinsAndPrice(poins, price);
+    private void initView() {
+        setOrientation(LinearLayout.HORIZONTAL);
+
+        addPointsContent();
+        addPoitnsName();
+        addAddText();
+        addPriceContent();
+        addPriceName();
     }
 
+    private void addPriceName() {
+        priceName = new TextView(getContext());
+        priceNameParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        priceNameParams.setMargins(5,0,0,0);
+        priceName.setText("CNY");
+        priceName.setTextColor(getContext().getResources().getColor(R.color.hotels_text_color_green));
+        addView(priceName, priceNameParams);
+    }
+
+    private void addPriceContent() {
+        priceContent = new TextView(getContext());
+        priceContentParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        priceContentParams.setMargins(5,0,0,0);
+        priceContent.setTextColor(getContext().getResources().getColor(R.color.hotels_text_color_gray));
+        priceContent.setText("1000");
+        addView(priceContent);
+    }
+
+    private void addAddText() {
+        addText = new TextView(getContext());
+        addParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        addParams.setMargins(5,0,0,0);
+        addText.setText("+");
+        addText.setTextColor(getContext().getResources().getColor(R.color.hotels_text_color_gray));
+        addView(addText, addParams);
+    }
+
+    private void addPoitnsName() {
+
+        pointName = new TextView(getContext());
+        pointNameParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        pointNameParams.setMargins(5,0,0,0);
+        pointName.setText("points");
+        pointName.setTextColor(getContext().getResources().getColor(R.color.hotels_text_color_green));
+        addView(pointName, pointNameParams);
+    }
+
+    private void addPointsContent() {
+        pointContent = new TextView(getContext());
+        pointContentParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        pointContent.setTextColor(getContext().getResources().getColor(R.color.hotels_text_color_gray));
+        pointContent.setText("1000");
+        addView(pointContent);
+    }
+
+
+  
     public void setPoinsAndPrice(String poins, String price){
         this.poins = poins;
         this.price = price;
 
-        String s = poins + "poins + ¥" + price + "起";
-        setText(s);
+        pointContent.setText(poins);
+        priceContent.setText(price);
     }
 }
