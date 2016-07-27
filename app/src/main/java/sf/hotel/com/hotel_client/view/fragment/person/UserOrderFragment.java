@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,7 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
     }
 
     @BindView(R.id.rv_order)
-    PullToRefreshRecyclerView mPullView;
+    RecyclerView mRecycleView;
 
     private boolean isRegisterReceiver = false;
     //    判断当前的订单列表该显示那个
@@ -88,13 +89,10 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
     }
 
     private void initRefreshView() {
-        //加载更多
-        mPullView.setSwipeEnable(true);
-        mPullView.setLayoutManager(new LinearLayoutManager(getBottomContext(),
+        mRecycleView.setLayoutManager(new LinearLayoutManager(getBottomContext(),
                 LinearLayoutManager.VERTICAL, false));
-        mPullView.setOnRefreshListener(() -> mUserOrderPresenter.refresh(UserOrderFragment.this.getPosition()));
-        mPullView.setPagingableListener(() -> mUserOrderPresenter.pullMoreData(UserOrderFragment.this.getPosition()));
-        mPullView.setLoadMoreCount(1);
+//        mPullView.setOnRefreshListener(() -> mUserOrderPresenter.refresh(UserOrderFragment.this.getPosition()));
+//        mPullView.setPagingableListener(() -> mUserOrderPresenter.pullMoreData(UserOrderFragment.this.getPosition()));
     }
 
     private void initRxevent() {
@@ -116,7 +114,7 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
         if (mAdapter == null) {
             mAdapter = new UserOrderAdapter(getActivity(), mOrders);
             mAdapter.setmUserOrderClick(this::showDialog);
-            mPullView.setAdapter(mAdapter);
+            mRecycleView.setAdapter(mAdapter);
         } else {
             mAdapter.setOrders(mOrders);
         }
@@ -141,11 +139,7 @@ public class UserOrderFragment extends BaseFragment implements IUserOrderView {
 
     @Override
     public void pullViewComplete() {
-        mPullView.setOnRefreshComplete();
-        mPullView.onFinishLoading(true, false);
-        if (mAdapter != null) {
-            mAdapter.notifyDataSetChanged();
-        }
+
     }
 
     private void showDialog(Order order) {
