@@ -9,6 +9,7 @@ import com.avos.avoscloud.PushService;
 
 import sf.hotel.com.hotel_client.utils.HotelImageLoad;
 import sf.hotel.com.hotel_client.utils.transulcent.TransulcentUtils;
+import sf.hotel.com.hotel_client.view.activity.hotel.BookingActivity;
 import sf.hotel.com.hotel_client.view.activity.register.LoginActivity;
 import sf.hotel.com.hotel_client.view.interfaceview.login.ISplashView;
 import sf.hotel.com.hotel_client.view.presenter.login.ISplashPresenter;
@@ -60,7 +61,7 @@ public class SplashActivity extends BaseActivity implements ISplashView {
     public void startActivity(int type) {
         new Handler().postDelayed(() -> {
             if (type == MAIN) {
-                startActivity(MainActivity.class);
+                startActivity(BookingActivity.class);
             } else {
                 startActivity(LoginActivity.class);
             }

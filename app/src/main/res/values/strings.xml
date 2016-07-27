@@ -163,4 +163,10 @@
     <string name="man">男</string>
     <string name="woman">女</string>
 
+
+    <string name="come_timer">到店时间</string>
+    <string name="card_bank">发卡行</string>
+    <string name="card_number">信用卡卡号</string>
+    <string name="term_validity">有效期</string>
+
 </resources>
