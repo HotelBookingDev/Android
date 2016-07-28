@@ -22,6 +22,7 @@ public class OrderActivity extends BaseActivity {
         if (checkUserLogin()) {
             startActivity(SplashActivity.class);
             finish();
+            return;
         }
         loadRootFragment(R.id.order_content, OrderFragment.newInstance());
         ButterKnife.bind(this);

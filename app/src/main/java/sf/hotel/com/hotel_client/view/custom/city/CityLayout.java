@@ -31,9 +31,6 @@ public class CityLayout extends RelativeLayout {
     CityListAllAdapter mAllAdapter;
     EditText mSearchEdit;
 
-
-
-
     boolean isScroll = false;
 
     private TextView overlay;
@@ -64,7 +61,7 @@ public class CityLayout extends RelativeLayout {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s == null || "".equals(s.toString())){
+                if (s == null || "".equals(s.toString())) {
                     //搜索内容
                 }
             }
@@ -89,7 +86,7 @@ public class CityLayout extends RelativeLayout {
             @Override
             public void onTouchingLetterChanged(String s) {
                 int alpha = mAllAdapter.getAlpha(s);
-                if (alpha != -1){
+                if (alpha != -1) {
                     mAllRecycler.scrollToPosition(alpha);
                 }
                 overlay.setText(s);
@@ -143,13 +140,12 @@ public class CityLayout extends RelativeLayout {
     }
 
 
-
     public CityListAllAdapter getAllAdapter() {
         return (CityListAllAdapter) mAllRecycler.getAdapter();
     }
 
 
-    public void setOnCityItemClickListener(CityListAllAdapter.OnCityItemClickListener onCityItemClickListener){
+    public void setOnCityItemClickListener(CityListAllAdapter.OnCityItemClickListener onCityItemClickListener) {
         mAllAdapter.setOnCityItemClickListener(onCityItemClickListener);
     }
 
@@ -159,12 +155,12 @@ public class CityLayout extends RelativeLayout {
     }
 
 
-    public CityBean getHotCityBean(){
+    public CityBean getHotCityBean() {
         return mAllAdapter.getHotCityBean();
     }
 
 
-    public void clearSearchHotCityBean(){
+    public void clearSearchHotCityBean() {
         mAllAdapter.clearSearchHotCityBean();
     }
 
@@ -185,7 +181,7 @@ public class CityLayout extends RelativeLayout {
     }
 
 
-    public void setSearchCity(CityBean cityBean){
+    public void setSearchCity(CityBean cityBean) {
         mAllAdapter.setCurrCityBean(cityBean);
     }
 }
