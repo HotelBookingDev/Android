@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import sf.hotel.com.data.utils.LogUtils;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.PushBaseActivity;
+import sf.hotel.com.hotel_client.view.activity.person.OrderActivity;
 import sf.hotel.com.hotel_client.view.presenter.CustomReceiverPresenter;
 
 /**
@@ -25,35 +26,36 @@ import sf.hotel.com.hotel_client.view.presenter.CustomReceiverPresenter;
  */
 public class CustomReceiver extends BroadcastReceiver {
     CustomReceiverPresenter presenter;
+
     @Override
     public void onReceive(Context context, Intent intent) {
-        presenter=new CustomReceiverPresenter();
+        presenter = new CustomReceiverPresenter();
         try {
             if (intent.getAction().equals("com.pushHotel.action")) {
                 JSONObject json = new JSONObject(
                         intent.getExtras().getString("com.avos.avoscloud.Data"));
                 final String message = json.getString("alert");
                 String type = json.getString("type");
-                buildNotification(getIntent(type,json,context), message);
+                buildNotification(getIntent(type, json, context), message);
             }
         } catch (Exception e) {
             LogUtils.e("CustomReceiver", e.getMessage());
         }
     }
 
-    private Intent getIntent(String type,JSONObject jsonObject,Context context){
+    private Intent getIntent(String type, JSONObject jsonObject, Context context) {
         Intent intent = null;
         //订单类型
         if (type.equals("1")) {
-            intent = new Intent(AVOSCloud.applicationContext, PushBaseActivity.class);
-            String order= null;
+            intent = new Intent(AVOSCloud.applicationContext, OrderActivity.class);
+            String order = null;
             try {
                 order = jsonObject.getString("order");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
             if (!TextUtils.isEmpty(order)) {
-                presenter.updateOrder(order,context);
+                presenter.updateOrder(order, context);
             }
         }
         return intent;
