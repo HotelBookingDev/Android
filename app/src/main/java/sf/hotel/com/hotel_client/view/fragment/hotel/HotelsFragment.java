@@ -19,6 +19,7 @@ import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import rx.Subscription;
+import sf.hotel.com.data.entity.BookingBean;
 import sf.hotel.com.data.entity.CityBean;
 import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.data.entity.netresult.HotelResult;
@@ -230,6 +231,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
 
     public void setSearchItem(SearchItem mSearchItem) {
         this.mSearchItem = mSearchItem;
+        mPullAdapter.setPrice_type(mSearchItem.adultCount);
     }
 
     public void setHeaderStr(SearchItem searchItem){

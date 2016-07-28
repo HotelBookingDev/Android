@@ -29,6 +29,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mehdi.sakout.fancybuttons.FancyButton;
+import sf.hotel.com.data.entity.SearchItem;
+import sf.hotel.com.data.entity.netresult.hotel.Images;
 import sf.hotel.com.data.entity.netresult.hotel.room.HotelBean;
 import sf.hotel.com.data.entity.netresult.hotel.room.RoomResult;
 import sf.hotel.com.data.utils.LogUtils;
@@ -61,7 +63,6 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
     private int hotelId;
     private RoomResult hotelsBean;
 
-    //ListImg
     private List<String> mImageList;
     IRoomPresenter mIRoomPresenter;
     ConvenientBanner convenientBanner;
@@ -69,9 +70,6 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
     DialogPlus dialogPlus, phoneDialog;
     PersonalItemView mPhone;
     PersonalItemView mLocation;
-//    @BindView(R.id.fragment_room_recyclerView)
-//    RecyclerView mRecyclerView;
-
     @BindView(R.id.fragment_room_listview)
     ExpandableListView mListView;
 
@@ -80,6 +78,8 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
     TextView phoneText;
     FancyButton phoneCancel;
     FancyButton phoneSubmit;
+
+    SearchItem searchItem;
 
     @BindView(R.id.fragment_room_v2_title)
     HotelTitleView mTitle;
@@ -127,25 +127,31 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
     private void initRecycler() {
         View header = LayoutInflater.from(getBottomContext()).inflate(R.layout.header_room_v2, null);
         initHeader(header);
-//        mRecyclerAdapter = new RoomRecyclerAdapter(getBottomContext());
-//        mRecyclerAdapter.setHeaderView(header);
-//        mRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(int position, Object data) {
-//                showBooking();
-//            }
-//        });
-//
-//        mRecyclerView.setLayoutManager(new LinearLayoutManager(getBottomContext()));
-//        mRecyclerView.setAdapter(mRecyclerAdapter);
-
         mAdapter = new RoomExpandListAdapter(getBottomContext());
         mAdapter.setChildSubmitClickListener(new RoomExpandListAdapter.OnChildSubmitClickListener() {
             @Override
             public void onChildSubmitClick(int groupPos, int childPos) {
-
                 LogUtils.e(groupPos + "--->" + childPos);
                 showBooking(groupPos, childPos);
+            }
+        });
+
+        mListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                for (int i = 0; i < mAdapter.getGroupCount(); i++) {
+                    if (groupPosition != i) {
+                        mListView.collapseGroup(i);
+                    }
+                }
+            }
+        });
+
+        mListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                mAdapter.setShowGroupPos(groupPosition);
+                return false;
             }
         });
         mListView.addHeaderView(header);
@@ -156,6 +162,7 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
     private void initDate(Bundle args) {
         hotelId = args.getInt("room");
         mIRoomPresenter.callHotelBean();
+        mIRoomPresenter.getSearchItem();
     }
 
     private void initHeader(View view) {
@@ -192,7 +199,6 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
                             if (phoneDialog != null && phoneDialog.isShowing()) {
                                 phoneDialog.dismiss();
                             }
-
                             if (StartActivityUtils.startPhone(getActivity(), phoneText.getText().toString())){
                                 LogUtils.d("没有拨打电话功能");
                             }
@@ -294,19 +300,21 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
         return hotelId;
     }
 
+
     @Override
     public void onDestroy() {
         super.onDestroy();
         mIRoomPresenter.destroy();
     }
 
-    public void setImageList(List<String> list){
+    public void setImageList(List<Images> list){
         if (list != null && list.size() > 0){
             mImageList.clear();
-            mImageList.addAll(list);
+            for (Images images :list){
+                mImageList.add(images.getImg());
+            }
             convenientBanner.notifyDataSetChanged();
         }
-
     }
 
     public void setRoomContentText(String text) {
@@ -321,11 +329,11 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
     }
 
     public void notifyDataSetChanged() {
-//        setImageList(hot);
         setRoomContentText(hotelsBean.getHotelBean().getName());
         mAdapter.setDatas(hotelsBean.getHotelBean().getRooms());
-        phoneText.setText(hotelsBean.getHotelBean().getName());
-        mLocation.setText(hotelsBean.getHotelBean().getName());
+        phoneText.setText(hotelsBean.getHotelBean().getContact_phone());
+        mLocation.setText(hotelsBean.getHotelBean().getAddress());
+        setImageList(hotelsBean.getHotelBean().getImagesList());
     }
 
     @Override
@@ -333,5 +341,12 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
         return hotelsBean.getHotelBean();
     }
 
+    public SearchItem getSearchItem() {
+        return searchItem;
+    }
 
+    public void setSearchItem(SearchItem searchItem) {
+        this.searchItem = searchItem;
+        mAdapter.setPrice_type(searchItem.adultCount);
+    }
 }

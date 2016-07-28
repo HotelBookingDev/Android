@@ -3,6 +3,7 @@ package sf.hotel.com.hotel_client.view.presenter.hotel;
 import rx.Subscription;
 import sf.hotel.com.data.entity.BookingBean;
 import sf.hotel.com.data.entity.HotelBookResult;
+import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.data.entity.netresult.hotel.Hotel1Result;
 import sf.hotel.com.data.entity.netresult.hotel.HotelsBean;
 import sf.hotel.com.data.entity.netresult.hotel.room.RoomBean;
@@ -32,11 +33,18 @@ public class IRoomPresenter extends SuperPresenter {
         BookingBean bookingBean = new BookingBean();
         bookingBean.setGroupPos(GroupPos);
         bookingBean.setChildPos(childPos);
-        bookingBean.setSearchItem(mIRoomEntityImp.getSearchItem(mIRoomView.getBottomContext()));
+        bookingBean.setSearchItem(mIRoomView.getSearchItem());
         bookingBean.setRoomBean(mIRoomView.getHotelsBean());
         bookingBean.setUserEntity(mIRoomEntityImp.getUserEntity(mIRoomView.getBottomContext()));
         mIRoomEntityImp.saveBookingBean(mIRoomView.getBottomContext(), bookingBean);
     }
+
+    public void getSearchItem(){
+        SearchItem searchItem = mIRoomEntityImp.getSearchItem(mIRoomView.getBottomContext());
+        mIRoomView.setSearchItem(searchItem);
+    }
+
+
 
 
     public void callHotelBean(){

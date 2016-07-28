@@ -16,7 +16,11 @@
         android:id="@+id/dialog_phone_text"
         />
 
-    <include layout="@layout/item_line" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_gray"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"

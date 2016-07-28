@@ -66,16 +66,17 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/search_item_height"
             android:background="@drawable/bg_serch_hotel"
+            android:id="@+id/fragment_search_person"
             android:gravity="center_vertical"
             >
 
             <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
                 android:id="@+id/custom_search_item_img"
-                android:src="@mipmap/ic_close_black_36dp"
+                android:background="@mipmap/personal_icon"
                 />
 
             <TextView
@@ -84,17 +85,19 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
                 android:textSize="@dimen/search_text_size"
-                android:id="@+id/custom_search_item_text1"
+                android:id="@+id/fragment_search_person_count"
                 android:textColor="@color/hotels_text_color_green"
-                android:text="2"/>
+                android:text="1"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/search_text_size"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:text="名成人"/>
 
             <TextView
-                android:id="@+id/custom_search_item_text2"
+                android:id="@+id/fragment_search_child_count"
                 android:textColor="@color/hotels_text_color_green"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -106,6 +109,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:textSize="@dimen/search_text_size"
                 android:text="个小孩"
                 />

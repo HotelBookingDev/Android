@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import sf.hotel.com.data.entity.BookingBean;
 import sf.hotel.com.data.entity.netresult.hotel.Hotel1Bean;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.utils.HotelImageLoad;
@@ -26,6 +27,21 @@ public class HotelsListViewAdapter extends BaseAdapter {
 
     private List<Hotel1Bean> mData;
     private Context mContext;
+    private String price_type = BookingBean.PRICE_S;
+
+
+    public String getPrice_type() {
+        return price_type;
+    }
+
+    public void setPrice_type(int adultCount) {
+        if (adultCount == 1){
+            price_type = BookingBean.PRICE_S;
+        }else {
+            price_type = BookingBean.PRICE_D;
+        }
+    }
+
 
     public HotelsListViewAdapter(Context context) {
         this.mContext = context;
@@ -84,7 +100,15 @@ public class HotelsListViewAdapter extends BaseAdapter {
 
         holder.mName.setText(data.getName());
         holder.mRatingBar.setRatingBarCount(3.5f);
-        holder.mPrice.setPoinsAndPrice(data.getMin_price().getDefault_point() + "" , data.getMin_price().getDefault_front_price() + "");
+
+        if (price_type.equals(BookingBean.PRICE_S)){
+            holder.mPrice.setPoinsAndPrice(data.getMin_price().getDefault_point() + "" ,
+                    data.getMin_price().getDefault_front_price() + "");
+
+        }else {
+            holder.mPrice.setPoinsAndPrice(data.getMin_price().getDefault_d_point() + "" ,
+                    data.getMin_price().getDefault_d_price() + "");
+        }
 
         if (data.getCover_img() != null && !"".equals(data.getCover_img())) {
             HotelImageLoad.loadImage(mContext, holder.mImageView, data.getCover_img());

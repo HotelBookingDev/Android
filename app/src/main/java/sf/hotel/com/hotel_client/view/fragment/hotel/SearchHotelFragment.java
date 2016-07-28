@@ -1,12 +1,25 @@
 package sf.hotel.com.hotel_client.view.fragment.hotel;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.NumberPicker;
+import android.widget.TextView;
+
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.ViewHolder;
 
 import java.util.Date;
 
@@ -19,6 +32,7 @@ import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.activity.hotel.CityActivity;
 import sf.hotel.com.hotel_client.view.activity.hotel.HotelsActivity;
 import sf.hotel.com.hotel_client.view.activity.hotel.TimesActivity;
+import sf.hotel.com.hotel_client.view.custom.CustomNumberPicker;
 import sf.hotel.com.hotel_client.view.custom.CustomSearchItem;
 import sf.hotel.com.hotel_client.view.custom.CustomTimerView;
 import sf.hotel.com.hotel_client.view.fragment.BaseFragment;
@@ -48,6 +62,23 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
 
     SearchItem mSearchItem;
 
+    @BindView(R.id.fragment_search_person)
+    View mSearchPerson;
+
+    @BindView(R.id.fragment_search_person_count)
+    TextView mPersonCount;
+
+    @BindView(R.id.fragment_search_child_count)
+    TextView mChildCount;
+
+    CustomNumberPicker mPersonPicker, mChildPicker;
+
+    TextView mSearchSubmit;
+
+    TextView mSearchCancal;
+
+    DialogPlus mPersonDialog;
+
     public static SearchHotelFragment newInstance() {
 
         Bundle args = new Bundle();
@@ -75,7 +106,10 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
     }
 
     @OnClick({
-            R.id.search_hotel, R.id.fragment_search_hotel_timer, R.id.fragment_search_hotel_city
+            R.id.search_hotel,
+            R.id.fragment_search_hotel_timer,
+            R.id.fragment_search_hotel_city,
+            R.id.fragment_search_person
     })
     public void onViewClick(View v) {
         switch (v.getId()) {
@@ -88,7 +122,74 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
             case R.id.fragment_search_hotel_city:
                 showCities();
                 break;
+            case R.id.fragment_search_person:
+                showPersonDialog();
+                break;
         }
+    }
+
+    private void showPersonDialog() {
+
+        if (mPersonDialog != null && mPersonDialog.isShowing()){
+            return;
+        }
+
+        if (mPersonDialog == null){
+
+            mPersonDialog = DialogPlus.newDialog(getBottomContext())
+                    .setContentHolder(new ViewHolder(R.layout.item_search_picker))
+                    .setCancelable(true)
+                    .setGravity(Gravity.BOTTOM)
+                    .create();
+
+            mPersonPicker = (CustomNumberPicker) mPersonDialog.findViewById(R.id.person_picker);
+            mChildPicker = (CustomNumberPicker) mPersonDialog.findViewById(R.id.child_picker);
+
+            mSearchSubmit = (TextView) mPersonDialog.findViewById(R.id.search_hotel_submit);
+            mSearchCancal = (TextView) mPersonDialog.findViewById(R.id.search_hotel_cancel);
+
+            mSearchSubmit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mPersonDialog.dismiss();
+                }
+            });
+
+            mSearchCancal.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mPersonDialog.onBackPressed(mPersonDialog);
+                }
+            });
+
+            mPersonPicker.setNumberPickerDividerColor(mPersonPicker);
+            mChildPicker.setNumberPickerDividerColor(mChildPicker);
+
+            mPersonPicker.setMinValue(1);
+            mPersonPicker.setMaxValue(2);
+
+            mChildPicker.setMinValue(0);
+            mChildPicker.setMaxValue(5);
+
+            mPersonPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+                @Override
+                public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                    mPersonCount.setText(newVal + "");
+                    mSearchItem.adultCount = newVal;
+                }
+            });
+
+            mChildPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+                @Override
+                public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                    mChildCount.setText(newVal + "");
+                }
+            });
+        }
+
+
+        mPersonDialog.show();
+
     }
 
     private void showCities() {
@@ -105,7 +206,6 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
     }
 
     private void showHotel() {
-
         mISearchHotelPresenter.saveSearchItem();
         Intent intent = new Intent(getBottomContext(), HotelsActivity.class);
         intent.putExtra("action", "search_hotel");
@@ -155,5 +255,9 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
     public void onDestroy() {
         super.onDestroy();
         mISearchHotelPresenter.destroy();
+        if (mPersonDialog != null){
+            mPersonDialog.dismiss();
+            mPersonDialog = null;
+        }
     }
 }

@@ -28,8 +28,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginBottom="5dp"
-            android:text="香格里拉（Shangri-la）藏语意为“心中的日月”，是云南省迪庆藏族自治州下辖市及首府所在地" />
-
+        />
 
         <sf.hotel.com.hotel_client.view.custom.CustomRatingBar
             android:layout_width="match_parent"

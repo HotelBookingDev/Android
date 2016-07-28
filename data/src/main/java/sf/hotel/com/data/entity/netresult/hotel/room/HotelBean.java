@@ -7,6 +7,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import sf.hotel.com.data.entity.netresult.hotel.Images;
+
 /**
  * @author MZ
  * @email sanfenruxi1@163.com
@@ -22,11 +24,11 @@ public class HotelBean implements Parcelable{
     private String introduce;
 
 
-    @SerializedName("rooms")
-    private List<RoomBean> rooms;
+    @SerializedName("hotel_imgs")
+    private List<Images> imagesList;
 
-    public HotelBean() {
-    }
+    @SerializedName("smoking")
+    private boolean smoking;
 
     protected HotelBean(Parcel in) {
         id = in.readInt();
@@ -36,6 +38,8 @@ public class HotelBean implements Parcelable{
         modified = in.readString();
         contact_phone = in.readString();
         introduce = in.readString();
+        imagesList = in.createTypedArrayList(Images.CREATOR);
+        smoking = in.readByte() != 0;
         rooms = in.createTypedArrayList(RoomBean.CREATOR);
     }
 
@@ -50,6 +54,22 @@ public class HotelBean implements Parcelable{
             return new HotelBean[size];
         }
     };
+
+    public List<Images> getImagesList() {
+        return imagesList;
+    }
+
+    public void setImagesList(List<Images> imagesList) {
+        this.imagesList = imagesList;
+    }
+
+    @SerializedName("rooms")
+    private List<RoomBean> rooms;
+
+    public HotelBean() {
+    }
+
+
 
     public int getId() {
         return id;
@@ -129,6 +149,8 @@ public class HotelBean implements Parcelable{
         dest.writeString(modified);
         dest.writeString(contact_phone);
         dest.writeString(introduce);
+        dest.writeTypedList(imagesList);
+        dest.writeByte((byte) (smoking ? 1 : 0));
         dest.writeTypedList(rooms);
     }
 }

@@ -173,7 +173,7 @@ public class HotelTitleView extends RippleView {
     private void addLeftButton(int iconId) {
         if (mBtnLeft == null) {
             mBtnLeft = new ImageView(getContext());
-            mBtnLeft.setPadding(20, 0, 50, 0);
+            mBtnLeft.setPadding(30, 0, 50, 0);
             mBtnLeft.setLayoutParams(mLeftBtnParams);
             mLayout.addView(mBtnLeft);
         }

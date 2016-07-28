@@ -5,6 +5,7 @@ import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import sf.hotel.com.data.entity.BookingBean;
 import sf.hotel.com.data.entity.netresult.hotel.room.RoomBean;
 import sf.hotel.com.data.entity.netresult.hotel.room.RoomStatusBean;
 import sf.hotel.com.hotel_client.R;
@@ -23,13 +25,29 @@ import sf.hotel.com.hotel_client.view.custom.PriceText;
  * @email sanfenruxi1@163.com
  * @date 16/7/22.
  */
-public class RoomExpandListAdapter implements ExpandableListAdapter {
+public class RoomExpandListAdapter extends BaseExpandableListAdapter {
 
     private Context mContext;
 
     private List<RoomBean> mData;
 
     private OnChildSubmitClickListener mChildSubmitClickListener;
+
+    private String price_type = BookingBean.PRICE_S;
+
+    private int showGroupPos = -1;
+
+    public void setShowGroupPos(int showGroupPos) {
+        this.showGroupPos = showGroupPos;
+    }
+
+    public void setPrice_type(int adultCount){
+        if (adultCount == 1){
+            price_type = BookingBean.PRICE_S;
+        }else {
+            price_type = BookingBean.PRICE_D;
+        }
+    }
 
     public void setChildSubmitClickListener(OnChildSubmitClickListener mChildSubmitClickListener) {
         this.mChildSubmitClickListener = mChildSubmitClickListener;
@@ -50,16 +68,7 @@ public class RoomExpandListAdapter implements ExpandableListAdapter {
             mData.clear();
             mData.addAll(rooms);
         }
-    }
-
-    @Override
-    public void registerDataSetObserver(DataSetObserver observer) {
-
-    }
-
-    @Override
-    public void unregisterDataSetObserver(DataSetObserver observer) {
-
+        notifyDataSetChanged();
     }
 
     @Override
@@ -112,6 +121,11 @@ public class RoomExpandListAdapter implements ExpandableListAdapter {
 
         holder.mRoomName.setText(mData.get(groupPosition).getName());
 
+        holder.mSplint.setVisibility(View.VISIBLE);
+
+
+        if (showGroupPos != -1 && showGroupPos == groupPosition)
+            holder.mSplint.setVisibility(View.GONE);
         return convertView;
     }
 
@@ -135,12 +149,20 @@ public class RoomExpandListAdapter implements ExpandableListAdapter {
         float frontPrice = 0;
         float needPoint = 0;
 
-        for (RoomStatusBean bean : roomstates){
-            frontPrice += bean.getFront_price();
-            needPoint += bean.getNeed_point();
+        if (price_type.equals(BookingBean.PRICE_S) ){
+            for (RoomStatusBean bean : roomstates){
+                frontPrice += bean.getFront_price();
+                needPoint += bean.getNeed_point();
+            }
+        }else {
+            for (RoomStatusBean bean : roomstates){
+                frontPrice += bean.getD_price();
+                needPoint += bean.getNeed_point();
+            }
         }
 
         holder.mPrice.setPoinsAndPrice(needPoint + "",frontPrice + "");
+
 
         holder.mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,47 +181,16 @@ public class RoomExpandListAdapter implements ExpandableListAdapter {
         return true;
     }
 
-    @Override
-    public boolean areAllItemsEnabled() {
-        return false;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
-    @Override
-    public void onGroupExpanded(int groupPosition) {
-
-    }
-
-    @Override
-    public void onGroupCollapsed(int groupPosition) {
-
-    }
-
-    @Override
-    public long getCombinedChildId(long groupId, long childId) {
-        return 0;
-    }
-
-    @Override
-    public long getCombinedGroupId(long groupId) {
-        return 0;
-    }
-
-
-
-
     class GroupHolder {
         ImageView mImageView, mMore;
+        View mSplint;
 
         TextView mRoomName;
         public GroupHolder(View itemView) {
             mImageView = (ImageView) itemView.findViewById(R.id.item_bed_v2_img);
             mMore = (ImageView) itemView.findViewById(R.id.item_bed_v2_more);
             mRoomName = (TextView) itemView.findViewById(R.id.item_bed_v2_name);
+            mSplint = itemView.findViewById(R.id.item_bed_v2_splint);
         }
     }
 

@@ -196,4 +196,14 @@
         <item name="android:textSize">15sp</item>
     </style>
 
+    <style name="dialog_animation" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/to_top</item>
+        <item name="@android:windowExitAnimation">@anim/from_top</item>
+    </style>    
+
+    <style name="dialog_fs" parent="@android:style/Theme.Holo.DialogWhenLarge">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    
 </resources>
