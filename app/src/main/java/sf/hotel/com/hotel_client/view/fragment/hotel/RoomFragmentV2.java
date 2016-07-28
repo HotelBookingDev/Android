@@ -41,6 +41,7 @@ import sf.hotel.com.hotel_client.view.adapter.LocalImageHodlerView;
 import sf.hotel.com.hotel_client.view.adapter.RoomExpandListAdapter;
 import sf.hotel.com.hotel_client.view.custom.HotelTitleView;
 import sf.hotel.com.hotel_client.view.custom.PersonalItemView;
+import sf.hotel.com.hotel_client.view.custom.PriceText;
 import sf.hotel.com.hotel_client.view.event.MessageFactory;
 import sf.hotel.com.hotel_client.view.event.RxBus;
 import sf.hotel.com.hotel_client.view.event.hotel.RoomMessage;
@@ -68,8 +69,10 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
     ConvenientBanner convenientBanner;
     TextView mRoomContent;
     DialogPlus dialogPlus, phoneDialog;
+
     PersonalItemView mPhone;
     PersonalItemView mLocation;
+
     @BindView(R.id.fragment_room_listview)
     ExpandableListView mListView;
 
@@ -80,6 +83,8 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
     FancyButton phoneSubmit;
 
     SearchItem searchItem;
+
+    PriceText priceText;
 
     @BindView(R.id.fragment_room_v2_title)
     HotelTitleView mTitle;
@@ -130,15 +135,15 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
         mAdapter = new RoomExpandListAdapter(getBottomContext());
         mAdapter.setChildSubmitClickListener(new RoomExpandListAdapter.OnChildSubmitClickListener() {
             @Override
-            public void onChildSubmitClick(int groupPos, int childPos) {
-                LogUtils.e(groupPos + "--->" + childPos);
-                showBooking(groupPos, childPos);
+            public void onChildSubmitClick(int groupPos, int childPos, float point, float price) {
+                showBooking(groupPos, childPos, point, price);
             }
         });
 
         mListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
             @Override
             public void onGroupExpand(int groupPosition) {
+                mAdapter.setShowGroupPos(groupPosition);
                 for (int i = 0; i < mAdapter.getGroupCount(); i++) {
                     if (groupPosition != i) {
                         mListView.collapseGroup(i);
@@ -147,13 +152,15 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
             }
         });
 
-        mListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+        mListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
             @Override
-            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                mAdapter.setShowGroupPos(groupPosition);
-                return false;
+            public void onGroupCollapse(int groupPosition) {
+                if (mAdapter.getShowGroupPos() == groupPosition){
+                    mAdapter.setShowGroupPos(-1);
+                }
             }
         });
+
         mListView.addHeaderView(header);
         mListView.setAdapter(mAdapter);
     }
@@ -168,7 +175,9 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
     private void initHeader(View view) {
         mPhone = (PersonalItemView) view.findViewById(R.id.fragment_room_v2_phone);
         mLocation = (PersonalItemView) view.findViewById(R.id.fragment_room_v2_location);
+        priceText = (PriceText) view.findViewById(R.id.zoom_room_price);
         mRoomContent = (TextView) view.findViewById(R.id.fragment_room_v2_content);
+
         convenientBanner = (ConvenientBanner) view.findViewById(R.id.frame_room_banner);
 
         mPhone.setOnClickListener(new View.OnClickListener() {
@@ -285,9 +294,10 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
         }
     }
 
-    public void showBooking(int groupPos, int childPos){
+    public void showBooking(int groupPos, int childPos,float point,float price){
         if (mIRoomPresenter.checkIsLogin()){
-            mIRoomPresenter.saveBooking(groupPos, childPos);
+
+            mIRoomPresenter.saveBooking(groupPos, childPos, point, price);
             Intent intent = new Intent(getActivity(), BookingActivity.class);
             intent.putExtra("action", "Room");
             startActivity(intent);
@@ -310,9 +320,10 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
     public void setImageList(List<Images> list){
         if (list != null && list.size() > 0){
             mImageList.clear();
-            for (Images images :list){
+            for (Images images : list){
                 mImageList.add(images.getImg());
             }
+
             convenientBanner.notifyDataSetChanged();
         }
     }
@@ -331,9 +342,12 @@ public class RoomFragmentV2 extends BaseFragment implements IRoomView {
     public void notifyDataSetChanged() {
         setRoomContentText(hotelsBean.getHotelBean().getName());
         mAdapter.setDatas(hotelsBean.getHotelBean().getRooms());
-        phoneText.setText(hotelsBean.getHotelBean().getContact_phone());
+
+
+        mPhone.setText(hotelsBean.getHotelBean().getContact_phone());
         mLocation.setText(hotelsBean.getHotelBean().getAddress());
         setImageList(hotelsBean.getHotelBean().getImagesList());
+
     }
 
     @Override

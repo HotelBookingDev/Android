@@ -10,7 +10,6 @@
         style="@style/view_title"
         app:titleText="@string/list_hotel"
         app:leftBtnIcon="@mipmap/ic_title_back_arrow"
-        app:rightBtnIcon="@mipmap/ic_search_white_36dp"
         />
 
 

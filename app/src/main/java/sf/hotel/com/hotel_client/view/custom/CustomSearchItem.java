@@ -67,8 +67,8 @@ public class CustomSearchItem extends RelativeLayout {
         mLeftText.setText(leftTextStr);
         mRightText.setText(rightTextStr);
 
-        mLeftText.setTextColor(leftColor);
-        mRightText.setTextColor(rightColor);
+        mLeftText.setTextColor(getContext().getResources().getColor(leftColor));
+        mRightText.setTextColor(getContext().getResources().getColor(rightColor));
 
         mLeftText.setTextSize(DensityUtils.px2sp(getContext(),
                 getContext().getResources().getDimensionPixelSize(leftTextSize)));

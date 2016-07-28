@@ -16,6 +16,9 @@ public class BookingBean implements Parcelable{
     public final static String PRICE_S = "1";
     public final static String PRICE_D = "2";
 
+    public float point = 0;
+    public float price = 0;
+
     private HotelBean roomBean;
 
     private UserEntity userEntity;
@@ -29,6 +32,43 @@ public class BookingBean implements Parcelable{
     public BookingBean() {
     }
 
+    protected BookingBean(Parcel in) {
+        point = in.readFloat();
+        price = in.readFloat();
+        roomBean = in.readParcelable(HotelBean.class.getClassLoader());
+        groupPos = in.readInt();
+        childPos = in.readInt();
+        priceType = in.readString();
+        searchItem = in.readParcelable(SearchItem.class.getClassLoader());
+    }
+
+    public static final Creator<BookingBean> CREATOR = new Creator<BookingBean>() {
+        @Override
+        public BookingBean createFromParcel(Parcel in) {
+            return new BookingBean(in);
+        }
+
+        @Override
+        public BookingBean[] newArray(int size) {
+            return new BookingBean[size];
+        }
+    };
+
+    public float getPoint() {
+        return point;
+    }
+
+    public void setPoint(float point) {
+        this.point = point;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
 
     public String getPriceType() {
         return priceType;
@@ -78,24 +118,6 @@ public class BookingBean implements Parcelable{
         this.searchItem = searchItem;
     }
 
-    protected BookingBean(Parcel in) {
-        roomBean = in.readParcelable(RoomBean.class.getClassLoader());
-        groupPos = in.readInt();
-        childPos = in.readInt();
-        searchItem = in.readParcelable(SearchItem.class.getClassLoader());
-    }
-
-    public static final Creator<BookingBean> CREATOR = new Creator<BookingBean>() {
-        @Override
-        public BookingBean createFromParcel(Parcel in) {
-            return new BookingBean(in);
-        }
-
-        @Override
-        public BookingBean[] newArray(int size) {
-            return new BookingBean[size];
-        }
-    };
 
     @Override
     public int describeContents() {
@@ -104,9 +126,12 @@ public class BookingBean implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeFloat(point);
+        dest.writeFloat(price);
         dest.writeParcelable(roomBean, flags);
         dest.writeInt(groupPos);
         dest.writeInt(childPos);
+        dest.writeString(priceType);
         dest.writeParcelable(searchItem, flags);
     }
 }

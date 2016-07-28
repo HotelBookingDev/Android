@@ -29,8 +29,11 @@ public class IRoomPresenter extends SuperPresenter {
         mIRoomEntityImp = new IRoomEntityImp();
     }
 
-    public void saveBooking(int GroupPos, int childPos){
+    public void saveBooking(int GroupPos, int childPos,float  point, float price){
         BookingBean bookingBean = new BookingBean();
+
+        bookingBean.setPoint(point);
+        bookingBean.setPrice(price);
         bookingBean.setGroupPos(GroupPos);
         bookingBean.setChildPos(childPos);
         bookingBean.setSearchItem(mIRoomView.getSearchItem());

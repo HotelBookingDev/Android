@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,6 +40,11 @@ public class RoomExpandListAdapter extends BaseExpandableListAdapter {
 
     public void setShowGroupPos(int showGroupPos) {
         this.showGroupPos = showGroupPos;
+        notifyDataSetChanged();
+    }
+
+    public int getShowGroupPos() {
+        return showGroupPos;
     }
 
     public void setPrice_type(int adultCount){
@@ -54,7 +60,7 @@ public class RoomExpandListAdapter extends BaseExpandableListAdapter {
     }
 
     public interface OnChildSubmitClickListener{
-        void onChildSubmitClick(int groupPos, int  childPos);
+        void onChildSubmitClick(int groupPos, int  childPos, float point, float price);
     }
 
 
@@ -120,12 +126,14 @@ public class RoomExpandListAdapter extends BaseExpandableListAdapter {
         }
 
         holder.mRoomName.setText(mData.get(groupPosition).getName());
+        holder.mMore.setChecked(false);
 
         holder.mSplint.setVisibility(View.VISIBLE);
-
-
-        if (showGroupPos != -1 && showGroupPos == groupPosition)
+        if (showGroupPos != -1 && showGroupPos == groupPosition){
             holder.mSplint.setVisibility(View.GONE);
+            holder.mMore.setChecked(true);
+        }
+
         return convertView;
     }
 
@@ -146,6 +154,8 @@ public class RoomExpandListAdapter extends BaseExpandableListAdapter {
 
         List<RoomStatusBean> roomstates = mData.get(groupPosition).getRoomPackages().get(childPosition).getRoomstates();
 
+        holder.mType.setText(mData.get(groupPosition).getName());
+
         float frontPrice = 0;
         float needPoint = 0;
 
@@ -164,11 +174,14 @@ public class RoomExpandListAdapter extends BaseExpandableListAdapter {
         holder.mPrice.setPoinsAndPrice(needPoint + "",frontPrice + "");
 
 
+        final float finalFrontPrice = frontPrice;
+        final float finalNeedPoint = needPoint;
+
         holder.mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mChildSubmitClickListener != null){
-                    mChildSubmitClickListener.onChildSubmitClick(groupPosition, childPosition);
+                    mChildSubmitClickListener.onChildSubmitClick(groupPosition, childPosition, finalNeedPoint, finalFrontPrice);
                 }
             }
         });
@@ -182,13 +195,14 @@ public class RoomExpandListAdapter extends BaseExpandableListAdapter {
     }
 
     class GroupHolder {
-        ImageView mImageView, mMore;
+        ImageView mImageView;
+        CheckBox mMore;
         View mSplint;
 
         TextView mRoomName;
         public GroupHolder(View itemView) {
             mImageView = (ImageView) itemView.findViewById(R.id.item_bed_v2_img);
-            mMore = (ImageView) itemView.findViewById(R.id.item_bed_v2_more);
+            mMore = (CheckBox) itemView.findViewById(R.id.item_bed_v2_more);
             mRoomName = (TextView) itemView.findViewById(R.id.item_bed_v2_name);
             mSplint = itemView.findViewById(R.id.item_bed_v2_splint);
         }
@@ -196,9 +210,11 @@ public class RoomExpandListAdapter extends BaseExpandableListAdapter {
 
     class ChildHolder{
         TextView mSubmit;
+        TextView mType;
         PriceText mPrice;
         public ChildHolder(View view) {
             mSubmit = (TextView) view.findViewById(R.id.item_room_pager_submit);
+            mType = (TextView) view.findViewById(R.id.item_bed_type);
             mPrice = (PriceText) view.findViewById(R.id.item_bed_price);
         }
     }

@@ -151,5 +151,8 @@ public class CustomBookingSearch extends LinearLayout {
     public void setContentText(String s){
         mContent.setText(s);
     }
+    public CharSequence getContentText(){
+        return mContent.getText();
+    }
 
 }

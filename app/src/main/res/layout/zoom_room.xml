@@ -35,6 +35,8 @@
         android:textSize="@dimen/hotels_item_price"
         app:price_text_poins="1000"
         app:price_text_price="1024"
+        app:price_text_content_color="@color/booking_text_gray_while"
+        app:price_text_add_color="@color/booking_text_gray_while"
         android:layout_marginBottom="5dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"

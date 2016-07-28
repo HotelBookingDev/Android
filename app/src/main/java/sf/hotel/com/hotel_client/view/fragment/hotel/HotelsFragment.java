@@ -232,6 +232,7 @@ public class HotelsFragment extends BaseFragment implements IHotelsView {
     public void setSearchItem(SearchItem mSearchItem) {
         this.mSearchItem = mSearchItem;
         mPullAdapter.setPrice_type(mSearchItem.adultCount);
+        setHeaderStr(mSearchItem);
     }
 
     public void setHeaderStr(SearchItem searchItem){

@@ -36,6 +36,12 @@ public class PriceText extends LinearLayout{
     String poins;
     String price;
 
+    int contentColor;
+
+    int addColor;
+
+    int nameColor;
+
     public PriceText(Context context) {
         this(context, null);
     }
@@ -48,6 +54,10 @@ public class PriceText extends LinearLayout{
 
         poins = typedArray.getString(R.styleable.PriceText_price_text_poins);
         price = typedArray.getString(R.styleable.PriceText_price_text_price);
+        nameColor = typedArray.getResourceId(R.styleable.PriceText_price_text_name_color, R.color.hotels_text_color_green);
+        addColor = typedArray.getResourceId(R.styleable.PriceText_price_text_add_color, R.color.hotels_text_color_gray);
+        contentColor = typedArray.getResourceId(R.styleable.PriceText_price_text_content_color, R.color.hotels_text_color_gray);
+
 
         typedArray.recycle();
 
@@ -69,15 +79,15 @@ public class PriceText extends LinearLayout{
         priceNameParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         priceNameParams.setMargins(5,0,0,0);
         priceName.setText("CNY");
-        priceName.setTextColor(getContext().getResources().getColor(R.color.hotels_text_color_green));
+        priceName.setTextColor(getContext().getResources().getColor(nameColor));
         addView(priceName, priceNameParams);
     }
 
     private void addPriceContent() {
         priceContent = new TextView(getContext());
         priceContentParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        priceContentParams.setMargins(5,0,0,0);
-        priceContent.setTextColor(getContext().getResources().getColor(R.color.hotels_text_color_gray));
+        priceContentParams.setMargins(8,0,0,0);
+        priceContent.setTextColor(getContext().getResources().getColor(contentColor));
         priceContent.setText("1000");
         addView(priceContent);
     }
@@ -85,9 +95,9 @@ public class PriceText extends LinearLayout{
     private void addAddText() {
         addText = new TextView(getContext());
         addParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        addParams.setMargins(5,0,0,0);
+        addParams.setMargins(8,0,0,0);
         addText.setText("+");
-        addText.setTextColor(getContext().getResources().getColor(R.color.hotels_text_color_gray));
+        addText.setTextColor(getContext().getResources().getColor(addColor));
         addView(addText, addParams);
     }
 
@@ -97,14 +107,14 @@ public class PriceText extends LinearLayout{
         pointNameParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         pointNameParams.setMargins(5,0,0,0);
         pointName.setText("points");
-        pointName.setTextColor(getContext().getResources().getColor(R.color.hotels_text_color_green));
+        pointName.setTextColor(getContext().getResources().getColor(nameColor));
         addView(pointName, pointNameParams);
     }
 
     private void addPointsContent() {
         pointContent = new TextView(getContext());
         pointContentParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        pointContent.setTextColor(getContext().getResources().getColor(R.color.hotels_text_color_gray));
+        pointContent.setTextColor(getContext().getResources().getColor(contentColor));
         pointContent.setText("1000");
         addView(pointContent);
     }

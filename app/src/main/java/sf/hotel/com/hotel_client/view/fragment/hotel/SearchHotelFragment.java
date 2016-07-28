@@ -175,7 +175,6 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
                 @Override
                 public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                     mPersonCount.setText(newVal + "");
-                    mSearchItem.adultCount = newVal;
                 }
             });
 
@@ -206,6 +205,8 @@ public class SearchHotelFragment extends BaseFragment implements ISearchHotelVie
     }
 
     private void showHotel() {
+        mSearchItem.adultCount = Integer.parseInt(mPersonCount.getText().toString());
+        mSearchItem.childCount = Integer.parseInt(mChildCount.getText().toString());
         mISearchHotelPresenter.saveSearchItem();
         Intent intent = new Intent(getBottomContext(), HotelsActivity.class);
         intent.putExtra("action", "search_hotel");

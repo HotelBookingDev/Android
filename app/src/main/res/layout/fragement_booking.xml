@@ -166,7 +166,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/my_points"
-                    android:textColor="@color/hotels_text_color_gray"
+                    android:textColor="@color/hotels_text_color_green"
                     />
 
                 <View
@@ -179,14 +179,14 @@
                     android:id="@+id/fragment_booking_all_integral"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/hotels_text_color_gray"
+                    android:textColor="@color/booking_text_gray_while"
                     android:text="28372"
                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/hotels_text_color_gray"
+                    android:textColor="@color/hotels_text_color_green"
                     android:layout_marginLeft="5dp"
                     android:layout_marginStart="5dp"
                     android:text="@string/points"
@@ -223,6 +223,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/hotels_text_color_gray"
+                    app:price_text_content_color="@color/booking_text_gray_while"
+                    app:price_text_add_color="@color/booking_text_gray_while"
                     app:price_text_price="1280"
                     app:price_text_poins="1000"
                     />

@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/search_item_height"
             android:background="@drawable/bg_serch_hotel"
-            app:custom_item_img="@mipmap/ic_add_location_black_36dp"
+            app:custom_item_img="@mipmap/ic_location"
             app:custom_item_text1="2个成人"
             android:id="@+id/fragment_search_hotel_city"
             />

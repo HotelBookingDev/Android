@@ -21,6 +21,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 import sf.hotel.com.data.entity.BookingBean;
 import sf.hotel.com.data.entity.SearchItem;
 import sf.hotel.com.data.entity.netresult.hotel.room.RoomPackagesBean;
+import sf.hotel.com.data.entity.netresult.hotel.room.RoomStatusBean;
 import sf.hotel.com.hotel_client.R;
 import sf.hotel.com.hotel_client.view.adapter.BaseRecyclerAdapter;
 import sf.hotel.com.hotel_client.view.adapter.BookingSearchAdapter;
@@ -225,7 +226,8 @@ public class BookingFragment extends BaseFragment implements IBookingView {
                 .getRoomPackages()
                 .get(bookingBean.getChildPos());
 
-
+        hotelPrice.setPoinsAndPrice(bookingBean.point + "", bookingBean.price + "");
+        hotelAllIntegral.setText(bookingBean.getUserEntity().getPoint() + "");
     }
 
     public boolean checkIsCanSubmit(){
@@ -234,6 +236,11 @@ public class BookingFragment extends BaseFragment implements IBookingView {
 
         if (!mCheckBox.isChecked()){
             msg = "没有同意条款。";
+            b = false;
+        }
+
+        if ("".equals(bookingTimer.getContentText().toString())){
+            msg = "没有选择到店时间。";
             b = false;
         }
 

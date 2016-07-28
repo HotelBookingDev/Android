@@ -154,6 +154,9 @@
     <declare-styleable name="PriceText">
         <attr name="price_text_price" format="string" />
         <attr name="price_text_poins" format="string" />
+        <attr name="price_text_name_color" format="reference"/>
+        <attr name="price_text_content_color" format="reference"/>
+        <attr name="price_text_add_color" format="reference"/>
     </declare-styleable>
 
     <declare-styleable name="CustomBookingItem">

@@ -29,7 +29,7 @@
         android:id="@+id/fragment_room_location"
         style="@style/group_item"
         app:contextText="xx区xx路xx号"
-        app:leftIcon="@mipmap/ic_add_location_black_36dp" />
+        app:leftIcon="@mipmap/ic_location" />
 
 
     <include layout="@layout/item_line" />

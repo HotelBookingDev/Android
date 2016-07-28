@@ -71,7 +71,8 @@
         <activity android:name=".view.activity.hotel.RoomActivity" />
         <activity android:name=".view.activity.hotel.HotelsActivity" />
         <activity android:name=".view.activity.hotel.BookingActivity"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"

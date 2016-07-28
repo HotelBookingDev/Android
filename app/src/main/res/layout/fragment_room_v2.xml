@@ -17,6 +17,7 @@
 
     <ExpandableListView
         android:id="@+id/fragment_room_listview"
+        android:background="@color/bg_normal_gray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:groupIndicator="@null"

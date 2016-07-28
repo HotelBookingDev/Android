@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:id="@+id/item_city_location"
         android:layout_height="@dimen/search_item_height"
-        app:custom_item_img="@mipmap/ic_add_location_black_36dp"
+        app:custom_item_img="@mipmap/ic_location"
         app:custom_item_text1="当前城市:"
         app:custom_item_text2="宁波"
         app:custom_item_color1="@color/hotels_text_color_green"

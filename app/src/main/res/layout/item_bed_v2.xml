@@ -3,16 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_item_room"
+        android:background="@drawable/bg_room_select"
         android:orientation="horizontal"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginEnd="10dp"
         android:padding="5dp"
         >
         <ImageView
@@ -45,10 +43,13 @@
                     android:layout_height="1dp"
                     android:layout_weight="1" />
 
-                <ImageView
+                <CheckBox
                     android:id="@+id/item_bed_v2_more"
+                    android:focusable="false"
+                    android:clickable="false"
                     android:layout_width="18dp"
                     android:layout_height="9dp"
+                    android:button="@null"
                     android:layout_marginRight="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginTop="5dp"
@@ -92,7 +93,15 @@
         </LinearLayout>
 
     </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_gray"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        />
     <View
         android:id="@+id/item_bed_v2_splint"
         android:layout_width="match_parent"
