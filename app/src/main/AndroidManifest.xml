@@ -106,7 +106,9 @@
             android:label="@string/title_activity_user_info"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".view.activity.person.SettingActivity" />
+        <activity
+            android:name=".view.activity.person.SettingActivity"
+            android:screenOrientation="portrait" />
 
         <!-- alipay sdk begin -->
         <activity
