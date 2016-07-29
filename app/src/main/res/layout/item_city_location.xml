@@ -5,22 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:text="当前"
-        android:gravity="center_vertical"
-        android:paddingLeft="20dp"
-        android:paddingStart="20dp"
-        android:background="@color/bg_gray"
-        />
-
-
-
     <sf.hotel.com.hotel_client.view.custom.CustomSearchItem
         android:layout_width="match_parent"
         android:id="@+id/item_city_location"
         android:layout_height="@dimen/search_item_height"
+        app:custom_item_size1="@dimen/litter_big_text_size"
+        app:custom_item_size2="@dimen/litter_big_text_size"
         app:custom_item_img="@mipmap/ic_location"
         app:custom_item_text1="当前城市:"
         app:custom_item_text2="宁波"

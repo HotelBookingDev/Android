@@ -200,12 +200,12 @@ public class CityListAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 }
 
                 if (mOnCityItemClickListener != null){
-                    normalVH.mLayout.setOnClickListener(new View.OnClickListener() {
+                    normalVH.mName.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             clearSearchHotCityBean();
                             currCityBean = cityBean;
-                            mOnCityItemClickListener.onCityItemClick(normalVH.mLayout, realPos);
+                            mOnCityItemClickListener.onCityItemClick(normalVH.mName, realPos);
                             notifyDataSetChanged();
                         }
                     });
@@ -263,13 +263,11 @@ public class CityListAllAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     class NormalVH extends RecyclerView.ViewHolder{
         TextView mAlpha, mName;
-        View mLayout;
 
         public NormalVH(View itemView) {
             super(itemView);
             mAlpha = (TextView) itemView.findViewById(R.id.item_city_alpha);
             mName = (TextView) itemView.findViewById(R.id.item_city_name);
-            mLayout = itemView.findViewById(R.id.item_city_layout);
         }
     }
 }

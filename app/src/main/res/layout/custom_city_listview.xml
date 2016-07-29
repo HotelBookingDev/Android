@@ -4,20 +4,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/custom_city_search_item"
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/btn_height"
-        android:layout_margin="8dp"
-        android:background="@drawable/bg_city_edit"
-        android:drawableLeft="@mipmap/header_city_search"
-        android:drawableStart="@mipmap/header_city_search"
-        android:drawablePadding="5dp"
-        android:hint="@string/city_search"
-        android:padding="8dp"
-        android:textColor="#515151"
-        android:textSize="16dp" >
-    </EditText>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/bg_gray"
+        android:id="@+id/custom_city_layout"
+        >
+
+        <EditText
+            android:id="@+id/custom_city_search_item"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/btn_height"
+            android:layout_margin="8dp"
+            android:background="@drawable/bg_city_edit"
+            android:drawableLeft="@mipmap/header_city_search"
+            android:drawableStart="@mipmap/header_city_search"
+            android:drawablePadding="5dp"
+            android:hint="@string/city_search"
+            android:padding="8dp"
+            android:textColor="#515151"
+            android:textSize="14dp" >
+        </EditText>
+
+    </LinearLayout>
+
+
 
 
 
@@ -31,7 +43,7 @@
         android:dividerHeight="0dp"
         android:listSelector="@android:color/transparent"
         android:scrollbars="none"
-        android:layout_below="@id/custom_city_search_item">
+        android:layout_below="@id/custom_city_layout">
     </android.support.v7.widget.RecyclerView>
 
 
@@ -41,7 +53,7 @@
         android:layout_width="25dp"
         android:layout_height="fill_parent"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/custom_city_search_item"
+        android:layout_below="@id/custom_city_layout"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="2dp"
         android:layout_marginEnd="2dp"

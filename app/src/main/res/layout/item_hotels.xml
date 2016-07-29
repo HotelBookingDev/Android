@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:text="三亚 | 国际连锁"
                 android:textColor="@color/hotels_text_color_gray"
-                android:textSize="@dimen/hotels_item_title" />
+                android:textSize="@dimen/litter_big_text_size" />
 
             <sf.hotel.com.hotel_client.view.custom.CustomRatingBar
                 android:id="@+id/item_hotels_ratingBar"
@@ -53,7 +53,6 @@
                 android:layout_gravity="right"
                 android:padding="5dp"
                 android:textColor="@color/hotels_text_color_green"
-                android:textSize="@dimen/hotels_item_price"
                 app:price_text_poins="1000"
                 app:price_text_price="1024" />
         </LinearLayout>

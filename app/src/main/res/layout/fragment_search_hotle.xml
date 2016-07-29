@@ -4,8 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_search">
-
+    >
 
     <sf.hotel.com.hotel_client.view.custom.HotelTitleView
         android:id="@+id/view_title"
@@ -14,129 +13,140 @@
 
 
 
-    <sf.hotel.com.hotel_client.view.custom.rippleview.RippleView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/search_margin"
-        android:layout_marginRight="@dimen/search_margin"
-        android:layout_marginTop="@dimen/search_margin_top"
-        android:layout_marginBottom="10dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@mipmap/bg_search_hotel2"
         >
-        <sf.hotel.com.hotel_client.view.custom.CustomSearchItem
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/search_item_height"
-            android:background="@drawable/bg_serch_hotel"
-            app:custom_item_img="@mipmap/ic_location"
-            app:custom_item_text1="2个成人"
-            android:id="@+id/fragment_search_hotel_city"
-            />
-    </sf.hotel.com.hotel_client.view.custom.rippleview.RippleView>
+        <sf.hotel.com.hotel_client.view.custom.rippleview.RippleView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/search_margin"
+            android:layout_marginRight="@dimen/search_margin"
+            android:layout_marginTop="@dimen/search_margin_top"
+            android:layout_marginBottom="10dp"
+            >
+            <sf.hotel.com.hotel_client.view.custom.CustomSearchItem
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/search_item_height"
+                android:background="@drawable/bg_serch_hotel"
+                app:custom_item_img="@mipmap/ic_location_36dp"
+                app:custom_item_text1="2个成人"
+                android:id="@+id/fragment_search_hotel_city"
+                />
+        </sf.hotel.com.hotel_client.view.custom.rippleview.RippleView>
 
 
 
-    <sf.hotel.com.hotel_client.view.custom.rippleview.RippleView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/search_margin"
-        android:layout_marginRight="@dimen/search_margin"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        >
-        <sf.hotel.com.hotel_client.view.custom.CustomTimerView
-            android:gravity="center"
-            android:id="@+id/fragment_search_hotel_timer"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/search_timer_height"
-            android:background="@drawable/bg_serch_hotel"
-            />
-    </sf.hotel.com.hotel_client.view.custom.rippleview.RippleView>
+        <sf.hotel.com.hotel_client.view.custom.rippleview.RippleView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/search_margin"
+            android:layout_marginRight="@dimen/search_margin"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            >
+            <sf.hotel.com.hotel_client.view.custom.CustomTimerView
+                android:gravity="center"
+                android:id="@+id/fragment_search_hotel_timer"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/search_timer_height"
+                android:background="@drawable/bg_serch_hotel"
+                />
+        </sf.hotel.com.hotel_client.view.custom.rippleview.RippleView>
 
 
-    <sf.hotel.com.hotel_client.view.custom.rippleview.RippleView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/search_margin"
-        android:layout_marginRight="@dimen/search_margin"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        >
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/search_item_height"
-            android:background="@drawable/bg_serch_hotel"
-            android:id="@+id/fragment_search_person"
-            android:gravity="center_vertical"
+        <sf.hotel.com.hotel_client.view.custom.rippleview.RippleView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/search_margin"
+            android:layout_marginRight="@dimen/search_margin"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             >
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:id="@+id/custom_search_item_img"
-                android:background="@mipmap/personal_icon"
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/search_item_height"
+                android:background="@drawable/bg_serch_hotel"
+                android:id="@+id/fragment_search_person"
+                android:gravity="center_vertical"
+                >
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/custom_search_item_img"
+                    android:background="@mipmap/personal_icon"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:textSize="@dimen/search_text_size"
+                    android:id="@+id/fragment_search_person_count"
+                    android:textColor="@color/hotels_text_color_green"
+                    android:text="1"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/search_text_size"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/adult"/>
+
+                <TextView
+                    android:id="@+id/fragment_search_child_count"
+                    android:textColor="@color/hotels_text_color_green"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
+                    android:textSize="@dimen/search_text_size"
+                    android:text="0"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:textSize="@dimen/search_text_size"
+                    android:text="@string/child"
+                    />
+            </LinearLayout>
+
+
+        </sf.hotel.com.hotel_client.view.custom.rippleview.RippleView>
+
+
+        <sf.hotel.com.hotel_client.view.custom.rippleview.RippleView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/search_margin"
+            android:layout_marginRight="@dimen/search_margin"
+            android:layout_marginTop="10dp">
+            <Button
+                android:id="@+id/search_hotel"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/search_item_height"
+                android:background="@drawable/bg_search_submit"
+                style="?android:attr/borderlessButtonStyle"
+                android:text="@string/search"
+                android:textSize="20sp"
+                android:textColor="@color/title_text_color_while"
                 />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:textSize="@dimen/search_text_size"
-                android:id="@+id/fragment_search_person_count"
-                android:textColor="@color/hotels_text_color_green"
-                android:text="1"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/search_text_size"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"
-                android:text="名成人"/>
-
-            <TextView
-                android:id="@+id/fragment_search_child_count"
-                android:textColor="@color/hotels_text_color_green"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginStart="30dp"
-                android:textSize="@dimen/search_text_size"
-                android:text="0"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"
-                android:textSize="@dimen/search_text_size"
-                android:text="个小孩"
-                />
-        </LinearLayout>
+        </sf.hotel.com.hotel_client.view.custom.rippleview.RippleView>
 
 
-    </sf.hotel.com.hotel_client.view.custom.rippleview.RippleView>
+    </LinearLayout>
 
 
-    <sf.hotel.com.hotel_client.view.custom.rippleview.RippleView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/search_margin"
-        android:layout_marginRight="@dimen/search_margin"
-        android:layout_marginTop="10dp">
-        <Button
-            android:id="@+id/search_hotel"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/search_item_height"
-            android:background="@drawable/bg_search_submit"
-            style="?android:attr/borderlessButtonStyle"
-            android:text="@string/search"
-            android:textSize="20sp"
-            android:textColor="@color/title_text_color_while"
-            />
-    </sf.hotel.com.hotel_client.view.custom.rippleview.RippleView>
 
 
 </LinearLayout>

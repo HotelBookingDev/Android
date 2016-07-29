@@ -274,7 +274,7 @@ public class RippleView extends RelativeLayout {
             if (rippleType == 1 && originBitmap == null)
                 originBitmap = getDrawingCache(true);
 
-            postInvalidate();
+            invalidate();
         }
     }
 

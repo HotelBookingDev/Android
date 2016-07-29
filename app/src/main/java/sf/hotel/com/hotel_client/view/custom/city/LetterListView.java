@@ -39,15 +39,15 @@ public class LetterListView extends View {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		if (showBkg) {
-			canvas.drawColor(getContext().getResources().getColor(bgColor));
-		}
+//		if (showBkg) {
+//			canvas.drawColor(getContext().getResources().getColor(bgColor));
+//		}
 		int height = getHeight();
 		int width = getWidth();
 		int singleHeight = height / b.length;
 		for (int i = 0; i < b.length; i++) {
 			paint.setColor(getContext().getResources().getColor(textColor));
-			paint.setTextSize(26);
+			paint.setTextSize(20);
 			// paint.setTypeface(Typeface.DEFAULT_BOLD);
 			paint.setAntiAlias(true);
 			/*if (i == choose) {

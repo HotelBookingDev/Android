@@ -169,4 +169,7 @@
     <string name="card_number">信用卡卡号</string>
     <string name="term_validity">有效期</string>
 
+    <string name="adult">名成人</string>
+    <string name="child">名儿童</string>
+
 </resources>

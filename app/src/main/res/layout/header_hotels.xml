@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:text="@string/search_result"
         android:textColor="@color/hotels_text_color_green"
-        android:textSize="@dimen/hotels_text"
+        android:textSize="@dimen/litter_big_text_size"
         />
 
     <View

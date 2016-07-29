@@ -9,6 +9,7 @@
         android:id="@+id/custom_hotel_text_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/litter_small_tex_size"
         android:text="目的地："
         android:textColor="@color/text_white"
         />
@@ -17,6 +18,7 @@
         android:id="@+id/custom_hotel_text_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/litter_small_tex_size"
         android:text="宁波"
         android:textColor="@color/text_white"
         />
