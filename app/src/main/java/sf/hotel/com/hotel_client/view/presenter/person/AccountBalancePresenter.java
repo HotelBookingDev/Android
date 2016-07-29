@@ -30,7 +30,7 @@ public class AccountBalancePresenter extends PayPresenter {
 
     public void initViews() {
         //TODO 为网络请求
-        iAccountBalanceFragmentView.showMoney(entity.getPoint() + "");
+        iAccountBalanceFragmentView.showMoney(entity.getPoint() + ".00");
     }
 
 
